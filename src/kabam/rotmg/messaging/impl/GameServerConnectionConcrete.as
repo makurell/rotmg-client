@@ -1,6 +1,7 @@
 ﻿package kabam.rotmg.messaging.impl {
 import com.company.assembleegameclient.game.AGameSprite;
 import com.company.assembleegameclient.game.events.GuildResultEvent;
+import com.company.assembleegameclient.game.events.KeyInfoResponseSignal;
 import com.company.assembleegameclient.game.events.NameResultEvent;
 import com.company.assembleegameclient.game.events.ReconnectEvent;
 import com.company.assembleegameclient.map.AbstractMap;
@@ -11,6 +12,7 @@ import com.company.assembleegameclient.objects.FlashDescription;
 import com.company.assembleegameclient.objects.GameObject;
 import com.company.assembleegameclient.objects.Merchant;
 import com.company.assembleegameclient.objects.NameChanger;
+import com.company.assembleegameclient.objects.ObjectLibrary;
 import com.company.assembleegameclient.objects.ObjectLibrary;
 import com.company.assembleegameclient.objects.ObjectProperties;
 import com.company.assembleegameclient.objects.Pet;
@@ -119,6 +121,7 @@ import kabam.rotmg.messaging.impl.incoming.Goto;
 import kabam.rotmg.messaging.impl.incoming.GuildResult;
 import kabam.rotmg.messaging.impl.incoming.InvResult;
 import kabam.rotmg.messaging.impl.incoming.InvitedToGuild;
+import kabam.rotmg.messaging.impl.incoming.KeyInfoResponse;
 import kabam.rotmg.messaging.impl.incoming.MapInfo;
 import kabam.rotmg.messaging.impl.incoming.NameResult;
 import kabam.rotmg.messaging.impl.incoming.NewAbilityMessage;
@@ -168,6 +171,7 @@ import kabam.rotmg.messaging.impl.outgoing.Hello;
 import kabam.rotmg.messaging.impl.outgoing.InvDrop;
 import kabam.rotmg.messaging.impl.outgoing.InvSwap;
 import kabam.rotmg.messaging.impl.outgoing.JoinGuild;
+import kabam.rotmg.messaging.impl.outgoing.KeyInfoRequest;
 import kabam.rotmg.messaging.impl.outgoing.Load;
 import kabam.rotmg.messaging.impl.outgoing.Move;
 import kabam.rotmg.messaging.impl.outgoing.OtherHit;
@@ -243,6 +247,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
     private var imminentWave:ImminentArenaWaveSignal;
     private var questFetchComplete:QuestFetchCompleteSignal;
     private var questRedeemComplete:QuestRedeemCompleteSignal;
+    private var keyInfoResponse:KeyInfoResponseSignal;
     private var currentArenaRun:CurrentArenaRunModel;
     private var classesModel:ClassesModel;
     private var injector:Injector;
@@ -270,6 +275,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         this.imminentWave = this.injector.getInstance(ImminentArenaWaveSignal);
         this.questFetchComplete = this.injector.getInstance(QuestFetchCompleteSignal);
         this.questRedeemComplete = this.injector.getInstance(QuestRedeemCompleteSignal);
+        this.keyInfoResponse = this.injector.getInstance(KeyInfoResponseSignal);
         this.logger = this.injector.getInstance(ILogger);
         this.handleDeath = this.injector.getInstance(HandleDeathSignal);
         this.zombify = this.injector.getInstance(ZombifySignal);
@@ -335,6 +341,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
     public function mapMessages():void {
         var _local_1:MessageMap = this.injector.getInstance(MessageMap);
+        //sending
         _local_1.map(CREATE).toMessage(Create);
         _local_1.map(PLAYERSHOOT).toMessage(PlayerShoot);
         _local_1.map(MOVE).toMessage(Move);
@@ -377,7 +384,10 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         _local_1.map(ACCEPT_ARENA_DEATH).toMessage(OutgoingMessage);
         _local_1.map(QUEST_FETCH_ASK).toMessage(OutgoingMessage);
         _local_1.map(QUEST_REDEEM).toMessage(QuestRedeem);
+        _local_1.map(KEY_INFO_REQUEST).toMessage(KeyInfoRequest);
         _local_1.map(PET_CHANGE_FORM_MSG).toMessage(ReskinPet);
+
+        //receiving
         _local_1.map(FAILURE).toMessage(Failure).toMethod(this.onFailure);
         _local_1.map(CREATE_SUCCESS).toMessage(CreateSuccess).toMethod(this.onCreateSuccess);
         _local_1.map(SERVERPLAYERSHOOT).toMessage(ServerPlayerShoot).toMethod(this.onServerPlayerShoot);
@@ -424,6 +434,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         _local_1.map(PASSWORD_PROMPT).toMessage(PasswordPrompt).toMethod(this.onPasswordPrompt);
         _local_1.map(QUEST_FETCH_RESPONSE).toMessage(QuestFetchResponse).toMethod(this.onQuestFetchResponse);
         _local_1.map(QUEST_REDEEM_RESPONSE).toMessage(QuestRedeemResponse).toMethod(this.onQuestRedeemResponse);
+        _local_1.map(KEY_INFO_RESPONSE).toMessage(KeyInfoResponse).toMethod(this.onKeyInfoResponse);
+
     }
 
     private function onHatchPet(_arg_1:HatchPetMessage):void {
@@ -723,7 +735,15 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
     override public function useItem_new(_arg_1:GameObject, _arg_2:int):Boolean {
         var _local_3:int = _arg_1.equipment_[_arg_2];
-        var _local_4:XML = ObjectLibrary.xmlLibrary_[_local_3];
+        var _local_4:XML;
+        if(_local_3 >= 0x9000 && _local_3 < 0xF000)
+        {
+            _local_4 = ObjectLibrary.xmlLibrary_[0x8FFF];
+        }
+        else
+        {
+            _local_4 = ObjectLibrary.xmlLibrary_[_local_3];
+        }
         if (((((_local_4) && (!(_arg_1.isPaused())))) && (((_local_4.hasOwnProperty("Consumable")) || (_local_4.hasOwnProperty("InvUse")))))) {
             if (!this.validStatInc(_local_3, _arg_1)) {
                 this.addTextLine.dispatch(ChatMessage.make("", (_local_4.attribute("id") + " not consumed. Already at Max.")));
@@ -967,6 +987,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         _local_2.gameNetUserId = _local_1.gameNetworkUserId();
         _local_2.playPlatform = _local_1.playPlatform();
         _local_2.platformToken = _local_1.getPlatformToken();
+        _local_2.userToken = _local_1.getToken();
         serverConnection.sendMessage(_local_2);
     }
 
@@ -1306,7 +1327,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
                 return;
             case ShowEffect.CONEBLAST_EFFECT_TYPE:
                 _local_3 = _local_2.goDict_[_arg_1.targetObjectId_];
-                if ((((_local_3 == null)) || (!(this.canShowEffect(_local_3))))) break;
+                if(_local_3 == null || !this.canShowEffect(_local_3))  break;
                 _local_4 = new ConeBlastEffect(_local_3, _arg_1.pos1_, _arg_1.pos2_.x_, _arg_1.color_);
                 _local_2.addObj(_local_4, _local_3.x_, _local_3.y_);
                 return;
@@ -1445,10 +1466,10 @@ public class GameServerConnectionConcrete extends GameServerConnection {
                     }
                     break;
                 case StatData.TEX1_STAT:
-                    _arg_1.setTex1(_local_8);
+                    _local_8 >= 0 && _arg_1.setTex1(_local_8);
                     break;
                 case StatData.TEX2_STAT:
-                    _arg_1.setTex2(_local_8);
+                    _local_8 >= 0 && _arg_1.setTex2(_local_8);
                     break;
                 case StatData.MERCHANDISE_TYPE_STAT:
                     _local_5.setMerchandiseType(_local_8);
@@ -1571,7 +1592,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
                     _local_4.magicPotionCount_ = _local_8;
                     break;
                 case StatData.TEXTURE_STAT:
-                    ((!((_local_4.skinId == _local_8))) && (this.setPlayerSkinTemplate(_local_4, _local_8)));
+                    _local_4.skinId != _local_8 && _local_8 >= 0 && this.setPlayerSkinTemplate(_local_4, _local_8);
                     break;
                 case StatData.HASBACKPACK_STAT:
                     (_arg_1 as Player).hasBackpack_ = Boolean(_local_8);
@@ -1934,6 +1955,18 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         _local_4.slotObject.slotId_ = _arg_2;
         _local_4.slotObject.objectType_ = _arg_3;
         serverConnection.sendMessage(_local_4);
+    }
+
+    override public function keyInfoRequest(_arg_1:int):void
+    {
+        var _local_2:KeyInfoRequest = this.messages.require(KEY_INFO_REQUEST) as KeyInfoRequest;
+        _local_2.itemType_ = _arg_1;
+        serverConnection.sendMessage(_local_2);
+    }
+
+    private function onKeyInfoResponse(_arg_1:KeyInfoResponse):void
+    {
+        this.keyInfoResponse.dispatch(_arg_1);
     }
 
     private function onClosed():void {

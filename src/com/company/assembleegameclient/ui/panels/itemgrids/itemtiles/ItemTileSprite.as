@@ -16,7 +16,7 @@ public class ItemTileSprite extends Sprite {
     protected static const DIM_FILTER:Array = [new ColorMatrixFilter([0.4, 0, 0, 0, 0, 0, 0.4, 0, 0, 0, 0, 0, 0.4, 0, 0, 0, 0, 0, 1, 0])];
     private static const IDENTITY_MATRIX:Matrix = new Matrix();
     private static const DOSE_MATRIX:Matrix = function ():Matrix {
-        var _local_1:* = new Matrix();
+        var _local_1:Matrix = new Matrix();
         _local_1.translate(10, 5);
         return (_local_1);
     }();
@@ -41,23 +41,37 @@ public class ItemTileSprite extends Sprite {
     }
 
     public function drawTile():void {
-        var _local_1:BitmapData;
-        var _local_2:XML;
-        var _local_3:BitmapData;
-        if (this.itemId != ItemConstants.NO_ITEM) {
-            _local_1 = ObjectLibrary.getRedrawnTextureFromType(this.itemId, 80, true);
-            _local_2 = ObjectLibrary.xmlLibrary_[this.itemId];
-            if (((((_local_2) && (_local_2.hasOwnProperty("Doses")))) && (this.bitmapFactory))) {
-                _local_1 = _local_1.clone();
-                _local_3 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_2.Doses)), 12, 0xFFFFFF, false, IDENTITY_MATRIX, false);
-                _local_1.draw(_local_3, DOSE_MATRIX);
+        var _local_2:BitmapData;
+        var _local_3:XML;
+        var _local_4:BitmapData;
+        var _local_1:int = this.itemId;
+        if(_local_1 != ItemConstants.NO_ITEM)
+        {
+            if(_local_1 >= 0x9000 && _local_1 < 0xF000)
+            {
+                _local_1 = 0x8FFF;
             }
-            this.itemBitmap.bitmapData = _local_1;
-            this.itemBitmap.x = (-(_local_1.width) / 2);
-            this.itemBitmap.y = (-(_local_1.height) / 2);
+            _local_2 = ObjectLibrary.getRedrawnTextureFromType(_local_1, 80, true);
+            _local_3 = ObjectLibrary.xmlLibrary_[_local_1];
+            if(_local_3 && _local_3.hasOwnProperty("Doses") && this.bitmapFactory)
+            {
+                _local_2 = _local_2.clone();
+                _local_4 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_3.Doses)), 12, 16777215, false, IDENTITY_MATRIX, false);
+                _local_2.draw(_local_4, DOSE_MATRIX);
+            }
+            if(_local_3 && _local_3.hasOwnProperty("Quantity") && this.bitmapFactory)
+            {
+                _local_2 = _local_2.clone();
+                _local_4 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_3.Quantity)), 12, 16777215, false, IDENTITY_MATRIX, false);
+                _local_2.draw(_local_4, DOSE_MATRIX);
+            }
+            this.itemBitmap.bitmapData = _local_2;
+            this.itemBitmap.x = -_local_2.width / 2;
+            this.itemBitmap.y = -_local_2.height / 2;
             visible = true;
         }
-        else {
+        else
+        {
             visible = false;
         }
     }

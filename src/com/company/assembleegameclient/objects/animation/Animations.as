@@ -28,7 +28,7 @@ public class Animations {
             }
             this.running_ = null;
         }
-        var _local_3:int;
+        var _local_3:int = 0;
         while (_local_3 < this.nextRun_.length) {
             if (_arg_1 > this.nextRun_[_local_3]) {
                 _local_5 = this.nextRun_[_local_3];

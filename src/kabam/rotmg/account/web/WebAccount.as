@@ -15,10 +15,14 @@ public class WebAccount implements Account {
 
     private var userId:String = "";
     private var password:String;
+    private var token:String = "";
     private var entryTag:String = "";
     private var isVerifiedEmail:Boolean;
     private var platformToken:String;
     private var _userDisplayName:String = "";
+    private var _rememberMe:Boolean = true;
+    private var _paymentProvider:String = "";
+    private var _paymentData:String = "";
     public var signedRequest:String;
     public var kabamId:String;
 
@@ -42,6 +46,11 @@ public class WebAccount implements Account {
         return (((this.password) || ("")));
     }
 
+    public function getToken():String
+    {
+        return "";
+    }
+
     public function getCredentials():Object {
         return ({
             "guid": this.getUserId(),
@@ -50,25 +59,29 @@ public class WebAccount implements Account {
     }
 
     public function isRegistered():Boolean {
-        return (!((this.getPassword() == "")));
+        return this.getPassword() != "" || this.getToken() != "";
     }
 
-    public function updateUser(_arg_1:String, _arg_2:String):void {
-        var _local_3:SharedObject;
+    public function updateUser(_arg_1:String, _arg_2:String, _arg_3:String):void {
+        var _local_4:SharedObject;
         this.userId = _arg_1;
         this.password = _arg_2;
+        this.token = _arg_3;
         try {
-            _local_3 = SharedObject.getLocal("RotMG", "/");
-            _local_3.data["GUID"] = _arg_1;
-            _local_3.data["Password"] = _arg_2;
-            _local_3.flush();
+            if(this._rememberMe) {
+                _local_4 = SharedObject.getLocal("RotMG", "/");
+                _local_4.data["GUID"] = _arg_1;
+                _local_4.data["Password"] = _arg_2;
+                _local_4.flush();
+            }
         }
         catch (error:Error) {
         }
     }
 
     public function clear():void {
-        this.updateUser(GUID.create(), null);
+        this._rememberMe = true;
+        this.updateUser(GUID.create(), null, null);
         Parameters.sendLogin_ = true;
         Parameters.data_.charIdUseMap = {};
         Parameters.save();
@@ -133,6 +146,35 @@ public class WebAccount implements Account {
         this._userDisplayName = _arg_1;
     }
 
+    public function set rememberMe(_arg_1:Boolean):void
+    {
+        this._rememberMe = _arg_1;
+    }
+
+    public function get rememberMe():Boolean
+    {
+        return this._rememberMe;
+    }
+
+    public function set paymentProvider(_arg_1:String):void
+    {
+        this._paymentProvider = _arg_1;
+    }
+
+    public function get paymentProvider():String
+    {
+        return this._paymentProvider;
+    }
+
+    public function set paymentData(param1:String):void
+    {
+        this._paymentData = param1;
+    }
+
+    public function get paymentData():String
+    {
+        return this._paymentData;
+    }
 
 }
 }//package kabam.rotmg.account.web

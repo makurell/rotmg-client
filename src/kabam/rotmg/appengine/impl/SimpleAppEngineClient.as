@@ -1,5 +1,9 @@
 ﻿package kabam.rotmg.appengine.impl {
+import com.company.assembleegameclient.parameters.Parameters;
+
 import flash.net.URLLoaderDataFormat;
+
+import kabam.rotmg.account.core.Account;
 
 import kabam.rotmg.appengine.api.AppEngineClient;
 import kabam.rotmg.appengine.api.RetryLoader;
@@ -13,6 +17,9 @@ public class SimpleAppEngineClient implements AppEngineClient {
     public var loader:RetryLoader;
     [Inject]
     public var setup:ApplicationSetup;
+    [Inject]
+    public var account:Account;
+
     private var isEncrypted:Boolean;
     private var maxRetries:int;
     private var dataFormat:String;
@@ -40,7 +47,29 @@ public class SimpleAppEngineClient implements AppEngineClient {
     }
 
     public function sendRequest(_arg_1:String, _arg_2:Object):void {
-        this.loader.sendRequest(this.makeURL(_arg_1), _arg_2);
+        try
+        {
+            if(_arg_2 == null)
+            {
+                _arg_2 = {};
+                _arg_2.gameClientVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
+            }
+            else
+            {
+                _arg_2.gameClientVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
+            }
+        }
+        catch(e:Error)
+        {
+        }
+        if(_arg_2 != null && _arg_2.guid)
+        {
+            this.loader.sendRequest(this.makeURL(_arg_1 + "?g=" + escape(_arg_2.guid)), _arg_2);
+        }
+        else
+        {
+            this.loader.sendRequest(this.makeURL(_arg_1), _arg_2);
+        }
     }
 
     private function makeURL(_arg_1:String):String {

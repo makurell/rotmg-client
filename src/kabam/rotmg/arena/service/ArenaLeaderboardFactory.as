@@ -101,7 +101,7 @@ public class ArenaLeaderboardFactory {
         var _local_7:CharacterSkin = _local_6.skins.getSkin(_local_4);
         var _local_8:int = ((_arg_1.PlayData.CharacterData.hasOwnProperty("Tex1")) ? _arg_1.PlayData.CharacterData.Tex1 : 0);
         var _local_9:int = ((_arg_1.PlayData.CharacterData.hasOwnProperty("Tex2")) ? _arg_1.PlayData.CharacterData.Tex2 : 0);
-        _local_3.playerBitmap = this.factory.makeIcon(_local_7.template, 100, _local_8, _local_9);
+        _local_3.playerBitmap = this.factory.makeIcon(_local_7.template, _local_7.is16x16 ? 50: 100, _local_8, _local_9);
         _local_3.equipment = ConversionUtil.toIntVector(_arg_1.PlayData.CharacterData.Inventory);
         _local_3.slotTypes = _local_6.slotTypes;
         _local_3.guildName = _arg_1.PlayData.CharacterData.GuildName;

@@ -3,9 +3,9 @@ import kabam.rotmg.text.model.TextKey;
 
 public class Timespan {
 
-    public static const WEEK:Timespan = new (Timespan)(TextKey.TIMESPAN_WEEK, "week");
-    public static const MONTH:Timespan = new (Timespan)(TextKey.TIMESPAN_MONTH, "month");
-    public static const ALL:Timespan = new (Timespan)(TextKey.TIMESPAN_ALL, "all");
+    public static const WEEK:Timespan = new Timespan(TextKey.TIMESPAN_WEEK, "week");
+    public static const MONTH:Timespan = new Timespan(TextKey.TIMESPAN_MONTH, "month");
+    public static const ALL:Timespan = new Timespan(TextKey.TIMESPAN_ALL, "all");
     public static const TIMESPANS:Vector.<Timespan> = new <Timespan>[WEEK, MONTH, ALL];
 
     private var name:String;

@@ -8,6 +8,9 @@ import flash.filters.DropShadowFilter;
 import flash.text.TextFieldAutoSize;
 
 import kabam.rotmg.account.core.view.AccountInfoView;
+import kabam.rotmg.build.api.BuildData;
+import kabam.rotmg.build.api.BuildEnvironment;
+import kabam.rotmg.core.StaticInjectorContext;
 import kabam.rotmg.text.model.TextKey;
 import kabam.rotmg.text.view.TextFieldDisplayConcrete;
 import kabam.rotmg.text.view.stringBuilder.LineBuilder;
@@ -22,11 +25,13 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
 
     private var _login:Signal;
     private var _register:Signal;
+    private var _reset:Signal;
     private var userName:String = "";
     private var isRegistered:Boolean;
     private var accountText:TextFieldDisplayConcrete;
     private var registerButton:TitleMenuOption;
     private var loginButton:TitleMenuOption;
+    private var resetButton:TitleMenuOption;
 
     public function WebAccountInfoView() {
         this.makeUIElements();
@@ -41,15 +46,22 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         return (this._register);
     }
 
+    public function get reset():Signal
+    {
+        return this._reset;
+    }
+
     private function makeUIElements():void {
         this.makeAccountText();
         this.makeLoginButton();
         this.makeRegisterButton();
+        this.makeResetButton();
     }
 
     private function makeSignals():void {
         this._login = new NativeMappedSignal(this.loginButton, MouseEvent.CLICK);
         this._register = new NativeMappedSignal(this.registerButton, MouseEvent.CLICK);
+        this._reset = new NativeMappedSignal(this.resetButton, MouseEvent.CLICK);
     }
 
     private function makeAccountText():void {
@@ -68,6 +80,12 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
     private function makeLoginButton():void {
         this.loginButton = new TitleMenuOption(TextKey.LOG_IN, FONT_SIZE, false);
         this.loginButton.setAutoSize(TextFieldAutoSize.RIGHT);
+    }
+
+    private function makeResetButton():void
+    {
+        this.resetButton = new TitleMenuOption("reset", FONT_SIZE, false);
+        this.resetButton.setAutoSize(TextFieldAutoSize.RIGHT);
     }
 
     private function makeRegisterButton():void {
@@ -107,12 +125,21 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
 
     private function showUIForRegisteredAccount():void {
         this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.LOGGED_IN_TEXT, {"userName": this.userName}));
+        var _local_1:BuildData = StaticInjectorContext.getInjector().getInstance(BuildData);
         this.loginButton.setTextKey(TextKey.LOG_OUT);
-        this.addAndAlignHorizontally(this.accountText, this.loginButton);
+        if(_local_1.getEnvironment() == BuildEnvironment.TESTING || _local_1.getEnvironment() == BuildEnvironment.LOCALHOST)
+        {
+            this.addAndAlignHorizontally(this.accountText, this.makeDividerText(), this.resetButton, this.makeDividerText(), this.loginButton);
+        }
+        else
+        {
+            this.addAndAlignHorizontally(this.accountText, this.loginButton);
+        }
     }
 
     private function showUIForGuestAccount():void {
         this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.GUEST_ACCOUNT, {"userName": this.userName}));
+        var _local_1:BuildData = StaticInjectorContext.getInjector().getInstance(BuildData);
         this.loginButton.setTextKey(TextKey.LOG_IN);
         this.addAndAlignHorizontally(this.accountText, this.makeDividerText(), this.registerButton, this.makeDividerText(), this.loginButton);
     }

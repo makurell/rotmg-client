@@ -87,6 +87,7 @@ public class MysteryBoxRollModal extends Sprite {
     private var timerComplete:Boolean = false;
     private var goldBackground:DisplayObject;
     private var goldBackgroundMask:DisplayObject;
+    private var rewardsList:Array;
 
     public function MysteryBoxRollModal(_arg_1:MysteryBoxInfo, _arg_2:int):void {
         this.spinners = new Sprite();
@@ -193,7 +194,7 @@ public class MysteryBoxRollModal extends Sprite {
             this.boxButton.currency = _local_3;
             this.boxButton.price = _local_2;
             this.boxButton.setStringBuilder(new LineBuilder().setParams(this.playAgainXTimesString, {
-                "cost": _local_2.toString(),
+                "cost": _local_2.toString(), 
                 "repeat": this.quantity_.toString()
             }));
         }
@@ -257,12 +258,12 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_1:Object = this.account.getCredentials();
         _local_1.boxId = this.mbi.id;
         if (this.mbi.isOnSale()) {
-            _local_1.quantity = this.mbi._quantity;
+            _local_1.quantity = this.quantity_;
             _local_1.price = this.mbi._saleAmount;
             _local_1.currency = this.mbi._saleCurrency;
         }
         else {
-            _local_1.quantity = this.mbi._quantity;
+            _local_1.quantity = this.quantity_;
             _local_1.price = this.mbi._priceAmount;
             _local_1.currency = this.mbi._priceCurrency;
         }
@@ -273,6 +274,7 @@ public class MysteryBoxRollModal extends Sprite {
         addChild(this.infoText);
         this.playRollAnimation();
         this.lastReward = "";
+        this.rewardsList = [];
         this.requestComplete = false;
         this.timerComplete = false;
         this.totalRollTimer.addEventListener(TimerEvent.TIMER, this.onTotalRollTimeComplete);
@@ -297,7 +299,7 @@ public class MysteryBoxRollModal extends Sprite {
         this.totalRollTimer.stop();
         this.timerComplete = true;
         if (this.requestComplete) {
-            this.showReward(this.lastReward);
+            this.showReward();
         }
         this.totalRollTimer.removeEventListener(TimerEvent.TIMER, this.onTotalRollTimeComplete);
     }
@@ -308,12 +310,25 @@ public class MysteryBoxRollModal extends Sprite {
         this.shelveReward();
         this.clearReward();
         this.rollCount++;
-        this.sendRollRequest();
+        this.prepareNextRoll();
+    }
+
+    private function prepareNextRoll():void
+    {
+        this.titleText = this.getText(this.mbi._title, TEXT_MARGIN, 6, true).setSize(18);
+        this.titleText.setColor(0xFFDE00);
+        addChild(this.titleText);
+        addChild(this.infoText);
+        this.playRollAnimation();
+        this.timerComplete = false;
+        this.lastReward = this.rewardsList[0];
+        this.totalRollTimer.addEventListener(TimerEvent.TIMER, this.onTotalRollTimeComplete);
+        this.totalRollTimer.start();
     }
 
     private function swapItemImage(_arg_1:TimerEvent):void {
         this.swapImageTimer.stop();
-        var _local_2:uint;
+        var _local_2:uint = 0;
         while (_local_2 < this.indexInRolls.length) {
             if (this.indexInRolls[_local_2] < (this.mbi._rollsWithContentsUnique.length - 1)) {
                 var _local_3 = this.indexInRolls;
@@ -357,55 +372,126 @@ public class MysteryBoxRollModal extends Sprite {
         }
     }
 
-    private function onComplete(_arg_1:Boolean, _arg_2:*):void {
+    private function onComplete(_arg_1:Boolean, _arg_2:String):void {
         var _local_3:XML;
-        var _local_4:Player;
-        var _local_5:PlayerModel;
-        var _local_6:OpenDialogSignal;
-        var _local_7:Dialog;
-        var _local_8:Injector;
-        var _local_9:GetMysteryBoxesTask;
+        var _local_4:XML;
+        var _local_5:Player;
+        var _local_6:PlayerModel;
+        var _local_7:OpenDialogSignal;
+        var _local_8:String;
+        var _local_9:Dialog;
+        var _local_10:Injector;
+        var _local_11:GetMysteryBoxesTask;
+        var _local_12:Array;
+        var _local_13:int;
+        var _local_14:Array;
+        var _local_15:int;
+        var _local_16:Array;
         this.requestComplete = true;
-        if (_arg_1) {
+        if(_arg_1)
+        {
             _local_3 = new XML(_arg_2);
-            this.lastReward = _local_3.Awards;
-            if (this.timerComplete) {
-                this.showReward(_local_3.Awards);
+            for each(_local_4 in _local_3.elements("Awards"))
+            {
+                this.rewardsList.push(_local_4.toString());
             }
-            _local_4 = StaticInjectorContext.getInjector().getInstance(GameModel).player;
-            if (_local_4 != null) {
-                if (_local_3.hasOwnProperty("Gold")) {
-                    _local_4.setCredits(int(_local_3.Gold));
+            this.lastReward = this.rewardsList[0];
+            if(this.timerComplete)
+            {
+                this.showReward();
+            }
+            if(_local_3.hasOwnProperty("Left") && this.mbi.unitsLeft != -1)
+            {
+                this.mbi.unitsLeft = int(_local_3.Left);
+            }
+            _local_5 = StaticInjectorContext.getInjector().getInstance(GameModel).player;
+            if(_local_5 != null)
+            {
+                if(_local_3.hasOwnProperty("Gold"))
+                {
+                    _local_5.setCredits(int(_local_3.Gold));
                 }
-                else {
-                    if (_local_3.hasOwnProperty("Fame")) {
-                        _local_4.fame_ = _local_3.Fame;
-                    }
+                else if(_local_3.hasOwnProperty("Fame"))
+                {
+                    _local_5.fame_ = _local_3.Fame;
                 }
             }
-            else {
-                _local_5 = StaticInjectorContext.getInjector().getInstance(PlayerModel);
-                if (_local_5 != null) {
-                    if (_local_3.hasOwnProperty("Gold")) {
-                        _local_5.setCredits(int(_local_3.Gold));
+            else
+            {
+                _local_6 = StaticInjectorContext.getInjector().getInstance(PlayerModel);
+                if(_local_6 != null)
+                {
+                    if(_local_3.hasOwnProperty("Gold"))
+                    {
+                        _local_6.setCredits(int(_local_3.Gold));
                     }
-                    else {
-                        if (_local_3.hasOwnProperty("Fame")) {
-                            _local_5.setFame(int(_local_3.Fame));
-                        }
+                    else if(_local_3.hasOwnProperty("Fame"))
+                    {
+                        _local_6.setFame(int(_local_3.Fame));
                     }
                 }
             }
         }
-        else {
-            _local_6 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
-            _local_7 = new Dialog("MysteryBoxRollModal.purchaseFailedString", "MysteryBoxRollModal.pleaseTryAgainString", "MysteryBoxRollModal.okString", null, null);
-            _local_7.addEventListener(Dialog.LEFT_BUTTON, this.onErrorOk);
-            _local_6.dispatch(_local_7);
-            _local_8 = StaticInjectorContext.getInjector();
-            _local_9 = _local_8.getInstance(GetMysteryBoxesTask);
-            _local_9.clearLastRanBlock();
-            _local_9.start();
+        else
+        {
+            this.totalRollTimer.removeEventListener(TimerEvent.TIMER,this.onTotalRollTimeComplete);
+            this.totalRollTimer.stop();
+            _local_7 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
+            _local_8 = "MysteryBoxRollModal.pleaseTryAgainString";
+            if(LineBuilder.getLocalizedStringFromKey(_arg_2) != "")
+            {
+                _local_8 = _arg_2;
+            }
+            if(_arg_2.indexOf("MysteryBoxError.soldOut") >= 0)
+            {
+                _local_12 = _arg_2.split("|");
+                if(_local_12.length == 2)
+                {
+                    _local_13 = _local_12[1];
+                    if(_local_13 == 0)
+                    {
+                        _local_8 = "MysteryBoxError.soldOutAll";
+                    }
+                    else
+                    {
+                        _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.soldOutLeft", {
+                            "left": this.mbi.unitsLeft,
+                            "box": (this.mbi.unitsLeft == 1 ? LineBuilder.getLocalizedStringFromKey("MysteryBoxError.box") : LineBuilder.getLocalizedStringFromKey("MysteryBoxError.boxes"))
+                        });
+                    }
+                }
+            }
+            if(_arg_2.indexOf("MysteryBoxError.maxPurchase") >= 0)
+            {
+                _local_14 = _arg_2.split("|");
+                if(_local_14.length == 2)
+                {
+                    _local_15 = _local_14[1];
+                    if(_local_15 == 0)
+                    {
+                        _local_8 = "MysteryBoxError.maxPurchase";
+                    }
+                    else
+                    {
+                        _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.maxPurchaseLeft",{"left": _local_15});
+                    }
+                }
+            }
+            if(_arg_2.indexOf("blockedForUser") >= 0)
+            {
+                _local_16 = _arg_2.split("|");
+                if(_local_16.length == 2)
+                {
+                    _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.blockedForUser", {"date": _local_16[1]});
+                }
+            }
+            _local_9 = new Dialog("MysteryBoxRollModal.purchaseFailedString", _local_8, "MysteryBoxRollModal.okString", null, null);
+            _local_9.addEventListener(Dialog.LEFT_BUTTON, this.onErrorOk);
+            _local_7.dispatch(_local_9);
+            _local_10 = StaticInjectorContext.getInjector();
+            _local_11 = _local_10.getInstance(GetMysteryBoxesTask);
+            _local_11.clearLastRanBlock();
+            _local_11.start();
             this.close(true);
         }
     }
@@ -471,6 +557,7 @@ public class MysteryBoxRollModal extends Sprite {
         if (!_arg_1) {
             _local_2 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
             if (this.parentSelectModal != null) {
+                this.parentSelectModal.updateContent();
                 _local_2.dispatch(this.parentSelectModal);
             }
             else {
@@ -484,7 +571,7 @@ public class MysteryBoxRollModal extends Sprite {
         open = false;
     }
 
-    private function showReward(_arg_1:String):void {
+    private function showReward():void {
         var _local_4:String;
         var _local_5:uint;
         var _local_6:TextFieldDisplayConcrete;
@@ -496,7 +583,8 @@ public class MysteryBoxRollModal extends Sprite {
             this.nextRollTimer.start();
         }
         this.closeButton.visible = true;
-        var _local_2:Array = _arg_1.split(",");
+        var _local_1:String = this.rewardsList.shift();
+        var _local_2:Array = _local_1.split(",");
         removeChild(this.infoText);
         this.titleText.setStringBuilder(new LineBuilder().setParams(this.youWonString));
         this.titleText.setColor(0xFFDE00);
@@ -520,10 +608,10 @@ public class MysteryBoxRollModal extends Sprite {
         _local_5 = 0;
         while (_local_5 < this.itemBitmaps.length) {
             this.doEaseInAnimation(this.itemBitmaps[_local_5], {
-                "scaleX": 1.25,
+                "scaleX": 1.25, 
                 "scaleY": 1.25
             }, {
-                "scaleX": 1,
+                "scaleX": 1, 
                 "scaleY": 1
             });
             _local_5++;
@@ -553,7 +641,7 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_6:int;
         var _local_7:int;
         var _local_8:int;
-        var _local_1:Array = this.lastReward.split(",");
+        var _local_1:Array = this.lastReward.split(", ");
         if (_local_1.length > 0) {
             _local_2 = new ItemWithTooltip(int(_local_1[0]), 64);
             _local_3 = ((HEIGHT / 6) - 10);

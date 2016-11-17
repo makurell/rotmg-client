@@ -1,4 +1,5 @@
 ﻿package com.company.assembleegameclient.mapeditor {
+import com.adobe.images.PNGEncoder;
 import com.company.assembleegameclient.map.GroundLibrary;
 import com.company.assembleegameclient.map.RegionLibrary;
 import com.company.assembleegameclient.objects.ObjectLibrary;
@@ -18,23 +19,24 @@ import flash.events.MouseEvent;
 import flash.geom.Matrix;
 import flash.geom.Rectangle;
 import flash.ui.Keyboard;
+import flash.utils.ByteArray;
 import flash.utils.Dictionary;
 
 class MEMap extends Sprite {
 
     private static var transbackgroundEmbed_:Class = MEMap_transbackgroundEmbed_;
     private static var transbackgroundBD_:BitmapData = new transbackgroundEmbed_().bitmapData;
-    public static const NUM_SQUARES:int = 0x0200;
+    public static var NUM_SQUARES:int = 128;
+    public static const MAX_ALLOWED_SQUARES:int = 512;
     public static const SQUARE_SIZE:int = 16;
-    public static const SIZE:int = 0x0200;
-    public static const MIN_ZOOM:Number = 0.0625;
-    public static const MAX_ZOOM:Number = 16;
+    public static const SIZE:int = 512;
 
     public var tileDict_:Dictionary;
     public var fullMap_:BigBitmapData;
     public var regionMap_:BitmapData;
     public var map_:BitmapData;
     public var overlay_:Shape;
+    public var anchorLock:Boolean = false;
     public var posT_:IntPoint;
     public var zoom_:Number = 1;
     private var mouseRectAnchorT_:IntPoint = null;
@@ -43,7 +45,11 @@ class MEMap extends Sprite {
     private var rectHeightOverride:int = 0;
     private var invisibleTexture_:BitmapData;
     private var replaceTexture_:BitmapData;
-    public var anchorLock:Boolean = false;
+    private var objectLayer_:BigBitmapData;
+    private var groundLayer_:BigBitmapData;
+    private var ifShowObjectLayer_:Boolean = true;
+    private var ifShowGroundLayer_:Boolean = true;
+    private var ifShowRegionLayer_:Boolean = true;
 
     public function MEMap() {
         this.tileDict_ = new Dictionary();
@@ -51,6 +57,8 @@ class MEMap extends Sprite {
         this.regionMap_ = new BitmapDataSpy(NUM_SQUARES, NUM_SQUARES, true, 0);
         this.map_ = new BitmapDataSpy(SIZE, SIZE, true, 0);
         this.overlay_ = new Shape();
+        this.objectLayer_ = new BigBitmapData(NUM_SQUARES * SQUARE_SIZE, NUM_SQUARES * SQUARE_SIZE, true, 0);
+        this.groundLayer_ = new BigBitmapData(NUM_SQUARES * SQUARE_SIZE, NUM_SQUARES * SQUARE_SIZE, true, 0);
         super();
         graphics.beginBitmapFill(transbackgroundBD_, null, true);
         graphics.drawRect(0, 0, SIZE, SIZE);
@@ -62,6 +70,68 @@ class MEMap extends Sprite {
         this.draw();
         addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
         addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
+    }
+
+    private static function minZoom():Number
+    {
+        return SQUARE_SIZE / NUM_SQUARES * 2;
+    }
+
+    private static function maxZoom():Number
+    {
+        return SQUARE_SIZE;
+    }
+
+    public function set ifShowObjectLayer(_arg_1:Boolean):void
+    {
+        this.ifShowObjectLayer_ = _arg_1;
+    }
+
+    public function set ifShowGroundLayer(_arg_1:Boolean):void
+    {
+        this.ifShowGroundLayer_ = _arg_1;
+    }
+
+    public function set ifShowRegionLayer(_arg_1:Boolean):void
+    {
+        this.ifShowRegionLayer_ = _arg_1;
+    }
+
+    public function resize(_arg_1:Number):void
+    {
+        var _local_4:METile;
+        var _local_5:int;
+        var _local_6:int;
+        var _local_7:int;
+        var _local_8:*;
+        var _local_2:Dictionary = this.tileDict_;
+        var _local_3:int = NUM_SQUARES;
+        NUM_SQUARES = _arg_1;
+        this.setZoom(minZoom());
+        this.tileDict_ = new Dictionary();
+        this.fullMap_ = new BigBitmapData(NUM_SQUARES * SQUARE_SIZE, NUM_SQUARES * SQUARE_SIZE, true, 0);
+        this.objectLayer_ = new BigBitmapData(NUM_SQUARES * SQUARE_SIZE, NUM_SQUARES * SQUARE_SIZE, true, 0);
+        this.groundLayer_ = new BigBitmapData(NUM_SQUARES * SQUARE_SIZE, NUM_SQUARES * SQUARE_SIZE, true, 0);
+        this.regionMap_ = new BitmapDataSpy(NUM_SQUARES, NUM_SQUARES, true, 0);
+        for(_local_8 in _local_2)
+        {
+            _local_4 = _local_2[_local_8];
+            if(_local_4.isEmpty())
+            {
+                _local_4 = null;
+            }
+            else
+            {
+                _local_5 = int(_local_8);
+                _local_6 = _local_5 % _local_3;
+                _local_7 = _local_5 / _local_3;
+                if(_local_6 < NUM_SQUARES && _local_7 < NUM_SQUARES)
+                {
+                    this.setTile(_local_6, _local_7, _local_4);
+                }
+            }
+        }
+        _local_2 = null;
     }
 
     public function getType(_arg_1:int, _arg_2:int, _arg_3:int):int {
@@ -113,11 +183,16 @@ class MEMap extends Sprite {
         _arg_3 = _arg_3.clone();
         this.tileDict_[(_arg_1 + (_arg_2 * NUM_SQUARES))] = _arg_3;
         this.drawTile(_arg_1, _arg_2, _arg_3);
+        _arg_3 = null;
     }
 
     public function eraseTile(_arg_1:int, _arg_2:int):void {
         this.clearTile(_arg_1, _arg_2);
         this.drawTile(_arg_1, _arg_2, null);
+    }
+
+    public function toggleLayers(_arg_1:Array):void
+    {
     }
 
     public function clear():void {
@@ -137,8 +212,8 @@ class MEMap extends Sprite {
         var _local_9:int;
         var _local_1:int = NUM_SQUARES;
         var _local_2:int = NUM_SQUARES;
-        var _local_3:int;
-        var _local_4:int;
+        var _local_3:int = 0;
+        var _local_4:int = 0;
         for (_local_5 in this.tileDict_) {
             _local_6 = this.tileDict_[_local_5];
             if (!_local_6.isEmpty()) {
@@ -170,13 +245,37 @@ class MEMap extends Sprite {
     }
 
     private function modifyZoom(_arg_1:Number):void {
-        if ((((((_arg_1 > 1)) && ((this.zoom_ >= MAX_ZOOM)))) || ((((_arg_1 < 1)) && ((this.zoom_ <= MIN_ZOOM)))))) {
+        if(_arg_1 > 1 && this.zoom_ >= maxZoom() || _arg_1 < 1 && this.zoom_ <= minZoom()) {
             return;
         }
         var _local_2:IntPoint = this.mousePosT();
         this.zoom_ = (this.zoom_ * _arg_1);
         var _local_3:IntPoint = this.mousePosT();
         this.movePosT((_local_2.x_ - _local_3.x_), (_local_2.y_ - _local_3.y_));
+    }
+
+    private function setZoom(_arg_1:Number):void
+    {
+        if(_arg_1 > maxZoom() || _arg_1 < minZoom())
+        {
+            return;
+        }
+        var _local_2:IntPoint = this.mousePosT();
+        this.zoom_ = _arg_1;
+        var _local_3:IntPoint = this.mousePosT();
+        this.movePosT(_local_2.x_ - _local_3.x_, _local_2.y_ - _local_3.y_);
+    }
+
+    public function setMinZoom(_arg_1:Number = 0):void
+    {
+        if(_arg_1 != 0)
+        {
+            this.setZoom(_arg_1);
+        }
+        else
+        {
+            this.setZoom(minZoom());
+        }
     }
 
     private function canMove():Boolean {
@@ -232,7 +331,7 @@ class MEMap extends Sprite {
     }
 
     private function movePosT(_arg_1:int, _arg_2:int):void {
-        var _local_3:int;
+        var _local_3:int = 0;
         var _local_4:int = (NUM_SQUARES - this.sizeInTiles());
         this.posT_.x_ = Math.max(_local_3, Math.min(_local_4, (this.posT_.x_ + _arg_1)));
         this.posT_.y_ = Math.max(_local_3, Math.min(_local_4, (this.posT_.y_ + _arg_2)));
@@ -274,6 +373,7 @@ class MEMap extends Sprite {
         addEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
         addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
         addEventListener(MouseEvent.MOUSE_MOVE, this.onMouseMove);
+        addEventListener(MouseEvent.RIGHT_CLICK, this.onMouseRightClick);
         stage.addEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
         stage.addEventListener(KeyboardEvent.KEY_UP, this.onKeyUp);
     }
@@ -291,10 +391,12 @@ class MEMap extends Sprite {
             case Keyboard.SHIFT:
                 if (this.mouseRectAnchorT_ != null) break;
                 this.mouseRectAnchorT_ = this.mousePosT();
+                this.draw();
                 break;
             case Keyboard.CONTROL:
                 if (this.mouseMoveAnchorT_ != null) break;
                 this.mouseMoveAnchorT_ = this.mousePosT();
+                this.draw();
                 break;
             case Keyboard.LEFT:
                 this.moveLeft();
@@ -315,19 +417,29 @@ class MEMap extends Sprite {
                 this.increaseZoom();
                 break;
         }
-        this.draw();
     }
 
     private function onKeyUp(_arg_1:KeyboardEvent):void {
         switch (_arg_1.keyCode) {
             case Keyboard.SHIFT:
                 this.mouseRectAnchorT_ = null;
+                this.draw();
                 break;
             case Keyboard.CONTROL:
                 this.mouseMoveAnchorT_ = null;
+                this.draw();
                 break;
         }
-        this.draw();
+    }
+
+    public function clearSelectRect():void
+    {
+        this.mouseRectAnchorT_ = null;
+        this.anchorLock = false;
+    }
+
+    private function onMouseRightClick(_arg_1:MouseEvent):void
+    {
     }
 
     private function onMouseWheel(_arg_1:MouseEvent):void {
@@ -422,18 +534,22 @@ class MEMap extends Sprite {
         var _local_7:uint;
         var _local_4:Rectangle = new Rectangle((_arg_1 * SQUARE_SIZE), (_arg_2 * SQUARE_SIZE), SQUARE_SIZE, SQUARE_SIZE);
         this.fullMap_.erase(_local_4);
+        this.groundLayer_.erase(_local_4);
+        this.objectLayer_.erase(_local_4);
         this.regionMap_.setPixel32(_arg_1, _arg_2, 0);
         if (_arg_3 == null) {
+            this.groundLayer_.erase(_local_4);
+            this.objectLayer_.erase(_local_4);
             return;
         }
         if (_arg_3.types_[Layer.GROUND] != -1) {
             _local_5 = GroundLibrary.getBitmapData(_arg_3.types_[Layer.GROUND]);
-            this.fullMap_.copyTo(_local_5, _local_5.rect, _local_4);
+            this.groundLayer_.copyTo(_local_5, _local_5.rect, _local_4);
         }
         if (_arg_3.types_[Layer.OBJECT] != -1) {
             _local_6 = ObjectLibrary.getTextureFromType(_arg_3.types_[Layer.OBJECT]);
             if ((((_local_6 == null)) || ((_local_6 == this.invisibleTexture_)))) {
-                this.fullMap_.copyTo(this.replaceTexture_, this.replaceTexture_.rect, _local_4);
+                this.objectLayer_.copyTo(_local_5, _local_5.rect, _local_4);
             }
             else {
                 this.fullMap_.copyTo(_local_6, _local_6.rect, _local_4);
@@ -462,22 +578,88 @@ class MEMap extends Sprite {
         var _local_4:BitmapData;
         var _local_1:int = (SIZE / this.zoom_);
         this.map_.fillRect(this.map_.rect, 0);
-        this.fullMap_.copyFrom(new Rectangle((this.posT_.x_ * SQUARE_SIZE), (this.posT_.y_ * SQUARE_SIZE), _local_1, _local_1), this.map_, this.map_.rect);
-        _local_2 = new Matrix();
-        _local_2.identity();
-        _local_3 = (SQUARE_SIZE * this.zoom_);
-        if (this.zoom_ > 2) {
-            _local_4 = new BitmapDataSpy((SIZE / _local_3), (SIZE / _local_3));
-            _local_4.copyPixels(this.regionMap_, new Rectangle(this.posT_.x_, this.posT_.y_, _local_1, _local_1), PointUtil.ORIGIN);
-            _local_2.scale(_local_3, _local_3);
-            this.map_.draw(_local_4, _local_2);
+        if(this.ifShowGroundLayer_)  {
+            this.groundLayer_.copyFrom(new Rectangle(this.posT_.x_ * SQUARE_SIZE, this.posT_.y_ * SQUARE_SIZE, _local_1, _local_1), this.map_, this.map_.rect);
         }
-        else {
-            _local_2.translate(-(this.posT_.x_), -(this.posT_.y_));
-            _local_2.scale(_local_3, _local_3);
-            this.map_.draw(this.regionMap_, _local_2, null, null, this.map_.rect);
+        if(this.ifShowObjectLayer_)  {
+            this.objectLayer_.copyFrom(new Rectangle(this.posT_.x_ * SQUARE_SIZE, this.posT_.y_ * SQUARE_SIZE, _local_1, _local_1), this.map_, this.map_.rect);
+        }
+        if(this.ifShowRegionLayer_)
+        {
+            _local_2 = new Matrix();
+            _local_2.identity();
+            _local_3 = SQUARE_SIZE * this.zoom_;
+            if(this.zoom_ > 2)
+            {
+                _local_4 = new BitmapDataSpy(SIZE / _local_3, SIZE / _local_3);
+                _local_4.copyPixels(this.regionMap_, new Rectangle(this.posT_.x_, this.posT_.y_, _local_1, _local_1), PointUtil.ORIGIN);
+                _local_2.scale(_local_3, _local_3);
+                this.map_.draw(_local_4, _local_2);
+            }
+            else
+            {
+                _local_2.translate(-this.posT_.x_, -this.posT_.y_);
+                _local_2.scale(_local_3, _local_3);
+                this.map_.draw(this.regionMap_, _local_2, null, null, this.map_.rect);
+            }
         }
         this.drawOverlay();
+    }
+
+    private function generateThumbnail():ByteArray
+    {
+        var _local_1:Rectangle = this.getTileBounds();
+        var _local_2:int = 8;
+        var _local_3:BitmapData = new BitmapData(_local_1.width * _local_2,_local_1.height * _local_2);
+        this.groundLayer_.copyFrom(new Rectangle(_local_1.x * SQUARE_SIZE,_local_1.y * SQUARE_SIZE,_local_1.width * SQUARE_SIZE,_local_1.height * SQUARE_SIZE),_local_3,_local_3.rect);
+        this.objectLayer_.copyFrom(new Rectangle(_local_1.x * SQUARE_SIZE,_local_1.y * SQUARE_SIZE,_local_1.width * SQUARE_SIZE,_local_1.height * SQUARE_SIZE),_local_3,_local_3.rect);
+        var _local_4:Matrix = new Matrix();
+        _local_4.identity();
+        _local_4.translate(-_local_1.x,-_local_1.y);
+        _local_4.scale(_local_2,_local_2);
+        _local_3.draw(this.regionMap_,_local_4);
+        return PNGEncoder.encode(_local_3);
+    }
+
+    public function getMapStatistics():Object
+    {
+        var _local_6:METile;
+        var _local_1:int = 0;
+        var _local_2:int = 0;
+        var _local_3:int = 0;
+        var _local_4:int = 0;
+        var _local_5:int = 0;
+        for each(_local_6 in this.tileDict_)
+        {
+            _local_5++;
+            if(_local_6.types_[Layer.GROUND] != -1)
+            {
+                _local_1++;
+            }
+            if(_local_6.types_[Layer.OBJECT] != -1)
+            {
+                _local_2++;
+            }
+            if(_local_6.types_[Layer.REGION] != -1)
+            {
+                if(_local_6.types_[Layer.REGION] == RegionLibrary.EXIT_REGION_TYPE)
+                {
+                    _local_3++;
+                }
+                if(_local_6.types_[Layer.REGION] == RegionLibrary.ENTRY_REGION_TYPE)
+                {
+                    _local_4++;
+                }
+            }
+        }
+        return {
+            "numObjects": _local_2,
+            "numGrounds": _local_1,
+            "numExits": _local_3,
+            "numEntries": _local_4,
+            "numTiles": _local_5,
+            "thumbnail":this.generateThumbnail()
+        };
     }
 
 

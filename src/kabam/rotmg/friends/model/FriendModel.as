@@ -17,12 +17,14 @@ public class FriendModel {
 
     [Inject]
     public var serverModel:ServerModel;
-    public var task:FriendDataRequestTask;
+    public var friendsTask:FriendDataRequestTask;
+    public var invitationsTask:FriendDataRequestTask;
     private var _onlineFriends:Vector.<FriendVO>;
     private var _offlineFriends:Vector.<FriendVO>;
     private var _friends:Dictionary;
     private var _invitations:Dictionary;
-    private var _inProcessFlag:Boolean;
+    private var _friendsLoadInProcess:Boolean;
+    private var _invitationsLoadInProgress:Boolean;
     private var _friendTotal:int;
     private var _invitationTotal:int;
     private var _isFriDataOK:Boolean;
@@ -41,8 +43,9 @@ public class FriendModel {
         this._friends = new Dictionary(true);
         this._onlineFriends = new Vector.<FriendVO>();
         this._offlineFriends = new Vector.<FriendVO>();
-        this._inProcessFlag = false;
-        this.loadFriendListData();
+        this._friendsLoadInProcess = false;
+        this._invitationsLoadInProgress = false;
+        this.loadData();
     }
 
     public function setCurrentServer(_arg_1:Server):void {
@@ -53,20 +56,24 @@ public class FriendModel {
         return (((this._currentServer) ? this._currentServer.name : ""));
     }
 
-    public function loadFriendListData():void {
-        if (this._inProcessFlag) {
+    public function loadData():void {
+        if(this._friendsLoadInProcess || this._invitationsLoadInProgress)  {
             return;
         }
-        this._inProcessFlag = true;
         var _local_1:Injector = StaticInjectorContext.getInjector();
-        this.task = _local_1.getInstance(FriendDataRequestTask);
-        this.loadList(FriendConstant.getURL(FriendConstant.FRIEND_LIST), this.onFriendListResponse);
+        this._friendsLoadInProcess = true;
+        this.friendsTask = _local_1.getInstance(FriendDataRequestTask);
+        this.loadList(this.friendsTask, FriendConstant.getURL(FriendConstant.FRIEND_LIST), this.onFriendListResponse);
+        this._invitationsLoadInProgress = true;
+        this.invitationsTask = _local_1.getInstance(FriendDataRequestTask);
+        this.loadList(this.invitationsTask, FriendConstant.getURL(FriendConstant.INVITE_LIST), this.onInvitationListResponse);
+
     }
 
-    private function loadList(_arg_1:String, _arg_2:Function):void {
-        this.task.requestURL = _arg_1;
-        this.task.finished.addOnce(_arg_2);
-        this.task.start();
+    private function loadList(_arg_1:FriendDataRequestTask, _arg_2:String, _arg_3:Function):void {
+        _arg_1.requestURL = _arg_2;
+        _arg_1.finished.addOnce(_arg_3);
+        _arg_1.start();
     }
 
     private function onFriendListResponse(_arg_1:FriendDataRequestTask, _arg_2:Boolean, _arg_3:String = ""):void {
@@ -76,7 +83,8 @@ public class FriendModel {
         this._isFriDataOK = _arg_2;
         this.errorStr = _arg_3;
         _arg_1.reset();
-        this.loadList(FriendConstant.getURL(FriendConstant.INVITE_LIST), this.onInvitationListResponse);
+        this._friendsLoadInProcess = false;
+        this.reportTasksComplete();
     }
 
     private function onInvitationListResponse(_arg_1:FriendDataRequestTask, _arg_2:Boolean, _arg_3:String = ""):void {
@@ -86,8 +94,16 @@ public class FriendModel {
         this._isInvDataOK = _arg_2;
         this.errorStr = _arg_3;
         _arg_1.reset();
-        this._inProcessFlag = false;
-        this.dataSignal.dispatch(((this._isFriDataOK) && (this._isInvDataOK)));
+        this._invitationsLoadInProgress = false;
+        this.reportTasksComplete();
+    }
+
+    private function reportTasksComplete():void
+    {
+        if(this._friendsLoadInProcess == false && this._invitationsLoadInProgress == false)
+        {
+            this.dataSignal.dispatch(this._isFriDataOK && this._isInvDataOK);
+        }
     }
 
     public function seedFriends(_arg_1:XML):void {
@@ -159,7 +175,7 @@ public class FriendModel {
         var _local_3:FriendVO;
         var _local_2:RegExp = new RegExp(_arg_1, "gix");
         var _local_4:Vector.<FriendVO> = new Vector.<FriendVO>();
-        var _local_5:int;
+        var _local_5:int = 0;
         while (_local_5 < this._onlineFriends.length) {
             _local_3 = this._onlineFriends[_local_5];
             if (_local_3.getName().search(_local_2) >= 0) {
@@ -218,7 +234,7 @@ public class FriendModel {
 
     private function removeFromList(_arg_1:Vector.<FriendVO>, _arg_2:String) {
         var _local_3:FriendVO;
-        var _local_4:int;
+        var _local_4:int = 0;
         while (_local_4 < _arg_1.length) {
             _local_3 = _arg_1[_local_4];
             if (_local_3.getName() == _arg_2) {

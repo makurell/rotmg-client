@@ -51,6 +51,18 @@ public class CheckBoxField extends Sprite {
         return (this.checked_);
     }
 
+    public function setChecked():void
+    {
+        this.checked_ = true;
+        this.redrawCheckBox();
+    }
+
+    public function setUnchecked():void
+    {
+        this.checked_ = false;
+        this.redrawCheckBox();
+    }
+
     public function setError(_arg_1:String):void {
         this.errorText_.setStringBuilder(new LineBuilder().setParams(_arg_1));
     }

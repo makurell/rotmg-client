@@ -150,6 +150,16 @@ public class TitleMenuOption extends Sprite {
         return ((("[TitleMenuOption " + this.textField.getText()) + "]"));
     }
 
+    public function createNoticeTag(_arg_1:String, _arg_2:int, _arg_3:uint, _arg_4:Boolean):void
+    {
+        var _local_5:TextFieldDisplayConcrete = new TextFieldDisplayConcrete();
+        _local_5.setSize(_arg_2).setColor(_arg_3).setBold(_arg_4);
+        _local_5.setStringBuilder(new LineBuilder().setParams(_arg_1));
+        _local_5.x = this.textField.x - 4;
+        _local_5.y = this.textField.y - 20;
+        addChild(_local_5);
+    }
+
 
 }
 }//package com.company.assembleegameclient.screens

@@ -96,7 +96,7 @@ public class Frame extends Sprite {
         addChild(_arg_1);
         _arg_1.y = (this.h_ - 60);
         _arg_1.x = 17;
-        this.h_ = (this.h_ + TextInputField.HEIGHT);
+        this.h_ += _arg_1.height;
     }
 
     public function addNavigationText(_arg_1:DeprecatedClickableText):void {

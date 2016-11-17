@@ -33,8 +33,9 @@ public class WebLoadAccountTask extends BaseTask implements LoadAccountTask {
         this.data = new AccountData();
         try {
             rotmg = SharedObject.getLocal("RotMG", "/");
-            ((rotmg.data["GUID"]) && ((this.data.username = rotmg.data["GUID"])));
-            ((rotmg.data["Password"]) && ((this.data.password = rotmg.data["Password"])));
+            rotmg.data["GUID"] && (this.data.username = rotmg.data["GUID"]);
+            rotmg.data["Password"] && (this.data.password = rotmg.data["Password"]);
+            rotmg.data["Token"] && (this.data.token = rotmg.data["Token"]);
             if (rotmg.data.hasOwnProperty("Name")) {
                 this.data.name = rotmg.data["Name"];
             }
@@ -46,13 +47,13 @@ public class WebLoadAccountTask extends BaseTask implements LoadAccountTask {
     }
 
     private function setAccountDataThenComplete():void {
-        this.account.updateUser(this.data.username, this.data.password);
+        this.account.updateUser(this.data.username, this.data.password, this.data.token);
         this.account.verify(false);
         completeTask(true);
     }
 
     private function setGuestPasswordAndComplete():void {
-        this.account.updateUser(GUID.create(), null);
+        this.account.updateUser(GUID.create(), null, "");
         completeTask(true);
     }
 

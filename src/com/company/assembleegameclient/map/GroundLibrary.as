@@ -13,6 +13,7 @@ public class GroundLibrary {
     public static const typeToTextureData_:Dictionary = new Dictionary();
     public static var idToType_:Dictionary = new Dictionary();
     public static var defaultProps_:GroundProperties;
+    public static var GROUND_CATEGORY:String = "Ground";
 
 
     public static function parseFromXML(_arg_1:XML):void {

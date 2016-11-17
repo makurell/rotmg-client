@@ -54,15 +54,14 @@ public class LegacyBuyButton extends BuyButton {
     private var fixedHeight:int = -1;
     private var textVertMargin:int = 4;
 
-    public function LegacyBuyButton(_arg_1:String, _arg_2:int, _arg_3:int, _arg_4:int, _arg_5:Boolean = false) {
+    public function LegacyBuyButton(_arg_1:String, _arg_2:int, _arg_3:int, _arg_4:int, _arg_5:Boolean = false, _arg_6:Boolean = false) {
         this.staticStringBuilder = new StaticStringBuilder("");
         this.lineBuilder = new LineBuilder();
-        super();
         this.prefix = _arg_1;
-        this.text = new TextFieldDisplayConcrete().setSize(_arg_2).setColor(0x363636).setBold(true);
+        this.text = new TextFieldDisplayConcrete().setSize(_arg_2).setColor(_arg_6 ? uint(0xED3030) : uint(0x363636)).setBold(true);
         this.waiter.push(this.text.textChanged);
-        var _local_6:StringBuilder = (((_arg_1) != "") ? this.lineBuilder.setParams(_arg_1, {"cost": _arg_3.toString()}) : this.staticStringBuilder.setString(_arg_3.toString()));
-        this.text.setStringBuilder(_local_6);
+        var _local_7:StringBuilder = _arg_1 != "" ? this.lineBuilder.setParams(_arg_1, {"cost": _arg_3.toString()}) : this.staticStringBuilder.setString(_arg_3.toString());
+        this.text.setStringBuilder(_local_7);
         this.waiter.complete.add(this.updateUI);
         this.waiter.complete.addOnce(this.readyForPlacementDispatch);
         addChild(this.text);

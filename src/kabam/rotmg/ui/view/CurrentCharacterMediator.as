@@ -3,10 +3,14 @@ import com.company.assembleegameclient.appengine.SavedCharacter;
 import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
 import com.company.assembleegameclient.screens.NewCharacterScreen;
 
+import kabam.rotmg.account.securityQuestions.data.SecurityQuestionsModel;
+import kabam.rotmg.account.securityQuestions.view.SecurityQuestionsInfoDialog;
+
 import kabam.rotmg.classes.model.CharacterClass;
 import kabam.rotmg.classes.model.ClassesModel;
 import kabam.rotmg.core.model.PlayerModel;
 import kabam.rotmg.core.signals.SetScreenSignal;
+import kabam.rotmg.dialogs.control.OpenDialogSignal;
 import kabam.rotmg.game.model.GameInitData;
 import kabam.rotmg.game.signals.PlayGameSignal;
 import kabam.rotmg.packages.control.BeginnersPackageAvailableSignal;
@@ -42,6 +46,10 @@ public class CurrentCharacterMediator extends Mediator {
     public var packageAvailable:PackageAvailableSignal;
     [Inject]
     public var beginnerModel:BeginnersPackageModel;
+    [Inject]
+    public var openDialog:OpenDialogSignal;
+    [Inject]
+    public var securityQuestionsModel:SecurityQuestionsModel;
 
 
     override public function initialize():void {
@@ -55,6 +63,10 @@ public class CurrentCharacterMediator extends Mediator {
         this.beginnersPackageAvailable.add(this.onBeginner);
         this.packageAvailable.add(this.onPackage);
         this.initPackages.dispatch();
+        if(this.securityQuestionsModel.showSecurityQuestionsOnStartup)
+        {
+            this.openDialog.dispatch(new SecurityQuestionsInfoDialog());
+        }
     }
 
     private function onPackage():void {

@@ -31,94 +31,133 @@ public class ObjectLibrary {
     public static const typeToAnimationsData_:Dictionary = new Dictionary();
     public static const petXMLDataLibrary_:Dictionary = new Dictionary();
     public static const skinSetXMLDataLibrary_:Dictionary = new Dictionary();
+    public static const dungeonsXMLLibrary_:Dictionary = new Dictionary(true);
+    public static const ENEMY_FILTER_LIST:Vector.<String> = new <String>["None", "Hp", "Defense"];
+    public static const TILE_FILTER_LIST:Vector.<String> = new <String>["ALL", "Walkable", "Unwalkable", "Slow", "Speed=1"];
     public static const defaultProps_:ObjectProperties = new ObjectProperties(null);
     public static const TYPE_MAP:Object = {
-        "ArenaGuard": ArenaGuard,
-        "ArenaPortal": ArenaPortal,
-        "CaveWall": CaveWall,
-        "Character": Character,
-        "CharacterChanger": CharacterChanger,
-        "ClosedGiftChest": ClosedGiftChest,
-        "ClosedVaultChest": ClosedVaultChest,
-        "ConnectedWall": ConnectedWall,
-        "Container": Container,
-        "DoubleWall": DoubleWall,
-        "FortuneGround": FortuneGround,
-        "FortuneTeller": FortuneTeller,
-        "GameObject": GameObject,
-        "GuildBoard": GuildBoard,
-        "GuildChronicle": GuildChronicle,
-        "GuildHallPortal": GuildHallPortal,
-        "GuildMerchant": GuildMerchant,
-        "GuildRegister": GuildRegister,
-        "Merchant": Merchant,
-        "MoneyChanger": MoneyChanger,
-        "MysteryBoxGround": MysteryBoxGround,
-        "NameChanger": NameChanger,
-        "ReskinVendor": ReskinVendor,
-        "OneWayContainer": OneWayContainer,
-        "Player": Player,
-        "Portal": Portal,
-        "Projectile": Projectile,
-        "QuestRewards": QuestRewards,
-        "Sign": Sign,
-        "SpiderWeb": SpiderWeb,
-        "Stalagmite": Stalagmite,
-        "Wall": Wall,
-        "Pet": Pet,
-        "PetUpgrader": PetUpgrader,
+        "ArenaGuard": ArenaGuard, 
+        "ArenaPortal": ArenaPortal, 
+        "CaveWall": CaveWall, 
+        "Character": Character, 
+        "CharacterChanger": CharacterChanger, 
+        "ClosedGiftChest": ClosedGiftChest, 
+        "ClosedVaultChest": ClosedVaultChest, 
+        "ConnectedWall": ConnectedWall, 
+        "Container": Container, 
+        "DoubleWall": DoubleWall, 
+        "FortuneGround": FortuneGround, 
+        "FortuneTeller": FortuneTeller, 
+        "GameObject": GameObject, 
+        "GuildBoard": GuildBoard, 
+        "GuildChronicle": GuildChronicle, 
+        "GuildHallPortal": GuildHallPortal, 
+        "GuildMerchant": GuildMerchant, 
+        "GuildRegister": GuildRegister, 
+        "Merchant": Merchant, 
+        "MoneyChanger": MoneyChanger, 
+        "MysteryBoxGround": MysteryBoxGround, 
+        "NameChanger": NameChanger, 
+        "ReskinVendor": ReskinVendor, 
+        "OneWayContainer": OneWayContainer, 
+        "Player": Player, 
+        "Portal": Portal, 
+        "Projectile": Projectile, 
+        "QuestRewards": QuestRewards, 
+        "Sign": Sign, 
+        "SpiderWeb": SpiderWeb, 
+        "Stalagmite": Stalagmite, 
+        "Wall": Wall, 
+        "Pet": Pet, 
+        "PetUpgrader": PetUpgrader, 
         "YardUpgrader": YardUpgrader
     };
+    private static var currentDungeon:String = "";
 
 
-    public static function parseFromXML(_arg_1:XML):void {
-        var _local_2:XML;
-        var _local_3:String;
+    public static function parseDungeonXML(_arg_1:String, _arg_2:XML):void
+    {
+        var _local_3:int = _arg_1.indexOf("_") + 1;
+        var _local_4:int = _arg_1.indexOf("CXML");
+        currentDungeon = _arg_1.substr(_local_3, _local_4 - _local_3);
+        dungeonsXMLLibrary_[currentDungeon] = new Dictionary(true);
+        parseFromXML(_arg_2, parseDungeonCallbak);
+    }
+
+    private static function parseDungeonCallbak(_arg_1:int, _arg_2:XML):void
+    {
+        if(currentDungeon != "" && dungeonsXMLLibrary_[currentDungeon] != null)
+        {
+            dungeonsXMLLibrary_[currentDungeon][_arg_1] = _arg_2;
+            propsLibrary_[_arg_1].belonedDungeon = currentDungeon;
+        }
+    }
+
+    public static function parseFromXML(_arg_1:XML, _arg_2:Function = null):void
+    {
+        var _local_3:XML;
         var _local_4:String;
-        var _local_5:int;
-        var _local_6:Boolean;
-        var _local_7:int;
-        for each (_local_2 in _arg_1.Object) {
-            _local_3 = String(_local_2.@id);
-            _local_4 = _local_3;
-            if (_local_2.hasOwnProperty("DisplayId")) {
-                _local_4 = _local_2.DisplayId;
+        var _local_5:String;
+        var _local_6:int;
+        var _local_7:Boolean = false;
+        var _local_8:int;
+        for each(_local_3 in _arg_1.Object)
+        {
+            _local_4 = String(_local_3.@id);
+            _local_5 = _local_4;
+            if(_local_3.hasOwnProperty("DisplayId"))
+            {
+                _local_5 = _local_3.DisplayId;
             }
-            if (_local_2.hasOwnProperty("Group")) {
-                if (_local_2.Group == "Hexable") {
-                    hexTransforms_.push(_local_2);
+            if(_local_3.hasOwnProperty("Group"))
+            {
+                if(_local_3.Group == "Hexable")
+                {
+                    hexTransforms_.push(_local_3);
                 }
             }
-            _local_5 = int(_local_2.@type);
-            if (((_local_2.hasOwnProperty("PetBehavior")) || (_local_2.hasOwnProperty("PetAbility")))) {
-                petXMLDataLibrary_[_local_5] = _local_2;
+            _local_6 = int(_local_3.@type);
+            if(_local_3.hasOwnProperty("PetBehavior") || _local_3.hasOwnProperty("PetAbility"))
+            {
+                petXMLDataLibrary_[_local_6] = _local_3;
             }
-            else {
-                propsLibrary_[_local_5] = new ObjectProperties(_local_2);
-                xmlLibrary_[_local_5] = _local_2;
-                idToType_[_local_3] = _local_5;
-                typeToDisplayId_[_local_5] = _local_4;
-                if (String(_local_2.Class) == "Player") {
-                    playerClassAbbr_[_local_5] = String(_local_2.@id).substr(0, 2);
-                    _local_6 = false;
-                    _local_7 = 0;
-                    while (_local_7 < playerChars_.length) {
-                        if (int(playerChars_[_local_7].@type) == _local_5) {
-                            playerChars_[_local_7] = _local_2;
-                            _local_6 = true;
+            else
+            {
+                propsLibrary_[_local_6] = new ObjectProperties(_local_3);
+                xmlLibrary_[_local_6] = _local_3;
+                idToType_[_local_4] = _local_6;
+                typeToDisplayId_[_local_6] = _local_5;
+                if(_arg_2 != null)
+                {
+                    _arg_2(_local_6, _local_3);
+                }
+                if(String(_local_3.Class) == "Player")
+                {
+                    playerClassAbbr_[_local_6] = String(_local_3.@id).substr(0, 2);
+                    _local_7 = false;
+                    _local_8 = 0;
+                    while(_local_8 < playerChars_.length)
+                    {
+                        if(int(playerChars_[_local_8].@type) == _local_6)
+                        {
+                            playerChars_[_local_8] = _local_3;
+                            _local_7 = true;
                         }
-                        _local_7++;
+                        _local_8++;
                     }
-                    if (!_local_6) {
-                        playerChars_.push(_local_2);
+                    if(!_local_7)
+                    {
+                        playerChars_.push(_local_3);
                     }
                 }
-                typeToTextureData_[_local_5] = textureDataFactory.create(_local_2);
-                if (_local_2.hasOwnProperty("Top")) {
-                    typeToTopTextureData_[_local_5] = textureDataFactory.create(XML(_local_2.Top));
+                typeToTextureData_[_local_6] = textureDataFactory.create(_local_3);
+                if(_local_3.hasOwnProperty("Top"))
+                {
+                    typeToTopTextureData_[_local_6] = textureDataFactory.create(XML(_local_3.Top));
                 }
-                if (_local_2.hasOwnProperty("Animation")) {
-                    typeToAnimationsData_[_local_5] = new AnimationsData(_local_2);
+                if(_local_3.hasOwnProperty("Animation"))
+                {
+                    typeToAnimationsData_[_local_6] = new AnimationsData(_local_3);
                 }
             }
         }
@@ -240,7 +279,7 @@ public class ObjectLibrary {
     }
 
     public static function isUsableByPlayer(_arg_1:int, _arg_2:Player):Boolean {
-        if (_arg_2 == null) {
+        if (_arg_2 == null || _arg_2.slotTypes_ == null) {
             return (true);
         }
         var _local_3:XML = xmlLibrary_[_arg_1];

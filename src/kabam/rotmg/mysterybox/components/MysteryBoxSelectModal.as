@@ -30,6 +30,8 @@ public class MysteryBoxSelectModal extends Sprite {
     private var box_:Sprite;
     private var mysteryData:Object;
     private var titleString:String = "MysteryBoxSelectModal.titleString";
+    private var selectEntries:Vector.<MysteryBoxSelectEntry>;
+
 
     public function MysteryBoxSelectModal():void {
         this.box_ = new Sprite();
@@ -37,6 +39,7 @@ public class MysteryBoxSelectModal extends Sprite {
         modalWidth = 385;
         modalHeight = 60;
         aMysteryBoxHeight = 77;
+        this.selectEntries = new Vector.<MysteryBoxSelectEntry>();
         var _local_1:Injector = StaticInjectorContext.getInjector();
         var _local_2:MysteryBoxModel = _local_1.getInstance(MysteryBoxModel);
         this.mysteryData = _local_2.getBoxesOrderByWeight();
@@ -80,6 +83,7 @@ public class MysteryBoxSelectModal extends Sprite {
     private function addBoxChildren():void {
         var _local_1:MysteryBoxInfo;
         var _local_2:DisplayObject;
+        var _local_4:Number;
         var _local_5:int;
         var _local_6:MysteryBoxSelectEntry;
         for each (_local_1 in this.mysteryData) {
@@ -96,7 +100,7 @@ public class MysteryBoxSelectModal extends Sprite {
         this.box_.addChild(this.closeButton);
         this.box_.addChild(this.getText(this.titleString, TEXT_MARGIN, 6).setSize(18));
         var _local_3:Number = 20;
-        var _local_4:Number = 50;
+        _local_4 = 50;
         _local_5 = 0;
         for each (_local_1 in this.mysteryData) {
             if (_local_5 == 6) break;
@@ -105,7 +109,17 @@ public class MysteryBoxSelectModal extends Sprite {
             _local_6.y = (y + _local_4);
             _local_4 = (_local_4 + aMysteryBoxHeight);
             this.box_.addChild(_local_6);
+            this.selectEntries.push(_local_6);
             _local_5++;
+        }
+    }
+
+    public function updateContent():void
+    {
+        var _local_1:MysteryBoxSelectEntry;
+        for each(_local_1 in this.selectEntries)
+        {
+            _local_1.updateContent();
         }
     }
 

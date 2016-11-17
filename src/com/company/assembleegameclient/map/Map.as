@@ -119,7 +119,7 @@ public class Map extends AbstractMap {
     }
 
     private function forceSoftwareRenderCheck(_arg_1:String):void {
-        forceSoftwareRender = ((!((this.forceSoftwareMap[_arg_1] == null))) || ((WebMain.STAGE.stage3Ds[0].context3D == null)));
+        forceSoftwareRender = this.forceSoftwareMap[_arg_1] != null || WebMain.STAGE != null && WebMain.STAGE.stage3Ds[0].context3D == null;
     }
 
     override public function initialize():void {

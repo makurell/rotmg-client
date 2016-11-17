@@ -44,7 +44,7 @@ public class FriendListMediator extends Mediator {
         this.view.actionSignal.add(this.onFriendActed);
         this.view.tabSignal.add(this.onTabSwitched);
         this.model.dataSignal.add(this.initView);
-        this.model.loadFriendListData();
+        this.model.loadData();
     }
 
     override public function destroy():void {

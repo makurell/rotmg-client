@@ -42,6 +42,7 @@ public class SavedCharactersList extends Event {
     public var nameChosen_:Boolean;
     public var converted_:Boolean;
     public var isAdmin_:Boolean;
+    public var canMapEdit_:Boolean;
     public var news_:Vector.<SavedNewsItem>;
     public var myPos_:LatLong;
     public var salesForceData_:String = "unavailable";
@@ -101,6 +102,8 @@ public class SavedCharactersList extends Event {
         this.converted_ = _arg_1.hasOwnProperty("Converted");
         this.isAdmin_ = _arg_1.hasOwnProperty("Admin");
         Player.isAdmin = this.isAdmin_;
+        Player.isMod = _arg_1.hasOwnProperty("Mod");
+        this.canMapEdit_ = _arg_1.hasOwnProperty("MapEditor");
         this.totalFame_ = int(_arg_1.Stats.TotalFame);
         this.fame_ = int(_arg_1.Stats.Fame);
         this.credits_ = int(_arg_1.Credits);
@@ -185,6 +188,11 @@ public class SavedCharactersList extends Event {
         if (this.charsXML_.hasOwnProperty("TOSPopup")) {
             StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new TOSPopup());
         }
+    }
+
+    public function isFirstTimeLogin():Boolean
+    {
+        return !this.charsXML_.hasOwnProperty("TOSPopup");
     }
 
     public function bestLevel(_arg_1:int):int {

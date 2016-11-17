@@ -1,5 +1,6 @@
 ﻿package com.company.assembleegameclient.ui.tooltip {
 import com.company.assembleegameclient.constants.InventoryOwnerTypes;
+import com.company.assembleegameclient.game.events.KeyInfoResponseSignal;
 import com.company.assembleegameclient.objects.ObjectLibrary;
 import com.company.assembleegameclient.objects.Player;
 import com.company.assembleegameclient.parameters.Parameters;
@@ -10,20 +11,25 @@ import com.company.util.KeyCodes;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.filters.DropShadowFilter;
+import flash.utils.Dictionary;
 
 import kabam.rotmg.constants.ActivationType;
+import kabam.rotmg.core.StaticInjectorContext;
 import kabam.rotmg.messaging.impl.data.StatData;
+import kabam.rotmg.messaging.impl.incoming.KeyInfoResponse;
 import kabam.rotmg.text.model.TextKey;
 import kabam.rotmg.text.view.TextFieldDisplayConcrete;
 import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
 import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+import kabam.rotmg.ui.model.HUDModel;
 
 public class EquipmentToolTip extends ToolTip {
 
     private static const MAX_WIDTH:int = 230;
 
+    public static var keyInfo:Dictionary = new Dictionary();
     private var icon:Bitmap;
     public var titleText:TextFieldDisplayConcrete;
     private var tierText:TextFieldDisplayConcrete;
@@ -35,6 +41,8 @@ public class EquipmentToolTip extends ToolTip {
     private var player:Player;
     private var isEquippable:Boolean = false;
     private var objectType:int;
+    private var titleOverride:String;
+    private var descriptionOverride:String;
     private var curItemXML:XML = null;
     private var objectXML:XML = null;
     private var slotTypeToTextBuilder:SlotComparisonFactory;
@@ -49,21 +57,29 @@ public class EquipmentToolTip extends ToolTip {
     private var playerCanUse:Boolean;
     private var comparisonResults:SlotComparisonResult;
     private var powerText:TextFieldDisplayConcrete;
+    private var keyInfoResponse:KeyInfoResponseSignal;
+    private var originalObjectType:int;
 
     public function EquipmentToolTip(_arg_1:int, _arg_2:Player, _arg_3:int, _arg_4:String) {
+        var _loc8_:HUDModel;
         this.uniqueEffects = new Vector.<Effect>();
         this.objectType = _arg_1;
+        this.originalObjectType = this.objectType;
         this.player = _arg_2;
         this.invType = _arg_3;
         this.inventoryOwnerType = _arg_4;
         this.isInventoryFull = ((_arg_2) ? _arg_2.isInventoryFull() : false);
-        this.playerCanUse = ((_arg_2) ? ObjectLibrary.isUsableByPlayer(_arg_1, _arg_2) : false);
-        var _local_5:int = ((_arg_2) ? ObjectLibrary.getMatchingSlotIndex(_arg_1, _arg_2) : -1);
-        var _local_6:uint = ((((this.playerCanUse) || ((this.player == null)))) ? 0x363636 : 6036765);
-        var _local_7:uint = ((((this.playerCanUse) || ((_arg_2 == null)))) ? 0x9B9B9B : 10965039);
+        if(this.objectType >= 0x9000 && this.objectType < 0xF000)
+        {
+            this.objectType = 0x8FFF;
+        }
+        this.playerCanUse = ((_arg_2) ? ObjectLibrary.isUsableByPlayer(this.objectType, _arg_2) : false);
+        var _local_5:int = ((_arg_2) ? ObjectLibrary.getMatchingSlotIndex(this.objectType, _arg_2) : -1);
+        var _local_6:uint = ((((this.playerCanUse) || ((this.player == null)))) ? 0x363636 : 0x5C1D1D);
+        var _local_7:uint = ((((this.playerCanUse) || ((_arg_2 == null)))) ? 0x9B9B9B : 0xA7502F);
         super(_local_6, 1, _local_7, 1, true);
         this.slotTypeToTextBuilder = new SlotComparisonFactory();
-        this.objectXML = ObjectLibrary.xmlLibrary_[_arg_1];
+        this.objectXML = ObjectLibrary.xmlLibrary_[this.objectType];
         this.isEquippable = !((_local_5 == -1));
         this.effects = new Vector.<Effect>();
         this.itemSlotTypeId = int(this.objectXML.SlotType);
@@ -78,9 +94,31 @@ public class EquipmentToolTip extends ToolTip {
             }
         }
         this.addIcon();
-        this.addTitle();
+        if(this.originalObjectType >= 0x9000 && this.originalObjectType <= 0xF000)
+        {
+            if(keyInfo[this.originalObjectType] == null)
+            {
+                this.addTitle();
+                this.addDescriptionText();
+                this.keyInfoResponse = StaticInjectorContext.getInjector().getInstance(KeyInfoResponseSignal);
+                this.keyInfoResponse.add(this.onKeyInfoResponse);
+                _loc8_ = StaticInjectorContext.getInjector().getInstance(HUDModel);
+                _loc8_.gameSprite.gsc_.keyInfoRequest(this.originalObjectType);
+            }
+            else
+            {
+                this.titleOverride = keyInfo[this.originalObjectType][0] + " Key";
+                this.descriptionOverride = keyInfo[this.originalObjectType][1] + "\n" + "Created By: " + keyInfo[this.originalObjectType][2];
+                this.addTitle();
+                this.addDescriptionText();
+            }
+        }
+        else
+        {
+            this.addTitle();
+            this.addDescriptionText();
+        }
         this.addTierText();
-        this.addDescriptionText();
         this.handleWisMod();
         this.buildCategorySpecificText();
         this.addUniqueEffectsToList();
@@ -108,6 +146,18 @@ public class EquipmentToolTip extends ToolTip {
             waiter.push(this.powerText.textChanged);
             addChild(this.powerText);
         }
+    }
+
+    private function onKeyInfoResponse(_arg_1:KeyInfoResponse):void
+    {
+        this.keyInfoResponse.remove(this.onKeyInfoResponse);
+        this.removeTitle();
+        this.removeDesc();
+        this.titleOverride = _arg_1.name;
+        this.descriptionOverride = _arg_1.description;
+        keyInfo[this.originalObjectType] = [_arg_1.name, _arg_1.description, _arg_1.creator];
+        this.addTitle();
+        this.addDescriptionText();
     }
 
     private function addUniqueEffectsToList():void {
@@ -185,10 +235,27 @@ public class EquipmentToolTip extends ToolTip {
         return ((activateTags.length() >= 1));
     }
 
+    private function removeTitle():void
+    {
+        removeChild(this.titleText);
+    }
+
+    private function removeDesc():void
+    {
+        removeChild(this.descText);
+    }
+
     private function addTitle():void {
         var _local_1:int = ((((this.playerCanUse) || ((this.player == null)))) ? 0xFFFFFF : 16549442);
         this.titleText = new TextFieldDisplayConcrete().setSize(16).setColor(_local_1).setBold(true).setTextWidth((((MAX_WIDTH - this.icon.width) - 4) - 30)).setWordWrap(true);
-        this.titleText.setStringBuilder(new LineBuilder().setParams(ObjectLibrary.typeToDisplayId_[this.objectType]));
+        if(this.titleOverride)
+        {
+            this.titleText.setStringBuilder(new StaticStringBuilder(this.titleOverride));
+        }
+        else
+        {
+            this.titleText.setStringBuilder(new LineBuilder().setParams(ObjectLibrary.typeToDisplayId_[this.objectType]));
+        }
         this.titleText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
         waiter.push(this.titleText.textChanged);
         addChild(this.titleText);
@@ -287,6 +354,10 @@ public class EquipmentToolTip extends ToolTip {
     private function addDoseTagsToEffectsList():void {
         if (this.objectXML.hasOwnProperty("Doses")) {
             this.effects.push(new Effect(TextKey.DOSES, {"dose": this.objectXML.Doses}));
+        }
+        if(this.objectXML.hasOwnProperty("Quantity"))
+        {
+            this.effects.push(new Effect("Quantity: {quantity}",{"quantity": this.objectXML.Quantity}));
         }
     }
 
@@ -484,7 +555,7 @@ public class EquipmentToolTip extends ToolTip {
                         }
                         break;
                     case ActivationType.STAT_BOOST_AURA:
-                        _local_13 = 16777103;
+                        _local_13 = 0xFFFF8F;
                         if (this.curItemXML != null) {
                             _local_14 = this.getStatTag(this.curItemXML, _local_1.@stat);
                             if (_local_14 != null) {
@@ -740,7 +811,14 @@ public class EquipmentToolTip extends ToolTip {
 
     private function addDescriptionText():void {
         this.descText = new TextFieldDisplayConcrete().setSize(14).setColor(0xB3B3B3).setTextWidth(MAX_WIDTH).setWordWrap(true);
-        this.descText.setStringBuilder(new LineBuilder().setParams(String(this.objectXML.Description)));
+        if(this.descriptionOverride)
+        {
+            this.descText.setStringBuilder(new StaticStringBuilder(this.descriptionOverride));
+        }
+        else
+        {
+            this.descText.setStringBuilder(new LineBuilder().setParams(String(this.objectXML.Description)));
+        }
         this.descText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
         waiter.push(this.descText.textChanged);
         addChild(this.descText);

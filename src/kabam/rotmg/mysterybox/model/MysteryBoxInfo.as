@@ -3,6 +3,7 @@ import com.company.assembleegameclient.util.TimeUtil;
 
 import flash.display.DisplayObject;
 import flash.events.Event;
+import flash.events.EventDispatcher;
 import flash.events.IOErrorEvent;
 import flash.net.URLRequest;
 import flash.utils.Dictionary;
@@ -11,7 +12,7 @@ import kabam.display.Loader.LoaderProxy;
 import kabam.display.Loader.LoaderProxyConcrete;
 import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-public class MysteryBoxInfo {
+public class MysteryBoxInfo extends EventDispatcher {
 
     public static var chestImageEmbed:Class = MysteryBoxInfo_chestImageEmbed;
 
@@ -36,6 +37,8 @@ public class MysteryBoxInfo {
     private var _infoImageLoader:LoaderProxy;
     public var _rollsWithContents:Vector.<Vector.<int>>;
     public var _rollsWithContentsUnique:Vector.<int>;
+    private var _unitsLeft:int = -1;
+    private var _totalUnits:int = -1;
 
     public function MysteryBoxInfo() {
         this._loader = new LoaderProxyConcrete();
@@ -270,6 +273,19 @@ public class MysteryBoxInfo {
         return (_local_4);
     }
 
+    public function get currencyName():String
+    {
+        switch(this._priceCurrency)
+        {
+            case "0":
+                return LineBuilder.getLocalizedStringFromKey("Currency.gold").toLowerCase();
+            case "1":
+                return LineBuilder.getLocalizedStringFromKey("Currency.fame").toLowerCase();
+            default:
+                return "";
+        }
+    }
+
     public function get infoImage():DisplayObject {
         return (this._infoImage);
     }
@@ -292,6 +308,26 @@ public class MysteryBoxInfo {
 
     public function set infoImageLoader(_arg_1:LoaderProxy):void {
         this._infoImageLoader = _arg_1;
+    }
+
+    public function get unitsLeft():int
+    {
+        return this._unitsLeft;
+    }
+
+    public function set unitsLeft(_arg_1:int):void
+    {
+        this._unitsLeft = _arg_1;
+    }
+
+    public function get totalUnits():int
+    {
+        return this._totalUnits;
+    }
+
+    public function set totalUnits(_arg_1:int):void
+    {
+        this._totalUnits = _arg_1;
     }
 
 

@@ -56,7 +56,7 @@ public class TextHandler {
         var _local_3:String;
         var _local_4:String;
         var _local_5:String;
-        var _local_2:Boolean = (((_arg_1.numStars_ == -1)) || ((_arg_1.objectId_ == -1)));
+        var _local_2:Boolean = _arg_1.numStars_ == -1;
         if ((((((((_arg_1.numStars_ < Parameters.data_.chatStarRequirement)) && (!((_arg_1.name_ == this.model.player.name_))))) && (!(_local_2)))) && (!(this.isSpecialRecipientChat(_arg_1.recipient_))))) {
             return;
         }

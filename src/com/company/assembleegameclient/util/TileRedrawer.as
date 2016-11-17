@@ -47,7 +47,7 @@ public class TileRedrawer {
 
 
     public static function redraw(_arg_1:Square, _arg_2:Boolean):BitmapData {
-        var _local_3:*;
+        var _local_3:Array;
         var _local_5:BitmapData;
         if (Parameters.blendType_ == 0) {
             return (null);
@@ -170,10 +170,10 @@ public class TileRedrawer {
         _arg_1.copyPixels(_local_9, _arg_2, _arg_3, _local_10, p0, true);
     }
 
-    private static function getSig(_arg_1:Square):ByteArray {
+    private static function getSig(_arg_1:Square):Array {
         var _local_6:int;
         var _local_7:Square;
-        var _local_2:ByteArray = new ByteArray();
+        var _local_2:Array = new Array();
         var _local_3:Map = _arg_1.map_;
         var _local_4:uint = _arg_1.tileType_;
         var _local_5:int = (_arg_1.y_ - 1);
@@ -181,15 +181,15 @@ public class TileRedrawer {
             _local_6 = (_arg_1.x_ - 1);
             while (_local_6 <= (_arg_1.x_ + 1)) {
                 if ((((((((((_local_6 < 0)) || ((_local_6 >= _local_3.width_)))) || ((_local_5 < 0)))) || ((_local_5 >= _local_3.height_)))) || ((((_local_6 == _arg_1.x_)) && ((_local_5 == _arg_1.y_)))))) {
-                    _local_2.writeByte(_local_4);
+                    _local_2.push(_local_4);
                 }
                 else {
                     _local_7 = _local_3.squares_[(_local_6 + (_local_5 * _local_3.width_))];
                     if ((((_local_7 == null)) || ((_local_7.props_.blendPriority_ <= _arg_1.props_.blendPriority_)))) {
-                        _local_2.writeByte(_local_4);
+                        _local_2.push(_local_4);
                     }
                     else {
-                        _local_2.writeByte(_local_7.tileType_);
+                        _local_2.push(_local_7.tileType_);
                     }
                 }
                 _local_6++;
@@ -221,12 +221,12 @@ public class TileRedrawer {
         return (_local_3);
     }
 
-    private static function getCompositeSig(_arg_1:Square):ByteArray {
+    private static function getCompositeSig(_arg_1:Square):Array {
         var _local_14:Square;
         var _local_15:Square;
         var _local_16:Square;
         var _local_17:Square;
-        var _local_2:ByteArray = new ByteArray();
+        var _local_2:Array = new Array();
         _local_2.length = 4;
         var _local_3:Map = _arg_1.map_;
         var _local_4:int = _arg_1.x_;
@@ -290,7 +290,7 @@ public class TileRedrawer {
         return (_local_2);
     }
 
-    private static function buildComposite(_arg_1:ByteArray):BitmapData {
+    private static function buildComposite(_arg_1:Array):BitmapData {
         var _local_3:BitmapData;
         var _local_2:BitmapData = new BitmapDataSpy(8, 8, false, 0);
         if (_arg_1[0] != 0xFF) {
@@ -312,11 +312,11 @@ public class TileRedrawer {
         return (_local_2);
     }
 
-    private static function getEdgeSig(_arg_1:Square):ByteArray {
+    private static function getEdgeSig(_arg_1:Square):Array {
         var _local_7:int;
         var _local_8:Square;
         var _local_9:Boolean;
-        var _local_2:ByteArray = new ByteArray();
+        var _local_2:Array = new Array();
         var _local_3:Map = _arg_1.map_;
         var _local_4:Boolean;
         var _local_5:Boolean = _arg_1.props_.sameTypeEdgeMode_;
@@ -326,7 +326,7 @@ public class TileRedrawer {
             while (_local_7 <= (_arg_1.x_ + 1)) {
                 _local_8 = _local_3.lookupSquare(_local_7, _local_6);
                 if ((((_local_7 == _arg_1.x_)) && ((_local_6 == _arg_1.y_)))) {
-                    _local_2.writeByte(_local_8.tileType_);
+                    _local_2.push(_local_8.tileType_);
                 }
                 else {
                     if (_local_5) {
@@ -335,7 +335,7 @@ public class TileRedrawer {
                     else {
                         _local_9 = (((_local_8 == null)) || (!((_local_8.tileType_ == 0xFF))));
                     }
-                    _local_2.writeBoolean(_local_9);
+                    _local_2.push(_local_9);
                     _local_4 = ((_local_4) || (!(_local_9)));
                 }
                 _local_7++;
@@ -345,7 +345,7 @@ public class TileRedrawer {
         return (((_local_4) ? _local_2 : null));
     }
 
-    private static function drawEdges(_arg_1:ByteArray):BitmapData {
+    private static function drawEdges(_arg_1:Array):BitmapData {
         var _local_2:BitmapData = GroundLibrary.getBitmapData(_arg_1[4]);
         var _local_3:BitmapData = _local_2.clone();
         var _local_4:GroundProperties = GroundLibrary.propsLibrary_[_arg_1[4]];

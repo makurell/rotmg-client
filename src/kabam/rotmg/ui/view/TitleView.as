@@ -137,13 +137,18 @@ public class TitleView extends Sprite {
         this.handleOptionalButtons();
     }
 
+    public function putNoticeTagToOption(_arg_1:TitleMenuOption, _arg_2:String, _arg_3:int = 14, _arg_4:uint = 0x99FF66, _arg_5:Boolean = true):void
+    {
+        _arg_1.createNoticeTag(_arg_2, _arg_3, _arg_4, _arg_5);
+    }
+
     private function updateVersionText():void {
         this.versionText.setStringBuilder(new StaticStringBuilder(this.data.buildLabel));
     }
 
     private function handleOptionalButtons():void {
-        ((this.data.isAdmin) && (this.createEditorButton()));
-        ((this.data.isDesktop) && (this.createQuitButton()));
+        this.data.canMapEdit && this.createEditorButton();
+        this.data.isDesktop && this.createQuitButton();
         this.optionalButtonsAdded.dispatch();
     }
 

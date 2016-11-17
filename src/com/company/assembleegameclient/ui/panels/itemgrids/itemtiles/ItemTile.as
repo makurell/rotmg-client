@@ -46,7 +46,7 @@ public class ItemTile extends Sprite {
         GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, HEIGHT, 4, _arg_1, this.path_);
         graphics.clear();
         graphics.drawGraphicsData(this.graphicsData_);
-        var _local_2:GraphicsSolidFill = new GraphicsSolidFill(6036765, 1);
+        var _local_2:GraphicsSolidFill = new GraphicsSolidFill(0x5C1D1D, 1);
         GraphicsUtil.clearPath(this.path_);
         var _local_3:Vector.<IGraphicsData> = new <IGraphicsData>[_local_2, this.path_, GraphicsUtil.END_FILL];
         GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, HEIGHT, 4, _arg_1, this.path_);
@@ -75,8 +75,13 @@ public class ItemTile extends Sprite {
     }
 
     public function updateUseability(_arg_1:Player):void {
+        var _local_2:int = this.itemSprite.itemId;
+        if(_local_2 >= 0x9000 && _local_2 < 0xF000)
+        {
+            _local_2 = 0x8FFF;
+        }
         if (this.itemSprite.itemId != ItemConstants.NO_ITEM) {
-            this.restrictedUseIndicator.visible = !(ObjectLibrary.isUsableByPlayer(this.itemSprite.itemId, _arg_1));
+            this.restrictedUseIndicator.visible = !(ObjectLibrary.isUsableByPlayer(_local_2, _arg_1));
         }
         else {
             this.restrictedUseIndicator.visible = false;

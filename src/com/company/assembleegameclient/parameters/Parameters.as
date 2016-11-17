@@ -12,7 +12,7 @@ import flash.utils.Dictionary;
 public class Parameters {
 
     public static const BUILD_VERSION:String = "27.7";
-    public static const MINOR_VERSION:String = "X2";
+    public static const MINOR_VERSION:String = "X8.0";
     public static const ENABLE_ENCRYPTION:Boolean = true;
     public static const PORT:int = 2050;
     public static const ALLOW_SCREENSHOT_MODE:Boolean = false;
@@ -44,6 +44,7 @@ public class Parameters {
     public static const MAX_SINK_LEVEL:Number = 18;
     public static const TERMS_OF_USE_URL:String = "http://legal.decagames.io/tos";
     public static const PRIVACY_POLICY_URL:String = "http://legal.decagames.io/privacy";
+    public static const USER_GENERATED_CONTENT_TERMS:String = "/UGDTermsofUse.html";
     public static const RANDOM1:String = "311f80691451c71b09a13a2a6e";
     public static const RANDOM2:String = "72c5583cafb6818995cbd74b80";
     public static const RSA_PUBLIC_KEY:String = ((((("-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO") + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo") + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7") + "F3yWYqUbZd/HCBtawwIDAQAB\n") + "-----END PUBLIC KEY-----");

@@ -172,6 +172,11 @@ public class PlayerModel {
         return (this.charList.isAdmin_);
     }
 
+    public function mapEditor():Boolean
+    {
+        return this.charList.canMapEdit_;
+    }
+
     public function getNews():Vector.<SavedNewsItem> {
         return (this.charList.news_);
     }
@@ -239,6 +244,15 @@ public class PlayerModel {
 
     public function setCharacterList(_arg_1:SavedCharactersList):void {
         this.charList = _arg_1;
+    }
+
+    public function isNewToEditing():Boolean
+    {
+        if(this.charList && !this.charList.isFirstTimeLogin())
+        {
+            return false;
+        }
+        return true;
     }
 
 

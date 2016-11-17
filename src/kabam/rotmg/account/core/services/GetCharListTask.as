@@ -8,6 +8,7 @@ import flash.utils.Timer;
 import kabam.lib.tasks.BaseTask;
 import kabam.rotmg.account.core.Account;
 import kabam.rotmg.account.core.signals.CharListDataSignal;
+import kabam.rotmg.account.securityQuestions.data.SecurityQuestionsModel;
 import kabam.rotmg.account.web.WebAccount;
 import kabam.rotmg.account.web.view.MigrationDialog;
 import kabam.rotmg.account.web.view.WebLoginDialog;
@@ -43,6 +44,9 @@ public class GetCharListTask extends BaseTask {
     public var openDialog:OpenDialogSignal;
     [Inject]
     public var closeDialogs:CloseDialogsSignal;
+    [Inject]
+    public var securityQuestionsModel:SecurityQuestionsModel;
+
     private var requestData:Object;
     private var retryTimer:Timer;
     private var numRetries:int = 0;
@@ -83,6 +87,7 @@ public class GetCharListTask extends BaseTask {
     private function onListComplete(_arg_1:String):void {
         var _local_3:Number;
         var _local_4:MigrationDialog;
+        var _local_5:XML;
         var _local_2:XML = new XML(_arg_1);
         if (_local_2.hasOwnProperty("MigrateStatus")) {
             _local_3 = _local_2.MigrateStatus;
@@ -99,6 +104,20 @@ public class GetCharListTask extends BaseTask {
             if (_local_2.hasOwnProperty("Account")) {
                 if ((this.account is WebAccount)) {
                     WebAccount(this.account).userDisplayName = _local_2.Account[0].Name;
+                    WebAccount(this.account).paymentProvider = _local_2.Account[0].PaymentProvider;
+                    if(_local_2.Account[0].hasOwnProperty("PaymentData"))
+                    {
+                        WebAccount(this.account).paymentData = _local_2.Account[0].PaymentData;
+                    }
+                }
+                if(_local_2.Account[0].hasOwnProperty("SecurityQuestions"))
+                {
+                    this.securityQuestionsModel.showSecurityQuestionsOnStartup = _local_2.Account[0].SecurityQuestions[0].ShowSecurityQuestionsDialog[0] == "1";
+                    this.securityQuestionsModel.clearQuestionsList();
+                    for each(_local_5 in _local_2.Account[0].SecurityQuestions[0].SecurityQuestionsKeys[0].SecurityQuestionsKey)
+                    {
+                        this.securityQuestionsModel.addSecurityQuestion(_local_5.toString());
+                    }
                 }
             }
             this.charListData.dispatch(XML(_arg_1));

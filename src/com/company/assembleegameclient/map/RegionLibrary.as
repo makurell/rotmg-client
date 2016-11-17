@@ -5,6 +5,8 @@ public class RegionLibrary {
 
     public static const xmlLibrary_:Dictionary = new Dictionary();
     public static var idToType_:Dictionary = new Dictionary();
+    public static const ENTRY_REGION_TYPE:uint = 1;
+    public static const EXIT_REGION_TYPE:uint = 48;
 
 
     public static function parseFromXML(_arg_1:XML):void {

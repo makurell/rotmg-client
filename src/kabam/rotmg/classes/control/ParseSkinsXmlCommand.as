@@ -62,6 +62,10 @@ public class ParseSkinsXmlCommand {
             _local_4.unlockSpecial = _arg_1.UnlockSpecial;
         }
         _local_4.template = new CharacterTemplate(_local_2, _local_3);
+        if(_local_2.indexOf("16") >= 0)
+        {
+            _local_4.is16x16 = true;
+        }
         var _local_5:CharacterClass = this.model.getCharacterClass(_arg_1.PlayerClassType);
         _local_5.skins.addSkin(_local_4);
     }

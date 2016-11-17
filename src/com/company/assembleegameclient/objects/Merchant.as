@@ -195,6 +195,14 @@ public class Merchant extends SellableObject implements IInteractiveObject {
             _local_3.updateMetrics();
             _local_1.draw(_local_3, DOSE_MATRIX);
         }
+        if(_local_2.hasOwnProperty("Quantity"))
+        {
+            _local_1 = _local_1.clone();
+            _local_3 = new BaseSimpleText(12, 0xFFFFFF, false, 0, 0);
+            _local_3.text = String(_local_2.Quantity);
+            _local_3.updateMetrics();
+            _local_1.draw(_local_3, DOSE_MATRIX);
+        }
         return (_local_1);
     }
 

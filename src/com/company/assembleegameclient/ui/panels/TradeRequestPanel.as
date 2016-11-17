@@ -1,8 +1,10 @@
 ﻿package com.company.assembleegameclient.ui.panels {
 import com.company.assembleegameclient.game.AGameSprite;
+import com.company.assembleegameclient.parameters.Parameters;
 import com.company.assembleegameclient.ui.DeprecatedTextButton;
 
 import flash.events.Event;
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.events.TimerEvent;
 import flash.filters.DropShadowFilter;
@@ -45,6 +47,8 @@ public class TradeRequestPanel extends Panel {
         var _local_3:SignalWaiter = new SignalWaiter();
         _local_3.pushArgs(this.rejectButton_.textChanged, this.acceptButton_.textChanged);
         _local_3.complete.addOnce(this.onComplete);
+        addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
+        addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
     }
 
     private function onComplete():void {
@@ -52,6 +56,24 @@ public class TradeRequestPanel extends Panel {
         this.acceptButton_.x = (((3 * WIDTH) / 4) - (this.acceptButton_.width / 2));
         this.rejectButton_.y = ((HEIGHT - this.rejectButton_.height) - 4);
         this.acceptButton_.y = ((HEIGHT - this.acceptButton_.height) - 4);
+    }
+
+    private function onAddedToStage(_arg_1:Event):void
+    {
+        stage.addEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
+    }
+
+    private function onRemovedFromStage(_arg_1:Event):void
+    {
+        stage.removeEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
+    }
+
+    private function onKeyDown(_arg_1:KeyboardEvent):void
+    {
+        if(_arg_1.keyCode == Parameters.data_.interact && stage.focus == null)
+        {
+            dispatchEvent(new Event(Event.COMPLETE));
+        }
     }
 
     private function onTimer(_arg_1:TimerEvent):void {

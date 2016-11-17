@@ -12,9 +12,10 @@ public class KongregateAccount implements Account {
     private var password:String;
     private var isVerifiedEmail:Boolean;
     private var platformToken:String;
+    private var _rememberMe:Boolean;
 
 
-    public function updateUser(_arg_1:String, _arg_2:String):void {
+    public function updateUser(_arg_1:String, _arg_2:String, _arg_3:String):void {
         this.userId = _arg_1;
         this.password = _arg_2;
     }
@@ -95,6 +96,21 @@ public class KongregateAccount implements Account {
 
     public function getMoneyUserId():String {
         throw (new Error("No current support for new Kabam offer wall on Kongregate."));
+    }
+
+    public function set rememberMe(_arg_1:Boolean):void
+    {
+        this._rememberMe = _arg_1;
+    }
+
+    public function get rememberMe():Boolean
+    {
+        return this._rememberMe;
+    }
+
+    public function getToken() : String
+    {
+        return "";
     }
 
 

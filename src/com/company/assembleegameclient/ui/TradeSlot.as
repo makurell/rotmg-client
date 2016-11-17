@@ -79,7 +79,6 @@ public class TradeSlot extends Slot implements TooltipAble {
     }
 
     private function drawItem():void {
-        var _local_3:Point;
         var _local_4:Bitmap;
         var _local_5:BitmapData;
         SpriteUtil.safeRemoveChild(this, backgroundImage_);
@@ -90,7 +89,13 @@ public class TradeSlot extends Slot implements TooltipAble {
             _local_5 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_2.Doses)), 12, 0xFFFFFF, false, IDENTITY_MATRIX, false);
             _local_1.draw(_local_5, DOSE_MATRIX);
         }
-        _local_3 = offsets(this.item_, type_, false);
+        if(_local_2.hasOwnProperty("Quantity") && this.bitmapFactory)
+        {
+            _local_1 = _local_1.clone();
+            _local_5 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_2.Quantity)), 12, 0xFFFFFF, false, IDENTITY_MATRIX, false);
+            _local_1.draw(_local_5, DOSE_MATRIX);
+        }
+        var _local_3:Point = offsets(this.item_, type_, false);
         _local_4 = new Bitmap(_local_1);
         _local_4.x = (((WIDTH / 2) - (_local_4.width / 2)) + _local_3.x);
         _local_4.y = (((HEIGHT / 2) - (_local_4.height / 2)) + _local_3.y);

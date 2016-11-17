@@ -34,6 +34,7 @@ public class ObjectProperties {
     public var maxSize_:int = 100;
     public var sizeStep_:int = 5;
     public var whileMoving_:WhileMovingProperties = null;
+    public var belonedDungeon:String = "";
     public var oldSound_:String = null;
     public var projectiles_:Dictionary;
     public var angleCorrection_:Number = 0;

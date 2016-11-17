@@ -23,7 +23,7 @@ public class FriendConfig implements IConfig {
 
 
     public function configure():void {
-        this.injector.map(FriendDataRequestTask).asSingleton();
+        this.injector.map(FriendDataRequestTask);
         this.injector.map(FriendModel).asSingleton();
         this.mediatorMap.map(FriendListView).toMediator(FriendListMediator);
         this.commandMap.map(FriendActionSignal).toCommand(FriendActionCommand);

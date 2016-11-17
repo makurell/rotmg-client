@@ -3,10 +3,11 @@ public class METile {
 
     public var types_:Vector.<int>;
     public var objName_:String = null;
+    public var layerNumber:int;
 
     public function METile() {
         this.types_ = new <int>[-1, -1, -1];
-        super();
+        this.layerNumber = 0;
     }
 
     public function clone():METile {
@@ -17,7 +18,7 @@ public class METile {
     }
 
     public function isEmpty():Boolean {
-        var _local_1:int;
+        var _local_1:int = 0;
         while (_local_1 < Layer.NUM_LAYERS) {
             if (this.types_[_local_1] != -1) {
                 return (false);

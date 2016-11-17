@@ -102,7 +102,7 @@ public class PetPicker extends GridList implements ClearsPetSlots {
     }
 
     private function isFusible(_arg_1:PetVO, _arg_2:PetVO):Boolean {
-        return ((((_arg_1.getFamily() == _arg_2.getFamily())) && ((_arg_1.getRarity() == _arg_2.getRarity()))));
+        return _arg_1.getRarity() == _arg_2.getRarity() && (_arg_1.getFamily() == "Unknown" || _arg_1.getFamily() == _arg_2.getFamily());
     }
 
     private function addPet(petVO:PetVO):void {

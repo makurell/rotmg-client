@@ -57,15 +57,16 @@ public class LegendFactory {
         var _local_5:CharacterSkin = _local_4.skins.getSkin(_local_3);
         var _local_6:int = ((_arg_1.hasOwnProperty("Tex1")) ? _arg_1.Tex1 : 0);
         var _local_7:int = ((_arg_1.hasOwnProperty("Tex2")) ? _arg_1.Tex2 : 0);
-        var _local_8:Legend = new Legend();
-        _local_8.accountId = _arg_1.@accountId;
-        _local_8.charId = _arg_1.@charId;
-        _local_8.name = _arg_1.Name;
-        _local_8.totalFame = _arg_1.TotalFame;
-        _local_8.character = this.factory.makeIcon(_local_5.template, 100, _local_6, _local_7);
-        _local_8.equipmentSlots = _local_4.slotTypes;
-        _local_8.equipment = ConversionUtil.toIntVector(_arg_1.Equipment);
-        return (_local_8);
+        var _local_8:int = _local_5.is16x16 ? 50 : 100;
+        var _local_9:Legend = new Legend();
+        _local_9.accountId = _arg_1.@accountId;
+        _local_9.charId = _arg_1.@charId;
+        _local_9.name = _arg_1.Name;
+        _local_9.totalFame = _arg_1.TotalFame;
+        _local_9.character = this.factory.makeIcon(_local_5.template, _local_8, _local_6, _local_7);
+        _local_9.equipmentSlots = _local_4.slotTypes;
+        _local_9.equipment = ConversionUtil.toIntVector(_arg_1.Equipment);
+        return _local_9;
     }
 
 

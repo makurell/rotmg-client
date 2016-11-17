@@ -129,7 +129,7 @@ public class LegendsView extends Sprite {
     private function makeTimespanTabs():void {
         var _local_1:Vector.<Timespan> = Timespan.TIMESPANS;
         var _local_2:int = _local_1.length;
-        var _local_3:int;
+        var _local_3:int = 0;
         while (_local_3 < _local_2) {
             this.makeTab(_local_1[_local_3], _local_3);
             _local_3++;
@@ -207,7 +207,7 @@ public class LegendsView extends Sprite {
     }
 
     private function makeItemsFromLegends():void {
-        var _local_1:int;
+        var _local_1:int = 0;
         while (_local_1 < this.count) {
             this.items[_local_1] = this.makeItemFromLegend(_local_1);
             _local_1++;

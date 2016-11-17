@@ -262,6 +262,11 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
         }
     }
 
+    public function getTextHeight():Number
+    {
+        return this.textField ? Number(this.textField.height) : Number(0);
+    }
+
     private function setYToMiddle():void {
         this.textField.height;
         var _local_1:TextFormat = this.textField.getTextFormat();

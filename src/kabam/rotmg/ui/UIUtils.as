@@ -31,7 +31,7 @@ public class UIUtils {
         return (_arg_1);
     }
 
-    public static function toggleQuality(_arg_1:Boolean) {
+    public static function toggleQuality(_arg_1:Boolean):void {
         if (WebMain.STAGE != null) {
             WebMain.STAGE.quality = ((_arg_1) ? StageQuality.HIGH : StageQuality.LOW);
         }

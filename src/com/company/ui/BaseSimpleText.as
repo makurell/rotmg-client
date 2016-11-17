@@ -36,8 +36,10 @@ public class BaseSimpleText extends TextField {
             selectable = true;
             mouseEnabled = true;
             type = TextFieldType.INPUT;
+            embedFonts = true;
             border = true;
             borderColor = _arg_2;
+            setTextFormat(_local_7);
             addEventListener(Event.CHANGE, this.onChange);
         }
         else {
@@ -78,6 +80,12 @@ public class BaseSimpleText extends TextField {
 
     public function setText(_arg_1:String):void {
         this.text = _arg_1;
+    }
+
+    public function setMultiLine(_arg_1:Boolean):void
+    {
+        multiline = _arg_1;
+        wordWrap = _arg_1;
     }
 
     private function applyFormat(_arg_1:TextFormat):void {

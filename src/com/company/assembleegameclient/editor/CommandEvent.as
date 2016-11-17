@@ -8,6 +8,7 @@ public class CommandEvent extends Event {
     public static const CLEAR_COMMAND_EVENT:String = "CLEAR_COMMAND_EVENT";
     public static const LOAD_COMMAND_EVENT:String = "LOAD_COMMAND_EVENT";
     public static const SAVE_COMMAND_EVENT:String = "SAVE_COMMAND_EVENT";
+    public static const SUBMIT_COMMAND_EVENT:String = "SUBMIT_COMMAND_EVENT";
     public static const TEST_COMMAND_EVENT:String = "TEST_COMMAND_EVENT";
     public static const SELECT_COMMAND_EVENT:String = "SELECT_COMMAND_EVENT";
 

@@ -110,6 +110,7 @@ public class GameObject extends BasicObject {
     private var isStunImmune_:Boolean = false;
     private var isParalyzeImmune_:Boolean = false;
     private var isDazedImmune_:Boolean = false;
+    private var ishpScaleSet:Boolean = false;
     protected var lastTickUpdateTime_:int = 0;
     protected var myLastTickId_:int = -1;
     protected var posAtTick_:Point;
@@ -1010,6 +1011,12 @@ public class GameObject extends BasicObject {
             this.hpbarPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
         }
         var _local_3:Number = this.maxHP_;
+        if(!this.ishpScaleSet && this.hp_ > this.maxHP_)
+        {
+            this.maxHP_ = this.hp_;
+            _local_3 = this.maxHP_;
+            this.ishpScaleSet = true;
+        }
         if (this.hp_ <= _local_3) {
             _local_7 = ((_local_3 - this.hp_) / _local_3);
             this.hpbarBackFill_.color = MoreColorUtil.lerpColor(0x545454, 0xFF0000, (Math.abs(Math.sin((_arg_2 / 300))) * _local_7));

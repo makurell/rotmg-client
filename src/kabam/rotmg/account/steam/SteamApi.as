@@ -22,5 +22,7 @@ public interface SteamApi {
 
     function getPersonaName():String;
 
+    function get isOverlayEnabled():Boolean;
+
 }
 }//package kabam.rotmg.account.steam
