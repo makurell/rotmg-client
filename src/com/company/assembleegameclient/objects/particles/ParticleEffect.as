@@ -21,6 +21,8 @@ public class ParticleEffect extends GameObject {
                 return (new HealingEffect(_arg_2));
             case "Fountain":
                 return (new FountainEffect(_arg_2, _arg_1));
+            case "FountainSnowy":
+                return new FountainSnowyEffect(_arg_2, _arg_1);
             case "Gas":
                 return (new GasEffect(_arg_2, _arg_1));
             case "Vent":

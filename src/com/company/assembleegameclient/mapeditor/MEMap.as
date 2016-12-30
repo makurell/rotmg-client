@@ -147,12 +147,25 @@ class MEMap extends Sprite {
     }
 
     public function modifyTile(_arg_1:int, _arg_2:int, _arg_3:int, _arg_4:int):void {
-        var _local_5:METile = this.getOrCreateTile(_arg_1, _arg_2);
-        if (_local_5.types_[_arg_3] == _arg_4) {
+        var x:int = _arg_1;
+        var y:int = _arg_2;
+        var layer:int = _arg_3;
+        var type:int = _arg_4;
+        var tile:METile = this.getOrCreateTile(x, y);
+        if(tile.types_[layer] == type)
+        {
             return;
         }
-        _local_5.types_[_arg_3] = _arg_4;
-        this.drawTile(_arg_1, _arg_2, _local_5);
+        tile.types_[layer] = type;
+        try
+        {
+            this.drawTile(x, y, tile);
+            return;
+        }
+        catch(error:Error)
+        {
+            throw new Error("Invalid type: 0x" + type.toString(16) + " at location: " + x + " x, " + y + " y");
+        }
     }
 
     public function getObjectName(_arg_1:int, _arg_2:int):String {

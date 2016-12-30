@@ -36,7 +36,7 @@ public class GlowRedrawer {
         _local_6.draw(_local_7, null, null, BlendMode.ALPHA);
         TextureRedrawer.OUTLINE_FILTER.blurX = _arg_3;
         TextureRedrawer.OUTLINE_FILTER.blurY = _arg_3;
-        var _local_8:uint;
+        var _local_8:uint = 0x000000;
         TextureRedrawer.OUTLINE_FILTER.color = _local_8;
         _local_6.applyFilter(_local_6, _local_6.rect, PointUtil.ORIGIN, TextureRedrawer.OUTLINE_FILTER);
         if (_arg_2 != 0xFFFFFFFF) {

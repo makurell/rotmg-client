@@ -19,7 +19,7 @@ public class FriendDataRequestTask extends BaseTask {
         this.client.sendRequest(this.requestURL, this.account.getCredentials());
     }
 
-    private function onComplete(_arg_1:Boolean, _arg_2:*):void {
+    private function onComplete(_arg_1:Boolean, _arg_2:String):void {
         if (_arg_1) {
             this.xml = new XML(_arg_2);
             completeTask(true);
