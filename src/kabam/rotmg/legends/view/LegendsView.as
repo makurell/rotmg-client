@@ -244,7 +244,7 @@ public class LegendsView extends Sprite {
         if (_local_1) {
             _local_2 = this.legends.indexOf(_local_1);
             _local_3 = ((_local_2 + 0.5) * LegendListItem.HEIGHT);
-            this.scrollBar.setPos(((_local_3 - 200) / (this.listContainer.height - 400)));
+            this.scrollBar.setPos((_local_3 - 200) / (this.listContainer.height - 400));
         }
     }
 

@@ -3865,6 +3865,22 @@
       </Texture>
       <Rotation>100</Rotation>
    </Object>
+   <Object type="0xa236" id="Frozen Wand Icicle">
+      <Class>Projectile</Class>
+      <Texture>
+         <File>d3LofiObjEmbed</File>
+         <Index>0x48</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0xa237" id="Frozen Arrow">
+      <Class>Projectile</Class>
+      <Texture>
+         <File>d3LofiObjEmbed</File>
+         <Index>0x4a</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
    <Object type="0x7fcc" id="Dragon Arrow">
       <Class>Projectile</Class>
       <Texture>

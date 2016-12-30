@@ -115,7 +115,6 @@ public class ExternalOpenMoneyWindowCommand {
         var _local_1:String = this.applicationSetup.getAppEngineUrl(true);
         var _local_2:URLVariables = new URLVariables();
         var _local_3:URLRequest = new URLRequest();
-        _local_2.guid = this.account.getCredentials()["guid"];
         _local_2.iframeUrl = _arg_1;
         _local_3.url = _local_1 + "/credits/pwpurchase";
         _local_3.method = URLRequestMethod.POST;

@@ -29,6 +29,7 @@ public class WebRegisterAccountTask extends BaseTask implements RegisterAccountT
         _local_1.newGUID = this.data.username;
         _local_1.newPassword = this.data.password;
         _local_1.entrytag = this.account.getEntryTag();
+        _local_1.signedUpKabamEmail = this.data.signedUpKabamEmail;
         _local_1.isAgeVerified = 1;
         return (_local_1);
     }

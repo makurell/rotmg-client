@@ -97,6 +97,10 @@ public class ItemTile extends Sprite {
     }
 
     public function getItemId():int {
+        if(this.itemSprite.itemId >= 0x9000 && this.itemSprite.itemId < 0xF000)
+        {
+            return 0x8FFF;
+        }
         return (this.itemSprite.itemId);
     }
 

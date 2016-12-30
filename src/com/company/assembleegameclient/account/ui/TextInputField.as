@@ -68,6 +68,7 @@ public class TextInputField extends Sprite {
         graphics.drawRect(0, this.inputText_.y, _arg_3, _arg_4);
         graphics.endFill();
         graphics.lineStyle();
+        this.drawInputBorders(false);
         this.inputText_.addEventListener(Event.CHANGE, this.onInputChange);
         this.errorText_ = new TextFieldDisplayConcrete().setSize(12).setColor(16549442);
         this.errorText_.setMultiLine(true);
