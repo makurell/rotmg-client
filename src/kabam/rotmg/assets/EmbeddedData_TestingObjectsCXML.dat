@@ -6,8 +6,8 @@
       <Enemy/>
       <Class>Character</Class>
       <Texture>
-         <File>lofiChar16x16</File>
-         <Index>0x54</Index>
+         <File>d3LofiObjEmbed16</File>
+         <Index>0x19</Index>
       </Texture>
       <HitSound>monster/oryx_hit</HitSound>
       <DeathSound>monster/oryx_death</DeathSound>
@@ -995,12 +995,27 @@
       <Defense>0</Defense>
       <XpMult>300</XpMult>
    </Object>
+   <Object type="0x0969" id="XP Gift H">
+      <Group>Evaluators</Group>
+      <Enemy/>
+      <Class>Character</Class>
+      <Texture>
+         <File>lofiChar8x8</File>
+         <Index>0xcd</Index>
+      </Texture>
+      <HitSound>monster/chicken_hit</HitSound>
+      <DeathSound>monster/chicken_death</DeathSound>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Size>180</Size>
+      <Defense>0</Defense>
+      <XpMult>10000</XpMult>
+   </Object>
    <Object type="0x0941" id="Crystal Prisoner">
       <Enemy/>
       <Class>Character</Class>
       <AnimatedTexture>
-         <File>chars16x16dEncounters</File>
-         <Index>6</Index>
+         <File>d3Chars16x16rEmbed</File>
+         <Index>24</Index>
       </AnimatedTexture>
       <HitSound>monster/ghost_god_hit</HitSound>
       <DeathSound>monster/ghost_god_death</DeathSound>
@@ -1050,8 +1065,8 @@
       <Enemy/>
       <Class>Character</Class>
       <AnimatedTexture>
-         <File>chars16x16dEncounters</File>
-         <Index>6</Index>
+         <File>d3Chars16x16rEmbed</File>
+         <Index>24</Index>
       </AnimatedTexture>
       <HitSound>monster/ghost_god_hit</HitSound>
       <DeathSound>monster/ghost_god_death</DeathSound>
@@ -1073,8 +1088,8 @@
       <Enemy/>
       <Class>Character</Class>
       <AnimatedTexture>
-         <File>chars16x16rEncounters</File>
-         <Index>0</Index>
+         <File>d3Chars16x16rEmbed</File>
+         <Index>25</Index>
       </AnimatedTexture>
       <HitSound>monster/cyclops_hit</HitSound>
       <DeathSound>monster/cyclops_death</DeathSound>

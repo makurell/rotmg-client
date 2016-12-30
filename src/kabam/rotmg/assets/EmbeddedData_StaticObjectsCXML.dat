@@ -1474,6 +1474,20 @@
       <EnemyOccupySquare/>
       <Connects/>
    </Object>
+   <Object type="0x0ddc" id="White Fence">
+      <Class>ConnectedWall</Class>
+      <Texture>
+         <File>lofiEnvironment2</File>
+         <Index>0x165</Index>
+      </Texture>
+      <BaseIndent>0.4</BaseIndent>
+      <TopIndent>0.4</TopIndent>
+      <Height>0.4</Height>
+      <Static/>
+      <OccupySquare/>
+      <EnemyOccupySquare/>
+      <Connects/>
+   </Object>
    <Object type="0x01c9" id="Sign">
       <Class>Sign</Class>
       <Texture>

@@ -53,7 +53,6 @@ public class TitleView extends Sprite {
     private var migrateButton:TitleMenuOption;
 
     public function TitleView() {
-        var _local_2:String;
         this.menuOptionsBar = this.makeMenuOptionsBar();
         this.optionalButtonsAdded = new Signal();
         super();
@@ -64,27 +63,6 @@ public class TitleView extends Sprite {
         addChild(new AccountScreen());
         this.makeChildren();
         addChild(new SoundIcon());
-        var _local_1:PlatformModel = StaticInjectorContext.getInjector().getInstance(PlatformModel);
-        if (_local_1.getPlatform() == PlatformType.WEB) {
-            this.makeMigrateButton();
-            addChild(this.migrateButton);
-            _local_2 = "";
-            try {
-                _local_2 = ExternalInterface.call("window.location.search.substring", 1);
-            }
-            catch (err:Error) {
-            }
-            if (((((!(kabammigrateOpened)) && (_local_2))) && ((_local_2 == "kabammigrate")))) {
-                kabammigrateOpened = true;
-                this.openKabamTransferView();
-            }
-        }
-        else {
-            if (_local_1.getPlatform() == PlatformType.KABAM) {
-                this.makeMigrateButton();
-                addChild(this.migrateButton);
-            }
-        }
     }
 
     public function openKabamTransferView():void {
@@ -125,8 +103,7 @@ public class TitleView extends Sprite {
     }
 
     public function makeText():TextFieldDisplayConcrete {
-        var _local_1:TextFieldDisplayConcrete;
-        _local_1 = new TextFieldDisplayConcrete().setSize(12).setColor(0x7F7F7F);
+        var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(12).setColor(0x7F7F7F);
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
         return (_local_1);
     }
