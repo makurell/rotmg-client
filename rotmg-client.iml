@@ -33,7 +33,7 @@
         </dependencies>
         <compiler-options>
           <map>
-            <entry key="compiler.debug.swf" value="true" />
+            <entry key="compiler.debug.swf" value="false" />
           </map>
           <option name="resourceFilesMode" value="None" />
           <option name="additionalOptions" value="-locale en_US -default-size 800 600 -default-frame-rate 60 -default-background-color #000000 -swf-version 15 -optimize=true -use-direct-blit=true -keep-as3-metadata+=Inject -keep-as3-metadata+=Embed -keep-as3-metadata+=PostConstruct -keep-as3-metadata+=ArrayElementType -debug=false -compress=true" />
