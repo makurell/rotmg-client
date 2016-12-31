@@ -15,7 +15,8 @@ Help with bugs is always helpful. If you found one, make an issue. If you have a
 # Requirements
 
 - IntelliJ IDEA or similar Flash IDE
-- Flex SDK 4.9.1, Air SDK 15 (Flex SDK here: https://www.dropbox.com/s/8g4uiku6xw16mcl/flex_sdk_4.9.1.rar?dl=0)
+- Flex SDK 4.6.0.23201 (http://download.macromedia.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201.zip)
+- Flash Projector Content Debugger (https://fpdownload.macromedia.com/pub/flashplayer/updaters/24/flashplayer_24_sa_debug.exe)
 
 # Credits
 
