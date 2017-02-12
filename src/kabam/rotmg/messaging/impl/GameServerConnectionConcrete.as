@@ -790,6 +790,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         serverConnection.sendMessage(_local_5);
         if (_arg_4.hasOwnProperty("Consumable")) {
             _arg_1.equipment_[_arg_2] = -1;
+            if(_arg_4.hasOwnProperty("Activate") && _arg_4.Activate == "UnlockSkin")
+            {
+            }
         }
     }
 
@@ -1060,8 +1063,17 @@ public class GameServerConnectionConcrete extends GameServerConnection {
     }
 
     private function onReskinUnlock(_arg_1:ReskinUnlock):void {
-        var _local_2:CharacterSkin = this.classesModel.getCharacterClass(this.model.player.objectType_).skins.getSkin(_arg_1.skinID);
-        _local_2.setState(CharacterSkinState.OWNED);
+        var _local_2:*;
+        var _local_3:CharacterSkin;
+        for(_local_2 in this.model.player.lockedSlot)
+        {
+            if(this.model.player.lockedSlot[_local_2] == _arg_1.skinID)
+            {
+                this.model.player.lockedSlot[_local_2] = 0;
+            }
+        }
+        _local_3 = this.classesModel.getCharacterClass(this.model.player.objectType_).skins.getSkin(_arg_1.skinID);
+        _local_3.setState(CharacterSkinState.OWNED);
     }
 
     private function onEnemyShoot(_arg_1:EnemyShoot):void {
@@ -1384,6 +1396,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         var _local_7:StatData;
         var _local_8:int;
         var _local_9:int;
+        var _local_10:int;
         var _local_4:Player = (_arg_1 as Player);
         var _local_5:Merchant = (_arg_1 as Merchant);
         var _local_6:Pet = (_arg_1 as Pet);
@@ -1454,7 +1467,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
                 case StatData.INVENTORY_9_STAT:
                 case StatData.INVENTORY_10_STAT:
                 case StatData.INVENTORY_11_STAT:
-                    _arg_1.equipment_[(_local_7.statType_ - StatData.INVENTORY_0_STAT)] = _local_8;
+                    _local_9 = _local_7.statType_ - StatData.INVENTORY_0_STAT;
+                    if(_local_8 != -1)
+                    {
+                        _arg_1.lockedSlot[_local_9] = 0;
+                    }
+                    _arg_1.equipment_[_local_9] = _local_8;
                     break;
                 case StatData.NUM_STARS_STAT:
                     _local_4.numStars_ = _local_8;
@@ -1608,8 +1626,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
                 case StatData.BACKPACK_5_STAT:
                 case StatData.BACKPACK_6_STAT:
                 case StatData.BACKPACK_7_STAT:
-                    _local_9 = (((_local_7.statType_ - StatData.BACKPACK_0_STAT) + GeneralConstants.NUM_EQUIPMENT_SLOTS) + GeneralConstants.NUM_INVENTORY_SLOTS);
-                    (_arg_1 as Player).equipment_[_local_9] = _local_8;
+                    _local_10 = _local_7.statType_ - StatData.BACKPACK_0_STAT + GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS;
+                    (_arg_1 as Player).equipment_[_local_10] = _local_8;
                     break;
                 case StatData.NEW_CON_STAT:
                     _arg_1.condition_[ConditionEffect.CE_SECOND_BATCH] = _local_8;

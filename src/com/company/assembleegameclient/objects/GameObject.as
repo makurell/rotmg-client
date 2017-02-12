@@ -96,6 +96,7 @@ public class GameObject extends BasicObject {
     public var defense_:int = 0;
     public var slotTypes_:Vector.<int> = null;
     public var equipment_:Vector.<int> = null;
+    public var lockedSlot:Vector.<int> = null;
     public var condition_:Vector.<uint>;
     protected var tex1Id_:int = 0;
     protected var tex2Id_:int = 0;
@@ -188,6 +189,7 @@ public class GameObject extends BasicObject {
                 this.equipment_[_local_4] = -1;
                 _local_4++;
             }
+            this.lockedSlot = new Vector.<int>(this.slotTypes_.length);
         }
         if (_arg_1.hasOwnProperty("Tex1")) {
             this.tex1Id_ = int(_arg_1.Tex1);
@@ -335,6 +337,7 @@ public class GameObject extends BasicObject {
         }
         this.slotTypes_ = null;
         this.equipment_ = null;
+        this.lockedSlot = null;
         if (this.nameBitmapData_ != null) {
             this.nameBitmapData_.dispose();
             this.nameBitmapData_ = null;

@@ -5,6 +5,7 @@ public class EffectProperties {
     public var particle:String;
     public var cooldown:Number;
     public var color:uint;
+    public var color2:uint;
     public var rate:Number;
     public var speed:Number;
     public var speedVariance:Number;
@@ -19,6 +20,9 @@ public class EffectProperties {
     public var rangeX:int;
     public var rangeY:int;
     public var zOffset:Number;
+    public var minRadius:Number;
+    public var maxRadius:Number;
+    public var amount:int;
     public var bitmapFile:String;
     public var bitmapIndex:uint;
 
@@ -27,6 +31,7 @@ public class EffectProperties {
         this.particle = _arg_1.@particle;
         this.cooldown = _arg_1.@cooldown;
         this.color = _arg_1.@color;
+        this.color2 = _arg_1.@color2;
         this.rate = ((Number(_arg_1.@rate)) || (5));
         this.speed = ((Number(_arg_1.@speed)) || (0));
         this.speedVariance = ((Number(_arg_1.@speedVariance)) || (0.5));
@@ -40,6 +45,9 @@ public class EffectProperties {
         this.rangeX = ((int(_arg_1.@rangeX)) || (0));
         this.rangeY = ((int(_arg_1.@rangeY)) || (0));
         this.zOffset = ((Number(_arg_1.@zOffset)) || (0));
+        this.minRadius = Number(_arg_1.@minRadius) || Number(0);
+        this.maxRadius = Number(_arg_1.@maxRadius) || Number(1);
+        this.amount = int(_arg_1.@amount) || 1;
         this.bitmapFile = _arg_1.@bitmapFile;
         this.bitmapIndex = _arg_1.@bitmapIndex;
     }

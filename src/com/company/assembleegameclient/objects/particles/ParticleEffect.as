@@ -23,6 +23,12 @@ public class ParticleEffect extends GameObject {
                 return (new FountainEffect(_arg_2, _arg_1));
             case "FountainSnowy":
                 return new FountainSnowyEffect(_arg_2, _arg_1);
+            case "SkyBeam":
+                return new SkyBeamEffect(_arg_2, _arg_1);
+            case "Circle":
+                return new CircleEffect(_arg_2, _arg_1);
+            case "Heart":
+                return new HeartEffect(_arg_2, _arg_1);
             case "Gas":
                 return (new GasEffect(_arg_2, _arg_1));
             case "Vent":

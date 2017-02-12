@@ -212,7 +212,7 @@ public class ObjectLibrary {
 
     public static function getRedrawnTextureFromType(_arg_1:int, _arg_2:int, _arg_3:Boolean, _arg_4:Boolean = true, _arg_5:Number = 5):BitmapData {
         var _local_6:BitmapData = getBitmapData(_arg_1);
-        if (Parameters.itemTypes16.indexOf(_arg_1) != -1) {
+        if (Parameters.itemTypes16.indexOf(_arg_1) != -1 || _local_6.height == 16) {
             _arg_2 = (_arg_2 * 0.5);
         }
         var _local_7:TextureData = typeToTextureData_[_arg_1];

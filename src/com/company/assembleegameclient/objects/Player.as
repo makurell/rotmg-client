@@ -165,6 +165,7 @@ public class Player extends Character {
         _local_5.level_ = int(_arg_2.Level);
         _local_5.exp_ = int(_arg_2.Exp);
         _local_5.equipment_ = ConversionUtil.toIntVector(_arg_2.Equipment);
+        _local_5.lockedSlot = new Vector.<int>(_local_5.equipment_.length);
         _local_5.maxHP_ = int(_arg_2.MaxHitPoints);
         _local_5.hp_ = int(_arg_2.HitPoints);
         _local_5.maxMP_ = int(_arg_2.MaxMagicPoints);
