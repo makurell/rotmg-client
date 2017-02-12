@@ -12,7 +12,7 @@ import flash.utils.Dictionary;
 public class Parameters {
 
     public static const BUILD_VERSION:String = "27.7";
-    public static const MINOR_VERSION:String = "XMAS";
+    public static const MINOR_VERSION:String = "X10";
     public static const ENABLE_ENCRYPTION:Boolean = true;
     public static const PORT:int = 2050;
     public static const ALLOW_SCREENSHOT_MODE:Boolean = false;

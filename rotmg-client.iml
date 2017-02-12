@@ -3,7 +3,7 @@
   <component name="FlexBuildConfigurationManager" active="rotmg-client-debug">
     <configurations>
       <configuration name="rotmg-client-debug" main-class="WebMain" output-file="rotmg-client-debug.swf" output-folder="$MODULE_DIR$/out/production">
-        <dependencies target-player="18.0">
+        <dependencies target-player="11.1" framework-linkage="Merged">
           <entries>
             <entry library-id="5aae583f-abea-482e-9c5e-e8ffaead6593">
               <dependency linkage="Merged" />
@@ -16,14 +16,14 @@
             <entry key="compiler.debug.swf" value="true" />
           </map>
           <option name="resourceFilesMode" value="None" />
-          <option name="additionalOptions" value="-locale en_US -default-size 800 600 -default-frame-rate 60 -default-background-color #000000 -swf-version 15 -optimize=true -use-direct-blit=true -keep-as3-metadata+=Inject -keep-as3-metadata+=Embed -keep-as3-metadata+=PostConstruct -keep-as3-metadata+=ArrayElementType" />
+          <option name="additionalOptions" value="-locale en_US -default-size 800 600 -default-frame-rate 60 -default-background-color #000000 -swf-version=15 -optimize=true -use-direct-blit=true -keep-as3-metadata+=Inject -keep-as3-metadata+=Embed -keep-as3-metadata+=PostConstruct -keep-as3-metadata+=ArrayElementType" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />
       </configuration>
       <configuration name="rotmg-client-release" main-class="WebMain" output-file="rotmg-client-release.swf" output-folder="$MODULE_DIR$/out/production">
-        <dependencies target-player="18.0">
+        <dependencies target-player="11.1" framework-linkage="Merged">
           <entries>
             <entry library-id="68ed3a57-2b8d-4d8d-85b0-93e6cf9cb38f">
               <dependency linkage="Merged" />
@@ -36,7 +36,7 @@
             <entry key="compiler.debug.swf" value="false" />
           </map>
           <option name="resourceFilesMode" value="None" />
-          <option name="additionalOptions" value="-locale en_US -default-size 800 600 -default-frame-rate 60 -default-background-color #000000 -swf-version 15 -optimize=true -use-direct-blit=true -keep-as3-metadata+=Inject -keep-as3-metadata+=Embed -keep-as3-metadata+=PostConstruct -keep-as3-metadata+=ArrayElementType -debug=false -compress=true" />
+          <option name="additionalOptions" value="-locale en_US -default-size 800 600 -default-frame-rate 60 -default-background-color #000000 -swf-version=15 -optimize=true -use-direct-blit=true -keep-as3-metadata+=Inject -keep-as3-metadata+=Embed -keep-as3-metadata+=PostConstruct -keep-as3-metadata+=ArrayElementType -debug=false -compress=true" />
         </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
