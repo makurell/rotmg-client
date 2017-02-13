@@ -22,4 +22,4 @@ Help with bugs is always helpful. If you found one, make an issue. If you have a
 
 - kaos00723 (Kaos) - did some hella dirty work
 - cp-nilly	(nilly) - lord and savior
-- slick1015 (MrSlick, SlickEashy) - leaches off others work
+- Slick - leaches off others work
