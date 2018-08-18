@@ -910,26 +910,26 @@ public class Player extends Character {
         super.setAttack(_arg_1, _arg_2);
     }
 
-    private function shoot(_arg_1:Number):void {
+    private function shoot(attackAngle:Number):void {
         if (map_ == null || isStunned() || isPaused() || isPetrified()) {
             return;
         }
-        var _local_2:int = equipment_[0];
-        if (_local_2 == -1) {
+        var containerType:int = equipment_[0];
+        if (containerType == -1) {
             this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, TextKey.PLAYER_NO_WEAPON_EQUIPPED));
             return;
         }
-        var _local_3:XML = ObjectLibrary.xmlLibrary_[_local_2];
-        var _local_4:int = getTimer();
-        var _local_5:Number = Number(_local_3.RateOfFire);
-        this.attackPeriod_ = (1 / this.attackFrequency()) * (1 / _local_5);
-        if (_local_4 < attackStart_ + this.attackPeriod_) {
+        var xmlData:XML = ObjectLibrary.xmlLibrary_[containerType];
+        var attackStart:int = getTimer();
+        var rateOfFire:Number = Number(xmlData.RateOfFire);
+        this.attackPeriod_ = (1 / this.attackFrequency()) * (1 / rateOfFire);
+        if (attackStart < attackStart_ + this.attackPeriod_) {
             return;
         }
         doneAction(map_.gs_, Tutorial.ATTACK_ACTION);
-        attackAngle_ = _arg_1;
-        attackStart_ = _local_4;
-        this.doShoot(attackStart_, _local_2, _local_3, attackAngle_, true);
+        attackAngle_ = attackAngle;
+        attackStart_ = attackStart;
+        this.doShoot(attackStart_, containerType, xmlData, attackAngle_, true);
     }
 
     private function doShoot(time:int, containerType:int, data:XML, attackAngle:Number, isShooting:Boolean):void {
