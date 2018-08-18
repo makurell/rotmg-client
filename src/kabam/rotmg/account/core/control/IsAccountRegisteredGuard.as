@@ -15,12 +15,12 @@ public class IsAccountRegisteredGuard implements IGuard {
 
     public function approve():Boolean {
         var _local_1:Boolean = this.account.isRegistered();
-        ((_local_1) || (this.enterRegisterFlow()));
-        return (_local_1);
+        _local_1 || this.enterRegisterFlow();
+        return _local_1;
     }
 
     protected function getString():String {
-        return ("");
+        return "";
     }
 
     private function enterRegisterFlow():void {

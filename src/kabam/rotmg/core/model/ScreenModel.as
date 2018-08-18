@@ -13,7 +13,7 @@ public class ScreenModel {
     }
 
     public function getCurrentScreenType():Class {
-        return (this.currentType);
+        return this.currentType;
     }
 
 

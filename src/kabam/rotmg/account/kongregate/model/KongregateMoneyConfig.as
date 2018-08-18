@@ -10,19 +10,19 @@ public class KongregateMoneyConfig implements MoneyConfig {
 
 
     public function showPaymentMethods():Boolean {
-        return (false);
+        return false;
     }
 
     public function showBonuses():Boolean {
-        return (false);
+        return false;
     }
 
     public function parseOfferPrice(_arg_1:Offer):StringBuilder {
-        return (new LineBuilder().setParams(TextKey.PAYMENTS_KONGREGATE_COST, {"cost": _arg_1.price_}));
+        return new LineBuilder().setParams(TextKey.PAYMENTS_KONGREGATE_COST, {"cost": _arg_1.price_});
     }
 
     public function jsInitializeFunction():String {
-        throw (new Error("No current support for new Kabam offer wall on Kongregate."));
+        throw new Error("No current support for new Kabam offer wall on Kongregate.");
     }
 
 

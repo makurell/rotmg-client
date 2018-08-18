@@ -33,31 +33,31 @@ public class SellableObject extends GameObject implements IInteractiveObject {
     }
 
     public function soldObjectName():String {
-        return (null);
+        return null;
     }
 
     public function soldObjectInternalName():String {
-        return (null);
+        return null;
     }
 
     public function getTooltip():ToolTip {
-        return (null);
+        return null;
     }
 
     public function getIcon():BitmapData {
-        return (null);
+        return null;
     }
 
     public function getSellableType():int {
-        return (-1);
+        return -1;
     }
 
     public function getQuantity():int {
-        return (this.quantity_);
+        return this.quantity_;
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new SellableObjectPanel(_arg_1, this));
+        return new SellableObjectPanel(_arg_1, this);
     }
 
 

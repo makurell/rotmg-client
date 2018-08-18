@@ -27,7 +27,7 @@ public class LiveSteamApi extends Sprite implements SteamApi {
 
     public function load(_arg_1:String):void {
         this.logger.info("LiveSteamApi load");
-        addChild((this.loader = new Loader()));
+        addChild(this.loader = new Loader());
         this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onAPILoaded);
         this.loader.load(new URLRequest(_arg_1));
     }
@@ -53,21 +53,21 @@ public class LiveSteamApi extends Sprite implements SteamApi {
     }
 
     private function onSessionTicketResponse(_arg_1:String):void {
-        var _local_2 = !((_arg_1 == null));
-        ((_local_2) && ((this.sessionTicket = _arg_1)));
+        var _local_2 = !(_arg_1 == null);
+        _local_2 && (this.sessionTicket = _arg_1);
         this.logger.debug("LiveSteamApi sessionTicket: {0}", [this.sessionTicket]);
         this.sessionReceived.dispatch(_local_2);
     }
 
     public function getSessionAuthentication():Object {
         var _local_1:Object = {};
-        _local_1.steamid = (this.steamID = ((this.steamID) || (this.api.getSteamID())));
+        _local_1.steamid = (this.steamID = this.steamID || this.api.getSteamID());
         _local_1.sessionticket = this.sessionTicket;
-        return (_local_1);
+        return _local_1;
     }
 
     public function getSteamId():String {
-        return (this.api.getSteamID());
+        return this.api.getSteamID();
     }
 
     public function reportStatistic(_arg_1:String, _arg_2:int):void {
@@ -75,24 +75,23 @@ public class LiveSteamApi extends Sprite implements SteamApi {
     }
 
     public function get loaded():Signal {
-        return (this._loaded);
+        return this._loaded;
     }
 
     public function get sessionReceived():Signal {
-        return (this._sessionReceived);
+        return this._sessionReceived;
     }
 
     public function get paymentAuthorized():OnceSignal {
-        return (this._paymentAuthorized);
+        return this._paymentAuthorized;
     }
 
-    public function get isOverlayEnabled():Boolean
-    {
+    public function get isOverlayEnabled():Boolean {
         return this.api.isOverlayEnabled();
     }
 
     public function getPersonaName():String {
-        return (this.api.getPersonaName());
+        return this.api.getPersonaName();
     }
 
 

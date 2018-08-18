@@ -14,12 +14,12 @@ public class SignalTaskDelegate implements StartupDelegate {
 
 
     public function getPriority():int {
-        return (this.priority);
+        return this.priority;
     }
 
     public function make():Task {
         var _local_1:Signal = this.injector.getInstance(this.signalClass);
-        return (new DispatchSignalTask(_local_1));
+        return new DispatchSignalTask(_local_1);
     }
 
 

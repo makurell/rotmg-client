@@ -14,7 +14,7 @@ public class GuildInvite extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("GUILDINVITE", "name_"));
+        return formatToString("GUILDINVITE", "name_");
     }
 
 

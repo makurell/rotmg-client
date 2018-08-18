@@ -16,7 +16,7 @@ public class GuildResult extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CREATEGUILDRESULT", "success_", "lineBuilderJSON"));
+        return formatToString("CREATEGUILDRESULT", "success_", "lineBuilderJSON");
     }
 
 

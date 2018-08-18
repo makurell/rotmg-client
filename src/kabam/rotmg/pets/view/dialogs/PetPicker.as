@@ -25,7 +25,7 @@ public class PetPicker extends GridList implements ClearsPetSlots {
     private static function sortByFirstAbilityPoints(_arg_1:PetItem, _arg_2:PetItem):int {
         var _local_3:int = _arg_1.getPetVO().abilityList[0].points;
         var _local_4:int = _arg_2.getPetVO().abilityList[0].points;
-        return ((_local_4 - _local_3));
+        return _local_4 - _local_3;
     }
 
 
@@ -70,11 +70,11 @@ public class PetPicker extends GridList implements ClearsPetSlots {
     }
 
     public function getPets():Vector.<PetItem> {
-        return (this.petItems);
+        return this.petItems;
     }
 
     public function getPet(_arg_1:int):PetItem {
-        return (this.petItems[_arg_1]);
+        return this.petItems[_arg_1];
     }
 
     public function filterFusible(_arg_1:PetVO):void {

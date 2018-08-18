@@ -27,13 +27,13 @@ public class BeginnersPackageOfferDialog extends Sprite {
     }
 
     public function setTimeRemaining(_arg_1:int):void {
-        var _local_2:String = (((_arg_1 > 1)) ? LANGUAGE_KEY_PLURAL : LANGUAGE_KEY_SINGULAR);
+        var _local_2:String = _arg_1 > 1 ? LANGUAGE_KEY_PLURAL : LANGUAGE_KEY_SINGULAR;
         this.timeText.setStringBuilder(new LineBuilder().setParams(_local_2, {"days": _arg_1}));
     }
 
     public function centerOnScreen():void {
-        x = ((stage.stageWidth - width) * 0.5);
-        y = ((stage.stageHeight - height) * 0.5);
+        x = (stage.stageWidth - width) * 0.5;
+        y = (stage.stageHeight - height) * 0.5;
     }
 
     private function makeBackground():void {
@@ -61,7 +61,7 @@ public class BeginnersPackageOfferDialog extends Sprite {
     private function makeTransparentTargetButton(_arg_1:int, _arg_2:int, _arg_3:int, _arg_4:int):Sprite {
         var _local_5:TransparentButton = new TransparentButton(_arg_1, _arg_2, _arg_3, _arg_4);
         addChild(_local_5);
-        return (_local_5);
+        return _local_5;
     }
 
 

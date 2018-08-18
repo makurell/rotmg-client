@@ -27,8 +27,7 @@ public class ServersMediator extends Mediator {
     override public function initialize():void {
         this.view.gotoTitle.add(this.onGotoTitle);
         this.view.initialize(this.servers.getServers());
-        if(this.securityQuestionsModel.showSecurityQuestionsOnStartup)
-        {
+        if (this.securityQuestionsModel.showSecurityQuestionsOnStartup) {
             this.openDialog.dispatch(new SecurityQuestionsInfoDialog());
         }
     }

@@ -39,15 +39,14 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
     }
 
     public function get login():Signal {
-        return (this._login);
+        return this._login;
     }
 
     public function get register():Signal {
-        return (this._register);
+        return this._register;
     }
 
-    public function get reset():Signal
-    {
+    public function get reset():Signal {
         return this._reset;
     }
 
@@ -74,7 +73,7 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         _local_1.setAutoSize(TextFieldAutoSize.RIGHT);
         _local_1.setSize(FONT_SIZE).setColor(0xB3B3B3);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4)];
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeLoginButton():void {
@@ -82,8 +81,7 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         this.loginButton.setAutoSize(TextFieldAutoSize.RIGHT);
     }
 
-    private function makeResetButton():void
-    {
+    private function makeResetButton():void {
         this.resetButton = new TitleMenuOption("reset", FONT_SIZE, false);
         this.resetButton.setAutoSize(TextFieldAutoSize.RIGHT);
     }
@@ -98,7 +96,7 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         _local_1.setColor(0xB3B3B3).setAutoSize(TextFieldAutoSize.RIGHT).setSize(FONT_SIZE);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4)];
         _local_1.setStringBuilder(new StaticStringBuilder(" - "));
-        return (_local_1);
+        return _local_1;
     }
 
     public function setInfo(_arg_1:String, _arg_2:Boolean):void {
@@ -127,12 +125,10 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.LOGGED_IN_TEXT, {"userName": this.userName}));
         var _local_1:BuildData = StaticInjectorContext.getInjector().getInstance(BuildData);
         this.loginButton.setTextKey(TextKey.LOG_OUT);
-        if(_local_1.getEnvironment() == BuildEnvironment.TESTING || _local_1.getEnvironment() == BuildEnvironment.LOCALHOST)
-        {
+        if (_local_1.getEnvironment() == BuildEnvironment.TESTING || _local_1.getEnvironment() == BuildEnvironment.LOCALHOST) {
             this.addAndAlignHorizontally(this.accountText, this.makeDividerText(), this.resetButton, this.makeDividerText(), this.loginButton);
         }
-        else
-        {
+        else {
             this.addAndAlignHorizontally(this.accountText, this.loginButton);
         }
     }
@@ -144,7 +140,7 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         this.addAndAlignHorizontally(this.accountText, this.makeDividerText(), this.registerButton, this.makeDividerText(), this.loginButton);
     }
 
-    private function addAndAlignHorizontally(... rest):void {
+    private function addAndAlignHorizontally(...rest):void {
         var _local_2:DisplayObject;
         var _local_3:int;
         var _local_4:int;
@@ -157,7 +153,7 @@ public class WebAccountInfoView extends Sprite implements AccountInfoView {
         while (_local_4--) {
             _local_5 = rest[_local_4];
             _local_5.x = _local_3;
-            _local_3 = (_local_3 - _local_5.width);
+            _local_3 = _local_3 - _local_5.width;
         }
     }
 

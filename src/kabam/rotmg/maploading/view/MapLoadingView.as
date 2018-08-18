@@ -59,7 +59,7 @@ public class MapLoadingView extends Sprite {
         this.indicators = new Vector.<DisplayObject>(MAX_DIFFICULTY);
         var _local_2:int = 1;
         while (_local_2 <= MAX_DIFFICULTY) {
-            this.indicators[(_local_2 - 1)] = this.diffRow.getChildByName(("indicator_" + _local_2));
+            this.indicators[(_local_2 - 1)] = this.diffRow.getChildByName("indicator_" + _local_2);
             _local_2++;
         }
         addChild(this.screen);
@@ -67,7 +67,7 @@ public class MapLoadingView extends Sprite {
     }
 
     public function showMap(_arg_1:String, _arg_2:int):void {
-        this.mapName = ((_arg_1) ? _arg_1 : "");
+        this.mapName = _arg_1 ? _arg_1 : "";
         this.difficulty = _arg_2;
         this.setValues();
     }
@@ -85,7 +85,7 @@ public class MapLoadingView extends Sprite {
                 this.diffRow.visible = true;
                 _local_1 = 0;
                 while (_local_1 < MAX_DIFFICULTY) {
-                    this.indicators[_local_1].visible = (_local_1 < this.difficulty);
+                    this.indicators[_local_1].visible = _local_1 < this.difficulty;
                     _local_1++;
                 }
             }
@@ -96,8 +96,8 @@ public class MapLoadingView extends Sprite {
         this.animation = _arg_1;
         addChild(_arg_1);
         _arg_1.start();
-        _arg_1.x = ((399.5 - (_arg_1.width * 0.5)) + 5);
-        _arg_1.y = (245.85 - (_arg_1.height * 0.5));
+        _arg_1.x = (399.5 - _arg_1.width * 0.5) + 5;
+        _arg_1.y = 245.85 - _arg_1.height * 0.5;
     }
 
     public function disable():void {
@@ -105,7 +105,7 @@ public class MapLoadingView extends Sprite {
     }
 
     public function disableNoFadeOut():void {
-        ((parent) && (parent.removeChild(this)));
+        parent && parent.removeChild(this);
     }
 
     private function beginFadeOut():void {
@@ -138,7 +138,7 @@ public class MapLoadingView extends Sprite {
     }
 
     private function onFadeOutComplete(_arg_1:GTween):void {
-        ((parent) && (parent.removeChild(this)));
+        parent && parent.removeChild(this);
     }
 
     private function onRemovedFromStage(_arg_1:Event):void {

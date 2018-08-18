@@ -28,7 +28,7 @@ public class ObjectStatusData {
         }
         this.stats_.length = Math.min(_local_2, this.stats_.length);
         while (this.stats_.length < _local_2) {
-            this.stats_.push((FreeList.newObject(StatData) as StatData));
+            this.stats_.push(FreeList.newObject(StatData) as StatData);
         }
         _local_3 = 0;
         while (_local_3 < _local_2) {
@@ -49,7 +49,7 @@ public class ObjectStatusData {
     }
 
     public function toString():String {
-        return (((((("objectId_: " + this.objectId_) + " pos_: ") + this.pos_) + " stats_: ") + this.stats_));
+        return "objectId_: " + this.objectId_ + " pos_: " + this.pos_ + " stats_: " + this.stats_;
     }
 
 

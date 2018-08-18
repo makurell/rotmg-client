@@ -14,8 +14,8 @@ public class PetInteractionView extends Sprite implements ClearsPetSlots {
     }
 
     protected function positionThis():void {
-        this.x = ((this.stageProxy.getStageWidth() - this.width) * 0.5);
-        this.y = ((this.stageProxy.getStageHeight() - this.height) * 0.5);
+        this.x = (this.stageProxy.getStageWidth() - this.width) * 0.5;
+        this.y = (this.stageProxy.getStageHeight() - this.height) * 0.5;
     }
 
 

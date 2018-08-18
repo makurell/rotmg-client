@@ -62,7 +62,7 @@ public class LegendsView extends Sprite {
         this.title.setBold(true);
         this.title.setStringBuilder(new LineBuilder().setParams(TextKey.SCREENS_LEGENDS));
         this.title.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.title.x = (400 - (this.title.width / 2));
+        this.title.x = 400 - this.title.width / 2;
         this.title.y = 24;
         addChild(this.title);
     }
@@ -73,8 +73,8 @@ public class LegendsView extends Sprite {
         this.loadingBanner.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         this.loadingBanner.setStringBuilder(new LineBuilder().setParams(TextKey.LOADING_TEXT));
         this.loadingBanner.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.loadingBanner.x = (800 / 2);
-        this.loadingBanner.y = (600 / 2);
+        this.loadingBanner.x = 800 / 2;
+        this.loadingBanner.y = 600 / 2;
         this.loadingBanner.visible = false;
         addChild(this.loadingBanner);
     }
@@ -85,8 +85,8 @@ public class LegendsView extends Sprite {
         this.noLegendsBanner.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         this.noLegendsBanner.setStringBuilder(new LineBuilder().setParams(TextKey.EMPTY_LEGENDS_LIST));
         this.noLegendsBanner.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.noLegendsBanner.x = (800 / 2);
-        this.noLegendsBanner.y = (600 / 2);
+        this.noLegendsBanner.x = 800 / 2;
+        this.noLegendsBanner.y = 600 / 2;
         this.noLegendsBanner.visible = false;
         addChild(this.noLegendsBanner);
     }
@@ -121,7 +121,7 @@ public class LegendsView extends Sprite {
 
     private function makeScrollbar():void {
         this.scrollBar = new Scrollbar(16, 400);
-        this.scrollBar.x = ((800 - this.scrollBar.width) - 4);
+        this.scrollBar.x = 800 - this.scrollBar.width - 4;
         this.scrollBar.y = 104;
         addChild(this.scrollBar);
     }
@@ -139,11 +139,11 @@ public class LegendsView extends Sprite {
     private function makeTab(_arg_1:Timespan, _arg_2:int):LegendsTab {
         var _local_3:LegendsTab = new LegendsTab(_arg_1);
         this.tabs[_arg_1.getId()] = _local_3;
-        _local_3.x = (20 + (_arg_2 * 90));
+        _local_3.x = 20 + _arg_2 * 90;
         _local_3.y = 70;
         _local_3.selected.add(this.onTabSelected);
         addChild(_local_3);
-        return (_local_3);
+        return _local_3;
     }
 
     private function onTabSelected(_arg_1:LegendsTab):void {
@@ -158,7 +158,7 @@ public class LegendsView extends Sprite {
     }
 
     private function updateTabs(_arg_1:LegendsTab):void {
-        ((this.selectedTab) && (this.selectedTab.setIsSelected(false)));
+        this.selectedTab && this.selectedTab.setIsSelected(false);
         this.selectedTab = _arg_1;
         this.selectedTab.setIsSelected(true);
     }
@@ -178,7 +178,7 @@ public class LegendsView extends Sprite {
     }
 
     public function clear():void {
-        ((this.listContainer) && (this.clearLegendsList()));
+        this.listContainer && this.clearLegendsList();
         this.listContainer = null;
         this.scrollBar.visible = false;
     }
@@ -200,7 +200,7 @@ public class LegendsView extends Sprite {
         this.legends = _arg_2;
         this.count = _arg_2.length;
         this.items.length = this.count;
-        this.noLegendsBanner.visible = (this.count == 0);
+        this.noLegendsBanner.visible = this.count == 0;
         this.makeItemsFromLegends();
         this.mainContainer.addChild(this.listContainer);
         this.updateScrollbar();
@@ -216,12 +216,12 @@ public class LegendsView extends Sprite {
 
     private function makeItemFromLegend(_arg_1:int):LegendListItem {
         var _local_2:Legend = this.legends[_arg_1];
-        _local_2.place = (_arg_1 + 1);
+        _local_2.place = _arg_1 + 1;
         var _local_3:LegendListItem = new LegendListItem(_local_2);
-        _local_3.y = (_arg_1 * LegendListItem.HEIGHT);
+        _local_3.y = _arg_1 * LegendListItem.HEIGHT;
         _local_3.selected.add(this.onItemSelected);
         this.listContainer.addChild(_local_3);
-        return (_local_3);
+        return _local_3;
     }
 
     private function updateScrollbar():void {
@@ -243,7 +243,7 @@ public class LegendsView extends Sprite {
         var _local_1:Legend = this.getLegendFocus();
         if (_local_1) {
             _local_2 = this.legends.indexOf(_local_1);
-            _local_3 = ((_local_2 + 0.5) * LegendListItem.HEIGHT);
+            _local_3 = (_local_2 + 0.5) * LegendListItem.HEIGHT;
             this.scrollBar.setPos((_local_3 - 200) / (this.listContainer.height - 400));
         }
     }
@@ -257,7 +257,7 @@ public class LegendsView extends Sprite {
                 break;
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function onItemSelected(_arg_1:Legend):void {
@@ -265,7 +265,7 @@ public class LegendsView extends Sprite {
     }
 
     private function onScrollBarChange(_arg_1:Event):void {
-        this.listContainer.y = (-(this.scrollBar.pos()) * (this.listContainer.height - 400));
+        this.listContainer.y = -this.scrollBar.pos() * (this.listContainer.height - 400);
     }
 
     public function showLoading():void {

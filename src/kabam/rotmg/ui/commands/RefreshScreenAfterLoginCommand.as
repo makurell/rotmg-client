@@ -29,10 +29,10 @@ public class RefreshScreenAfterLoginCommand {
 
     private function getTargetScreen():Sprite {
         var _local_1:Class = this.screenModel.getCurrentScreenType();
-        if ((((_local_1 == null)) || ((_local_1 == GameSprite)))) {
+        if (_local_1 == null || _local_1 == GameSprite) {
             _local_1 = CharacterSelectionAndNewsScreen;
         }
-        return (new (_local_1)());
+        return new _local_1();
     }
 
 

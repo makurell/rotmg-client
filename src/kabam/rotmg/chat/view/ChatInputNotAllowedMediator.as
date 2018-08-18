@@ -28,7 +28,7 @@ public class ChatInputNotAllowedMediator extends Mediator {
     }
 
     private function onHUDModelInitialized():void {
-        if (((this.hudModel.gameSprite) && (this.hudModel.gameSprite.evalIsNotInCombatMapArea()))) {
+        if (this.hudModel.gameSprite && this.hudModel.gameSprite.evalIsNotInCombatMapArea()) {
             this.view.addEventListener(MouseEvent.CLICK, this.onClick);
         }
         else {

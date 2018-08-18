@@ -26,7 +26,7 @@ public class Sign extends GameObject {
 
     override protected function getTexture(_arg_1:Camera, _arg_2:int):BitmapData {
         if (texture_ != null) {
-            return (texture_);
+            return texture_;
         }
         var _local_3:TextField = new TextField();
         _local_3.multiline = true;
@@ -46,12 +46,12 @@ public class Sign extends GameObject {
         var _local_6:BitmapData = new BitmapDataSpy(_local_3.width, _local_3.height, true, 0);
         _local_6.draw(_local_3);
         texture_ = TextureRedrawer.redraw(_local_6, size_, false, 0);
-        return (texture_);
+        return texture_;
     }
 
     private function stripCurlyBrackets(_arg_1:String):String {
-        var _local_2:Boolean = ((((!((_arg_1 == null))) && ((_arg_1.charAt(0) == "{")))) && ((_arg_1.charAt((_arg_1.length - 1)) == "}")));
-        return (((_local_2) ? _arg_1.substr(1, (_arg_1.length - 2)) : _arg_1));
+        var _local_2:Boolean = !(_arg_1 == null) && _arg_1.charAt(0) == "{" && _arg_1.charAt(_arg_1.length - 1) == "}";
+        return _local_2 ? _arg_1.substr(1, _arg_1.length - 2) : _arg_1;
     }
 
 

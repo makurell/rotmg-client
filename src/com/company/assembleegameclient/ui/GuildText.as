@@ -21,7 +21,7 @@ public class GuildText extends Sprite {
         this.icon_ = new Bitmap(null);
         this.icon_.y = -8;
         this.icon_.x = -8;
-        var _local_4:int = (((_arg_3 == 0)) ? 0 : (_arg_3 - (this.icon_.width - 16)));
+        var _local_4:int = _arg_3 == 0 ? 0 : _arg_3 - (this.icon_.width - 16);
         this.guildName_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(_local_4);
         this.guildName_.setAutoSize(TextFieldAutoSize.LEFT);
         this.guildName_.filters = [new DropShadowFilter(0, 0, 0)];
@@ -31,12 +31,12 @@ public class GuildText extends Sprite {
     }
 
     public function draw(_arg_1:String, _arg_2:int):void {
-        if ((((this.name_ == _arg_1)) && ((_arg_2 == _arg_2)))) {
+        if (this.name_ == _arg_1 && _arg_2 == _arg_2) {
             return;
         }
         this.name_ = _arg_1;
         this.rank_ = _arg_2;
-        if ((((this.name_ == null)) || ((this.name_ == "")))) {
+        if (this.name_ == null || this.name_ == "") {
             SpriteUtil.safeRemoveChild(this, this.icon_);
             SpriteUtil.safeRemoveChild(this, this.guildName_);
         }

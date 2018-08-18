@@ -110,12 +110,12 @@ public class GameSprite extends AGameSprite {
 
     public static function dispatchMapLoaded(_arg_1:MapInfo):void {
         var _local_2:MapLoadedSignal = StaticInjectorContext.getInjector().getInstance(MapLoadedSignal);
-        ((_local_2) && (_local_2.dispatch(_arg_1)));
+        _local_2 && _local_2.dispatch(_arg_1);
     }
 
     private static function hidePreloader():void {
         var _local_1:HideMapLoadingSignal = StaticInjectorContext.getInjector().getInstance(HideMapLoadingSignal);
-        ((_local_1) && (_local_1.dispatch()));
+        _local_1 && _local_1.dispatch();
     }
 
 
@@ -131,7 +131,7 @@ public class GameSprite extends AGameSprite {
     }
 
     override public function setFocus(_arg_1:GameObject):void {
-        _arg_1 = ((_arg_1) || (map.player_));
+        _arg_1 = _arg_1 || map.player_;
         this.focus = _arg_1;
     }
 
@@ -146,7 +146,7 @@ public class GameSprite extends AGameSprite {
                 this.chatPlayerMenu.initDifferentServer(this, _arg_4, _arg_5, _arg_6);
             }
             else {
-                if ((((_arg_4.length > 0)) && ((((((_arg_4.charAt(0) == "#")) || ((_arg_4.charAt(0) == "*")))) || ((_arg_4.charAt(0) == "@")))))) {
+                if (_arg_4.length > 0 && (_arg_4.charAt(0) == "#" || _arg_4.charAt(0) == "*" || _arg_4.charAt(0) == "@")) {
                     return;
                 }
                 this.chatPlayerMenu.initDifferentServer(this, _arg_4, _arg_5);
@@ -154,11 +154,11 @@ public class GameSprite extends AGameSprite {
         }
         addChild(this.chatPlayerMenu);
         this.chatPlayerMenu.x = _arg_2;
-        this.chatPlayerMenu.y = (_arg_3 - this.chatPlayerMenu.height);
+        this.chatPlayerMenu.y = _arg_3 - this.chatPlayerMenu.height;
     }
 
     public function removeChatPlayerMenu():void {
-        if (((!((this.chatPlayerMenu == null))) && (!((this.chatPlayerMenu.parent == null))))) {
+        if (!(this.chatPlayerMenu == null) && !(this.chatPlayerMenu.parent == null)) {
             removeChild(this.chatPlayerMenu);
             this.chatPlayerMenu = null;
         }
@@ -188,7 +188,7 @@ public class GameSprite extends AGameSprite {
             this.showWaveCounter();
         }
         _local_1 = StaticInjectorContext.getInjector().getInstance(Account);
-        if (((this.packageModel.shouldSpam()) && ((map.name_ == Map.NEXUS)))) {
+        if (this.packageModel.shouldSpam() && map.name_ == Map.NEXUS) {
             if (this.beginnersPackageModel.isBeginnerAvailable()) {
                 this.showBeginnersPackage.dispatch();
             }
@@ -197,8 +197,8 @@ public class GameSprite extends AGameSprite {
             }
             this.packageModel.numSpammed++;
         }
-        this.isNexus_ = (map.name_ == Map.NEXUS);
-        if (((this.isNexus_) || ((map.name_ == Map.DAILY_QUEST_ROOM)))) {
+        this.isNexus_ = map.name_ == Map.NEXUS;
+        if (this.isNexus_ || map.name_ == Map.DAILY_QUEST_ROOM) {
             this.creditDisplay_ = new CreditDisplay(this, true, true);
         }
         else {
@@ -214,7 +214,7 @@ public class GameSprite extends AGameSprite {
             "play_platform": _local_1.playPlatform()
         };
         MoreObjectUtil.addToObject(_local_3, _local_1.getCredentials());
-        if (((((((!((map.name_ == "Kitchen"))) && (!((map.name_ == "Tutorial"))))) && (!((map.name_ == "Nexus Explanation"))))) && ((Parameters.data_.watchForTutorialExit == true)))) {
+        if (!(map.name_ == "Kitchen") && !(map.name_ == "Tutorial") && !(map.name_ == "Nexus Explanation") && Parameters.data_.watchForTutorialExit == true) {
             Parameters.data_.watchForTutorialExit = false;
             _local_3["fteStepCompleted"] = 9900;
             _local_2.sendRequest("/log/logFteStep", _local_3);
@@ -232,9 +232,9 @@ public class GameSprite extends AGameSprite {
             this.startTutorial();
         }
         else {
-            if (((((((((((((!((map.name_ == "Arena"))) && (!((map.name_ == "Kitchen"))))) && (!((map.name_ == "Nexus Explanation"))))) && (!((map.name_ == "Vault Explanation"))))) && (!((map.name_ == "Guild Explanation"))))) && (!(this.evalIsNotInCombatMapArea())))) && (Parameters.data_.showProtips))) {
+            if (!(map.name_ == "Arena") && !(map.name_ == "Kitchen") && !(map.name_ == "Nexus Explanation") && !(map.name_ == "Vault Explanation") && !(map.name_ == "Guild Explanation") && !this.evalIsNotInCombatMapArea() && Parameters.data_.showProtips) {
                 _local_4 = StaticInjectorContext.getInjector().getInstance(ShowProTipSignal);
-                ((_local_4) && (_local_4.dispatch()));
+                _local_4 && _local_4.dispatch();
             }
         }
         if (map.name_ == "Daily Quest Room") {
@@ -249,7 +249,7 @@ public class GameSprite extends AGameSprite {
         this.showGuildText();
         this.setYAndPositionPackage();
         this.showGiftStatusDisplay();
-        if (((((("production".toLowerCase() == "dev")) || (Player.isAdmin))) || (("production".toLowerCase() == "localhost")))) {
+        if ("production".toLowerCase() == "dev" || Player.isAdmin || "production".toLowerCase() == "localhost") {
             this.showNewsUpdate();
         }
         this.showNewsTicker();
@@ -270,16 +270,16 @@ public class GameSprite extends AGameSprite {
 
     private function showNewsTicker():void {
         this.newsTicker = new NewsTicker();
-        this.newsTicker.x = (300 - (this.newsTicker.width / 2));
-        this.newsTicker.y = (5 + UIUtils.NOTIFICATION_SPACE);
+        this.newsTicker.x = 300 - this.newsTicker.width / 2;
+        this.newsTicker.y = 5 + UIUtils.NOTIFICATION_SPACE;
         addChild(this.newsTicker);
     }
 
     private function showGiftStatusDisplay():void {
         this.giftStatusDisplay = new GiftStatusDisplay();
         this.giftStatusDisplay.x = 6;
-        this.giftStatusDisplay.y = (this.displaysPosY + 2);
-        this.displaysPosY = (this.displaysPosY + UIUtils.NOTIFICATION_SPACE);
+        this.giftStatusDisplay.y = this.displaysPosY + 2;
+        this.displaysPosY = this.displaysPosY + UIUtils.NOTIFICATION_SPACE;
         addChild(this.giftStatusDisplay);
     }
 
@@ -291,7 +291,7 @@ public class GameSprite extends AGameSprite {
             _local_3.x = 6;
             _local_3.y = 92;
             if (_arg_1) {
-                this.displaysPosY = (this.displaysPosY + UIUtils.NOTIFICATION_SPACE);
+                this.displaysPosY = this.displaysPosY + UIUtils.NOTIFICATION_SPACE;
             }
             if (this.newsModalButton != null) {
                 removeChild(this.newsModalButton);
@@ -306,8 +306,8 @@ public class GameSprite extends AGameSprite {
     }
 
     private function setYAndPositionPackage():void {
-        this.packageY = (this.displaysPosY + 2);
-        this.displaysPosY = (this.displaysPosY + UIUtils.NOTIFICATION_SPACE);
+        this.packageY = this.displaysPosY + 2;
+        this.displaysPosY = this.displaysPosY + UIUtils.NOTIFICATION_SPACE;
         this.positionPackage();
     }
 
@@ -345,7 +345,7 @@ public class GameSprite extends AGameSprite {
         this.rankText_ = new RankText(-1, true, false);
         this.rankText_.x = 8;
         this.rankText_.y = this.displaysPosY;
-        this.displaysPosY = (this.displaysPosY + UIUtils.NOTIFICATION_SPACE);
+        this.displaysPosY = this.displaysPosY + UIUtils.NOTIFICATION_SPACE;
         addChild(this.rankText_);
     }
 
@@ -358,7 +358,7 @@ public class GameSprite extends AGameSprite {
         var _local_4:Number;
         var _local_7:GameObject;
         var _local_8:IInteractiveObject;
-        if (((!(map)) || (!(map.player_)))) {
+        if (!map || !map.player_) {
             return;
         }
         var _local_1:Player = map.player_;
@@ -368,10 +368,10 @@ public class GameSprite extends AGameSprite {
         var _local_6:Number = _local_1.y_;
         for each (_local_7 in map.goDict_) {
             _local_8 = (_local_7 as IInteractiveObject);
-            if (((_local_8) && (((!((_local_8 is Pet))) || (this.map.isPetYard))))) {
-                if ((((Math.abs((_local_5 - _local_7.x_)) < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE)) || ((Math.abs((_local_6 - _local_7.y_)) < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE)))) {
+            if (_local_8 && (!(_local_8 is Pet) || this.map.isPetYard)) {
+                if (Math.abs(_local_5 - _local_7.x_) < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE || Math.abs(_local_6 - _local_7.y_) < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE) {
                     _local_4 = PointUtil.distanceXY(_local_7.x_, _local_7.y_, _local_5, _local_6);
-                    if ((((_local_4 < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE)) && ((_local_4 < _local_2)))) {
+                    if (_local_4 < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE && _local_4 < _local_2) {
                         _local_2 = _local_4;
                         _local_3 = _local_8;
                     }
@@ -382,7 +382,7 @@ public class GameSprite extends AGameSprite {
     }
 
     private function isPetMap():Boolean {
-        return (true);
+        return true;
     }
 
     public function connect():void {
@@ -406,7 +406,7 @@ public class GameSprite extends AGameSprite {
             stage.removeEventListener(MoneyChangedEvent.MONEY_CHANGED, this.onMoneyChanged);
             stage.removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
             LoopedProcess.destroyAll();
-            ((contains(map)) && (removeChild(map)));
+            contains(map) && removeChild(map);
             map.dispose();
             CachingColorTransformer.clear();
             TextureRedrawer.clearCache();
@@ -420,32 +420,32 @@ public class GameSprite extends AGameSprite {
     }
 
     override public function evalIsNotInCombatMapArea():Boolean {
-        return ((((((((((((map.name_ == Map.NEXUS)) || ((map.name_ == Map.VAULT)))) || ((map.name_ == Map.GUILD_HALL)))) || ((map.name_ == Map.CLOTH_BAZAAR)))) || ((map.name_ == Map.NEXUS_EXPLANATION)))) || ((map.name_ == Map.DAILY_QUEST_ROOM))));
+        return map.name_ == Map.NEXUS || map.name_ == Map.VAULT || map.name_ == Map.GUILD_HALL || map.name_ == Map.CLOTH_BAZAAR || map.name_ == Map.NEXUS_EXPLANATION || map.name_ == Map.DAILY_QUEST_ROOM;
     }
 
     private function onEnterFrame(_arg_1:Event):void {
         var _local_7:Number;
         var _local_2:int = getTimer();
-        var _local_3:int = (_local_2 - lastUpdate_);
+        var _local_3:int = _local_2 - lastUpdate_;
         if (this.idleWatcher_.update(_local_3)) {
             closed.dispatch();
             return;
         }
         LoopedProcess.runProcesses(_local_2);
-        this.frameTimeSum_ = (this.frameTimeSum_ + _local_3);
-        this.frameTimeCount_ = (this.frameTimeCount_ + 1);
+        this.frameTimeSum_ = this.frameTimeSum_ + _local_3;
+        this.frameTimeCount_ = this.frameTimeCount_ + 1;
         if (this.frameTimeSum_ > 300000) {
-            _local_7 = int(Math.round(((1000 * this.frameTimeCount_) / this.frameTimeSum_)));
+            _local_7 = int(Math.round((1000 * this.frameTimeCount_) / this.frameTimeSum_));
             this.frameTimeCount_ = 0;
             this.frameTimeSum_ = 0;
         }
         var _local_4:int = getTimer();
         map.update(_local_2, _local_3);
-        this.monitor.dispatch("Map.update", (getTimer() - _local_4));
+        this.monitor.dispatch("Map.update", getTimer() - _local_4);
         camera_.update(_local_3);
         var _local_5:Player = map.player_;
         if (this.focus) {
-            camera_.configureCamera(this.focus, ((_local_5) ? _local_5.isHallucinating() : false));
+            camera_.configureCamera(this.focus, _local_5 ? _local_5.isHallucinating() : false);
             map.draw(camera_, _local_2);
         }
         if (_local_5 != null) {
@@ -476,7 +476,7 @@ public class GameSprite extends AGameSprite {
             moveRecords_.addRecord(_local_2, _local_5.x_, _local_5.y_);
         }
         lastUpdate_ = _local_2;
-        var _local_6:int = (getTimer() - _local_2);
+        var _local_6:int = getTimer() - _local_2;
         this.monitor.dispatch("GameSprite.loop", _local_6);
     }
 

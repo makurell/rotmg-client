@@ -30,8 +30,8 @@ public class GetAppEngineNewsTask extends BaseTask implements GetNewsTask {
 
     override protected function startTask():void {
         this.numUpdateAttempts++;
-        if ((((this.lastRan == -1)) || (((this.lastRan + this.updateCooldown) < (getTimer() / 1000))))) {
-            this.lastRan = (getTimer() / 1000);
+        if (this.lastRan == -1 || this.lastRan + this.updateCooldown < getTimer() / 1000) {
+            this.lastRan = getTimer() / 1000;
             this.client.complete.addOnce(this.onComplete);
             this.client.sendRequest("/app/globalNews", {"language": this.languageModel.getLanguage()});
         }
@@ -39,7 +39,7 @@ public class GetAppEngineNewsTask extends BaseTask implements GetNewsTask {
             completeTask(true);
             reset();
         }
-        if (((((!(("production".toLowerCase() == "dev"))) && (!((this.updateCooldown == 0))))) && ((this.numUpdateAttempts >= 2)))) {
+        if (!("production".toLowerCase() == "dev") && !(this.updateCooldown == 0) && this.numUpdateAttempts >= 2) {
             this.updateCooldown = 0;
         }
     }
@@ -76,7 +76,7 @@ public class GetAppEngineNewsTask extends BaseTask implements GetNewsTask {
         _local_2.networks = String(_arg_1.platform).split(",");
         _local_2.priority = uint(_arg_1.priority);
         _local_2.slot = uint(_arg_1.slot);
-        return (_local_2);
+        return _local_2;
     }
 
     private function onNewsRequestError(_arg_1:String):void {

@@ -15,8 +15,8 @@ public class MapBackground extends Sprite {
 
     private static const BORDER:int = 10;
     private static const RECTANGLE:Rectangle = new Rectangle(-400, -300, 800, 600);
-    private static const ANGLE:Number = ((7 * Math.PI) / 4);//5.49778714378214
-    private static const TO_MILLISECONDS:Number = (1 / 1000);//0.001
+    private static const ANGLE:Number = (7 * Math.PI) / 4;//5.49778714378214
+    private static const TO_MILLISECONDS:Number = 1 / 1000;//0.001
     private static const EMBEDDED_BACKGROUNDMAP:Class = MapBackground_EMBEDDED_BACKGROUNDMAP;
     private static var backgroundMap:Map;
     private static var mapSize:IntPoint;
@@ -33,7 +33,7 @@ public class MapBackground extends Sprite {
     }
 
     private function onAddedToStage(_arg_1:Event):void {
-        addChildAt((backgroundMap = ((backgroundMap) || (this.makeMap()))), 0);
+        addChildAt(backgroundMap = backgroundMap || this.makeMap(), 0);
         addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
         this.lastUpdate = getTimer();
     }
@@ -44,9 +44,9 @@ public class MapBackground extends Sprite {
 
     private function onEnterFrame(_arg_1:Event):void {
         this.time = getTimer();
-        xVal = (xVal + ((this.time - this.lastUpdate) * TO_MILLISECONDS));
-        if (xVal > (mapSize.x_ + BORDER)) {
-            xVal = (xVal - mapSize.x_);
+        xVal = xVal + (this.time - this.lastUpdate) * TO_MILLISECONDS;
+        if (xVal > mapSize.x_ + BORDER) {
+            xVal = xVal - mapSize.x_;
         }
         camera.configure(xVal, yVal, 12, ANGLE, RECTANGLE);
         backgroundMap.draw(camera, this.time);
@@ -58,14 +58,14 @@ public class MapBackground extends Sprite {
         var _local_2:String = _local_1.readUTFBytes(_local_1.length);
         mapSize = MapDecoder.getSize(_local_2);
         xVal = BORDER;
-        yVal = (BORDER + int(((mapSize.y_ - (2 * BORDER)) * Math.random())));
+        yVal = BORDER + int((mapSize.y_ - 2 * BORDER) * Math.random());
         camera = new Camera();
         var _local_3:Map = new Map(null);
-        _local_3.setProps((mapSize.x_ + (2 * BORDER)), mapSize.y_, "Background Map", Background.NO_BACKGROUND, false, false);
+        _local_3.setProps(mapSize.x_ + 2 * BORDER, mapSize.y_, "Background Map", Background.NO_BACKGROUND, false, false);
         _local_3.initialize();
         MapDecoder.writeMap(_local_2, _local_3, 0, 0);
         MapDecoder.writeMap(_local_2, _local_3, mapSize.x_, 0);
-        return (_local_3);
+        return _local_3;
     }
 
 

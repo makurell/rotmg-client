@@ -19,11 +19,11 @@ public class ArenaLeaderboardEntry {
 
 
     public function isEqual(_arg_1:ArenaLeaderboardEntry):Boolean {
-        return ((((((_arg_1.name == this.name)) && ((this.runtime == _arg_1.runtime)))) && ((this.currentWave == _arg_1.currentWave))));
+        return _arg_1.name == this.name && this.runtime == _arg_1.runtime && this.currentWave == _arg_1.currentWave;
     }
 
     public function isBetterThan(_arg_1:ArenaLeaderboardEntry):Boolean {
-        return ((((this.currentWave > _arg_1.currentWave)) || ((((this.currentWave == _arg_1.currentWave)) && ((this.runtime < _arg_1.runtime))))));
+        return this.currentWave > _arg_1.currentWave || this.currentWave == _arg_1.currentWave && this.runtime < _arg_1.runtime;
     }
 
 

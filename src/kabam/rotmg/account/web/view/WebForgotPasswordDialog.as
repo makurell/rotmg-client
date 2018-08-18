@@ -36,11 +36,11 @@ public class WebForgotPasswordDialog extends Frame {
     }
 
     private function isEmailValid():Boolean {
-        var _local_1 = !((this.emailInput.text() == ""));
+        var _local_1 = !(this.emailInput.text() == "");
         if (!_local_1) {
             this.emailInput.setError("Not a valid email address");
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function showError(_arg_1:String):void {

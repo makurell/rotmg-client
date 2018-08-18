@@ -13,8 +13,8 @@ public class DialogsView extends Sprite {
     private var pushed:DisplayObject;
 
     public function DialogsView() {
-        addChild((this.background = new Sprite()));
-        addChild((this.container = new Sprite()));
+        addChild(this.background = new Sprite());
+        addChild(this.container = new Sprite());
         this.background.visible = false;
         this.background.mouseEnabled = true;
     }
@@ -31,7 +31,7 @@ public class DialogsView extends Sprite {
     public function show(_arg_1:Sprite, _arg_2:Boolean):void {
         this.removeCurrentDialog();
         this.addDialog(_arg_1);
-        ((_arg_2) && (this.showBackground()));
+        _arg_2 && this.showBackground();
     }
 
     public function hideAll():void {
@@ -47,7 +47,7 @@ public class DialogsView extends Sprite {
     }
 
     public function getPushed():DisplayObject {
-        return (this.pushed);
+        return this.pushed;
     }
 
     public function pop():void {
@@ -62,7 +62,7 @@ public class DialogsView extends Sprite {
     }
 
     private function onRemoved(_arg_1:Event):void {
-        var _local_2:Sprite = (_arg_1.target as Sprite);
+        var _local_2:Sprite = _arg_1.target as Sprite;
         if (this.current == _local_2) {
             this.background.visible = false;
             this.current = null;
@@ -70,7 +70,7 @@ public class DialogsView extends Sprite {
     }
 
     private function removeCurrentDialog():void {
-        if (((this.current) && (this.container.contains(this.current)))) {
+        if (this.current && this.container.contains(this.current)) {
             this.current.removeEventListener(Event.REMOVED, this.onRemoved);
             this.container.removeChild(this.current);
             this.background.visible = false;

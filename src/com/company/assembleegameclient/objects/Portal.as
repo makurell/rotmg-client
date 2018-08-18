@@ -30,7 +30,7 @@ public class Portal extends GameObject implements IInteractiveObject {
         var _local_1:Array = name_.match(NAME_PARSER);
         var _local_2:StringBuilder = new PortalNameParser().makeBuilder(name_);
         var _local_3:BitmapTextFactory = StaticInjectorContext.getInjector().getInstance(BitmapTextFactory);
-        return (_local_3.make(_local_2, 16, 0xFFFFFF, true, IDENTITY_MATRIX, true));
+        return _local_3.make(_local_2, 16, 0xFFFFFF, true, IDENTITY_MATRIX, true);
     }
 
     override public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -41,7 +41,7 @@ public class Portal extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new PortalPanel(_arg_1, this));
+        return new PortalPanel(_arg_1, this);
     }
 
 

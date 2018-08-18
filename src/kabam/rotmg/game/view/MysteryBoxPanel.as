@@ -48,7 +48,7 @@ public class MysteryBoxPanel extends Panel {
         var _local_4:GetMysteryBoxesTask = _local_3.getInstance(GetMysteryBoxesTask);
         _local_4.start();
         super(_arg_1);
-        this.nameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth((WIDTH - 44));
+        this.nameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(WIDTH - 44);
         this.nameText_.setBold(true);
         this.nameText_.setStringBuilder(new LineBuilder().setParams(TextKey.SELLABLEOBJECTPANEL_TEXT));
         this.nameText_.setWordWrap(true);
@@ -65,7 +65,7 @@ public class MysteryBoxPanel extends Panel {
         var _local_7 = "MysteryBoxPanel.mysteryBoxShop";
         var _local_8:MysteryBoxModel = _local_3.getInstance(MysteryBoxModel);
         var _local_9:Account = _local_3.getInstance(Account);
-        if (((_local_8.isInitialized()) || (!(_local_9.isRegistered())))) {
+        if (_local_8.isInitialized() || !_local_9.isRegistered()) {
             this.infoButton_ = new DeprecatedTextButton(16, _local_5);
             this.infoButton_.addEventListener(MouseEvent.CLICK, this.onInfoButtonClick);
             addChild(this.infoButton_);
@@ -112,7 +112,7 @@ public class MysteryBoxPanel extends Panel {
         var _local_2:MysteryBoxModel = _local_1.getInstance(MysteryBoxModel);
         var _local_3:Account = _local_1.getInstance(Account);
         var _local_4:OpenDialogSignal = _local_1.getInstance(OpenDialogSignal);
-        if (((_local_2.isInitialized()) && (_local_3.isRegistered()))) {
+        if (_local_2.isInitialized() && _local_3.isRegistered()) {
             _local_4.dispatch(new MysteryBoxSelectModal());
         }
         else {
@@ -123,15 +123,15 @@ public class MysteryBoxPanel extends Panel {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             this.onInfoButton();
         }
     }
 
     override public function draw():void {
-        this.nameText_.y = (((this.nameText_.height) > 30) ? 0 : 12);
-        this.infoButton_.x = ((WIDTH / 2) - (this.infoButton_.width / 2));
-        this.infoButton_.y = ((HEIGHT - (this.infoButton_.height / 2)) - this.BUTTON_OFFSET);
+        this.nameText_.y = this.nameText_.height > 30 ? 0 : 12;
+        this.infoButton_.x = WIDTH / 2 - this.infoButton_.width / 2;
+        this.infoButton_.y = HEIGHT - this.infoButton_.height / 2 - this.BUTTON_OFFSET;
         if (!contains(this.infoButton_)) {
             addChild(this.infoButton_);
         }

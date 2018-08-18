@@ -35,15 +35,15 @@ public class PetVO {
     }
 
     private static function getPetDataDescription(_arg_1:int):String {
-        return (ObjectLibrary.getPetDataXMLByType(_arg_1).Description);
+        return ObjectLibrary.getPetDataXMLByType(_arg_1).Description;
     }
 
     private static function getPetDataDisplayId(_arg_1:int):String {
-        return (ObjectLibrary.getPetDataXMLByType(_arg_1).DisplayId);
+        return ObjectLibrary.getPetDataXMLByType(_arg_1).DisplayId;
     }
 
     public static function clone(_arg_1:PetVO):PetVO {
-        return (new PetVO(_arg_1.id));
+        return new PetVO(_arg_1.id);
     }
 
 
@@ -62,7 +62,7 @@ public class PetVO {
                 _local_1++;
             }
         }
-        return ((_local_1 == this.abilityList.length));
+        return _local_1 == this.abilityList.length;
     }
 
     private function onAbilityUpdate(_arg_1:AbilityVO):void {
@@ -75,11 +75,11 @@ public class PetVO {
     }
 
     private function extractBasicData(_arg_1:XML):void {
-        ((_arg_1.@instanceId) && (this.setID(_arg_1.@instanceId)));
-        ((_arg_1.@type) && (this.setType(_arg_1.@type)));
-        ((_arg_1.@name) && (this.setName(_arg_1.@name)));
-        ((_arg_1.@skin) && (this.setSkin(_arg_1.@skin)));
-        ((_arg_1.@rarity) && (this.setRarity(_arg_1.@rarity)));
+        _arg_1.instanceId && this.setID(_arg_1.@instanceId);
+        _arg_1.type && this.setType(_arg_1.@type);
+        _arg_1.name && this.setName(_arg_1.@name);
+        _arg_1.skin && this.setSkin(_arg_1.@skin);
+        _arg_1.rarity && this.setRarity(_arg_1.@rarity);
     }
 
     public function extractAbilityData(_arg_1:XML):void {
@@ -100,7 +100,7 @@ public class PetVO {
     }
 
     public function getFamily():String {
-        return (this.staticData.Family);
+        return this.staticData.Family;
     }
 
     public function setID(_arg_1:int):void {
@@ -108,7 +108,7 @@ public class PetVO {
     }
 
     public function getID():int {
-        return (this.id);
+        return this.id;
     }
 
     public function setType(_arg_1:int):void {
@@ -117,7 +117,7 @@ public class PetVO {
     }
 
     public function getType():int {
-        return (this.type);
+        return this.type;
     }
 
     public function setRarity(_arg_1:uint):void {
@@ -128,12 +128,12 @@ public class PetVO {
 
     private function unlockAbilitiesBasedOnPetRarity(_arg_1:uint):void {
         this.abilityList[0].setUnlocked(true);
-        this.abilityList[1].setUnlocked((_arg_1 >= PetRarityEnum.UNCOMMON.ordinal));
-        this.abilityList[2].setUnlocked((_arg_1 >= PetRarityEnum.LEGENDARY.ordinal));
+        this.abilityList[1].setUnlocked(_arg_1 >= PetRarityEnum.UNCOMMON.ordinal);
+        this.abilityList[2].setUnlocked(_arg_1 >= PetRarityEnum.LEGENDARY.ordinal);
     }
 
     public function getRarity():String {
-        return (this.rarity);
+        return this.rarity;
     }
 
     public function setName(_arg_1:String):void {
@@ -142,7 +142,7 @@ public class PetVO {
     }
 
     public function getName():String {
-        return (this.name);
+        return this.name;
     }
 
     public function setMaxAbilityPower(_arg_1:int):void {
@@ -151,7 +151,7 @@ public class PetVO {
     }
 
     public function getMaxAbilityPower():int {
-        return (this.maxAbilityPower);
+        return this.maxAbilityPower;
     }
 
     public function setSkin(_arg_1:int):void {
@@ -160,21 +160,21 @@ public class PetVO {
     }
 
     public function getSkinID():int {
-        return (this.skinID);
+        return this.skinID;
     }
 
     public function getSkin():Bitmap {
         this.makeSkin();
         var _local_1:MaskedImage = this.skin.imageFromAngle(0, AnimatedChar.STAND, 0);
-        var _local_2:int = (((this.rarity == PetRarityEnum.DIVINE.value)) ? 40 : 80);
+        var _local_2:int = this.rarity == PetRarityEnum.DIVINE.value ? 40 : 80;
         var _local_3:BitmapData = TextureRedrawer.resize(_local_1.image_, _local_1.mask_, _local_2, true, 0, 0);
         _local_3 = GlowRedrawer.outlineGlow(_local_3, 0);
-        return (new Bitmap(_local_3));
+        return new Bitmap(_local_3);
     }
 
     public function getSkinMaskedImage():MaskedImage {
         this.makeSkin();
-        return (((this.skin) ? this.skin.imageFromAngle(0, AnimatedChar.STAND, 0) : null));
+        return this.skin ? this.skin.imageFromAngle(0, AnimatedChar.STAND, 0) : null;
     }
 
     private function makeSkin():void {

@@ -30,7 +30,7 @@ public class CloseDialogComponent {
     }
 
     public function getCloseSignal():Signal {
-        return (this.closeSignal);
+        return this.closeSignal;
     }
 
 

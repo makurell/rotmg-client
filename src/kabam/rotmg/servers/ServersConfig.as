@@ -47,7 +47,7 @@ public class ServersConfig implements IConfig {
     }
 
     private function makeFixedIPServerModel():FixedIPServerModel {
-        return (new FixedIPServerModel().setIP(this.data.getEnvironmentString()));
+        return new FixedIPServerModel().setIP(this.data.getEnvironmentString());
     }
 
     private function configureLiveServers():void {

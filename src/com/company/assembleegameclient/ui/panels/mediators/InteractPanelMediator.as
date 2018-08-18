@@ -29,30 +29,30 @@ public class InteractPanelMediator extends Mediator {
 
     public function provideInteractive():IInteractiveObject {
         if (!this.isMapNameYardName()) {
-            return (this.mapModel.currentInteractiveTarget);
+            return this.mapModel.currentInteractiveTarget;
         }
         if (this.doesNewPanelOverrideOld()) {
             this.currentInteractive = this.mapModel.currentInteractiveTarget;
         }
-        return (this.currentInteractive);
+        return this.currentInteractive;
     }
 
     private function doesNewPanelOverrideOld():Boolean {
-        return ((((this.mapModel.currentInteractiveTarget is Pet)) ? this.doShowPet() : true));
+        return (this.mapModel.currentInteractiveTarget is Pet) ? this.doShowPet() : true;
     }
 
     private function doShowPet():Boolean {
-        if (((!(this.currentInteractive)) && (this.isMapNameYardName()))) {
-            return (true);
+        if (!this.currentInteractive && this.isMapNameYardName()) {
+            return true;
         }
-        if ((((((this.currentInteractive is Pet)) && (this.isMapNameYardName()))) && (!((Pet(this.mapModel.currentInteractiveTarget).vo.getID() == Pet(this.currentInteractive).vo.getID()))))) {
-            return (true);
+        if ((this.currentInteractive is Pet) && this.isMapNameYardName() && !(Pet(this.mapModel.currentInteractiveTarget).vo.getID() == Pet(this.currentInteractive).vo.getID())) {
+            return true;
         }
-        return (false);
+        return false;
     }
 
     private function isMapNameYardName():Boolean {
-        return (this.view.gs_.map.isPetYard);
+        return this.view.gs_.map.isPetYard;
     }
 
 

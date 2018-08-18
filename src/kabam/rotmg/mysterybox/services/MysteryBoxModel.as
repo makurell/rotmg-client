@@ -9,7 +9,7 @@ public class MysteryBoxModel {
 
 
     public function getBoxesOrderByWeight():Object {
-        return (this.models);
+        return this.models;
     }
 
     public function setMysetryBoxes(_arg_1:Array):void {
@@ -22,7 +22,7 @@ public class MysteryBoxModel {
     }
 
     public function isInitialized():Boolean {
-        return (this.initialized);
+        return this.initialized;
     }
 
     public function setInitialized(_arg_1:Boolean):void {
@@ -30,7 +30,7 @@ public class MysteryBoxModel {
     }
 
     public function get isNew():Boolean {
-        return (this._isNew);
+        return this._isNew;
     }
 
     public function set isNew(_arg_1:Boolean):void {

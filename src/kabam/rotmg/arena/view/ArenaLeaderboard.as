@@ -85,7 +85,7 @@ public class ArenaLeaderboard extends Sprite {
         this.selected.setSelected(false);
         this.selected = _arg_1;
         this.selected.setSelected(true);
-        this.weeklyCountdownClock.visible = (_arg_1.getFilter().getKey() == "weekly");
+        this.weeklyCountdownClock.visible = _arg_1.getFilter().getKey() == "weekly";
         if (_arg_1.getFilter().hasEntries()) {
             this.list.setItems(_arg_1.getFilter().getEntries(), true);
         }
@@ -112,7 +112,7 @@ public class ArenaLeaderboard extends Sprite {
             addChild(_local_4);
         }
         _local_1.complete.addOnce(this.alignTabs);
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeSword(_arg_1:Boolean):Bitmap {
@@ -120,7 +120,7 @@ public class ArenaLeaderboard extends Sprite {
         if (_arg_1) {
             _local_2 = BitmapUtil.mirror(_local_2);
         }
-        return (new Bitmap(_local_2));
+        return new Bitmap(_local_2);
     }
 
     private function makeTitle():StaticTextDisplay {
@@ -132,7 +132,7 @@ public class ArenaLeaderboard extends Sprite {
         _local_1.setAutoSize(TextFieldAutoSize.CENTER);
         _local_1.y = 25;
         _local_1.textChanged.addOnce(this.onAlignTitle);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCloseButton():void {
@@ -158,7 +158,7 @@ public class ArenaLeaderboard extends Sprite {
         var _local_1:ArenaLeaderboardList = new ArenaLeaderboardList();
         _local_1.x = 15;
         _local_1.y = 115;
-        return (_local_1);
+        return _local_1;
     }
 
     private function alignTabs():void {
@@ -166,7 +166,7 @@ public class ArenaLeaderboard extends Sprite {
         var _local_1:int = 20;
         for each (_local_2 in this.tabs) {
             _local_2.x = _local_1;
-            _local_1 = (_local_1 + (_local_2.width + 20));
+            _local_1 = _local_1 + (_local_2.width + 20);
         }
     }
 
@@ -175,14 +175,14 @@ public class ArenaLeaderboard extends Sprite {
         _local_1 = new LeaderboardWeeklyResetTimer();
         _local_1.y = 72;
         _local_1.x = 440;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onAlignTitle():void {
-        this.title.x = (stage.stageWidth / 2);
-        this.leftSword.x = ((((stage.stageWidth / 2) - (this.title.width / 2)) - this.leftSword.width) + 10);
+        this.title.x = stage.stageWidth / 2;
+        this.leftSword.x = (stage.stageWidth / 2 - this.title.width / 2 - this.leftSword.width) + 10;
         this.leftSword.y = 15;
-        this.rightSword.x = (((stage.stageWidth / 2) + (this.title.width / 2)) - 10);
+        this.rightSword.x = (stage.stageWidth / 2 + this.title.width / 2) - 10;
         this.rightSword.y = 15;
     }
 

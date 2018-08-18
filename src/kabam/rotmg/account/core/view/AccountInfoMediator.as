@@ -23,9 +23,9 @@ public class AccountInfoMediator extends Mediator {
 
     private function updateDisplayName() {
         var _local_1:WebAccount;
-        if ((this.account is WebAccount)) {
+        if (this.account is WebAccount) {
             _local_1 = (this.account as WebAccount);
-            if (((((!((_local_1 == null))) && (!((_local_1.userDisplayName == null))))) && ((_local_1.userDisplayName.length > 0)))) {
+            if (!(_local_1 == null) && !(_local_1.userDisplayName == null) && _local_1.userDisplayName.length > 0) {
                 this.view.setInfo(_local_1.userDisplayName, this.account.isRegistered());
             }
         }

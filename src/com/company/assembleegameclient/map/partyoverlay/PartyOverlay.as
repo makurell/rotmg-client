@@ -55,7 +55,7 @@ public class PartyOverlay extends Sprite {
                 }
                 else {
                     _local_7 = _local_3.members_[_local_5];
-                    if (((((_local_7.drawn_) || ((_local_7.map_ == null)))) || (_local_7.dead_))) {
+                    if (_local_7.drawn_ || _local_7.map_ == null || _local_7.dead_) {
                         _local_6.setGameObject(null);
                     }
                     else {
@@ -63,9 +63,9 @@ public class PartyOverlay extends Sprite {
                         _local_8 = 0;
                         while (_local_8 < _local_5) {
                             _local_9 = this.partyMemberArrows_[_local_8];
-                            _local_10 = (_local_6.x - _local_9.x);
-                            _local_11 = (_local_6.y - _local_9.y);
-                            if (((_local_10 * _local_10) + (_local_11 * _local_11)) < 64) {
+                            _local_10 = _local_6.x - _local_9.x;
+                            _local_11 = _local_6.y - _local_9.y;
+                            if (_local_10 * _local_10 + _local_11 * _local_11 < 64) {
                                 if (!_local_9.mouseOver_) {
                                     _local_9.addGameObject(_local_7);
                                 }

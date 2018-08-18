@@ -32,14 +32,14 @@ public class BoostPanelButton extends Sprite {
     }
 
     private function onButtonOver(_arg_1:Event):void {
-        addChild((this.boostPanel = new BoostPanel(this.player)));
+        addChild(this.boostPanel = new BoostPanel(this.player));
         this.boostPanel.resized.add(this.positionBoostPanel);
         this.positionBoostPanel();
     }
 
     private function positionBoostPanel():void {
-        this.boostPanel.x = -(this.boostPanel.width);
-        this.boostPanel.y = -(this.boostPanel.height);
+        this.boostPanel.x = -this.boostPanel.width;
+        this.boostPanel.y = -this.boostPanel.height;
     }
 
     private function onButtonOut(_arg_1:Event):void {

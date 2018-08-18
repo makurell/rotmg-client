@@ -162,14 +162,12 @@ public class AssetLoader {
 
     private function parseObjectFiles():void {
         var _local_1:int = 0;
-        while(_local_1 < 25)
-        {
+        while (_local_1 < 25) {
             currentXmlIsTesting = this.checkIsTestingXML(EmbeddedData.objectFiles[_local_1]);
             ObjectLibrary.parseFromXML(XML(EmbeddedData.objectFiles[_local_1]));
             _local_1++;
         }
-        while(_local_1 < EmbeddedData.objectFiles.length)
-        {
+        while (_local_1 < EmbeddedData.objectFiles.length) {
             ObjectLibrary.parseDungeonXML(getQualifiedClassName(EmbeddedData.objectFiles[_local_1]), XML(EmbeddedData.objectFiles[_local_1]));
             _local_1++;
         }
@@ -184,7 +182,7 @@ public class AssetLoader {
     }
 
     private function checkIsTestingXML(_arg_1:*):Boolean {
-        return (!((getQualifiedClassName(_arg_1).indexOf("TestingCXML", 33) == -1)));
+        return !(getQualifiedClassName(_arg_1).indexOf("TestingCXML", 33) == -1);
     }
 
 

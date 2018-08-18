@@ -67,7 +67,7 @@ public class KongregateAccountInfoView extends Sprite implements AccountInfoView
     }
 
     public function get register():Signal {
-        return (this._register);
+        return this._register;
     }
 
     private function refreshRegisteredAccount():void {
@@ -81,7 +81,7 @@ public class KongregateAccountInfoView extends Sprite implements AccountInfoView
         this.accountText.x = this.registerButton.getBounds(this).left;
     }
 
-    private function addElements(... rest):void {
+    private function addElements(...rest):void {
         var _local_3:DisplayObject;
         var _local_2:int = rest.length;
         while (_local_2--) {

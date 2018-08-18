@@ -11,7 +11,7 @@ public class GuildHallPortal extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new GuildHallPortalPanel(_arg_1, this));
+        return new GuildHallPortalPanel(_arg_1, this);
     }
 
 

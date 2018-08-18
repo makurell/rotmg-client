@@ -60,7 +60,7 @@ public class SteamMakePaymentTask extends BaseTask implements MakePaymentTask {
         this.second.sendRequest("/steamworks/finalizePurchase", {
             "appid": _arg_1,
             "orderid": _arg_2,
-            "authorized": ((_arg_3) ? 1 : 0)
+            "authorized": _arg_3 ? 1 : 0
         });
     }
 
@@ -80,13 +80,13 @@ public class SteamMakePaymentTask extends BaseTask implements MakePaymentTask {
 
     private function onPurchaseFinalizeError(_arg_1:String):void {
         this.logger.debug("purchaseFinalized error {0}", [_arg_1]);
-        this.openDialog.dispatch(new DebugDialog(("Error: " + _arg_1)));
+        this.openDialog.dispatch(new DebugDialog("Error: " + _arg_1));
         completeTask(false);
     }
 
     private function onPurchaseOfferError(_arg_1:String):void {
         this.logger.debug("purchaseOffer request error {0}", [_arg_1]);
-        this.openDialog.dispatch(new DebugDialog(("Error: " + _arg_1)));
+        this.openDialog.dispatch(new DebugDialog("Error: " + _arg_1));
         completeTask(false);
     }
 

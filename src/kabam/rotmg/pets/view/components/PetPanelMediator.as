@@ -61,14 +61,14 @@ public class PetPanelMediator extends Mediator {
 
     private function onNotifyActivePetUpdated():void {
         var _local_1:PetVO = this.petModel.getActivePet();
-        this.view.toggleButtons(!(_local_1));
+        this.view.toggleButtons(!_local_1);
     }
 
     private function returnButtonState():uint {
         if (this.isPanelPetSameAsActivePet()) {
-            return (PetsConstants.FOLLOWING);
+            return PetsConstants.FOLLOWING;
         }
-        return (PetsConstants.INTERACTING);
+        return PetsConstants.INTERACTING;
     }
 
     protected function onButtonClick(_arg_1:MouseEvent):void {
@@ -85,7 +85,7 @@ public class PetPanelMediator extends Mediator {
     }
 
     private function isPanelPetSameAsActivePet():Boolean {
-        return (((this.petModel.getActivePet()) ? (this.petModel.getActivePet().getID() == this.view.petVO.getID()) : false));
+        return this.petModel.getActivePet() ? this.petModel.getActivePet().getID() == this.view.petVO.getID() : false;
     }
 
 

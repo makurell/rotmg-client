@@ -26,7 +26,7 @@ public class ConfirmReleaseDialog extends PetDialog implements DialogCloser {
     }
 
     override protected function setDialogWidth():int {
-        return (400);
+        return 400;
     }
 
     private function addButtonBehavior():void {
@@ -41,11 +41,11 @@ public class ConfirmReleaseDialog extends PetDialog implements DialogCloser {
     }
 
     public function getCloseSignal():Signal {
-        return (this.closeDialogComponent.getCloseSignal());
+        return this.closeDialogComponent.getCloseSignal();
     }
 
     public function getPetVO():PetVO {
-        return (this.petVO);
+        return this.petVO;
     }
 
 

@@ -12,7 +12,7 @@ import org.osflash.signals.Signal;
 public class VerticalScrollingList extends Sprite implements List {
 
     public static const SCROLLBAR_PADDING:int = 2;
-    public static const SCROLLBAR_GUTTER:int = (VerticalScrollbar.WIDTH + SCROLLBAR_PADDING);
+    public static const SCROLLBAR_GUTTER:int = VerticalScrollbar.WIDTH + SCROLLBAR_PADDING;
 
     public const scrollStateChanged:Signal = new Signal(Boolean);
 
@@ -29,7 +29,7 @@ public class VerticalScrollingList extends Sprite implements List {
     }
 
     public function getIsEnabled():Boolean {
-        return (this.isEnabled);
+        return this.isEnabled;
     }
 
     public function setIsEnabled(_arg_1:Boolean):void {
@@ -40,14 +40,14 @@ public class VerticalScrollingList extends Sprite implements List {
     public function setSize(_arg_1:Size):void {
         this.size = _arg_1;
         if (this.isScrollbarVisible()) {
-            _arg_1 = new Size((_arg_1.width - SCROLLBAR_GUTTER), _arg_1.height);
+            _arg_1 = new Size(_arg_1.width - SCROLLBAR_GUTTER, _arg_1.height);
         }
         this.list.setSize(_arg_1);
         this.refreshScrollbar();
     }
 
     public function getSize():Size {
-        return (this.size);
+        return this.size;
     }
 
     public function setPadding(_arg_1:int):void {
@@ -65,15 +65,15 @@ public class VerticalScrollingList extends Sprite implements List {
     }
 
     public function getItemAt(_arg_1:int):DisplayObject {
-        return (this.list.getItemAt(_arg_1));
+        return this.list.getItemAt(_arg_1);
     }
 
     public function getItemCount():int {
-        return (this.list.getItemCount());
+        return this.list.getItemCount();
     }
 
     public function getListHeight():int {
-        return (this.list.getSizeOfItems().height);
+        return this.list.getSizeOfItems().height;
     }
 
     private function makeLayout():void {
@@ -81,7 +81,7 @@ public class VerticalScrollingList extends Sprite implements List {
     }
 
     public function isScrollbarVisible():Boolean {
-        return (this.scrollbar.visible);
+        return this.scrollbar.visible;
     }
 
     private function makeVerticalList():void {
@@ -95,13 +95,13 @@ public class VerticalScrollingList extends Sprite implements List {
         var _local_1:Size = this.list.getSize();
         var _local_2:int = _local_1.height;
         var _local_3:int = this.list.getSizeOfItems().height;
-        var _local_4:Boolean = (_local_3 > _local_2);
+        var _local_4:Boolean = _local_3 > _local_2;
         var _local_5:Boolean = this.scrollbar.visible != _local_4;
         this.scrollbar.setIsEnabled(false);
         this.scrollbar.visible = _local_4;
-        ((_local_4) && (this.scrollbar.setIsEnabled(true)));
-        ((_local_4) && (this.updateScrollbarSize(_local_2, _local_3)));
-        ((_local_5) && (this.updateUiAndDispatchStateChange(_local_4)));
+        _local_4 && this.scrollbar.setIsEnabled(true);
+        _local_4 && this.updateScrollbarSize(_local_2, _local_3);
+        _local_5 && this.updateUiAndDispatchStateChange(_local_4);
     }
 
     private function updateUiAndDispatchStateChange(_arg_1:Boolean):void {
@@ -110,9 +110,9 @@ public class VerticalScrollingList extends Sprite implements List {
     }
 
     private function updateScrollbarSize(_arg_1:int, _arg_2:int):void {
-        var _local_3:int = (_arg_1 * (_arg_1 / _arg_2));
+        var _local_3:int = _arg_1 * (_arg_1 / _arg_2);
         this.scrollbar.setSize(_local_3, _arg_1);
-        this.scrollbar.x = (this.list.getSize().width + SCROLLBAR_PADDING);
+        this.scrollbar.x = this.list.getSize().width + SCROLLBAR_PADDING;
     }
 
     private function makeScrollbar():void {
@@ -123,8 +123,8 @@ public class VerticalScrollingList extends Sprite implements List {
     }
 
     private function onPositionChanged(_arg_1:Number):void {
-        var _local_2:int = (this.list.getSizeOfItems().height - this.list.getSize().height);
-        this.list.setOffset((_local_2 * _arg_1));
+        var _local_2:int = this.list.getSizeOfItems().height - this.list.getSize().height;
+        this.list.setOffset(_local_2 * _arg_1);
     }
 
 

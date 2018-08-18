@@ -19,10 +19,10 @@ public class TellModel {
 
     public function getNext():String {
         if (this.pastRecipients.length > 0) {
-            this.index = ((this.index + 1) % this.pastRecipients.length);
-            return (this.pastRecipients[this.index]);
+            this.index = (this.index + 1) % this.pastRecipients.length;
+            return this.pastRecipients[this.index];
         }
-        return ("");
+        return "";
     }
 
     public function resetRecipients():void {

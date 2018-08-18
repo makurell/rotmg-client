@@ -12,7 +12,7 @@ public class PackageBackground extends Sprite {
     private function makeBackground():DisplayObject {
         var _local_1:DisplayObject = new Background();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
 

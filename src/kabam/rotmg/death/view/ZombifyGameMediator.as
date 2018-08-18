@@ -36,13 +36,13 @@ public class ZombifyGameMediator extends Mediator {
 
     private function removePlayer():void {
         var _local_1:Player = this.view.map.player_;
-        ((_local_1) && (this.view.map.removeObj(_local_1.objectId_)));
+        _local_1 && this.view.map.removeObj(_local_1.objectId_);
         this.view.map.player_ = null;
     }
 
     private function setZombieAsViewFocus(_arg_1:Death):void {
         var _local_2:Dictionary = this.view.map.goDict_;
-        ((_local_2) && (this.view.setFocus(_local_2[_arg_1.zombieId])));
+        _local_2 && this.view.setFocus(_local_2[_arg_1.zombieId]);
     }
 
 

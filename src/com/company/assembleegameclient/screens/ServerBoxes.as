@@ -18,7 +18,7 @@ public class ServerBoxes extends Sprite {
         super();
         _local_2 = new ServerBox(null);
         _local_2.setSelected(true);
-        _local_2.x = ((ServerBox.WIDTH / 2) + 2);
+        _local_2.x = ServerBox.WIDTH / 2 + 2;
         _local_2.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
         addChild(_local_2);
         this.boxes_.push(_local_2);
@@ -28,8 +28,8 @@ public class ServerBoxes extends Sprite {
             if (_local_4.name == Parameters.data_.preferredServer) {
                 this.setSelected(_local_2);
             }
-            _local_2.x = ((_local_3 % 2) * (ServerBox.WIDTH + 4));
-            _local_2.y = (int((_local_3 / 2)) * (ServerBox.HEIGHT + 4));
+            _local_2.x = (_local_3 % 2) * (ServerBox.WIDTH + 4);
+            _local_2.y = int(_local_3 / 2) * (ServerBox.HEIGHT + 4);
             _local_2.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
             addChild(_local_2);
             this.boxes_.push(_local_2);
@@ -38,7 +38,7 @@ public class ServerBoxes extends Sprite {
     }
 
     private function onMouseDown(_arg_1:MouseEvent):void {
-        var _local_2:ServerBox = (_arg_1.currentTarget as ServerBox);
+        var _local_2:ServerBox = _arg_1.currentTarget as ServerBox;
         if (_local_2 == null) {
             return;
         }

@@ -33,7 +33,7 @@ public class HandleDeathCommand {
     }
 
     private function isZombieDeathPending():Boolean {
-        return (this.model.getIsDeathViewPending());
+        return this.model.getIsDeathViewPending();
     }
 
     private function passPreviousDeathToFameView():void {

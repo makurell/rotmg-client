@@ -16,7 +16,7 @@ public class Create extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CREATE", "classType"));
+        return formatToString("CREATE", "classType");
     }
 
 

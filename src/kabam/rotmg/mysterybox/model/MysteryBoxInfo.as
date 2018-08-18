@@ -49,7 +49,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get id():String {
-        return (this._id);
+        return this._id;
     }
 
     public function set id(_arg_1:String):void {
@@ -57,7 +57,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get title():String {
-        return (this._title);
+        return this._title;
     }
 
     public function set title(_arg_1:String):void {
@@ -65,7 +65,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get description():String {
-        return (this._description);
+        return this._description;
     }
 
     public function set description(_arg_1:String):void {
@@ -73,7 +73,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get weight():String {
-        return (this._weight);
+        return this._weight;
     }
 
     public function set weight(_arg_1:String):void {
@@ -81,7 +81,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get contents():String {
-        return (this._contents);
+        return this._contents;
     }
 
     public function set contents(_arg_1:String):void {
@@ -89,7 +89,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get priceAmount():* {
-        return (this._priceAmount);
+        return this._priceAmount;
     }
 
     public function set priceAmount(_arg_1:String):void {
@@ -97,7 +97,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get priceCurrency():* {
-        return (this._priceCurrency);
+        return this._priceCurrency;
     }
 
     public function set priceCurrency(_arg_1:String):void {
@@ -105,7 +105,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get saleAmount():* {
-        return (this._saleAmount);
+        return this._saleAmount;
     }
 
     public function set saleAmount(_arg_1:String):void {
@@ -113,7 +113,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get saleCurrency():* {
-        return (this._saleCurrency);
+        return this._saleCurrency;
     }
 
     public function set saleCurrency(_arg_1:String):void {
@@ -121,7 +121,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get quantity():String {
-        return (this._quantity);
+        return this._quantity;
     }
 
     public function set quantity(_arg_1:String):void {
@@ -129,7 +129,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get saleEnd():Date {
-        return (this._saleEnd);
+        return this._saleEnd;
     }
 
     public function set saleEnd(_arg_1:Date):void {
@@ -137,7 +137,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get iconImageUrl():String {
-        return (this._iconImageUrl);
+        return this._iconImageUrl;
     }
 
     public function set iconImageUrl(_arg_1:String):void {
@@ -146,7 +146,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     private function loadIconImageFromUrl(_arg_1:String):void {
-        ((this._loader) && (this._loader.unload()));
+        this._loader && this._loader.unload();
         this._loader.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onComplete);
         this._loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this.onError);
         this._loader.contentLoaderInfo.addEventListener(IOErrorEvent.DISK_ERROR, this.onError);
@@ -167,11 +167,11 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get iconImage():DisplayObject {
-        return (this._iconImage);
+        return this._iconImage;
     }
 
     public function get infoImageUrl():String {
-        return (this._infoImageUrl);
+        return this._infoImageUrl;
     }
 
     public function set infoImageUrl(_arg_1:String):void {
@@ -184,7 +184,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     private function loadImageFromUrl(_arg_1:String, _arg_2:LoaderProxy):void {
-        ((_arg_2) && (_arg_2.unload()));
+        _arg_2 && _arg_2.unload();
         _arg_2.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onInfoComplete);
         _arg_2.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this.onInfoError);
         _arg_2.contentLoaderInfo.addEventListener(IOErrorEvent.DISK_ERROR, this.onInfoError);
@@ -204,7 +204,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get startTime():Date {
-        return (this._startTime);
+        return this._startTime;
     }
 
     public function set startTime(_arg_1:Date):void {
@@ -212,7 +212,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get endTime():Date {
-        return (this._endTime);
+        return this._endTime;
     }
 
     public function set endTime(_arg_1:Date):void {
@@ -242,22 +242,22 @@ public class MysteryBoxInfo extends EventDispatcher {
 
     public function isNew():Boolean {
         var _local_1:Date = new Date();
-        return ((Math.ceil(TimeUtil.secondsToDays(((_local_1.time - this._startTime.time) / 1000))) <= 1));
+        return Math.ceil(TimeUtil.secondsToDays((_local_1.time - this._startTime.time) / 1000)) <= 1;
     }
 
     public function isOnSale():Boolean {
         var _local_1:Date;
         if (this._saleEnd) {
             _local_1 = new Date();
-            return ((_local_1.time < this._saleEnd.time));
+            return _local_1.time < this._saleEnd.time;
         }
-        return (false);
+        return false;
     }
 
     public function getSaleTimeLeftStringBuilder():LineBuilder {
         var _local_1:Date = new Date();
         var _local_2 = "";
-        var _local_3:Number = ((this._saleEnd.time - _local_1.time) / 1000);
+        var _local_3:Number = (this._saleEnd.time - _local_1.time) / 1000;
         var _local_4:LineBuilder = new LineBuilder();
         if (_local_3 > TimeUtil.DAY_IN_S) {
             _local_4.setParams("MysteryBoxInfo.saleEndStringDays", {"amount": String(Math.ceil(TimeUtil.secondsToDays(_local_3)))});
@@ -270,13 +270,11 @@ public class MysteryBoxInfo extends EventDispatcher {
                 _local_4.setParams("MysteryBoxInfo.saleEndStringMinutes", {"amount": String(Math.ceil(TimeUtil.secondsToMins(_local_3)))});
             }
         }
-        return (_local_4);
+        return _local_4;
     }
 
-    public function get currencyName():String
-    {
-        switch(this._priceCurrency)
-        {
+    public function get currencyName():String {
+        switch (this._priceCurrency) {
             case "0":
                 return LineBuilder.getLocalizedStringFromKey("Currency.gold").toLowerCase();
             case "1":
@@ -287,7 +285,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get infoImage():DisplayObject {
-        return (this._infoImage);
+        return this._infoImage;
     }
 
     public function set infoImage(_arg_1:DisplayObject):void {
@@ -295,7 +293,7 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get loader():LoaderProxy {
-        return (this._loader);
+        return this._loader;
     }
 
     public function set loader(_arg_1:LoaderProxy):void {
@@ -303,30 +301,26 @@ public class MysteryBoxInfo extends EventDispatcher {
     }
 
     public function get infoImageLoader():LoaderProxy {
-        return (this._infoImageLoader);
+        return this._infoImageLoader;
     }
 
     public function set infoImageLoader(_arg_1:LoaderProxy):void {
         this._infoImageLoader = _arg_1;
     }
 
-    public function get unitsLeft():int
-    {
+    public function get unitsLeft():int {
         return this._unitsLeft;
     }
 
-    public function set unitsLeft(_arg_1:int):void
-    {
+    public function set unitsLeft(_arg_1:int):void {
         this._unitsLeft = _arg_1;
     }
 
-    public function get totalUnits():int
-    {
+    public function get totalUnits():int {
         return this._totalUnits;
     }
 
-    public function set totalUnits(_arg_1:int):void
-    {
+    public function set totalUnits(_arg_1:int):void {
         this._totalUnits = _arg_1;
     }
 

@@ -17,11 +17,11 @@ public class TextureData {
 
 
     public function getTexture(_arg_1:int = 0):BitmapData {
-        return (null);
+        return null;
     }
 
     public function getAltTextureData(_arg_1:int):TextureData {
-        return (null);
+        return null;
     }
 
 

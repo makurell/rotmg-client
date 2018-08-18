@@ -40,7 +40,7 @@ public class CheckKabamAccountTask extends BaseTask {
         var _local_1:Object = {};
         _local_1.kabamemail = this.data.currentEmail;
         _local_1.kabampassword = this.data.currentPassword;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onChangeDone():void {

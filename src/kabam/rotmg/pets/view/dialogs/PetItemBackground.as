@@ -16,7 +16,7 @@ public class PetItemBackground extends Sprite {
         this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         super();
         var _local_3:Vector.<IGraphicsData> = new <IGraphicsData>[this.backgroundFill_, this.path_, GraphicsUtil.END_FILL];
-        GraphicsUtil.drawCutEdgeRect(0, 0, _arg_1, _arg_1, (_arg_1 / 12), _arg_2, this.path_);
+        GraphicsUtil.drawCutEdgeRect(0, 0, _arg_1, _arg_1, _arg_1 / 12, _arg_2, this.path_);
         graphics.drawGraphicsData(_local_3);
     }
 

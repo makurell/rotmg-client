@@ -28,8 +28,8 @@ public class Spinner extends Sprite {
 
     private function addGraphic():void {
         addChild(this.graphic);
-        this.graphic.x = ((-1 * width) / 2);
-        this.graphic.y = ((-1 * height) / 2);
+        this.graphic.x = (-1 * width) / 2;
+        this.graphic.y = (-1 * height) / 2;
     }
 
     private function onRemoved(_arg_1:Event):void {
@@ -39,13 +39,13 @@ public class Spinner extends Sprite {
 
     private function onEnterFrame(_arg_1:Event):void {
         this.updateTimeElapsed();
-        rotation = ((this.degreesPerSecond * this.secondsElapsed) % 360);
+        rotation = (this.degreesPerSecond * this.secondsElapsed) % 360;
     }
 
     private function updateTimeElapsed():void {
-        var _local_1:Number = (getTimer() / 1000);
+        var _local_1:Number = getTimer() / 1000;
         if (this.previousSeconds) {
-            this.secondsElapsed = (this.secondsElapsed + (_local_1 - this.previousSeconds));
+            this.secondsElapsed = this.secondsElapsed + (_local_1 - this.previousSeconds);
         }
         this.previousSeconds = _local_1;
     }

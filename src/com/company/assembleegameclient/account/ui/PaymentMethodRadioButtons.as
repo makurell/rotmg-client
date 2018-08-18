@@ -32,7 +32,7 @@ public class PaymentMethodRadioButtons extends Sprite {
     }
 
     public function getSelected():String {
-        return (this.group.getSelected().getValue());
+        return this.group.getSelected().getValue();
     }
 
     private function makeRadioButtons():void {
@@ -50,11 +50,11 @@ public class PaymentMethodRadioButtons extends Sprite {
         _local_2.addEventListener(MouseEvent.CLICK, this.onSelected);
         this.waiter.push(_local_2.textSet);
         addChild(_local_2);
-        return (_local_2);
+        return _local_2;
     }
 
     private function onSelected(_arg_1:Event):void {
-        var _local_2:Selectable = (_arg_1.currentTarget as Selectable);
+        var _local_2:Selectable = _arg_1.currentTarget as Selectable;
         this.group.setSelected(_local_2.getValue());
     }
 
@@ -73,7 +73,7 @@ public class PaymentMethodRadioButtons extends Sprite {
             _local_2[_local_3] = this.boxes[_local_3];
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeSelectionGroup():void {
@@ -90,7 +90,7 @@ public class PaymentMethodRadioButtons extends Sprite {
             _local_2[_local_3] = this.boxes[_local_3];
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

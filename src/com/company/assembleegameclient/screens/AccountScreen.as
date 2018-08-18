@@ -31,16 +31,16 @@ public class AccountScreen extends Sprite {
     }
 
     private function makeLayers():void {
-        addChild((this.rankLayer = new Sprite()));
-        addChild((this.guildLayer = new Sprite()));
-        addChild((this.accountInfoLayer = new Sprite()));
+        addChild(this.rankLayer = new Sprite());
+        addChild(this.guildLayer = new Sprite());
+        addChild(this.accountInfoLayer = new Sprite());
     }
 
     private function returnHeaderBackground():DisplayObject {
         var _local_1:Shape = new Shape();
         _local_1.graphics.beginFill(0, 0.5);
         _local_1.graphics.drawRect(0, 0, 800, 35);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setGuild(_arg_1:String, _arg_2:int):void {
@@ -81,7 +81,7 @@ public class AccountScreen extends Sprite {
         var _local_2:DisplayObject;
         this.accountInfo = _arg_1;
         _local_2 = (_arg_1 as DisplayObject);
-        _local_2.x = (stage.stageWidth - 10);
+        _local_2.x = stage.stageWidth - 10;
         _local_2.y = 2;
         while (this.accountInfoLayer.numChildren > 0) {
             this.accountInfoLayer.removeChildAt(0);

@@ -50,7 +50,7 @@ public class InteractPanel extends Sprite {
             return;
         }
         _local_1 = this.requestInteractive();
-        if ((((this.currentPanel == null)) || (!((_local_1 == this.currObj_))))) {
+        if (this.currentPanel == null || !(_local_1 == this.currObj_)) {
             this.currObj_ = _local_1;
             this.partyPanel_ = new PartyPanel(this.gs_);
             if (this.currObj_ != null) {
@@ -77,15 +77,15 @@ public class InteractPanel extends Sprite {
 
     public function setPanel(_arg_1:Panel):void {
         if (_arg_1 != this.currentPanel) {
-            ((this.currentPanel) && (removeChild(this.currentPanel)));
+            this.currentPanel && removeChild(this.currentPanel);
             this.currentPanel = _arg_1;
-            ((this.currentPanel) && (this.positionPanelAndAdd()));
+            this.currentPanel && this.positionPanelAndAdd();
         }
     }
 
     private function positionPanelAndAdd():void {
-        if ((this.currentPanel is ItemGrid)) {
-            this.currentPanel.x = ((this.w_ - this.currentPanel.width) * 0.5);
+        if (this.currentPanel is ItemGrid) {
+            this.currentPanel.x = (this.w_ - this.currentPanel.width) * 0.5;
             this.currentPanel.y = 8;
         }
         else {

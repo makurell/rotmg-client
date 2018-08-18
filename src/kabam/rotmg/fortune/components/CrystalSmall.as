@@ -68,42 +68,42 @@ public class CrystalSmall extends Sprite {
         this.crystalFrames = new Vector.<Bitmap>();
         _local_2 = 0;
         while (_local_2 < 3) {
-            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", (this.STARTING_FRAME_INDEX + _local_2));
+            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", this.STARTING_FRAME_INDEX + _local_2);
             _local_1 = TextureRedrawer.redraw(_local_1, this.size_, true, 0xFFFFFF, true);
             this.crystalFrames.push(new Bitmap(_local_1));
             _local_2++;
         }
         _local_2 = 0;
         while (_local_2 < 3) {
-            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", ((this.STARTING_FRAME_INDEX + 16) + _local_2));
+            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", this.STARTING_FRAME_INDEX + 16 + _local_2);
             _local_1 = TextureRedrawer.redraw(_local_1, this.size_, true, 0xFFFFFF, true);
             this.crystalFrames.push(new Bitmap(_local_1));
             _local_2++;
         }
         _local_2 = 0;
         while (_local_2 < 7) {
-            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", ((this.STARTING_FRAME_INDEX + 32) + _local_2));
+            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", this.STARTING_FRAME_INDEX + 32 + _local_2);
             _local_1 = TextureRedrawer.redraw(_local_1, this.size_, true, 0xFFFFFF, true);
             this.crystalFrames.push(new Bitmap(_local_1));
             _local_2++;
         }
         _local_2 = 0;
         while (_local_2 < 7) {
-            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", ((this.STARTING_FRAME_INDEX + 48) + _local_2));
+            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", this.STARTING_FRAME_INDEX + 48 + _local_2);
             _local_1 = TextureRedrawer.redraw(_local_1, this.size_, true, 0xFFFFFF, true);
             this.crystalFrames.push(new Bitmap(_local_1));
             _local_2++;
         }
         _local_2 = 0;
         while (_local_2 < 5) {
-            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", ((this.STARTING_FRAME_INDEX + 64) + _local_2));
+            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", this.STARTING_FRAME_INDEX + 64 + _local_2);
             _local_1 = TextureRedrawer.redraw(_local_1, this.size_, true, 0xFFFFFF, true);
             this.crystalFrames.push(new Bitmap(_local_1));
             _local_2++;
         }
         _local_2 = 0;
         while (_local_2 < 8) {
-            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", ((this.STARTING_FRAME_INDEX + 80) + _local_2));
+            _local_1 = AssetLibrary.getImageFromSet("lofiCharBig", this.STARTING_FRAME_INDEX + 80 + _local_2);
             _local_1 = TextureRedrawer.redraw(_local_1, this.size_, true, 0xFFFFFF, true);
             this.crystalFrames.push(new Bitmap(_local_1));
             _local_2++;
@@ -126,35 +126,35 @@ public class CrystalSmall extends Sprite {
     }
 
     public function setXPos(_arg_1:Number):void {
-        this.x = (_arg_1 - (this.width / 2));
+        this.x = _arg_1 - this.width / 2;
     }
 
     public function setYPos(_arg_1:Number):void {
-        this.y = (_arg_1 - (this.height / 2));
+        this.y = _arg_1 - this.height / 2;
     }
 
     private function calculateXPos(_arg_1:Number):Number {
-        return ((_arg_1 - (this.width / 2)));
+        return _arg_1 - this.width / 2;
     }
 
     private function calculateYPos(_arg_1:Number):Number {
-        return ((_arg_1 - (this.height / 2)));
+        return _arg_1 - this.height / 2;
     }
 
     public function getCenterX():Number {
-        return ((this.x + (this.width / 2)));
+        return this.x + this.width / 2;
     }
 
     public function getCenterY():Number {
-        return ((this.y + (this.height / 2)));
+        return this.y + this.height / 2;
     }
 
     public function returnCenterX():Number {
-        return ((this.returnX + (this.width / 2)));
+        return this.returnX + this.width / 2;
     }
 
     public function returnCenterY():Number {
-        return ((this.returnY + (this.width / 2)));
+        return this.returnY + this.width / 2;
     }
 
     private function onRemovedFromStage(_arg_1:Event):void {
@@ -174,7 +174,7 @@ public class CrystalSmall extends Sprite {
     }
 
     public function doItemReveal(_arg_1:int):void {
-        if ((((this.parent == null)) || ((this.parent.parent == null)))) {
+        if (this.parent == null || this.parent.parent == null) {
             return;
         }
         this.removeItemReveal();
@@ -194,16 +194,16 @@ public class CrystalSmall extends Sprite {
     }
 
     public function removeItemReveal():void {
-        if (((!((this.item == null))) && (this.item.parent))) {
+        if (!(this.item == null) && this.item.parent) {
             parent.removeChild(this.item);
         }
-        if (((!((this.itemNameField == null))) && (this.itemNameField.parent))) {
+        if (!(this.itemNameField == null) && this.itemNameField.parent) {
             parent.removeChild(this.itemNameField);
         }
     }
 
     public function doItemShow(_arg_1:int):void {
-        if ((((this.parent == null)) || ((this.parent.parent == null)))) {
+        if (this.parent == null || this.parent.parent == null) {
             return;
         }
         this.removeItemReveal();
@@ -227,8 +227,8 @@ public class CrystalSmall extends Sprite {
         this.item.alpha = 0;
         this.item.setXPos(this.getCenterX());
         this.item.setYPos(this.getCenterY());
-        this.itemNameField.x = (this.item.getCenterX() - (this.itemNameField.width / 2));
-        this.itemNameField.y = (this.item.y + 80);
+        this.itemNameField.x = this.item.getCenterX() - this.itemNameField.width / 2;
+        this.itemNameField.y = this.item.y + 80;
         parent.addChild(this.itemNameField);
         var _local_3:GTween = new GTween(this.item, 1, {"alpha": 1});
         FortuneModal.doEaseOutInAnimation(this.item, {
@@ -297,9 +297,9 @@ public class CrystalSmall extends Sprite {
         var _local_3:int;
         var _local_4:Number;
         if (this.active) {
-            if ((((this.crystal.alpha < 1)) && ((this.crystalGrey.alpha > 0)))) {
-                this.crystalGrey.alpha = (this.crystalGrey.alpha - 0.03);
-                this.crystal.alpha = (this.crystal.alpha + 0.03);
+            if (this.crystal.alpha < 1 && this.crystalGrey.alpha > 0) {
+                this.crystalGrey.alpha = this.crystalGrey.alpha - 0.03;
+                this.crystal.alpha = this.crystal.alpha + 0.03;
             }
             else {
                 this.crystalGrey.alpha = 0;
@@ -307,9 +307,9 @@ public class CrystalSmall extends Sprite {
             }
         }
         else {
-            if ((((this.crystal.alpha > 0)) && ((this.crystalGrey.alpha < 1)))) {
-                this.crystalGrey.alpha = (this.crystalGrey.alpha + 0.03);
-                this.crystal.alpha = (this.crystal.alpha - 0.03);
+            if (this.crystal.alpha > 0 && this.crystalGrey.alpha < 1) {
+                this.crystalGrey.alpha = this.crystalGrey.alpha + 0.03;
+                this.crystal.alpha = this.crystal.alpha - 0.03;
             }
             else {
                 this.crystalGrey.alpha = 1;
@@ -317,7 +317,7 @@ public class CrystalSmall extends Sprite {
             }
         }
         if (this.glowState == GLOW_STATE_FADE) {
-            this.glowFilter.alpha = (this.glowFilter.alpha - 0.07);
+            this.glowFilter.alpha = this.glowFilter.alpha - 0.07;
             this.filters = [this.glowFilter];
             if (this.glowFilter.alpha <= 0.03) {
                 this.filters = [];
@@ -325,16 +325,16 @@ public class CrystalSmall extends Sprite {
         }
         else {
             if (this.glowState == GLOW_STATE_PULSE) {
-                if ((((this.glowFilter.alpha >= 0.95)) && (this.pulsePolarity))) {
+                if (this.glowFilter.alpha >= 0.95 && this.pulsePolarity) {
                     this.pulsePolarity = false;
                 }
                 else {
-                    if ((((this.glowFilter.alpha <= 0.5)) && (!(this.pulsePolarity)))) {
+                    if (this.glowFilter.alpha <= 0.5 && !this.pulsePolarity) {
                         this.pulsePolarity = true;
                     }
                 }
-                _local_3 = ((this.pulsePolarity) ? 1 : -1);
-                this.glowFilter.alpha = (this.glowFilter.alpha + (0.01 * _local_3));
+                _local_3 = this.pulsePolarity ? 1 : -1;
+                this.glowFilter.alpha = this.glowFilter.alpha + 0.01 * _local_3;
                 this.filters = [this.glowFilter];
             }
         }
@@ -344,7 +344,7 @@ public class CrystalSmall extends Sprite {
                 if (this.currentAnimation != ANIM_HOVER) {
                     this.setAnimationHover();
                 }
-                this.animationDuration_ = Math.max((_local_4 / 8), 70);
+                this.animationDuration_ = Math.max(_local_4 / 8, 70);
                 this.animationDuration_ = Math.min(this.animationDuration_, 170);
             }
             else {
@@ -354,8 +354,8 @@ public class CrystalSmall extends Sprite {
             }
         }
         if (this.shake) {
-            this.setXPos((this.originX + ((Math.random() * 6) - 3)));
-            this.setYPos((this.originY + ((Math.random() * 6) - 3)));
+            this.setXPos(this.originX + (Math.random() * 6 - 3));
+            this.setYPos(this.originY + (Math.random() * 6 - 3));
             this.shakeCount++;
             if (this.shakeCount == MAX_SHAKE) {
                 this.shake = false;
@@ -372,9 +372,9 @@ public class CrystalSmall extends Sprite {
     public function drawAnimation(_arg_1:int, _arg_2:int):void {
         if (this.active) {
             removeChild(this.crystal);
-            this.dtBuildup_ = (this.dtBuildup_ + _arg_2);
+            this.dtBuildup_ = this.dtBuildup_ + _arg_2;
             if (this.dtBuildup_ > this.animationDuration_) {
-                this.frameOffset_ = ((this.frameOffset_ + 1) % this.numFramesofLoop_);
+                this.frameOffset_ = (this.frameOffset_ + 1) % this.numFramesofLoop_;
                 this.dtBuildup_ = 0;
             }
             else {
@@ -385,10 +385,10 @@ public class CrystalSmall extends Sprite {
             this.crystal = this.crystalFrames[(this.startFrame_ + this.frameOffset_)];
             if (this.currentAnimation == ANIM_CLICKED) {
                 if (this.scaleX > 0.01) {
-                    this.scaleX = (this.scaleX - (_arg_2 * 0.002));
-                    this.scaleY = (this.scaleY - (_arg_2 * 0.002));
-                    this.setXPos((this.originX + (Math.random() * 5)));
-                    this.setYPos((this.originY + (Math.random() * 5)));
+                    this.scaleX = this.scaleX - _arg_2 * 0.002;
+                    this.scaleY = this.scaleY - _arg_2 * 0.002;
+                    this.setXPos(this.originX + Math.random() * 5);
+                    this.setYPos(this.originY + Math.random() * 5);
                 }
                 else {
                     this.scaleX = 0.01;
@@ -416,7 +416,7 @@ public class CrystalSmall extends Sprite {
     }
 
     private function squareDistanceTo(_arg_1:Number, _arg_2:Number):Number {
-        return ((((this.getCenterX() - _arg_1) * (this.getCenterX() - _arg_1)) + ((this.getCenterY() - _arg_2) * (this.getCenterY() - _arg_2))));
+        return (this.getCenterX() - _arg_1) * (this.getCenterX() - _arg_1) + (this.getCenterY() - _arg_2) * (this.getCenterY() - _arg_2);
     }
 
     public function reset():void {

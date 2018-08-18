@@ -48,7 +48,7 @@ public class QuestRewardsPanel extends Panel {
     public static function checkQuests():void {
         var _local_1:HUDModel = StaticInjectorContext.getInjector().getInstance(HUDModel);
         var _local_2:QuestFetchCompleteSignal = StaticInjectorContext.getInjector().getInstance(QuestFetchCompleteSignal);
-        if (((((!((_local_1 == null))) && (!((_local_1.gameSprite == null))))) && (!((_local_1.gameSprite.gsc_ == null))))) {
+        if (!(_local_1 == null) && !(_local_1.gameSprite == null) && !(_local_1.gameSprite.gsc_ == null)) {
             _local_2.add(onCheckQuestsComplete);
             _local_1.gameSprite.gsc_.questFetch();
         }
@@ -65,10 +65,10 @@ public class QuestRewardsPanel extends Panel {
     }
 
     public static function hasQuests():Boolean {
-        if (((questDataExists) || (((!((QuestRewardsMediator.questsCompletedDayUTC == -1))) && ((QuestRewardsMediator.questsCompletedDayUTC == new Date().dayUTC)))))) {
-            return (true);
+        if (questDataExists || !(QuestRewardsMediator.questsCompletedDayUTC == -1) && QuestRewardsMediator.questsCompletedDayUTC == new Date().dayUTC) {
+            return true;
         }
-        return (false);
+        return false;
     }
 
 
@@ -88,8 +88,8 @@ public class QuestRewardsPanel extends Panel {
     }
 
     private function alignButton():void {
-        this.feedButton.x = ((WIDTH / 2) - (this.feedButton.width / 2));
-        this.feedButton.y = ((HEIGHT - this.feedButton.height) - 4);
+        this.feedButton.x = WIDTH / 2 - this.feedButton.width / 2;
+        this.feedButton.y = HEIGHT - this.feedButton.height - 4;
     }
 
 

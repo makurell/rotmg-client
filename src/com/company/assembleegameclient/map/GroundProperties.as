@@ -61,8 +61,8 @@ public class GroundProperties {
         if (_arg_1.hasOwnProperty("SlideAmount")) {
             this.slideAmount_ = Number(_arg_1.SlideAmount);
         }
-        this.xOffset_ = ((_arg_1.hasOwnProperty("XOffset")) ? Number(_arg_1.XOffset) : 0);
-        this.yOffset_ = ((_arg_1.hasOwnProperty("YOffset")) ? Number(_arg_1.YOffset) : 0);
+        this.xOffset_ = _arg_1.hasOwnProperty("XOffset") ? Number(_arg_1.XOffset) : 0;
+        this.yOffset_ = _arg_1.hasOwnProperty("YOffset") ? Number(_arg_1.YOffset) : 0;
         this.push_ = _arg_1.hasOwnProperty("Push");
         this.sink_ = _arg_1.hasOwnProperty("Sink");
         this.sinking_ = _arg_1.hasOwnProperty("Sinking");
@@ -88,8 +88,8 @@ public class GroundProperties {
     }
 
     public function getEdges():Vector.<BitmapData> {
-        if (((!(this.hasEdge_)) || (!((this.edges_ == null))))) {
-            return (this.edges_);
+        if (!this.hasEdge_ || !(this.edges_ == null)) {
+            return this.edges_;
         }
         this.edges_ = new Vector.<BitmapData>(9);
         this.edges_[3] = this.edgeTD_.getTexture(0);
@@ -102,19 +102,19 @@ public class GroundProperties {
             this.edges_[8] = BitmapUtil.rotateBitmapData(this.edges_[0], 2);
             this.edges_[6] = BitmapUtil.rotateBitmapData(this.edges_[0], 3);
         }
-        return (this.edges_);
+        return this.edges_;
     }
 
     public function getInnerCorners():Vector.<BitmapData> {
-        if ((((this.innerCornerTD_ == null)) || (!((this.innerCorners_ == null))))) {
-            return (this.innerCorners_);
+        if (this.innerCornerTD_ == null || !(this.innerCorners_ == null)) {
+            return this.innerCorners_;
         }
         this.innerCorners_ = this.edges_.concat();
         this.innerCorners_[0] = this.innerCornerTD_.getTexture(0);
         this.innerCorners_[2] = BitmapUtil.rotateBitmapData(this.innerCorners_[0], 1);
         this.innerCorners_[8] = BitmapUtil.rotateBitmapData(this.innerCorners_[0], 2);
         this.innerCorners_[6] = BitmapUtil.rotateBitmapData(this.innerCorners_[0], 3);
-        return (this.innerCorners_);
+        return this.innerCorners_;
     }
 
 

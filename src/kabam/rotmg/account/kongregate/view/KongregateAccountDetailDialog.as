@@ -37,30 +37,30 @@ public class KongregateAccountDetailDialog extends Sprite {
         this.loginText_.setBold(true);
         this.loginText_.setStringBuilder(new LineBuilder().setParams(TextKey.KONGREGATEACCOUNTDETAILDIALOG_TITLE));
         this.loginText_.filters = [new DropShadowFilter(0, 0, 0)];
-        this.loginText_.y = (_local_4.h_ - 60);
+        this.loginText_.y = _local_4.h_ - 60;
         this.loginText_.x = 17;
         _local_4.addChild(this.loginText_);
         this.usernameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xB3B3B3).setTextWidth(238).setTextHeight(30);
         this.usernameText_.setStringBuilder(new StaticStringBuilder(_arg_1));
-        this.usernameText_.y = (_local_4.h_ - 30);
+        this.usernameText_.y = _local_4.h_ - 30;
         this.usernameText_.x = 17;
         _local_4.addChild(this.usernameText_);
-        _local_4.h_ = (_local_4.h_ + 88);
+        _local_4.h_ = _local_4.h_ + 88;
         if (_arg_3) {
-            _local_4.h_ = (_local_4.h_ - 20);
+            _local_4.h_ = _local_4.h_ - 20;
             this.webLoginText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xB3B3B3);
             this.webLoginText_.setBold(true);
             this.webLoginText_.setStringBuilder(new LineBuilder().setParams(TextKey.KONGREGATEACCOUNTDETAILDIALOG_LINKWEB));
             this.webLoginText_.filters = [new DropShadowFilter(0, 0, 0)];
-            this.webLoginText_.y = (_local_4.h_ - 60);
+            this.webLoginText_.y = _local_4.h_ - 60;
             this.webLoginText_.x = 17;
             _local_4.addChild(this.webLoginText_);
             this.emailText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xB3B3B3).setTextWidth(238).setTextHeight(30);
             this.emailText_.setStringBuilder(new StaticStringBuilder(_arg_2));
-            this.emailText_.y = (_local_4.h_ - 30);
+            this.emailText_.y = _local_4.h_ - 30;
             this.emailText_.x = 17;
             _local_4.addChild(this.emailText_);
-            _local_4.h_ = (_local_4.h_ + 88);
+            _local_4.h_ = _local_4.h_ + 88;
         }
         else {
             this.register_ = new DeprecatedClickableText(12, false, TextKey.KONGREGATEACCOUNTDETAILDIALOG_REGISTER);

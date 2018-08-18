@@ -146,7 +146,7 @@ public class GameServerConnection {
     }
 
     public function useItem_new(_arg_1:GameObject, _arg_2:int):Boolean {
-        return (false);
+        return false;
     }
 
     public function enableJitterWatcher():void {
@@ -183,7 +183,7 @@ public class GameServerConnection {
     }
 
     public function isConnected():Boolean {
-        return (false);
+        return false;
     }
 
     public function teleport(_arg_1:int):void {
@@ -193,7 +193,7 @@ public class GameServerConnection {
     }
 
     public function getNextDamage(_arg_1:uint, _arg_2:uint):uint {
-        return (0);
+        return 0;
     }
 
     public function groundDamage(_arg_1:int, _arg_2:Number, _arg_3:Number):void {
@@ -218,11 +218,11 @@ public class GameServerConnection {
     }
 
     public function invSwap(_arg_1:Player, _arg_2:GameObject, _arg_3:int, _arg_4:int, _arg_5:GameObject, _arg_6:int, _arg_7:int):Boolean {
-        return (false);
+        return false;
     }
 
     public function invSwapPotion(_arg_1:Player, _arg_2:GameObject, _arg_3:int, _arg_4:int, _arg_5:GameObject, _arg_6:int, _arg_7:int):Boolean {
-        return (false);
+        return false;
     }
 
     public function invDrop(_arg_1:GameObject, _arg_2:int, _arg_3:int):void {
@@ -240,8 +240,7 @@ public class GameServerConnection {
     public function questRedeem(_arg_1:int, _arg_2:int, _arg_3:int):void {
     }
 
-    public function keyInfoRequest(_arg_1:int):void
-    {
+    public function keyInfoRequest(_arg_1:int):void {
     }
 
 

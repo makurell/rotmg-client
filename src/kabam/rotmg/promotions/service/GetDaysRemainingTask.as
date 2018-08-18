@@ -26,7 +26,7 @@ public class GetDaysRemainingTask extends BaseTask {
     private function onDaysRemainingResponse(_arg_1:String):void {
         var _local_2:int = new XML(_arg_1)[0];
         this.model.setBeginnersOfferSecondsLeft(_local_2);
-        completeTask((_local_2 > 0));
+        completeTask(_local_2 > 0);
     }
 
 

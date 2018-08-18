@@ -12,7 +12,7 @@ public class ProductionNoServersDialogFactory implements NoServersDialogFactory 
         var _local_1:Dialog = new Dialog(TextKey.PRODUCTIONNOSERVERSDIALOGFACTORY_TILE, "", null, null);
         _local_1.textText_.setHTML(true);
         _local_1.setTextParams(TextKey.PRODUCTIONNOSERVERSDIALOGFACTORY_BODY, {"forums_link": forums_link});
-        return (_local_1);
+        return _local_1;
     }
 
 

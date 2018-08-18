@@ -88,16 +88,16 @@ public class SimpleButton extends BuyButton {
     }
 
     override public function setPrice(_arg_1:int, _arg_2:int):void {
-        if (((!((this.price == _arg_1))) || (!((this.currency == _arg_2))))) {
+        if (!(this.price == _arg_1) || !(this.currency == _arg_2)) {
             this.price = _arg_1;
             this.currency = _arg_2;
-            this.text.text = (this.prefix + _arg_1.toString());
+            this.text.text = this.prefix + _arg_1.toString();
             this.updateUI();
         }
     }
 
     public function getPrice():int {
-        return (this.price);
+        return this.price;
     }
 
     public function setText(_arg_1:String):void {
@@ -108,7 +108,7 @@ public class SimpleButton extends BuyButton {
     override public function setEnabled(_arg_1:Boolean):void {
         if (_arg_1 != mouseEnabled) {
             mouseEnabled = _arg_1;
-            filters = ((_arg_1) ? [] : [grayfilter]);
+            filters = _arg_1 ? [] : [grayfilter];
             this.draw();
         }
     }
@@ -156,13 +156,13 @@ public class SimpleButton extends BuyButton {
     }
 
     private function updateText():void {
-        this.text.x = ((((this.getWidth() - this.icon.width) - this.text.width) - PADDING) * 0.5);
+        this.text.x = (this.getWidth() - this.icon.width - this.text.width - PADDING) * 0.5;
         this.text.y = this.textVertMargin;
     }
 
     private function updateIconPosition():void {
-        this.icon.x = ((this.text.x + this.text.width) + PADDING);
-        this.icon.y = (((this.getHeight() - this.icon.height) - 1) * 0.5);
+        this.icon.x = this.text.x + this.text.width + PADDING;
+        this.icon.y = (this.getHeight() - this.icon.height - 1) * 0.5;
     }
 
     private function onMouseOver(_arg_1:MouseEvent):void {
@@ -178,7 +178,7 @@ public class SimpleButton extends BuyButton {
     }
 
     public function draw():void {
-        this.graphicsData[0] = ((mouseEnabled) ? this.enabledFill : this.disabledFill);
+        this.graphicsData[0] = mouseEnabled ? this.enabledFill : this.disabledFill;
         graphics.clear();
         graphics.drawGraphicsData(this.graphicsData);
         if (this.withOutLine) {
@@ -187,11 +187,11 @@ public class SimpleButton extends BuyButton {
     }
 
     private function getWidth():int {
-        return ((((this.fixedWidth) != -1) ? this.fixedWidth : Math.max(this._width, ((this.text.width + this.icon.width) + (3 * PADDING)))));
+        return this.fixedWidth != -1 ? this.fixedWidth : Math.max(this._width, this.text.width + this.icon.width + 3 * PADDING);
     }
 
     private function getHeight():int {
-        return ((((this.fixedHeight) != -1) ? this.fixedHeight : (this.text.height + (this.textVertMargin * 2))));
+        return this.fixedHeight != -1 ? this.fixedHeight : this.text.height + this.textVertMargin * 2;
     }
 
     public function freezeSize():void {
@@ -205,12 +205,12 @@ public class SimpleButton extends BuyButton {
     }
 
     public function scaleButtonWidth(_arg_1:Number):void {
-        this.fixedWidth = (this.getWidth() * _arg_1);
+        this.fixedWidth = this.getWidth() * _arg_1;
         this.updateUI();
     }
 
     public function scaleButtonHeight(_arg_1:Number):void {
-        this.textVertMargin = (this.textVertMargin * _arg_1);
+        this.textVertMargin = this.textVertMargin * _arg_1;
         this.updateUI();
     }
 

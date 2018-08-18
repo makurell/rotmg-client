@@ -28,10 +28,10 @@ public class BackgroundFilledText extends Sprite {
     }
 
     protected function centerTextAndDrawButton():void {
-        this.w_ = (((this.bWidth) != 0) ? this.bWidth : (this.text_.width + 12));
-        this.text_.x = (this.w_ / 2);
+        this.w_ = this.bWidth != 0 ? this.bWidth : this.text_.width + 12;
+        this.text_.x = this.w_ / 2;
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(0, 0, this.w_, (this.text_.height + (MARGIN * 2)), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(0, 0, this.w_, this.text_.height + MARGIN * 2, 4, [1, 1, 1, 1], this.path_);
     }
 
     public function addText(_arg_1:int):void {
@@ -43,7 +43,7 @@ public class BackgroundFilledText extends Sprite {
     }
 
     protected function makeText():TextFieldDisplayConcrete {
-        return (new TextFieldDisplayConcrete());
+        return new TextFieldDisplayConcrete();
     }
 
 

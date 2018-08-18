@@ -54,7 +54,7 @@ public class ParseCharListXmlCommand {
     private function parseOwnership():void {
         var _local_2:int;
         var _local_3:CharacterSkin;
-        var _local_1:Array = ((this.data.OwnedSkins.length()) ? this.data.OwnedSkins.split(",") : []);
+        var _local_1:Array = this.data.OwnedSkins.length() ? this.data.OwnedSkins.split(",") : [];
         for each (_local_2 in _local_1) {
             _local_3 = this.model.getCharacterSkin(_local_2);
             if (_local_3) {

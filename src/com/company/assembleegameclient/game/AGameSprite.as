@@ -44,7 +44,7 @@ public class AGameSprite extends Sprite {
     }
 
     public function evalIsNotInCombatMapArea():Boolean {
-        return (false);
+        return false;
     }
 
 

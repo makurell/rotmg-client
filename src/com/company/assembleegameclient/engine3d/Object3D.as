@@ -41,7 +41,7 @@ public class Object3D {
 
     public static function getObject(_arg_1:String):Object3D {
         var _local_2:Model3D = Model3D.getModel(_arg_1);
-        return (new Object3D(_local_2));
+        return new Object3D(_local_2);
     }
 
 
@@ -71,11 +71,11 @@ public class Object3D {
     }
 
     public function getVecW(_arg_1:int):Vector3D {
-        var _local_2:int = (_arg_1 * 3);
+        var _local_2:int = _arg_1 * 3;
         if (_local_2 >= this.vW_.length) {
-            return (null);
+            return null;
         }
-        return (new Vector3D(this.vW_[_local_2], this.vW_[(_local_2 + 1)], this.vW_[(_local_2 + 2)]));
+        return new Vector3D(this.vW_[_local_2], this.vW_[(_local_2 + 1)], this.vW_[(_local_2 + 2)]);
     }
 
     public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:uint, _arg_4:BitmapData):void {

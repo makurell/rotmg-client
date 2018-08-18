@@ -82,7 +82,7 @@ public class FriendListMediator extends Mediator {
         var _local_3:FriendRequestVO = new FriendRequestVO(_arg_1, _arg_2);
         switch (_arg_1) {
             case FriendConstant.SEARCH:
-                if (((!((_arg_2 == null))) && (!((_arg_2 == ""))))) {
+                if (!(_arg_2 == null) && !(_arg_2 == "")) {
                     this.view.updateFriendTab(this.model.getFilterFriends(_arg_2), this.model.getCurrentServerName());
                 }
                 else {
@@ -177,7 +177,7 @@ public class FriendListMediator extends Mediator {
     }
 
     private function whisperCallback(_arg_1:String):void {
-        this.chatSignal.dispatch(true, (("/tell " + _arg_1) + " "));
+        this.chatSignal.dispatch(true, "/tell " + _arg_1 + " ");
         this.view.getCloseSignal().dispatch();
     }
 

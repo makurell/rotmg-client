@@ -5,8 +5,8 @@ public class DefaultNewsCellVO extends NewsCellVO {
         imageURL = "";
         linkDetail = "https://www.reddit.com/r/RotMG/search?sort=new&restrict_sr=on&q=flair%3AOfficial%2BDeca";
         headline = _arg_1 == 0 ? "Official Deca Posts on Reddit" : "Deca on Reddit";
-        startDate = (new Date().getTime() - 0x3B9ACA00);
-        endDate = (new Date().getTime() + 0x3B9ACA00);
+        startDate = new Date().getTime() - 0x3B9ACA00;
+        endDate = new Date().getTime() + 0x3B9ACA00;
         networks = ["kabam.com", "kongregate", "steam", "rotmg"];
         linkType = NewsCellLinkType.OPENS_LINK;
         priority = 999999;

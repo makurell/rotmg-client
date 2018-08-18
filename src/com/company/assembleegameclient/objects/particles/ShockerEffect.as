@@ -52,14 +52,14 @@ public class ShockerEffect extends ParticleEffect {
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         if (this.isDestroyed) {
-            return (false);
+            return false;
         }
         if (!this.timer) {
             this.initialize();
         }
         x_ = this.go.x_;
         y_ = this.go.y_;
-        return (true);
+        return true;
     }
 
     private function initialize():void {
@@ -72,9 +72,9 @@ public class ShockerEffect extends ParticleEffect {
 
     private function onTimer(_arg_1:TimerEvent):void {
         if (map_) {
-            this.radians = (int((Math.random() * 360)) * (Math.PI / 180));
-            this.start_ = new Point((this.go.x_ + (Math.sin(this.radians) * this.innerRadius)), (this.go.y_ + (Math.cos(this.radians) * this.innerRadius)));
-            this.end_ = new Point((this.go.x_ + (Math.sin(this.radians) * this.outerRadius)), (this.go.y_ + (Math.cos(this.radians) * this.outerRadius)));
+            this.radians = int(Math.random() * 360) * (Math.PI / 180);
+            this.start_ = new Point(this.go.x_ + Math.sin(this.radians) * this.innerRadius, this.go.y_ + Math.cos(this.radians) * this.innerRadius);
+            this.end_ = new Point(this.go.x_ + Math.sin(this.radians) * this.outerRadius, this.go.y_ + Math.cos(this.radians) * this.outerRadius);
             map_.addObj(new ShockParticle(this.objectId, 25, this.particleScale, this.start_, this.end_, this.radians, this.go, images), this.start_.x, this.start_.y);
         }
     }

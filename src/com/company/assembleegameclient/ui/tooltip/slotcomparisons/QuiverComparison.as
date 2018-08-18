@@ -20,14 +20,14 @@ public class QuiverComparison extends SlotComparison {
         var tagStr:String;
         var duration:Number;
         var conditionEffect:ConditionEffect;
-        this.condition = itemXML.Projectile.ConditionEffect.(((((text() == "Slowed")) || ((text() == "Paralyzed")))) || ((text() == "Dazed")));
-        this.otherCondition = curItemXML.Projectile.ConditionEffect.(((((text() == "Slowed")) || ((text() == "Paralyzed")))) || ((text() == "Dazed")));
+        this.condition = itemXML.Projectile.ConditionEffect.(text() == "Slowed" || text() == "Paralyzed" || text() == "Dazed");
+        this.otherCondition = curItemXML.Projectile.ConditionEffect.(text() == "Slowed" || text() == "Paralyzed" || text() == "Dazed");
         this.projectileComparison.compare(itemXML, curItemXML);
         comparisonStringBuilder = this.projectileComparison.comparisonStringBuilder;
         for (tagStr in this.projectileComparison.processedTags) {
             processedTags[tagStr] = true;
         }
-        if ((((this.condition.length() == 1)) && ((this.otherCondition.length() == 1)))) {
+        if (this.condition.length() == 1 && this.otherCondition.length() == 1) {
             duration = Number(this.condition[0].@duration);
             conditionEffect = ConditionEffect.getConditionEffectEnumFromName(this.condition.text());
             comparisonStringBuilder.pushParams(TextKey.SHOT_EFFECT, {"effect": ""});

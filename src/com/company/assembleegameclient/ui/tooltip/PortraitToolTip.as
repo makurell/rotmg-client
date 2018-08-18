@@ -15,7 +15,7 @@ public class PortraitToolTip extends ToolTip {
         this.portrait_.x = 0;
         this.portrait_.y = 0;
         var _local_2:BitmapData = _arg_1.getPortrait();
-        _local_2 = BitmapUtil.cropToBitmapData(_local_2, 10, 10, (_local_2.width - 20), (_local_2.height - 20));
+        _local_2 = BitmapUtil.cropToBitmapData(_local_2, 10, 10, _local_2.width - 20, _local_2.height - 20);
         this.portrait_.bitmapData = _local_2;
         addChild(this.portrait_);
         filters = [];

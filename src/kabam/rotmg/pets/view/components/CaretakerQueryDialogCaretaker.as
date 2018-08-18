@@ -17,14 +17,14 @@ public class CaretakerQueryDialogCaretaker extends Sprite {
         _local_1 = new CaretakerQuerySpeechBubble(CaretakerQueryDialog.QUERY);
         _local_1.x = 60;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeDetailBubble():CaretakerQueryDetailBubble {
         var _local_1:CaretakerQueryDetailBubble;
         _local_1 = new CaretakerQueryDetailBubble();
         _local_1.y = 60;
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCaretakerIcon():Bitmap {
@@ -32,11 +32,11 @@ public class CaretakerQueryDialogCaretaker extends Sprite {
         _local_1.x = -16;
         _local_1.y = -32;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeDebugBitmapData():BitmapData {
-        return (new BitmapDataSpy(42, 42, true, 0xFF00FF00));
+        return new BitmapDataSpy(42, 42, true, 0xFF00FF00);
     }
 
     public function showDetail(_arg_1:String):void {

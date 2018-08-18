@@ -16,7 +16,7 @@ public class CloakComparison extends SlotComparison {
         _local_3 = this.getInvisibleTag(_arg_1);
         _local_4 = this.getInvisibleTag(_arg_2);
         comparisonStringBuilder = new AppendingLineBuilder();
-        if (((!((_local_3 == null))) && (!((_local_4 == null))))) {
+        if (!(_local_3 == null) && !(_local_4 == null)) {
             _local_5 = Number(_local_3.@duration);
             _local_6 = Number(_local_4.@duration);
             this.appendDurationText(_local_5, _local_6);
@@ -40,14 +40,14 @@ public class CloakComparison extends SlotComparison {
         matches = xml.Activate.(text() == ActivationType.COND_EFFECT_SELF);
         for each (conditionTag in matches) {
             if (conditionTag.(@effect == "Invisible")) {
-                return (conditionTag);
+                return conditionTag;
             }
         }
-        return (null);
+        return null;
     }
 
     private function appendDurationText(_arg_1:Number, _arg_2:Number):void {
-        var _local_3:uint = getTextColor((_arg_1 - _arg_2));
+        var _local_3:uint = getTextColor(_arg_1 - _arg_2);
         comparisonStringBuilder.pushParams(TextKey.EFFECT_ON_SELF, {"effect": ""});
         comparisonStringBuilder.pushParams(TextKey.EFFECT_FOR_DURATION, {
             "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_INVISIBLE),

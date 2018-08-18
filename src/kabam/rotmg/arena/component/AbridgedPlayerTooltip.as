@@ -35,7 +35,7 @@ public class AbridgedPlayerTooltip extends ToolTip {
         super(0x363636, 0.5, 0xFFFFFF, 1);
         var _local_4:EquippedGrid = new EquippedGrid(null, _arg_1.slotTypes, null);
         _local_4.x = 5;
-        _local_4.y = ((_local_5) ? ((_local_5.y + _local_5.height) - 5) : 55);
+        _local_4.y = _local_5 ? (_local_5.y + _local_5.height) - 5 : 55;
         _local_4.setItems(_arg_1.equipment);
         addChild(_local_4);
     }

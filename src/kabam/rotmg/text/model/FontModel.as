@@ -19,7 +19,7 @@ public class FontModel {
     }
 
     public function getFont():FontInfo {
-        return (this.fontInfo);
+        return this.fontInfo;
     }
 
     public function apply(_arg_1:TextField, _arg_2:int, _arg_3:uint, _arg_4:Boolean, _arg_5:Boolean = false):TextFormat {
@@ -33,7 +33,7 @@ public class FontModel {
         }
         _arg_1.defaultTextFormat = _local_6;
         _arg_1.setTextFormat(_local_6);
-        return (_local_6);
+        return _local_6;
     }
 
     public function getFormat(_arg_1:TextField, _arg_2:int, _arg_3:uint, _arg_4:Boolean):TextFormat {
@@ -42,7 +42,7 @@ public class FontModel {
         _local_5.color = _arg_3;
         _local_5.font = this.getFont().getName();
         _local_5.bold = _arg_4;
-        return (_local_5);
+        return _local_5;
     }
 
 

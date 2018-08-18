@@ -35,18 +35,18 @@ public class RequestFameListCommand {
     }
 
     private function getCharId():int {
-        if (((this.player.hasAccount()) && (this.death.getIsDeathViewPending()))) {
-            return (this.death.getLastDeath().charId_);
+        if (this.player.hasAccount() && this.death.getIsDeathViewPending()) {
+            return this.death.getLastDeath().charId_;
         }
-        return (-1);
+        return -1;
     }
 
     private function makeSuccess():Task {
-        return (new DispatchSignalTask(this.update));
+        return new DispatchSignalTask(this.update);
     }
 
     private function makeFailure():Task {
-        return (new DispatchSignalTask(this.error, this.task));
+        return new DispatchSignalTask(this.error, this.task);
     }
 
 

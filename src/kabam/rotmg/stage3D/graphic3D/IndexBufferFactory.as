@@ -22,7 +22,7 @@ public class IndexBufferFactory implements DependencyProvider {
     }
 
     public function apply(_arg_1:Class, _arg_2:Injector, _arg_3:Dictionary):Object {
-        return (this.indexBuffer);
+        return this.indexBuffer;
     }
 
     public function destroy():void {

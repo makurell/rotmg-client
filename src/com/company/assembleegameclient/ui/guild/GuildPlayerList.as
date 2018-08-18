@@ -46,7 +46,7 @@ public class GuildPlayerList extends Sprite {
         this.loadingText_.setStringBuilder(new LineBuilder().setParams(TextKey.LOADING_TEXT));
         this.loadingText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         this.loadingText_.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
-        this.loadingText_.x = (800 / 2);
+        this.loadingText_.x = 800 / 2;
         this.loadingText_.y = 550;
         addChild(this.loadingText_);
         var _local_5:Account = StaticInjectorContext.getInjector().getInstance(Account);
@@ -91,18 +91,18 @@ public class GuildPlayerList extends Sprite {
         this.titleText_.useTextDimensions();
         this.titleText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         this.titleText_.y = 24;
-        this.titleText_.x = ((stage.stageWidth / 2) - (this.titleText_.width / 2));
+        this.titleText_.x = stage.stageWidth / 2 - this.titleText_.width / 2;
         addChild(this.titleText_);
         this.guildFameText_ = new BaseSimpleText(22, 0xFFFFFF, false, 0, 0);
         this.guildFameText_.text = _arg_1.CurrentFame;
         this.guildFameText_.useTextDimensions();
         this.guildFameText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.guildFameText_.x = (0x0300 - this.guildFameText_.width);
-        this.guildFameText_.y = ((32 / 2) - (this.guildFameText_.height / 2));
+        this.guildFameText_.x = 0x0300 - this.guildFameText_.width;
+        this.guildFameText_.y = 32 / 2 - this.guildFameText_.height / 2;
         addChild(this.guildFameText_);
         this.guildFameIcon_ = new Bitmap(GuildUtil.guildFameIcon(40));
         this.guildFameIcon_.x = 760;
-        this.guildFameIcon_.y = ((32 / 2) - (this.guildFameIcon_.height / 2));
+        this.guildFameIcon_.y = 32 / 2 - this.guildFameIcon_.height / 2;
         addChild(this.guildFameIcon_);
         this.lines_ = new Shape();
         _local_2 = this.lines_.graphics;
@@ -126,25 +126,25 @@ public class GuildPlayerList extends Sprite {
         this.listSprite_ = new Sprite();
         var _local_4:int;
         for each (_local_5 in _arg_1.Member) {
-            _local_7 = (this.myName_ == _local_5.Name);
+            _local_7 = this.myName_ == _local_5.Name;
             _local_8 = _local_5.Rank;
-            _local_9 = new MemberListLine(((this.offset_ + _local_4) + 1), _local_5.Name, _local_5.Rank, _local_5.Fame, _local_7, this.myRank_);
-            _local_9.y = (_local_4 * MemberListLine.HEIGHT);
+            _local_9 = new MemberListLine(this.offset_ + _local_4 + 1, _local_5.Name, _local_5.Rank, _local_5.Fame, _local_7, this.myRank_);
+            _local_9.y = _local_4 * MemberListLine.HEIGHT;
             this.listSprite_.addChild(_local_9);
             _local_4++;
         }
-        _local_6 = (GuildUtil.MAX_MEMBERS - (this.offset_ + _local_4));
+        _local_6 = GuildUtil.MAX_MEMBERS - (this.offset_ + _local_4);
         this.openSlotsText_ = new TextFieldDisplayConcrete().setSize(22).setColor(0xB3B3B3);
         this.openSlotsText_.setStringBuilder(new LineBuilder().setParams(TextKey.GUILD_PLAYER_LIST_OPENSLOTS, {"openSlots": _local_6}));
         this.openSlotsText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         this.openSlotsText_.setAutoSize(TextFieldAutoSize.CENTER);
-        this.openSlotsText_.x = (MemberListLine.WIDTH / 2);
-        this.openSlotsText_.y = (_local_4 * MemberListLine.HEIGHT);
+        this.openSlotsText_.x = MemberListLine.WIDTH / 2;
+        this.openSlotsText_.y = _local_4 * MemberListLine.HEIGHT;
         this.listSprite_.addChild(this.openSlotsText_);
         this.mainSprite_.addChild(this.listSprite_);
         if (this.listSprite_.height > 400) {
             this.scrollBar_ = new Scrollbar(16, 400);
-            this.scrollBar_.x = ((800 - this.scrollBar_.width) - 4);
+            this.scrollBar_.x = 800 - this.scrollBar_.width - 4;
             this.scrollBar_.y = 104;
             this.scrollBar_.setIndicatorSize(400, this.listSprite_.height);
             this.scrollBar_.addEventListener(Event.CHANGE, this.onScrollBarChange);
@@ -153,7 +153,7 @@ public class GuildPlayerList extends Sprite {
     }
 
     private function onScrollBarChange(_arg_1:Event):void {
-        this.listSprite_.y = (-(this.scrollBar_.pos()) * (this.listSprite_.height - 400));
+        this.listSprite_.y = -this.scrollBar_.pos() * (this.listSprite_.height - 400);
     }
 
 

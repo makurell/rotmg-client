@@ -15,7 +15,7 @@ public class StaticTextButton extends TextButtonBase {
     }
 
     override protected function makeText():TextFieldDisplayConcrete {
-        return (new StaticTextDisplay());
+        return new StaticTextDisplay();
     }
 
 

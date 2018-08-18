@@ -32,7 +32,7 @@ public class KongregateRelayAPILoginTask extends BaseTask implements RelayLoginT
     private function makeDataPacket():Object {
         var _local_1:Object = this.api.getAuthentication();
         _local_1.guid = this.account.getUserId();
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {

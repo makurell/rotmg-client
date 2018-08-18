@@ -23,25 +23,21 @@ public class TextInputField extends Sprite {
     public var errorText_:TextFieldDisplayConcrete;
     private var textInputFieldWidth:int = 0;
 
-    public function TextInputField(_arg_1:String, _arg_2:Boolean = false, _arg_3:Number = 238, _arg_4:Number = 30, _arg_5:Number = 18, _arg_6:int = -1, _arg_7:Boolean = false)
-    {
+    public function TextInputField(_arg_1:String, _arg_2:Boolean = false, _arg_3:Number = 238, _arg_4:Number = 30, _arg_5:Number = 18, _arg_6:int = -1, _arg_7:Boolean = false) {
         this.textInputFieldWidth = this.textInputFieldWidth;
         this.nameText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xB3B3B3);
         this.inputText_ = new BaseSimpleText(_arg_5, 0xB3B3B3, true, _arg_3, _arg_4);
-        if(_arg_1 != "")
-        {
+        if (_arg_1 != "") {
             this.nameText_.setBold(true);
             this.nameText_.setStringBuilder(new LineBuilder().setParams(_arg_1));
             this.nameText_.filters = [new DropShadowFilter(0, 0, 0)];
             addChild(this.nameText_);
             this.inputText_.y = 30;
         }
-        else
-        {
+        else {
             this.inputText_.y = 0;
         }
-        if(this.textInputFieldWidth != 0)
-        {
+        if (this.textInputFieldWidth != 0) {
             this.nameText_.setTextWidth(this.textInputFieldWidth);
             this.nameText_.setMultiLine(true);
             this.nameText_.setWordWrap(true);
@@ -58,8 +54,7 @@ public class TextInputField extends Sprite {
         this.inputText_.displayAsPassword = _arg_2;
         this.inputText_.updateMetrics();
         this.inputText_.setMultiLine(_arg_7);
-        if(_arg_6 > 1)
-        {
+        if (_arg_6 > 1) {
             this.inputText_.maxChars = _arg_6;
         }
         addChild(this.inputText_);
@@ -78,45 +73,39 @@ public class TextInputField extends Sprite {
     }
 
     public function text():String {
-        return (this.inputText_.text);
+        return this.inputText_.text;
     }
 
     public function clearText():void {
         this.inputText_.text = "";
     }
 
-    override public function get height() : Number
-    {
+    override public function get height():Number {
         return this.errorText_.y + this.errorText_.height + 10;
     }
 
-    private function drawInputBorders(_arg_1:Boolean):void
-    {
+    private function drawInputBorders(_arg_1:Boolean):void {
         var _local_2:uint = _arg_1 ? ERROR_BORDER_COLOR : NORMAL_BORDER_COLOR;
         graphics.clear();
-        graphics.lineStyle(2, _local_2, 1, false,LineScaleMode.NORMAL, CapsStyle.ROUND, JointStyle.ROUND);
+        graphics.lineStyle(2, _local_2, 1, false, LineScaleMode.NORMAL, CapsStyle.ROUND, JointStyle.ROUND);
         graphics.beginFill(BACKGROUND_COLOR, 1);
         graphics.drawRect(0, this.inputText_.y, 238, 30);
         graphics.endFill();
         graphics.lineStyle();
     }
 
-    public function setErrorHighlight(_arg_1:Boolean):void
-    {
+    public function setErrorHighlight(_arg_1:Boolean):void {
         this.drawInputBorders(_arg_1);
     }
 
-    private function textFieldWasCreatedHandler():void
-    {
-        if(this.textInputFieldWidth != 0)
-        {
+    private function textFieldWasCreatedHandler():void {
+        if (this.textInputFieldWidth != 0) {
             this.inputText_.y = this.nameText_.getTextHeight() + 8;
             this.drawInputBorders(false);
         }
     }
 
-    public function onInputChange(_arg_1:Event):void
-    {
+    public function onInputChange(_arg_1:Event):void {
         this.errorText_.setStringBuilder(new StaticStringBuilder(""));
     }
 

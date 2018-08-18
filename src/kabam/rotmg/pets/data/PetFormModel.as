@@ -26,7 +26,7 @@ public class PetFormModel {
         _local_1[0] = new PetSkinGroupVO(TextKey.PET_RARITY_COMMON, this.getIconGroup("Common"), PetRarityEnum.COMMON, this.selectedPet.getSkinID());
         _local_1[1] = new PetSkinGroupVO(TextKey.PET_RARITY_RARE, this.getIconGroup("Rare"), PetRarityEnum.RARE, this.selectedPet.getSkinID());
         _local_1[2] = new PetSkinGroupVO(TextKey.PET_RARITY_DIVINE, this.getIconGroup("Divine"), PetRarityEnum.DIVINE, this.selectedPet.getSkinID());
-        return (_local_1);
+        return _local_1;
     }
 
     public function createPetFamilyTree():void {
@@ -64,7 +64,7 @@ public class PetFormModel {
         _local_2.setType(_arg_1.@type);
         _local_2.setID(_arg_1.@id);
         _local_2.setSkin(this.fetchSkinTypeByID(_arg_1.DefaultSkin[0]));
-        return (_local_2);
+        return _local_2;
     }
 
     private function fetchSkinTypeByID(_arg_1:String):int {
@@ -78,28 +78,28 @@ public class PetFormModel {
             _local_5 = _local_4.@id;
             if (this.petNodeIsSkin(_local_4)) {
                 if (_local_5 == _arg_1) {
-                    return (int(_local_4.@type));
+                    return int(_local_4.@type);
                 }
             }
             _local_2++;
         }
-        return (-1);
+        return -1;
     }
 
     private function petIsInFamilyTree(_arg_1:XML):Boolean {
-        return (((_arg_1.hasOwnProperty("Pet")) && ((_arg_1.Family == this.selectedPet.getFamily()))));
+        return _arg_1.hasOwnProperty("Pet") && _arg_1.Family == this.selectedPet.getFamily();
     }
 
     private function petNodeIsSkin(_arg_1:XML):Boolean {
-        return (_arg_1.hasOwnProperty("PetSkin"));
+        return _arg_1.hasOwnProperty("PetSkin");
     }
 
     public function getSelectedPet():PetVO {
-        return (this.selectedPet);
+        return this.selectedPet;
     }
 
     public function getIconGroup(_arg_1:String):Array {
-        return (this.branches[_arg_1]);
+        return this.branches[_arg_1];
     }
 
     public function setSlotObject(_arg_1:InteractiveItemTile):void {
@@ -110,7 +110,7 @@ public class PetFormModel {
     }
 
     public function getSelectedSkin():int {
-        return (this.selectedSkin);
+        return this.selectedSkin;
     }
 
     public function setSelectedSkin(_arg_1:int):void {
@@ -127,11 +127,11 @@ public class PetFormModel {
             _local_4 = this.petsXML.Object[_local_2];
             _local_5 = int(_local_4.@type);
             if (_local_5 == _arg_1) {
-                return (this.fetchPetTypeBySkinID(_local_4.@id));
+                return this.fetchPetTypeBySkinID(_local_4.@id);
             }
             _local_2++;
         }
-        return (-1);
+        return -1;
     }
 
     private function fetchPetTypeBySkinID(_arg_1:String):int {
@@ -144,11 +144,11 @@ public class PetFormModel {
             _local_4 = this.petsXML.Object[_local_2];
             _local_5 = _local_4.DefaultSkin;
             if (_local_5 == _arg_1) {
-                return (_local_4.@type);
+                return _local_4.type;
             }
             _local_2++;
         }
-        return (-1);
+        return -1;
     }
 
 

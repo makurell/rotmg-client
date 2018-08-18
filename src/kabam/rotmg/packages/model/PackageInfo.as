@@ -56,15 +56,15 @@ public class PackageInfo {
 
     public function getDuration():int {
         var _local_1:Date = new Date();
-        return ((this._endDate.time - _local_1.time));
+        return this._endDate.time - _local_1.time;
     }
 
     public function getDaysRemaining():Number {
-        return (Math.ceil(TimeUtil.secondsToDays((this.getDuration() / 1000))));
+        return Math.ceil(TimeUtil.secondsToDays(this.getDuration() / 1000));
     }
 
     public function get quantity():int {
-        return (this._quantity);
+        return this._quantity;
     }
 
     public function set quantity(_arg_1:int):void {
@@ -73,7 +73,7 @@ public class PackageInfo {
     }
 
     public function get priority():int {
-        return (this._priority);
+        return this._priority;
     }
 
     public function set priority(_arg_1:int):void {
@@ -81,7 +81,7 @@ public class PackageInfo {
     }
 
     public function get packageID():int {
-        return (this._packageID);
+        return this._packageID;
     }
 
     public function set packageID(_arg_1:int):void {
@@ -90,7 +90,7 @@ public class PackageInfo {
     }
 
     public function get endDate():Date {
-        return (this._endDate);
+        return this._endDate;
     }
 
     public function set endDate(_arg_1:Date):void {
@@ -100,7 +100,7 @@ public class PackageInfo {
     }
 
     public function get name():String {
-        return (this._name);
+        return this._name;
     }
 
     public function set name(_arg_1:String):void {
@@ -109,7 +109,7 @@ public class PackageInfo {
     }
 
     public function get max():int {
-        return (this._max);
+        return this._max;
     }
 
     public function set max(_arg_1:int):void {
@@ -118,7 +118,7 @@ public class PackageInfo {
     }
 
     public function get price():int {
-        return (this._price);
+        return this._price;
     }
 
     public function set price(_arg_1:int):void {
@@ -127,11 +127,11 @@ public class PackageInfo {
     }
 
     public function get imageURL():String {
-        return (this._imageURL);
+        return this._imageURL;
     }
 
     public function get numPurchased():int {
-        return (this._numPurchased);
+        return this._numPurchased;
     }
 
     public function set numPurchased(_arg_1:int):void {
@@ -139,18 +139,18 @@ public class PackageInfo {
     }
 
     public function hasPurchased():Boolean {
-        return ((this._numPurchased > 0));
+        return this._numPurchased > 0;
     }
 
     public function canPurchase():Boolean {
         if (this.max == INFINITE) {
-            return (true);
+            return true;
         }
-        return ((this._numPurchased < this._max));
+        return this._numPurchased < this._max;
     }
 
     public function toString():String {
-        return ((((("[Package name=" + this._name) + ", packageId=") + this._packageID) + "]"));
+        return "[Package name=" + this._name + ", packageId=" + this._packageID + "]";
     }
 
 

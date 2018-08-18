@@ -28,33 +28,33 @@ public class MiniMapZoomButtons extends Sprite {
     }
 
     public function getZoomLevel():int {
-        return (this.zoomLevel);
+        return this.zoomLevel;
     }
 
     public function setZoomLevel(_arg_1:int):int {
         if (this.zoomLevels == 0) {
-            return (this.zoomLevel);
+            return this.zoomLevel;
         }
         if (_arg_1 < 0) {
             _arg_1 = 0;
         }
         else {
-            if (_arg_1 >= (this.zoomLevels - 1)) {
-                _arg_1 = (this.zoomLevels - 1);
+            if (_arg_1 >= this.zoomLevels - 1) {
+                _arg_1 = this.zoomLevels - 1;
             }
         }
         this.zoomLevel = _arg_1;
         this.updateButtons();
-        return (this.zoomLevel);
+        return this.zoomLevel;
     }
 
     public function setZoomLevels(_arg_1:int):int {
         this.zoomLevels = _arg_1;
         if (this.zoomLevel >= this.zoomLevels) {
-            this.zoomLevel = (this.zoomLevels - 1);
+            this.zoomLevel = this.zoomLevels - 1;
         }
         this.updateButtons();
-        return (this.zoomLevels);
+        return this.zoomLevels;
     }
 
     private function makeZoomOut():void {
@@ -89,29 +89,29 @@ public class MiniMapZoomButtons extends Sprite {
         _arg_1.stopPropagation();
         if (this.canZoomOut()) {
             this.zoom.dispatch(--this.zoomLevel);
-            this.zoomOut.transform.colorTransform = ((this.canZoomOut()) ? this.NORM : this.FADE);
+            this.zoomOut.transform.colorTransform = this.canZoomOut() ? this.NORM : this.FADE;
         }
     }
 
     private function canZoomOut():Boolean {
-        return ((this.zoomLevel > 0));
+        return this.zoomLevel > 0;
     }
 
     private function onZoomIn(_arg_1:MouseEvent):void {
         _arg_1.stopPropagation();
         if (this.canZoomIn()) {
             this.zoom.dispatch(++this.zoomLevel);
-            this.zoomIn.transform.colorTransform = ((this.canZoomIn()) ? this.NORM : this.FADE);
+            this.zoomIn.transform.colorTransform = this.canZoomIn() ? this.NORM : this.FADE;
         }
     }
 
     private function canZoomIn():Boolean {
-        return ((this.zoomLevel < (this.zoomLevels - 1)));
+        return this.zoomLevel < this.zoomLevels - 1;
     }
 
     private function updateButtons():void {
-        this.zoomIn.transform.colorTransform = ((this.canZoomIn()) ? this.NORM : this.FADE);
-        this.zoomOut.transform.colorTransform = ((this.canZoomOut()) ? this.NORM : this.FADE);
+        this.zoomIn.transform.colorTransform = this.canZoomIn() ? this.NORM : this.FADE;
+        this.zoomOut.transform.colorTransform = this.canZoomOut() ? this.NORM : this.FADE;
     }
 
 

@@ -20,12 +20,12 @@ public class TextureFactory {
 
     public static function GetFlippedBitmapData(_arg_1:BitmapData):BitmapData {
         var _local_2:BitmapData;
-        if ((_arg_1 in flippedTextures)) {
-            return (flippedTextures[_arg_1]);
+        if (_arg_1 in flippedTextures) {
+            return flippedTextures[_arg_1];
         }
         _local_2 = flipBitmapData(_arg_1, "y");
         flippedTextures[_arg_1] = _local_2;
-        return (_local_2);
+        return _local_2;
     }
 
     private static function flipBitmapData(_arg_1:BitmapData, _arg_2:String = "x"):BitmapData {
@@ -38,17 +38,17 @@ public class TextureFactory {
             _local_4 = new Matrix(1, 0, 0, -1, 0, _arg_1.height);
         }
         _local_3.draw(_arg_1, _local_4, null, null, null, true);
-        return (_local_3);
+        return _local_3;
     }
 
     private static function getNextPowerOf2(_arg_1:int):Number {
         _arg_1--;
-        _arg_1 = (_arg_1 | (_arg_1 >> 1));
-        _arg_1 = (_arg_1 | (_arg_1 >> 2));
-        _arg_1 = (_arg_1 | (_arg_1 >> 4));
-        _arg_1 = (_arg_1 | (_arg_1 >> 8));
-        _arg_1 = (_arg_1 | (_arg_1 >> 16));
-        return (++_arg_1);
+        _arg_1 = _arg_1 | _arg_1 >> 1;
+        _arg_1 = _arg_1 | _arg_1 >> 2;
+        _arg_1 = _arg_1 | _arg_1 >> 4;
+        _arg_1 = _arg_1 | _arg_1 >> 8;
+        _arg_1 = _arg_1 | _arg_1 >> 16;
+        return ++_arg_1;
     }
 
     public static function disposeTextures():void {
@@ -80,10 +80,10 @@ public class TextureFactory {
         var _local_4:TextureProxy;
         var _local_5:BitmapData;
         if (_arg_1 == null) {
-            return (null);
+            return null;
         }
-        if ((_arg_1 in textures)) {
-            return (textures[_arg_1]);
+        if (_arg_1 in textures) {
+            return textures[_arg_1];
         }
         _local_2 = getNextPowerOf2(_arg_1.width);
         _local_3 = getNextPowerOf2(_arg_1.height);
@@ -97,7 +97,7 @@ public class TextureFactory {
         }
         textures[_arg_1] = _local_4;
         count++;
-        return (_local_4);
+        return _local_4;
     }
 
 

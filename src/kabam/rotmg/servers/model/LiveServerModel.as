@@ -26,7 +26,7 @@ public class LiveServerModel implements ServerModel {
     }
 
     public function getServers():Vector.<Server> {
-        return (this.servers);
+        return this.servers;
     }
 
     public function getServer():Server {
@@ -39,44 +39,44 @@ public class LiveServerModel implements ServerModel {
         var _local_4:Number = Number.MAX_VALUE;
         var _local_5:int = int.MAX_VALUE;
         for each (_local_6 in this.servers) {
-            if (!((_local_6.isFull()) && (!(_local_1)))) {
+            if (!(_local_6.isFull() && !_local_1)) {
                 if (_local_6.name == Parameters.data_.preferredServer) {
-                    return (_local_6);
+                    return _local_6;
                 }
                 _local_7 = _local_6.priority();
                 _local_8 = LatLong.distance(_local_2, _local_6.latLong);
-                if ((((_local_7 < _local_5)) || ((((_local_7 == _local_5)) && ((_local_8 < _local_4)))))) {
+                if (_local_7 < _local_5 || _local_7 == _local_5 && _local_8 < _local_4) {
                     _local_3 = _local_6;
                     _local_4 = _local_8;
                     _local_5 = _local_7;
                 }
             }
         }
-        return (_local_3);
+        return _local_3;
     }
 
     public function getServerNameByAddress(_arg_1:String):String {
         var _local_2:Server;
         for each (_local_2 in this.servers) {
             if (_local_2.address == _arg_1) {
-                return (_local_2.name);
+                return _local_2.name;
             }
         }
-        return ("");
+        return "";
     }
 
     public function isServerAvailable():Boolean {
-        return ((this.servers.length > 0));
+        return this.servers.length > 0;
     }
 
     private function compareServerName(_arg_1:Server, _arg_2:Server):int {
         if (_arg_1.name < _arg_2.name) {
-            return (((this._descendingFlag) ? -1 : 1));
+            return this._descendingFlag ? -1 : 1;
         }
         if (_arg_1.name > _arg_2.name) {
-            return (((this._descendingFlag) ? 1 : -1));
+            return this._descendingFlag ? 1 : -1;
         }
-        return (0);
+        return 0;
     }
 
 

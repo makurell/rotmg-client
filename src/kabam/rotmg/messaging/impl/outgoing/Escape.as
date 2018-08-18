@@ -11,7 +11,7 @@ public class Escape extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ESCAPE"));
+        return formatToString("ESCAPE");
     }
 
 

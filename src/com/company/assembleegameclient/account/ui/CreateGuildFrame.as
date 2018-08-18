@@ -50,7 +50,7 @@ public class CreateGuildFrame extends Frame {
         if (_arg_1.success_) {
             _local_2 = StaticInjectorContext.getInjector().getInstance(GameModel).player;
             if (_local_2 != null) {
-                _local_2.fame_ = (_local_2.fame_ - Parameters.GUILD_CREATION_PRICE);
+                _local_2.fame_ = _local_2.fame_ - Parameters.GUILD_CREATION_PRICE;
             }
             this.close.dispatch();
         }

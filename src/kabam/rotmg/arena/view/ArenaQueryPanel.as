@@ -61,11 +61,11 @@ public class ArenaQueryPanel extends Panel {
 
     private function alignButton():void {
         var _local_1:int = 15;
-        var _local_2:int = ((this.infoButton.width + _local_1) + this.enterButton.width);
-        this.infoButton.x = ((WIDTH / 2) - (_local_2 / 2));
-        this.enterButton.x = ((this.infoButton.x + this.infoButton.width) + _local_1);
-        this.enterButton.y = ((HEIGHT - this.enterButton.height) - 4);
-        this.infoButton.y = ((HEIGHT - this.infoButton.height) - 4);
+        var _local_2:int = this.infoButton.width + _local_1 + this.enterButton.width;
+        this.infoButton.x = WIDTH / 2 - _local_2 / 2;
+        this.enterButton.x = this.infoButton.x + this.infoButton.width + _local_1;
+        this.enterButton.y = HEIGHT - this.enterButton.height - 4;
+        this.infoButton.y = HEIGHT - this.infoButton.height - 4;
     }
 
 

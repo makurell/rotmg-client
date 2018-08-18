@@ -37,16 +37,16 @@ public class BitmapParticle extends BasicObject {
         var _local_3:Square;
         _local_3 = map_.getSquare(_arg_1, _arg_2);
         if (!_local_3) {
-            return (false);
+            return false;
         }
         x_ = _arg_1;
         y_ = _arg_2;
         square_ = _local_3;
-        return (true);
+        return true;
     }
 
     public function setSize(_arg_1:int):void {
-        this.size_ = ((_arg_1 / 100) * 5);
+        this.size_ = (_arg_1 / 100) * 5;
     }
 
     override public function drawShadow(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -60,21 +60,21 @@ public class BitmapParticle extends BasicObject {
             texture = this._bitmapData;
             w = texture.width;
             h = texture.height;
-            if (((!(w)) || (!(h)))) {
+            if (!w || !h) {
                 return;
             }
             this.vS_.length = 0;
-            this.vS_.push((posS_[3] - (w / 2)), (posS_[4] - (h / 2)), (posS_[3] + (w / 2)), (posS_[4] - (h / 2)), (posS_[3] + (w / 2)), (posS_[4] + (h / 2)), (posS_[3] - (w / 2)), (posS_[4] + (h / 2)));
+            this.vS_.push(posS_[3] - w / 2, posS_[4] - h / 2, posS_[3] + w / 2, posS_[4] - h / 2, posS_[3] + w / 2, posS_[4] + h / 2, posS_[3] - w / 2, posS_[4] + h / 2);
             this.path_.data = this.vS_;
             this.bitmapFill_.bitmapData = texture;
             this.fillMatrix_.identity();
-            if (((this._rotation) || (this._rotationDelta))) {
+            if (this._rotation || this._rotationDelta) {
                 if (this._rotationDelta) {
-                    this._rotation = (this._rotation + this._rotationDelta);
+                    this._rotation = this._rotation + this._rotationDelta;
                 }
-                this.fillMatrix_.translate((-(w) / 2), (-(h) / 2));
+                this.fillMatrix_.translate(-w / 2, -h / 2);
                 this.fillMatrix_.rotate(this._rotation);
-                this.fillMatrix_.translate((w / 2), (h / 2));
+                this.fillMatrix_.translate(w / 2, h / 2);
             }
             this.fillMatrix_.translate(this.vS_[0], this.vS_[1]);
             this.bitmapFill_.matrix = this.fillMatrix_;
@@ -84,7 +84,7 @@ public class BitmapParticle extends BasicObject {
             graphicsData.push(GraphicsUtil.END_FILL);
         }
         catch (error:Error) {
-            return;
+
         }
     }
 

@@ -1,37 +1,51 @@
-﻿package com.company.assembleegameclient.mapeditor
-{
+﻿package com.company.assembleegameclient.mapeditor {
 import flash.display.Sprite;
+
 import net.hires.debug.Stats;
+
 import com.company.assembleegameclient.editor.CommandQueue;
 import com.company.assembleegameclient.ui.dropdown.DropDown;
+
 import flash.utils.Dictionary;
+
 import com.company.assembleegameclient.account.ui.TextInputField;
 import com.company.assembleegameclient.screens.TitleMenuOption;
 import com.company.assembleegameclient.ui.DeprecatedClickableText;
+
 import kabam.lib.json.JsonParser;
+
 import com.company.assembleegameclient.account.ui.CheckBoxField;
+
 import flash.text.TextFieldAutoSize;
 import flash.events.MouseEvent;
 import flash.events.Event;
+
 import com.company.util.IntPoint;
+
 import flash.display.Bitmap;
+
 import com.company.assembleegameclient.objects.ObjectLibrary;
 import com.company.assembleegameclient.editor.CommandList;
 import com.company.util.SpriteUtil;
 import com.company.assembleegameclient.map.GroundLibrary;
 import com.company.assembleegameclient.editor.CommandEvent;
+
 import flash.geom.Rectangle;
 import flash.utils.ByteArray;
+
 import com.hurlant.util.Base64;
+
 import flash.net.FileReference;
+
 import com.company.assembleegameclient.map.RegionLibrary;
+
 import flash.net.FileFilter;
 import flash.events.IOErrorEvent;
+
 import kabam.rotmg.ui.view.components.ScreenBase;
 import kabam.rotmg.core.StaticInjectorContext;
 
-public class EditingScreen extends Sprite
-{
+public class EditingScreen extends Sprite {
 
     private static const MAP_Y:int = 600 - MEMap.SIZE - 10;
     public static const stats_:Stats = new Stats();
@@ -64,8 +78,7 @@ public class EditingScreen extends Sprite
     private var tilesBackup:Vector.<METile>;
     private var loadedFile_:FileReference = null;
 
-    public function EditingScreen()
-    {
+    public function EditingScreen() {
         var _local_3:int;
         addChild(new ScreenBase());
         this.json = StaticInjectorContext.getInjector().getInstance(JsonParser);
@@ -98,8 +111,7 @@ public class EditingScreen extends Sprite
         this.chooserDropDown_.addEventListener(Event.CHANGE, this.onDropDownChange);
         var _local_1:Vector.<String> = new Vector.<String>(0);
         var _local_2:Number = MEMap.MAX_ALLOWED_SQUARES;
-        while(_local_2 >= 64)
-        {
+        while (_local_2 >= 64) {
             _local_1.push(_local_2 + "x" + _local_2);
             _local_2 = _local_2 / 2;
         }
@@ -162,10 +174,9 @@ public class EditingScreen extends Sprite
         this.chooserDropDown_.setIndex(0);
     }
 
-    private function createCheckboxes():void
-    {
+    private function createCheckboxes():void {
         var _local_2:CheckBoxField;
-        this.checkBoxArray = new Array();
+        this.checkBoxArray = [];
         var _local_1:DeprecatedClickableText = new DeprecatedClickableText(14, true, "(Show All)");
         _local_1.buttonMode = true;
         _local_1.x = this.mapSizeDropDown_.x - 380;
@@ -198,17 +209,14 @@ public class EditingScreen extends Sprite
         this.checkBoxArray.push(_local_3);
     }
 
-    private function setSearch(_arg_1:String):void
-    {
+    private function setSearch(_arg_1:String):void {
         this.filter.removeEventListener(Event.CHANGE, this.onFilterChange);
         this.filter.setSearch(_arg_1);
         this.filter.addEventListener(Event.CHANGE, this.onFilterChange);
     }
 
-    private function onFilterChange(_arg_1:Event):void
-    {
-        switch(this.chooser_)
-        {
+    private function onFilterChange(_arg_1:Event):void {
+        switch (this.chooser_) {
             case this.groundChooser_:
                 this.groundChooser_.reloadObjects(this.filter.searchStr, this.filter.filterType);
                 break;
@@ -234,11 +242,9 @@ public class EditingScreen extends Sprite
         }
     }
 
-    private function onCheckBoxUpdated(_arg_1:MouseEvent):void
-    {
+    private function onCheckBoxUpdated(_arg_1:MouseEvent):void {
         var _local_2:CheckBoxField;
-        switch(_arg_1.currentTarget)
-        {
+        switch (_arg_1.currentTarget) {
             case this.checkBoxArray[0]:
                 this.meMap_.ifShowGroundLayer = true;
                 this.meMap_.ifShowObjectLayer = true;
@@ -264,8 +270,7 @@ public class EditingScreen extends Sprite
         this.meMap_.draw();
     }
 
-    private function onTilesEvent(_arg_1:TilesEvent):void
-    {
+    private function onTilesEvent(_arg_1:TilesEvent):void {
         var _local_2:IntPoint;
         var _local_3:METile;
         var _local_4:int;
@@ -276,8 +281,7 @@ public class EditingScreen extends Sprite
         var _local_9:Bitmap;
         var _local_10:uint;
         _local_2 = _arg_1.tiles_[0];
-        switch(this.commandMenu_.getCommand())
-        {
+        switch (this.commandMenu_.getCommand()) {
             case MECommandMenu.DRAW_COMMAND:
                 this.addModifyCommandList(_arg_1.tiles_, this.chooser_.layer_, this.chooser_.selectedType());
                 break;
@@ -286,13 +290,11 @@ public class EditingScreen extends Sprite
                 break;
             case MECommandMenu.SAMPLE_COMMAND:
                 _local_4 = this.meMap_.getType(_local_2.x_, _local_2.y_, this.chooser_.layer_);
-                if(_local_4 == -1)
-                {
+                if (_local_4 == -1) {
                     return;
                 }
                 _local_5 = GroupDivider.getCategoryByType(_local_4, this.chooser_.layer_);
-                if(_local_5 == "")
-                {
+                if (_local_5 == "") {
                     break;
                 }
                 this.chooser_ = this.choosers_[_local_5];
@@ -309,11 +311,9 @@ public class EditingScreen extends Sprite
             case MECommandMenu.CUT_COMMAND:
                 this.tilesBackup = new Vector.<METile>();
                 _local_8 = new Vector.<METile>();
-                for each(_local_2 in _arg_1.tiles_)
-                {
+                for each(_local_2 in _arg_1.tiles_) {
                     _local_3 = this.meMap_.getTile(_local_2.x_, _local_2.y_);
-                    if(_local_3 != null)
-                    {
+                    if (_local_3 != null) {
                         _local_3 = _local_3.clone();
                     }
                     this.tilesBackup.push(_local_3);
@@ -325,11 +325,9 @@ public class EditingScreen extends Sprite
                 break;
             case MECommandMenu.COPY_COMMAND:
                 this.tilesBackup = new Vector.<METile>();
-                for each(_local_2 in _arg_1.tiles_)
-                {
+                for each(_local_2 in _arg_1.tiles_) {
                     _local_3 = this.meMap_.getTile(_local_2.x_, _local_2.y_);
-                    if(_local_3 != null)
-                    {
+                    if (_local_3 != null) {
                         _local_3 = _local_3.clone();
                     }
                     this.tilesBackup.push(_local_3);
@@ -342,8 +340,7 @@ public class EditingScreen extends Sprite
                 break;
             case MECommandMenu.PICK_UP_COMMAND:
                 _local_3 = this.meMap_.getTile(_local_2.x_, _local_2.y_);
-                if(_local_3 != null && _local_3.types_[Layer.OBJECT] != -1)
-                {
+                if (_local_3 != null && _local_3.types_[Layer.OBJECT] != -1) {
                     _local_9 = new Bitmap(ObjectLibrary.getTextureFromType(_local_3.types_[Layer.OBJECT]));
                     this.pickObjHolder = new Sprite();
                     this.pickObjHolder.addChild(_local_9);
@@ -354,8 +351,7 @@ public class EditingScreen extends Sprite
                 }
                 break;
             case MECommandMenu.DROP_COMMAND:
-                if(this.pickObjHolder != null)
-                {
+                if (this.pickObjHolder != null) {
                     _local_10 = int(this.pickObjHolder.name);
                     this.addModifyCommandList(_arg_1.tiles_, Layer.OBJECT, _local_10);
                     this.pickObjHolder.stopDrag();
@@ -367,77 +363,63 @@ public class EditingScreen extends Sprite
         this.meMap_.draw();
     }
 
-    private function onEditComplete(_arg_1:Event):void
-    {
+    private function onEditComplete(_arg_1:Event):void {
         var _local_2:EditTileProperties = _arg_1.currentTarget as EditTileProperties;
         this.addObjectNameCommandList(_local_2.tiles_, _local_2.getObjectName());
     }
 
-    private function addModifyCommandList(_arg_1:Vector.<IntPoint>, _arg_2:int, _arg_3:int):void
-    {
+    private function addModifyCommandList(_arg_1:Vector.<IntPoint>, _arg_2:int, _arg_3:int):void {
         var _local_5:IntPoint;
         var _local_6:int;
         var _local_4:CommandList = new CommandList();
-        for each(_local_5 in _arg_1)
-        {
+        for each(_local_5 in _arg_1) {
             _local_6 = this.meMap_.getType(_local_5.x_, _local_5.y_, _arg_2);
-            if(_local_6 != _arg_3)
-            {
+            if (_local_6 != _arg_3) {
                 _local_4.addCommand(new MEModifyCommand(this.meMap_, _local_5.x_, _local_5.y_, _arg_2, _local_6, _arg_3));
             }
         }
-        if(_local_4.empty())
-        {
+        if (_local_4.empty()) {
             return;
         }
         this.commandQueue_.addCommandList(_local_4);
     }
 
-    private function addPasteCommandList(_arg_1:Vector.<IntPoint>, _arg_2:Vector.<METile>):void
-    {
+    private function addPasteCommandList(_arg_1:Vector.<IntPoint>, _arg_2:Vector.<METile>):void {
         var _local_5:IntPoint;
         var _local_6:METile;
         var _local_3:CommandList = new CommandList();
         var _local_4:int = 0;
-        for each(_local_5 in _arg_1)
-        {
-            if(_local_4 >= _arg_2.length)
-            {
+        for each(_local_5 in _arg_1) {
+            if (_local_4 >= _arg_2.length) {
                 break;
             }
             _local_6 = this.meMap_.getTile(_local_5.x_, _local_5.y_);
             _local_3.addCommand(new MEReplaceCommand(this.meMap_, _local_5.x_, _local_5.y_, _local_6, _arg_2[_local_4]));
             _local_4++;
         }
-        if(_local_3.empty())
-        {
+        if (_local_3.empty()) {
             return;
         }
         this.commandQueue_.addCommandList(_local_3);
     }
 
-    private function addObjectNameCommandList(_arg_1:Vector.<IntPoint>, _arg_2:String):void
-    {
+    private function addObjectNameCommandList(_arg_1:Vector.<IntPoint>, _arg_2:String):void {
         var _local_4:IntPoint;
         var _local_5:String;
         var _local_3:CommandList = new CommandList();
-        for each(_local_4 in _arg_1)
-        {
+        for each(_local_4 in _arg_1) {
             _local_5 = this.meMap_.getObjectName(_local_4.x_, _local_4.y_);
-            if(_local_5 != _arg_2)
-            {
+            if (_local_5 != _arg_2) {
                 _local_3.addCommand(new MEObjectNameCommand(this.meMap_, _local_4.x_, _local_4.y_, _local_5, _arg_2));
             }
         }
-        if(_local_3.empty())
-        {
+        if (_local_3.empty()) {
             return;
         }
         this.commandQueue_.addCommandList(_local_3);
     }
 
-    private function safeRemoveCategoryChildren():void
-    {
+    private function safeRemoveCategoryChildren():void {
         SpriteUtil.safeRemoveChild(this, this.groundChooser_);
         SpriteUtil.safeRemoveChild(this, this.objChooser_);
         SpriteUtil.safeRemoveChild(this, this.enemyChooser_);
@@ -448,10 +430,8 @@ public class EditingScreen extends Sprite
         SpriteUtil.safeRemoveChild(this, this.dungeonChooser_);
     }
 
-    private function onDropDownChange(_arg_1:Event = null):void
-    {
-        switch(this.chooserDropDown_.getValue())
-        {
+    private function onDropDownChange(_arg_1:Event = null):void {
+        switch (this.chooserDropDown_.getValue()) {
             case GroundLibrary.GROUND_CATEGORY:
                 this.setSearch(this.groundChooser_.getLastSearch());
                 this.safeRemoveCategoryChildren();
@@ -527,11 +507,9 @@ public class EditingScreen extends Sprite
         }
     }
 
-    private function onDropDownSizeChange(_arg_1:Event):void
-    {
+    private function onDropDownSizeChange(_arg_1:Event):void {
         var _local_2:Number;
-        switch(this.mapSizeDropDown_.getValue())
-        {
+        switch (this.mapSizeDropDown_.getValue()) {
             case "64x64":
                 _local_2 = 64;
                 break;
@@ -551,34 +529,28 @@ public class EditingScreen extends Sprite
         this.meMap_.draw();
     }
 
-    private function onUndo(_arg_1:CommandEvent):void
-    {
+    private function onUndo(_arg_1:CommandEvent):void {
         this.commandQueue_.undo();
         this.meMap_.draw();
     }
 
-    private function onRedo(_arg_1:CommandEvent):void
-    {
+    private function onRedo(_arg_1:CommandEvent):void {
         this.commandQueue_.redo();
         this.meMap_.draw();
     }
 
-    private function onClear(_arg_1:CommandEvent):void
-    {
+    private function onClear(_arg_1:CommandEvent):void {
         var _local_4:IntPoint;
         var _local_5:METile;
         var _local_2:Vector.<IntPoint> = this.meMap_.getAllTiles();
         var _local_3:CommandList = new CommandList();
-        for each(_local_4 in _local_2)
-        {
+        for each(_local_4 in _local_2) {
             _local_5 = this.meMap_.getTile(_local_4.x_, _local_4.y_);
-            if(_local_5 != null)
-            {
+            if (_local_5 != null) {
                 _local_3.addCommand(new MEClearCommand(this.meMap_, _local_4.x_, _local_4.y_, _local_5));
             }
         }
-        if(_local_3.empty())
-        {
+        if (_local_3.empty()) {
             return;
         }
         this.commandQueue_.addCommandList(_local_3);
@@ -586,16 +558,14 @@ public class EditingScreen extends Sprite
         this.filename_ = null;
     }
 
-    private function createMapJSON():String
-    {
+    private function createMapJSON():String {
         var _local_7:int;
         var _local_8:METile;
         var _local_9:Object;
         var _local_10:String;
         var _local_11:int;
         var _local_1:Rectangle = this.meMap_.getTileBounds();
-        if(_local_1 == null)
-        {
+        if (_local_1 == null) {
             return null;
         }
         var _local_2:Object = {};
@@ -605,22 +575,18 @@ public class EditingScreen extends Sprite
         var _local_4:Array = [];
         var _local_5:ByteArray = new ByteArray();
         var _local_6:int = _local_1.y;
-        while(_local_6 < _local_1.bottom)
-        {
+        while (_local_6 < _local_1.bottom) {
             _local_7 = _local_1.x;
-            while(_local_7 < _local_1.right)
-            {
+            while (_local_7 < _local_1.right) {
                 _local_8 = this.meMap_.getTile(_local_7, _local_6);
                 _local_9 = this.getEntry(_local_8);
                 _local_10 = this.json.stringify(_local_9);
-                if(!_local_3.hasOwnProperty(_local_10))
-                {
+                if (!_local_3.hasOwnProperty(_local_10)) {
                     _local_11 = _local_4.length;
                     _local_3[_local_10] = _local_11;
                     _local_4.push(_local_9);
                 }
-                else
-                {
+                else {
                     _local_11 = _local_3[_local_10];
                 }
                 _local_5.writeShort(_local_11);
@@ -634,21 +600,17 @@ public class EditingScreen extends Sprite
         return this.json.stringify(_local_2);
     }
 
-    private function onSave(_arg_1:CommandEvent):void
-    {
+    private function onSave(_arg_1:CommandEvent):void {
         var _local_2:String = this.createMapJSON();
-        if(_local_2 == null)
-        {
+        if (_local_2 == null) {
             return;
         }
-        new FileReference().save(_local_2, this.filename_ == null?"map.jm":this.filename_);
+        new FileReference().save(_local_2, this.filename_ == null ? "map.jm" : this.filename_);
     }
 
-    private function onSubmit(_arg_1:CommandEvent):void
-    {
+    private function onSubmit(_arg_1:CommandEvent):void {
         var _local_2:String = this.createMapJSON();
-        if(_local_2 == null)
-        {
+        if (_local_2 == null) {
             return;
         }
         this.meMap_.setMinZoom();
@@ -656,63 +618,52 @@ public class EditingScreen extends Sprite
         dispatchEvent(new SubmitJMEvent(_local_2, this.meMap_.getMapStatistics()));
     }
 
-    private function getEntry(_arg_1:METile):Object
-    {
+    private function getEntry(_arg_1:METile):Object {
         var _local_3:Vector.<int>;
         var _local_4:String;
         var _local_5:Object;
         var _local_2:Object;
-        if(_arg_1 != null)
-        {
+        if (_arg_1 != null) {
             _local_3 = _arg_1.types_;
-            if(_local_3[Layer.GROUND] != -1)
-            {
+            if (_local_3[Layer.GROUND] != -1) {
                 _local_4 = GroundLibrary.getIdFromType(_local_3[Layer.GROUND]);
                 _local_2["ground"] = _local_4;
             }
-            if(_local_3[Layer.OBJECT] != -1)
-            {
+            if (_local_3[Layer.OBJECT] != -1) {
                 _local_4 = ObjectLibrary.getIdFromType(_local_3[Layer.OBJECT]);
-                _local_5 = {"id":_local_4};
-                if(_arg_1.objName_ != null)
-                {
+                _local_5 = {"id": _local_4};
+                if (_arg_1.objName_ != null) {
                     _local_5["name"] = _arg_1.objName_;
                 }
                 _local_2["objs"] = [_local_5];
             }
-            if(_local_3[Layer.REGION] != -1)
-            {
+            if (_local_3[Layer.REGION] != -1) {
                 _local_4 = RegionLibrary.getIdFromType(_local_3[Layer.REGION]);
-                _local_2["regions"] = [{"id":_local_4}];
+                _local_2["regions"] = [{"id": _local_4}];
             }
         }
         return _local_2;
     }
 
-    private function onLoad(_arg_1:CommandEvent):void
-    {
+    private function onLoad(_arg_1:CommandEvent):void {
         this.loadedFile_ = new FileReference();
         this.loadedFile_.addEventListener(Event.SELECT, this.onFileBrowseSelect);
         this.loadedFile_.browse([new FileFilter("JSON Map (*.jm)", "*.jm")]);
     }
 
-    private function onFileBrowseSelect(_arg_1:Event):void
-    {
+    private function onFileBrowseSelect(_arg_1:Event):void {
         var event:Event = _arg_1;
         var loadedFile:FileReference = event.target as FileReference;
         loadedFile.addEventListener(Event.COMPLETE, this.onFileLoadComplete);
         loadedFile.addEventListener(IOErrorEvent.IO_ERROR, this.onFileLoadIOError);
-        try
-        {
+        try {
             loadedFile.load();
         }
-        catch(e:Error)
-        {
+        catch (e:Error) {
         }
     }
 
-    private function onFileLoadComplete(_arg_1:Event):void
-    {
+    private function onFileLoadComplete(_arg_1:Event):void {
         var _local_7:String;
         var _local_11:int;
         var _local_13:int;
@@ -727,15 +678,12 @@ public class EditingScreen extends Sprite
         var _local_4:int = _local_3["width"];
         var _local_5:int = _local_3["height"];
         var _local_6:Number = 64;
-        while(_local_6 < _local_3["width"] || _local_6 < _local_3["height"])
-        {
+        while (_local_6 < _local_3["width"] || _local_6 < _local_3["height"]) {
             _local_6 = _local_6 * 2;
         }
-        if(MEMap.NUM_SQUARES != _local_6)
-        {
+        if (MEMap.NUM_SQUARES != _local_6) {
             _local_7 = _local_6 + "x" + _local_6;
-            if(!this.mapSizeDropDown_.setValue(_local_7))
-            {
+            if (!this.mapSizeDropDown_.setValue(_local_7)) {
                 this.mapSizeDropDown_.setValue("512x512");
             }
         }
@@ -746,38 +694,29 @@ public class EditingScreen extends Sprite
         var _local_10:ByteArray = Base64.decodeToByteArray(_local_3["data"]);
         _local_10.uncompress();
         var _local_12:int = _local_8.y;
-        while(_local_12 < _local_8.bottom)
-        {
+        while (_local_12 < _local_8.bottom) {
             _local_13 = _local_8.x;
-            while(_local_13 < _local_8.right)
-            {
+            while (_local_13 < _local_8.right) {
                 _local_14 = _local_9[_local_10.readShort()];
-                if(_local_14.hasOwnProperty("ground"))
-                {
+                if (_local_14.hasOwnProperty("ground")) {
                     _local_11 = GroundLibrary.idToType_[_local_14["ground"]];
                     this.meMap_.modifyTile(_local_13, _local_12, Layer.GROUND, _local_11);
                 }
                 _local_15 = _local_14["objs"];
-                if(_local_15 != null)
-                {
-                    for each(_local_17 in _local_15)
-                    {
-                        if(ObjectLibrary.idToType_.hasOwnProperty(_local_17["id"]))
-                        {
+                if (_local_15 != null) {
+                    for each(_local_17 in _local_15) {
+                        if (ObjectLibrary.idToType_.hasOwnProperty(_local_17["id"])) {
                             _local_11 = ObjectLibrary.idToType_[_local_17["id"]];
                             this.meMap_.modifyTile(_local_13, _local_12, Layer.OBJECT, _local_11);
-                            if(_local_17.hasOwnProperty("name"))
-                            {
+                            if (_local_17.hasOwnProperty("name")) {
                                 this.meMap_.modifyObjectName(_local_13, _local_12, _local_17["name"]);
                             }
                         }
                     }
                 }
                 _local_16 = _local_14["regions"];
-                if(_local_16 != null)
-                {
-                    for each(_local_18 in _local_16)
-                    {
+                if (_local_16 != null) {
+                    for each(_local_18 in _local_16) {
                         _local_11 = RegionLibrary.idToType_[_local_18["id"]];
                         this.meMap_.modifyTile(_local_13, _local_12, Layer.REGION, _local_11);
                     }
@@ -789,29 +728,23 @@ public class EditingScreen extends Sprite
         this.meMap_.draw();
     }
 
-    public function disableInput():void
-    {
+    public function disableInput():void {
         removeChild(this.commandMenu_);
     }
 
-    public function enableInput():void
-    {
+    public function enableInput():void {
         addChild(this.commandMenu_);
     }
 
-    private function onFileLoadIOError(_arg_1:Event):void
-    {
+    private function onFileLoadIOError(_arg_1:Event):void {
     }
 
-    private function onTest(_arg_1:Event):void
-    {
+    private function onTest(_arg_1:Event):void {
         dispatchEvent(new MapTestEvent(this.createMapJSON()));
     }
 
-    private function onMenuSelect(_arg_1:Event):void
-    {
-        if(this.meMap_ != null)
-        {
+    private function onMenuSelect(_arg_1:Event):void {
+        if (this.meMap_ != null) {
             this.meMap_.clearSelect();
         }
     }

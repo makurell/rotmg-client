@@ -58,7 +58,7 @@ public class BeginnersPackageButton extends BasePackageButton {
 
     private function updateTimeLeftPosition():void {
         this.timeLeftText.textChanged.addOnce(this.onTextChanged);
-        this.timeLeftText.setStringBuilder(new StaticStringBuilder(((this.daysRemaining.toString() + " day") + (((this.daysRemaining) > 1) ? "s" : ""))));
+        this.timeLeftText.setStringBuilder(new StaticStringBuilder(this.daysRemaining.toString() + " day" + (this.daysRemaining > 1 ? "s" : "")));
     }
 
     private function onTextChanged():void {

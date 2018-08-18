@@ -35,7 +35,7 @@ public class ServersScreen extends Sprite {
     }
 
     private function onScrollBarChange(_arg_1:Event):void {
-        this.serverBoxes_.y = (8 - (this.scrollBar_.pos() * (this.serverBoxes_.height - 400)));
+        this.serverBoxes_.y = 8 - this.scrollBar_.pos() * (this.serverBoxes_.height - 400);
     }
 
     public function initialize(_arg_1:Vector.<Server>):void {
@@ -44,7 +44,7 @@ public class ServersScreen extends Sprite {
         this.makeLines();
         this.makeContainer();
         this.makeServerBoxes();
-        (((this.serverBoxes_.height > 400)) && (this.makeScrollbar()));
+        this.serverBoxes_.height > 400 && this.makeScrollbar();
         this.makeMenuBar();
     }
 
@@ -58,7 +58,7 @@ public class ServersScreen extends Sprite {
 
     private function makeScrollbar():void {
         this.scrollBar_ = new Scrollbar(16, 400);
-        this.scrollBar_.x = ((800 - this.scrollBar_.width) - 4);
+        this.scrollBar_.x = 800 - this.scrollBar_.width - 4;
         this.scrollBar_.y = 104;
         this.scrollBar_.setIndicatorSize(400, this.serverBoxes_.height);
         this.scrollBar_.addEventListener(Event.CHANGE, this.onScrollBarChange);

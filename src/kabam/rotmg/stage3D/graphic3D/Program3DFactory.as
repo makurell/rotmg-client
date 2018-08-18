@@ -16,7 +16,7 @@ public class Program3DFactory {
 
     public function Program3DFactory(_arg_1:String = "") {
         if (_arg_1 != "yoThisIsInternal") {
-            throw (new Error("Program3DFactory is a singleton. Use Program3DFactory.getInstance()"));
+            throw new Error("Program3DFactory is a singleton. Use Program3DFactory.getInstance()");
         }
     }
 
@@ -24,7 +24,7 @@ public class Program3DFactory {
         if (instance == null) {
             instance = new Program3DFactory("yoThisIsInternal");
         }
-        return (instance);
+        return instance;
     }
 
 
@@ -62,7 +62,7 @@ public class Program3DFactory {
                 }
                 _local_3 = this.repeatProgram;
         }
-        return (_local_3);
+        return _local_3;
     }
 
 

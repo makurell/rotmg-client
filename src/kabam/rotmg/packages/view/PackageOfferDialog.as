@@ -54,33 +54,33 @@ public class PackageOfferDialog extends Sprite implements Resizable {
     private function makeBusyIndicator():DisplayObject {
         var _local_1:DisplayObject = new BusyIndicator();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCloseButton():Sprite {
-        return (new DialogCloseButton());
+        return new DialogCloseButton();
     }
 
     private function makeBuyNow():DeprecatedTextButton {
-        return (new DeprecatedTextButton(16, TextKey.PACKAGE_OFFER_DIALOG_BUY_NOW));
+        return new DeprecatedTextButton(16, TextKey.PACKAGE_OFFER_DIALOG_BUY_NOW);
     }
 
     private function makeTitle():TextFieldDisplayConcrete {
         var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(this.fontSize).setColor(0xB3B3B3);
-        _local_1.y = (this.paddingTop + 5);
+        _local_1.y = this.paddingTop + 5;
         _local_1.setAutoSize(TextFieldAutoSize.CENTER);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setPackage(_arg_1:PackageInfo):PackageOfferDialog {
         removeChild(this.busyIndicator);
         this.packageInfo = _arg_1;
         this.setImageURL(this.packageInfo.imageURL);
-        return (this);
+        return this;
     }
 
     public function getPackage():PackageInfo {
-        return (this.packageInfo);
+        return this.packageInfo;
     }
 
     private function onMouseUp(_arg_1:MouseEvent):void {
@@ -89,7 +89,7 @@ public class PackageOfferDialog extends Sprite implements Resizable {
     }
 
     private function setImageURL(_arg_1:String):void {
-        ((this.loader) && (this.loader.unload()));
+        this.loader && this.loader.unload();
         this.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this.onIOError);
         this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onComplete);
         this.loader.load(new URLRequest(_arg_1));
@@ -129,14 +129,14 @@ public class PackageOfferDialog extends Sprite implements Resizable {
     private function handleGold():void {
         this.goldDisplay.init();
         addChild(this.goldDisplay);
-        this.goldDisplay.x = (this.buyNow.x - 16);
-        this.goldDisplay.y = (this.buyNow.y + (this.buyNow.height / 2));
+        this.goldDisplay.x = this.buyNow.x - 16;
+        this.goldDisplay.y = this.buyNow.y + this.buyNow.height / 2;
     }
 
     private function handleBuyNow():void {
         addChild(this.buyNow);
-        this.buyNow.x = ((this.image.width / 2) - (this.buyNow.width / 2));
-        this.buyNow.y = (((this.image.height - this.buyNow.height) - this.paddingBottom) - 4);
+        this.buyNow.x = this.image.width / 2 - this.buyNow.width / 2;
+        this.buyNow.y = this.image.height - this.buyNow.height - this.paddingBottom - 4;
         this.buyNow.addEventListener(MouseEvent.MOUSE_UP, this.onBuyNow);
     }
 
@@ -147,26 +147,26 @@ public class PackageOfferDialog extends Sprite implements Resizable {
 
     private function handleCloseButton():void {
         addChild(this.closeButton);
-        this.closeButton.x = ((this.image.width - (this.closeButton.width * 2)) - this.paddingRight);
-        this.closeButton.y = (this.paddingTop + 5);
+        this.closeButton.x = this.image.width - this.closeButton.width * 2 - this.paddingRight;
+        this.closeButton.y = this.paddingTop + 5;
         this.closeButton.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
     }
 
     private function setImage(_arg_1:DisplayObject):void {
-        ((this.image) && (removeChild(this.image)));
+        this.image && removeChild(this.image);
         this.image = _arg_1;
-        ((this.image) && (addChild(this.image)));
+        this.image && addChild(this.image);
         this.center();
     }
 
     private function center():void {
-        x = ((this.spaceAvailable.width - width) / 2);
-        y = ((this.spaceAvailable.height - height) / 2);
+        x = (this.spaceAvailable.width - width) / 2;
+        y = (this.spaceAvailable.height - height) / 2;
     }
 
     private function setTitle(_arg_1:String):void {
         this.title.setStringBuilder(new StaticStringBuilder(_arg_1));
-        this.title.x = (this.image.width / 2);
+        this.title.x = this.image.width / 2;
     }
 
     private function setGold(_arg_1:int):void {

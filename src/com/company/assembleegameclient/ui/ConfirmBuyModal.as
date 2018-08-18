@@ -67,7 +67,7 @@ public class ConfirmBuyModal extends Sprite {
         if (this.owner_.getSellableType() != -1) {
             _local_8 = new ItemWithTooltip(this.owner_.getSellableType(), 64);
         }
-        _local_8.x = (((WIDTH * 1) / 2) - (_local_8.width / 2));
+        _local_8.x = (WIDTH * 1) / 2 - _local_8.width / 2;
         _local_8.y = 100;
         addChild(_local_8);
         this.quantityInputText = _local_6.getLiteralTextObject("1", TEXT_MARGIN, 160);
@@ -75,10 +75,10 @@ public class ConfirmBuyModal extends Sprite {
         addChild(this.quantityInputText);
         this.leftNavSprite = this.makeNavigator(UIAssetsHelper.LEFT_NEVIGATOR);
         this.rightNavSprite = this.makeNavigator(UIAssetsHelper.RIGHT_NEVIGATOR);
-        this.leftNavSprite.x = (((WIDTH * 4) / 11) - (this.rightNavSprite.width / 2));
+        this.leftNavSprite.x = (WIDTH * 4) / 11 - this.rightNavSprite.width / 2;
         this.leftNavSprite.y = 150;
         addChild(this.leftNavSprite);
-        this.rightNavSprite.x = (((WIDTH * 7) / 11) - (this.rightNavSprite.width / 2));
+        this.rightNavSprite.x = (WIDTH * 7) / 11 - this.rightNavSprite.width / 2;
         this.rightNavSprite.y = 150;
         addChild(this.rightNavSprite);
         this.refreshNavDisable();
@@ -89,23 +89,23 @@ public class ConfirmBuyModal extends Sprite {
         var _local_3:PopupWindowBackground = new PopupWindowBackground();
         _local_3.draw(_arg_1, _arg_2);
         _local_3.divide(PopupWindowBackground.HORIZONTAL_DIVISION, 30);
-        return (_local_3);
+        return _local_3;
     }
 
 
     private function refreshNavDisable() {
-        this.leftNavSprite.alpha = (((this.quantity_) == 1) ? 0.5 : 1);
-        this.rightNavSprite.alpha = (((this.quantity_) == this.availableInventoryNumber) ? 0.5 : 1);
+        this.leftNavSprite.alpha = this.quantity_ == 1 ? 0.5 : 1;
+        this.rightNavSprite.alpha = this.quantity_ == this.availableInventoryNumber ? 0.5 : 1;
     }
 
     private function positionAndStuff():void {
         var _local_1 = -300;
         var _local_2 = -200;
-        this.x = (_local_1 + ((-1 * ConfirmBuyModal.WIDTH) * 0.5));
-        this.y = (_local_2 + ((-1 * ConfirmBuyModal.HEIGHT) * 0.5));
-        this.buyButton.x = (this.buyButton.x + 35);
-        this.buyButton.y = (this.buyButton.y + 195);
-        this.buyButton.x = ((WIDTH / 2) - (this.buttonWidth / 2));
+        this.x = _local_1 + -1 * ConfirmBuyModal.WIDTH * 0.5;
+        this.y = _local_2 + -1 * ConfirmBuyModal.HEIGHT * 0.5;
+        this.buyButton.x = this.buyButton.x + 35;
+        this.buyButton.y = this.buyButton.y + 195;
+        this.buyButton.x = WIDTH / 2 - this.buttonWidth / 2;
     }
 
     private function events():void {
@@ -146,24 +146,24 @@ public class ConfirmBuyModal extends Sprite {
     private function makeNavigator(_arg_1:String):Sprite {
         var _local_2:* = UIAssetsHelper.createLeftNevigatorIcon(_arg_1);
         _local_2.addEventListener(MouseEvent.CLICK, this.onClick);
-        return (_local_2);
+        return _local_2;
     }
 
     private function onClick(_arg_1:MouseEvent) {
         switch (_arg_1.currentTarget) {
             case this.rightNavSprite:
                 if (this.quantity_ < this.availableInventoryNumber) {
-                    this.quantity_ = (this.quantity_ + 1);
+                    this.quantity_ = this.quantity_ + 1;
                 }
                 break;
             case this.leftNavSprite:
                 if (this.quantity_ > 1) {
-                    this.quantity_ = (this.quantity_ - 1);
+                    this.quantity_ = this.quantity_ - 1;
                 }
                 break;
         }
         this.refreshNavDisable();
-        var _local_2:int = (this.owner_.price_ * this.quantity_);
+        var _local_2:int = this.owner_.price_ * this.quantity_;
         this.buyButton.setPrice(_local_2, this.owner_.currency_);
         this.quantityInputText.setText(this.quantity_.toString());
     }

@@ -14,7 +14,7 @@ public class StaticInjectorContext extends Context {
     }
 
     public static function getInjector():Injector {
-        return (injector);
+        return injector;
     }
 
 

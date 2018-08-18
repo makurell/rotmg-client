@@ -48,7 +48,7 @@ public class Face3D {
         var _local_6:int = 3;
         while (_local_6 < this.vin_.length) {
             this.path_.commands.push(GraphicsPathCommand.LINE_TO);
-            _local_6 = (_local_6 + 3);
+            _local_6 = _local_6 + 3;
         }
         this.path_.data = this.vout_;
     }
@@ -79,16 +79,16 @@ public class Face3D {
     }
 
     public function maxY():Number {
-        var _local_1:Number = -(Number.MAX_VALUE);
+        var _local_1:Number = -Number.MAX_VALUE;
         var _local_2:int = this.vout_.length;
         var _local_3:int;
         while (_local_3 < _local_2) {
             if (this.vout_[(_local_3 + 1)] > _local_1) {
                 _local_1 = this.vout_[(_local_3 + 1)];
             }
-            _local_3 = (_local_3 + 2);
+            _local_3 = _local_3 + 2;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera):Boolean {
@@ -101,37 +101,37 @@ public class Face3D {
         Utils3D.projectVectors(_arg_2.wToS_, this.vin_, this.vout_, this.uvt_);
         if (this.backfaceCull_) {
             _local_10 = this.vout_;
-            _local_11 = (_local_10[2] - _local_10[0]);
-            _local_12 = (_local_10[3] - _local_10[1]);
-            _local_13 = (_local_10[4] - _local_10[0]);
-            _local_14 = (_local_10[5] - _local_10[1]);
-            if (((_local_11 * _local_14) - (_local_12 * _local_13)) > 0) {
-                return (false);
+            _local_11 = _local_10[2] - _local_10[0];
+            _local_12 = _local_10[3] - _local_10[1];
+            _local_13 = _local_10[4] - _local_10[0];
+            _local_14 = _local_10[5] - _local_10[1];
+            if (_local_11 * _local_14 - _local_12 * _local_13 > 0) {
+                return false;
             }
         }
-        var _local_3:Number = (_arg_2.clipRect_.x - 10);
-        var _local_4:Number = (_arg_2.clipRect_.y - 10);
-        var _local_5:Number = (_arg_2.clipRect_.right + 10);
-        var _local_6:Number = (_arg_2.clipRect_.bottom + 10);
+        var _local_3:Number = _arg_2.clipRect_.x - 10;
+        var _local_4:Number = _arg_2.clipRect_.y - 10;
+        var _local_5:Number = _arg_2.clipRect_.right + 10;
+        var _local_6:Number = _arg_2.clipRect_.bottom + 10;
         var _local_7:Boolean = true;
         var _local_8:int = this.vout_.length;
         var _local_9:int;
         while (_local_9 < _local_8) {
-            _local_15 = (_local_9 + 1);
-            if ((((((((this.vout_[_local_9] >= _local_3)) && ((this.vout_[_local_9] <= _local_5)))) && ((this.vout_[_local_15] >= _local_4)))) && ((this.vout_[_local_15] <= _local_6)))) {
+            _local_15 = _local_9 + 1;
+            if (this.vout_[_local_9] >= _local_3 && this.vout_[_local_9] <= _local_5 && this.vout_[_local_15] >= _local_4 && this.vout_[_local_15] <= _local_6) {
                 _local_7 = false;
                 break;
             }
-            _local_9 = (_local_9 + 2);
+            _local_9 = _local_9 + 2;
         }
         if (_local_7) {
-            return (false);
+            return false;
         }
         if (this.blackOut_) {
             _arg_1.push(blackOutFill_);
             _arg_1.push(this.path_);
             _arg_1.push(GraphicsUtil.END_FILL);
-            return (true);
+            return true;
         }
         if (this.needGen_) {
             this.generateTextureMatrix();
@@ -142,17 +142,17 @@ public class Face3D {
         _arg_1.push(this.bitmapFill_);
         _arg_1.push(this.path_);
         _arg_1.push(GraphicsUtil.END_FILL);
-        return (true);
+        return true;
     }
 
     public function contains(_arg_1:Number, _arg_2:Number):Boolean {
         if (Triangle.containsXY(this.vout_[0], this.vout_[1], this.vout_[2], this.vout_[3], this.vout_[4], this.vout_[5], _arg_1, _arg_2)) {
-            return (true);
+            return true;
         }
-        if ((((this.vout_.length == 8)) && (Triangle.containsXY(this.vout_[0], this.vout_[1], this.vout_[4], this.vout_[5], this.vout_[6], this.vout_[7], _arg_1, _arg_2)))) {
-            return (true);
+        if (this.vout_.length == 8 && Triangle.containsXY(this.vout_[0], this.vout_[1], this.vout_[4], this.vout_[5], this.vout_[6], this.vout_[7], _arg_1, _arg_2)) {
+            return true;
         }
-        return (false);
+        return false;
     }
 
     private function generateTextureMatrix():void {

@@ -10,19 +10,19 @@ public class CharacterSkins {
 
 
     public function getCount():int {
-        return (this.skins.length);
+        return this.skins.length;
     }
 
     public function getDefaultSkin():CharacterSkin {
-        return (this.defaultSkin);
+        return this.defaultSkin;
     }
 
     public function getSelectedSkin():CharacterSkin {
-        return (this.selectedSkin);
+        return this.selectedSkin;
     }
 
     public function getSkinAt(_arg_1:int):CharacterSkin {
-        return (this.skins[_arg_1]);
+        return this.skins[_arg_1];
     }
 
     public function addSkin(_arg_1:CharacterSkin, _arg_2:Boolean = false):void {
@@ -45,8 +45,8 @@ public class CharacterSkins {
     }
 
     private function onSkinChanged(_arg_1:CharacterSkin):void {
-        if (((_arg_1.getIsSelected()) && (!((this.selectedSkin == _arg_1))))) {
-            ((this.selectedSkin) && (this.selectedSkin.setIsSelected(false)));
+        if (_arg_1.getIsSelected() && !(this.selectedSkin == _arg_1)) {
+            this.selectedSkin && this.selectedSkin.setIsSelected(false);
             this.selectedSkin = _arg_1;
         }
     }
@@ -72,16 +72,16 @@ public class CharacterSkins {
 
     private function getSkinState(_arg_1:CharacterSkin):CharacterSkinState {
         if (!_arg_1.skinSelectEnabled) {
-            return (CharacterSkinState.UNLISTED);
+            return CharacterSkinState.UNLISTED;
         }
-        if ((((this.maxLevelAchieved >= _arg_1.unlockLevel)) && ((_arg_1.unlockSpecial == null)))) {
-            return (CharacterSkinState.PURCHASABLE);
+        if (this.maxLevelAchieved >= _arg_1.unlockLevel && _arg_1.unlockSpecial == null) {
+            return CharacterSkinState.PURCHASABLE;
         }
-        return (CharacterSkinState.LOCKED);
+        return CharacterSkinState.LOCKED;
     }
 
     public function getSkin(_arg_1:int):CharacterSkin {
-        return (((this.map[_arg_1]) || (this.defaultSkin)));
+        return this.map[_arg_1] || this.defaultSkin;
     }
 
     public function getListedSkins():Vector.<CharacterSkin> {
@@ -92,7 +92,7 @@ public class CharacterSkins {
                 _local_1.push(_local_2);
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

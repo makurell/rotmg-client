@@ -38,7 +38,7 @@ public class PartyPanel extends Panel {
         addChild(_local_3);
         _local_3.x = _arg_1;
         _local_3.y = _arg_2;
-        return (_local_3);
+        return _local_3;
     }
 
     private function onAddedToStage(_arg_1:Event):void {
@@ -61,12 +61,12 @@ public class PartyPanel extends Panel {
     }
 
     private function onMouseOver(_arg_1:MouseEvent):void {
-        if (((!((this.menu == null))) && (!((this.menu.parent == null))))) {
+        if (!(this.menu == null) && !(this.menu.parent == null)) {
             return;
         }
-        var _local_2:PlayerGameObjectListItem = (_arg_1.currentTarget as PlayerGameObjectListItem);
-        var _local_3:Player = (_local_2.go as Player);
-        if ((((_local_3 == null)) || ((_local_3.texture_ == null)))) {
+        var _local_2:PlayerGameObjectListItem = _arg_1.currentTarget as PlayerGameObjectListItem;
+        var _local_3:Player = _local_2.go as Player;
+        if (_local_3 == null || _local_3.texture_ == null) {
             return;
         }
         this.mouseOver_ = true;
@@ -78,10 +78,10 @@ public class PartyPanel extends Panel {
 
     private function onMouseDown(_arg_1:MouseEvent):void {
         this.removeMenu();
-        var _local_2:PlayerGameObjectListItem = (_arg_1.currentTarget as PlayerGameObjectListItem);
+        var _local_2:PlayerGameObjectListItem = _arg_1.currentTarget as PlayerGameObjectListItem;
         _local_2.setEnabled(false);
         this.menu = new PlayerMenu();
-        this.menu.init(gs_, (_local_2.go as Player));
+        this.menu.init(gs_, _local_2.go as Player);
         this.menuLayer.addChild(this.menu);
         this.menu.addEventListener(Event.REMOVED_FROM_STAGE, this.onMenuRemoved);
     }
@@ -121,24 +121,24 @@ public class PartyPanel extends Panel {
         var _local_2:int;
         var _local_3:int;
         while (_local_3 < Party.NUM_MEMBERS) {
-            if (((this.mouseOver_) || (((!((this.menu == null))) && (!((this.menu.parent == null))))))) {
+            if (this.mouseOver_ || !(this.menu == null) && !(this.menu.parent == null)) {
                 _local_5 = (this.memberPanels[_local_3].go as Player);
             }
             else {
                 _local_5 = _local_1.members_[_local_3];
             }
-            if (((!((_local_5 == null))) && ((_local_5.map_ == null)))) {
+            if (!(_local_5 == null) && _local_5.map_ == null) {
                 _local_5 = null;
             }
             _local_6 = null;
             if (_local_5 != null) {
-                if (_local_5.hp_ < (_local_5.maxHP_ * 0.2)) {
+                if (_local_5.hp_ < _local_5.maxHP_ * 0.2) {
                     if (_local_2 == 0) {
                         _local_2 = getTimer();
                     }
-                    _local_7 = (int((Math.abs(Math.sin((_local_2 / 200))) * 10)) / 10);
+                    _local_7 = int(Math.abs(Math.sin(_local_2 / 200)) * 10) / 10;
                     _local_8 = 128;
-                    _local_6 = new ColorTransform(1, 1, 1, 1, (_local_7 * _local_8), (-(_local_7) * _local_8), (-(_local_7) * _local_8));
+                    _local_6 = new ColorTransform(1, 1, 1, 1, _local_7 * _local_8, -_local_7 * _local_8, -_local_7 * _local_8);
                 }
                 if (!_local_5.starred_) {
                     if (_local_6 != null) {

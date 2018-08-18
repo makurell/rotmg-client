@@ -49,7 +49,7 @@ public class AgeVerificationDialog extends Dialog {
 
     override protected function initText(_arg_1:String):void {
         textText_ = new TextFieldDisplayConcrete().setSize(14).setColor(0xB3B3B3);
-        textText_.setTextWidth((WIDTH - 40));
+        textText_.setTextWidth(WIDTH - 40);
         textText_.x = 20;
         textText_.setMultiLine(true).setWordWrap(true).setHTML(true);
         textText_.setAutoSize(TextFieldAutoSize.LEFT);
@@ -59,8 +59,8 @@ public class AgeVerificationDialog extends Dialog {
     }
 
     private function setText():void {
-        var _local_1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
-        var _local_2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
+        var _local_1 = '<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL + '" target="_blank">';
+        var _local_2 = '<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL + '" target="_blank">';
         var _local_3 = "</a></font>";
         textText_.setStringBuilder(new LineBuilder().setParams("AgeVerificationDialog.text", {
             "tou": _local_1,
@@ -71,9 +71,9 @@ public class AgeVerificationDialog extends Dialog {
     }
 
     override protected function drawAdditionalUI():void {
-        this.ageVerificationField.y = (textText_.getBounds(box_).bottom + 8);
+        this.ageVerificationField.y = textText_.getBounds(box_).bottom + 8;
         this.ageVerificationField.x = 20;
-        this.errorLabel.y = ((this.ageVerificationField.y + this.ageVerificationField.height) + 8);
+        this.errorLabel.y = this.ageVerificationField.y + this.ageVerificationField.height + 8;
         this.errorLabel.x = 20;
     }
 
@@ -101,7 +101,7 @@ public class AgeVerificationDialog extends Dialog {
             _local_3 = true;
         }
         else {
-            if ((((_local_2 < this.MINIMUM_AGE)) && (!(_local_3)))) {
+            if (_local_2 < this.MINIMUM_AGE && !_local_3) {
                 _local_4 = this.BIRTH_DATE_BELOW_MINIMUM_ERROR;
                 _local_3 = true;
             }
@@ -119,15 +119,15 @@ public class AgeVerificationDialog extends Dialog {
     private function getPlayerAge():uint {
         var _local_1:Date = new Date(this.getBirthDate());
         var _local_2:Date = new Date();
-        var _local_3:uint = (Number(_local_2.fullYear) - Number(_local_1.fullYear));
-        if ((((_local_1.month > _local_2.month)) || ((((_local_1.month == _local_2.month)) && ((_local_1.date > _local_2.date)))))) {
+        var _local_3:uint = Number(_local_2.fullYear) - Number(_local_1.fullYear);
+        if (_local_1.month > _local_2.month || _local_1.month == _local_2.month && _local_1.date > _local_2.date) {
             _local_3--;
         }
-        return (_local_3);
+        return _local_3;
     }
 
     private function getBirthDate():Number {
-        return (Date.parse(this.ageVerificationField.getDate()));
+        return Date.parse(this.ageVerificationField.getDate());
     }
 
 

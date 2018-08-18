@@ -46,12 +46,12 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
         if (_arg_2) {
             _local_4 = 0;
             while (_local_4 < 3) {
-                _local_3 = PetsViewAssetFactory.returnPetSlotShape((56 + (_local_4 * 10)), 0x545454, (-5 + (-5 * _local_4)), false, true, 4);
+                _local_3 = PetsViewAssetFactory.returnPetSlotShape(56 + _local_4 * 10, 0x545454, -5 + -5 * _local_4, false, true, 4);
                 addChild(_local_3);
                 this.animatedOutlines.push(_local_3);
                 _local_4++;
             }
-            this.animationStartIndex = (this.animatedOutlines.length - 1);
+            this.animationStartIndex = this.animatedOutlines.length - 1;
             addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
         }
     }
@@ -64,7 +64,7 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
                 this.actionButton.setOutLineColor(196098);
                 this.actionButton.draw();
             }
-            if (((!((this.embeddedSprite_ == null))) && (!((this.embeddedSprite_.parent == null))))) {
+            if (!(this.embeddedSprite_ == null) && !(this.embeddedSprite_.parent == null)) {
                 this.embeddedSpriteCopy_.visible = false;
                 this.embeddedSpriteCopy_.alpha = 0;
                 this.embeddedSprite_.alpha = 1;
@@ -74,7 +74,7 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
             if (this.animatedOutlines.length > 0) {
                 addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
             }
-            if (((!((this.embeddedSprite_ == null))) && (!((this.embeddedSprite_.parent == null))))) {
+            if (!(this.embeddedSprite_ == null) && !(this.embeddedSprite_.parent == null)) {
                 this.embeddedSpriteCopy_.visible = true;
             }
             if (this.actionButton) {
@@ -96,7 +96,7 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
             this.marking.text = "✓";
             this.marking.textColor = 0xFF00;
             addChild(this.marking);
-            this.marking.y = Math.round((((height / 2) - (this.marking.textHeight / 2)) / 7));
+            this.marking.y = Math.round((height / 2 - this.marking.textHeight / 2) / 7);
         }
     }
 
@@ -106,12 +106,12 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
             this.marking.text = "?";
             this.marking.textColor = 0xFF0000;
             addChild(this.marking);
-            this.marking.y = Math.round((((height / 2) - (this.marking.textHeight / 2)) / 7));
+            this.marking.y = Math.round((height / 2 - this.marking.textHeight / 2) / 7);
         }
     }
 
     public function removeMarking():void {
-        if (((!((this.marking == null))) && (!((this.marking.parent == null))))) {
+        if (!(this.marking == null) && !(this.marking.parent == null)) {
             removeChild(this.marking);
         }
     }
@@ -128,13 +128,13 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
         _local_2.alpha = 0.8;
         _local_2.width = width;
         _local_2.selectable = false;
-        return (_local_2);
+        return _local_2;
     }
 
     private function onMouseOverGoalSlot(_arg_1:Event):void {
         if (empty) {
             this.hovering = true;
-            if (((!((this.usageText == null))) && ((this.usageText.parent == null)))) {
+            if (!(this.usageText == null) && this.usageText.parent == null) {
                 addChild(this.usageText);
             }
             removeEventListener(MouseEvent.ROLL_OVER, this.onMouseOverGoalSlot);
@@ -152,7 +152,7 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
     }
 
     private function removeIfStillOutside():void {
-        if ((((((this.hovering == false)) && (!((this.usageText == null))))) && (!((this.usageText.parent == null))))) {
+        if (this.hovering == false && !(this.usageText == null) && !(this.usageText.parent == null)) {
             removeChild(this.usageText);
         }
     }
@@ -163,8 +163,8 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
         this.usageText.autoSize = TextFieldAutoSize.LEFT;
         var _local_4:FontModel = StaticInjectorContext.getInjector().getInstance(FontModel);
         _local_4.apply(this.usageText, _arg_2, _arg_3, false, true);
-        this.usageText.y = (this.y + this.height);
-        this.usageText.x = ((this.x + (this.width / 2)) - (this.usageText.width / 2));
+        this.usageText.y = this.y + this.height;
+        this.usageText.x = (this.x + this.width / 2) - this.usageText.width / 2;
     }
 
     public function setActionButton(_arg_1:LegacyBuyButton):void {
@@ -175,28 +175,28 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
         var _local_3:ColorTransform;
         var _local_4:int;
         var _local_5:int;
-        var _local_2:int = uint(((getTimer() / 500) % 3));
+        var _local_2:int = uint((getTimer() / 500) % 3);
         if (_local_2 != this.curOutline) {
             this.curOutline = _local_2;
             _local_4 = 0;
             while (_local_4 < this.animatedOutlines.length) {
                 _local_3 = this.animatedOutlines[_local_4].transform.colorTransform;
                 _local_3.color = 0x545454;
-                _local_3.alphaMultiplier = (1 - (_local_4 * 0.3));
+                _local_3.alphaMultiplier = 1 - _local_4 * 0.3;
                 this.animatedOutlines[_local_4].transform.colorTransform = _local_3;
                 _local_4++;
             }
-            _local_5 = (this.animationStartIndex - (this.curOutline * this.animationDir));
+            _local_5 = this.animationStartIndex - this.curOutline * this.animationDir;
             _local_3 = this.animatedOutlines[_local_5].transform.colorTransform;
             _local_3.color = 196098;
             this.animatedOutlines[_local_5].transform.colorTransform = _local_3;
         }
         if (this.embeddedImage_) {
-            if ((((this.embeddedSprite_.alpha == 1)) || ((this.embeddedSprite_.alpha == 0)))) {
-                this.dir = (this.dir * -1);
+            if (this.embeddedSprite_.alpha == 1 || this.embeddedSprite_.alpha == 0) {
+                this.dir = this.dir * -1;
             }
-            this.embeddedSprite_.alpha = (this.embeddedSprite_.alpha + this.dir);
-            this.embeddedSpriteCopy_.alpha = (this.embeddedSpriteCopy_.alpha - this.dir);
+            this.embeddedSprite_.alpha = this.embeddedSprite_.alpha + this.dir;
+            this.embeddedSpriteCopy_.alpha = this.embeddedSpriteCopy_.alpha - this.dir;
             if (this.embeddedSprite_.alpha >= 1) {
                 this.embeddedSprite_.alpha = 1;
                 this.embeddedSpriteCopy_.alpha = 0;
@@ -212,11 +212,11 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
 
     public function highLightAll(_arg_1:int):void {
         var _local_3:ColorTransform;
-        var _local_2:int = (this.animatedOutlines.length - 1);
+        var _local_2:int = this.animatedOutlines.length - 1;
         while (_local_2 >= 0) {
             _local_3 = this.animatedOutlines[_local_2].transform.colorTransform;
             _local_3.color = _arg_1;
-            _local_3.alphaMultiplier = (1 - (_local_2 * 0.3));
+            _local_3.alphaMultiplier = 1 - _local_2 * 0.3;
             this.animatedOutlines[_local_2].transform.colorTransform = _local_3;
             _local_2--;
         }
@@ -229,7 +229,7 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
         }
         else {
             if (_arg_1 == 1) {
-                this.animationStartIndex = (this.animatedOutlines.length - 1);
+                this.animationStartIndex = this.animatedOutlines.length - 1;
             }
         }
         addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
@@ -244,15 +244,15 @@ public class ModalItemSlot extends FoodFeedFuseSlot {
         var _local_2:Bitmap = new Bitmap(_arg_1.bitmapData);
         this.embeddedSprite_ = new Sprite();
         this.embeddedSpriteCopy_ = new Sprite();
-        this.embeddedSprite_.x = ((100 - this.embeddedImage_.width) * 0.5);
-        this.embeddedSprite_.y = ((46 - this.embeddedImage_.height) * 0.5);
+        this.embeddedSprite_.x = (100 - this.embeddedImage_.width) * 0.5;
+        this.embeddedSprite_.y = (46 - this.embeddedImage_.height) * 0.5;
         this.embeddedSpriteCopy_.x = this.embeddedSprite_.x;
         this.embeddedSpriteCopy_.y = this.embeddedSprite_.y;
         this.embeddedSprite_.addChild(this.embeddedImage_);
         this.embeddedSpriteCopy_.addChild(_local_2);
         addChild(this.embeddedSpriteCopy_);
         addChild(this.embeddedSprite_);
-        if (((!((itemSprite == null))) && (!((getChildIndex(itemSprite) == -1))))) {
+        if (!(itemSprite == null) && !(getChildIndex(itemSprite) == -1)) {
             removeChild(itemSprite);
             addChild(itemSprite);
         }

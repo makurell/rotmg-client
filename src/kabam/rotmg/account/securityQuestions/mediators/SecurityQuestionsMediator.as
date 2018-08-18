@@ -36,8 +36,7 @@ public class SecurityQuestionsMediator extends Mediator {
     [Inject]
     public var securityQuestionsModel:SecurityQuestionsModel;
 
-    override public function initialize():void
-    {
+    override public function initialize():void {
         this.view.rightButton_.addEventListener(MouseEvent.CLICK, this.onShowConfirmationClick);
         this.infoView.rightButton_.addEventListener(MouseEvent.CLICK, this.onContinueClick);
         this.confirmationView.leftButton_.addEventListener(MouseEvent.CLICK, this.onBackClick);
@@ -45,8 +44,7 @@ public class SecurityQuestionsMediator extends Mediator {
         this.taskError.add(this.onTaskError);
     }
 
-    override public function destroy():void
-    {
+    override public function destroy():void {
         this.taskError.remove(this.onTaskError);
         this.view.rightButton_.removeEventListener(MouseEvent.CLICK, this.onShowConfirmationClick);
         this.infoView.rightButton_.removeEventListener(MouseEvent.CLICK, this.onContinueClick);
@@ -57,48 +55,40 @@ public class SecurityQuestionsMediator extends Mediator {
         this.confirmationView.dispose();
     }
 
-    private function onTaskError(_arg_1:Task):void
-    {
+    private function onTaskError(_arg_1:Task):void {
         this.confirmationView.enable();
         this.confirmationView.setError(_arg_1.error);
     }
 
-    private function onShowConfirmationClick(_arg_1:MouseEvent):void
-    {
+    private function onShowConfirmationClick(_arg_1:MouseEvent):void {
         this.view.clearErrors();
-        if(!this.view.areQuestionsValid())
-        {
+        if (!this.view.areQuestionsValid()) {
             this.view.displayErrorText();
         }
-        else
-        {
+        else {
             this.securityQuestionsModel.securityQuestionsAnswers = this.view.getAnswers();
             this.closeDialogs.dispatch();
             this.openDialog.dispatch(new SecurityQuestionsConfirmDialog(this.securityQuestionsModel.securityQuestionsList, this.securityQuestionsModel.securityQuestionsAnswers));
         }
     }
 
-    private function onBackClick(_arg_1:MouseEvent):void
-    {
+    private function onBackClick(_arg_1:MouseEvent):void {
         this.closeDialogs.dispatch();
         this.openDialog.dispatch(new SecurityQuestionsDialog(this.securityQuestionsModel.securityQuestionsList, this.securityQuestionsModel.securityQuestionsAnswers));
     }
 
-    private function onContinueClick(_arg_1:MouseEvent):void
-    {
+    private function onContinueClick(_arg_1:MouseEvent):void {
         this.closeDialogs.dispatch();
         this.openDialog.dispatch(new SecurityQuestionsDialog(this.securityQuestionsModel.securityQuestionsList, []));
     }
 
-    private function onSaveQuestions(_arg_1:MouseEvent):void
-    {
+    private function onSaveQuestions(_arg_1:MouseEvent):void {
         var _local_3:String = null;
         this.confirmationView.disable();
         this.confirmationView.setInProgressMessage();
         var _local_2:SecurityQuestionsData = new SecurityQuestionsData();
         _local_2.answers = [];
-        for each(_local_3 in this.securityQuestionsModel.securityQuestionsAnswers)
-        {
+        for each(_local_3 in this.securityQuestionsModel.securityQuestionsAnswers) {
             _local_2.answers.push(Base64.encode(_local_3));
         }
         this.saveQuestions.dispatch(_local_2);

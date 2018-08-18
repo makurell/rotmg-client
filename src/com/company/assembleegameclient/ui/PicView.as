@@ -28,12 +28,12 @@ public class PicView extends Sprite {
     private function onAddedToStage(_arg_1:Event):void {
         this.saveButton_.addEventListener(MouseEvent.CLICK, this.onSave);
         this.closeButton_.addEventListener(MouseEvent.CLICK, this.onClose);
-        this.bitmap_.x = ((stage.stageHeight / 2) - (this.bitmap_.width / 2));
-        this.bitmap_.y = ((stage.stageHeight / 2) - (this.bitmap_.height / 2));
-        this.closeButton_.x = ((this.bitmap_.x + this.bitmap_.width) - this.closeButton_.width);
-        this.closeButton_.y = ((this.bitmap_.y + this.bitmap_.height) + 10);
-        this.saveButton_.x = ((this.closeButton_.x - this.saveButton_.width) - 10);
-        this.saveButton_.y = ((this.bitmap_.y + this.bitmap_.height) + 10);
+        this.bitmap_.x = stage.stageHeight / 2 - this.bitmap_.width / 2;
+        this.bitmap_.y = stage.stageHeight / 2 - this.bitmap_.height / 2;
+        this.closeButton_.x = (this.bitmap_.x + this.bitmap_.width) - this.closeButton_.width;
+        this.closeButton_.y = this.bitmap_.y + this.bitmap_.height + 10;
+        this.saveButton_.x = this.closeButton_.x - this.saveButton_.width - 10;
+        this.saveButton_.y = this.bitmap_.y + this.bitmap_.height + 10;
     }
 
     private function onRemovedFromStage(_arg_1:Event):void {

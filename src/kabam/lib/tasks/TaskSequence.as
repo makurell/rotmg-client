@@ -10,7 +10,7 @@ public class TaskSequence extends BaseTask {
     }
 
     public function getContinueOnFail():Boolean {
-        return (this.continueOnFail);
+        return this.continueOnFail;
     }
 
     public function setContinueOnFail(_arg_1:Boolean):void {
@@ -43,7 +43,7 @@ public class TaskSequence extends BaseTask {
     }
 
     private function isAnotherTask():Boolean {
-        return ((this.index < this.tasks.length));
+        return this.index < this.tasks.length;
     }
 
     private function doNextTask():void {
@@ -53,7 +53,7 @@ public class TaskSequence extends BaseTask {
     }
 
     private function onTaskFinished(_arg_1:Task, _arg_2:Boolean, _arg_3:String):void {
-        if (((_arg_2) || (this.continueOnFail))) {
+        if (_arg_2 || this.continueOnFail) {
             this.doNextTaskOrComplete();
         }
         else {

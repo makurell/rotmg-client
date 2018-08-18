@@ -28,7 +28,7 @@ public class GetLegendsListTask extends BaseTask {
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.updateFameListData(_arg_2)));
+        _arg_1 && this.updateFameListData(_arg_2);
         completeTask(_arg_1, _arg_2);
     }
 
@@ -42,7 +42,7 @@ public class GetLegendsListTask extends BaseTask {
         _local_1.timespan = this.timespan.getId();
         _local_1.accountId = this.player.getAccountId();
         _local_1.charId = this.charId;
-        return (_local_1);
+        return _local_1;
     }
 
 

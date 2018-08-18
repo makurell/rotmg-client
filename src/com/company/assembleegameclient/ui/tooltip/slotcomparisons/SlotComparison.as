@@ -31,20 +31,20 @@ public class SlotComparison {
 
     protected function getTextColor(_arg_1:Number):uint {
         if (_arg_1 < 0) {
-            return (WORSE_COLOR);
+            return WORSE_COLOR;
         }
         if (_arg_1 > 0) {
-            return (BETTER_COLOR);
+            return BETTER_COLOR;
         }
-        return (NO_DIFF_COLOR);
+        return NO_DIFF_COLOR;
     }
 
     protected function wrapInColoredFont(_arg_1:String, _arg_2:uint = 16777103):String {
-        return ((((('<font color="#' + _arg_2.toString(16)) + '">') + _arg_1) + "</font>"));
+        return '<font color="#' + _arg_2.toString(16) + '">' + _arg_1 + "</font>";
     }
 
     protected function getMpCostText(_arg_1:String):String {
-        return (((this.wrapInColoredFont("MP Cost: ", LABEL_COLOR) + this.wrapInColoredFont(_arg_1, NO_DIFF_COLOR)) + "\n"));
+        return this.wrapInColoredFont("MP Cost: ", LABEL_COLOR) + this.wrapInColoredFont(_arg_1, NO_DIFF_COLOR) + "\n";
     }
 
 

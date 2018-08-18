@@ -23,11 +23,11 @@ public class Graveyard extends Sprite {
     }
 
     public function hasCharacters():Boolean {
-        return (this.hasCharacters_);
+        return this.hasCharacters_;
     }
 
     public function addLine(_arg_1:GraveyardLine):void {
-        _arg_1.y = (4 + (this.lines_.length * (GraveyardLine.HEIGHT + 4)));
+        _arg_1.y = 4 + this.lines_.length * (GraveyardLine.HEIGHT + 4);
         this.lines_.push(_arg_1);
         addChild(_arg_1);
     }

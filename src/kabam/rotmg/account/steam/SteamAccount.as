@@ -21,19 +21,19 @@ public class SteamAccount implements Account {
     }
 
     public function getUserName():String {
-        return (this.api.getPersonaName());
+        return this.api.getPersonaName();
     }
 
     public function getUserId():String {
-        return ((this.userId = ((this.userId) || (""))));
+        return this.userId = this.userId || "";
     }
 
     public function getPassword():String {
-        return ("");
+        return "";
     }
 
     public function getSecret():String {
-        return ((this.password = ((this.password) || (""))));
+        return this.password = this.password || "";
     }
 
     public function getCredentials():Object {
@@ -41,27 +41,27 @@ public class SteamAccount implements Account {
         _local_1.guid = this.getUserId();
         _local_1.secret = this.getSecret();
         _local_1.steamid = this.api.getSteamId();
-        return (_local_1);
+        return _local_1;
     }
 
     public function isRegistered():Boolean {
-        return (!((this.getSecret() == "")));
+        return !(this.getSecret() == "");
     }
 
     public function isLinked():Boolean {
-        return (EmailValidator.isValidEmail(this.userId));
+        return EmailValidator.isValidEmail(this.userId);
     }
 
     public function gameNetworkUserId():String {
-        return (this.api.getSteamId());
+        return this.api.getSteamId();
     }
 
     public function gameNetwork():String {
-        return (NETWORK_NAME);
+        return NETWORK_NAME;
     }
 
     public function playPlatform():String {
-        return ("steam");
+        return "steam";
     }
 
     public function reportIntStat(_arg_1:String, _arg_2:int):void {
@@ -69,11 +69,11 @@ public class SteamAccount implements Account {
     }
 
     public function getRequestPrefix():String {
-        return ("/steamworks");
+        return "/steamworks";
     }
 
     public function getEntryTag():String {
-        return ("steamworks");
+        return "steamworks";
     }
 
     public function clear():void {
@@ -84,11 +84,11 @@ public class SteamAccount implements Account {
     }
 
     public function isVerified():Boolean {
-        return (this.isVerifiedEmail);
+        return this.isVerifiedEmail;
     }
 
     public function getPlatformToken():String {
-        return (((this.platformToken) || ("")));
+        return this.platformToken || "";
     }
 
     public function setPlatformToken(_arg_1:String):void {
@@ -96,15 +96,14 @@ public class SteamAccount implements Account {
     }
 
     public function getMoneyAccessToken():String {
-        throw (new Error("No current support for new Kabam offer wall on Steam."));
+        throw new Error("No current support for new Kabam offer wall on Steam.");
     }
 
     public function getMoneyUserId():String {
-        throw (new Error("No current support for new Kabam offer wall on Steam."));
+        throw new Error("No current support for new Kabam offer wall on Steam.");
     }
 
-    public function getToken():String
-    {
+    public function getToken():String {
         return "";
     }
 

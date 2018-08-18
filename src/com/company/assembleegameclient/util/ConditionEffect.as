@@ -61,54 +61,54 @@ public class ConditionEffect {
     public static const WIS_BOOST:uint = 46;
     public static const DEX_BOOST:uint = 47;
     public static const GROUND_DAMAGE:uint = 99;
-    public static const DEAD_BIT:uint = (1 << (DEAD - 1));
-    public static const QUIET_BIT:uint = (1 << (QUIET - 1));
-    public static const WEAK_BIT:uint = (1 << (WEAK - 1));
-    public static const SLOWED_BIT:uint = (1 << (SLOWED - 1));
-    public static const SICK_BIT:uint = (1 << (SICK - 1));
-    public static const DAZED_BIT:uint = (1 << (DAZED - 1));
-    public static const STUNNED_BIT:uint = (1 << (STUNNED - 1));
-    public static const BLIND_BIT:uint = (1 << (BLIND - 1));
-    public static const HALLUCINATING_BIT:uint = (1 << (HALLUCINATING - 1));
-    public static const DRUNK_BIT:uint = (1 << (DRUNK - 1));
-    public static const CONFUSED_BIT:uint = (1 << (CONFUSED - 1));
-    public static const STUN_IMMUNE_BIT:uint = (1 << (STUN_IMMUNE - 1));
-    public static const INVISIBLE_BIT:uint = (1 << (INVISIBLE - 1));
-    public static const PARALYZED_BIT:uint = (1 << (PARALYZED - 1));
-    public static const SPEEDY_BIT:uint = (1 << (SPEEDY - 1));
-    public static const BLEEDING_BIT:uint = (1 << (BLEEDING - 1));
-    public static const ARMORBROKEN_IMMUNE_BIT:uint = (1 << (ARMORBROKENIMMUNE - 1));
-    public static const HEALING_BIT:uint = (1 << (HEALING - 1));
-    public static const DAMAGING_BIT:uint = (1 << (DAMAGING - 1));
-    public static const BERSERK_BIT:uint = (1 << (BERSERK - 1));
-    public static const PAUSED_BIT:uint = (1 << (PAUSED - 1));
-    public static const STASIS_BIT:uint = (1 << (STASIS - 1));
-    public static const STASIS_IMMUNE_BIT:uint = (1 << (STASIS_IMMUNE - 1));
-    public static const INVINCIBLE_BIT:uint = (1 << (INVINCIBLE - 1));
-    public static const INVULNERABLE_BIT:uint = (1 << (INVULNERABLE - 1));
-    public static const ARMORED_BIT:uint = (1 << (ARMORED - 1));
-    public static const ARMORBROKEN_BIT:uint = (1 << (ARMORBROKEN - 1));
-    public static const HEXED_BIT:uint = (1 << (HEXED - 1));
-    public static const NINJA_SPEEDY_BIT:uint = (1 << (NINJA_SPEEDY - 1));
-    public static const UNSTABLE_BIT:uint = (1 << (UNSTABLE - 1));
-    public static const DARKNESS_BIT:uint = (1 << (DARKNESS - 1));
-    public static const SLOWED_IMMUNE_BIT:uint = (1 << (SLOWED_IMMUNE - NEW_CON_THREASHOLD));
-    public static const DAZED_IMMUNE_BIT:uint = (1 << (DAZED_IMMUNE - NEW_CON_THREASHOLD));
-    public static const PARALYZED_IMMUNE_BIT:uint = (1 << (PARALYZED_IMMUNE - NEW_CON_THREASHOLD));
-    public static const PETRIFIED_BIT:uint = (1 << (PETRIFIED - NEW_CON_THREASHOLD));
-    public static const PETRIFIED_IMMUNE_BIT:uint = (1 << (PETRIFIED_IMMUNE - NEW_CON_THREASHOLD));
-    public static const PET_EFFECT_ICON_BIT:uint = (1 << (PET_EFFECT_ICON - NEW_CON_THREASHOLD));
-    public static const CURSE_BIT:uint = (1 << (CURSE - NEW_CON_THREASHOLD));
-    public static const CURSE_IMMUNE_BIT:uint = (1 << (CURSE_IMMUNE - NEW_CON_THREASHOLD));
-    public static const HP_BOOST_BIT:uint = (1 << (HP_BOOST - NEW_CON_THREASHOLD));
-    public static const MP_BOOST_BIT:uint = (1 << (MP_BOOST - NEW_CON_THREASHOLD));
-    public static const ATT_BOOST_BIT:uint = (1 << (ATT_BOOST - NEW_CON_THREASHOLD));
-    public static const DEF_BOOST_BIT:uint = (1 << (DEF_BOOST - NEW_CON_THREASHOLD));
-    public static const SPD_BOOST_BIT:uint = (1 << (SPD_BOOST - NEW_CON_THREASHOLD));
-    public static const VIT_BOOST_BIT:uint = (1 << (VIT_BOOST - NEW_CON_THREASHOLD));
-    public static const WIS_BOOST_BIT:uint = (1 << (WIS_BOOST - NEW_CON_THREASHOLD));
-    public static const DEX_BOOST_BIT:uint = (1 << (DEX_BOOST - NEW_CON_THREASHOLD));
-    public static const MAP_FILTER_BITMASK:uint = ((DRUNK_BIT | BLIND_BIT) | PAUSED_BIT);
+    public static const DEAD_BIT:uint = 1 << DEAD - 1;
+    public static const QUIET_BIT:uint = 1 << QUIET - 1;
+    public static const WEAK_BIT:uint = 1 << WEAK - 1;
+    public static const SLOWED_BIT:uint = 1 << SLOWED - 1;
+    public static const SICK_BIT:uint = 1 << SICK - 1;
+    public static const DAZED_BIT:uint = 1 << DAZED - 1;
+    public static const STUNNED_BIT:uint = 1 << STUNNED - 1;
+    public static const BLIND_BIT:uint = 1 << BLIND - 1;
+    public static const HALLUCINATING_BIT:uint = 1 << HALLUCINATING - 1;
+    public static const DRUNK_BIT:uint = 1 << DRUNK - 1;
+    public static const CONFUSED_BIT:uint = 1 << CONFUSED - 1;
+    public static const STUN_IMMUNE_BIT:uint = 1 << STUN_IMMUNE - 1;
+    public static const INVISIBLE_BIT:uint = 1 << INVISIBLE - 1;
+    public static const PARALYZED_BIT:uint = 1 << PARALYZED - 1;
+    public static const SPEEDY_BIT:uint = 1 << SPEEDY - 1;
+    public static const BLEEDING_BIT:uint = 1 << BLEEDING - 1;
+    public static const ARMORBROKEN_IMMUNE_BIT:uint = 1 << ARMORBROKENIMMUNE - 1;
+    public static const HEALING_BIT:uint = 1 << HEALING - 1;
+    public static const DAMAGING_BIT:uint = 1 << DAMAGING - 1;
+    public static const BERSERK_BIT:uint = 1 << BERSERK - 1;
+    public static const PAUSED_BIT:uint = 1 << PAUSED - 1;
+    public static const STASIS_BIT:uint = 1 << STASIS - 1;
+    public static const STASIS_IMMUNE_BIT:uint = 1 << STASIS_IMMUNE - 1;
+    public static const INVINCIBLE_BIT:uint = 1 << INVINCIBLE - 1;
+    public static const INVULNERABLE_BIT:uint = 1 << INVULNERABLE - 1;
+    public static const ARMORED_BIT:uint = 1 << ARMORED - 1;
+    public static const ARMORBROKEN_BIT:uint = 1 << ARMORBROKEN - 1;
+    public static const HEXED_BIT:uint = 1 << HEXED - 1;
+    public static const NINJA_SPEEDY_BIT:uint = 1 << NINJA_SPEEDY - 1;
+    public static const UNSTABLE_BIT:uint = 1 << UNSTABLE - 1;
+    public static const DARKNESS_BIT:uint = 1 << DARKNESS - 1;
+    public static const SLOWED_IMMUNE_BIT:uint = 1 << SLOWED_IMMUNE - NEW_CON_THREASHOLD;
+    public static const DAZED_IMMUNE_BIT:uint = 1 << DAZED_IMMUNE - NEW_CON_THREASHOLD;
+    public static const PARALYZED_IMMUNE_BIT:uint = 1 << PARALYZED_IMMUNE - NEW_CON_THREASHOLD;
+    public static const PETRIFIED_BIT:uint = 1 << PETRIFIED - NEW_CON_THREASHOLD;
+    public static const PETRIFIED_IMMUNE_BIT:uint = 1 << PETRIFIED_IMMUNE - NEW_CON_THREASHOLD;
+    public static const PET_EFFECT_ICON_BIT:uint = 1 << PET_EFFECT_ICON - NEW_CON_THREASHOLD;
+    public static const CURSE_BIT:uint = 1 << CURSE - NEW_CON_THREASHOLD;
+    public static const CURSE_IMMUNE_BIT:uint = 1 << CURSE_IMMUNE - NEW_CON_THREASHOLD;
+    public static const HP_BOOST_BIT:uint = 1 << HP_BOOST - NEW_CON_THREASHOLD;
+    public static const MP_BOOST_BIT:uint = 1 << MP_BOOST - NEW_CON_THREASHOLD;
+    public static const ATT_BOOST_BIT:uint = 1 << ATT_BOOST - NEW_CON_THREASHOLD;
+    public static const DEF_BOOST_BIT:uint = 1 << DEF_BOOST - NEW_CON_THREASHOLD;
+    public static const SPD_BOOST_BIT:uint = 1 << SPD_BOOST - NEW_CON_THREASHOLD;
+    public static const VIT_BOOST_BIT:uint = 1 << VIT_BOOST - NEW_CON_THREASHOLD;
+    public static const WIS_BOOST_BIT:uint = 1 << WIS_BOOST - NEW_CON_THREASHOLD;
+    public static const DEX_BOOST_BIT:uint = 1 << DEX_BOOST - NEW_CON_THREASHOLD;
+    public static const MAP_FILTER_BITMASK:uint = DRUNK_BIT | BLIND_BIT | PAUSED_BIT;
     public static const CE_FIRST_BATCH:uint = 0;
     public static const CE_SECOND_BATCH:uint = 1;
     public static const NUMBER_CE_BATCHES:uint = 2;
@@ -144,17 +144,17 @@ public class ConditionEffect {
                 _local_2++;
             }
         }
-        return (conditionEffectFromName_[_arg_1]);
+        return conditionEffectFromName_[_arg_1];
     }
 
     public static function getConditionEffectEnumFromName(_arg_1:String):ConditionEffect {
         var _local_2:ConditionEffect;
         for each (_local_2 in effects_) {
             if (_local_2.name_ == _arg_1) {
-                return (_local_2);
+                return _local_2;
             }
         }
-        return (null);
+        return null;
     }
 
     public static function getConditionEffectIcons(_arg_1:uint, _arg_2:Vector.<BitmapData>, _arg_3:int):void {
@@ -162,8 +162,8 @@ public class ConditionEffect {
         var _local_5:uint;
         var _local_6:Vector.<BitmapData>;
         while (_arg_1 != 0) {
-            _local_4 = (_arg_1 & (_arg_1 - 1));
-            _local_5 = (_arg_1 ^ _local_4);
+            _local_4 = _arg_1 & _arg_1 - 1;
+            _local_5 = _arg_1 ^ _local_4;
             _local_6 = getIconsFromBit(_local_5);
             if (_local_6 != null) {
                 _arg_2.push(_local_6[(_arg_3 % _local_6.length)]);
@@ -177,8 +177,8 @@ public class ConditionEffect {
         var _local_5:uint;
         var _local_6:Vector.<BitmapData>;
         while (_arg_1 != 0) {
-            _local_4 = (_arg_1 & (_arg_1 - 1));
-            _local_5 = (_arg_1 ^ _local_4);
+            _local_4 = _arg_1 & _arg_1 - 1;
+            _local_5 = _arg_1 ^ _local_4;
             _local_6 = getIconsFromBit2(_local_5);
             if (_local_6 != null) {
                 _arg_2.push(_local_6[(_arg_3 % _local_6.length)]);
@@ -246,7 +246,7 @@ public class ConditionEffect {
                 _local_3++;
             }
         }
-        return (bitToIcon_[_arg_1]);
+        return bitToIcon_[_arg_1];
     }
 
     private static function getIconsFromBit2(_arg_1:uint):Vector.<BitmapData> {
@@ -288,10 +288,10 @@ public class ConditionEffect {
                 _local_6++;
             }
         }
-        if (((!((bitToIcon2_ == null))) && (!((bitToIcon2_[_arg_1] == null))))) {
-            return (bitToIcon2_[_arg_1]);
+        if (!(bitToIcon2_ == null) && !(bitToIcon2_[_arg_1] == null)) {
+            return bitToIcon2_[_arg_1];
         }
-        return (null);
+        return null;
     }
 
 

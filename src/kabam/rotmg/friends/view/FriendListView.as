@@ -85,7 +85,7 @@ public class FriendListView extends Sprite implements DialogCloser {
 
     public function destroy():void {
         while (numChildren > 0) {
-            this.removeChildAt((numChildren - 1));
+            this.removeChildAt(numChildren - 1);
         }
         this._addButton.removeEventListener(MouseEvent.CLICK, this.onAddFriendClicked);
         this._addButton = null;
@@ -101,10 +101,10 @@ public class FriendListView extends Sprite implements DialogCloser {
         var _local_3:FriendVO;
         var _local_4:FListItem;
         var _local_5:int;
-        this._friendDefaultText.visible = (_arg_1.length <= 0);
-        _local_5 = (this._friendsContainer.getTotal() - _arg_1.length);
+        this._friendDefaultText.visible = _arg_1.length <= 0;
+        _local_5 = this._friendsContainer.getTotal() - _arg_1.length;
         while (_local_5 > 0) {
-            this._friendsContainer.removeChildAt((this._friendsContainer.getTotal() - 1));
+            this._friendsContainer.removeChildAt(this._friendsContainer.getTotal() - 1);
             _local_5--;
         }
         _local_5 = 0;
@@ -131,10 +131,10 @@ public class FriendListView extends Sprite implements DialogCloser {
         var _local_3:FListItem;
         var _local_4:int;
         this._tabView.showTabBadget(1, _arg_1.length);
-        this._inviteDefaultText.visible = (_arg_1.length == 0);
-        _local_4 = (this._invitationsContainer.getTotal() - _arg_1.length);
+        this._inviteDefaultText.visible = _arg_1.length == 0;
+        _local_4 = this._invitationsContainer.getTotal() - _arg_1.length;
         while (_local_4 > 0) {
-            this._invitationsContainer.removeChildAt((this._invitationsContainer.getTotal() - 1));
+            this._invitationsContainer.removeChildAt(this._invitationsContainer.getTotal() - 1);
             _local_4--;
         }
         _local_4 = 0;
@@ -182,7 +182,7 @@ public class FriendListView extends Sprite implements DialogCloser {
         this._friendTotalText.x = 400;
         this._friendTotalText.y = 0;
         _local_1.addChild(this._friendTotalText);
-        this._friendsContainer = new FriendListContainer(TEXT_WIDTH, (TEXT_HEIGHT - 110));
+        this._friendsContainer = new FriendListContainer(TEXT_WIDTH, TEXT_HEIGHT - 110);
         this._friendsContainer.x = 3;
         this._friendsContainer.y = 80;
         _local_1.addChild(this._friendsContainer);
@@ -196,7 +196,7 @@ public class FriendListView extends Sprite implements DialogCloser {
         var _local_1:Sprite;
         _local_1 = new Sprite();
         _local_1.name = FriendConstant.INVITE_TAB;
-        this._invitationsContainer = new FriendListContainer(TEXT_WIDTH, (TEXT_HEIGHT - 30));
+        this._invitationsContainer = new FriendListContainer(TEXT_WIDTH, TEXT_HEIGHT - 30);
         this._invitationsContainer.x = 3;
         _local_1.addChild(this._invitationsContainer);
         this._inviteDefaultText = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setBold(true).setAutoSize(TextFieldAutoSize.CENTER);
@@ -221,7 +221,7 @@ public class FriendListView extends Sprite implements DialogCloser {
     }
 
     public function getCloseSignal():Signal {
-        return (this.closeDialogSignal);
+        return this.closeDialogSignal;
     }
 
     public function updateInput(_arg_1:String, _arg_2:Object = null):void {
@@ -252,12 +252,12 @@ public class FriendListView extends Sprite implements DialogCloser {
     }
 
     private function drawBackground():void {
-        this._h = (TEXT_HEIGHT + 8);
-        x = ((800 / 2) - (this._w / 2));
-        y = ((600 / 2) - (this._h / 2));
+        this._h = TEXT_HEIGHT + 8;
+        x = 800 / 2 - this._w / 2;
+        y = 600 / 2 - this._h / 2;
         graphics.clear();
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(-6, -6, (this._w + 12), (this._h + 12), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(-6, -6, this._w + 12, this._h + 12, 4, [1, 1, 1, 1], this.path_);
         graphics.drawGraphicsData(this.graphicsData_);
     }
 

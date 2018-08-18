@@ -20,7 +20,7 @@ public class EnemyHit extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ENEMYHIT", "time_", "bulletId_", "targetId_", "kill_"));
+        return formatToString("ENEMYHIT", "time_", "bulletId_", "targetId_", "kill_");
     }
 
 

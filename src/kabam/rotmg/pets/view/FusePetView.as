@@ -22,7 +22,7 @@ public class FusePetView extends PetInteractionView implements DialogCloser {
 
     private static const closeDialogSignal:Signal = new Signal();
 
-    public const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(TextKey.PET_FUSER_BUTTON_BAR_PREFIX, (PetsConstants.FUSER_WINDOW_BACKGROUND_HEIGHT - 39));
+    public const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(TextKey.PET_FUSER_BUTTON_BAR_PREFIX, PetsConstants.FUSER_WINDOW_BACKGROUND_HEIGHT - 39);
     private const background:PopupWindowBackground = PetsViewAssetFactory.returnFuserWindowBackground();
     private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 18, true);
     private const descriptionTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnFuseDescriptionTextfield();
@@ -44,8 +44,8 @@ public class FusePetView extends PetInteractionView implements DialogCloser {
         this.openPetPicker = this.petFuser.openPetPicker;
         this.goldPurchase = this.buttonBar.goldButtonClicked;
         this.famePurchase = this.buttonBar.fameButtonClicked;
-        this.buttonBar.setDisabled(!(_arg_1.isAcceptableFuseState()));
-        this.buttonBar.setPrefix(((_arg_1.isAcceptableFuseState()) ? TextKey.PET_FUSER_BUTTON_BAR_PREFIX : TextKey.PET_SELECT_PET));
+        this.buttonBar.setDisabled(!_arg_1.isAcceptableFuseState());
+        this.buttonBar.setPrefix(_arg_1.isAcceptableFuseState() ? TextKey.PET_FUSER_BUTTON_BAR_PREFIX : TextKey.PET_SELECT_PET);
         if (_arg_1.isAcceptableFuseState()) {
             this.buttonBar.setGoldPrice(FeedFuseCostModel.getFuseGoldCost(PetRarityEnum.selectByValue(_arg_1.leftSlotPetVO.getRarity())));
             this.buttonBar.setFamePrice(FeedFuseCostModel.getFuseFameCost(PetRarityEnum.selectByValue(_arg_1.leftSlotPetVO.getRarity())));
@@ -80,7 +80,7 @@ public class FusePetView extends PetInteractionView implements DialogCloser {
     }
 
     private function positionPetFeeder():void {
-        this.petFuser.x = Math.round(((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.petFuser.width) * 0.5));
+        this.petFuser.x = Math.round((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.petFuser.width) * 0.5);
     }
 
     private function waitForTextChanged():void {
@@ -93,12 +93,12 @@ public class FusePetView extends PetInteractionView implements DialogCloser {
 
     private function positionTextField():void {
         this.titleTextfield.y = 5;
-        this.titleTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5);
-        this.descriptionTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.descriptionTextfield.width) * 0.5);
+        this.titleTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5;
+        this.descriptionTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.descriptionTextfield.width) * 0.5;
     }
 
     private function positionButtonBar():void {
-        this.buttonBar.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2);
+        this.buttonBar.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2;
     }
 
     private function onClose():void {
@@ -106,7 +106,7 @@ public class FusePetView extends PetInteractionView implements DialogCloser {
     }
 
     public function getCloseSignal():Signal {
-        return (closeDialogSignal);
+        return closeDialogSignal;
     }
 
 

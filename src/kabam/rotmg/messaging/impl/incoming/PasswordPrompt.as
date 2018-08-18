@@ -14,7 +14,7 @@ public class PasswordPrompt extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("PASSWORDPROMPT", "cleanPasswordStatus"));
+        return formatToString("PASSWORDPROMPT", "cleanPasswordStatus");
     }
 
 

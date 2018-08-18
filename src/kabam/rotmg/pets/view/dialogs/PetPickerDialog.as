@@ -22,11 +22,11 @@ public class PetPickerDialog extends PetDialog {
     }
 
     override protected function setDialogWidth():int {
-        return (330);
+        return 330;
     }
 
     private function makePetPicker():void {
-        this.petPicker.setSize(new Size((dialogWidth - (padding * 2)), pickerHeight));
+        this.petPicker.setSize(new Size(dialogWidth - padding * 2, pickerHeight));
         this.petPicker.setPadding(8);
         this.petPicker.setPetSize(48);
     }
@@ -45,18 +45,18 @@ public class PetPickerDialog extends PetDialog {
 
     private function addLineBreak():void {
         var _local_1:LineBreakDesign;
-        _local_1 = new LineBreakDesign((dialogWidth - (padding * 2)), 0);
+        _local_1 = new LineBreakDesign(dialogWidth - padding * 2, 0);
         _local_1.x = padding;
         _local_1.y = this.getBoxBottomWithPadding();
         box_.addChild(_local_1);
     }
 
     private function getBoxBottomWithPadding():Number {
-        return ((box_.getBounds(this).bottom + padding));
+        return box_.getBounds(this).bottom + padding;
     }
 
     override protected function getBoxHeight():Number {
-        return ((super.getBoxHeight() - (this.petPicker.height - pickerHeight)));
+        return super.getBoxHeight() - (this.petPicker.height - pickerHeight);
     }
 
 

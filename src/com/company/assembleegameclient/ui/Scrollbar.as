@@ -52,26 +52,26 @@ public class Scrollbar extends Sprite {
     private static function drawArrow(_arg_1:int, _arg_2:int, _arg_3:Graphics):void {
         _arg_3.clear();
         _arg_3.beginFill(0x353535, 0.01);
-        _arg_3.drawRect((-(_arg_1) / 2), (-(_arg_2) / 2), _arg_1, _arg_2);
+        _arg_3.drawRect(-_arg_1 / 2, -_arg_2 / 2, _arg_1, _arg_2);
         _arg_3.endFill();
         _arg_3.beginFill(0xFFFFFF, 1);
-        _arg_3.moveTo((-(_arg_1) / 2), (-(_arg_2) / 2));
-        _arg_3.lineTo((_arg_1 / 2), 0);
-        _arg_3.lineTo((-(_arg_1) / 2), (_arg_2 / 2));
-        _arg_3.lineTo((-(_arg_1) / 2), (-(_arg_2) / 2));
+        _arg_3.moveTo(-_arg_1 / 2, -_arg_2 / 2);
+        _arg_3.lineTo(_arg_1 / 2, 0);
+        _arg_3.lineTo(-_arg_1 / 2, _arg_2 / 2);
+        _arg_3.lineTo(-_arg_1 / 2, -_arg_2 / 2);
         _arg_3.endFill();
     }
 
 
     public function pos():Number {
-        return (((this.posIndicator_.y - this.indicatorRect_.y) / (this.indicatorRect_.height - this.posIndicator_.height)));
+        return (this.posIndicator_.y - this.indicatorRect_.y) / (this.indicatorRect_.height - this.posIndicator_.height);
     }
 
     public function setIndicatorSize(_arg_1:Number, _arg_2:Number, _arg_3:Boolean = true):void {
-        var _local_4:int = (((_arg_2 == 0)) ? this.indicatorRect_.height : ((_arg_1 / _arg_2) * this.indicatorRect_.height));
+        var _local_4:int = _arg_2 == 0 ? this.indicatorRect_.height : (_arg_1 / _arg_2) * this.indicatorRect_.height;
         _local_4 = Math.min(this.indicatorRect_.height, Math.max(this.width_, _local_4));
         this.drawIndicator(this.width_, _local_4, this.posIndicator_.graphics);
-        this.jumpDist_ = ((_arg_1 / (_arg_2 - _arg_1)) * 0.33);
+        this.jumpDist_ = (_arg_1 / (_arg_2 - _arg_1)) * 0.33;
         if (_arg_3) {
             this.setPos(0);
         }
@@ -79,16 +79,16 @@ public class Scrollbar extends Sprite {
 
     public function setPos(_arg_1:Number):void {
         _arg_1 = Math.max(0, Math.min(1, _arg_1));
-        this.posIndicator_.y = ((_arg_1 * (this.indicatorRect_.height - this.posIndicator_.height)) + this.indicatorRect_.y);
+        this.posIndicator_.y = _arg_1 * (this.indicatorRect_.height - this.posIndicator_.height) + this.indicatorRect_.y;
         this.sendPos();
     }
 
     public function jumpUp():void {
-        this.setPos((this.pos() - this.jumpDist_));
+        this.setPos(this.pos() - this.jumpDist_);
     }
 
     public function jumpDown():void {
-        this.setPos((this.pos() + this.jumpDist_));
+        this.setPos(this.pos() + this.jumpDist_);
     }
 
     private function getSprite(_arg_1:Function):Sprite {
@@ -96,16 +96,16 @@ public class Scrollbar extends Sprite {
         _local_2.addEventListener(MouseEvent.MOUSE_DOWN, _arg_1);
         _local_2.addEventListener(MouseEvent.ROLL_OVER, this.onRollOver);
         _local_2.addEventListener(MouseEvent.ROLL_OUT, this.onRollOut);
-        return (_local_2);
+        return _local_2;
     }
 
     private function onRollOver(_arg_1:MouseEvent):void {
-        var _local_2:Sprite = (_arg_1.target as Sprite);
+        var _local_2:Sprite = _arg_1.target as Sprite;
         _local_2.transform.colorTransform = new ColorTransform(1, 0.8627, 0.5216);
     }
 
     private function onRollOut(_arg_1:MouseEvent):void {
-        var _local_2:Sprite = (_arg_1.target as Sprite);
+        var _local_2:Sprite = _arg_1.target as Sprite;
         _local_2.transform.colorTransform = new ColorTransform(1, 1, 1);
     }
 
@@ -163,7 +163,7 @@ public class Scrollbar extends Sprite {
         addEventListener(Event.ENTER_FRAME, this.onArrowFrame);
         addEventListener(MouseEvent.MOUSE_UP, this.onArrowUp);
         this.lastUpdateTime_ = getTimer();
-        this.change_ = -(this.speed_);
+        this.change_ = -this.speed_;
     }
 
     private function onDownArrowDown(_arg_1:MouseEvent):void {
@@ -175,9 +175,9 @@ public class Scrollbar extends Sprite {
 
     private function onArrowFrame(_arg_1:Event):void {
         var _local_2:int = getTimer();
-        var _local_3:Number = ((_local_2 - this.lastUpdateTime_) / 1000);
-        var _local_4:Number = (((this.height_ - (this.width_ * 3)) * _local_3) * this.change_);
-        this.setPos((((this.posIndicator_.y + _local_4) - this.indicatorRect_.y) / (this.indicatorRect_.height - this.posIndicator_.height)));
+        var _local_3:Number = (_local_2 - this.lastUpdateTime_) / 1000;
+        var _local_4:Number = (this.height_ - this.width_ * 3) * _local_3 * this.change_;
+        this.setPos(((this.posIndicator_.y + _local_4) - this.indicatorRect_.y) / (this.indicatorRect_.height - this.posIndicator_.height));
         this.lastUpdateTime_ = _local_2;
     }
 
@@ -187,7 +187,7 @@ public class Scrollbar extends Sprite {
     }
 
     private function onStartIndicatorDrag(_arg_1:MouseEvent):void {
-        this.posIndicator_.startDrag(false, new Rectangle(0, this.indicatorRect_.y, 0, (this.indicatorRect_.height - this.posIndicator_.height)));
+        this.posIndicator_.startDrag(false, new Rectangle(0, this.indicatorRect_.y, 0, this.indicatorRect_.height - this.posIndicator_.height));
         stage.addEventListener(MouseEvent.MOUSE_UP, this.onStopIndicatorDrag);
         stage.addEventListener(MouseEvent.MOUSE_MOVE, this.onDragMove);
         this.sendPos();
@@ -212,8 +212,8 @@ public class Scrollbar extends Sprite {
         this.width_ = _arg_1;
         this.height_ = _arg_2;
         this.speed_ = _arg_3;
-        var _local_4:int = (this.width_ * 0.75);
-        this.indicatorRect_ = new Rectangle(0, (_local_4 + 5), this.width_, ((this.height_ - (_local_4 * 2)) - 10));
+        var _local_4:int = this.width_ * 0.75;
+        this.indicatorRect_ = new Rectangle(0, _local_4 + 5, this.width_, this.height_ - _local_4 * 2 - 10);
         var _local_5:Graphics = this.background_.graphics;
         _local_5.clear();
         _local_5.beginFill(0x545454, 1);
@@ -221,11 +221,11 @@ public class Scrollbar extends Sprite {
         _local_5.endFill();
         drawArrow(_local_4, this.width_, this.upArrow_.graphics);
         this.upArrow_.rotation = -90;
-        this.upArrow_.x = (this.width_ / 2);
-        this.upArrow_.y = (_local_4 / 2);
+        this.upArrow_.x = this.width_ / 2;
+        this.upArrow_.y = _local_4 / 2;
         drawArrow(_local_4, this.width_, this.downArrow_.graphics);
-        this.downArrow_.x = (this.width_ / 2);
-        this.downArrow_.y = (this.height_ - (_local_4 / 2));
+        this.downArrow_.x = this.width_ / 2;
+        this.downArrow_.y = this.height_ - _local_4 / 2;
         this.downArrow_.rotation = 90;
         this.drawIndicator(this.width_, this.height_, this.posIndicator_.graphics);
         this.posIndicator_.x = 0;

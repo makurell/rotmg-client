@@ -12,9 +12,9 @@ public class TrapComparison extends SlotComparison {
         var matches:XMLList;
         matches = xml.Activate.(text() == "Trap");
         if (matches.length() >= 1) {
-            return (matches[0]);
+            return matches[0];
         }
-        return (null);
+        return null;
     }
 
     override protected function compareSlots(itemXML:XML, curItemXML:XML):void {
@@ -33,7 +33,7 @@ public class TrapComparison extends SlotComparison {
         trap = this.getTrapTag(itemXML);
         otherTrap = this.getTrapTag(curItemXML);
         comparisonStringBuilder = new AppendingLineBuilder();
-        if (((!((trap == null))) && (!((otherTrap == null))))) {
+        if (!(trap == null) && !(otherTrap == null)) {
             if (itemXML.@id == "Coral Venom Trap") {
                 tag = itemXML.Activate.(text() == "Trap")[0];
                 comparisonStringBuilder.pushParams(TextKey.TRAP, {
@@ -55,9 +55,9 @@ public class TrapComparison extends SlotComparison {
                 otherDamage = int(otherTrap.@totalDamage);
                 duration = int(trap.@condDuration);
                 otherDuration = int(otherTrap.@condDuration);
-                avg = (((0.33 * radius) + (0.33 * damage)) + (0.33 * duration));
-                otherAvg = (((0.33 * otherRadius) + (0.33 * otherDamage)) + (0.33 * otherDuration));
-                textColor = getTextColor((avg - otherAvg));
+                avg = 0.33 * radius + 0.33 * damage + 0.33 * duration;
+                otherAvg = 0.33 * otherRadius + 0.33 * otherDamage + 0.33 * otherDuration;
+                textColor = getTextColor(avg - otherAvg);
                 comparisonStringBuilder.pushParams(TextKey.TRAP, {
                     "data": new LineBuilder().setParams(TextKey.HP_WITHIN_SQRS, {
                         "amount": trap.@totalDamage,

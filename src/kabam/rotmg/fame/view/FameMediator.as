@@ -47,7 +47,7 @@ public class FameMediator extends Mediator {
     override public function destroy():void {
         this.view.closed.remove(this.onClosed);
         this.view.clearBackground();
-        ((this.death) && (this.death.disposeBackground()));
+        this.death && this.death.disposeBackground();
         this.task.finished.removeAll();
     }
 
@@ -55,7 +55,7 @@ public class FameMediator extends Mediator {
         this.isFreshDeath = this.deathModel.getIsDeathViewPending();
         this.view.setIsAnimation(this.isFreshDeath);
         this.death = this.deathModel.getLastDeath();
-        if (((this.death) && (this.death.background))) {
+        if (this.death && this.death.background) {
             this.view.setBackground(this.death.background);
         }
     }
@@ -76,10 +76,10 @@ public class FameMediator extends Mediator {
     }
 
     private function makeIcon():BitmapData {
-        if (((this.isFreshDeath) && (this.death.isZombie))) {
-            return (this.makeZombieTexture());
+        if (this.isFreshDeath && this.death.isZombie) {
+            return this.makeZombieTexture();
         }
-        return (this.makeNormalTexture());
+        return this.makeNormalTexture();
     }
 
     private function makeNormalTexture():BitmapData {
@@ -90,7 +90,7 @@ public class FameMediator extends Mediator {
         var _local_1:TextureData = ObjectLibrary.typeToTextureData_[this.death.zombieType];
         var _local_2:AnimatedChar = _local_1.animatedChar_;
         var _local_3:MaskedImage = _local_2.imageFromDir(AnimatedChar.RIGHT, AnimatedChar.STAND, 0);
-        return (TextureRedrawer.resize(_local_3.image_, _local_3.mask_, 250, true, this.task.texture1, this.task.texture2));
+        return TextureRedrawer.resize(_local_3.image_, _local_3.mask_, 250, true, this.task.texture1, this.task.texture2);
     }
 
     private function onClosed():void {

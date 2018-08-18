@@ -13,11 +13,11 @@ public class DeathModel {
     }
 
     public function getLastDeath():Death {
-        return (this.lastDeath);
+        return this.lastDeath;
     }
 
     public function getIsDeathViewPending():Boolean {
-        return (this.isDeathFameViewPending);
+        return this.isDeathFameViewPending;
     }
 
     public function clearPendingDeathView():void {

@@ -36,15 +36,15 @@ public class ShowBeginnersPackageCommand {
 
     private function makeSuccessTask():Task {
         var _local_1:TaskSequence = new TaskSequence();
-        ((this.account.isRegistered()) && (_local_1.add(this.getOffers)));
+        this.account.isRegistered() && _local_1.add(this.getOffers);
         _local_1.add(new DispatchSignalTask(this.openDialog, new BeginnersPackageOfferDialog()));
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeFailureTask():Task {
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new DispatchSignalTask(this.openDialog, new AlreadyPurchasedBeginnersPackageDialog()));
-        return (_local_1);
+        return _local_1;
     }
 
 

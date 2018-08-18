@@ -33,11 +33,11 @@ public class VerifyAgeCommand {
     }
 
     private function makeSuccessTask():Task {
-        return (new DispatchSignalTask(this.setScreen, new CharacterSelectionAndNewsScreen()));
+        return new DispatchSignalTask(this.setScreen, new CharacterSelectionAndNewsScreen());
     }
 
     private function makeFailureTask():Task {
-        return (new DispatchSignalTask(this.openDialog, new ErrorDialog(this.UNABLE_TO_VERIFY)));
+        return new DispatchSignalTask(this.openDialog, new ErrorDialog(this.UNABLE_TO_VERIFY));
     }
 
 

@@ -12,7 +12,7 @@ public class FortuneGround extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new FortuneGroundPanel(_arg_1, objectType_));
+        return new FortuneGroundPanel(_arg_1, objectType_);
     }
 
 

@@ -49,48 +49,48 @@ public class FameOrGoldBuyButtons extends Sprite {
     public function setDisabled(_arg_1:Boolean):void {
         if (this.disabled != _arg_1) {
             this.disabled = _arg_1;
-            this.goldButton.setEnabled(!(this.disabled));
-            this.fameButton.setEnabled(!(this.disabled));
+            this.goldButton.setEnabled(!this.disabled);
+            this.fameButton.setEnabled(!this.disabled);
         }
     }
 
     public function isDisabled():Boolean {
-        return (this.disabled);
+        return this.disabled;
     }
 
     public function setGoldPrice(_arg_1:int):void {
         this.goldButton.setPrice(_arg_1, Currency.GOLD);
-        ((!(contains(this.goldButton))) && (addChild(this.goldButton)));
+        !contains(this.goldButton) && addChild(this.goldButton);
     }
 
     public function getGoldPrice():int {
-        return (this.goldButton.getPrice());
+        return this.goldButton.getPrice();
     }
 
     public function setPrefix(_arg_1:String):void {
         this.prefix.setStringBuilder(new LineBuilder().setParams(_arg_1));
-        ((!(contains(this.prefix))) && (addChild(this.prefix)));
+        !contains(this.prefix) && addChild(this.prefix);
     }
 
     public function clearFameAndGold():void {
-        ((contains(this.goldButton)) && (removeChild(this.goldButton)));
-        ((contains(this.fameButton)) && (removeChild(this.fameButton)));
-        ((contains(this.or)) && (removeChild(this.or)));
+        contains(this.goldButton) && removeChild(this.goldButton);
+        contains(this.fameButton) && removeChild(this.fameButton);
+        contains(this.or) && removeChild(this.or);
     }
 
     private function positionComponents():void {
         if (contains(this.goldButton)) {
-            this.goldButton.x = (this.prefix.width + this.spacing);
+            this.goldButton.x = this.prefix.width + this.spacing;
         }
         if (contains(this.fameButton)) {
             if (contains(this.goldButton)) {
-                ((!(contains(this.or))) && (addChild(this.or)));
+                !contains(this.or) && addChild(this.or);
                 this.or.textChanged.addOnce(this.positionComponents);
-                this.or.x = ((this.goldButton.x + this.goldButton.width) + this.spacing);
-                this.fameButton.x = ((this.or.x + this.or.width) + this.spacing);
+                this.or.x = this.goldButton.x + this.goldButton.width + this.spacing;
+                this.fameButton.x = this.or.x + this.or.width + this.spacing;
             }
             else {
-                this.fameButton.x = (this.prefix.width + this.spacing);
+                this.fameButton.x = this.prefix.width + this.spacing;
             }
         }
         this.positioned.dispatch();
@@ -98,11 +98,11 @@ public class FameOrGoldBuyButtons extends Sprite {
 
     public function setFamePrice(_arg_1:int):void {
         this.fameButton.setPrice(_arg_1, Currency.FAME);
-        ((!(contains(this.fameButton))) && (addChild(this.fameButton)));
+        !contains(this.fameButton) && addChild(this.fameButton);
     }
 
     public function getFamePrice():int {
-        return (this.fameButton.getPrice());
+        return this.fameButton.getPrice();
     }
 
     private function onRemovedFromStage(_arg_1:Event):void {
@@ -134,7 +134,7 @@ public class FameOrGoldBuyButtons extends Sprite {
         var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xB3B3B3).setBold(true);
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
         _local_1.y = 3;
-        return (_local_1);
+        return _local_1;
     }
 
 

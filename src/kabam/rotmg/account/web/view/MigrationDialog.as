@@ -34,7 +34,7 @@ public class MigrationDialog extends EmptyFrame {
         this.timerProgressCheck = new Timer(2000, 0);
         super(500, 220, "Maintenance Needed");
         this.isClosed = false;
-        setDesc((("Press OK to begin maintenance on \n\n" + _arg_1.getUserName()) + "\n\nor cancel to login with a different account"), true);
+        setDesc("Press OK to begin maintenance on \n\n" + _arg_1.getUserName() + "\n\nor cancel to login with a different account", true);
         this.makeAndAddLeftButton("Cancel");
         this.makeAndAddRightButton("OK");
         this.account = _arg_1;
@@ -121,7 +121,7 @@ public class MigrationDialog extends EmptyFrame {
     private function updatePercent(_arg_1:Number):void {
         this.progBar.update(_arg_1);
         this.lastPercent = _arg_1;
-        setDesc((("" + _arg_1) + "%"), true);
+        setDesc("" + _arg_1 + "%", true);
     }
 
     private function onMigrateStartComplete(_arg_1:Boolean, _arg_2:*):void {
@@ -159,7 +159,7 @@ public class MigrationDialog extends EmptyFrame {
 
     private function reset():void {
         setTitle("Error, please try again. Maintenance needed", true);
-        setDesc((("Press OK to begin maintenance on \n\n" + this.account.getUserName()) + "\n\nor cancel to login with a different account"), true);
+        setDesc("Press OK to begin maintenance on \n\n" + this.account.getUserName() + "\n\nor cancel to login with a different account", true);
         this.removeProgressBar();
         this.okButton.addOnce(this.okButton_doMigrate);
         this.rightButton_.setEnabled(true);
@@ -169,8 +169,8 @@ public class MigrationDialog extends EmptyFrame {
         var _local_2:Number;
         this.removeProgressBar();
         var _local_1:Number = TEXT_MARGIN;
-        _local_2 = (modalHeight / 3);
-        var _local_3:Number = (modalWidth - (_local_1 * 2));
+        _local_2 = modalHeight / 3;
+        var _local_3:Number = modalWidth - _local_1 * 2;
         var _local_4:Number = 40;
         this.progBar = new ProgressBar(_local_3, _local_4);
         addChild(this.progBar);
@@ -179,7 +179,7 @@ public class MigrationDialog extends EmptyFrame {
     }
 
     private function removeProgressBar():void {
-        if (((!((this.progBar == null))) && (!((this.progBar.parent == null))))) {
+        if (!(this.progBar == null) && !(this.progBar.parent == null)) {
             removeChild(this.progBar);
         }
     }
@@ -199,8 +199,8 @@ public class MigrationDialog extends EmptyFrame {
         if (_arg_1 != "") {
             this.leftButton_.buttonMode = true;
             addChild(this.leftButton_);
-            this.leftButton_.x = (((modalWidth / 2) - 100) - this.leftButton_.width);
-            this.leftButton_.y = (modalHeight - 50);
+            this.leftButton_.x = modalWidth / 2 - 100 - this.leftButton_.width;
+            this.leftButton_.y = modalHeight - 50;
         }
     }
 
@@ -211,8 +211,8 @@ public class MigrationDialog extends EmptyFrame {
         if (_arg_1 != "") {
             this.rightButton_.buttonMode = true;
             addChild(this.rightButton_);
-            this.rightButton_.x = ((modalWidth / 2) + 100);
-            this.rightButton_.y = (modalHeight - 50);
+            this.rightButton_.x = modalWidth / 2 + 100;
+            this.rightButton_.y = modalHeight - 50;
         }
     }
 

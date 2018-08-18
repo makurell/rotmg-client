@@ -10,7 +10,7 @@ import org.osflash.signals.Signal;
 final class VerticalScrollbarGroove extends Sprite {
 
     public static const WIDTH:int = VerticalScrollbar.WIDTH;//20
-    public static const BEVEL:int = (VerticalScrollbar.BEVEL + (VerticalScrollbar.PADDING * 0.5));//4
+    public static const BEVEL:int = VerticalScrollbar.BEVEL + VerticalScrollbar.PADDING * 0.5;//4
 
     public const clicked:Signal = new Signal(int);
     public const rect:BevelRect = new BevelRect(WIDTH, 0, BEVEL);

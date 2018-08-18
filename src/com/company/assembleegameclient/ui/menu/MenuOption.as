@@ -15,7 +15,7 @@ import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
 public class MenuOption extends Sprite {
 
-    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
+    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, 220 / 0xFF, 133 / 0xFF);
 
     protected var origIconBitmapData_:BitmapData;
     protected var iconBitmapData_:BitmapData;
@@ -69,7 +69,7 @@ public class MenuOption extends Sprite {
     }
 
     protected function redrawSize():int {
-        return ((40 / (this.origIconBitmapData_.width / 8)));
+        return 40 / (this.origIconBitmapData_.width / 8);
     }
 
 

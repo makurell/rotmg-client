@@ -31,7 +31,7 @@ public class BasicObject {
     }
 
     public static function getNextFakeObjectId():int {
-        return ((0x7F000000 | nextFakeObjectId_++));
+        return 0x7F000000 | nextFakeObjectId_++;
     }
 
 
@@ -57,7 +57,7 @@ public class BasicObject {
     }
 
     public function update(_arg_1:int, _arg_2:int):Boolean {
-        return (true);
+        return true;
     }
 
     public function draw3d(_arg_1:Vector.<Object3DStage3D>):void {
@@ -81,7 +81,7 @@ public class BasicObject {
         this.posW_.length = 0;
         this.posW_.push(this.x_, this.y_, 0, this.x_, this.y_, this.z_);
         this.posS_.length = 0;
-        this.posS_.push((this.x_ * _arg_1), (this.y_ * _arg_1), 0, (this.x_ * _arg_1), (this.y_ * _arg_1), 0);
+        this.posS_.push(this.x_ * _arg_1, this.y_ * _arg_1, 0, this.x_ * _arg_1, this.y_ * _arg_1, 0);
         this.sortVal_ = this.posS_[1];
     }
 
@@ -90,11 +90,11 @@ public class BasicObject {
         this.square_ = this.map_.getSquare(_arg_2, _arg_3);
         if (this.square_ == null) {
             this.map_ = null;
-            return (false);
+            return false;
         }
         this.x_ = _arg_2;
         this.y_ = _arg_3;
-        return (true);
+        return true;
     }
 
     public function removeFromMap():void {

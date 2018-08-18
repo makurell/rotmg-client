@@ -33,11 +33,11 @@ public class LocalizedDropDownItem extends Sprite {
     }
 
     public function getTextChanged():Signal {
-        return (this.nameText_.textChanged);
+        return this.nameText_.textChanged;
     }
 
     public function getValue():String {
-        return (this.name_);
+        return this.name_;
     }
 
     public function setValue(_arg_1:String):void {
@@ -47,8 +47,8 @@ public class LocalizedDropDownItem extends Sprite {
 
     public function setWidth(_arg_1:int):void {
         this.w_ = _arg_1;
-        this.nameText_.x = ((this.w_ / 2) - (this.nameText_.width / 2));
-        this.nameText_.y = ((this.h_ / 2) - (this.nameText_.height / 2));
+        this.nameText_.x = this.w_ / 2 - this.nameText_.width / 2;
+        this.nameText_.y = this.h_ / 2 - this.nameText_.height / 2;
         this.drawBackground(0x363636);
     }
 

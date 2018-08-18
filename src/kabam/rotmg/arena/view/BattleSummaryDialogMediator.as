@@ -33,8 +33,8 @@ public class BattleSummaryDialogMediator extends Mediator {
         this.view.visible = false;
         this.view.positionThis();
         this.view.setCurrentRun(this.currentRunModel.entry.currentWave, this.currentRunModel.entry.runtime);
-        var _local_1:Boolean = (((this.bestRunModel.entry.currentWave > this.currentRunModel.entry.currentWave)) || ((((this.bestRunModel.entry.currentWave == this.currentRunModel.entry.currentWave)) && ((this.bestRunModel.entry.runtime < this.currentRunModel.entry.runtime)))));
-        var _local_2:ArenaLeaderboardEntry = ((_local_1) ? this.bestRunModel.entry : this.currentRunModel.entry);
+        var _local_1:Boolean = this.bestRunModel.entry.currentWave > this.currentRunModel.entry.currentWave || this.bestRunModel.entry.currentWave == this.currentRunModel.entry.currentWave && this.bestRunModel.entry.runtime < this.currentRunModel.entry.runtime;
+        var _local_2:ArenaLeaderboardEntry = _local_1 ? this.bestRunModel.entry : this.currentRunModel.entry;
         this.view.setBestRun(_local_2.currentWave, _local_2.runtime);
         this.view.close.add(this.onClose);
         this.closeMapLoading.addOnce(this.startTimer);

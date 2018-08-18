@@ -9,19 +9,19 @@ public class KabamMoneyConfig implements MoneyConfig {
 
 
     public function showPaymentMethods():Boolean {
-        return (true);
+        return true;
     }
 
     public function showBonuses():Boolean {
-        return (false);
+        return false;
     }
 
     public function parseOfferPrice(_arg_1:Offer):StringBuilder {
-        return (new LineBuilder());
+        return new LineBuilder();
     }
 
     public function jsInitializeFunction():String {
-        return ("rotmg.KabamPayment.setupKabamAccount");
+        return "rotmg.KabamPayment.setupKabamAccount";
     }
 
 

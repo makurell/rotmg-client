@@ -14,7 +14,7 @@ import org.osflash.signals.Signal;
 
 public class CaretakerQueryDialogCategoryItem extends Sprite {
 
-    private static const WIDTH:int = (CaretakerQueryDialog.WIDTH - 40);//234
+    private static const WIDTH:int = CaretakerQueryDialog.WIDTH - 40;//234
     private static const HEIGHT:int = 40;
     private static const BEVEL:int = 2;
     private static const OUT:uint = 0x5C5C5C;
@@ -38,7 +38,7 @@ public class CaretakerQueryDialogCategoryItem extends Sprite {
         var _local_1:Shape = new Shape();
         this.drawBackground(_local_1, OUT);
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function drawBackground(_arg_1:Shape, _arg_2:uint):void {
@@ -49,10 +49,10 @@ public class CaretakerQueryDialogCategoryItem extends Sprite {
     }
 
     private function makeTextfield():TextFieldDisplayConcrete {
-        var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setBold(true).setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE).setPosition((WIDTH / 2), (HEIGHT / 2));
+        var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setBold(true).setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE).setPosition(WIDTH / 2, HEIGHT / 2);
         _local_1.mouseEnabled = false;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeInteractive():void {

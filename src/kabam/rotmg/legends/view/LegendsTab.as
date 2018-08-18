@@ -30,7 +30,7 @@ public class LegendsTab extends Sprite {
     }
 
     public function getTimespan():Timespan {
-        return (this.timespan);
+        return this.timespan;
     }
 
     private function makeLabel(_arg_1:Timespan):void {
@@ -58,7 +58,7 @@ public class LegendsTab extends Sprite {
             this.label.setColor(OVER_COLOR);
         }
         else {
-            if (((this.isSelected) || (this.isDown))) {
+            if (this.isSelected || this.isDown) {
                 this.label.setColor(DOWN_COLOR);
             }
             else {

@@ -57,7 +57,7 @@ public class OfferRadioButton extends Sprite implements Selectable {
     }
 
     public function getValue():String {
-        return (this.offer.realmGold_.toString());
+        return this.offer.realmGold_.toString();
     }
 
     public function setOver(_arg_1:Boolean):void {
@@ -99,9 +99,9 @@ public class OfferRadioButton extends Sprite implements Selectable {
     private function makeCoinImage():void {
         this.coinBitmap = AssetLibrary.getImageFromSet("lofiObj3", 225);
         this.coinBitmap = TextureRedrawer.redraw(this.coinBitmap, 50, true, 0, false);
-        this.coinBitmap = BitmapUtil.cropToBitmapData(this.coinBitmap, 8, 8, (this.coinBitmap.width - 16), (this.coinBitmap.height - 16));
+        this.coinBitmap = BitmapUtil.cropToBitmapData(this.coinBitmap, 8, 8, this.coinBitmap.width - 16, this.coinBitmap.height - 16);
         var _local_1:Bitmap = new Bitmap(this.coinBitmap);
-        _local_1.x = (this.toggle.x + 35);
+        _local_1.x = this.toggle.x + 35;
         this.container.addChild(_local_1);
     }
 
@@ -147,30 +147,30 @@ public class OfferRadioButton extends Sprite implements Selectable {
     }
 
     private function hasTagline():Boolean {
-        return (!((this.offer.tagline == null)));
+        return !(this.offer.tagline == null);
     }
 
     private function hasBonus():Boolean {
-        return (((!((this.offer == null))) && (!((this.offer.bonus == 0)))));
+        return !(this.offer == null) && !(this.offer.bonus == 0);
     }
 
     private function alignUI():void {
-        this.goldText.x = (this.toggle.x + 70);
-        this.goldText.y = ((this.coinBitmap.height / 2) - (this.goldText.height / 2));
+        this.goldText.x = this.toggle.x + 70;
+        this.goldText.y = this.coinBitmap.height / 2 - this.goldText.height / 2;
         this.costText.x = 200;
-        this.costText.y = ((this.coinBitmap.height / 2) - (this.costText.height / 2));
-        if (((this.hasBonus()) && (!((this.bonusText == null))))) {
+        this.costText.y = this.coinBitmap.height / 2 - this.costText.height / 2;
+        if (this.hasBonus() && !(this.bonusText == null)) {
             this.bonusText.x = 280;
-            this.bonusText.y = ((this.coinBitmap.height / 2) - (this.bonusText.height / 2));
+            this.bonusText.y = this.coinBitmap.height / 2 - this.bonusText.height / 2;
         }
-        if (((this.hasTagline()) && (!((this.taglineText == null))))) {
+        if (this.hasTagline() && !(this.taglineText == null)) {
             this.taglineText.x = 400;
-            this.taglineText.y = ((this.coinBitmap.height / 2) - (this.taglineText.height / 2));
+            this.taglineText.y = this.coinBitmap.height / 2 - this.taglineText.height / 2;
         }
     }
 
     private function updateBackgroundColor():void {
-        var _local_1:int = ((this.isSelected) ? SELECTED_COLOR : ((this.isOver) ? OVER_COLOR : DEFAULT_COLOR));
+        var _local_1:int = this.isSelected ? SELECTED_COLOR : this.isOver ? OVER_COLOR : DEFAULT_COLOR;
         this.background.setColor(_local_1);
     }
 

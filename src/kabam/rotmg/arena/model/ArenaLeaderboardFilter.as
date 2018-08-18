@@ -11,15 +11,15 @@ public class ArenaLeaderboardFilter {
     }
 
     public function getName():String {
-        return (this.name);
+        return this.name;
     }
 
     public function getKey():String {
-        return (this.key);
+        return this.key;
     }
 
     public function getEntries():Vector.<ArenaLeaderboardEntry> {
-        return (this.entries);
+        return this.entries;
     }
 
     public function setEntries(_arg_1:Vector.<ArenaLeaderboardEntry>):void {
@@ -27,7 +27,7 @@ public class ArenaLeaderboardFilter {
     }
 
     public function hasEntries():Boolean {
-        return (!((this.entries == null)));
+        return !(this.entries == null);
     }
 
     public function clearEntries():void {

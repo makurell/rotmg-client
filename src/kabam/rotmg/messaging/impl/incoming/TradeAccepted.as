@@ -31,7 +31,7 @@ public class TradeAccepted extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("TRADEACCEPTED", "myOffer_", "yourOffer_"));
+        return formatToString("TRADEACCEPTED", "myOffer_", "yourOffer_");
     }
 
 

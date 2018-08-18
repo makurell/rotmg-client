@@ -12,7 +12,7 @@ public class PatternBuilder implements StringBuilder {
 
     public function setPattern(_arg_1:String):PatternBuilder {
         this.pattern = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setStringMap(_arg_1:StringMap):void {
@@ -24,9 +24,9 @@ public class PatternBuilder implements StringBuilder {
         this.keys = this.pattern.match(this.PATTERN);
         var _local_1:String = this.pattern;
         for each (_local_2 in this.keys) {
-            _local_1 = _local_1.replace(_local_2, this.provider.getValue(_local_2.substr(1, (_local_2.length - 2))));
+            _local_1 = _local_1.replace(_local_2, this.provider.getValue(_local_2.substr(1, _local_2.length - 2)));
         }
-        return (_local_1.replace(/\\n/g, "\n"));
+        return _local_1.replace(/\\n/g, "\n");
     }
 
 

@@ -51,7 +51,7 @@ public class SpeechBalloon extends Sprite implements IMapOverlayElement {
         this.senderName = _arg_3;
         this.isTrade = _arg_4;
         this.isGuild = _arg_5;
-        this.lifetime_ = (_arg_11 * 1000);
+        this.lifetime_ = _arg_11 * 1000;
         this.hideable_ = _arg_13;
         this.text_ = new TextField();
         this.text_.autoSize = TextFieldAutoSize.LEFT;
@@ -69,21 +69,21 @@ public class SpeechBalloon extends Sprite implements IMapOverlayElement {
         this.text_.wordWrap = true;
         this.text_.text = _arg_2;
         addChild(this.text_);
-        var _local_15:int = (this.text_.textWidth + 4);
-        this.offset_.x = (-(_local_15) / 2);
+        var _local_15:int = this.text_.textWidth + 4;
+        this.offset_.x = -_local_15 / 2;
         this.backgroundFill_.color = _arg_6;
         this.backgroundFill_.alpha = _arg_7;
         this.outlineFill_.color = _arg_8;
         this.outlineFill_.alpha = _arg_9;
         graphics.clear();
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(-6, -6, (_local_15 + 12), (height + 12), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(-6, -6, _local_15 + 12, height + 12, 4, [1, 1, 1, 1], this.path_);
         this.path_.commands.splice(6, 0, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
         var _local_16:int = height;
-        this.path_.data.splice(12, 0, ((_local_15 / 2) + 8), (_local_16 + 6), (_local_15 / 2), (_local_16 + 18), ((_local_15 / 2) - 8), (_local_16 + 6));
+        this.path_.data.splice(12, 0, _local_15 / 2 + 8, _local_16 + 6, _local_15 / 2, _local_16 + 18, _local_15 / 2 - 8, _local_16 + 6);
         graphics.drawGraphicsData(this.graphicsData_);
         filters = [new DropShadowFilter(0, 0, 0, 1, 16, 16)];
-        this.offset_.y = ((-(height) - ((this.go_.texture_.height * (_arg_1.size_ / 100)) * 5)) - 2);
+        this.offset_.y = -height - this.go_.texture_.height * (_arg_1.size_ / 100) * 5 - 2;
         visible = false;
         addEventListener(MouseEvent.RIGHT_CLICK, this.onSpeechBalloonRightClicked);
     }
@@ -94,16 +94,16 @@ public class SpeechBalloon extends Sprite implements IMapOverlayElement {
         var playerObjectId:int = this.go_.objectId_;
         try {
             hmod = StaticInjectorContext.getInjector().getInstance(HUDModel);
-            if (((((!((hmod.gameSprite.map.goDict_[playerObjectId] == null))) && ((hmod.gameSprite.map.goDict_[playerObjectId] is Player)))) && (!((hmod.gameSprite.map.player_.objectId_ == playerObjectId))))) {
+            if (!(hmod.gameSprite.map.goDict_[playerObjectId] == null) && (hmod.gameSprite.map.goDict_[playerObjectId] is Player) && !(hmod.gameSprite.map.player_.objectId_ == playerObjectId)) {
                 aPlayer = (hmod.gameSprite.map.goDict_[playerObjectId] as Player);
                 hmod.gameSprite.addChatPlayerMenu(aPlayer, e.stageX, e.stageY);
             }
             else {
-                if (((((((!(this.isTrade)) && (!((this.senderName == null))))) && (!((this.senderName == ""))))) && (!((hmod.gameSprite.map.player_.name_ == this.senderName))))) {
+                if (!this.isTrade && !(this.senderName == null) && !(this.senderName == "") && !(hmod.gameSprite.map.player_.name_ == this.senderName)) {
                     hmod.gameSprite.addChatPlayerMenu(null, e.stageX, e.stageY, this.senderName, this.isGuild);
                 }
                 else {
-                    if (((((((this.isTrade) && (!((this.senderName == null))))) && (!((this.senderName == ""))))) && (!((hmod.gameSprite.map.player_.name_ == this.senderName))))) {
+                    if (this.isTrade && !(this.senderName == null) && !(this.senderName == "") && !(hmod.gameSprite.map.player_.name_ == this.senderName)) {
                         hmod.gameSprite.addChatPlayerMenu(null, e.stageX, e.stageY, this.senderName, false, true);
                     }
                 }
@@ -117,26 +117,26 @@ public class SpeechBalloon extends Sprite implements IMapOverlayElement {
         if (this.startTime_ == 0) {
             this.startTime_ = _arg_2;
         }
-        var _local_3:int = (_arg_2 - this.startTime_);
-        if ((((_local_3 > this.lifetime_)) || (((!((this.go_ == null))) && ((this.go_.map_ == null)))))) {
-            return (false);
+        var _local_3:int = _arg_2 - this.startTime_;
+        if (_local_3 > this.lifetime_ || !(this.go_ == null) && this.go_.map_ == null) {
+            return false;
         }
-        if ((((this.go_ == null)) || (!(this.go_.drawn_)))) {
+        if (this.go_ == null || !this.go_.drawn_) {
             visible = false;
-            return (true);
+            return true;
         }
-        if (((this.hideable_) && (!(Parameters.data_.textBubbles)))) {
+        if (this.hideable_ && !Parameters.data_.textBubbles) {
             visible = false;
-            return (true);
+            return true;
         }
         visible = true;
-        x = int((this.go_.posS_[0] + this.offset_.x));
-        y = int((this.go_.posS_[1] + this.offset_.y));
-        return (true);
+        x = int(this.go_.posS_[0] + this.offset_.x);
+        y = int(this.go_.posS_[1] + this.offset_.y);
+        return true;
     }
 
     public function getGameObject():GameObject {
-        return (this.go_);
+        return this.go_;
     }
 
     public function dispose():void {

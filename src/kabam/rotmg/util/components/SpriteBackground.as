@@ -55,7 +55,7 @@ public class SpriteBackground extends Sprite {
         this.currency = Currency.GOLD;
         this.text = new TextFieldDisplayConcrete().setSize(_arg_1).setColor(0x363636).setBold(true);
         this.waiter.push(this.text.textChanged);
-        var _local_3:StringBuilder = (((this.prefix) != "") ? this.lineBuilder.setParams(this.prefix, {"cost": this.price.toString()}) : this.staticStringBuilder.setString(this.price.toString()));
+        var _local_3:StringBuilder = this.prefix != "" ? this.lineBuilder.setParams(this.prefix, {"cost": this.price.toString()}) : this.staticStringBuilder.setString(this.price.toString());
         this.text.setStringBuilder(_local_3);
         this.waiter.complete.add(this.updateUI);
         addChild(this.text);
@@ -64,7 +64,7 @@ public class SpriteBackground extends Sprite {
     public function setEnabled(_arg_1:Boolean):void {
         if (_arg_1 != mouseEnabled) {
             mouseEnabled = _arg_1;
-            filters = ((_arg_1) ? [] : [grayfilter]);
+            filters = _arg_1 ? [] : [grayfilter];
             this.draw();
         }
     }
@@ -80,17 +80,17 @@ public class SpriteBackground extends Sprite {
     }
 
     private function draw():void {
-        this.graphicsData[0] = ((mouseEnabled) ? this.enabledFill : this.disabledFill);
+        this.graphicsData[0] = mouseEnabled ? this.enabledFill : this.disabledFill;
         graphics.clear();
         graphics.drawGraphicsData(this.graphicsData);
     }
 
     private function getWidth():int {
-        return (this.sizeX);
+        return this.sizeX;
     }
 
     private function getHeight():int {
-        return (this.sizeY);
+        return this.sizeY;
     }
 
 

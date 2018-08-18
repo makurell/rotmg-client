@@ -22,17 +22,17 @@ public class TomeComparison extends SlotComparison {
         nova = itemXML.Activate.(text() == "HealNova");
         otherNova = curItemXML.Activate.(text() == "HealNova");
         comparisonStringBuilder = new AppendingLineBuilder();
-        if ((((nova.length() == 1)) && ((otherNova.length() == 1)))) {
+        if (nova.length() == 1 && otherNova.length() == 1) {
             range = Number(nova.@range);
             otherRange = Number(otherNova.@range);
             amount = Number(nova.@amount);
             otherAmount = Number(otherNova.@amount);
-            wavg = ((0.5 * range) + (0.5 * amount));
-            otherWavg = ((0.5 * otherRange) + (0.5 * otherAmount));
+            wavg = 0.5 * range + 0.5 * amount;
+            otherWavg = 0.5 * otherRange + 0.5 * otherAmount;
             innerStringBuilder = new LineBuilder().setParams(TextKey.HP_WITHIN_SQRS, {
                 "amount": amount.toString(),
                 "range": range.toString()
-            }).setPrefix(TooltipHelper.getOpenTag(getTextColor((wavg - otherWavg)))).setPostfix(TooltipHelper.getCloseTag());
+            }).setPrefix(TooltipHelper.getOpenTag(getTextColor(wavg - otherWavg))).setPostfix(TooltipHelper.getCloseTag());
             comparisonStringBuilder.pushParams(TextKey.PARTY_HEAL, {"effect": innerStringBuilder});
             processedTags[nova.toXMLString()] = true;
         }

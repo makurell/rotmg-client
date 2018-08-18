@@ -10,7 +10,7 @@ public class WorldPosData {
 
 
     public function toPoint():Point {
-        return (new Point(this.x_, this.y_));
+        return new Point(this.x_, this.y_);
     }
 
     public function parseFromInput(_arg_1:IDataInput):void {
@@ -24,7 +24,7 @@ public class WorldPosData {
     }
 
     public function toString():String {
-        return (((("x_: " + this.x_) + " y_: ") + this.y_));
+        return "x_: " + this.x_ + " y_: " + this.y_;
     }
 
 

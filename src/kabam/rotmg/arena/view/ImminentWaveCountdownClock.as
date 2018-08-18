@@ -57,19 +57,19 @@ public class ImminentWaveCountdownClock extends Sprite {
     public function setWaveNumber(_arg_1:int):void {
         this.waveNumber = _arg_1;
         this.waveNumberText.setStringBuilder(new StaticStringBuilder(this.waveNumber.toString()));
-        this.waveNumberText.x = ((this.waveAsset.width / 2) - (this.waveNumberText.width / 2));
+        this.waveNumberText.x = this.waveAsset.width / 2 - this.waveNumberText.width / 2;
     }
 
     private function center():void {
-        x = (300 - (width / 2));
-        y = ((contains(this.countDownContainer)) ? 138 : 87.5);
+        x = 300 - width / 2;
+        y = contains(this.countDownContainer) ? 138 : 87.5;
     }
 
     private function updateCountdownClock(_arg_1:TimerEvent):void {
         if (this.count > 1) {
             this.count--;
             this.countdownText.setStringBuilder(this.countdownStringBuilder.setString(this.count.toString()));
-            this.countdownText.x = ((this.nextWaveText.width / 2) - (this.countdownText.width / 2));
+            this.countdownText.x = this.nextWaveText.width / 2 - this.countdownText.width / 2;
         }
         else {
             removeChild(this.countDownContainer);
@@ -92,7 +92,7 @@ public class ImminentWaveCountdownClock extends Sprite {
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.ARENA_COUNTDOWN_CLOCK_NEXT_WAVE));
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 2)];
         this.countDownContainer.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCountdownText():StaticTextDisplay {
@@ -101,10 +101,10 @@ public class ImminentWaveCountdownClock extends Sprite {
         _local_1.setSize(42).setBold(true).setColor(0xCCCCCC);
         _local_1.setStringBuilder(this.countdownStringBuilder.setString(this.count.toString()));
         _local_1.y = this.nextWaveText.height;
-        _local_1.x = ((this.nextWaveText.width / 2) - (_local_1.width / 2));
+        _local_1.x = this.nextWaveText.width / 2 - _local_1.width / 2;
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 2)];
         this.countDownContainer.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeWaveText():StaticTextDisplay {
@@ -112,36 +112,36 @@ public class ImminentWaveCountdownClock extends Sprite {
         _local_1.setSize(18).setBold(true).setColor(16567065);
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.ARENA_COUNTDOWN_CLOCK_WAVE));
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 2)];
-        _local_1.x = ((this.waveAsset.width / 2) - (_local_1.width / 2));
-        _local_1.y = (((this.waveAsset.height / 2) - (_local_1.height / 2)) - 15);
+        _local_1.x = this.waveAsset.width / 2 - _local_1.width / 2;
+        _local_1.y = this.waveAsset.height / 2 - _local_1.height / 2 - 15;
         this.waveStartContainer.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeWaveNumberText():StaticTextDisplay {
         var _local_1:StaticTextDisplay = new StaticTextDisplay();
         _local_1.setSize(40).setBold(true).setColor(16567065);
-        _local_1.y = ((this.waveText.y + this.waveText.height) - 5);
+        _local_1.y = (this.waveText.y + this.waveText.height) - 5;
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 2)];
         this.waveStartContainer.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeWaveAsset() {
         var _local_1:* = new this.WaveAsset();
         this.waveStartContainer.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeStartText():StaticTextDisplay {
         var _local_1:StaticTextDisplay = new StaticTextDisplay();
         _local_1.setSize(32).setBold(true).setColor(0xB3B3B3);
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.ARENA_COUNTDOWN_CLOCK_START));
-        _local_1.y = ((this.waveAsset.y + this.waveAsset.height) - 5);
-        _local_1.x = ((this.waveAsset.width / 2) - (_local_1.width / 2));
+        _local_1.y = (this.waveAsset.y + this.waveAsset.height) - 5;
+        _local_1.x = this.waveAsset.width / 2 - _local_1.width / 2;
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 2)];
         this.waveStartContainer.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
 

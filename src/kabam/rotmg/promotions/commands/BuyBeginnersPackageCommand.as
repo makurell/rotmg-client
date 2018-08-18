@@ -39,7 +39,7 @@ public class BuyBeginnersPackageCommand {
     }
 
     private function openAccountSpecificPaymentScreen():void {
-        if ((((this.account is WebAccount)) || ((this.account is KabamAccount)))) {
+        if ((this.account is WebAccount) || (this.account is KabamAccount)) {
             this.openMoneyWindow.dispatch();
         }
         else {

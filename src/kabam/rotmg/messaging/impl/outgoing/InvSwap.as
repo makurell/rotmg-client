@@ -26,7 +26,7 @@ public class InvSwap extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("INVSWAP", "time_", "position_", "slotObject1_", "slotObject2_"));
+        return formatToString("INVSWAP", "time_", "position_", "slotObject1_", "slotObject2_");
     }
 
 

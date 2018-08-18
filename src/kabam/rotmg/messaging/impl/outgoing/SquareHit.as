@@ -18,7 +18,7 @@ public class SquareHit extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("SQUAREHIT", "time_", "bulletId_", "objectId_"));
+        return formatToString("SQUAREHIT", "time_", "bulletId_", "objectId_");
     }
 
 

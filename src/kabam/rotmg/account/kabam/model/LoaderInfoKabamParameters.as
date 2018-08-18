@@ -19,7 +19,7 @@ public class LoaderInfoKabamParameters implements KabamParameters {
 
 
     public function getSignedRequest():String {
-        return (this.info.parameters.kabam_signed_request);
+        return this.info.parameters.kabam_signed_request;
     }
 
     public function getUserSession():Object {
@@ -31,27 +31,27 @@ public class LoaderInfoKabamParameters implements KabamParameters {
         try {
             requestDetails = signedRequest.split(".", 2);
             if (requestDetails.length != 2) {
-                throw (new Error("Invalid signed request"));
+                throw new Error("Invalid signed request");
             }
             payload = this.base64UrlDecode(requestDetails[1]);
             userSession = this.json.parse(payload);
         }
         catch (error:Error) {
-            logger.info(((("Failed to get user session: " + error.toString()) + ", signed request: ") + signedRequest));
+            logger.info("Failed to get user session: " + error.toString() + ", signed request: " + signedRequest);
             userSession = null;
         }
-        return (userSession);
+        return userSession;
     }
 
     protected function base64UrlDecode(_arg_1:String):String {
         var _local_2:RegExp = /-/g;
         var _local_3:RegExp = /_/g;
-        var _local_4:int = (4 - (_arg_1.length % 4));
+        var _local_4:int = 4 - _arg_1.length % 4;
         while (_local_4--) {
-            _arg_1 = (_arg_1 + "=");
+            _arg_1 = _arg_1 + "=";
         }
         _arg_1 = _arg_1.replace(_local_2, "+").replace(_local_3, "/");
-        return (this.decoder.decode(_arg_1));
+        return this.decoder.decode(_arg_1);
     }
 
 

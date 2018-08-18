@@ -35,21 +35,21 @@ public class QuestArrow extends GameObjectArrow {
     }
 
     private function getToolTip(_arg_1:GameObject, _arg_2:int):ToolTip {
-        if ((((_arg_1 == null)) || ((_arg_1.texture_ == null)))) {
-            return (null);
+        if (_arg_1 == null || _arg_1.texture_ == null) {
+            return null;
         }
         if (this.shouldShowFullQuest(_arg_2)) {
-            return (new QuestToolTip(go_));
+            return new QuestToolTip(go_);
         }
         if (Parameters.data_.showQuestPortraits) {
-            return (new PortraitToolTip(_arg_1));
+            return new PortraitToolTip(_arg_1);
         }
-        return (null);
+        return null;
     }
 
     private function shouldShowFullQuest(_arg_1:int):Boolean {
         var _local_2:Quest = this.map_.quest_;
-        return (((mouseOver_) || (_local_2.isNew(_arg_1))));
+        return mouseOver_ || _local_2.isNew(_arg_1);
     }
 
     override public function draw(_arg_1:int, _arg_2:Camera):void {

@@ -57,22 +57,22 @@ public class WebLoginCommand {
         _local_1.add(new DispatchSignalTask(this.invalidate));
         _local_1.add(this.getPackageTask);
         _local_1.add(this.setScreenTask);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeFailureTask():TaskSequence {
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new DispatchSignalTask(this.loginError, this.loginTask));
         _local_1.add(this.setScreenTask);
-        return (_local_1);
+        return _local_1;
     }
 
     private function getTargetScreen():Sprite {
         var _local_1:Class = this.screenModel.getCurrentScreenType();
-        if ((((_local_1 == null)) || ((_local_1 == GameSprite)))) {
+        if (_local_1 == null || _local_1 == GameSprite) {
             _local_1 = CharacterSelectionAndNewsScreen;
         }
-        return (new (_local_1)());
+        return new _local_1();
     }
 
 

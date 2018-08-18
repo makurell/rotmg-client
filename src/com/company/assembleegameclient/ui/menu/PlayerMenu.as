@@ -31,7 +31,7 @@ public class PlayerMenu extends Menu {
         this.gs_ = _arg_1;
         this.playerName_ = _arg_2;
         this.player_ = null;
-        this.yOffset = (this.yOffset - 25);
+        this.yOffset = this.yOffset - 25;
         _local_5 = new MenuOption(AssetLibrary.getImageFromSet("lofiInterfaceBig", 21), 0xFFFFFF, TextKey.PLAYERMENU_PM);
         _local_5.addEventListener(MouseEvent.CLICK, this.onPrivateMessage);
         addOption(_local_5);
@@ -56,7 +56,7 @@ public class PlayerMenu extends Menu {
         this.playerName_ = _arg_2.name_;
         this.player_ = _arg_2;
         this.playerPanel_ = new GameObjectListItem(0xB3B3B3, true, this.player_, true);
-        this.yOffset = (this.yOffset + 7);
+        this.yOffset = this.yOffset + 7;
         addChild(this.playerPanel_);
         if (Player.isAdmin || Player.isMod) {
             _local_3 = new MenuOption(AssetLibrary.getImageFromSet("lofiInterfaceBig", 10), 0xFFFFFF, "Ban MultiBoxer");
@@ -75,12 +75,12 @@ public class PlayerMenu extends Menu {
             _local_3.addEventListener(MouseEvent.CLICK, this.onUnMute);
             addOption(_local_3);
         }
-        if (((this.gs_.map.allowPlayerTeleport()) && (this.player_.isTeleportEligible(this.player_)))) {
+        if (this.gs_.map.allowPlayerTeleport() && this.player_.isTeleportEligible(this.player_)) {
             _local_3 = new TeleportMenuOption(this.gs_.map.player_);
             _local_3.addEventListener(MouseEvent.CLICK, this.onTeleport);
             addOption(_local_3);
         }
-        if ((((this.gs_.map.player_.guildRank_ >= GuildUtil.OFFICER)) && ((((_arg_2.guildName_ == null)) || ((_arg_2.guildName_.length == 0)))))) {
+        if (this.gs_.map.player_.guildRank_ >= GuildUtil.OFFICER && (_arg_2.guildName_ == null || _arg_2.guildName_.length == 0)) {
             _local_3 = new MenuOption(AssetLibrary.getImageFromSet("lofiInterfaceBig", 10), 0xFFFFFF, TextKey.PLAYERMENU_INVITE);
             _local_3.addEventListener(MouseEvent.CLICK, this.onInvite);
             addOption(_local_3);
@@ -121,37 +121,34 @@ public class PlayerMenu extends Menu {
         addOption(_local_3);
     }
 
-    private function onKickMultiBox(_arg_1:Event):void
-    {
+    private function onKickMultiBox(_arg_1:Event):void {
         this.gs_.gsc_.playerText("/kick " + this.player_.name_ + " Multiboxing");
         remove();
     }
 
-    private function onKickRWT(_arg_1:Event):void
-    {
+    private function onKickRWT(_arg_1:Event):void {
         this.gs_.gsc_.playerText("/kick " + this.player_.name_ + " RWT");
         remove();
     }
 
-    private function onKickCheat(_arg_1:Event):void
-    {
+    private function onKickCheat(_arg_1:Event):void {
         this.gs_.gsc_.playerText("/kick " + this.player_.name_ + " Cheating");
         remove();
     }
 
     private function onMute(_arg_1:Event):void {
-        this.gs_.gsc_.playerText(("/mute " + this.player_.name_));
+        this.gs_.gsc_.playerText("/mute " + this.player_.name_);
         remove();
     }
 
     private function onUnMute(_arg_1:Event):void {
-        this.gs_.gsc_.playerText(("/unmute " + this.player_.name_));
+        this.gs_.gsc_.playerText("/unmute " + this.player_.name_);
         remove();
     }
 
     private function onPrivateMessage(_arg_1:Event):void {
         var _local_2:ShowChatInputSignal = StaticInjectorContext.getInjector().getInstance(ShowChatInputSignal);
-        _local_2.dispatch(true, (("/tell " + this.playerName_) + " "));
+        _local_2.dispatch(true, "/tell " + this.playerName_ + " ");
         remove();
     }
 
@@ -163,7 +160,7 @@ public class PlayerMenu extends Menu {
 
     private function onTradeMessage(_arg_1:Event):void {
         var _local_2:ShowChatInputSignal = StaticInjectorContext.getInjector().getInstance(ShowChatInputSignal);
-        _local_2.dispatch(true, ("/trade " + this.playerName_));
+        _local_2.dispatch(true, "/trade " + this.playerName_);
         remove();
     }
 

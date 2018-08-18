@@ -42,7 +42,7 @@ public class NameChangerPanelMediator extends Mediator {
     }
 
     private function onNameChanged(_arg_1:String):void {
-        if ((this.account is WebAccount)) {
+        if (this.account is WebAccount) {
             WebAccount(this.account).userDisplayName = _arg_1;
         }
         this.view.updateName(_arg_1);

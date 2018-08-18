@@ -29,7 +29,7 @@ public class KongregateLoadApiTask extends BaseTask implements LoadApiTask {
     override protected function startTask():void {
         var _local_1:String = this.info.parameters.kongregate_api_path;
         Security.allowDomain(_local_1);
-        this.layers.api.addChild((this.api as DisplayObject));
+        this.layers.api.addChild(this.api as DisplayObject);
         this.api.loaded.addOnce(this.onApiLoaded);
         this.api.load(_local_1);
     }

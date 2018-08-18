@@ -44,7 +44,7 @@ public class RegisterWebAccountDialog extends Frame {
         this.retypePasswordInput = new TextInputField(TextKey.RETYPE_PASSWORD, true);
         addTextInputField(this.retypePasswordInput);
         this.checkbox = new CheckBoxField("", false);
-        var _local_1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
+        var _local_1 = '<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL + '" target="_blank">';
         var _local_2 = "</a></font>.";
         this.checkbox.setTextStringBuilder(new LineBuilder().setParams(TextKey.REGISTER_WEB_CHECKBOX, {
             "link": _local_1,
@@ -74,7 +74,7 @@ public class RegisterWebAccountDialog extends Frame {
 
     private function onRegister(_arg_1:MouseEvent):void {
         var _local_2:AccountData;
-        if (((((((this.isEmailValid()) && (this.isPasswordValid()))) && (this.isPasswordVerified()))) && (this.isCheckboxChecked()))) {
+        if (this.isEmailValid() && this.isPasswordValid() && this.isPasswordVerified() && this.isCheckboxChecked()) {
             _local_2 = new AccountData();
             _local_2.username = this.emailInput.text();
             _local_2.password = this.passwordInput.text();
@@ -87,7 +87,7 @@ public class RegisterWebAccountDialog extends Frame {
         if (!_local_1) {
             this.checkbox.setError(TextKey.REGISTER_WEB_ACCOUNT_CHECK_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isEmailValid():Boolean {
@@ -95,23 +95,23 @@ public class RegisterWebAccountDialog extends Frame {
         if (!_local_1) {
             this.emailInput.setError(TextKey.INVALID_EMAIL_ADDRESS);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isPasswordValid():Boolean {
-        var _local_1 = (this.passwordInput.text().length >= 5);
+        var _local_1 = this.passwordInput.text().length >= 5;
         if (!_local_1) {
             this.passwordInput.setError(TextKey.REGISTER_WEB_SHORT_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isPasswordVerified():Boolean {
-        var _local_1 = (this.passwordInput.text() == this.retypePasswordInput.text());
+        var _local_1 = this.passwordInput.text() == this.retypePasswordInput.text();
         if (!_local_1) {
             this.retypePasswordInput.setError(TextKey.REGISTER_WEB_MATCH_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function showError(_arg_1:String):void {

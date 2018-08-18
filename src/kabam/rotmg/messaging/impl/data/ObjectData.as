@@ -17,7 +17,7 @@ public class ObjectData {
     }
 
     public function toString():String {
-        return (((("objectType_: " + this.objectType_) + " status_: ") + this.status_));
+        return "objectType_: " + this.objectType_ + " status_: " + this.status_;
     }
 
 

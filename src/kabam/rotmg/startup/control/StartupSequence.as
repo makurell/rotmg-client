@@ -45,7 +45,7 @@ public class StartupSequence extends BaseTask {
     }
 
     private function priorityComparison(_arg_1:StartupDelegate, _arg_2:StartupDelegate):int {
-        return ((_arg_1.getPriority() - _arg_2.getPriority()));
+        return _arg_1.getPriority() - _arg_2.getPriority();
     }
 
     private function doNextTaskOrComplete():void {
@@ -58,7 +58,7 @@ public class StartupSequence extends BaseTask {
     }
 
     private function isAnotherTask():Boolean {
-        return ((this.index < this.list.length));
+        return this.index < this.list.length;
     }
 
     private function doNextTask():void {

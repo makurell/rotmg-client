@@ -14,7 +14,7 @@ public class CreateGuild extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CREATEGUILD", "name_"));
+        return formatToString("CREATEGUILD", "name_");
     }
 
 

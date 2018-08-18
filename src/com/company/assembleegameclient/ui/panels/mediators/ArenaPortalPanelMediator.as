@@ -56,7 +56,7 @@ public class ArenaPortalPanelMediator extends Mediator {
     }
 
     private function onPurchase(_arg_1:int):void {
-        if ((_arg_1 == Currency.GOLD)) {
+        if (_arg_1 == Currency.GOLD) {
             this.purchaseWithGold();
         }
         else {
@@ -113,7 +113,7 @@ public class ArenaPortalPanelMediator extends Mediator {
     }
 
     private function onNoNameDialogClose(_arg_1:Event):void {
-        if (((this.dialog) && (this.dialog.hasEventListener(Dialog.LEFT_BUTTON)))) {
+        if (this.dialog && this.dialog.hasEventListener(Dialog.LEFT_BUTTON)) {
             this.dialog.removeEventListener(Dialog.LEFT_BUTTON, this.onNoNameDialogClose);
         }
         this.dialog = null;

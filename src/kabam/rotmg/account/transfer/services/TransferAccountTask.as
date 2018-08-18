@@ -27,7 +27,7 @@ public class TransferAccountTask extends BaseTask implements MigrateAccountTask 
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.onLinkDone(_arg_2)));
+        _arg_1 && this.onLinkDone(_arg_2);
         completeTask(_arg_1, _arg_2);
     }
 
@@ -37,7 +37,7 @@ public class TransferAccountTask extends BaseTask implements MigrateAccountTask 
         _local_1.kabampassword = this.transferData.currentPassword;
         _local_1.email = this.transferData.newEmail;
         _local_1.password = this.transferData.newPassword;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onLinkDone(_arg_1:String):void {

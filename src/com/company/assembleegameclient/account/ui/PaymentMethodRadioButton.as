@@ -31,12 +31,12 @@ public class PaymentMethodRadioButton extends Sprite implements Selectable {
     }
 
     private function onTextChanged():void {
-        this.text.y = ((this.button.height / 2) - (this.text.height / 2));
+        this.text.y = this.button.height / 2 - this.text.height / 2;
         this.textSet.dispatch();
     }
 
     public function getValue():String {
-        return (this.label);
+        return this.label;
     }
 
     private function makeRadioButton():void {
@@ -48,7 +48,7 @@ public class PaymentMethodRadioButton extends Sprite implements Selectable {
         this.text = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setBold(true);
         this.text.setStringBuilder(new LineBuilder().setParams(this.label));
         this.text.filters = [new DropShadowFilter(0, 0, 0)];
-        this.text.x = (HEIGHT + 8);
+        this.text.x = HEIGHT + 8;
         addChild(this.text);
     }
 

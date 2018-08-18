@@ -51,7 +51,7 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
         this.hoverTooltipDelegate = new HoverTooltipDelegate();
         this.buyItem = new Signal(SellableObject);
         super(_arg_1);
-        this.nameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth((WIDTH - 44));
+        this.nameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(WIDTH - 44);
         this.nameText_.setBold(true);
         this.nameText_.setStringBuilder(new LineBuilder().setParams(TextKey.SELLABLEOBJECTPANEL_TEXT));
         this.nameText_.setWordWrap(true);
@@ -83,11 +83,11 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
         rankText = new RankText(rankReq, false, false);
         rankReqText.addChild(rankText);
         requiredText.textChanged.addOnce(function ():void {
-            rankText.x = ((requiredText.width * 0.5) + 4);
-            rankText.y = (-(rankText.height) / 2);
+            rankText.x = requiredText.width * 0.5 + 4;
+            rankText.y = -rankText.height / 2;
         });
         requiredText.setStringBuilder(new LineBuilder().setParams(TextKey.SELLABLE_OBJECT_PANEL_RANK_REQUIRED));
-        return (rankReqText);
+        return rankReqText;
     }
 
     private static function createGuildRankReqText(_arg_1:int):TextFieldDisplayConcrete {
@@ -96,7 +96,7 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
         var _local_3:String = GuildUtil.rankToString(_arg_1);
         _local_2.setStringBuilder(new LineBuilder().setParams(TextKey.SELLABLE_OBJECT_PANEL_GUILD_RANK, {"amount": _local_3}));
         _local_2.filters = [new DropShadowFilter(0, 0, 0)];
-        return (_local_2);
+        return _local_2;
     }
 
 
@@ -124,7 +124,7 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
 
     private function onRemovedFromStage(_arg_1:Event):void {
         stage.removeEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
-        if (((((!((parent == null))) && (!((this.confirmBuyModal == null))))) && (this.confirmBuyModal.open))) {
+        if (!(parent == null) && !(this.confirmBuyModal == null) && this.confirmBuyModal.open) {
             parent.removeChild(this.confirmBuyModal);
         }
     }
@@ -136,14 +136,14 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) && (ConfirmBuyModal.free))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null && ConfirmBuyModal.free) {
             this.buyEvent();
         }
     }
 
     private function buyEvent():void {
         var _local_1:Account = StaticInjectorContext.getInjector().getInstance(Account);
-        if (((((!((parent == null))) && (_local_1.isRegistered()))) && ((this.owner_ is Merchant)))) {
+        if (!(parent == null) && _local_1.isRegistered() && (this.owner_ is Merchant)) {
             this.confirmBuyModal = new ConfirmBuyModal(this.buyItem, this.owner_, this.buyButton_.width, this.availableInventoryNumber);
             parent.addChild(this.confirmBuyModal);
         }
@@ -154,16 +154,16 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
 
     override public function draw():void {
         var _local_1:Player = gs_.map.player_;
-        this.nameText_.y = (((this.nameText_.height) > 30) ? 0 : 12);
+        this.nameText_.y = this.nameText_.height > 30 ? 0 : 12;
         var _local_2:int = this.owner_.rankReq_;
         if (_local_1.numStars_ < _local_2) {
             if (contains(this.buyButton_)) {
                 removeChild(this.buyButton_);
             }
-            if ((((this.rankReqText_ == null)) || (!(contains(this.rankReqText_))))) {
+            if (this.rankReqText_ == null || !contains(this.rankReqText_)) {
                 this.rankReqText_ = createRankReqText(_local_2);
-                this.rankReqText_.x = ((WIDTH / 2) - (this.rankReqText_.width / 2));
-                this.rankReqText_.y = ((HEIGHT - (this.rankReqText_.height / 2)) - 20);
+                this.rankReqText_.x = WIDTH / 2 - this.rankReqText_.width / 2;
+                this.rankReqText_.y = HEIGHT - this.rankReqText_.height / 2 - 20;
                 addChild(this.rankReqText_);
             }
         }
@@ -172,22 +172,22 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
                 if (contains(this.buyButton_)) {
                     removeChild(this.buyButton_);
                 }
-                if ((((this.guildRankReqText_ == null)) || (!(contains(this.guildRankReqText_))))) {
+                if (this.guildRankReqText_ == null || !contains(this.guildRankReqText_)) {
                     this.guildRankReqText_ = createGuildRankReqText(this.owner_.guildRankReq_);
-                    this.guildRankReqText_.x = ((WIDTH / 2) - (this.guildRankReqText_.width / 2));
-                    this.guildRankReqText_.y = ((HEIGHT - (this.guildRankReqText_.height / 2)) - 20);
+                    this.guildRankReqText_.x = WIDTH / 2 - this.guildRankReqText_.width / 2;
+                    this.guildRankReqText_.y = HEIGHT - this.guildRankReqText_.height / 2 - 20;
                     addChild(this.guildRankReqText_);
                 }
             }
             else {
                 this.buyButton_.setPrice(this.owner_.price_, this.owner_.currency_);
-                this.buyButton_.setEnabled((gs_.gsc_.outstandingBuy_ == null));
-                this.buyButton_.x = ((WIDTH / 2) - (this.buyButton_.width / 2));
-                this.buyButton_.y = ((HEIGHT - (this.buyButton_.height / 2)) - this.BUTTON_OFFSET);
+                this.buyButton_.setEnabled(gs_.gsc_.outstandingBuy_ == null);
+                this.buyButton_.x = WIDTH / 2 - this.buyButton_.width / 2;
+                this.buyButton_.y = HEIGHT - this.buyButton_.height / 2 - this.BUTTON_OFFSET;
                 if (!contains(this.buyButton_)) {
                     addChild(this.buyButton_);
                 }
-                if (((!((this.rankReqText_ == null))) && (contains(this.rankReqText_)))) {
+                if (!(this.rankReqText_ == null) && contains(this.rankReqText_)) {
                     removeChild(this.rankReqText_);
                 }
             }
@@ -199,7 +199,7 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -207,7 +207,7 @@ public class SellableObjectPanel extends Panel implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
 

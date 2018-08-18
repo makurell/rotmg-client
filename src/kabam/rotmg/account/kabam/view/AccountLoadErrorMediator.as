@@ -28,13 +28,13 @@ public class AccountLoadErrorMediator extends Mediator {
         var _local_1:String = KABAM_DOT_COM;
         try {
             _local_2 = ExternalInterface.call(GET_KABAM_PAGE_JS);
-            if (((_local_2) && (_local_2.length))) {
+            if (_local_2 && _local_2.length) {
                 _local_1 = _local_2;
             }
         }
         catch (error:Error) {
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

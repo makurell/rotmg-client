@@ -20,7 +20,7 @@ public class PetUpdater {
         var _local_4:StatData;
         var _local_5:AbilityVO;
         var _local_6:*;
-        var _local_3:PetVO = ((_arg_1.vo) || (this.createPetVO(_arg_1, _arg_2)));
+        var _local_3:PetVO = _arg_1.vo || this.createPetVO(_arg_1, _arg_2);
         if (_local_3 == null) {
             return;
         }
@@ -96,11 +96,11 @@ public class PetUpdater {
         for each (_local_3 in _arg_2) {
             if (_local_3.statType_ == StatData.PET_INSTANCEID_STAT) {
                 _local_4 = this.petsModel.getCachedVOOnly(_local_3.statValue_);
-                _arg_1.vo = ((_local_4) ? _local_4 : ((this.gameSprite.map.isPetYard) ? this.petsModel.getPetVO(_local_3.statValue_) : new PetVO(_local_3.statValue_)));
-                return (_arg_1.vo);
+                _arg_1.vo = _local_4 ? _local_4 : this.gameSprite.map.isPetYard ? this.petsModel.getPetVO(_local_3.statValue_) : new PetVO(_local_3.statValue_);
+                return _arg_1.vo;
             }
         }
-        return (null);
+        return null;
     }
 
     public function updatePet(_arg_1:Pet, _arg_2:Vector.<StatData>):void {

@@ -18,25 +18,25 @@ public class RisingFuryEffect extends ParticleEffect {
 
     public function RisingFuryEffect(_arg_1:GameObject, _arg_2:uint) {
         this.go = _arg_1;
-        this.startX = (Math.floor((_arg_1.x_ * 10)) / 10);
-        this.startY = (Math.floor((_arg_1.y_ * 10)) / 10);
+        this.startX = Math.floor(_arg_1.x_ * 10) / 10;
+        this.startY = Math.floor(_arg_1.y_ * 10) / 10;
         this.time = _arg_2;
         this.createTimer();
         this.createParticleField();
     }
 
     private function createTimer():void {
-        var _local_1:uint = (((this.go.texture_.height == 8)) ? 50 : 30);
-        this.timer = new Timer(_local_1, Math.round((this.time / _local_1)));
+        var _local_1:uint = this.go.texture_.height == 8 ? 50 : 30;
+        this.timer = new Timer(_local_1, Math.round(this.time / _local_1));
         this.timer.addEventListener(TimerEvent.TIMER, this.onTimer);
         this.timer.addEventListener(TimerEvent.TIMER_COMPLETE, this.onChargingComplete);
         this.timer.start();
     }
 
     private function onTimer(_arg_1:TimerEvent):void {
-        var _local_2:Number = (Math.floor((this.go.x_ * 10)) / 10);
-        var _local_3:Number = (Math.floor((this.go.y_ * 10)) / 10);
-        if (((!((this.startX == _local_2))) || (!((this.startY == _local_3))))) {
+        var _local_2:Number = Math.floor(this.go.x_ * 10) / 10;
+        var _local_3:Number = Math.floor(this.go.y_ * 10) / 10;
+        if (!(this.startX == _local_2) || !(this.startY == _local_3)) {
             this.timer.stop();
             this.particleField.destroy();
         }
@@ -50,7 +50,7 @@ public class RisingFuryEffect extends ParticleEffect {
     }
 
     private function onShockTimer(_arg_1:TimerEvent):void {
-        this.isCharged = !(this.isCharged);
+        this.isCharged = !this.isCharged;
         this.go.toggleChargingEffect(this.isCharged);
     }
 
@@ -60,7 +60,7 @@ public class RisingFuryEffect extends ParticleEffect {
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         map_.addObj(this.particleField, this.go.x_, this.go.y_);
-        return (false);
+        return false;
     }
 
 

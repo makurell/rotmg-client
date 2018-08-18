@@ -7,12 +7,12 @@ public class DeferredQueueSignal extends Signal {
     private var data:Array;
     private var log:Boolean = true;
 
-    public function DeferredQueueSignal(... rest) {
+    public function DeferredQueueSignal(...rest) {
         this.data = [];
         super(rest);
     }
 
-    override public function dispatch(... rest):void {
+    override public function dispatch(...rest):void {
         if (this.log) {
             this.data.push(rest);
         }
@@ -25,7 +25,7 @@ public class DeferredQueueSignal extends Signal {
             _arg_1.apply(this, this.data.shift());
         }
         this.log = false;
-        return (_local_2);
+        return _local_2;
     }
 
     override public function addOnce(_arg_1:Function):ISlot {
@@ -40,11 +40,11 @@ public class DeferredQueueSignal extends Signal {
         while (this.data.length > 0) {
             this.data.shift();
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public function getNumData():int {
-        return (this.data.length);
+        return this.data.length;
     }
 
 

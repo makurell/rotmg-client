@@ -54,7 +54,7 @@ public class Graphic3D {
         this.vertexBufferCustom = GraphicsFillExtra.getVertexBuffer(_arg_1);
         this.sinkLevel = GraphicsFillExtra.getSinkLevel(_arg_1);
         if (this.sinkLevel != 0) {
-            this.offsetMatrix = Vector.<Number>([0, -(this.sinkLevel), 0, 0]);
+            this.offsetMatrix = Vector.<Number>([0, -this.sinkLevel, 0, 0]);
         }
         this.transform();
         var _local_3:ColorTransform = GraphicsFillExtra.getColorTransform(this.bitmapData);
@@ -64,7 +64,7 @@ public class Graphic3D {
 
     public function setGradientFill(_arg_1:GraphicsGradientFill, _arg_2:Context3DProxy, _arg_3:Number, _arg_4:Number):void {
         this.shadowMatrix2D = _arg_1.matrix;
-        if ((((this.gradientVB == null)) || ((this.gradientIB == null)))) {
+        if (this.gradientVB == null || this.gradientIB == null) {
             this.gradientVB = _arg_2.GetContext3D().createVertexBuffer(4, 9);
             this.gradientVB.uploadFromVector(gradientVertex, 0, 4);
             this.gradientIB = _arg_2.GetContext3D().createIndexBuffer(6);
@@ -76,24 +76,24 @@ public class Graphic3D {
     private function shadowTransform(_arg_1:Number, _arg_2:Number):void {
         this.matrix3D.identity();
         var _local_3:Vector.<Number> = this.matrix3D.rawData;
-        _local_3[4] = -(this.shadowMatrix2D.c);
-        _local_3[1] = -(this.shadowMatrix2D.b);
-        _local_3[0] = (this.shadowMatrix2D.a * 4);
-        _local_3[5] = (this.shadowMatrix2D.d * 4);
-        _local_3[12] = (this.shadowMatrix2D.tx / _arg_1);
-        _local_3[13] = (-(this.shadowMatrix2D.ty) / _arg_2);
+        _local_3[4] = -this.shadowMatrix2D.c;
+        _local_3[1] = -this.shadowMatrix2D.b;
+        _local_3[0] = this.shadowMatrix2D.a * 4;
+        _local_3[5] = this.shadowMatrix2D.d * 4;
+        _local_3[12] = this.shadowMatrix2D.tx / _arg_1;
+        _local_3[13] = -this.shadowMatrix2D.ty / _arg_2;
         this.matrix3D.rawData = _local_3;
     }
 
     private function transform():void {
         this.matrix3D.identity();
         var _local_1:Vector.<Number> = this.matrix3D.rawData;
-        _local_1[4] = -(this.matrix2D.c);
-        _local_1[1] = -(this.matrix2D.b);
+        _local_1[4] = -this.matrix2D.c;
+        _local_1[1] = -this.matrix2D.b;
         _local_1[0] = this.matrix2D.a;
         _local_1[5] = this.matrix2D.d;
         _local_1[12] = this.matrix2D.tx;
-        _local_1[13] = -(this.matrix2D.ty);
+        _local_1[13] = -this.matrix2D.ty;
         this.matrix3D.rawData = _local_1;
         this.matrix3D.prependScale(Math.ceil(this.texture.getWidth()), Math.ceil(this.texture.getHeight()), 1);
         this.matrix3D.prependTranslation(0.5, -0.5, 0);
@@ -128,7 +128,7 @@ public class Graphic3D {
     }
 
     public function getMatrix3D():Matrix3D {
-        return (this.matrix3D);
+        return this.matrix3D;
     }
 
 

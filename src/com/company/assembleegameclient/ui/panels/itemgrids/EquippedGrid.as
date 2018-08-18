@@ -28,7 +28,7 @@ public class EquippedGrid extends ItemGrid {
     }
 
     public function createInteractiveItemTileIterator():IIterator {
-        return (new ArrayIterator(VectorAS3Util.toArray(this.tiles)));
+        return new ArrayIterator(VectorAS3Util.toArray(this.tiles));
     }
 
     override public function setItems(_arg_1:Vector.<int>, _arg_2:int = 0):void {
@@ -38,7 +38,7 @@ public class EquippedGrid extends ItemGrid {
             _local_3 = _arg_1.length;
             _local_4 = 0;
             while (_local_4 < this.tiles.length) {
-                if ((_local_4 + _arg_2) < _local_3) {
+                if (_local_4 + _arg_2 < _local_3) {
                     this.tiles[_local_4].setItem(_arg_1[(_local_4 + _arg_2)]);
                 }
                 else {

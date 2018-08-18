@@ -24,21 +24,21 @@ public class SavedNewsItem {
 
     private static function forumIcon():BitmapData {
         var _local_1:BitmapData = AssetLibrary.getImageFromSet("lofiInterface2", 4);
-        return (TextureRedrawer.redraw(_local_1, 80, true, 0));
+        return TextureRedrawer.redraw(_local_1, 80, true, 0);
     }
 
     private static function fameIcon():BitmapData {
         var _local_1:BitmapData = AssetLibrary.getImageFromSet("lofiObj3", 224);
-        return (TextureRedrawer.redraw(_local_1, 80, true, 0));
+        return TextureRedrawer.redraw(_local_1, 80, true, 0);
     }
 
 
     public function getIcon():BitmapData {
-        return ((((this.iconName == FAME)) ? fameIcon() : forumIcon()));
+        return this.iconName == FAME ? fameIcon() : forumIcon();
     }
 
     public function isCharDeath():Boolean {
-        return ((this.iconName == FAME));
+        return this.iconName == FAME;
     }
 
 

@@ -16,7 +16,7 @@ public class PlaySound extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("PLAYSOUND", "ownerId_", "soundId_"));
+        return formatToString("PLAYSOUND", "ownerId_", "soundId_");
     }
 
 

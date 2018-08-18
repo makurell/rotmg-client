@@ -26,7 +26,7 @@ public class AccountList extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ACCOUNTLIST", "accountListId_", "accountIds_", "lockAction_"));
+        return formatToString("ACCOUNTLIST", "accountListId_", "accountIds_", "lockAction_");
     }
 
 

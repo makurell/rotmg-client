@@ -33,13 +33,13 @@ public class GuildRegisterPanel extends Panel {
         var _local_3:String;
         var _local_4:LegacyBuyButton;
         super(_arg_1);
-        if ((((gs_.map == null)) || ((gs_.map.player_ == null)))) {
+        if (gs_.map == null || gs_.map.player_ == null) {
             return;
         }
         _local_2 = gs_.map.player_;
         this.title_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setTextWidth(WIDTH).setWordWrap(true).setMultiLine(true).setAutoSize(TextFieldAutoSize.CENTER).setHTML(true);
         this.title_.filters = [new DropShadowFilter(0, 0, 0)];
-        if (((!((_local_2.guildName_ == null))) && ((_local_2.guildName_.length > 0)))) {
+        if (!(_local_2.guildName_ == null) && _local_2.guildName_.length > 0) {
             _local_3 = GuildUtil.rankToString(_local_2.guildRank_);
             this.title_.setStringBuilder(new LineBuilder().setParams(TextKey.GUILD_REGISTER_PANEL_RANK, {
                 "rank": _local_3,
@@ -70,8 +70,8 @@ public class GuildRegisterPanel extends Panel {
     }
 
     private function alignUI():void {
-        this.button_.x = ((WIDTH / 2) - (this.button_.width / 2));
-        this.button_.y = (((this.button_ is LegacyBuyButton)) ? ((HEIGHT - (this.button_.height / 2)) - 31) : ((HEIGHT - this.button_.height) - 4));
+        this.button_.x = WIDTH / 2 - this.button_.width / 2;
+        this.button_.y = (this.button_ is LegacyBuyButton) ? HEIGHT - this.button_.height / 2 - 31 : HEIGHT - this.button_.height - 4;
     }
 
     public function onCreateClick(_arg_1:MouseEvent):void {

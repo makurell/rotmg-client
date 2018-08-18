@@ -37,7 +37,7 @@ public class GuildInvitePanel extends Panel {
         this.title_.y = 0;
         addChild(this.title_);
         this.guildNameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(WIDTH).setAutoSize(TextFieldAutoSize.CENTER).setBold(true).setHTML(true);
-        this.guildNameText_.setStringBuilder(new StaticStringBuilder((('<p align="center">' + this.guildName_) + "</p>")));
+        this.guildNameText_.setStringBuilder(new StaticStringBuilder('<p align="center">' + this.guildName_ + "</p>"));
         this.guildNameText_.filters = [new DropShadowFilter(0, 0, 0)];
         this.guildNameText_.y = 20;
         addChild(this.guildNameText_);
@@ -49,17 +49,17 @@ public class GuildInvitePanel extends Panel {
         this.acceptButton_.addEventListener(MouseEvent.CLICK, this.onAcceptClick);
         this.waiter.push(this.acceptButton_.textChanged);
         addChild(this.acceptButton_);
-        this.timer_ = new Timer((20 * 1000), 1);
+        this.timer_ = new Timer(20 * 1000, 1);
         this.timer_.start();
         this.timer_.addEventListener(TimerEvent.TIMER, this.onTimer);
         this.waiter.complete.addOnce(this.alignUI);
     }
 
     private function alignUI():void {
-        this.rejectButton_.x = ((WIDTH / 4) - (this.rejectButton_.width / 2));
-        this.rejectButton_.y = ((HEIGHT - this.rejectButton_.height) - 4);
-        this.acceptButton_.x = (((3 * WIDTH) / 4) - (this.acceptButton_.width / 2));
-        this.acceptButton_.y = ((HEIGHT - this.acceptButton_.height) - 4);
+        this.rejectButton_.x = WIDTH / 4 - this.rejectButton_.width / 2;
+        this.rejectButton_.y = HEIGHT - this.rejectButton_.height - 4;
+        this.acceptButton_.x = (3 * WIDTH) / 4 - this.acceptButton_.width / 2;
+        this.acceptButton_.y = HEIGHT - this.acceptButton_.height - 4;
     }
 
     private function onTimer(_arg_1:TimerEvent):void {

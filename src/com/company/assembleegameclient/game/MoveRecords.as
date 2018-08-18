@@ -16,7 +16,7 @@ public class MoveRecords {
             return;
         }
         var _local_4:int = this.getId(_arg_1);
-        if ((((_local_4 < 1)) || ((_local_4 > 10)))) {
+        if (_local_4 < 1 || _local_4 > 10) {
             return;
         }
         if (this.records_.length == 0) {
@@ -35,16 +35,16 @@ public class MoveRecords {
             _local_5.time_ = _arg_1;
             _local_5.x_ = _arg_2;
             _local_5.y_ = _arg_3;
-            return;
+
         }
     }
 
     private function getId(_arg_1:int):int {
-        return ((((_arg_1 - this.lastClearTime_) + 50) / 100));
+        return ((_arg_1 - this.lastClearTime_) + 50) / 100;
     }
 
     private function getScore(_arg_1:int, _arg_2:int):int {
-        return (Math.abs(((_arg_2 - this.lastClearTime_) - (_arg_1 * 100))));
+        return Math.abs(_arg_2 - this.lastClearTime_ - _arg_1 * 100);
     }
 
     public function clear(_arg_1:int):void {

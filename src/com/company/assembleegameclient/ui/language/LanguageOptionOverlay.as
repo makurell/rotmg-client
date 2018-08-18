@@ -49,16 +49,16 @@ public class LanguageOptionOverlay extends ScreenBase {
         addChild(this.languageDropDown);
         this.languageDropDownLabel.textChanged.addOnce(this.positionDropdownLabel);
         addChild(this.languageDropDownLabel);
-        this.languageDropDownLabel.y = (this.languageDropDown.y + (this.languageDropDown.getClosedHeight() / 2));
+        this.languageDropDownLabel.y = this.languageDropDown.y + this.languageDropDown.getClosedHeight() / 2;
     }
 
     private function positionDropdownLabel():void {
-        this.languageDropDown.x = ((800 / 2) - (((this.languageDropDown.width + this.languageDropDownLabel.width) + 10) / 2));
-        this.languageDropDownLabel.x = ((this.languageDropDown.x + this.languageDropDown.width) + 10);
+        this.languageDropDown.x = 800 / 2 - (this.languageDropDown.width + this.languageDropDownLabel.width + 10) / 2;
+        this.languageDropDownLabel.x = this.languageDropDown.x + this.languageDropDown.width + 10;
     }
 
     public function setSelected(_arg_1:String):void {
-        ((this.languageDropDown) && (this.languageDropDown.setValue(_arg_1)));
+        this.languageDropDown && this.languageDropDown.setValue(_arg_1);
     }
 
     private function onLanguageSelected(_arg_1:Event):void {
@@ -72,9 +72,9 @@ public class LanguageOptionOverlay extends ScreenBase {
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.LANGUAGES_SCREEN_TITLE));
         _local_1.setAutoSize(TextFieldAutoSize.CENTER);
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
-        _local_1.x = ((800 / 2) - (_local_1.width / 2));
+        _local_1.x = 800 / 2 - _local_1.width / 2;
         _local_1.y = 16;
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeContinueButton():TitleMenuOption {
@@ -85,7 +85,7 @@ public class LanguageOptionOverlay extends ScreenBase {
         _local_1.addEventListener(MouseEvent.CLICK, this.onContinueClick);
         _local_1.x = 400;
         _local_1.y = 550;
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeDropDownLabel():TextFieldDisplayConcrete {
@@ -93,7 +93,7 @@ public class LanguageOptionOverlay extends ScreenBase {
         _local_1.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.CHOOSE_LANGUAGE));
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeLine():Shape {
@@ -102,11 +102,11 @@ public class LanguageOptionOverlay extends ScreenBase {
         _local_1.graphics.moveTo(0, 70);
         _local_1.graphics.lineTo(800, 70);
         _local_1.graphics.lineStyle();
-        return (_local_1);
+        return _local_1;
     }
 
     public function clear():void {
-        if (((this.languageDropDown) && (contains(this.languageDropDown)))) {
+        if (this.languageDropDown && contains(this.languageDropDown)) {
             removeChild(this.languageDropDown);
         }
     }

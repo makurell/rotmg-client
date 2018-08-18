@@ -6,7 +6,7 @@ public class DispatchSignalTask extends BaseTask {
     private var signal:Signal;
     private var params:Array;
 
-    public function DispatchSignalTask(_arg_1:Signal, ... rest) {
+    public function DispatchSignalTask(_arg_1:Signal, ...rest) {
         this.signal = _arg_1;
         this.params = rest;
     }

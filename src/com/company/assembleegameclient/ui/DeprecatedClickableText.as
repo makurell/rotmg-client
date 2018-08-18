@@ -8,7 +8,7 @@ public class DeprecatedClickableText extends ClickableTextBase {
     }
 
     override protected function makeText():TextFieldDisplayConcrete {
-        return (new TextFieldDisplayConcrete());
+        return new TextFieldDisplayConcrete();
     }
 
 

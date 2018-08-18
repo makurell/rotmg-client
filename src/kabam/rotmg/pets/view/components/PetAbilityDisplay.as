@@ -32,7 +32,7 @@ public class PetAbilityDisplay extends Sprite {
         this.vo = _arg_1;
         this.spacing = _arg_2;
         this.rollOver = new NativeSignal(this, MouseEvent.MOUSE_OVER).add(this.onRollOver);
-        this.textColor = ((_arg_1.getUnlocked()) ? 0xB3B3B3 : 0x666666);
+        this.textColor = _arg_1.getUnlocked() ? 0xB3B3B3 : 0x666666;
         this.updateTextFields();
         this.makeBullet();
         _arg_1.updated.add(this.onUpdated);
@@ -69,7 +69,7 @@ public class PetAbilityDisplay extends Sprite {
         addChild(this.valueTextField);
         this.waitForTextChanged();
         this.setLevelText();
-        (((this.vo.level >= PetsConstants.MAX_LEVEL)) && (this.valueTextField.setColor(PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT)));
+        this.vo.level >= PetsConstants.MAX_LEVEL && this.valueTextField.setColor(PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT);
     }
 
     private function setLevelText():void {
@@ -86,7 +86,7 @@ public class PetAbilityDisplay extends Sprite {
     }
 
     private function getLevelKey(_arg_1:AbilityVO):String {
-        return ((((_arg_1.level < PetsConstants.MAX_LEVEL)) ? TextKey.PET_ABILITY_LEVEL : TextKey.PET_ABILITY_LEVEL_MAX));
+        return _arg_1.level < PetsConstants.MAX_LEVEL ? TextKey.PET_ABILITY_LEVEL : TextKey.PET_ABILITY_LEVEL_MAX;
     }
 
     private function waitForTextChanged():void {
@@ -96,7 +96,7 @@ public class PetAbilityDisplay extends Sprite {
     }
 
     private function positionTextField():void {
-        this.valueTextField.x = (this.spacing - this.valueTextField.width);
+        this.valueTextField.x = this.spacing - this.valueTextField.width;
     }
 
 

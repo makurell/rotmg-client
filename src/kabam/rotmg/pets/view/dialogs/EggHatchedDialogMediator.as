@@ -43,7 +43,7 @@ public class EggHatchedDialogMediator extends Mediator {
         var _local_6:MaskedImage = _local_5.imageFromAngle(0, AnimatedChar.STAND, 0);
         var _local_7:BitmapData = TextureRedrawer.resize(_local_6.image_, _local_6.mask_, 160, true, 0, 0);
         _local_7 = GlowRedrawer.outlineGlow(_local_7, 0, 6);
-        return (new Bitmap(_local_7));
+        return new Bitmap(_local_7);
     }
 
 

@@ -14,7 +14,7 @@ public class ChooseName extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CHOOSENAME", "name_"));
+        return formatToString("CHOOSENAME", "name_");
     }
 
 

@@ -12,7 +12,7 @@ public class QuestRewards extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new QuestRewardsPanel(_arg_1));
+        return new QuestRewardsPanel(_arg_1);
     }
 
 

@@ -42,32 +42,32 @@ public class XMLParticle extends BasicObject {
             this.animations_ = new Animations(_arg_1.animationsData_);
         }
         this.moveVec_ = new Vector3D();
-        var _local_2:Number = ((Math.PI * 2) * Math.random());
-        this.moveVec_.x = ((Math.cos(_local_2) * 0.1) * 5);
-        this.moveVec_.y = ((Math.sin(_local_2) * 0.1) * 5);
+        var _local_2:Number = Math.PI * 2 * Math.random();
+        this.moveVec_.x = Math.cos(_local_2) * 0.1 * 5;
+        this.moveVec_.y = Math.sin(_local_2) * 0.1 * 5;
     }
 
     public function moveTo(_arg_1:Number, _arg_2:Number):Boolean {
         var _local_3:Square = map_.getSquare(_arg_1, _arg_2);
         if (_local_3 == null) {
-            return (false);
+            return false;
         }
         x_ = _arg_1;
         y_ = _arg_2;
         square_ = _local_3;
-        return (true);
+        return true;
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         var _local_3:Number;
-        _local_3 = (_arg_2 / 1000);
-        this.durationLeft_ = (this.durationLeft_ - _local_3);
+        _local_3 = _arg_2 / 1000;
+        this.durationLeft_ = this.durationLeft_ - _local_3;
         if (this.durationLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        x_ = (x_ + (this.moveVec_.x * _local_3));
-        y_ = (y_ + (this.moveVec_.y * _local_3));
-        return (true);
+        x_ = x_ + this.moveVec_.x * _local_3;
+        y_ = y_ + this.moveVec_.y * _local_3;
+        return true;
     }
 
     override public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -83,7 +83,7 @@ public class XMLParticle extends BasicObject {
         var _local_5:int = _local_4.width;
         var _local_6:int = _local_4.height;
         this.vS_.length = 0;
-        this.vS_.push((posS_[3] - (_local_5 / 2)), (posS_[4] - _local_6), (posS_[3] + (_local_5 / 2)), (posS_[4] - _local_6), (posS_[3] + (_local_5 / 2)), posS_[4], (posS_[3] - (_local_5 / 2)), posS_[4]);
+        this.vS_.push(posS_[3] - _local_5 / 2, posS_[4] - _local_6, posS_[3] + _local_5 / 2, posS_[4] - _local_6, posS_[3] + _local_5 / 2, posS_[4], posS_[3] - _local_5 / 2, posS_[4]);
         this.path_.data = this.vS_;
         this.bitmapFill_.bitmapData = _local_4;
         this.fillMatrix_.identity();

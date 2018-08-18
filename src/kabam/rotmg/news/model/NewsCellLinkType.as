@@ -1,9 +1,9 @@
 ﻿package kabam.rotmg.news.model {
 public class NewsCellLinkType {
 
-    public static const OPENS_LINK:NewsCellLinkType = new (NewsCellLinkType)(1);
-    public static const OPENS_PACKAGE:NewsCellLinkType = new (NewsCellLinkType)(2);
-    public static const OPENS_SKIN:NewsCellLinkType = new (NewsCellLinkType)(3);
+    public static const OPENS_LINK:NewsCellLinkType = new NewsCellLinkType(1);
+    public static const OPENS_PACKAGE:NewsCellLinkType = new NewsCellLinkType(2);
+    public static const OPENS_SKIN:NewsCellLinkType = new NewsCellLinkType(3);
     private static const types:Object = {
         "1": OPENS_LINK,
         "2": OPENS_PACKAGE,
@@ -17,12 +17,12 @@ public class NewsCellLinkType {
     }
 
     public static function parse(_arg_1:int):NewsCellLinkType {
-        return (types[_arg_1]);
+        return types[_arg_1];
     }
 
 
     public function getIndex():int {
-        return (this.index);
+        return this.index;
     }
 
 

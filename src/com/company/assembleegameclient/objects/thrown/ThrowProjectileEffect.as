@@ -21,7 +21,7 @@ public class ThrowProjectileEffect extends ParticleEffect {
         var _local_3 = 10000;
         var _local_4:ThrownProjectile = new ThrownProjectile(this.id_, 1500, this.start_, this.end_);
         map_.addObj(_local_4, x_, y_);
-        return (false);
+        return false;
     }
 
 

@@ -29,13 +29,13 @@ public class CollapseEffect extends ParticleEffect {
         var _local_6:int = 24;
         var _local_7:int;
         while (_local_7 < _local_6) {
-            _local_8 = (((_local_7 * 2) * Math.PI) / _local_6);
-            _local_9 = new Point((this.center_.x + (_local_3 * Math.cos(_local_8))), (this.center_.y + (_local_3 * Math.sin(_local_8))));
+            _local_8 = (_local_7 * 2 * Math.PI) / _local_6;
+            _local_9 = new Point(this.center_.x + _local_3 * Math.cos(_local_8), this.center_.y + _local_3 * Math.sin(_local_8));
             _local_10 = new SparkerParticle(_local_4, this.color_, _local_5, _local_9, this.center_);
             map_.addObj(_local_10, x_, y_);
             _local_7++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
@@ -50,13 +50,13 @@ public class CollapseEffect extends ParticleEffect {
         var _local_6:int = 8;
         var _local_7:int;
         while (_local_7 < _local_6) {
-            _local_8 = (((_local_7 * 2) * Math.PI) / _local_6);
-            _local_9 = new Point((this.center_.x + (_local_3 * Math.cos(_local_8))), (this.center_.y + (_local_3 * Math.sin(_local_8))));
+            _local_8 = (_local_7 * 2 * Math.PI) / _local_6;
+            _local_9 = new Point(this.center_.x + _local_3 * Math.cos(_local_8), this.center_.y + _local_3 * Math.sin(_local_8));
             _local_10 = new SparkerParticle(_local_4, this.color_, _local_5, _local_9, this.center_);
             map_.addObj(_local_10, x_, y_);
             _local_7++;
         }
-        return (false);
+        return false;
     }
 
 

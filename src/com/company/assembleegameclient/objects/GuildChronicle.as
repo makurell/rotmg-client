@@ -11,7 +11,7 @@ public class GuildChronicle extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new GuildChroniclePanel(_arg_1));
+        return new GuildChroniclePanel(_arg_1);
     }
 
 

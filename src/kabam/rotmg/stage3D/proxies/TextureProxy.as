@@ -20,15 +20,15 @@ public class TextureProxy {
     }
 
     public function getTexture():TextureBase {
-        return (this.texture);
+        return this.texture;
     }
 
     public function getWidth():int {
-        return (this.width);
+        return this.width;
     }
 
     public function getHeight():int {
-        return (this.height);
+        return this.height;
     }
 
     public function dispose():void {

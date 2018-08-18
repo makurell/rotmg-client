@@ -5,7 +5,7 @@ public class EmailValidator {
 
 
     public static function isValidEmail(_arg_1:String):Boolean {
-        return (Boolean(_arg_1.match(EMAIL_REGEX)));
+        return Boolean(_arg_1.match(EMAIL_REGEX));
     }
 
 

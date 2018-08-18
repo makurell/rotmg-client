@@ -53,8 +53,8 @@ public class GiftStatusDisplay extends Sprite implements TooltipAble {
         this.drawAsOpen();
         var _local_1:Rectangle = this.bitmap.getBounds(this);
         var _local_2:int = 10;
-        this.text.x = (_local_1.right - _local_2);
-        this.text.y = (_local_1.bottom - _local_2);
+        this.text.x = _local_1.right - _local_2;
+        this.text.y = _local_1.bottom - _local_2;
     }
 
     public function setShowToolTipSignal(_arg_1:ShowTooltipSignal):void {
@@ -62,7 +62,7 @@ public class GiftStatusDisplay extends Sprite implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -70,7 +70,7 @@ public class GiftStatusDisplay extends Sprite implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
     public function drawAsOpen():void {
@@ -80,13 +80,13 @@ public class GiftStatusDisplay extends Sprite implements TooltipAble {
     }
 
     public function drawAsClosed():void {
-        if (((this.background) && ((this.background.parent == this)))) {
+        if (this.background && this.background.parent == this) {
             removeChild(this.background);
         }
-        if (((this.text) && ((this.text.parent == this)))) {
+        if (this.text && this.text.parent == this) {
             removeChild(this.text);
         }
-        if (((this.bitmap) && ((this.bitmap.parent == this)))) {
+        if (this.bitmap && this.bitmap.parent == this) {
             removeChild(this.bitmap);
         }
     }

@@ -26,7 +26,7 @@ public class BuyResult extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("BUYRESULT", "result_", "resultString_"));
+        return formatToString("BUYRESULT", "result_", "resultString_");
     }
 
 

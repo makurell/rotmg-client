@@ -53,11 +53,11 @@ public class FriendModel {
     }
 
     public function getCurrentServerName():String {
-        return (((this._currentServer) ? this._currentServer.name : ""));
+        return this._currentServer ? this._currentServer.name : "";
     }
 
     public function loadData():void {
-        if(this._friendsLoadInProcess || this._invitationsLoadInProgress)  {
+        if (this._friendsLoadInProcess || this._invitationsLoadInProgress) {
             return;
         }
         var _local_1:Injector = StaticInjectorContext.getInjector();
@@ -98,10 +98,8 @@ public class FriendModel {
         this.reportTasksComplete();
     }
 
-    private function reportTasksComplete():void
-    {
-        if(this._friendsLoadInProcess == false && this._invitationsLoadInProgress == false)
-        {
+    private function reportTasksComplete():void {
+        if (this._friendsLoadInProcess == false && this._invitationsLoadInProgress == false) {
             this.dataSignal.dispatch(this._isFriDataOK && this._isInvDataOK);
         }
     }
@@ -116,7 +114,7 @@ public class FriendModel {
         this._offlineFriends.length = 0;
         for each (_local_6 in _arg_1.Account) {
             _local_2 = _local_6.Name;
-            _local_5 = (((this._friends[_local_2]) != null) ? (this._friends[_local_2].vo as FriendVO) : new FriendVO(Player.fromPlayerXML(_local_2, _local_6.Character[0])));
+            _local_5 = this._friends[_local_2] != null ? (this._friends[_local_2].vo as FriendVO) : new FriendVO(Player.fromPlayerXML(_local_2, _local_6.Character[0]));
             if (_local_6.hasOwnProperty("Online")) {
                 _local_4 = String(_local_6.Online);
                 _local_3 = this.serverNameDictionary()[_local_4];
@@ -138,7 +136,7 @@ public class FriendModel {
         }
         this._onlineFriends.sort(this.sortFriend);
         this._offlineFriends.sort(this.sortFriend);
-        this._friendTotal = (this._onlineFriends.length + this._offlineFriends.length);
+        this._friendTotal = this._onlineFriends.length + this._offlineFriends.length;
     }
 
     public function seedInvitations(_arg_1:XML):void {
@@ -158,7 +156,7 @@ public class FriendModel {
     }
 
     public function isMyFriend(_arg_1:String):Boolean {
-        return (!((this._friends[_arg_1] == null)));
+        return !(this._friends[_arg_1] == null);
     }
 
     public function updateFriendVO(_arg_1:String, _arg_2:Player):void {
@@ -191,15 +189,15 @@ public class FriendModel {
             }
             _local_5++;
         }
-        return (_local_4);
+        return _local_4;
     }
 
     public function ifReachMax():Boolean {
-        return ((this._friendTotal >= FriendConstant.FRIEMD_MAX_CAP));
+        return this._friendTotal >= FriendConstant.FRIEMD_MAX_CAP;
     }
 
     public function getAllFriends():Vector.<FriendVO> {
-        return (this._onlineFriends.concat(this._offlineFriends));
+        return this._onlineFriends.concat(this._offlineFriends);
     }
 
     public function getAllInvitations():Vector.<FriendVO> {
@@ -209,7 +207,7 @@ public class FriendModel {
             _local_1.push(_local_2);
         }
         _local_1.sort(this.sortFriend);
-        return (_local_1);
+        return _local_1;
     }
 
     public function removeFriend(_arg_1:String):Boolean {
@@ -218,18 +216,18 @@ public class FriendModel {
             this.removeFromList(_local_2.list, _arg_1);
             this._friends[_arg_1] = null;
             delete this._friends[_arg_1];
-            return (true);
+            return true;
         }
-        return (false);
+        return false;
     }
 
     public function removeInvitation(_arg_1:String):Boolean {
         if (this._invitations[_arg_1] != null) {
             this._invitations[_arg_1] = null;
             delete this._invitations[_arg_1];
-            return (true);
+            return true;
         }
-        return (false);
+        return false;
     }
 
     private function removeFromList(_arg_1:Vector.<FriendVO>, _arg_2:String) {
@@ -247,29 +245,29 @@ public class FriendModel {
 
     private function sortFriend(_arg_1:FriendVO, _arg_2:FriendVO):Number {
         if (_arg_1.getName() < _arg_2.getName()) {
-            return (-1);
+            return -1;
         }
         if (_arg_1.getName() > _arg_2.getName()) {
-            return (1);
+            return 1;
         }
-        return (0);
+        return 0;
     }
 
     private function serverNameDictionary():Dictionary {
         var _local_2:Server;
         if (this._serverDict) {
-            return (this._serverDict);
+            return this._serverDict;
         }
         var _local_1:Vector.<Server> = this.serverModel.getServers();
         this._serverDict = new Dictionary(true);
         for each (_local_2 in _local_1) {
             this._serverDict[_local_2.address] = _local_2.name;
         }
-        return (this._serverDict);
+        return this._serverDict;
     }
 
     private function starFilter(_arg_1:int, _arg_2:int, _arg_3:XML):Boolean {
-        return ((FameUtil.numAllTimeStars(_arg_1, _arg_2, _arg_3) >= Parameters.data_.friendStarRequirement));
+        return FameUtil.numAllTimeStars(_arg_1, _arg_2, _arg_3) >= Parameters.data_.friendStarRequirement;
     }
 
 

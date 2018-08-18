@@ -11,7 +11,7 @@ public class LegendsModel {
     }
 
     public function getTimespan():Timespan {
-        return (this.timespan);
+        return this.timespan;
     }
 
     public function setTimespan(_arg_1:Timespan):void {
@@ -19,11 +19,11 @@ public class LegendsModel {
     }
 
     public function hasLegendList():Boolean {
-        return (!((this.map[this.timespan.getId()] == null)));
+        return !(this.map[this.timespan.getId()] == null);
     }
 
     public function getLegendList():Vector.<Legend> {
-        return (this.map[this.timespan.getId()]);
+        return this.map[this.timespan.getId()];
     }
 
     public function setLegendList(_arg_1:Vector.<Legend>):void {
@@ -41,7 +41,7 @@ public class LegendsModel {
     private function dispose(_arg_1:Vector.<Legend>):void {
         var _local_2:Legend;
         for each (_local_2 in _arg_1) {
-            ((_local_2.character) && (this.removeLegendCharacter(_local_2)));
+            _local_2.character && this.removeLegendCharacter(_local_2);
         }
     }
 

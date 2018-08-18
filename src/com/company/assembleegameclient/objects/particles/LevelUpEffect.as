@@ -29,21 +29,21 @@ public class LevelUpEffect extends ParticleEffect {
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         if (this.go_.map_ == null) {
             this.endEffect();
-            return (false);
+            return false;
         }
         x_ = this.go_.x_;
         y_ = this.go_.y_;
         if (this.startTime_ < 0) {
             this.startTime_ = _arg_1;
         }
-        var _local_3:Number = ((_arg_1 - this.startTime_) / LIFETIME);
+        var _local_3:Number = (_arg_1 - this.startTime_) / LIFETIME;
         if (_local_3 >= 1) {
             this.endEffect();
-            return (false);
+            return false;
         }
         this.updateSwirl(this.parts1_, 1, 0, _local_3);
         this.updateSwirl(this.parts2_, 1, Math.PI, _local_3);
-        return (true);
+        return true;
     }
 
     private function endEffect():void {
@@ -65,15 +65,15 @@ public class LevelUpEffect extends ParticleEffect {
         _local_5 = 0;
         while (_local_5 < _arg_1.length) {
             _local_6 = _arg_1[_local_5];
-            _local_6.z_ = (((_arg_4 * 2) - 1) + (_local_5 / _arg_1.length));
+            _local_6.z_ = (_arg_4 * 2 - 1) + _local_5 / _arg_1.length;
             if (_local_6.z_ >= 0) {
                 if (_local_6.z_ > 1) {
                     _local_6.alive_ = false;
                 }
                 else {
-                    _local_7 = (_arg_2 * ((((2 * Math.PI) * (_local_5 / _arg_1.length)) + ((2 * Math.PI) * _arg_4)) + _arg_3));
-                    _local_8 = (this.go_.x_ + (0.5 * Math.cos(_local_7)));
-                    _local_9 = (this.go_.y_ + (0.5 * Math.sin(_local_7)));
+                    _local_7 = _arg_2 * (2 * Math.PI * (_local_5 / _arg_1.length) + 2 * Math.PI * _arg_4 + _arg_3);
+                    _local_8 = this.go_.x_ + 0.5 * Math.cos(_local_7);
+                    _local_9 = this.go_.y_ + 0.5 * Math.sin(_local_7);
                     if (_local_6.map_ == null) {
                         map_.addObj(_local_6, _local_8, _local_9);
                     }
@@ -101,7 +101,7 @@ class LevelUpParticle extends Particle {
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        return (this.alive_);
+        return this.alive_;
     }
 
 

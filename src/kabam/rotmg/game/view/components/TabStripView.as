@@ -56,7 +56,7 @@ public class TabStripView extends Sprite {
     }
 
     private function onTabClicked(_arg_1:MouseEvent):void {
-        this.selectTab((_arg_1.target.parent as TabView));
+        this.selectTab(_arg_1.target.parent as TabView);
     }
 
     public function setSelectedTab(_arg_1:uint):void {
@@ -80,7 +80,7 @@ public class TabStripView extends Sprite {
         var _local_1:GraphicsSolidFill = new GraphicsSolidFill(TabConstants.BACKGROUND_COLOR, 1);
         var _local_2:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         var _local_3:Vector.<IGraphicsData> = new <IGraphicsData>[_local_1, _local_2, GraphicsUtil.END_FILL];
-        GraphicsUtil.drawCutEdgeRect(0, 0, this._width, (this._height - TabConstants.TAB_TOP_OFFSET), 6, [1, 1, 1, 1], _local_2);
+        GraphicsUtil.drawCutEdgeRect(0, 0, this._width, this._height - TabConstants.TAB_TOP_OFFSET, 6, [1, 1, 1, 1], _local_2);
         this.background.graphics.drawGraphicsData(_local_3);
         this.background.y = TabConstants.TAB_TOP_OFFSET;
         addChild(this.background);
@@ -103,12 +103,12 @@ public class TabStripView extends Sprite {
     public function addTab(_arg_1:*, _arg_2:Sprite):void {
         var _local_4:TabView;
         var _local_3:int = this.tabs.length;
-        if ((_arg_1 is Bitmap)) {
-            _local_4 = this.addIconTab(_local_3, (_arg_1 as Bitmap));
+        if (_arg_1 is Bitmap) {
+            _local_4 = this.addIconTab(_local_3, _arg_1 as Bitmap);
         }
         else {
-            if ((_arg_1 is BaseSimpleText)) {
-                _local_4 = this.addTextTab(_local_3, (_arg_1 as BaseSimpleText));
+            if (_arg_1 is BaseSimpleText) {
+                _local_4 = this.addTextTab(_local_3, _arg_1 as BaseSimpleText);
             }
         }
         this.tabs.push(_local_4);
@@ -132,17 +132,17 @@ public class TabStripView extends Sprite {
         var _local_4:TabIconView;
         var _local_3:Sprite = new TabBackground();
         _local_4 = new TabIconView(_arg_1, _local_3, _arg_2);
-        _local_4.x = (_arg_1 * (_local_3.width + TabConstants.PADDING));
+        _local_4.x = _arg_1 * (_local_3.width + TabConstants.PADDING);
         _local_4.y = TabConstants.TAB_Y_POS;
-        return (_local_4);
+        return _local_4;
     }
 
     private function addTextTab(_arg_1:int, _arg_2:BaseSimpleText):TabTextView {
         var _local_3:Sprite = new TabBackground();
         var _local_4:TabTextView = new TabTextView(_arg_1, _local_3, _arg_2);
-        _local_4.x = (_arg_1 * (_local_3.width + TabConstants.PADDING));
+        _local_4.x = _arg_1 * (_local_3.width + TabConstants.PADDING);
         _local_4.y = TabConstants.TAB_Y_POS;
-        return (_local_4);
+        return _local_4;
     }
 
     private function showContent(_arg_1:int):void {

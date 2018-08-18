@@ -9,7 +9,7 @@ public class KongregateSharedObject {
 
 
     public function getGuestGUID():String {
-        return ((this.guid = ((this.guid) || (this.makeGuestGUID()))));
+        return this.guid = this.guid || this.makeGuestGUID();
     }
 
     private function makeGuestGUID():String {
@@ -33,7 +33,7 @@ public class KongregateSharedObject {
             catch (error:Error) {
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

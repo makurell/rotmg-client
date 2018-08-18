@@ -10,7 +10,7 @@ public class Watch {
     }
 
     public function toString():String {
-        return (this.data);
+        return this.data;
     }
 
 

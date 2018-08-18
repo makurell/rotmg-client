@@ -17,7 +17,7 @@ public class FriendConstant {
 
 
     public static function getURL(_arg_1:String):String {
-        return (("/friends" + _arg_1));
+        return "/friends" + _arg_1;
     }
 
 

@@ -21,18 +21,18 @@ public class SkullComparison extends SlotComparison {
         _local_3 = this.getVampireBlastTag(_arg_1);
         _local_4 = this.getVampireBlastTag(_arg_2);
         comparisonStringBuilder = new AppendingLineBuilder();
-        if (((!((_local_3 == null))) && (!((_local_4 == null))))) {
+        if (!(_local_3 == null) && !(_local_4 == null)) {
             _local_5 = Number(_local_3.@radius);
             _local_6 = Number(_local_4.@radius);
             _local_7 = int(_local_3.@totalDamage);
             _local_8 = int(_local_4.@totalDamage);
-            _local_9 = ((0.5 * _local_5) + (0.5 * _local_7));
-            _local_10 = ((0.5 * _local_6) + (0.5 * _local_8));
+            _local_9 = 0.5 * _local_5 + 0.5 * _local_7;
+            _local_10 = 0.5 * _local_6 + 0.5 * _local_8;
             comparisonStringBuilder.pushParams(TextKey.STEAL, {
                 "effect": new LineBuilder().setParams(TextKey.HP_WITHIN_SQRS, {
                     "amount": _local_7,
                     "range": _local_5
-                }).setPrefix(TooltipHelper.getOpenTag(getTextColor((_local_9 - _local_10)))).setPostfix(TooltipHelper.getCloseTag())
+                }).setPrefix(TooltipHelper.getOpenTag(getTextColor(_local_9 - _local_10))).setPostfix(TooltipHelper.getCloseTag())
             });
             processedTags[_local_3.toXMLString()] = true;
         }
@@ -41,7 +41,7 @@ public class SkullComparison extends SlotComparison {
     private function getVampireBlastTag(xml:XML):XML {
         var matches:XMLList;
         matches = xml.Activate.(text() == ActivationType.VAMPIRE_BLAST);
-        return ((((matches.length()) >= 1) ? matches[0] : null));
+        return matches.length() >= 1 ? matches[0] : null;
     }
 
 

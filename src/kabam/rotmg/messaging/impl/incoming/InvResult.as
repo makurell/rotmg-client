@@ -14,7 +14,7 @@ public class InvResult extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("INVRESULT", "result_"));
+        return formatToString("INVRESULT", "result_");
     }
 
 

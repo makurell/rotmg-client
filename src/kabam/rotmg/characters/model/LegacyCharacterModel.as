@@ -11,11 +11,11 @@ public class LegacyCharacterModel implements CharacterModel {
 
 
     public function getCharacterCount():int {
-        return (this.wrapped.getCharacterCount());
+        return this.wrapped.getCharacterCount();
     }
 
     public function getCharacter(_arg_1:int):SavedCharacter {
-        return (this.wrapped.getCharById(_arg_1));
+        return this.wrapped.getCharById(_arg_1);
     }
 
     public function deleteCharacter(_arg_1:int):void {
@@ -30,7 +30,7 @@ public class LegacyCharacterModel implements CharacterModel {
     }
 
     public function getSelected():SavedCharacter {
-        return (this.selected);
+        return this.selected;
     }
 
 

@@ -84,7 +84,7 @@ public class AnimatedAbilityBar extends Sprite {
     private function adjustFilledBar():void {
         var _local_2:GTween;
         var _local_1:int = this.getBarWidth();
-        if (((((!((this.currentPoints == -1))) && (!((this.currentPoints == 0))))) && (!((_local_1 == Math.round(this.animatedBar.width)))))) {
+        if (!(this.currentPoints == -1) && !(this.currentPoints == 0) && !(_local_1 == Math.round(this.animatedBar.width))) {
             this.animating.dispatch(true);
             this.setBarColor(this.FILLING_BAR_COLOR);
             _local_2 = new GTween(this.animatedBar, 2, {"width": _local_1});
@@ -93,8 +93,8 @@ public class AnimatedAbilityBar extends Sprite {
     }
 
     private function getBarWidth():int {
-        var _local_1:int = ((this.currentPoints * this.maxWidth) / this.maxPoints);
-        return (((isNaN(_local_1)) ? 1 : Math.round(Math.max(1, Math.min(this.maxWidth, _local_1)))));
+        var _local_1:int = (this.currentPoints * this.maxWidth) / this.maxPoints;
+        return isNaN(_local_1) ? 1 : Math.round(Math.max(1, Math.min(this.maxWidth, _local_1)));
     }
 
     public function handleTweenComplete(_arg_1:GTween):void {

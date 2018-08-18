@@ -25,7 +25,7 @@ public class KongregateRegisterAccountTask extends BaseTask implements RegisterA
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.onInternalRegisterDone(_arg_2)));
+        _arg_1 && this.onInternalRegisterDone(_arg_2);
         completeTask(_arg_1, _arg_2);
     }
 
@@ -34,7 +34,7 @@ public class KongregateRegisterAccountTask extends BaseTask implements RegisterA
         _local_1.newGUID = this.data.username;
         _local_1.newPassword = this.data.password;
         _local_1.entrytag = this.account.getEntryTag();
-        return (_local_1);
+        return _local_1;
     }
 
     private function onInternalRegisterDone(_arg_1:String):void {

@@ -25,19 +25,19 @@ public class FriendVO {
     }
 
     public function getServerName():String {
-        return (this._serverName);
+        return this._serverName;
     }
 
     public function getName():String {
-        return (this._player.getName());
+        return this._player.getName();
     }
 
     public function getPortrait():BitmapData {
-        return (this._player.getPortrait());
+        return this._player.getPortrait();
     }
 
     public function get isOnline():Boolean {
-        return (this._isOnline);
+        return this._isOnline;
     }
 
     public function online(_arg_1:String, _arg_2:String):void {

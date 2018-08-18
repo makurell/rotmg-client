@@ -37,7 +37,7 @@ public class GraveyardLine extends Sprite {
         this.icon_ = new Bitmap();
         this.icon_.bitmapData = _arg_1;
         this.icon_.x = 12;
-        this.icon_.y = (((HEIGHT / 2) - (_arg_1.height / 2)) - 3);
+        this.icon_.y = HEIGHT / 2 - _arg_1.height / 2 - 3;
         addChild(this.icon_);
         this.titleText_ = new BaseSimpleText(18, COLOR, false, 0, 0);
         this.titleText_.text = _arg_2;
@@ -56,7 +56,7 @@ public class GraveyardLine extends Sprite {
         this.dtText_.text = this.getTimeDiff(_arg_5);
         this.dtText_.updateMetrics();
         this.dtText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.dtText_.x = (WIDTH - this.dtText_.width);
+        this.dtText_.x = WIDTH - this.dtText_.width;
         addChild(this.dtText_);
         addEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
         addEventListener(MouseEvent.ROLL_OUT, this.onRollOut);
@@ -89,21 +89,21 @@ public class GraveyardLine extends Sprite {
     }
 
     private function getTimeDiff(_arg_1:int):String {
-        var _local_2:Number = (new Date().getTime() / 1000);
-        var _local_3:int = (_local_2 - _arg_1);
+        var _local_2:Number = new Date().getTime() / 1000;
+        var _local_3:int = _local_2 - _arg_1;
         if (_local_3 <= 0) {
-            return ("now");
+            return "now";
         }
         if (_local_3 < 60) {
-            return ((_local_3 + " secs"));
+            return _local_3 + " secs";
         }
-        if (_local_3 < (60 * 60)) {
-            return ((int((_local_3 / 60)) + " mins"));
+        if (_local_3 < 60 * 60) {
+            return int(_local_3 / 60) + " mins";
         }
-        if (_local_3 < ((60 * 60) * 24)) {
-            return ((int((_local_3 / (60 * 60))) + " hours"));
+        if (_local_3 < 60 * 60 * 24) {
+            return int(_local_3 / (60 * 60)) + " hours";
         }
-        return ((int((_local_3 / ((60 * 60) * 24))) + " days"));
+        return int(_local_3 / (60 * 60 * 24)) + " days";
     }
 
 

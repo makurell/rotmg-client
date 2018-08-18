@@ -68,16 +68,16 @@ public class EggHatchedDialog extends Sprite {
 
     private function positionAssets():void {
         this.positionThis();
-        this.petBitmap.x = ((287 - this.petBitmap.width) * 0.5);
+        this.petBitmap.x = (287 - this.petBitmap.width) * 0.5;
         this.eggHatchImage.x = 1;
         this.eggHatchImage.y = 32;
-        this.petBitmap.x = (this.petBitmap.x - 5);
+        this.petBitmap.x = this.petBitmap.x - 5;
         this.petBitmap.y = 41;
     }
 
     private function positionThis():void {
-        this.x = ((stage.stageWidth - this.width) * 0.5);
-        this.y = ((stage.stageHeight - this.height) * 0.5);
+        this.x = (stage.stageWidth - this.width) * 0.5;
+        this.y = (stage.stageHeight - this.height) * 0.5;
     }
 
     private function waitForTextChanged():void {
@@ -89,14 +89,14 @@ public class EggHatchedDialog extends Sprite {
     }
 
     private function positionButtonBar():void {
-        this.sendToYardButton.x = ((287 - this.sendToYardButton.width) * 0.5);
+        this.sendToYardButton.x = (287 - this.sendToYardButton.width) * 0.5;
         this.sendToYardButton.y = 240;
     }
 
     private function positionTextField():void {
-        this.titleTextfield.x = ((287 - this.titleTextfield.width) * 0.5);
+        this.titleTextfield.x = (287 - this.titleTextfield.width) * 0.5;
         this.titleTextfield.y = 23;
-        this.typeTextfield.x = ((287 - this.typeTextfield.width) * 0.5);
+        this.typeTextfield.x = (287 - this.typeTextfield.width) * 0.5;
         this.typeTextfield.y = 230;
     }
 

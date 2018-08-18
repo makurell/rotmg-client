@@ -35,7 +35,7 @@ public class BoostTimer extends Sprite {
         _local_1.setMultiLine(true);
         _local_1.mouseEnabled = true;
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
-        return (_local_1);
+        return _local_1;
     }
 
     private function createLabelTextField():void {

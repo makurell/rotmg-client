@@ -14,7 +14,7 @@ public class GuildRemove extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("GUILDREMOVE", "name_"));
+        return formatToString("GUILDREMOVE", "name_");
     }
 
 

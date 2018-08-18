@@ -43,7 +43,7 @@ public class PetsButtonBar extends Sprite {
 
     private function positionButtons():void {
         this.buttonOne.x = PetsConstants.BUTTON_BAR_SPACING;
-        this.buttonTwo.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonTwo.width) - PetsConstants.BUTTON_BAR_SPACING);
+        this.buttonTwo.x = PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonTwo.width - PetsConstants.BUTTON_BAR_SPACING;
     }
 
 

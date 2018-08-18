@@ -25,18 +25,18 @@ public class TabTextView extends TabView {
         if (this.badgeIcon == null) {
             this.badgeIcon = new Bitmap();
             this.badgeIcon.bitmapData = AssetLibrary.getImageFromSet("lofiInterface", 110);
-            this.badgeIcon.x = (this.x - 10);
+            this.badgeIcon.x = this.x - 10;
             this.badgeIcon.y = 5;
             this.badgeIcon.scaleX = (this.badgeIcon.scaleY = 1.5);
             addChild(this.badgeIcon);
             this.badgeBG = new Bitmap();
             this.badgeBG.bitmapData = AssetLibrary.getImageFromSet("lofiInterface", 110);
-            this.badgeBG.x = (this.x - 12);
+            this.badgeBG.x = this.x - 12;
             this.badgeBG.y = 3;
             this.badgeBG.scaleX = (this.badgeBG.scaleY = 2);
             addChild(this.badgeBG);
         }
-        this.badgeIcon.visible = (this.badgeBG.visible = (_arg_1 > 0));
+        this.badgeIcon.visible = (this.badgeBG.visible = _arg_1 > 0);
     }
 
     private function initBackground(_arg_1:Sprite):void {
@@ -52,7 +52,7 @@ public class TabTextView extends TabView {
 
     override public function setSelected(_arg_1:Boolean):void {
         var _local_2:ColorTransform = this.background.transform.colorTransform;
-        _local_2.color = ((_arg_1) ? TabConstants.BACKGROUND_COLOR : TabConstants.TAB_COLOR);
+        _local_2.color = _arg_1 ? TabConstants.BACKGROUND_COLOR : TabConstants.TAB_COLOR;
         this.background.transform.colorTransform = _local_2;
     }
 

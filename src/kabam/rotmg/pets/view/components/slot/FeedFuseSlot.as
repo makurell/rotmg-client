@@ -55,23 +55,23 @@ public class FeedFuseSlot extends Sprite {
     }
 
     public function hideOuterSlot(_arg_1:Boolean):void {
-        this.outerSlot.visible = !(_arg_1);
-        var _local_2:int = ((_arg_1) ? 40 : 46);
-        var _local_3:int = ((_arg_1) ? 3 : 0);
+        this.outerSlot.visible = !_arg_1;
+        var _local_2:int = _arg_1 ? 40 : 46;
+        var _local_3:int = _arg_1 ? 3 : 0;
         this.bg.graphics.clear();
         this.bg.graphics.beginFill(0x464646);
         this.bg.graphics.drawRoundRect(0, _local_3, _local_2, _local_2, 16, 16);
-        this.bg.x = ((100 - _local_2) * 0.5);
+        this.bg.x = (100 - _local_2) * 0.5;
     }
 
     public function highlight(_arg_1:Boolean, _arg_2:int = 16777103, _arg_3:Boolean = false):void {
         var _local_5:ColorTransform;
         var _local_4:ColorTransform = this.innerSlot.transform.colorTransform;
-        _local_4.color = ((_arg_1) ? _arg_2 : 0x545454);
+        _local_4.color = _arg_1 ? _arg_2 : 0x545454;
         this.innerSlot.transform.colorTransform = _local_4;
         if (this.outerSlot.visible) {
             _local_5 = this.outerSlot.transform.colorTransform;
-            _local_5.color = ((_arg_3) ? _arg_2 : 0x545454);
+            _local_5.color = _arg_3 ? _arg_2 : 0x545454;
             this.outerSlot.transform.colorTransform = _local_5;
         }
     }
@@ -79,24 +79,24 @@ public class FeedFuseSlot extends Sprite {
     protected function alignBitmapInBox():void {
         this.itemSprite.x = 0;
         this.itemSprite.y = 0;
-        this.itemBitmap.x = ((100 - this.itemBitmap.width) * 0.5);
-        this.itemBitmap.y = ((46 - this.itemBitmap.height) * 0.5);
+        this.itemBitmap.x = (100 - this.itemBitmap.width) * 0.5;
+        this.itemBitmap.y = (46 - this.itemBitmap.height) * 0.5;
     }
 
     public function setIcon(_arg_1:Sprite):void {
-        ((this.icon) && (removeChild(this.icon)));
+        this.icon && removeChild(this.icon);
         this.icon = _arg_1;
         addChild(this.icon);
         this.alignIcon();
     }
 
     public function getIcon():Sprite {
-        return (this.icon);
+        return this.icon;
     }
 
     protected function alignIcon():void {
-        this.icon.x = ((100 - this.icon.width) * 0.5);
-        this.icon.y = ((46 - this.icon.height) * 0.5);
+        this.icon.x = (100 - this.icon.width) * 0.5;
+        this.icon.y = (46 - this.icon.height) * 0.5;
     }
 
     protected function onRemovedFromStage(_arg_1:Event):void {
@@ -116,7 +116,7 @@ public class FeedFuseSlot extends Sprite {
     }
 
     private function positionSubtitleText():void {
-        this.subtitleField.y = ((this.titleField.y + this.titleField.height) - 1);
+        this.subtitleField.y = (this.titleField.y + this.titleField.height) - 1;
     }
 
 

@@ -32,7 +32,7 @@ public class HoverTooltipDelegate implements TooltipAble {
     }
 
     public function getDisplayObject():DisplayObject {
-        return (this.displayObject);
+        return this.displayObject;
     }
 
     public function setShowToolTipSignal(_arg_1:ShowTooltipSignal):void {
@@ -40,7 +40,7 @@ public class HoverTooltipDelegate implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.showToolTip);
+        return this.showToolTip;
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -48,11 +48,11 @@ public class HoverTooltipDelegate implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hideToolTips);
+        return this.hideToolTips;
     }
 
     private function onRemovedFromStage(_arg_1:Event):void {
-        if (((!((this.tooltip == null))) && (!((this.tooltip.parent == null))))) {
+        if (!(this.tooltip == null) && !(this.tooltip.parent == null)) {
             this.hideToolTips.dispatch();
         }
         this.displayObject.removeEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);

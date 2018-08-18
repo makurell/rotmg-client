@@ -38,11 +38,11 @@ public class DeleteCharacterCommand {
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new DispatchSignalTask(this.setScreen, new CharacterSelectionAndNewsScreen()));
         _local_1.add(new DispatchSignalTask(this.closeDialogs));
-        return (_local_1);
+        return _local_1;
     }
 
     private function onFailure():Task {
-        return (new DispatchSignalTask(this.openDialog, "Unable to delete character"));
+        return new DispatchSignalTask(this.openDialog, "Unable to delete character");
     }
 
 

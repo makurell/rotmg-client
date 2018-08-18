@@ -8,9 +8,9 @@ public class Character extends GameObject {
 
     public function Character(_arg_1:XML) {
         super(_arg_1);
-        this.hurtSound_ = ((_arg_1.hasOwnProperty("HitSound")) ? String(_arg_1.HitSound) : "monster/default_hit");
+        this.hurtSound_ = _arg_1.hasOwnProperty("HitSound") ? String(_arg_1.HitSound) : "monster/default_hit";
         SoundEffectLibrary.load(this.hurtSound_);
-        this.deathSound_ = ((_arg_1.hasOwnProperty("DeathSound")) ? String(_arg_1.DeathSound) : "monster/default_death");
+        this.deathSound_ = _arg_1.hasOwnProperty("DeathSound") ? String(_arg_1.DeathSound) : "monster/default_death";
         SoundEffectLibrary.load(this.deathSound_);
     }
 
@@ -20,7 +20,7 @@ public class Character extends GameObject {
             SoundEffectLibrary.play(this.deathSound_);
         }
         else {
-            if (((_arg_5) || ((_arg_2 > 0)))) {
+            if (_arg_5 || _arg_2 > 0) {
                 SoundEffectLibrary.play(this.hurtSound_);
             }
         }

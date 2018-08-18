@@ -50,8 +50,8 @@ public class ConnectedObject extends GameObject {
         if (dict_ == null) {
             init();
         }
-        var _local_2 = (_arg_1 & 252645135);
-        return (dict_[_local_2]);
+        var _local_2 = _arg_1 & 252645135;
+        return dict_[_local_2];
     }
 
     private static function initHelper(_arg_1:int, _arg_2:int):void {
@@ -60,8 +60,8 @@ public class ConnectedObject extends GameObject {
         while (_local_3 < 4) {
             if (!dict_.hasOwnProperty(String(_arg_1))) {
                 dict_[_arg_1] = new ConnectedResults(_arg_2, _local_3);
-                _local_4 = (_arg_1 & 0xFF);
-                _arg_1 = ((_arg_1 >> 8) | (_local_4 << 24));
+                _local_4 = _arg_1 & 0xFF;
+                _arg_1 = _arg_1 >> 8 | _local_4 << 24;
             }
             _local_3++;
         }
@@ -79,12 +79,12 @@ public class ConnectedObject extends GameObject {
         }
         Utils3D.projectVectors(_arg_2.wToS_, obj3D_.vW_, obj3D_.vS_, obj3D_.uvts_);
         for each (_local_4 in obj3D_.faces_) {
-            _local_5 = (((_local_4.normalW_.x > 0.4)) ? 1 : (((_local_4.normalW_.x < -0.4)) ? -1 : 0));
-            _local_6 = (((_local_4.normalW_.y > 0.4)) ? 1 : (((_local_4.normalW_.y < -0.4)) ? -1 : 0));
+            _local_5 = _local_4.normalW_.x > 0.4 ? 1 : _local_4.normalW_.x < -0.4 ? -1 : 0;
+            _local_6 = _local_4.normalW_.y > 0.4 ? 1 : _local_4.normalW_.y < -0.4 ? -1 : 0;
             _local_7 = _local_4.texture_;
-            if (((!((_local_5 == 0))) || (!((_local_6 == 0))))) {
-                _local_8 = map_.lookupSquare((x_ + _local_5), (y_ + _local_6));
-                if ((((_local_8 == null)) || ((_local_8.texture_ == null)))) {
+            if (!(_local_5 == 0) || !(_local_6 == 0)) {
+                _local_8 = map_.lookupSquare(x_ + _local_5, y_ + _local_6);
+                if (_local_8 == null || _local_8.texture_ == null) {
                     _local_7 = null;
                 }
             }
@@ -123,7 +123,7 @@ public class ConnectedObject extends GameObject {
                 obj3D_ = null;
                 return;
         }
-        obj3D_.setPosition(x_, y_, 0, (this.rotation_ * 90));
+        obj3D_.setPosition(x_, y_, 0, this.rotation_ * 90);
     }
 
     protected function buildDot():void {

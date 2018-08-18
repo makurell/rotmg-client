@@ -22,7 +22,7 @@ public class HostQueryDialogMediator extends Mediator {
     }
 
     private function makeHostIcon():BitmapData {
-        return (ObjectLibrary.getRedrawnTextureFromType(6546, 80, true));
+        return ObjectLibrary.getRedrawnTextureFromType(6546, 80, true);
     }
 
     private function onBackClick(_arg_1:Event):void {

@@ -19,8 +19,7 @@ public class MaskedImageSet {
         if (_arg_2 != null) {
             _local_6 = new ImageSet();
             _local_6.addFromBitmapData(_arg_2, _arg_3, _arg_4);
-            if(_local_5.images_.length > _local_5.images_.length)
-            {
+            if (_local_5.images_.length > _local_5.images_.length) {
             }
         }
         var _local_7:int = 0;

@@ -23,14 +23,14 @@ public class TabIconView extends TabView {
 
     private function initIcon(_arg_1:Bitmap):void {
         this.icon = _arg_1;
-        _arg_1.x = (_arg_1.x - 5);
-        _arg_1.y = (_arg_1.y - 11);
+        _arg_1.x = _arg_1.x - 5;
+        _arg_1.y = _arg_1.y - 11;
         addChild(_arg_1);
     }
 
     override public function setSelected(_arg_1:Boolean):void {
         var _local_2:ColorTransform = this.background.transform.colorTransform;
-        _local_2.color = ((_arg_1) ? TabConstants.BACKGROUND_COLOR : TabConstants.TAB_COLOR);
+        _local_2.color = _arg_1 ? TabConstants.BACKGROUND_COLOR : TabConstants.TAB_COLOR;
         this.background.transform.colorTransform = _local_2;
     }
 

@@ -19,24 +19,24 @@ public class GuildMerchant extends SellableObject implements IInteractiveObject 
     }
 
     override public function soldObjectName():String {
-        return (ObjectLibrary.typeToDisplayId_[objectType_]);
+        return ObjectLibrary.typeToDisplayId_[objectType_];
     }
 
     override public function soldObjectInternalName():String {
         var _local_1:XML = ObjectLibrary.xmlLibrary_[objectType_];
-        return (_local_1.@id.toString());
+        return _local_1.@id.toString();
     }
 
     override public function getTooltip():ToolTip {
-        return (new TextToolTip(0x363636, 0x9B9B9B, this.soldObjectName(), this.description_, 200));
+        return new TextToolTip(0x363636, 0x9B9B9B, this.soldObjectName(), this.description_, 200);
     }
 
     override public function getSellableType():int {
-        return (objectType_);
+        return objectType_;
     }
 
     override public function getIcon():BitmapData {
-        return (ObjectLibrary.getRedrawnTextureFromType(objectType_, 80, true));
+        return ObjectLibrary.getRedrawnTextureFromType(objectType_, 80, true);
     }
 
 

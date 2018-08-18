@@ -20,8 +20,8 @@ public class NewsModalPage extends Sprite {
         _local_3 = new TextField();
         var _local_4:FontModel = StaticInjectorContext.getInjector().getInstance(FontModel);
         _local_4.apply(_local_3, 16, 15792127, false, true);
-        _local_3.width = (NewsModal.MODAL_WIDTH - (TEXT_MARGIN_HTML * 2));
-        _local_3.height = (NewsModal.MODAL_HEIGHT - 101);
+        _local_3.width = NewsModal.MODAL_WIDTH - TEXT_MARGIN_HTML * 2;
+        _local_3.height = NewsModal.MODAL_HEIGHT - 101;
         _local_3.multiline = true;
         _local_3.wordWrap = true;
         _local_3.htmlText = _arg_2;

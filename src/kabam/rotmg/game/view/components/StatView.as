@@ -64,16 +64,16 @@ public class StatView extends Sprite {
 
     public function draw(_arg_1:int, _arg_2:int, _arg_3:int):void {
         var _local_4:uint;
-        if ((((_arg_1 == this.val_)) && ((_arg_2 == this.boost_)))) {
+        if (_arg_1 == this.val_ && _arg_2 == this.boost_) {
             return;
         }
         this.val_ = _arg_1;
         this.boost_ = _arg_2;
-        if ((_arg_1 - _arg_2) >= _arg_3) {
+        if (_arg_1 - _arg_2 >= _arg_3) {
             _local_4 = 0xFCDF00;
         }
         else {
-            if (((((this.redOnZero_) && ((this.val_ <= 0)))) || ((this.boost_ < 0)))) {
+            if (this.redOnZero_ && this.val_ <= 0 || this.boost_ < 0) {
                 _local_4 = 16726072;
             }
             else {
@@ -91,7 +91,7 @@ public class StatView extends Sprite {
         }
         var _local_5:String = this.val_.toString();
         if (this.boost_ != 0) {
-            _local_5 = (_local_5 + (((" (" + (((this.boost_ > 0)) ? "+" : "")) + this.boost_.toString()) + ")"));
+            _local_5 = _local_5 + (" (" + (this.boost_ > 0 ? "+" : "") + this.boost_.toString() + ")");
         }
         this.valText_.setStringBuilder(new StaticStringBuilder(_local_5));
         this.valText_.x = this.nameText_.getBounds(this).right;

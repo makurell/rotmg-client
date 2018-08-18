@@ -28,12 +28,12 @@ public class ArenaTimer extends Sprite {
     }
 
     private function updateTimer(_arg_1:TimerEvent):void {
-        var _local_2:int = (this.secs / 60);
-        var _local_3:int = (this.secs % 60);
-        var _local_4:String = (((_local_2 < 10)) ? "0" : "");
-        _local_4 = (_local_4 + (_local_2 + ":"));
-        _local_4 = (_local_4 + (((_local_3 < 10)) ? "0" : ""));
-        _local_4 = (_local_4 + _local_3);
+        var _local_2:int = this.secs / 60;
+        var _local_3:int = this.secs % 60;
+        var _local_4:String = _local_2 < 10 ? "0" : "";
+        _local_4 = _local_4 + (_local_2 + ":");
+        _local_4 = _local_4 + (_local_3 < 10 ? "0" : "");
+        _local_4 = _local_4 + _local_3;
         this.timerText.setStringBuilder(this.timerStringBuilder.setString(_local_4));
         this.secs++;
     }
@@ -43,7 +43,7 @@ public class ArenaTimer extends Sprite {
         _local_1.setSize(24).setBold(true).setColor(0xFFFFFF);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
 

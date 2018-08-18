@@ -25,9 +25,9 @@ public class ReportErrorToAppEngineCommand {
         this.error = this.event["error"];
         this.getMessage();
         var _local_1:Array = [];
-        _local_1.push(("Build: " + this.setup.getBuildLabel()));
-        _local_1.push(("message: " + this.getMessage()));
-        _local_1.push(("stackTrace: " + this.getStackTrace()));
+        _local_1.push("Build: " + this.setup.getBuildLabel());
+        _local_1.push("message: " + this.getMessage());
+        _local_1.push("stackTrace: " + this.getStackTrace());
         _local_1.push(CapabilitiesUtil.getHumanReadable());
         this.client.setSendEncrypted(false);
         this.client.sendRequest("/clientError/add", {
@@ -37,20 +37,20 @@ public class ReportErrorToAppEngineCommand {
     }
 
     private function getMessage():String {
-        if ((this.error is Error)) {
-            return (this.error.message);
+        if (this.error is Error) {
+            return this.error.message;
         }
         if (this.event != null) {
-            return (this.event.text);
+            return this.event.text;
         }
         if (this.error != null) {
-            return (this.error.toString());
+            return this.error.toString();
         }
-        return ("(empty)");
+        return "(empty)";
     }
 
     private function getStackTrace():String {
-        return ((((this.error is Error)) ? Error(this.error).getStackTrace() : "(empty)"));
+        return (this.error is Error) ? Error(this.error).getStackTrace() : "(empty)";
     }
 
 

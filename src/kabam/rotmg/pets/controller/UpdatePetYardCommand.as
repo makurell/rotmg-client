@@ -28,7 +28,7 @@ public class UpdatePetYardCommand extends Command {
 
     private function getYardTypeFromEnum():int {
         var _local_1:String = PetYardEnum.selectByOrdinal(this.type).value;
-        return (ObjectLibrary.getXMLfromId(_local_1).@type);
+        return ObjectLibrary.getXMLfromId(_local_1).type;
     }
 
 

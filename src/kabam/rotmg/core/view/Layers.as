@@ -17,15 +17,15 @@ public class Layers extends Sprite {
     public var console:DisplayObjectContainer;
 
     public function Layers() {
-        addChild((this.menu = new ScreensView()));
-        addChild((this.overlay = new Sprite()));
-        addChild((this.top = new Sprite()));
-        addChild((this.mouseDisabledTop = new Sprite()));
+        addChild(this.menu = new ScreensView());
+        addChild(this.overlay = new Sprite());
+        addChild(this.top = new Sprite());
+        addChild(this.mouseDisabledTop = new Sprite());
         this.mouseDisabledTop.mouseEnabled = false;
-        addChild((this.dialogs = new DialogsView()));
-        addChild((this.tooltips = new TooltipsView()));
-        addChild((this.api = new Sprite()));
-        addChild((this.console = new Sprite()));
+        addChild(this.dialogs = new DialogsView());
+        addChild(this.tooltips = new TooltipsView());
+        addChild(this.api = new Sprite());
+        addChild(this.console = new Sprite());
     }
 
 }

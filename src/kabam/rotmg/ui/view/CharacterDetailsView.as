@@ -95,8 +95,8 @@ public class CharacterDetailsView extends Sprite {
         if (this.expTimer) {
             this.expTimer.update(_arg_1.xpTimer);
         }
-        if (((_arg_1.tierBoost) || (_arg_1.dropBoost))) {
-            this.boostPanelButton = ((this.boostPanelButton) || (new BoostPanelButton(_arg_1)));
+        if (_arg_1.tierBoost || _arg_1.dropBoost) {
+            this.boostPanelButton = this.boostPanelButton || new BoostPanelButton(_arg_1);
             if (this.portrait_) {
                 this.portrait_.x = 13;
             }

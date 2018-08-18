@@ -30,7 +30,7 @@ public class Move extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("MOVE", "tickId_", "time_", "newPosition_", "records_"));
+        return formatToString("MOVE", "tickId_", "time_", "newPosition_", "records_");
     }
 
 

@@ -42,20 +42,20 @@ public class ParticleField extends BitmapParticle {
     }
 
     private function setDimensions(_arg_1:Number, _arg_2:Number):void {
-        this.visibleHeight = ((_arg_1 * 5) + 40);
-        this.offset = (this.visibleHeight * 0.5);
-        this.width = ((_arg_2 * 5) + 40);
-        this.height = (this.visibleHeight + this.offset);
+        this.visibleHeight = _arg_1 * 5 + 40;
+        this.offset = this.visibleHeight * 0.5;
+        this.width = _arg_2 * 5 + 40;
+        this.height = this.visibleHeight + this.offset;
     }
 
     private function setBitmapSize():void {
-        this.bitmapSize = (((this.width == 8)) ? this.SMALL : this.LARGE);
+        this.bitmapSize = this.width == 8 ? this.SMALL : this.LARGE;
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         var _local_3:uint;
         if (this.doDestroy) {
-            return (false);
+            return false;
         }
         var _local_4:uint = this.squares.length;
         _local_3 = 0;
@@ -67,7 +67,7 @@ public class ParticleField extends BitmapParticle {
         }
         _bitmapData = new BitmapData(this.width, this.height, true, 0);
         _bitmapData.draw(this.spriteSource);
-        return (true);
+        return true;
     }
 
     private function onTimer(_arg_1:TimerEvent):void {
@@ -78,11 +78,11 @@ public class ParticleField extends BitmapParticle {
     }
 
     private function getLifespan():uint {
-        return ((((this.bitmapSize == this.SMALL)) ? 15 : 30));
+        return this.bitmapSize == this.SMALL ? 15 : 30;
     }
 
     private function getInterval():uint {
-        return ((((this.bitmapSize == this.SMALL)) ? 100 : 50));
+        return this.bitmapSize == this.SMALL ? 100 : 50;
     }
 
     private function onSquareComplete(_arg_1:Square):void {
@@ -92,15 +92,15 @@ public class ParticleField extends BitmapParticle {
     }
 
     private function getStartPoint():Point {
-        var _local_1:Array = (((Math.random() < 0.5)) ? ["x", "y", "width", "visibleHeight"] : ["y", "x", "visibleHeight", "width"]);
+        var _local_1:Array = Math.random() < 0.5 ? ["x", "y", "width", "visibleHeight"] : ["y", "x", "visibleHeight", "width"];
         var _local_2:Point = new Point(0, 0);
-        _local_2[_local_1[0]] = (Math.random() * this[_local_1[2]]);
-        _local_2[_local_1[1]] = (((Math.random() < 0.5)) ? 0 : this[_local_1[3]]);
-        return (_local_2);
+        _local_2[_local_1[0]] = Math.random() * this[_local_1[2]];
+        _local_2[_local_1[1]] = Math.random() < 0.5 ? 0 : this[_local_1[3]];
+        return _local_2;
     }
 
     private function getEndPoint():Point {
-        return (new Point((this.width / 2), (this.visibleHeight / 2)));
+        return new Point(this.width / 2, this.visibleHeight / 2);
     }
 
     public function destroy():void {
@@ -143,8 +143,8 @@ class Square extends Shape {
         this.start = _arg_1;
         this.end = _arg_2;
         this.lifespan = _arg_3;
-        this.moveX = ((_arg_2.x - _arg_1.x) / _arg_3);
-        this.moveY = ((_arg_2.y - _arg_1.y) / _arg_3);
+        this.moveX = (_arg_2.x - _arg_1.x) / _arg_3;
+        this.moveY = (_arg_2.y - _arg_1.y) / _arg_3;
         graphics.beginFill(0xFFFFFF);
         graphics.drawRect(-2, -2, 4, 4);
         this.position();
@@ -157,8 +157,8 @@ class Square extends Shape {
     }
 
     public function move():void {
-        this.x = (this.x + this.moveX);
-        this.y = (this.y + this.moveY);
+        this.x = this.x + this.moveX;
+        this.y = this.y + this.moveY;
         this.lifespan--;
         if (!this.lifespan) {
             this.complete.dispatch(this);

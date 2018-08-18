@@ -24,7 +24,7 @@ public class KongregateLoginTask extends BaseTask implements LoginTask {
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.onGetCredentialsDone(_arg_2)));
+        _arg_1 && this.onGetCredentialsDone(_arg_2);
         completeTask(_arg_1, _arg_2);
     }
 

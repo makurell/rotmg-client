@@ -17,7 +17,7 @@ public class PotionInventoryView extends Sprite {
         var _local_1:int;
         while (_local_1 < 2) {
             _local_2 = new PotionSlotView(this.cuts[_local_1], _local_1);
-            _local_2.x = (_local_1 * (PotionSlotView.BUTTON_WIDTH + BUTTON_SPACE));
+            _local_2.x = _local_1 * (PotionSlotView.BUTTON_WIDTH + BUTTON_SPACE);
             addChild(_local_2);
             _local_1++;
         }

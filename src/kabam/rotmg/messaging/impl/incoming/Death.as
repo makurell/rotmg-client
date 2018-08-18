@@ -17,7 +17,7 @@ public class Death extends IncomingMessage {
     }
 
     public function disposeBackground():void {
-        ((this.background) && (this.background.dispose()));
+        this.background && this.background.dispose();
         this.background = null;
     }
 
@@ -27,11 +27,11 @@ public class Death extends IncomingMessage {
         this.killedBy_ = _arg_1.readUTF();
         this.zombieType = _arg_1.readInt();
         this.zombieId = _arg_1.readInt();
-        this.isZombie = !((this.zombieId == -1));
+        this.isZombie = !(this.zombieId == -1);
     }
 
     override public function toString():String {
-        return (formatToString("DEATH", "accountId_", "charId_", "killedBy_"));
+        return formatToString("DEATH", "accountId_", "charId_", "killedBy_");
     }
 
 

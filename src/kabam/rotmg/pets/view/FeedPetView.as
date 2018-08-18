@@ -25,12 +25,12 @@ public class FeedPetView extends PetInteractionView {
 
     private const background:PopupWindowBackground = PetsViewAssetFactory.returnWindowBackground(PetsConstants.WINDOW_BACKGROUND_WIDTH, PetsConstants.WINDOW_BACKGROUND_HEIGHT);
     private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 18, true);
-    private const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(TextKey.PET_FEEDER_BUTTON_BAR_PREFIX, (PetsConstants.WINDOW_BACKGROUND_HEIGHT - 35));
+    private const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(TextKey.PET_FEEDER_BUTTON_BAR_PREFIX, PetsConstants.WINDOW_BACKGROUND_HEIGHT - 35);
     private const petFeeder:PetFeeder = PetsViewAssetFactory.returnPetFeeder();
     private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(PetsConstants.WINDOW_BACKGROUND_WIDTH);
     private const abilityMeters:Vector.<PetAbilityMeter> = PetsViewAssetFactory.returnAbilityMeters();
     private const abilityMeterAnimating:Vector.<Boolean> = Vector.<Boolean>([false, false, false]);
-    private const lineBreakDesign:LineBreakDesign = new LineBreakDesign((PetsConstants.WINDOW_BACKGROUND_WIDTH - 25), 0);
+    private const lineBreakDesign:LineBreakDesign = new LineBreakDesign(PetsConstants.WINDOW_BACKGROUND_WIDTH - 25, 0);
     public const openPetPicker:Signal = new Signal();
     public const closed:Signal = new Signal();
 
@@ -63,7 +63,7 @@ public class FeedPetView extends PetInteractionView {
 
     private function onAcceptableMatch(_arg_1:Boolean, _arg_2:PetVO):void {
         var _local_3:PetRarityEnum;
-        this.buttonBar.setDisabled(!(_arg_1));
+        this.buttonBar.setDisabled(!_arg_1);
         if (_arg_2) {
             if (!_arg_2.maxedAllAbilities()) {
                 this.buttonBar.setPrefix(TextKey.PET_FEEDER_BUTTON_BAR_PREFIX);
@@ -125,7 +125,7 @@ public class FeedPetView extends PetInteractionView {
         var _local_3:Boolean = this.hasAnimatingBars();
         this.buttonBar.setDisabled(_local_3);
         this.petFeeder.setProcessing(_local_3);
-        ((!(_local_3)) && (this.petFeeder.clearFood()));
+        !_local_3 && this.petFeeder.clearFood();
     }
 
     private function hasAnimatingBars():Boolean {
@@ -137,7 +137,7 @@ public class FeedPetView extends PetInteractionView {
                 break;
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function addChildren():void {
@@ -161,7 +161,7 @@ public class FeedPetView extends PetInteractionView {
     }
 
     private function positionPetFeeder():void {
-        this.petFeeder.x = Math.round(((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.petFeeder.width) * 0.5));
+        this.petFeeder.x = Math.round((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.petFeeder.width) * 0.5);
     }
 
     private function waitForTextChanged():void {
@@ -177,26 +177,26 @@ public class FeedPetView extends PetInteractionView {
 
     private function positionTextField():void {
         this.titleTextfield.y = 5;
-        this.titleTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5);
+        this.titleTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5;
     }
 
     private function positionMeters():void {
         var _local_2:PetAbilityMeter;
-        var _local_1:int = (this.lineBreakDesign.y + 14);
+        var _local_1:int = this.lineBreakDesign.y + 14;
         for each (_local_2 in this.abilityMeters) {
-            _local_2.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - 227) * 0.5);
+            _local_2.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - 227) * 0.5;
             _local_2.y = _local_1;
-            _local_1 = (_local_1 + (_local_2.height + 10));
+            _local_1 = _local_1 + (_local_2.height + 10);
         }
     }
 
     private function positionLinebreak():void {
-        this.lineBreakDesign.x = (((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.lineBreakDesign.width) + 8) * 0.5);
+        this.lineBreakDesign.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.lineBreakDesign.width) + 8) * 0.5;
         this.lineBreakDesign.y = 152;
     }
 
     private function positionButtonBar():void {
-        this.buttonBar.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2);
+        this.buttonBar.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2;
     }
 
 

@@ -34,7 +34,7 @@ public class FriendUpdateConfirmDialog extends Dialog implements DialogCloser {
     }
 
     public function getCloseSignal():Signal {
-        return (this.closeDialogComponent.getCloseSignal());
+        return this.closeDialogComponent.getCloseSignal();
     }
 
 

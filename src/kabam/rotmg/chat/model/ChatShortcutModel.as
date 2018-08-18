@@ -13,27 +13,27 @@ public class ChatShortcutModel {
 
 
     public function getCommandShortcut():int {
-        return (Parameters.data_[Options.CHAT_COMMAND]);
+        return Parameters.data_[Options.CHAT_COMMAND];
     }
 
     public function getChatShortcut():int {
-        return (Parameters.data_[Options.CHAT]);
+        return Parameters.data_[Options.CHAT];
     }
 
     public function getTellShortcut():int {
-        return (Parameters.data_[Options.TELL]);
+        return Parameters.data_[Options.TELL];
     }
 
     public function getGuildShortcut():int {
-        return (Parameters.data_[Options.GUILD_CHAT]);
+        return Parameters.data_[Options.GUILD_CHAT];
     }
 
     public function getScrollUp():uint {
-        return (Parameters.data_[Options.SCROLL_CHAT_UP]);
+        return Parameters.data_[Options.SCROLL_CHAT_UP];
     }
 
     public function getScrollDown():uint {
-        return (Parameters.data_[Options.SCROLL_CHAT_DOWN]);
+        return Parameters.data_[Options.SCROLL_CHAT_DOWN];
     }
 
 

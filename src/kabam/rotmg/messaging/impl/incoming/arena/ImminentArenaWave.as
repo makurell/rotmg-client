@@ -16,7 +16,7 @@ public class ImminentArenaWave extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("IMMINENTARENAWAVE", "currentRuntime"));
+        return formatToString("IMMINENTARENAWAVE", "currentRuntime");
     }
 
 

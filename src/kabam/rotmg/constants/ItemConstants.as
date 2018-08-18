@@ -34,61 +34,61 @@ public class ItemConstants {
     public static function itemTypeToName(_arg_1:int):String {
         switch (_arg_1) {
             case ALL_TYPE:
-                return ("EquipmentType.Any");
+                return "EquipmentType.Any";
             case SWORD_TYPE:
-                return ("EquipmentType.Sword");
+                return "EquipmentType.Sword";
             case DAGGER_TYPE:
-                return ("EquipmentType.Dagger");
+                return "EquipmentType.Dagger";
             case BOW_TYPE:
-                return ("EquipmentType.Bow");
+                return "EquipmentType.Bow";
             case TOME_TYPE:
-                return ("EquipmentType.Tome");
+                return "EquipmentType.Tome";
             case SHIELD_TYPE:
-                return ("EquipmentType.Shield");
+                return "EquipmentType.Shield";
             case LEATHER_TYPE:
-                return ("EquipmentType.LeatherArmor");
+                return "EquipmentType.LeatherArmor";
             case PLATE_TYPE:
-                return ("EquipmentType.Armor");
+                return "EquipmentType.Armor";
             case WAND_TYPE:
-                return ("EquipmentType.Wand");
+                return "EquipmentType.Wand";
             case RING_TYPE:
-                return ("EquipmentType.Accessory");
+                return "EquipmentType.Accessory";
             case POTION_TYPE:
-                return ("EquipmentType.Potion");
+                return "EquipmentType.Potion";
             case SPELL_TYPE:
-                return ("EquipmentType.Spell");
+                return "EquipmentType.Spell";
             case SEAL_TYPE:
-                return ("EquipmentType.HolySeal");
+                return "EquipmentType.HolySeal";
             case CLOAK_TYPE:
-                return ("EquipmentType.Cloak");
+                return "EquipmentType.Cloak";
             case ROBE_TYPE:
-                return ("EquipmentType.Robe");
+                return "EquipmentType.Robe";
             case QUIVER_TYPE:
-                return ("EquipmentType.Quiver");
+                return "EquipmentType.Quiver";
             case HELM_TYPE:
-                return ("EquipmentType.Helm");
+                return "EquipmentType.Helm";
             case STAFF_TYPE:
-                return ("EquipmentType.Staff");
+                return "EquipmentType.Staff";
             case POISON_TYPE:
-                return ("EquipmentType.Poison");
+                return "EquipmentType.Poison";
             case SKULL_TYPE:
-                return ("EquipmentType.Skull");
+                return "EquipmentType.Skull";
             case TRAP_TYPE:
-                return ("EquipmentType.Trap");
+                return "EquipmentType.Trap";
             case ORB_TYPE:
-                return ("EquipmentType.Orb");
+                return "EquipmentType.Orb";
             case PRISM_TYPE:
-                return ("EquipmentType.Prism");
+                return "EquipmentType.Prism";
             case SCEPTER_TYPE:
-                return ("EquipmentType.Scepter");
+                return "EquipmentType.Scepter";
             case KATANA_TYPE:
-                return ("EquipmentType.Katana");
+                return "EquipmentType.Katana";
             case SHURIKEN_TYPE:
-                return ("EquipmentType.Shuriken");
+                return "EquipmentType.Shuriken";
             case EGG_TYPE:
-                return ("EquipmentType.Any");
+                return "EquipmentType.Any";
         }
-        return ("EquipmentType.InvalidType");
+        return "EquipmentType.InvalidType";
     }
 
 

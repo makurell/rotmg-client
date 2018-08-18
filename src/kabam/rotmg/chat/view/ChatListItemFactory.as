@@ -41,11 +41,11 @@ public class ChatListItemFactory {
 
 
     public static function isTradeMessage(_arg_1:int, _arg_2:int, _arg_3:String):Boolean {
-        return ((((((_arg_1 == -1)) || ((_arg_2 == -1)))) && (!((_arg_3.search("/trade") == -1)))));
+        return (_arg_1 == -1 || _arg_2 == -1) && !(_arg_3.search("/trade") == -1);
     }
 
     public static function isGuildMessage(_arg_1:String):Boolean {
-        return ((_arg_1 == GUILD));
+        return _arg_1 == GUILD;
     }
 
     private static function makeTestTextField():TextField {
@@ -54,7 +54,7 @@ public class ChatListItemFactory {
         _local_2.size = 15;
         _local_2.bold = true;
         _local_1.defaultTextFormat = _local_2;
-        return (_local_1);
+        return _local_1;
     }
 
 
@@ -69,22 +69,22 @@ public class ChatListItemFactory {
         this.makeWhisperText();
         this.makeNameText();
         this.makeMessageText();
-        var _local_3:Boolean = (((_arg_1.numStars == -1)) || ((_arg_1.objectId == -1)));
+        var _local_3:Boolean = _arg_1.numStars == -1 || _arg_1.objectId == -1;
         var _local_4:Boolean;
         var _local_6:String = _arg_1.name;
-        if (((_local_3) && (!(((_local_5 = _arg_1.text.search("/trade ")) == -1))))) {
-            _local_5 = (_local_5 + 7);
+        if (_local_3 && !((_local_5 = _arg_1.text.search("/trade ")) == -1)) {
+            _local_5 = _local_5 + 7;
             _local_7 = "";
             _local_8 = _local_5;
-            while (_local_8 < (_local_5 + 10)) {
+            while (_local_8 < _local_5 + 10) {
                 if (_arg_1.text.charAt(_local_8) == '"') break;
-                _local_7 = (_local_7 + _arg_1.text.charAt(_local_8));
+                _local_7 = _local_7 + _arg_1.text.charAt(_local_8);
                 _local_8++;
             }
             _local_6 = _local_7;
             _local_4 = true;
         }
-        return (new ChatListItem(this.buffer, this.model.bounds.width, this.model.lineHeight, _arg_2, _arg_1.objectId, _local_6, (_arg_1.recipient == GUILD), _local_4));
+        return new ChatListItem(this.buffer, this.model.bounds.width, this.model.lineHeight, _arg_2, _arg_1.objectId, _local_6, _arg_1.recipient == GUILD, _local_4);
     }
 
     private function makeStarsIcon():void {
@@ -97,7 +97,7 @@ public class ChatListItemFactory {
     private function makeWhisperText():void {
         var _local_1:StringBuilder;
         var _local_2:BitmapData;
-        if (((this.message.isWhisper) && (!(this.message.isToMe)))) {
+        if (this.message.isWhisper && !this.message.isToMe) {
             _local_1 = new StaticStringBuilder("To: ");
             _local_2 = this.getBitmapData(_local_1, 61695);
             this.buffer.push(new Bitmap(_local_2));
@@ -112,7 +112,7 @@ public class ChatListItemFactory {
 
     private function isSpecialMessageType():Boolean {
         var _local_1:String = this.message.name;
-        return ((((((((((_local_1 == SERVER)) || ((_local_1 == CLIENT)))) || ((_local_1 == HELP)))) || ((_local_1 == ERROR)))) || ((_local_1 == GUILD))));
+        return _local_1 == SERVER || _local_1 == CLIENT || _local_1 == HELP || _local_1 == ERROR || _local_1 == GUILD;
     }
 
     private function bufferNameText():void {
@@ -122,11 +122,11 @@ public class ChatListItemFactory {
     }
 
     private function processName():String {
-        var _local_1:String = ((((this.message.isWhisper) && (!(this.message.isToMe)))) ? this.message.recipient : this.message.name);
-        if ((((_local_1.charAt(0) == "#")) || ((_local_1.charAt(0) == "@")))) {
+        var _local_1:String = this.message.isWhisper && !this.message.isToMe ? this.message.recipient : this.message.name;
+        if (_local_1.charAt(0) == "#" || _local_1.charAt(0) == "@") {
             _local_1 = _local_1.substr(1);
         }
-        return ((("<" + _local_1) + ">"));
+        return "<" + _local_1 + ">";
     }
 
     private function makeMessageText():void {
@@ -154,37 +154,37 @@ public class ChatListItemFactory {
         var _local_6:int;
         if (_arg_2) {
             for each (_local_8 in this.buffer) {
-                _local_4 = (_local_4 + _local_8.width);
+                _local_4 = _local_4 + _local_8.width;
             }
             _local_6 = _local_3.length;
             testField.text = _local_3;
-            while (testField.textWidth >= (this.model.bounds.width - _local_4)) {
-                _local_6 = (_local_6 - 10);
+            while (testField.textWidth >= this.model.bounds.width - _local_4) {
+                _local_6 = _local_6 - 10;
                 testField.text = _local_3.substr(0, _local_6);
             }
             if (_local_6 < _local_3.length) {
                 _local_9 = _local_3.substr(0, _local_6).lastIndexOf(" ");
-                _local_6 = (((((_local_9 == 0)) || ((_local_9 == -1)))) ? _local_6 : _local_9);
+                _local_6 = _local_9 == 0 || _local_9 == -1 ? _local_6 : _local_9;
             }
             this.makeMessageLine(_local_3.substr(0, _local_6));
         }
         var _local_7:int = _local_3.length;
         if (_local_7 > _local_6) {
-            _local_10 = (this.model.bounds.width / _local_5);
+            _local_10 = this.model.bounds.width / _local_5;
             _local_11 = _local_6;
             while (_local_11 < _local_3.length) {
                 testField.text = _local_3.substr(_local_11, _local_10);
-                while (testField.textWidth >= (this.model.bounds.width - _local_4)) {
-                    _local_10 = (_local_10 - 5);
+                while (testField.textWidth >= this.model.bounds.width - _local_4) {
+                    _local_10 = _local_10 - 5;
                     testField.text = _local_3.substr(_local_11, _local_10);
                 }
                 _local_12 = _local_10;
-                if (_local_3.length > (_local_11 + _local_10)) {
+                if (_local_3.length > _local_11 + _local_10) {
                     _local_12 = _local_3.substr(_local_11, _local_10).lastIndexOf(" ");
-                    _local_12 = (((((_local_12 == 0)) || ((_local_12 == -1)))) ? _local_10 : _local_12);
+                    _local_12 = _local_12 == 0 || _local_12 == -1 ? _local_10 : _local_12;
                 }
                 this.makeMessageLine(_local_3.substr(_local_11, _local_12));
-                _local_11 = (_local_11 + _local_12);
+                _local_11 = _local_11 + _local_12;
             }
         }
     }
@@ -197,53 +197,53 @@ public class ChatListItemFactory {
 
     private function getNameColor():uint {
         if (this.message.name.charAt(0) == "#") {
-            return (0xFFA800);
+            return 0xFFA800;
         }
         if (this.message.name.charAt(0) == "@") {
-            return (0xFFFF00);
+            return 0xFFFF00;
         }
         if (this.message.recipient == GUILD) {
-            return (10944349);
+            return 10944349;
         }
         if (this.message.recipient != "") {
-            return (61695);
+            return 61695;
         }
-        return (0xFF00);
+        return 0xFF00;
     }
 
     private function getTextColor():uint {
         var _local_1:String = this.message.name;
         if (_local_1 == SERVER) {
-            return (0xFFFF00);
+            return 0xFFFF00;
         }
         if (_local_1 == CLIENT) {
-            return (0xFF);
+            return 0xFF;
         }
         if (_local_1 == HELP) {
-            return (16734981);
+            return 16734981;
         }
         if (_local_1 == ERROR) {
-            return (0xFF0000);
+            return 0xFF0000;
         }
         if (_local_1.charAt(0) == "@") {
-            return (0xFFFF00);
+            return 0xFFFF00;
         }
         if (this.message.recipient == GUILD) {
-            return (10944349);
+            return 10944349;
         }
         if (this.message.recipient != "") {
-            return (61695);
+            return 61695;
         }
-        return (0xFFFFFF);
+        return 0xFFFFFF;
     }
 
     private function getBitmapData(_arg_1:StringBuilder, _arg_2:uint):BitmapData {
         var _local_3:String = this.stageProxy.getQuality();
         var _local_4:Boolean = Parameters.data_["forceChatQuality"];
-        ((_local_4) && (this.stageProxy.setQuality(StageQuality.HIGH)));
+        _local_4 && this.stageProxy.setQuality(StageQuality.HIGH);
         var _local_5:BitmapData = this.factory.make(_arg_1, 14, _arg_2, true, IDENTITY_MATRIX, true);
-        ((_local_4) && (this.stageProxy.setQuality(_local_3)));
-        return (_local_5);
+        _local_4 && this.stageProxy.setQuality(_local_3);
+        return _local_5;
     }
 
     private function setTFonTestField():void {

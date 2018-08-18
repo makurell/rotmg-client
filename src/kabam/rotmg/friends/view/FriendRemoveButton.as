@@ -14,7 +14,7 @@ import kabam.rotmg.tooltips.TooltipAble;
 
 public class FriendRemoveButton extends Sprite implements TooltipAble {
 
-    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
+    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, 220 / 0xFF, 133 / 0xFF);
 
     public var hoverTooltipDelegate:HoverTooltipDelegate;
     private var toolTip_:TextToolTip = null;
@@ -30,7 +30,7 @@ public class FriendRemoveButton extends Sprite implements TooltipAble {
 
     public function destroy():void {
         while (numChildren > 0) {
-            this.removeChildAt((numChildren - 1));
+            this.removeChildAt(numChildren - 1);
         }
         this.toolTip_ = null;
         this.hoverTooltipDelegate.removeDisplayObject();
@@ -60,7 +60,7 @@ public class FriendRemoveButton extends Sprite implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -68,7 +68,7 @@ public class FriendRemoveButton extends Sprite implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
 

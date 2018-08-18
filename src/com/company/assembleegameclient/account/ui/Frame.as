@@ -78,7 +78,7 @@ public class Frame extends Sprite {
         this.rightButton_ = new DeprecatedClickableText(18, true, _arg_1);
         if (_arg_1 != "") {
             this.rightButton_.buttonMode = true;
-            this.rightButton_.x = ((this.w_ - this.rightButton_.width) - 26);
+            this.rightButton_.x = this.w_ - this.rightButton_.width - 26;
             this.rightButton_.setAutoSize(TextFieldAutoSize.RIGHT);
             addChild(this.rightButton_);
         }
@@ -86,15 +86,15 @@ public class Frame extends Sprite {
 
     public function addLabeledField(_arg_1:LabeledField):void {
         addChild(_arg_1);
-        _arg_1.y = (this.h_ - 60);
+        _arg_1.y = this.h_ - 60;
         _arg_1.x = 17;
-        this.h_ = (this.h_ + _arg_1.getHeight());
+        this.h_ = this.h_ + _arg_1.getHeight();
     }
 
     public function addTextInputField(_arg_1:TextInputField):void {
         this.textInputFields_.push(_arg_1);
         addChild(_arg_1);
-        _arg_1.y = (this.h_ - 60);
+        _arg_1.y = this.h_ - 60;
         _arg_1.x = 17;
         this.h_ += _arg_1.height;
     }
@@ -108,9 +108,9 @@ public class Frame extends Sprite {
 
     public function addComponent(_arg_1:DisplayObject, _arg_2:int = 8):void {
         addChild(_arg_1);
-        _arg_1.y = (this.h_ - 66);
+        _arg_1.y = this.h_ - 66;
         _arg_1.x = _arg_2;
-        this.h_ = (this.h_ + _arg_1.height);
+        this.h_ = this.h_ + _arg_1.height;
     }
 
     public function addPlainText(plainText:String, tokens:Object = null):void {
@@ -128,9 +128,9 @@ public class Frame extends Sprite {
     }
 
     protected function positionText(_arg_1:DisplayObject):void {
-        _arg_1.y = (this.h_ - 66);
+        _arg_1.y = this.h_ - 66;
         _arg_1.x = INDENT;
-        this.h_ = (this.h_ + 20);
+        this.h_ = this.h_ + 20;
     }
 
     public function addTitle(_arg_1:String):void {
@@ -138,27 +138,27 @@ public class Frame extends Sprite {
         _local_2.setStringBuilder(new LineBuilder().setParams(_arg_1));
         _local_2.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
         addChild(_local_2);
-        _local_2.y = (this.h_ - 60);
+        _local_2.y = this.h_ - 60;
         _local_2.x = 15;
-        this.h_ = (this.h_ + 40);
+        this.h_ = this.h_ + 40;
     }
 
     public function addCheckBox(_arg_1:CheckBoxField):void {
         addChild(_arg_1);
-        _arg_1.y = (this.h_ - 66);
+        _arg_1.y = this.h_ - 66;
         _arg_1.x = INDENT;
-        this.h_ = (this.h_ + 44);
+        this.h_ = this.h_ + 44;
     }
 
     public function addRadioBox(_arg_1:PaymentMethodRadioButtons):void {
         addChild(_arg_1);
-        _arg_1.y = (this.h_ - 66);
+        _arg_1.y = this.h_ - 66;
         _arg_1.x = 18;
-        this.h_ = (this.h_ + _arg_1.height);
+        this.h_ = this.h_ + _arg_1.height;
     }
 
     public function addSpace(_arg_1:int):void {
-        this.h_ = (this.h_ + _arg_1);
+        this.h_ = this.h_ + _arg_1;
     }
 
     public function disable():void {
@@ -185,8 +185,8 @@ public class Frame extends Sprite {
 
     protected function onAddedToStage(_arg_1:Event):void {
         this.draw();
-        x = ((stage.stageWidth / 2) - ((this.w_ - 6) / 2));
-        y = ((stage.stageHeight / 2) - (height / 2));
+        x = stage.stageWidth / 2 - (this.w_ - 6) / 2;
+        y = stage.stageHeight / 2 - height / 2;
         if (this.textInputFields_.length > 0) {
             stage.focus = this.textInputFields_[0].inputText_;
         }
@@ -195,11 +195,11 @@ public class Frame extends Sprite {
     protected function draw():void {
         graphics.clear();
         GraphicsUtil.clearPath(this.path1_);
-        GraphicsUtil.drawCutEdgeRect(-6, -6, this.w_, (20 + 12), 4, [1, 1, 0, 0], this.path1_);
+        GraphicsUtil.drawCutEdgeRect(-6, -6, this.w_, 20 + 12, 4, [1, 1, 0, 0], this.path1_);
         GraphicsUtil.clearPath(this.path2_);
         GraphicsUtil.drawCutEdgeRect(-6, -6, this.w_, this.h_, 4, [1, 1, 1, 1], this.path2_);
-        this.leftButton_.y = (this.h_ - 52);
-        this.rightButton_.y = (this.h_ - 52);
+        this.leftButton_.y = this.h_ - 52;
+        this.rightButton_.y = this.h_ - 52;
         graphics.drawGraphicsData(this.graphicsData_);
     }
 

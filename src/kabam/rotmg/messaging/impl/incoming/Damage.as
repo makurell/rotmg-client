@@ -31,7 +31,7 @@ public class Damage extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("DAMAGE", "targetId_", "effects_", "damageAmount_", "kill_", "bulletId_", "objectId_"));
+        return formatToString("DAMAGE", "targetId_", "effects_", "damageAmount_", "kill_", "bulletId_", "objectId_");
     }
 
 

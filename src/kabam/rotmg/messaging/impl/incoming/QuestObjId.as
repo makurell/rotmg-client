@@ -14,7 +14,7 @@ public class QuestObjId extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("QUESTOBJID", "objectId_"));
+        return formatToString("QUESTOBJID", "objectId_");
     }
 
 

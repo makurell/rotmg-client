@@ -17,15 +17,15 @@ public class GenericArmorComparison extends SlotComparison {
         var otherDefense:int;
         this.defTags = itemXML.ActivateOnEquip.(@stat == DEFENSE_STAT);
         this.otherDefTags = curItemXML.ActivateOnEquip.(@stat == DEFENSE_STAT);
-        if ((((this.defTags.length() == 1)) && ((this.otherDefTags.length() == 1)))) {
+        if (this.defTags.length() == 1 && this.otherDefTags.length() == 1) {
             defense = int(this.defTags.@amount);
             otherDefense = int(this.otherDefTags.@amount);
         }
     }
 
     private function compareDefense(_arg_1:int, _arg_2:int):String {
-        var _local_3:uint = getTextColor((_arg_1 - _arg_2));
-        return (wrapInColoredFont((("+" + _arg_1) + " Defense"), _local_3));
+        var _local_3:uint = getTextColor(_arg_1 - _arg_2);
+        return wrapInColoredFont("+" + _arg_1 + " Defense", _local_3);
     }
 
 

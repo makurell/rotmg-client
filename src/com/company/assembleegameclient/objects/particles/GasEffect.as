@@ -25,23 +25,23 @@ public class GasEffect extends ParticleEffect {
         var _local_9:Number;
         var _local_10:GasParticle;
         if (this.go_.map_ == null) {
-            return (false);
+            return false;
         }
         x_ = this.go_.x_;
         y_ = this.go_.y_;
         var _local_3:int = 20;
         var _local_4:int;
         while (_local_4 < this.rate) {
-            _local_5 = ((Math.random() + 0.3) * 200);
+            _local_5 = (Math.random() + 0.3) * 200;
             _local_6 = Math.random();
-            _local_7 = RandomUtil.plusMinus((this.props.speed - (this.props.speed * (_local_6 * (1 - this.props.speedVariance)))));
-            _local_8 = RandomUtil.plusMinus((this.props.speed - (this.props.speed * (_local_6 * (1 - this.props.speedVariance)))));
-            _local_9 = ((this.props.life * 1000) - ((this.props.life * 1000) * (_local_6 * this.props.lifeVariance)));
+            _local_7 = RandomUtil.plusMinus(this.props.speed - this.props.speed * (_local_6 * (1 - this.props.speedVariance)));
+            _local_8 = RandomUtil.plusMinus(this.props.speed - this.props.speed * (_local_6 * (1 - this.props.speedVariance)));
+            _local_9 = this.props.life * 1000 - this.props.life * 1000 * (_local_6 * this.props.lifeVariance);
             _local_10 = new GasParticle(_local_5, this.color_, _local_9, this.props.spread, 0.75, _local_7, _local_8);
             map_.addObj(_local_10, x_, y_);
             _local_4++;
         }
-        return (true);
+        return true;
     }
 
 

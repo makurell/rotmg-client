@@ -57,13 +57,13 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
         this.levelShown = _arg_1.level;
         this.setAbilityLabel(_arg_1.name);
         this.setUnlocked(_arg_1.getUnlocked());
-        this.setLevelLabel(((this.unlocked) ? _arg_1.level : 0));
+        this.setLevelLabel(this.unlocked ? _arg_1.level : 0);
         this.onAnimatingBar(false);
         this.tooltipDelegate.tooltip = new PetAbilityTooltip(_arg_1);
         if (this.unlocked) {
             _local_2 = Math.max(0, PetsAbilityLevelHelper.getCurrentPointsForLevel(_arg_1.points, _arg_1.level));
             _local_3 = PetsAbilityLevelHelper.getAbilityPointsforLevel(_arg_1.level);
-            _local_2 = (((_arg_1.level >= this.max)) ? _local_3 : _local_2);
+            _local_2 = _arg_1.level >= this.max ? _local_3 : _local_2;
             this.setAbilityBar(_local_2, _local_3);
         }
         _arg_1.updated.add(this.updateData);
@@ -72,12 +72,12 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
     private function updateData(_arg_1:AbilityVO):void {
         var _local_2:Number;
         this.setUnlocked(_arg_1.getUnlocked());
-        if ((((_arg_1.points > this.pointsShown)) && (this.unlocked))) {
+        if (_arg_1.points > this.pointsShown && this.unlocked) {
             this.pointsShown = _arg_1.points;
             this.pointsLeftToAdd = PetsAbilityLevelHelper.getCurrentPointsForLevel(_arg_1.points, this.levelShown);
             _local_2 = PetsAbilityLevelHelper.getAbilityPointsforLevel(this.levelShown);
-            if (((!((_local_2 == 0))) && ((this.pointsLeftToAdd > _local_2)))) {
-                this.pointsLeftToAdd = (this.pointsLeftToAdd - _local_2);
+            if (!(_local_2 == 0) && this.pointsLeftToAdd > _local_2) {
+                this.pointsLeftToAdd = this.pointsLeftToAdd - _local_2;
                 this.abilityBar.filledUp.add(this.onChainedFill);
                 this.abilityBar.fill();
                 this.onAnimatingBar(true);
@@ -95,7 +95,7 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
         _local_2 = PetsAbilityLevelHelper.getAbilityPointsforLevel(this.levelShown);
         if (this.pointsLeftToAdd > _local_2) {
             this.abilityBar.reset();
-            this.pointsLeftToAdd = (this.pointsLeftToAdd - _local_2);
+            this.pointsLeftToAdd = this.pointsLeftToAdd - _local_2;
             this.abilityBar.fill();
         }
         else {
@@ -116,8 +116,8 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
     }
 
     public function setLevelLabel(_arg_1:int, _arg_2:Boolean = false):void {
-        var _local_3:String = (((_arg_1 >= this.max)) ? TextKey.PET_ABILITY_LEVEL_MAX : TextKey.ABILITY_BAR_LEVEL_LABEL);
-        this.labelTextfield.setColor(((_arg_2) ? 1572859 : (((_arg_1 >= this.max)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3)));
+        var _local_3:String = _arg_1 >= this.max ? TextKey.PET_ABILITY_LEVEL_MAX : TextKey.ABILITY_BAR_LEVEL_LABEL;
+        this.labelTextfield.setColor(_arg_2 ? 1572859 : _arg_1 >= this.max ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3);
         this.labelTextfield.setStringBuilder(new LineBuilder().setParams(_local_3, {"level": _arg_1.toString()}));
         this.labelTextfield.textChanged.addOnce(this.positionLabelText);
     }
@@ -132,8 +132,8 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
         var _local_3:Array;
         if (this.unlocked != _arg_1) {
             this.unlocked = _arg_1;
-            _local_2 = ((_arg_1) ? 0xB3B3B3 : 0x565656);
-            _local_3 = ((_arg_1) ? [new DropShadowFilter(0, 0, 0)] : []);
+            _local_2 = _arg_1 ? 0xB3B3B3 : 0x565656;
+            _local_3 = _arg_1 ? [new DropShadowFilter(0, 0, 0)] : [];
             this.levelTextfield.setColor(_local_2);
             this.levelTextfield.filters = _local_3;
             this.labelTextfield.visible = _arg_1;
@@ -155,7 +155,7 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
 
     private function positionLabelText():void {
         this.abilityBar.y = 21;
-        this.labelTextfield.x = (PetsConstants.PET_ABILITY_BAR_WIDTH - this.labelTextfield.width);
+        this.labelTextfield.x = PetsConstants.PET_ABILITY_BAR_WIDTH - this.labelTextfield.width;
     }
 
     private function positionTextField():void {
@@ -164,9 +164,9 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
     }
 
     private function onAnimatingBar(_arg_1:Boolean):void {
-        this.labelTextfield.setColor(((_arg_1) ? 1572859 : (((this.levelShown >= this.max)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3)));
-        this.levelTextfield.setColor(((_arg_1) ? 1572859 : (((this.levelShown >= 100)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3)));
-        if (((!(_arg_1)) && ((this.levelShown >= 100)))) {
+        this.labelTextfield.setColor(_arg_1 ? 1572859 : this.levelShown >= this.max ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3);
+        this.levelTextfield.setColor(_arg_1 ? 1572859 : this.levelShown >= 100 ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3);
+        if (!_arg_1 && this.levelShown >= 100) {
             this.abilityBar.setBarColor(PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT);
         }
         this.animating.dispatch(this, _arg_1);
@@ -177,7 +177,7 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.tooltipDelegate.getShowToolTip());
+        return this.tooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -185,7 +185,7 @@ public class PetAbilityMeter extends Sprite implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.tooltipDelegate.getHideToolTips());
+        return this.tooltipDelegate.getHideToolTips();
     }
 
 

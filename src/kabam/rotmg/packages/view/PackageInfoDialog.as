@@ -39,25 +39,25 @@ public class PackageInfoDialog extends Sprite {
 
     private function onAddedToStage(_arg_1:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
-        x = ((stage.stageWidth - width) / 2);
-        y = ((stage.stageHeight - height) / 2);
+        x = (stage.stageWidth - width) / 2;
+        y = (stage.stageHeight - height) / 2;
     }
 
     public function setTitle(_arg_1:String):PackageInfoDialog {
         this.title.setStringBuilder(new LineBuilder().setParams(_arg_1));
-        return (this);
+        return this;
     }
 
     public function setBody(_arg_1:String, _arg_2:String):PackageInfoDialog {
         this.messageTitle.setStringBuilder(new LineBuilder().setParams(_arg_1));
         this.messageBody.setStringBuilder(new LineBuilder().setParams(_arg_2));
-        return (this);
+        return this;
     }
 
     private function makeBackground():DisplayObject {
         var _local_1:PackageBackground = new PackageBackground();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeTitle():TextFieldDisplayConcrete {
@@ -65,25 +65,25 @@ public class PackageInfoDialog extends Sprite {
         _local_1 = new TextFieldDisplayConcrete().setSize(18).setColor(0xB6B6B6).setTextWidth(DIALOG_WIDTH).setAutoSize(TextFormatAlign.CENTER).setBold(true);
         _local_1.y = TITLE_Y;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeMessageTitle():TextFieldDisplayConcrete {
         var _local_1:TextFieldDisplayConcrete;
         _local_1 = new TextFieldDisplayConcrete().setSize(14).setColor(14864077).setTextWidth(INNER_WIDTH).setAutoSize(TextFormatAlign.CENTER).setBold(true);
-        _local_1.x = ((DIALOG_WIDTH - INNER_WIDTH) * 0.5);
+        _local_1.x = (DIALOG_WIDTH - INNER_WIDTH) * 0.5;
         _local_1.y = MESSAGE_TITLE_Y;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeMessageBody():TextFieldDisplayConcrete {
         var _local_1:TextFieldDisplayConcrete;
         _local_1 = new TextFieldDisplayConcrete().setSize(14).setColor(10914439).setTextWidth(INNER_WIDTH).setAutoSize(TextFormatAlign.CENTER);
-        _local_1.x = ((DIALOG_WIDTH - INNER_WIDTH) * 0.5);
+        _local_1.x = (DIALOG_WIDTH - INNER_WIDTH) * 0.5;
         _local_1.y = MESSAGE_BODY_Y;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCloseButton():DeprecatedTextButton {
@@ -92,7 +92,7 @@ public class PackageInfoDialog extends Sprite {
         _local_1.textChanged.addOnce(this.layoutButton);
         _local_1.y = BUTTON_Y;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function layoutButton():void {

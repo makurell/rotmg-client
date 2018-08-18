@@ -23,11 +23,11 @@ public class PotionInventoryModel {
     public static function getPotionSlot(_arg_1:int):int {
         switch (_arg_1) {
             case HEALTH_POTION_ID:
-                return (HEALTH_POTION_SLOT);
+                return HEALTH_POTION_SLOT;
             case MAGIC_POTION_ID:
-                return (MAGIC_POTION_SLOT);
+                return MAGIC_POTION_SLOT;
         }
-        return (-1);
+        return -1;
     }
 
 
@@ -65,10 +65,10 @@ public class PotionInventoryModel {
         var _local_2:String;
         for (_local_2 in this.potionModels) {
             if (this.potionModels[_local_2].objectId == _arg_1) {
-                return (this.potionModels[_local_2]);
+                return this.potionModels[_local_2];
             }
         }
-        return (null);
+        return null;
     }
 
     private function update(_arg_1:int):void {

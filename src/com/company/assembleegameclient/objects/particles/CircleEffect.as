@@ -1,10 +1,8 @@
-package com.company.assembleegameclient.objects.particles
-{
+package com.company.assembleegameclient.objects.particles {
 import com.company.assembleegameclient.objects.GameObject;
 import com.company.assembleegameclient.util.FreeList;
 
-public class CircleEffect extends ParticleEffect
-{
+public class CircleEffect extends ParticleEffect {
     public var go_:GameObject;
     public var color_:uint;
     public var rise_:Number;
@@ -17,8 +15,7 @@ public class CircleEffect extends ParticleEffect
     public var speed_:Number;
     public var parts_:Vector.<CircleParticle>;
 
-    public function CircleEffect(_arg_1:GameObject, _arg_2:EffectProperties)
-    {
+    public function CircleEffect(_arg_1:GameObject, _arg_2:EffectProperties) {
         this.parts_ = new Vector.<CircleParticle>();
         super();
         this.go_ = _arg_1;
@@ -31,34 +28,29 @@ public class CircleEffect extends ParticleEffect
         this.speed_ = _arg_2.speed;
     }
 
-    override public function update(_arg_1 :int, _arg_2 :int):Boolean
-    {
+    override public function update(_arg_1:int, _arg_2:int):Boolean {
         var _local_3:CircleParticle = null;
         var _local_4:int;
         var _local_5:Number;
         var _local_6:Number;
-        if(this.go_.map_ == null)
-        {
+        if (this.go_.map_ == null) {
             return false;
         }
-        if(this.lastUpdate_ < 0)
-        {
-            this.lastUpdate_ = Math.max(0, _arg_1  - 400);
+        if (this.lastUpdate_ < 0) {
+            this.lastUpdate_ = Math.max(0, _arg_1 - 400);
         }
         x_ = this.go_.x_;
         y_ = this.go_.y_;
-        if(!this.bInitialized_)
-        {
+        if (!this.bInitialized_) {
             _local_4 = 0;
-            while(_local_4 < this.amount_)
-            {
+            while (_local_4 < this.amount_) {
                 _local_3 = FreeList.newObject(CircleParticle) as CircleParticle;
                 _local_3.setColor(this.color_);
                 _local_3.cX_ = x_;
                 _local_3.cY_ = y_;
                 _local_5 = 2 * Math.PI;
                 _local_6 = _local_5 / this.amount_;
-                _local_3.startTime_ = _arg_1 ;
+                _local_3.startTime_ = _arg_1;
                 _local_3.angle_ = _local_6 * _local_4;
                 _local_3.rad_ = this.rad_;
                 _local_3.speed_ = this.speed_;
@@ -69,26 +61,22 @@ public class CircleEffect extends ParticleEffect
             }
             this.bInitialized_ = true;
         }
-        for each(_local_3 in this.parts_)
-        {
+        for each(_local_3 in this.parts_) {
             _local_3.rad_ = this.rad_;
         }
-        this.rad_ = Math.min(this.rad_ + this.rise_ * (_arg_2  / 1000), this.maxRad_);
-        this.maxLife_ = this.maxLife_ - _arg_2 ;
-        if(this.maxLife_ <= 0)
-        {
+        this.rad_ = Math.min(this.rad_ + this.rise_ * (_arg_2 / 1000), this.maxRad_);
+        this.maxLife_ = this.maxLife_ - _arg_2;
+        if (this.maxLife_ <= 0) {
             this.endEffect();
             return false;
         }
-        this.lastUpdate_ = _arg_1 ;
+        this.lastUpdate_ = _arg_1;
         return true;
     }
 
-    private function endEffect():void
-    {
+    private function endEffect():void {
         var _local_1:CircleParticle = null;
-        for each(_local_1 in this.parts_)
-        {
+        for each(_local_1 in this.parts_) {
             _local_1.alive_ = false;
         }
     }
@@ -99,8 +87,7 @@ public class CircleEffect extends ParticleEffect
 import com.company.assembleegameclient.objects.particles.Particle;
 import com.company.assembleegameclient.util.FreeList;
 
-class CircleParticle extends Particle
-{
+class CircleParticle extends Particle {
     public var startTime_:int;
     public var speed_:Number;
     public var cX_:Number;
@@ -109,27 +96,23 @@ class CircleParticle extends Particle
     public var rad_:Number;
     public var alive_:Boolean = true;
 
-    function CircleParticle()
-    {
+    function CircleParticle() {
         var _local_1:Number = Math.random();
         super(0x26CAFF, 0.2 + Math.random() * 0.2, 100 + _local_1 * 20);
     }
 
-    override public function removeFromMap():void
-    {
+    override public function removeFromMap():void {
         super.removeFromMap();
         FreeList.deleteObject(this);
     }
 
-    public function move():void
-    {
+    public function move():void {
         x_ = this.cX_ + this.rad_ * Math.cos(this.angle_);
         y_ = this.cY_ + this.rad_ * Math.sin(this.angle_);
         this.angle_ = this.angle_ + this.speed_;
     }
 
-    override public function update(_arg_1 :int, _arg_2 :int):Boolean
-    {
+    override public function update(_arg_1:int, _arg_2:int):Boolean {
         this.move();
         return this.alive_;
     }

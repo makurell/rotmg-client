@@ -25,7 +25,7 @@ class MemberListLine extends Sprite {
 
     public static const WIDTH:int = 756;
     public static const HEIGHT:int = 32;
-    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
+    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, 220 / 0xFF, 133 / 0xFF);
 
     private var name_:String;
     private var rank_:int;
@@ -49,9 +49,9 @@ class MemberListLine extends Sprite {
             _local_7 = 16564761;
         }
         this.placeText_ = new TextFieldDisplayConcrete().setSize(22).setColor(_local_7);
-        this.placeText_.setStringBuilder(new StaticStringBuilder((_arg_1.toString() + ".")));
+        this.placeText_.setStringBuilder(new StaticStringBuilder(_arg_1.toString() + "."));
         this.placeText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.placeText_.x = (60 - this.placeText_.width);
+        this.placeText_.x = 60 - this.placeText_.width;
         this.placeText_.y = 4;
         addChild(this.placeText_);
         this.nameText_ = new TextFieldDisplayConcrete().setSize(22).setColor(_local_7);
@@ -69,33 +69,33 @@ class MemberListLine extends Sprite {
         addChild(this.guildFameText_);
         this.guildFameIcon_ = new Bitmap(GuildUtil.guildFameIcon(40));
         this.guildFameIcon_.x = 400;
-        this.guildFameIcon_.y = ((HEIGHT / 2) - (this.guildFameIcon_.height / 2));
+        this.guildFameIcon_.y = HEIGHT / 2 - this.guildFameIcon_.height / 2;
         addChild(this.guildFameIcon_);
         this.rankIcon_ = new Bitmap(GuildUtil.rankToIcon(_arg_3, 20));
         this.rankIcon_.x = 548;
-        this.rankIcon_.y = ((HEIGHT / 2) - (this.rankIcon_.height / 2));
+        this.rankIcon_.y = HEIGHT / 2 - this.rankIcon_.height / 2;
         addChild(this.rankIcon_);
         this.rankText_ = new TextFieldDisplayConcrete().setSize(22).setColor(_local_7);
         this.rankText_.setStringBuilder(new LineBuilder().setParams(GuildUtil.rankToString(_arg_3)));
         this.rankText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         this.rankText_.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         this.rankText_.x = 580;
-        this.rankText_.y = (HEIGHT / 2);
+        this.rankText_.y = HEIGHT / 2;
         addChild(this.rankText_);
         if (GuildUtil.canPromote(_arg_6, _arg_3)) {
             this.promoteButton_ = this.createArrow(true);
             this.addHighlighting(this.promoteButton_);
             this.promoteButton_.addEventListener(MouseEvent.CLICK, this.onPromote);
-            this.promoteButton_.x = (670 + 6);
-            this.promoteButton_.y = (HEIGHT / 2);
+            this.promoteButton_.x = 670 + 6;
+            this.promoteButton_.y = HEIGHT / 2;
             addChild(this.promoteButton_);
         }
         if (GuildUtil.canDemote(_arg_6, _arg_3)) {
             this.demoteButton_ = this.createArrow(false);
             this.addHighlighting(this.demoteButton_);
             this.demoteButton_.addEventListener(MouseEvent.CLICK, this.onDemote);
-            this.demoteButton_.x = (700 + 6);
-            this.demoteButton_.y = (HEIGHT / 2);
+            this.demoteButton_.x = 700 + 6;
+            this.demoteButton_.y = HEIGHT / 2;
             addChild(this.demoteButton_);
         }
         if (GuildUtil.canRemove(_arg_6, _arg_3)) {
@@ -103,7 +103,7 @@ class MemberListLine extends Sprite {
             this.addHighlighting(this.removeButton_);
             this.removeButton_.addEventListener(MouseEvent.CLICK, this.onRemove);
             this.removeButton_.x = 730;
-            this.removeButton_.y = ((HEIGHT / 2) - (this.removeButton_.height / 2));
+            this.removeButton_.y = HEIGHT / 2 - this.removeButton_.height / 2;
             addChild(this.removeButton_);
         }
     }
@@ -119,7 +119,7 @@ class MemberListLine extends Sprite {
         if (_arg_1) {
             _local_2.rotation = 180;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function addHighlighting(_arg_1:Sprite):void {
@@ -128,12 +128,12 @@ class MemberListLine extends Sprite {
     }
 
     private function onHighlightOver(_arg_1:MouseEvent):void {
-        var _local_2:Sprite = (_arg_1.currentTarget as Sprite);
+        var _local_2:Sprite = _arg_1.currentTarget as Sprite;
         _local_2.transform.colorTransform = mouseOverCT;
     }
 
     private function onHighlightOut(_arg_1:MouseEvent):void {
-        var _local_2:Sprite = (_arg_1.currentTarget as Sprite);
+        var _local_2:Sprite = _arg_1.currentTarget as Sprite;
         _local_2.transform.colorTransform = MoreColorUtil.identity;
     }
 

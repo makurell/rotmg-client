@@ -46,24 +46,24 @@ public class RankToolTip extends ToolTip {
     private function textAdded():void {
         var _local_2:LegendLine;
         var _local_3:int;
-        this.earnedText_.y = (this.earnedText_.height + 2);
+        this.earnedText_.y = this.earnedText_.height + 2;
         this.star_ = new StarGraphic();
-        this.star_.transform.colorTransform = new ColorTransform((179 / 0xFF), (179 / 0xFF), (179 / 0xFF));
+        this.star_.transform.colorTransform = new ColorTransform(179 / 0xFF, 179 / 0xFF, 179 / 0xFF);
         var _local_1:Rectangle = this.earnedText_.getBounds(this);
-        this.star_.x = (_local_1.right + 7);
-        this.star_.y = (this.earnedText_.y - this.star_.height);
+        this.star_.x = _local_1.right + 7;
+        this.star_.y = this.earnedText_.y - this.star_.height;
         addChild(this.star_);
         this.lineBreak_.x = PADDING_LEFT;
-        this.lineBreak_.y = (height + 10);
+        this.lineBreak_.y = height + 10;
         addChild(this.lineBreak_);
-        _local_3 = (this.lineBreak_.y + 4);
+        _local_3 = this.lineBreak_.y + 4;
         var _local_4:int;
         while (_local_4 < FameUtil.COLORS.length) {
-            _local_2 = new LegendLine((_local_4 * ObjectLibrary.playerChars_.length), (((_local_4 + 1) * ObjectLibrary.playerChars_.length) - 1), FameUtil.COLORS[_local_4]);
+            _local_2 = new LegendLine(_local_4 * ObjectLibrary.playerChars_.length, (_local_4 + 1) * ObjectLibrary.playerChars_.length - 1, FameUtil.COLORS[_local_4]);
             _local_2.x = PADDING_LEFT;
             _local_2.y = _local_3;
             addChild(_local_2);
-            _local_3 = (_local_3 + _local_2.height);
+            _local_3 = _local_3 + _local_2.height;
             _local_4++;
         }
         _local_2 = new LegendLine(FameUtil.maxStars(), FameUtil.maxStars(), new ColorTransform());
@@ -74,7 +74,7 @@ public class RankToolTip extends ToolTip {
     }
 
     override public function draw():void {
-        this.lineBreak_.setWidthColor((width - 10), 0x1C1C1C);
+        this.lineBreak_.setWidthColor(width - 10, 0x1C1C1C);
         super.draw();
     }
 
@@ -108,14 +108,14 @@ class LegendLine extends Sprite {
 
     public function addGreyStar():void {
         this.star_ = new StarGraphic();
-        this.star_.transform.colorTransform = new ColorTransform((179 / 0xFF), (179 / 0xFF), (179 / 0xFF));
+        this.star_.transform.colorTransform = new ColorTransform(179 / 0xFF, 179 / 0xFF, 179 / 0xFF);
         addChild(this.star_);
     }
 
     public function addRangeText(_arg_1:int, _arg_2:int):void {
         this.rangeText_ = new TextFieldDisplayConcrete().setSize(13).setColor(0xB3B3B3);
         this.rangeText_.setVerticalAlign(TextFieldDisplayConcrete.BOTTOM);
-        this.rangeText_.setStringBuilder(new StaticStringBuilder((": " + (((_arg_1 == _arg_2)) ? _arg_1.toString() : ((_arg_1 + " - ") + _arg_2)))));
+        this.rangeText_.setStringBuilder(new StaticStringBuilder(": " + (_arg_1 == _arg_2 ? _arg_1.toString() : _arg_1 + " - " + _arg_2)));
         this.rangeText_.setBold(true);
         filters = [new DropShadowFilter(0, 0, 0)];
         this.rangeText_.x = this.coloredStar_.width;
@@ -133,7 +133,7 @@ class LegendLine extends Sprite {
 
     /*private*/
     function positionGreyStar():void {
-        this.star_.x = (this.rangeText_.getBounds(this).right + 2);
+        this.star_.x = this.rangeText_.getBounds(this).right + 2;
         this.star_.y = 4;
     }
 

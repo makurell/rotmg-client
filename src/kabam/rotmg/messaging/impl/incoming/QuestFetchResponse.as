@@ -20,7 +20,7 @@ public class QuestFetchResponse extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("QUESTFETCHRESPONSE", "tier", "goal", "description", "image"));
+        return formatToString("QUESTFETCHRESPONSE", "tier", "goal", "description", "image");
     }
 
 

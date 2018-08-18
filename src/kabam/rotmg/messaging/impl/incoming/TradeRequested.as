@@ -14,7 +14,7 @@ public class TradeRequested extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("TRADEREQUESTED", "name_"));
+        return formatToString("TRADEREQUESTED", "name_");
     }
 
 

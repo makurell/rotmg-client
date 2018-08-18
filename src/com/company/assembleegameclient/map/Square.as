@@ -35,15 +35,15 @@ public class Square {
         this.map_ = _arg_1;
         this.x_ = _arg_2;
         this.y_ = _arg_3;
-        this.center_ = new Vector3D((this.x_ + 0.5), (this.y_ + 0.5), 0);
+        this.center_ = new Vector3D(this.x_ + 0.5, this.y_ + 0.5, 0);
         this.vin_ = new <Number>[this.x_, this.y_, 0, (this.x_ + 1), this.y_, 0, (this.x_ + 1), (this.y_ + 1), 0, this.x_, (this.y_ + 1), 0];
     }
 
     private static function hash(_arg_1:int, _arg_2:int):int {
         var _local_3:int = LOOKUP[((_arg_1 + _arg_2) % 7)];
-        var _local_4 = (((_arg_1 << 16) | _arg_2) ^ 81397550);
-        _local_4 = ((_local_4 * _local_3) % 0xFFFF);
-        return (_local_4);
+        var _local_4 = (_arg_1 << 16 | _arg_2) ^ 81397550;
+        _local_4 = (_local_4 * _local_3) % 0xFFFF;
+        return _local_4;
     }
 
 
@@ -75,7 +75,7 @@ public class Square {
     }
 
     public function isWalkable():Boolean {
-        return (((!(this.props_.noWalk_)) && ((((this.obj_ == null)) || (!(this.obj_.props_.occupySquare_))))));
+        return !this.props_.noWalk_ && (this.obj_ == null || !this.obj_.props_.occupySquare_);
     }
 
     public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -122,18 +122,18 @@ public class Square {
             _local_3 = 0;
             if (_local_1 == null) {
                 if (this.props_.randomOffset_) {
-                    _local_2 = (int((this.texture_.width * Math.random())) / this.texture_.width);
-                    _local_3 = (int((this.texture_.height * Math.random())) / this.texture_.height);
+                    _local_2 = int(this.texture_.width * Math.random()) / this.texture_.width;
+                    _local_3 = int(this.texture_.height * Math.random()) / this.texture_.height;
                 }
                 else {
                     _local_2 = this.props_.xOffset_;
                     _local_3 = this.props_.yOffset_;
                 }
             }
-            this.faces_.push(new SquareFace((((_local_1) != null) ? _local_1 : this.texture_), this.vin_, _local_2, _local_3, AnimateProperties.NO_ANIMATE, 0, 0));
+            this.faces_.push(new SquareFace(_local_1 != null ? _local_1 : this.texture_, this.vin_, _local_2, _local_3, AnimateProperties.NO_ANIMATE, 0, 0));
         }
         if (this.props_.sink_) {
-            this.sink_ = (((_local_1) == null) ? 12 : 6);
+            this.sink_ = _local_1 == null ? 12 : 6;
         }
         else {
             this.sink_ = 0;
@@ -144,7 +144,7 @@ public class Square {
             _local_6 = 2;
             while (_local_6 < _local_5.length) {
                 _local_5[_local_6] = 1;
-                _local_6 = (_local_6 + 3);
+                _local_6 = _local_6 + 3;
             }
             this.topFace_ = new SquareFace(_local_4, _local_5, 0, 0, this.props_.topAnimate_.type_, this.props_.topAnimate_.dx_, this.props_.topAnimate_.dy_);
         }

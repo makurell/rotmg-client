@@ -35,7 +35,7 @@ public class SellableObjectPanelMediator extends Mediator {
 
     private function onBuyItem(_arg_1:SellableObject):void {
         if (this.account.isRegistered()) {
-            if ((((_arg_1.currency_ == Currency.GOLD)) && (((_arg_1.getQuantity() * _arg_1.price_) > this.gameModel.player.credits_)))) {
+            if (_arg_1.currency_ == Currency.GOLD && _arg_1.getQuantity() * _arg_1.price_ > this.gameModel.player.credits_) {
                 this.openDialog.dispatch(new NotEnoughGoldDialog());
             }
             else {
@@ -48,7 +48,7 @@ public class SellableObjectPanelMediator extends Mediator {
     }
 
     private function makeRegisterDialog(_arg_1:SellableObject):RegisterPromptDialog {
-        return (new RegisterPromptDialog(TEXT, {"type": Currency.typeToName(_arg_1.currency_)}));
+        return new RegisterPromptDialog(TEXT, {"type": Currency.typeToName(_arg_1.currency_)});
     }
 
 

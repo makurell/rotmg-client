@@ -30,24 +30,24 @@ public class PlayerArrow extends GameObjectArrow {
     }
 
     protected function getMenu():Menu {
-        var _local_1:Player = (go_ as Player);
-        if ((((_local_1 == null)) || ((_local_1.map_ == null)))) {
-            return (null);
+        var _local_1:Player = go_ as Player;
+        if (_local_1 == null || _local_1.map_ == null) {
+            return null;
         }
         var _local_2:Player = _local_1.map_.player_;
         if (_local_2 == null) {
-            return (null);
+            return null;
         }
-        return (new PlayerGroupMenu(_local_1.map_, this.getFullPlayerVec()));
+        return new PlayerGroupMenu(_local_1.map_, this.getFullPlayerVec());
     }
 
     private function getFullPlayerVec():Vector.<Player> {
         var _local_2:GameObject;
         var _local_1:Vector.<Player> = new <Player>[(go_ as Player)];
         for each (_local_2 in extraGOs_) {
-            _local_1.push((_local_2 as Player));
+            _local_1.push(_local_2 as Player);
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

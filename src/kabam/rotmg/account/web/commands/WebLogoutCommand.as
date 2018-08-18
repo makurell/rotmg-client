@@ -42,9 +42,9 @@ public class WebLogoutCommand {
 
     private function makeScreen():Sprite {
         if (this.screenModel.getCurrentScreenType() == FameView) {
-            return (new CharacterSelectionAndNewsScreen());
+            return new CharacterSelectionAndNewsScreen();
         }
-        return (new (((this.screenModel.getCurrentScreenType()) || (CharacterSelectionAndNewsScreen)))());
+        return new (this.screenModel.getCurrentScreenType() || CharacterSelectionAndNewsScreen)();
     }
 
 

@@ -105,8 +105,8 @@ public class HUDView extends Sprite implements UnFocusAble {
         _local_3 = new <IGraphicsData>[_local_1, _local_2, GraphicsUtil.END_FILL];
         GraphicsUtil.drawCutEdgeRect(0, 0, 178, 46, 6, [1, 1, 1, 1], _local_2);
         this.equippedGridBG = new Sprite();
-        this.equippedGridBG.x = (this.EQUIPMENT_INVENTORY_POSITION.x - 3);
-        this.equippedGridBG.y = (this.EQUIPMENT_INVENTORY_POSITION.y - 3);
+        this.equippedGridBG.x = this.EQUIPMENT_INVENTORY_POSITION.x - 3;
+        this.equippedGridBG.y = this.EQUIPMENT_INVENTORY_POSITION.y - 3;
         this.equippedGridBG.graphics.drawGraphicsData(_local_3);
         addChild(this.equippedGridBG);
     }

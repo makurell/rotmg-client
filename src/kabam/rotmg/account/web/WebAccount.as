@@ -35,27 +35,26 @@ public class WebAccount implements Account {
     }
 
     public function getUserName():String {
-        return (this.userId);
+        return this.userId;
     }
 
     public function getUserId():String {
-        return ((this.userId = ((this.userId) || (GUID.create()))));
+        return this.userId = this.userId || GUID.create();
     }
 
     public function getPassword():String {
-        return (((this.password) || ("")));
+        return this.password || "";
     }
 
-    public function getToken():String
-    {
+    public function getToken():String {
         return "";
     }
 
     public function getCredentials():Object {
-        return ({
+        return {
             "guid": this.getUserId(),
             "password": this.getPassword()
-        });
+        };
     }
 
     public function isRegistered():Boolean {
@@ -68,7 +67,7 @@ public class WebAccount implements Account {
         this.password = _arg_2;
         this.token = _arg_3;
         try {
-            if(this._rememberMe) {
+            if (this._rememberMe) {
                 _local_4 = SharedObject.getLocal("RotMG", "/");
                 _local_4.data["GUID"] = _arg_1;
                 _local_4.data["Token"] = _arg_3;
@@ -92,27 +91,27 @@ public class WebAccount implements Account {
     }
 
     public function getRequestPrefix():String {
-        return ("/credits");
+        return "/credits";
     }
 
     public function gameNetworkUserId():String {
-        return (WEB_USER_ID);
+        return WEB_USER_ID;
     }
 
     public function gameNetwork():String {
-        return (NETWORK_NAME);
+        return NETWORK_NAME;
     }
 
     public function playPlatform():String {
-        return (WEB_PLAY_PLATFORM_NAME);
+        return WEB_PLAY_PLATFORM_NAME;
     }
 
     public function getEntryTag():String {
-        return (((this.entryTag) || ("")));
+        return this.entryTag || "";
     }
 
     public function getSecret():String {
-        return ("");
+        return "";
     }
 
     public function verify(_arg_1:Boolean):void {
@@ -120,11 +119,11 @@ public class WebAccount implements Account {
     }
 
     public function isVerified():Boolean {
-        return (this.isVerifiedEmail);
+        return this.isVerifiedEmail;
     }
 
     public function getPlatformToken():String {
-        return (((this.platformToken) || ("")));
+        return this.platformToken || "";
     }
 
     public function setPlatformToken(_arg_1:String):void {
@@ -132,48 +131,42 @@ public class WebAccount implements Account {
     }
 
     public function getMoneyAccessToken():String {
-        return (this.signedRequest);
+        return this.signedRequest;
     }
 
     public function getMoneyUserId():String {
-        return (this.kabamId);
+        return this.kabamId;
     }
 
     public function get userDisplayName():String {
-        return (this._userDisplayName);
+        return this._userDisplayName;
     }
 
     public function set userDisplayName(_arg_1:String):void {
         this._userDisplayName = _arg_1;
     }
 
-    public function set rememberMe(_arg_1:Boolean):void
-    {
+    public function set rememberMe(_arg_1:Boolean):void {
         this._rememberMe = _arg_1;
     }
 
-    public function get rememberMe():Boolean
-    {
+    public function get rememberMe():Boolean {
         return this._rememberMe;
     }
 
-    public function set paymentProvider(_arg_1:String):void
-    {
+    public function set paymentProvider(_arg_1:String):void {
         this._paymentProvider = _arg_1;
     }
 
-    public function get paymentProvider():String
-    {
+    public function get paymentProvider():String {
         return this._paymentProvider;
     }
 
-    public function set paymentData(param1:String):void
-    {
+    public function set paymentData(param1:String):void {
         this._paymentData = param1;
     }
 
-    public function get paymentData():String
-    {
+    public function get paymentData():String {
         return this._paymentData;
     }
 

@@ -11,7 +11,7 @@ public class BloodComposition {
     public static function getBloodComposition(_arg_1:int, _arg_2:BitmapData, _arg_3:Number, _arg_4:uint):Vector.<uint> {
         var _local_5:Vector.<uint> = idDict_[_arg_1];
         if (_local_5 != null) {
-            return (_local_5);
+            return _local_5;
         }
         _local_5 = new Vector.<uint>();
         var _local_6:Vector.<uint> = getColors(_arg_2);
@@ -21,11 +21,11 @@ public class BloodComposition {
                 _local_5.push(_arg_4);
             }
             else {
-                _local_5.push(_local_6[int((_local_6.length * Math.random()))]);
+                _local_5.push(_local_6[int(_local_6.length * Math.random())]);
             }
             _local_7++;
         }
-        return (_local_5);
+        return _local_5;
     }
 
     public static function getColors(_arg_1:BitmapData):Vector.<uint> {
@@ -34,7 +34,7 @@ public class BloodComposition {
             _local_2 = buildColors(_arg_1);
             imageDict_[_arg_1] = _local_2;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private static function buildColors(_arg_1:BitmapData):Vector.<uint> {
@@ -53,7 +53,7 @@ public class BloodComposition {
             }
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

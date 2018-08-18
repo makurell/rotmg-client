@@ -30,19 +30,16 @@ public class MapEditorMediator extends Mediator {
         this.view.editingScreen_.returnButton_.addEventListener(MouseEvent.CLICK, this.onReturnPhase1);
     }
 
-    override public function destroy():void
-    {
+    override public function destroy():void {
         this.view.editingScreen_.returnButton_.removeEventListener(MouseEvent.CLICK, this.onReturnPhase1);
     }
 
-    private function onReturnPhase1(_arg_1:MouseEvent):void
-    {
+    private function onReturnPhase1(_arg_1:MouseEvent):void {
         var _local_2:ConfirmDialog = new ConfirmDialog("Go Back", "Are you sure you want to return to the title screen? This will erase your map data.", this.onReturn);
         this.openDialog.dispatch(_local_2);
     }
 
-    private function onReturn():void
-    {
+    private function onReturn():void {
         this.gameClosed.dispatch();
     }
 

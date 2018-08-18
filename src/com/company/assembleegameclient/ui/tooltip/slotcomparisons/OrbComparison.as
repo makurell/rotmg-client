@@ -17,10 +17,10 @@ public class OrbComparison extends SlotComparison {
         _local_3 = this.getStasisBlastTag(_arg_1);
         _local_4 = this.getStasisBlastTag(_arg_2);
         comparisonStringBuilder = new AppendingLineBuilder();
-        if (((!((_local_3 == null))) && (!((_local_4 == null))))) {
+        if (!(_local_3 == null) && !(_local_4 == null)) {
             _local_5 = int(_local_3.@duration);
             _local_6 = int(_local_4.@duration);
-            _local_7 = getTextColor((_local_5 - _local_6));
+            _local_7 = getTextColor(_local_5 - _local_6);
             comparisonStringBuilder.pushParams(TextKey.STASIS_GROUP, {"stasis": new LineBuilder().setParams(TextKey.SEC_COUNT, {"duration": _local_5}).setPrefix(TooltipHelper.getOpenTag(_local_7)).setPostfix(TooltipHelper.getCloseTag())});
             processedTags[_local_3.toXMLString()] = true;
             this.handleExceptions(_arg_1);
@@ -30,7 +30,7 @@ public class OrbComparison extends SlotComparison {
     private function getStasisBlastTag(orbXML:XML):XML {
         var matches:XMLList;
         matches = orbXML.Activate.(text() == "StasisBlast");
-        return ((((matches.length()) == 1) ? matches[0] : null));
+        return matches.length() == 1 ? matches[0] : null;
     }
 
     private function handleExceptions(itemXML:XML):void {

@@ -11,7 +11,7 @@ public class Party {
     public static const NUM_MEMBERS:int = 6;
     private static const SORT_ON_FIELDS:Array = ["starred_", "distSqFromThisPlayer_", "objectId_"];
     private static const SORT_ON_PARAMS:Array = [(Array.NUMERIC | Array.DESCENDING), Array.NUMERIC, Array.NUMERIC];
-    private static const PARTY_DISTANCE_SQ:int = (50 * 50);//2500
+    private static const PARTY_DISTANCE_SQ:int = 50 * 50;//2500
 
     public var map_:Map;
     public var members_:Array;
@@ -30,7 +30,7 @@ public class Party {
     public function update(_arg_1:int, _arg_2:int):void {
         var _local_4:GameObject;
         var _local_5:Player;
-        if (_arg_1 < (this.lastUpdate_ + 500)) {
+        if (_arg_1 < this.lastUpdate_ + 500) {
             return;
         }
         this.lastUpdate_ = _arg_1;
@@ -41,11 +41,11 @@ public class Party {
         }
         for each (_local_4 in this.map_.goDict_) {
             _local_5 = (_local_4 as Player);
-            if (!(((_local_5 == null)) || ((_local_5 == _local_3)))) {
-                _local_5.starred_ = !((this.starred_[_local_5.accountId_] == undefined));
-                _local_5.ignored_ = !((this.ignored_[_local_5.accountId_] == undefined));
+            if (!(_local_5 == null || _local_5 == _local_3)) {
+                _local_5.starred_ = !(this.starred_[_local_5.accountId_] == undefined);
+                _local_5.ignored_ = !(this.ignored_[_local_5.accountId_] == undefined);
                 _local_5.distSqFromThisPlayer_ = PointUtil.distanceSquaredXY(_local_3.x_, _local_3.y_, _local_5.x_, _local_5.y_);
-                if (!(((_local_5.distSqFromThisPlayer_ > PARTY_DISTANCE_SQ)) && (!(_local_5.starred_)))) {
+                if (!(_local_5.distSqFromThisPlayer_ > PARTY_DISTANCE_SQ && !_local_5.starred_)) {
                     this.members_.push(_local_5);
                 }
             }

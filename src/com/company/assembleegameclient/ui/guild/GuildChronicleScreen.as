@@ -28,7 +28,7 @@ public class GuildChronicleScreen extends Sprite {
         graphics.beginFill(0x2B2B2B, 0.8);
         graphics.drawRect(0, 0, 800, 600);
         graphics.endFill();
-        addChild((this.container = new Sprite()));
+        addChild(this.container = new Sprite());
         this.addList();
         addChild(new ScreenGraphic());
         this.continueButton_ = new TitleMenuOption(TextKey.OPTIONS_CONTINUE_BUTTON, 36, false);
@@ -41,11 +41,11 @@ public class GuildChronicleScreen extends Sprite {
     }
 
     private function addList():void {
-        if (((this.guildPlayerList_) && (this.guildPlayerList_.parent))) {
+        if (this.guildPlayerList_ && this.guildPlayerList_.parent) {
             this.container.removeChild(this.guildPlayerList_);
         }
         var _local_1:Player = this.gs_.map.player_;
-        this.guildPlayerList_ = new GuildPlayerList(50, 0, (((_local_1 == null)) ? "" : _local_1.name_), _local_1.guildRank_);
+        this.guildPlayerList_ = new GuildPlayerList(50, 0, _local_1 == null ? "" : _local_1.name_, _local_1.guildRank_);
         this.guildPlayerList_.addEventListener(GuildPlayerListEvent.SET_RANK, this.onSetRank);
         this.guildPlayerList_.addEventListener(GuildPlayerListEvent.REMOVE_MEMBER, this.onRemoveMember);
         this.container.addChild(this.guildPlayerList_);
@@ -97,7 +97,7 @@ public class GuildChronicleScreen extends Sprite {
     }
 
     private function onErrorTextDone(_arg_1:Event):void {
-        var _local_2:Dialog = (_arg_1.currentTarget as Dialog);
+        var _local_2:Dialog = _arg_1.currentTarget as Dialog;
         stage.removeChild(_local_2);
         this.addList();
     }
@@ -107,7 +107,7 @@ public class GuildChronicleScreen extends Sprite {
     }
 
     private function onAddedToStage(_arg_1:Event):void {
-        this.continueButton_.x = (stage.stageWidth / 2);
+        this.continueButton_.x = stage.stageWidth / 2;
         this.continueButton_.y = 550;
         stage.addEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown, false, 1);
         stage.addEventListener(KeyboardEvent.KEY_UP, this.onKeyUp, false, 1);

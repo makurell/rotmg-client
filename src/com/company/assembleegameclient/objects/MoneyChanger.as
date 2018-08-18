@@ -12,7 +12,7 @@ public class MoneyChanger extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new MoneyChangerPanel(_arg_1));
+        return new MoneyChangerPanel(_arg_1);
     }
 
 

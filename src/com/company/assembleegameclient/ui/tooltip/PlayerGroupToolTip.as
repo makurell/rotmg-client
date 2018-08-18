@@ -33,7 +33,7 @@ public class PlayerGroupToolTip extends ToolTip {
         var _local_4:GameObjectListItem;
         this.clear();
         this.players_ = _arg_1.slice();
-        if ((((this.players_ == null)) || ((this.players_.length == 0)))) {
+        if (this.players_ == null || this.players_.length == 0) {
             return;
         }
         var _local_2:int;
@@ -43,9 +43,9 @@ public class PlayerGroupToolTip extends ToolTip {
             _local_4.y = _local_2;
             addChild(_local_4);
             this.playerPanels_.push(_local_4);
-            _local_2 = (_local_2 + 32);
+            _local_2 = _local_2 + 32;
         }
-        this.clickMessage_.x = ((width / 2) - (this.clickMessage_.width / 2));
+        this.clickMessage_.x = width / 2 - this.clickMessage_.width / 2;
         this.clickMessage_.y = _local_2;
         draw();
     }

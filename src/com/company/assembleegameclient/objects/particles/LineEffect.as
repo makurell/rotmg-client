@@ -26,12 +26,12 @@ public class LineEffect extends ParticleEffect {
         var _local_3:int = 30;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _local_5 = Point.interpolate(this.start_, this.end_, (_local_4 / _local_3));
+            _local_5 = Point.interpolate(this.start_, this.end_, _local_4 / _local_3);
             _local_6 = new SparkParticle(100, this.color_, 700, 0.5, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1));
             map_.addObj(_local_6, _local_5.x, _local_5.y);
             _local_4++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
@@ -42,12 +42,12 @@ public class LineEffect extends ParticleEffect {
         var _local_3:int = 5;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _local_5 = Point.interpolate(this.start_, this.end_, (_local_4 / _local_3));
+            _local_5 = Point.interpolate(this.start_, this.end_, _local_4 / _local_3);
             _local_6 = new SparkParticle(100, this.color_, 200, 0.5, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1));
             map_.addObj(_local_6, _local_5.x, _local_5.y);
             _local_4++;
         }
-        return (false);
+        return false;
     }
 
 

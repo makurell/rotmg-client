@@ -19,8 +19,8 @@ public class ModelFace3D {
         _local_4 = 0;
         while (_local_4 < _arg_1.indicies_.length) {
             _local_3 = _arg_2.model_.vL_[((_arg_1.indicies_[_local_4] * 3) + 2)];
-            _local_5 = (((_local_3 < _local_5)) ? _local_3 : _local_5);
-            _local_6 = (((_local_3 > _local_6)) ? _local_3 : _local_6);
+            _local_5 = _local_3 < _local_5 ? _local_3 : _local_5;
+            _local_6 = _local_3 > _local_6 ? _local_3 : _local_6;
             _local_4++;
         }
         var _local_7:Number = Number.MAX_VALUE;
@@ -28,23 +28,23 @@ public class ModelFace3D {
         _local_4 = 0;
         while (_local_4 < _arg_2.indicies_.length) {
             _local_3 = _arg_2.model_.vL_[((_arg_2.indicies_[_local_4] * 3) + 2)];
-            _local_7 = (((_local_3 < _local_7)) ? _local_3 : _local_7);
-            _local_8 = (((_local_3 > _local_8)) ? _local_3 : _local_8);
+            _local_7 = _local_3 < _local_7 ? _local_3 : _local_7;
+            _local_8 = _local_3 > _local_8 ? _local_3 : _local_8;
             _local_4++;
         }
         if (_local_7 > _local_5) {
-            return (-1);
+            return -1;
         }
         if (_local_7 < _local_5) {
-            return (1);
+            return 1;
         }
         if (_local_8 > _local_6) {
-            return (-1);
+            return -1;
         }
         if (_local_8 < _local_6) {
-            return (1);
+            return 1;
         }
-        return (0);
+        return 0;
     }
 
 

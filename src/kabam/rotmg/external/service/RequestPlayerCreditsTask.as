@@ -40,7 +40,7 @@ public class RequestPlayerCreditsTask extends BaseTask {
     private function handleTimer(_arg_1:TimerEvent):void {
         var _local_2 = this.retryTimes;
         var _local_3 = this.retryCount;
-        var _local_4 = (_local_2[_local_3] - 1);
+        var _local_4 = _local_2[_local_3] - 1;
         _local_2[_local_3] = _local_4;
         if (this.retryTimes[this.retryCount] <= 0) {
             this.timer.removeEventListener(TimerEvent.TIMER, this.handleTimer);
@@ -60,7 +60,7 @@ public class RequestPlayerCreditsTask extends BaseTask {
         var _local_3:Boolean;
         if (_arg_1) {
             _local_4 = XML(_arg_2).toString();
-            if (((!((_local_4 == ""))) && (!((_local_4.search("Error") == -1))))) {
+            if (!(_local_4 == "") && !(_local_4.search("Error") == -1)) {
                 this.setCredits(int(_local_4));
             }
         }
@@ -71,16 +71,16 @@ public class RequestPlayerCreditsTask extends BaseTask {
                 _local_3 = true;
             }
         }
-        ((!(_local_3)) && (completeTask(_arg_1, _arg_2)));
+        !_local_3 && completeTask(_arg_1, _arg_2);
     }
 
     private function setCredits(_arg_1:int):void {
         if (_arg_1 >= 0) {
-            if (((((!((this.gameModel == null))) && (!((this.gameModel.player == null))))) && (!((_arg_1 == this.gameModel.player.credits_))))) {
+            if (!(this.gameModel == null) && !(this.gameModel.player == null) && !(_arg_1 == this.gameModel.player.credits_)) {
                 this.gameModel.player.credits_ = _arg_1;
             }
             else {
-                if (((!((this.playerModel == null))) && (!((this.playerModel.getCredits() == _arg_1))))) {
+                if (!(this.playerModel == null) && !(this.playerModel.getCredits() == _arg_1)) {
                     this.playerModel.setCredits(_arg_1);
                 }
             }
@@ -90,7 +90,7 @@ public class RequestPlayerCreditsTask extends BaseTask {
     private function makeRequestObject():Object {
         var _local_1:Object = {};
         MoreObjectUtil.addToObject(_local_1, this.account.getCredentials());
-        return (_local_1);
+        return _local_1;
     }
 
 

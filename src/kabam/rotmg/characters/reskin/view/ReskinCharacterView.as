@@ -23,7 +23,7 @@ import org.osflash.signals.natives.NativeMappedSignal;
 public class ReskinCharacterView extends Sprite {
 
     private static const MARGIN:int = 10;
-    private static const DIALOG_WIDTH:int = (CharacterSkinListView.WIDTH + (MARGIN * 2));//462
+    private static const DIALOG_WIDTH:int = CharacterSkinListView.WIDTH + MARGIN * 2;//462
     private static const BUTTON_WIDTH:int = 120;
     private static const BUTTON_FONT:int = 16;
     private static const BUTTONS_HEIGHT:int = 40;
@@ -44,45 +44,45 @@ public class ReskinCharacterView extends Sprite {
     private function makeLayoutWaiter():SignalWaiter {
         var _local_1:SignalWaiter = new SignalWaiter();
         _local_1.complete.add(this.positionButtons);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeBackground():DialogBackground {
         var _local_1:DialogBackground = new DialogBackground();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeTitle():TextFieldDisplayConcrete {
         var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(18).setColor(0xB6B6B6).setTextWidth(DIALOG_WIDTH);
         _local_1.setAutoSize(TextFieldAutoSize.CENTER).setBold(true);
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.RESKINCHARACTERVIEW_TITLE));
-        _local_1.y = (MARGIN * 0.5);
+        _local_1.y = MARGIN * 0.5;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeListView():CharacterSkinListView {
         var _local_1:CharacterSkinListView;
         _local_1 = new CharacterSkinListView();
         _local_1.x = MARGIN;
-        _local_1.y = (MARGIN + TITLE_OFFSET);
+        _local_1.y = MARGIN + TITLE_OFFSET;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCancelButton():DeprecatedTextButton {
         var _local_1:DeprecatedTextButton = new DeprecatedTextButton(BUTTON_FONT, TextKey.RESKINCHARACTERVIEW_CANCEL, BUTTON_WIDTH);
         addChild(_local_1);
         this.layoutListener.push(_local_1.textChanged);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeSelectButton():DeprecatedTextButton {
         var _local_1:DeprecatedTextButton = new DeprecatedTextButton(BUTTON_FONT, TextKey.RESKINCHARACTERVIEW_SELECT, BUTTON_WIDTH);
         addChild(_local_1);
         this.layoutListener.push(_local_1.textChanged);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setList(_arg_1:Vector.<DisplayObject>):void {
@@ -93,21 +93,21 @@ public class ReskinCharacterView extends Sprite {
     }
 
     private function getDialogHeight():void {
-        this.viewHeight = Math.min((CharacterSkinListView.HEIGHT + MARGIN), this.list.getListHeight());
-        this.viewHeight = (this.viewHeight + ((BUTTONS_HEIGHT + (MARGIN * 2)) + TITLE_OFFSET));
+        this.viewHeight = Math.min(CharacterSkinListView.HEIGHT + MARGIN, this.list.getListHeight());
+        this.viewHeight = this.viewHeight + (BUTTONS_HEIGHT + MARGIN * 2 + TITLE_OFFSET);
     }
 
     private function resizeBackground():void {
         this.background.draw(DIALOG_WIDTH, this.viewHeight);
         this.background.graphics.lineStyle(2, 0x5B5B5B, 1, false, LineScaleMode.NONE, CapsStyle.NONE, JointStyle.BEVEL);
         this.background.graphics.moveTo(1, TITLE_OFFSET);
-        this.background.graphics.lineTo((DIALOG_WIDTH - 1), TITLE_OFFSET);
+        this.background.graphics.lineTo(DIALOG_WIDTH - 1, TITLE_OFFSET);
     }
 
     private function positionButtons():void {
         var _local_1:ButtonLayoutHelper = new ButtonLayoutHelper();
         _local_1.layout(DIALOG_WIDTH, this.cancel, this.select);
-        this.cancel.y = (this.select.y = (this.viewHeight - BUTTONS_HEIGHT));
+        this.cancel.y = (this.select.y = this.viewHeight - BUTTONS_HEIGHT);
     }
 
 

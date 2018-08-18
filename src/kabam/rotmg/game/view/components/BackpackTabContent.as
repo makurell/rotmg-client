@@ -25,13 +25,13 @@ public class BackpackTabContent extends Sprite {
 
     private function init(_arg_1:Player):void {
         this.backpackContent.name = TabStripModel.BACKPACK;
-        this.backpack = new InventoryGrid(_arg_1, _arg_1, (GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS), true);
+        this.backpack = new InventoryGrid(_arg_1, _arg_1, GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS, true);
     }
 
     private function positionChildren():void {
         this.backpackContent.x = 7;
         this.backpackContent.y = 7;
-        this.backpackPotionsInventory.y = (this.backpack.height + 4);
+        this.backpackPotionsInventory.y = this.backpack.height + 4;
     }
 
     private function addChildren():void {

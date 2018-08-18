@@ -20,9 +20,9 @@ final class ActionHash {
         var _local_2:String;
         var _local_1:Vector.<String> = new Vector.<String>(0);
         for (_local_2 in this.signalMap) {
-            _local_1.push(((_local_2 + " - ") + this.descriptionMap[_local_2]));
+            _local_1.push(_local_2 + " - " + this.descriptionMap[_local_2]);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function execute(_arg_1:String):void {
@@ -45,7 +45,7 @@ final class ActionHash {
 
     public function has(_arg_1:String):Boolean {
         var _local_2:Array = _arg_1.split(" ");
-        return ((((_local_2.length > 0)) && (!((this.signalMap[_local_2[0]] == null)))));
+        return _local_2.length > 0 && !(this.signalMap[_local_2[0]] == null);
     }
 
 

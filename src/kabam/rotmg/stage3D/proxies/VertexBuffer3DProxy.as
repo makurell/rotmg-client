@@ -16,11 +16,11 @@ public class VertexBuffer3DProxy {
     }
 
     public function getVertexBuffer3D():VertexBuffer3D {
-        return (this.vertexBuffer3D);
+        return this.vertexBuffer3D;
     }
 
     public function getData():Vector.<Number> {
-        return (this.data);
+        return this.data;
     }
 
 

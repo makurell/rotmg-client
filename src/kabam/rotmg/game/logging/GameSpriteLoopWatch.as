@@ -26,19 +26,19 @@ public class GameSpriteLoopWatch extends Watch {
 
     public function logTime(_arg_1:int):void {
         if (this.count < COUNT) {
-            this.rollingTotal = (this.rollingTotal + _arg_1);
+            this.rollingTotal = this.rollingTotal + _arg_1;
             this.count++;
             this.times[this.index] = _arg_1;
         }
         else {
-            this.rollingTotal = (this.rollingTotal - this.times[this.index]);
-            this.rollingTotal = (this.rollingTotal + _arg_1);
+            this.rollingTotal = this.rollingTotal - this.times[this.index];
+            this.rollingTotal = this.rollingTotal + _arg_1;
             this.times[this.index] = _arg_1;
         }
         if (++this.index == COUNT) {
             this.index = 0;
         }
-        this.mean = (this.rollingTotal / this.count);
+        this.mean = this.rollingTotal / this.count;
         if (_arg_1 > this.max) {
             this.max = _arg_1;
         }

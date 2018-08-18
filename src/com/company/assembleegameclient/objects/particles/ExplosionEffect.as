@@ -29,39 +29,39 @@ public class ExplosionEffect extends ParticleEffect {
         var _local_4:uint;
         var _local_5:Particle;
         if (this.colors_.length == 0) {
-            return (false);
+            return false;
         }
         if (ExplosionParticle.total_ > 400) {
-            return (false);
+            return false;
         }
         var _local_3:int;
         while (_local_3 < this.numParts_) {
-            _local_4 = this.colors_[int((this.colors_.length * Math.random()))];
-            _local_5 = new ExplosionParticle(_local_4, 0.5, size_, (200 + (Math.random() * 100)), (Math.random() - 0.5), (Math.random() - 0.5), 0);
+            _local_4 = this.colors_[int(this.colors_.length * Math.random())];
+            _local_5 = new ExplosionParticle(_local_4, 0.5, size_, 200 + Math.random() * 100, Math.random() - 0.5, Math.random() - 0.5, 0);
             map_.addObj(_local_5, x_, y_);
             _local_3++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
         var _local_4:uint;
         var _local_5:Particle;
         if (this.colors_.length == 0) {
-            return (false);
+            return false;
         }
         if (ExplosionParticle.total_ > 400) {
-            return (false);
+            return false;
         }
         this.numParts_ = 2;
         var _local_3:int;
         while (_local_3 < this.numParts_) {
-            _local_4 = this.colors_[int((this.colors_.length * Math.random()))];
-            _local_5 = new ExplosionParticle(_local_4, 0.5, size_, (50 + (Math.random() * 100)), (Math.random() - 0.5), (Math.random() - 0.5), 0);
+            _local_4 = this.colors_[int(this.colors_.length * Math.random())];
+            _local_5 = new ExplosionParticle(_local_4, 0.5, size_, 50 + Math.random() * 100, Math.random() - 0.5, Math.random() - 0.5, 0);
             map_.addObj(_local_5, x_, y_);
             _local_3++;
         }
-        return (false);
+        return false;
     }
 
 
@@ -93,18 +93,18 @@ class ExplosionParticle extends Particle {
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
             if (!this.deleted) {
                 total_--;
                 this.deleted = true;
             }
-            return (false);
+            return false;
         }
-        x_ = (x_ + ((this.moveVec_.x * _arg_2) * 0.008));
-        y_ = (y_ + ((this.moveVec_.y * _arg_2) * 0.008));
-        z_ = (z_ + ((this.moveVec_.z * _arg_2) * 0.008));
-        return (true);
+        x_ = x_ + this.moveVec_.x * _arg_2 * 0.008;
+        y_ = y_ + this.moveVec_.y * _arg_2 * 0.008;
+        z_ = z_ + this.moveVec_.z * _arg_2 * 0.008;
+        return true;
     }
 
 

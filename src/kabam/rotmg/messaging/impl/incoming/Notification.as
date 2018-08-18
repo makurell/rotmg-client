@@ -18,7 +18,7 @@ public class Notification extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("NOTIFICATION", "objectId_", "message", "color_"));
+        return formatToString("NOTIFICATION", "objectId_", "message", "color_");
     }
 
 

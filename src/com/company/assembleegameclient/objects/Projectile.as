@@ -62,13 +62,13 @@ public class Projectile extends BasicObject {
     }
 
     public static function findObjId(_arg_1:int, _arg_2:uint):int {
-        return (objBullIdToObjId_[((_arg_2 << 24) | _arg_1)]);
+        return objBullIdToObjId_[((_arg_2 << 24) | _arg_1)];
     }
 
     public static function getNewObjId(_arg_1:int, _arg_2:uint):int {
         var _local_3:int = getNextFakeObjectId();
         objBullIdToObjId_[((_arg_2 << 24) | _arg_1)] = _local_3;
-        return (_local_3);
+        return _local_3;
     }
 
     public static function removeObjId(_arg_1:int, _arg_2:uint):void {
@@ -95,20 +95,20 @@ public class Projectile extends BasicObject {
         this.projProps_ = this.containerProps_.projectiles_[bulletType];
         var id:String = !(_arg_7 == "") && this.projProps_.objectId_ == _arg_8 ? _arg_7 : this.projProps_.objectId_;
         this.props_ = ObjectLibrary.getPropsFromId(id);
-        hasShadow_ = (this.props_.shadowSize_ > 0);
+        hasShadow_ = this.props_.shadowSize_ > 0;
         var textureData:TextureData = ObjectLibrary.typeToTextureData_[this.props_.type_];
         this.texture_ = textureData.getTexture(objectId_);
         this.damagesPlayers_ = this.containerProps_.isEnemy_;
-        this.damagesEnemies_ = !(this.damagesPlayers_);
+        this.damagesEnemies_ = !this.damagesPlayers_;
         this.sound_ = this.containerProps_.oldSound_;
-        this.multiHitDict_ = ((this.projProps_.multiHit_) ? new Dictionary() : null);
+        this.multiHitDict_ = this.projProps_.multiHit_ ? new Dictionary() : null;
         if (this.projProps_.size_ >= 0) {
             size = this.projProps_.size_;
         }
         else {
             size = ObjectLibrary.getSizeFromType(this.containerType_);
         }
-        this.p_.setSize((8 * (size / 100)));
+        this.p_.setSize(8 * (size / 100));
         this.damage_ = 0;
     }
 
@@ -121,29 +121,29 @@ public class Projectile extends BasicObject {
         this.startX_ = _arg_2;
         this.startY_ = _arg_3;
         if (!super.addTo(_arg_1, _arg_2, _arg_3)) {
-            return (false);
+            return false;
         }
-        if (((!(this.containerProps_.flying_)) && (square_.sink_))) {
+        if (!this.containerProps_.flying_ && square_.sink_) {
             z_ = 0.1;
         }
         else {
             _local_4 = (_arg_1.goDict_[this.ownerId_] as Player);
-            if (((!((_local_4 == null))) && ((_local_4.sinkLevel_ > 0)))) {
-                z_ = (0.5 - (0.4 * (_local_4.sinkLevel_ / Parameters.MAX_SINK_LEVEL)));
+            if (!(_local_4 == null) && _local_4.sinkLevel_ > 0) {
+                z_ = 0.5 - 0.4 * (_local_4.sinkLevel_ / Parameters.MAX_SINK_LEVEL);
             }
         }
-        return (true);
+        return true;
     }
 
     public function moveTo(_arg_1:Number, _arg_2:Number):Boolean {
         var _local_3:Square = map_.getSquare(_arg_1, _arg_2);
         if (_local_3 == null) {
-            return (false);
+            return false;
         }
         x_ = _arg_1;
         y_ = _arg_2;
         square_ = _local_3;
-        return (true);
+        return true;
     }
 
     override public function removeFromMap():void {
@@ -166,38 +166,38 @@ public class Projectile extends BasicObject {
         var _local_14:Number;
         _arg_2.x = this.startX_;
         _arg_2.y = this.startY_;
-        var _local_3:Number = (_arg_1 * (this.projProps_.speed_ / 10000));
-        var _local_4:Number = ((((this.bulletId_ % 2)) == 0) ? 0 : Math.PI);
+        var _local_3:Number = _arg_1 * (this.projProps_.speed_ / 10000);
+        var _local_4:Number = this.bulletId_ % 2 == 0 ? 0 : Math.PI;
         if (this.projProps_.wavy_) {
-            _local_5 = (6 * Math.PI);
-            _local_6 = (Math.PI / 64);
-            _local_7 = (this.angle_ + (_local_6 * Math.sin((_local_4 + ((_local_5 * _arg_1) / 1000)))));
-            _arg_2.x = (_arg_2.x + (_local_3 * Math.cos(_local_7)));
-            _arg_2.y = (_arg_2.y + (_local_3 * Math.sin(_local_7)));
+            _local_5 = 6 * Math.PI;
+            _local_6 = Math.PI / 64;
+            _local_7 = this.angle_ + _local_6 * Math.sin(_local_4 + (_local_5 * _arg_1) / 1000);
+            _arg_2.x = _arg_2.x + _local_3 * Math.cos(_local_7);
+            _arg_2.y = _arg_2.y + _local_3 * Math.sin(_local_7);
         }
         else {
             if (this.projProps_.parametric_) {
-                _local_8 = (((_arg_1 / this.projProps_.lifetime_) * 2) * Math.PI);
-                _local_9 = (Math.sin(_local_8) * (((this.bulletId_ % 2)) ? 1 : -1));
-                _local_10 = (Math.sin((2 * _local_8)) * ((((this.bulletId_ % 4)) < 2) ? 1 : -1));
+                _local_8 = (_arg_1 / this.projProps_.lifetime_) * 2 * Math.PI;
+                _local_9 = Math.sin(_local_8) * (this.bulletId_ % 2 ? 1 : -1);
+                _local_10 = Math.sin(2 * _local_8) * (this.bulletId_ % 4 < 2 ? 1 : -1);
                 _local_11 = Math.sin(this.angle_);
                 _local_12 = Math.cos(this.angle_);
-                _arg_2.x = (_arg_2.x + (((_local_9 * _local_12) - (_local_10 * _local_11)) * this.projProps_.magnitude_));
-                _arg_2.y = (_arg_2.y + (((_local_9 * _local_11) + (_local_10 * _local_12)) * this.projProps_.magnitude_));
+                _arg_2.x = _arg_2.x + (_local_9 * _local_12 - _local_10 * _local_11) * this.projProps_.magnitude_;
+                _arg_2.y = _arg_2.y + (_local_9 * _local_11 + _local_10 * _local_12) * this.projProps_.magnitude_;
             }
             else {
                 if (this.projProps_.boomerang_) {
-                    _local_13 = ((this.projProps_.lifetime_ * (this.projProps_.speed_ / 10000)) / 2);
+                    _local_13 = (this.projProps_.lifetime_ * (this.projProps_.speed_ / 10000)) / 2;
                     if (_local_3 > _local_13) {
-                        _local_3 = (_local_13 - (_local_3 - _local_13));
+                        _local_3 = _local_13 - (_local_3 - _local_13);
                     }
                 }
-                _arg_2.x = (_arg_2.x + (_local_3 * Math.cos(this.angle_)));
-                _arg_2.y = (_arg_2.y + (_local_3 * Math.sin(this.angle_)));
+                _arg_2.x = _arg_2.x + _local_3 * Math.cos(this.angle_);
+                _arg_2.y = _arg_2.y + _local_3 * Math.sin(this.angle_);
                 if (this.projProps_.amplitude_ != 0) {
-                    _local_14 = (this.projProps_.amplitude_ * Math.sin((_local_4 + ((((_arg_1 / this.projProps_.lifetime_) * this.projProps_.frequency_) * 2) * Math.PI))));
-                    _arg_2.x = (_arg_2.x + (_local_14 * Math.cos((this.angle_ + (Math.PI / 2)))));
-                    _arg_2.y = (_arg_2.y + (_local_14 * Math.sin((this.angle_ + (Math.PI / 2)))));
+                    _local_14 = this.projProps_.amplitude_ * Math.sin(_local_4 + (_arg_1 / this.projProps_.lifetime_) * this.projProps_.frequency_ * 2 * Math.PI);
+                    _arg_2.x = _arg_2.x + _local_14 * Math.cos(this.angle_ + Math.PI / 2);
+                    _arg_2.y = _arg_2.y + _local_14 * Math.sin(this.angle_ + Math.PI / 2);
                 }
             }
         }
@@ -211,13 +211,13 @@ public class Projectile extends BasicObject {
         var _local_10:Boolean;
         var _local_11:int;
         var _local_12:Boolean;
-        var _local_3:int = (_arg_1 - this.startTime_);
+        var _local_3:int = _arg_1 - this.startTime_;
         if (_local_3 > this.projProps_.lifetime_) {
-            return (false);
+            return false;
         }
         var _local_4:Point = this.staticPoint_;
         this.positionAt(_local_3, _local_4);
-        if (((!(this.moveTo(_local_4.x, _local_4.y))) || ((square_.tileType_ == 0xFFFF)))) {
+        if (!this.moveTo(_local_4.x, _local_4.y) || square_.tileType_ == 0xFFFF) {
             if (this.damagesPlayers_) {
                 map_.gs_.gsc_.squareHit(_arg_1, this.bulletId_, this.ownerId_);
             }
@@ -227,9 +227,9 @@ public class Projectile extends BasicObject {
                     map_.addObj(new HitEffect(_local_5, 100, 3, this.angle_, this.projProps_.speed_), _local_4.x, _local_4.y);
                 }
             }
-            return (false);
+            return false;
         }
-        if (((((!((square_.obj_ == null))) && (((!(square_.obj_.props_.isEnemy_)) || (!(this.damagesEnemies_)))))) && (((square_.obj_.props_.enemyOccupySquare_) || (((!(this.projProps_.passesCover_)) && (square_.obj_.props_.occupySquare_))))))) {
+        if (!(square_.obj_ == null) && (!square_.obj_.props_.isEnemy_ || !this.damagesEnemies_) && (square_.obj_.props_.enemyOccupySquare_ || !this.projProps_.passesCover_ && square_.obj_.props_.occupySquare_)) {
             if (this.damagesPlayers_) {
                 map_.gs_.gsc_.otherHit(_arg_1, this.bulletId_, this.ownerId_, square_.obj_.objectId_);
             }
@@ -237,14 +237,14 @@ public class Projectile extends BasicObject {
                 _local_5 = BloodComposition.getColors(this.texture_);
                 map_.addObj(new HitEffect(_local_5, 100, 3, this.angle_, this.projProps_.speed_), _local_4.x, _local_4.y);
             }
-            return (false);
+            return false;
         }
         var _local_6:GameObject = this.getHit(_local_4.x, _local_4.y);
         if (_local_6 != null) {
             _local_7 = map_.player_;
-            _local_8 = !((_local_7 == null));
+            _local_8 = !(_local_7 == null);
             _local_9 = _local_6.props_.isEnemy_;
-            _local_10 = ((((_local_8) && (!(_local_7.isPaused())))) && (((this.damagesPlayers_) || (((_local_9) && ((this.ownerId_ == _local_7.objectId_)))))));
+            _local_10 = _local_8 && !_local_7.isPaused() && (this.damagesPlayers_ || _local_9 && this.ownerId_ == _local_7.objectId_);
             if (_local_10) {
                 _local_11 = GameObject.damageWithDefense(this.damage_, _local_6.defense_, this.projProps_.armorPiercing_, _local_6.condition_);
                 _local_12 = false;
@@ -274,10 +274,10 @@ public class Projectile extends BasicObject {
                 this.multiHitDict_[_local_6] = true;
             }
             else {
-                return (false);
+                return false;
             }
         }
-        return (true);
+        return true;
     }
 
     public function getHit(_arg_1:Number, _arg_2:Number):GameObject {
@@ -291,17 +291,17 @@ public class Projectile extends BasicObject {
         for each (_local_5 in map_.goDict_) {
             if (!_local_5.isInvincible()) {
                 if (!_local_5.isStasis()) {
-                    if (((((this.damagesEnemies_) && (_local_5.props_.isEnemy_))) || (((this.damagesPlayers_) && (_local_5.props_.isPlayer_))))) {
-                        if (!((_local_5.dead_) || (_local_5.isPaused()))) {
-                            _local_6 = (((_local_5.x_ > _arg_1)) ? (_local_5.x_ - _arg_1) : (_arg_1 - _local_5.x_));
-                            _local_7 = (((_local_5.y_ > _arg_2)) ? (_local_5.y_ - _arg_2) : (_arg_2 - _local_5.y_));
-                            if (!(((_local_6 > _local_5.radius_)) || ((_local_7 > _local_5.radius_)))) {
-                                if (!((this.projProps_.multiHit_) && (!((this.multiHitDict_[_local_5] == null))))) {
+                    if (this.damagesEnemies_ && _local_5.props_.isEnemy_ || this.damagesPlayers_ && _local_5.props_.isPlayer_) {
+                        if (!(_local_5.dead_ || _local_5.isPaused())) {
+                            _local_6 = _local_5.x_ > _arg_1 ? _local_5.x_ - _arg_1 : _arg_1 - _local_5.x_;
+                            _local_7 = _local_5.y_ > _arg_2 ? _local_5.y_ - _arg_2 : _arg_2 - _local_5.y_;
+                            if (!(_local_6 > _local_5.radius_ || _local_7 > _local_5.radius_)) {
+                                if (!(this.projProps_.multiHit_ && !(this.multiHitDict_[_local_5] == null))) {
                                     if (_local_5 == map_.player_) {
-                                        return (_local_5);
+                                        return _local_5;
                                     }
-                                    _local_8 = Math.sqrt(((_local_6 * _local_6) + (_local_7 * _local_7)));
-                                    _local_9 = ((_local_6 * _local_6) + (_local_7 * _local_7));
+                                    _local_8 = Math.sqrt(_local_6 * _local_6 + _local_7 * _local_7);
+                                    _local_9 = _local_6 * _local_6 + _local_7 * _local_7;
                                     if (_local_9 < _local_3) {
                                         _local_3 = _local_9;
                                         _local_4 = _local_5;
@@ -313,7 +313,7 @@ public class Projectile extends BasicObject {
                 }
             }
         }
-        return (_local_4);
+        return _local_4;
     }
 
     override public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -354,17 +354,17 @@ public class Projectile extends BasicObject {
             }
             _local_4 = TextureRedrawer.redraw(_local_4, 120, true, _local_7);
         }
-        var _local_5:Number = (((this.props_.rotation_ == 0)) ? 0 : (_arg_3 / this.props_.rotation_));
+        var _local_5:Number = this.props_.rotation_ == 0 ? 0 : _arg_3 / this.props_.rotation_;
         this.staticVector3D_.x = x_;
         this.staticVector3D_.y = y_;
         this.staticVector3D_.z = z_;
-        this.p_.draw(_arg_1, this.staticVector3D_, (((this.angle_ - _arg_2.angleRad_) + this.props_.angleCorrection_) + _local_5), _arg_2.wToS_, _arg_2, _local_4);
+        this.p_.draw(_arg_1, this.staticVector3D_, (this.angle_ - _arg_2.angleRad_) + this.props_.angleCorrection_ + _local_5, _arg_2.wToS_, _arg_2, _local_4);
         if (this.projProps_.particleTrail_) {
-            _local_8 = (((this.projProps_.particleTrailLifetimeMS) != -1) ? this.projProps_.particleTrailLifetimeMS : 600);
+            _local_8 = this.projProps_.particleTrailLifetimeMS != -1 ? this.projProps_.particleTrailLifetimeMS : 600;
             _local_9 = 0;
             for (; _local_9 < 3; _local_9++) {
-                if (((!((map_ == null))) && (!((map_.player_.objectId_ == this.ownerId_))))) {
-                    if ((((this.projProps_.particleTrailIntensity_ == -1)) && (((Math.random() * 100) > this.projProps_.particleTrailIntensity_)))) continue;
+                if (!(map_ == null) && !(map_.player_.objectId_ == this.ownerId_)) {
+                    if (this.projProps_.particleTrailIntensity_ == -1 && Math.random() * 100 > this.projProps_.particleTrailIntensity_) continue;
                 }
                 map_.addObj(new SparkParticle(100, this.projProps_.particleTrailColor_, _local_8, 0.5, RandomUtil.plusMinus(3), RandomUtil.plusMinus(3)), x_, y_);
             }
@@ -375,13 +375,13 @@ public class Projectile extends BasicObject {
         if (!Parameters.drawProj_) {
             return;
         }
-        var _local_4:Number = (this.props_.shadowSize_ / 400);
-        var _local_5:Number = (30 * _local_4);
-        var _local_6:Number = (15 * _local_4);
-        this.shadowGradientFill_.matrix.createGradientBox((_local_5 * 2), (_local_6 * 2), 0, (posS_[0] - _local_5), (posS_[1] - _local_6));
+        var _local_4:Number = this.props_.shadowSize_ / 400;
+        var _local_5:Number = 30 * _local_4;
+        var _local_6:Number = 15 * _local_4;
+        this.shadowGradientFill_.matrix.createGradientBox(_local_5 * 2, _local_6 * 2, 0, posS_[0] - _local_5, posS_[1] - _local_6);
         _arg_1.push(this.shadowGradientFill_);
         this.shadowPath_.data.length = 0;
-        Vector.<Number>(this.shadowPath_.data).push((posS_[0] - _local_5), (posS_[1] - _local_6), (posS_[0] + _local_5), (posS_[1] - _local_6), (posS_[0] + _local_5), (posS_[1] + _local_6), (posS_[0] - _local_5), (posS_[1] + _local_6));
+        Vector.<Number>(this.shadowPath_.data).push(posS_[0] - _local_5, posS_[1] - _local_6, posS_[0] + _local_5, posS_[1] - _local_6, posS_[0] + _local_5, posS_[1] + _local_6, posS_[0] - _local_5, posS_[1] + _local_6);
         _arg_1.push(this.shadowPath_);
         _arg_1.push(GraphicsUtil.END_FILL);
     }

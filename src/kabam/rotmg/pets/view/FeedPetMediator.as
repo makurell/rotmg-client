@@ -34,8 +34,8 @@ public class FeedPetMediator extends Mediator {
 
     override public function initialize():void {
         this.view.init();
-        var _local_1:PetVO = ((this.petSlotsState.leftSlotPetVO) ? this.petSlotsState.leftSlotPetVO : this.petsModel.getActivePet());
-        this.view.setAbilityMeterLabels(((_local_1) ? _local_1.abilityList : null), ((_local_1) ? _local_1.getMaxAbilityPower() : 0));
+        var _local_1:PetVO = this.petSlotsState.leftSlotPetVO ? this.petSlotsState.leftSlotPetVO : this.petsModel.getActivePet();
+        this.view.setAbilityMeterLabels(_local_1 ? _local_1.abilityList : null, _local_1 ? _local_1.getMaxAbilityPower() : 0);
         this.view.openPetPicker.add(this.onOpenPetPicker);
         this.view.closed.add(this.onClosed);
         this.view.goldPurchase.add(this.onGoldPurchase);

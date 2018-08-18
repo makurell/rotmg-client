@@ -40,8 +40,8 @@ public class SavedCharacter {
     public static function getImage(_arg_1:SavedCharacter, _arg_2:XML, _arg_3:int, _arg_4:int, _arg_5:Number, _arg_6:Boolean, _arg_7:Boolean):BitmapData {
         var _local_8:AnimatedChar = AnimatedChars.getAnimatedChar(String(_arg_2.AnimatedTexture.File), int(_arg_2.AnimatedTexture.Index));
         var _local_9:MaskedImage = _local_8.imageFromDir(_arg_3, _arg_4, _arg_5);
-        var _local_10:int = (((_arg_1) != null) ? _arg_1.tex1() : null);
-        var _local_11:int = (((_arg_1) != null) ? _arg_1.tex2() : null);
+        var _local_10:int = _arg_1 != null ? _arg_1.tex1() : null;
+        var _local_11:int = _arg_1 != null ? _arg_1.tex2() : null;
         var _local_12:BitmapData = TextureRedrawer.resize(_local_9.image_, _local_9.mask_, 100, false, _local_10, _local_11);
         _local_12 = GlowRedrawer.outlineGlow(_local_12, 0);
         if (!_arg_6) {
@@ -52,61 +52,61 @@ public class SavedCharacter {
                 _local_12 = CachingColorTransformer.transformBitmapData(_local_12, new ColorTransform(0.75, 0.75, 0.75, 1, 0, 0, 0, 0));
             }
         }
-        return (_local_12);
+        return _local_12;
     }
 
     public static function compare(_arg_1:SavedCharacter, _arg_2:SavedCharacter):Number {
-        var _local_3:Number = ((Parameters.data_.charIdUseMap.hasOwnProperty(_arg_1.charId())) ? Parameters.data_.charIdUseMap[_arg_1.charId()] : 0);
-        var _local_4:Number = ((Parameters.data_.charIdUseMap.hasOwnProperty(_arg_2.charId())) ? Parameters.data_.charIdUseMap[_arg_2.charId()] : 0);
+        var _local_3:Number = Parameters.data_.charIdUseMap.hasOwnProperty(_arg_1.charId()) ? Parameters.data_.charIdUseMap[_arg_1.charId()] : 0;
+        var _local_4:Number = Parameters.data_.charIdUseMap.hasOwnProperty(_arg_2.charId()) ? Parameters.data_.charIdUseMap[_arg_2.charId()] : 0;
         if (_local_3 != _local_4) {
-            return ((_local_4 - _local_3));
+            return _local_4 - _local_3;
         }
-        return ((_arg_2.xp() - _arg_1.xp()));
+        return _arg_2.xp() - _arg_1.xp();
     }
 
 
     public function charId():int {
-        return (int(this.charXML_.@id));
+        return int(this.charXML_.@id);
     }
 
     public function name():String {
-        return (this.name_);
+        return this.name_;
     }
 
     public function objectType():int {
-        return (int(this.charXML_.ObjectType));
+        return int(this.charXML_.ObjectType);
     }
 
     public function skinType():int {
-        return (int(this.charXML_.Texture));
+        return int(this.charXML_.Texture);
     }
 
     public function level():int {
-        return (int(this.charXML_.Level));
+        return int(this.charXML_.Level);
     }
 
     public function tex1():int {
-        return (int(this.charXML_.Tex1));
+        return int(this.charXML_.Tex1);
     }
 
     public function tex2():int {
-        return (int(this.charXML_.Tex2));
+        return int(this.charXML_.Tex2);
     }
 
     public function xp():int {
-        return (int(this.charXML_.Exp));
+        return int(this.charXML_.Exp);
     }
 
     public function fame():int {
-        return (int(this.charXML_.CurrentFame));
+        return int(this.charXML_.CurrentFame);
     }
 
     public function displayId():String {
-        return (ObjectLibrary.typeToDisplayId_[this.objectType()]);
+        return ObjectLibrary.typeToDisplayId_[this.objectType()];
     }
 
     public function getPetVO():PetVO {
-        return (this.pet);
+        return this.pet;
     }
 
     public function setPetVO(_arg_1:PetVO):void {

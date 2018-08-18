@@ -89,10 +89,10 @@ public class SavedCharactersList extends Event {
         var _local_2:SavedCharacter;
         for each (_local_2 in this.savedChars_) {
             if (_local_2.charId() == _arg_1) {
-                return (_local_2);
+                return _local_2;
             }
         }
-        return (null);
+        return null;
     }
 
     private function parseUserData(_arg_1:XML):void {
@@ -109,7 +109,7 @@ public class SavedCharactersList extends Event {
         this.credits_ = int(_arg_1.Credits);
         this.tokens_ = int(_arg_1.FortuneToken);
         this.nextCharSlotPrice_ = int(_arg_1.NextCharSlotPrice);
-        this.isAgeVerified = ((!((this.accountId_ == ""))) && ((_arg_1.IsAgeVerified == 1)));
+        this.isAgeVerified = !(this.accountId_ == "") && _arg_1.IsAgeVerified == 1;
         this.hasPlayerDied = true;
     }
 
@@ -125,7 +125,7 @@ public class SavedCharactersList extends Event {
 
     private function getBeginnerModel():BeginnersPackageModel {
         var _local_1:Injector = StaticInjectorContext.getInjector();
-        return (_local_1.getInstance(BeginnersPackageModel));
+        return _local_1.getInstance(BeginnersPackageModel);
     }
 
     private function parseGuildData(_arg_1:XML):void {
@@ -156,7 +156,7 @@ public class SavedCharactersList extends Event {
         for each (_local_2 in _local_1.ClassStats) {
             _local_3 = int(_local_2.@objectType);
             _local_4 = new CharacterStats(_local_2);
-            this.numStars_ = (this.numStars_ + _local_4.numStars());
+            this.numStars_ = this.numStars_ + _local_4.numStars();
             this.charStats_[_local_3] = _local_4;
         }
     }
@@ -170,7 +170,7 @@ public class SavedCharactersList extends Event {
     }
 
     private function parseGeoPositioningData():void {
-        if (((this.charsXML_.hasOwnProperty("Lat")) && (this.charsXML_.hasOwnProperty("Long")))) {
+        if (this.charsXML_.hasOwnProperty("Lat") && this.charsXML_.hasOwnProperty("Long")) {
             this.myPos_ = new LatLong(Number(this.charsXML_.Lat), Number(this.charsXML_.Long));
         }
         else {
@@ -179,7 +179,7 @@ public class SavedCharactersList extends Event {
     }
 
     private function parseSalesForceData():void {
-        if (((this.charsXML_.hasOwnProperty("SalesForce")) && (this.charsXML_.hasOwnProperty("SalesForce")))) {
+        if (this.charsXML_.hasOwnProperty("SalesForce") && this.charsXML_.hasOwnProperty("SalesForce")) {
             this.salesForceData_ = String(this.charsXML_.SalesForce);
         }
     }
@@ -190,14 +190,13 @@ public class SavedCharactersList extends Event {
         }
     }
 
-    public function isFirstTimeLogin():Boolean
-    {
+    public function isFirstTimeLogin():Boolean {
         return !this.charsXML_.hasOwnProperty("TOSPopup");
     }
 
     public function bestLevel(_arg_1:int):int {
         var _local_2:CharacterStats = this.charStats_[_arg_1];
-        return ((((_local_2 == null)) ? 0 : _local_2.bestLevel()));
+        return _local_2 == null ? 0 : _local_2.bestLevel();
     }
 
     public function bestOverallLevel():int {
@@ -208,12 +207,12 @@ public class SavedCharactersList extends Event {
                 _local_1 = _local_2.bestLevel();
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function bestFame(_arg_1:int):int {
         var _local_2:CharacterStats = this.charStats_[_arg_1];
-        return ((((_local_2 == null)) ? 0 : _local_2.bestFame()));
+        return _local_2 == null ? 0 : _local_2.bestFame();
     }
 
     public function bestOverallFame():int {
@@ -224,7 +223,7 @@ public class SavedCharactersList extends Event {
                 _local_1 = _local_2.bestFame();
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function levelRequirementsMet(_arg_1:int):Boolean {
@@ -234,18 +233,18 @@ public class SavedCharactersList extends Event {
         for each (_local_3 in _local_2.UnlockLevel) {
             _local_4 = ObjectLibrary.idToType_[_local_3.toString()];
             if (this.bestLevel(_local_4) < int(_local_3.@level)) {
-                return (false);
+                return false;
             }
         }
-        return (true);
+        return true;
     }
 
     public function availableCharSlots():int {
-        return ((this.maxNumChars_ - this.numChars_));
+        return this.maxNumChars_ - this.numChars_;
     }
 
     public function hasAvailableCharSlot():Boolean {
-        return ((this.numChars_ < this.maxNumChars_));
+        return this.numChars_ < this.maxNumChars_;
     }
 
     public function newUnlocks(_arg_1:int, _arg_2:int):Array {
@@ -268,35 +267,35 @@ public class SavedCharactersList extends Event {
                     _local_10 = ObjectLibrary.idToType_[_local_9.toString()];
                     _local_11 = int(_local_9.@level);
                     if (this.bestLevel(_local_10) < _local_11) {
-                        if (((!((_local_10 == _arg_1))) || (!((_local_11 == _arg_2))))) {
+                        if (!(_local_10 == _arg_1) || !(_local_11 == _arg_2)) {
                             _local_7 = false;
                             break;
                         }
                         _local_8 = true;
                     }
                 }
-                if (((_local_7) && (_local_8))) {
+                if (_local_7 && _local_8) {
                     _local_3.push(_local_6);
                 }
             }
             _local_4++;
         }
-        return (_local_3);
+        return _local_3;
     }
 
     override public function clone():Event {
-        return (new SavedCharactersList(this.origData_));
+        return new SavedCharactersList(this.origData_);
     }
 
     override public function toString():String {
-        return (((((("[" + " numChars: ") + this.numChars_) + " maxNumChars: ") + this.maxNumChars_) + " ]"));
+        return "[" + " numChars: " + this.numChars_ + " maxNumChars: " + this.maxNumChars_ + " ]";
     }
 
     private function reportUnlocked():void {
         var _local_1:Injector = StaticInjectorContext.getInjector();
         if (_local_1) {
             this.account = _local_1.getInstance(Account);
-            ((this.account) && (this.updateAccount()));
+            this.account && this.updateAccount();
         }
     }
 
@@ -309,7 +308,7 @@ public class SavedCharactersList extends Event {
             _local_3 = ObjectLibrary.playerChars_[_local_2];
             _local_4 = int(_local_3.@type);
             if (this.levelRequirementsMet(_local_4)) {
-                this.account.reportIntStat((_local_3.@id + "Unlocked"), 1);
+                this.account.reportIntStat(_local_3.id + "Unlocked", 1);
                 _local_1++;
             }
             _local_2++;

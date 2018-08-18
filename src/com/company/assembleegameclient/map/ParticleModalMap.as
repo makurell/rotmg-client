@@ -40,7 +40,7 @@ public class ParticleModalMap extends Map {
     }
 
     public static function getLocalPos(_arg_1:Number):Number {
-        return ((_arg_1 / PSCALE));
+        return _arg_1 / PSCALE;
     }
 
 
@@ -113,13 +113,13 @@ public class ParticleModalMap extends Map {
         var _local_2 = 600;
         var _local_3 = 600;
         if (this.time != 0) {
-            this.dt = (getTimer() - this.time);
+            this.dt = getTimer() - this.time;
         }
-        this.dtBuildup = (this.dtBuildup + this.dt);
+        this.dtBuildup = this.dtBuildup + this.dt;
         this.time = getTimer();
         if (this.dtBuildup > 500) {
             this.dtBuildup = 0;
-            this.doSnow((Math.random() * 600), -100);
+            this.doSnow(Math.random() * 600, -100);
         }
         this.update(this.time, this.dt);
         this.draw(null, this.time);
@@ -127,7 +127,7 @@ public class ParticleModalMap extends Map {
 
     private function updater(_arg_1:Event):void {
         if (this.time != 0) {
-            this.dt = (getTimer() - this.time);
+            this.dt = getTimer() - this.time;
         }
         this.time = getTimer();
         this.update(this.time, this.dt);

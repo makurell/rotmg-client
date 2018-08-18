@@ -63,8 +63,7 @@ public class CurrentCharacterMediator extends Mediator {
         this.beginnersPackageAvailable.add(this.onBeginner);
         this.packageAvailable.add(this.onPackage);
         this.initPackages.dispatch();
-        if(this.securityQuestionsModel.showSecurityQuestionsOnStartup)
-        {
+        if (this.securityQuestionsModel.showSecurityQuestionsOnStartup) {
             this.openDialog.dispatch(new SecurityQuestionsInfoDialog());
         }
     }

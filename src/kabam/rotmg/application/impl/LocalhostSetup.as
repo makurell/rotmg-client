@@ -10,44 +10,44 @@ public class LocalhostSetup implements ApplicationSetup {
 
 
     public function getAppEngineUrl(_arg_1:Boolean = false):String {
-        return (this.SERVER);
+        return this.SERVER;
     }
 
     public function getBuildLabel():String {
-        var _local_1:String = ((Parameters.BUILD_VERSION + ".") + Parameters.MINOR_VERSION);
-        return (this.BUILD_LABEL.replace("{VERSION}", _local_1));
+        var _local_1:String = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
+        return this.BUILD_LABEL.replace("{VERSION}", _local_1);
     }
 
     public function useLocalTextures():Boolean {
-        return (true);
+        return true;
     }
 
     public function isToolingEnabled():Boolean {
-        return (true);
+        return true;
     }
 
     public function isServerLocal():Boolean {
-        return (true);
+        return true;
     }
 
     public function isGameLoopMonitored():Boolean {
-        return (true);
+        return true;
     }
 
     public function useProductionDialogs():Boolean {
-        return (false);
+        return false;
     }
 
     public function areErrorsReported():Boolean {
-        return (false);
+        return false;
     }
 
     public function areDeveloperHotkeysEnabled():Boolean {
-        return (true);
+        return true;
     }
 
     public function isDebug():Boolean {
-        return (true);
+        return true;
     }
 
 

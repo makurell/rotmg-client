@@ -82,7 +82,7 @@ public class BoostPanel extends Sprite {
         graphics.clear();
         graphics.lineStyle(2, 0xFFFFFF);
         graphics.beginFill(0x333333);
-        graphics.drawRoundRect(0, 0, 150, (height + 5), 10);
+        graphics.drawRoundRect(0, 0, 150, height + 5, 10);
         this.resized.dispatch();
     }
 
@@ -120,14 +120,14 @@ public class BoostPanel extends Sprite {
         addChild(_arg_2);
         _arg_2.y = this.posY;
         _arg_2.x = 10;
-        this.posY = (this.posY + this.SPACE);
+        this.posY = this.posY + this.SPACE;
     }
 
     private function destroyBoostTimers():void {
-        if (((this.tierBoostTimer) && (this.tierBoostTimer.parent))) {
+        if (this.tierBoostTimer && this.tierBoostTimer.parent) {
             removeChild(this.tierBoostTimer);
         }
-        if (((this.dropBoostTimer) && (this.dropBoostTimer.parent))) {
+        if (this.dropBoostTimer && this.dropBoostTimer.parent) {
             removeChild(this.dropBoostTimer);
         }
         this.tierBoostTimer = null;
@@ -138,7 +138,7 @@ public class BoostPanel extends Sprite {
         var _local_3:BoostTimer = new BoostTimer();
         _local_3.setLabelBuilder(_arg_1);
         _local_3.setTime(_arg_2);
-        return (_local_3);
+        return _local_3;
     }
 
 

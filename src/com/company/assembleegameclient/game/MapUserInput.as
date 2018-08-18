@@ -201,19 +201,19 @@ public class MapUserInput {
                 return;
             }
             _local_5 = ObjectLibrary.xmlLibrary_[_local_4];
-            if ((((_local_5 == null)) || (_local_5.hasOwnProperty("EndMpCost")))) {
+            if (_local_5 == null || _local_5.hasOwnProperty("EndMpCost")) {
                 return;
             }
             if (_local_2.isUnstable()) {
-                _local_6 = ((Math.random() * 600) - 300);
-                _local_7 = ((Math.random() * 600) - 325);
+                _local_6 = Math.random() * 600 - 300;
+                _local_7 = Math.random() * 600 - 325;
             }
             else {
                 _local_6 = this.gs_.map.mouseX;
                 _local_7 = this.gs_.map.mouseY;
             }
             if (Parameters.isGpuRender()) {
-                if ((((((_arg_1.currentTarget == _arg_1.target)) || ((_arg_1.target == this.gs_.map)))) || ((_arg_1.target == this.gs_)))) {
+                if (_arg_1.currentTarget == _arg_1.target || _arg_1.target == this.gs_.map || _arg_1.target == this.gs_) {
                     _local_2.useAltWeapon(_local_6, _local_7, UseType.START_USE);
                 }
             }
@@ -223,7 +223,7 @@ public class MapUserInput {
             return;
         }
         if (Parameters.isGpuRender()) {
-            if ((((((((_arg_1.currentTarget == _arg_1.target)) || ((_arg_1.target == this.gs_.map)))) || ((_arg_1.target == this.gs_)))) || ((_arg_1.currentTarget == this.gs_.chatBox_.list)))) {
+            if (_arg_1.currentTarget == _arg_1.target || _arg_1.target == this.gs_.map || _arg_1.target == this.gs_ || _arg_1.currentTarget == this.gs_.chatBox_.list) {
                 _local_3 = Math.atan2(this.gs_.map.mouseY, this.gs_.map.mouseX);
             }
             else {
@@ -235,7 +235,7 @@ public class MapUserInput {
         }
         doneAction(this.gs_, Tutorial.ATTACK_ACTION);
         if (_local_2.isUnstable()) {
-            _local_2.attemptAttackAngle((Math.random() * 360));
+            _local_2.attemptAttackAngle(Math.random() * 360);
         }
         else {
             _local_2.attemptAttackAngle(_local_3);
@@ -265,11 +265,11 @@ public class MapUserInput {
         var _local_2:Player;
         var _local_3:Number;
         doneAction(this.gs_, Tutorial.UPDATE_ACTION);
-        if (((this.enablePlayerInput_) && (((this.mouseDown_) || (this.autofire_))))) {
+        if (this.enablePlayerInput_ && (this.mouseDown_ || this.autofire_)) {
             _local_2 = this.gs_.map.player_;
             if (_local_2 != null) {
                 if (_local_2.isUnstable()) {
-                    _local_2.attemptAttackAngle((Math.random() * 360));
+                    _local_2.attemptAttackAngle(Math.random() * 360);
                 }
                 else {
                     _local_3 = Math.atan2(this.gs_.map.mouseY, this.gs_.map.mouseX);
@@ -288,15 +288,15 @@ public class MapUserInput {
         var _local_9:Boolean;
         var _local_10:Square;
         var _local_2:Stage = this.gs_.stage;
-        this.currentString = (this.currentString + String.fromCharCode(_arg_1.keyCode).toLowerCase());
+        this.currentString = this.currentString + String.fromCharCode(_arg_1.keyCode).toLowerCase();
         if (this.currentString == UIUtils.EXPERIMENTAL_MENU_PASSWORD.slice(0, this.currentString.length)) {
             if (this.currentString.length == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length) {
                 _local_4 = StaticInjectorContext.getInjector().getInstance(AddTextLineSignal);
                 _local_5 = new ChatMessage();
                 _local_5.name = Parameters.SERVER_CHAT_NAME;
                 this.currentString = "";
-                UIUtils.SHOW_EXPERIMENTAL_MENU = !(UIUtils.SHOW_EXPERIMENTAL_MENU);
-                _local_5.text = ((UIUtils.SHOW_EXPERIMENTAL_MENU) ? "Experimental menu activated" : "Experimental menu deactivated");
+                UIUtils.SHOW_EXPERIMENTAL_MENU = !UIUtils.SHOW_EXPERIMENTAL_MENU;
+                _local_5.text = UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
                 _local_4.dispatch(_local_5);
             }
         }
@@ -361,8 +361,8 @@ public class MapUserInput {
                 if (_local_6 == null) break;
                 if (!this.specialKeyDown_) {
                     if (_local_3.isUnstable()) {
-                        _local_7 = ((Math.random() * 600) - 300);
-                        _local_8 = ((Math.random() * 600) - 325);
+                        _local_7 = Math.random() * 600 - 300;
+                        _local_8 = Math.random() * 600 - 325;
                     }
                     else {
                         _local_7 = this.gs_.map.mouseX;
@@ -375,10 +375,10 @@ public class MapUserInput {
                 }
                 break;
             case Parameters.data_.autofireToggle:
-                this.gs_.map.player_.isShooting = (this.autofire_ = !(this.autofire_));
+                this.gs_.map.player_.isShooting = (this.autofire_ = !this.autofire_);
                 break;
             case Parameters.data_.toggleHPBar:
-                Parameters.data_.HPBar = !(Parameters.data_.HPBar);
+                Parameters.data_.HPBar = !Parameters.data_.HPBar;
                 break;
             case Parameters.data_.useInvSlot1:
                 this.useItem(4);
@@ -410,7 +410,7 @@ public class MapUserInput {
                 }
                 break;
             case Parameters.data_.GPURenderToggle:
-                Parameters.data_.GPURender = !(Parameters.data_.GPURender);
+                Parameters.data_.GPURender = !Parameters.data_.GPURender;
                 break;
             case Parameters.data_.useMagicPotion:
                 if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.MAGIC_POTION_ID).available) {
@@ -434,7 +434,7 @@ public class MapUserInput {
                 Parameters.save();
                 break;
             case Parameters.data_.friendList:
-                Parameters.data_.friendListDisplayFlag = !(Parameters.data_.friendListDisplayFlag);
+                Parameters.data_.friendListDisplayFlag = !Parameters.data_.friendListDisplayFlag;
                 if (Parameters.data_.friendListDisplayFlag) {
                     this.openDialogSignal.dispatch(new FriendListView());
                 }
@@ -447,14 +447,14 @@ public class MapUserInput {
                 this.layers.overlay.addChild(new Options(this.gs_));
                 break;
             case Parameters.data_.toggleCentering:
-                Parameters.data_.centerOnPlayer = !(Parameters.data_.centerOnPlayer);
+                Parameters.data_.centerOnPlayer = !Parameters.data_.centerOnPlayer;
                 Parameters.save();
                 break;
             case Parameters.data_.toggleFullscreen:
                 if (Capabilities.playerType == "Desktop") {
-                    Parameters.data_.fullscreenMode = !(Parameters.data_.fullscreenMode);
+                    Parameters.data_.fullscreenMode = !Parameters.data_.fullscreenMode;
                     Parameters.save();
-                    _local_2.displayState = ((Parameters.data_.fullscreenMode) ? "fullScreenInteractive" : StageDisplayState.NORMAL);
+                    _local_2.displayState = Parameters.data_.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
                 }
                 break;
             case Parameters.data_.switchTabs:
@@ -469,11 +469,11 @@ public class MapUserInput {
                     this.toggleScreenShotMode();
                     break;
                 case KeyCodes.F3:
-                    Parameters.screenShotSlimMode_ = !(Parameters.screenShotSlimMode_);
+                    Parameters.screenShotSlimMode_ = !Parameters.screenShotSlimMode_;
                     break;
                 case KeyCodes.F4:
-                    this.gs_.map.mapOverlay_.visible = !(this.gs_.map.mapOverlay_.visible);
-                    this.gs_.map.partyOverlay_.visible = !(this.gs_.map.partyOverlay_.visible);
+                    this.gs_.map.mapOverlay_.visible = !this.gs_.map.mapOverlay_.visible;
+                    this.gs_.map.partyOverlay_.visible = !this.gs_.map.partyOverlay_.visible;
                     break;
             }
         }
@@ -481,8 +481,8 @@ public class MapUserInput {
             switch (_arg_1.keyCode) {
                 case KeyCodes.F6:
                     TextureRedrawer.clearCache();
-                    Parameters.projColorType_ = ((Parameters.projColorType_ + 1) % 7);
-                    this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, ("Projectile Color Type: " + Parameters.projColorType_)));
+                    Parameters.projColorType_ = (Parameters.projColorType_ + 1) % 7;
+                    this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Projectile Color Type: " + Parameters.projColorType_));
                     break;
                 case KeyCodes.F7:
                     for each (_local_10 in this.gs_.map.squares_) {
@@ -490,8 +490,8 @@ public class MapUserInput {
                             _local_10.faces_.length = 0;
                         }
                     }
-                    Parameters.blendType_ = ((Parameters.blendType_ + 1) % 2);
-                    this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, ("Blend type: " + Parameters.blendType_)));
+                    Parameters.blendType_ = (Parameters.blendType_ + 1) % 2;
+                    this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend type: " + Parameters.blendType_));
                     break;
                 case KeyCodes.F8:
                     Parameters.data_.surveyDate = 0;
@@ -500,7 +500,7 @@ public class MapUserInput {
                     Parameters.data_.surveyGroup = "testing";
                     break;
                 case KeyCodes.F9:
-                    Parameters.drawProj_ = !(Parameters.drawProj_);
+                    Parameters.drawProj_ = !Parameters.drawProj_;
                     break;
             }
         }
@@ -533,8 +533,8 @@ public class MapUserInput {
                 if (this.specialKeyDown_) {
                     this.specialKeyDown_ = false;
                     if (this.gs_.map.player_.isUnstable()) {
-                        _local_2 = ((Math.random() * 600) - 300);
-                        _local_3 = ((Math.random() * 600) - 325);
+                        _local_2 = Math.random() * 600 - 300;
+                        _local_3 = Math.random() * 600 - 325;
                     }
                     else {
                         _local_2 = this.gs_.map.mouseX;
@@ -551,7 +551,7 @@ public class MapUserInput {
         var _local_1:Player = this.gs_.map.player_;
         if (_local_1 != null) {
             if (this.enablePlayerInput_) {
-                _local_1.setRelativeMovement((((this.rotateRight_) ? 1 : 0) - ((this.rotateLeft_) ? 1 : 0)), (((this.moveRight_) ? 1 : 0) - ((this.moveLeft_) ? 1 : 0)), (((this.moveDown_) ? 1 : 0) - ((this.moveUp_) ? 1 : 0)));
+                _local_1.setRelativeMovement((this.rotateRight_ ? 1 : 0) - (this.rotateLeft_ ? 1 : 0), (this.moveRight_ ? 1 : 0) - (this.moveLeft_ ? 1 : 0), (this.moveDown_ ? 1 : 0) - (this.moveUp_ ? 1 : 0));
             }
             else {
                 _local_1.setRelativeMovement(0, 0, 0);
@@ -561,7 +561,7 @@ public class MapUserInput {
 
     private function useItem(_arg_1:int):void {
         if (this.tabStripModel.currentSelection == TabStripModel.BACKPACK) {
-            _arg_1 = (_arg_1 + GeneralConstants.NUM_INVENTORY_SLOTS);
+            _arg_1 = _arg_1 + GeneralConstants.NUM_INVENTORY_SLOTS;
         }
         GameServerConnection.instance.useItem_new(this.gs_.map.player_, _arg_1);
     }
@@ -581,7 +581,7 @@ public class MapUserInput {
     }
 
     private function toggleScreenShotMode():void {
-        Parameters.screenShotMode_ = !(Parameters.screenShotMode_);
+        Parameters.screenShotMode_ = !Parameters.screenShotMode_;
         if (Parameters.screenShotMode_) {
             this.gs_.hudView.visible = false;
             this.setTextBoxVisibility.dispatch(false);

@@ -16,7 +16,7 @@ final class VerticalScrollbarBar extends Sprite {
 
     public const dragging:Signal = new Signal(int);
     public const scrolling:Signal = new Signal(Number);
-    public const rect:BevelRect = new BevelRect((WIDTH - (PADDING * 2)), 0, BEVEL);
+    public const rect:BevelRect = new BevelRect(WIDTH - PADDING * 2, 0, BEVEL);
     private const helper:GraphicsHelper = new GraphicsHelper();
 
     private var downOffset:Number;
@@ -25,7 +25,7 @@ final class VerticalScrollbarBar extends Sprite {
 
 
     public function redraw():void {
-        var _local_1:int = ((((this.isOver) || (this.isDown))) ? 16767876 : 0xCCCCCC);
+        var _local_1:int = this.isOver || this.isDown ? 16767876 : 0xCCCCCC;
         graphics.clear();
         graphics.beginFill(_local_1);
         this.helper.drawBevelRect(PADDING, 0, this.rect, graphics);
@@ -36,7 +36,7 @@ final class VerticalScrollbarBar extends Sprite {
         addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
         addEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
         addEventListener(MouseEvent.MOUSE_OUT, this.onMouseOut);
-        if (((parent) && (parent.parent))) {
+        if (parent && parent.parent) {
             parent.parent.addEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
         }
         else {
@@ -61,7 +61,7 @@ final class VerticalScrollbarBar extends Sprite {
         removeEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
         removeEventListener(MouseEvent.MOUSE_OUT, this.onMouseOut);
         removeEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
-        if (((parent) && (parent.parent))) {
+        if (parent && parent.parent) {
             parent.parent.removeEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
         }
         else {
@@ -74,7 +74,7 @@ final class VerticalScrollbarBar extends Sprite {
 
     private function onMouseDown(_arg_1:MouseEvent = null):void {
         this.isDown = true;
-        this.downOffset = (parent.mouseY - y);
+        this.downOffset = parent.mouseY - y;
         if (stage != null) {
             stage.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
         }
@@ -102,7 +102,7 @@ final class VerticalScrollbarBar extends Sprite {
     }
 
     private function iterate(_arg_1:Event):void {
-        this.dragging.dispatch(int((parent.mouseY - this.downOffset)));
+        this.dragging.dispatch(int(parent.mouseY - this.downOffset));
     }
 
 

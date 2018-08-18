@@ -30,7 +30,7 @@ public class SteamLoadApiTask extends BaseTask {
 
     override protected function startTask():void {
         this.logger.debug("startTask");
-        this.layers.api.addChild((this.api as DisplayObject));
+        this.layers.api.addChild(this.api as DisplayObject);
         this.api.loaded.addOnce(this.requestSessionTicket);
         this.api.load(this.info.parameters.steam_api_path);
     }
@@ -52,7 +52,7 @@ public class SteamLoadApiTask extends BaseTask {
     }
 
     private function showErrorDialog():void {
-        this.dialog = ((this.dialog) || (new SteamSessionRequestErrorDialog()));
+        this.dialog = this.dialog || new SteamSessionRequestErrorDialog();
         this.dialog.ok.addOnce(this.onOK);
         this.openDialog.dispatch(this.dialog);
     }

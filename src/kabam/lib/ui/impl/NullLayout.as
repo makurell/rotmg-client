@@ -7,7 +7,7 @@ public class NullLayout implements Layout {
 
 
     public function getPadding():int {
-        return (0);
+        return 0;
     }
 
     public function setPadding(_arg_1:int):void {

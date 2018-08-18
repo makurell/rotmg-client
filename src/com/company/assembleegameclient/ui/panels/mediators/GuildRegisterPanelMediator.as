@@ -42,7 +42,7 @@ public class GuildRegisterPanelMediator extends Mediator {
 
     public function onRenounceClick():void {
         var _local_1:GameSprite = this.hudModel.gameSprite;
-        if ((((_local_1.map == null)) || ((_local_1.map.player_ == null)))) {
+        if (_local_1.map == null || _local_1.map.player_ == null) {
             return;
         }
         var _local_2:Player = _local_1.map.player_;
@@ -59,7 +59,7 @@ public class GuildRegisterPanelMediator extends Mediator {
 
     private function onRenounce(_arg_1:Event):void {
         var _local_2:GameSprite = this.hudModel.gameSprite;
-        if ((((_local_2.map == null)) || ((_local_2.map.player_ == null)))) {
+        if (_local_2.map == null || _local_2.map.player_ == null) {
             return;
         }
         var _local_3:Player = _local_2.map.player_;

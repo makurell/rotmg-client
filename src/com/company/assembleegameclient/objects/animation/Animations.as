@@ -24,7 +24,7 @@ public class Animations {
         if (this.running_ != null) {
             _local_4 = this.running_.getTexture(_arg_1);
             if (_local_4 != null) {
-                return (_local_4);
+                return _local_4;
             }
             this.running_ = null;
         }
@@ -34,14 +34,14 @@ public class Animations {
                 _local_5 = this.nextRun_[_local_3];
                 _local_2 = this.animationsData_.animations[_local_3];
                 this.nextRun_[_local_3] = _local_2.getNextRun(_arg_1);
-                if (!((!((_local_2.prob_ == 1))) && ((Math.random() > _local_2.prob_)))) {
+                if (!(!(_local_2.prob_ == 1) && Math.random() > _local_2.prob_)) {
                     this.running_ = new RunningAnimation(_local_2, _local_5);
-                    return (this.running_.getTexture(_arg_1));
+                    return this.running_.getTexture(_arg_1);
                 }
             }
             _local_3++;
         }
-        return (null);
+        return null;
     }
 
 
@@ -71,19 +71,19 @@ class RunningAnimation {
 
     public function getTexture(_arg_1:int):BitmapData {
         var _local_2:FrameData = this.animationData_.frames[this.frameId_];
-        while ((_arg_1 - this.frameStart_) > _local_2.time_) {
-            if (this.frameId_ >= (this.animationData_.frames.length - 1)) {
-                return (null);
+        while (_arg_1 - this.frameStart_ > _local_2.time_) {
+            if (this.frameId_ >= this.animationData_.frames.length - 1) {
+                return null;
             }
-            this.frameStart_ = (this.frameStart_ + _local_2.time_);
+            this.frameStart_ = this.frameStart_ + _local_2.time_;
             this.frameId_++;
             _local_2 = this.animationData_.frames[this.frameId_];
             this.texture_ = null;
         }
         if (this.texture_ == null) {
-            this.texture_ = _local_2.textureData_.getTexture((Math.random() * 100));
+            this.texture_ = _local_2.textureData_.getTexture(Math.random() * 100);
         }
-        return (this.texture_);
+        return this.texture_;
     }
 
 

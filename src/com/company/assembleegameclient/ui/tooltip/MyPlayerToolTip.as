@@ -80,8 +80,8 @@ public class MyPlayerToolTip extends ToolTip {
         addChild(this.lineBreak_);
         this.makeBestLevelText();
         this.bestLevel_.x = 8;
-        this.bestLevel_.y = (height - 2);
-        var _local_5:int = FameUtil.nextStarFame((((this.charStats == null)) ? 0 : this.charStats.bestFame()), 0);
+        this.bestLevel_.y = height - 2;
+        var _local_5:int = FameUtil.nextStarFame(this.charStats == null ? 0 : this.charStats.bestFame(), 0);
         if (_local_5 > 0) {
             this.makeNextClassQuestText(_local_5, _local_2);
         }
@@ -100,9 +100,9 @@ public class MyPlayerToolTip extends ToolTip {
 
     public function makeBestLevelText():void {
         this.bestLevel_ = new TextFieldDisplayConcrete().setSize(14).setColor(6206769);
-        var _local_1:int = (((this.charStats == null)) ? 0 : this.charStats.numStars());
-        var _local_2:String = (((this.charStats) != null) ? this.charStats.bestLevel() : 0).toString();
-        var _local_3:String = (((this.charStats) != null) ? this.charStats.bestFame() : 0).toString();
+        var _local_1:int = this.charStats == null ? 0 : this.charStats.numStars();
+        var _local_2:String = (this.charStats != null ? this.charStats.bestLevel() : 0).toString();
+        var _local_3:String = (this.charStats != null ? this.charStats.bestFame() : 0).toString();
         this.bestLevel_.setStringBuilder(new LineBuilder().setParams(TextKey.BESTLEVEL__STATS, {
             "numStars": _local_1,
             "bestLevel": _local_2,
@@ -116,14 +116,14 @@ public class MyPlayerToolTip extends ToolTip {
     override protected function alignUI():void {
         if (this.nextClassQuest_) {
             this.nextClassQuest_.x = 8;
-            this.nextClassQuest_.y = (this.bestLevel_.getBounds(this).bottom - 2);
+            this.nextClassQuest_.y = this.bestLevel_.getBounds(this).bottom - 2;
         }
     }
 
     override public function draw():void {
         this.hpBar_.draw(this.player_.hp_, this.player_.maxHP_, this.player_.maxHPBoost_, this.player_.maxHPMax_);
         this.mpBar_.draw(this.player_.mp_, this.player_.maxMP_, this.player_.maxMPBoost_, this.player_.maxMPMax_);
-        this.lineBreak_.setWidthColor((width - 10), 0x1C1C1C);
+        this.lineBreak_.setWidthColor(width - 10, 0x1C1C1C);
         super.draw();
     }
 

@@ -53,8 +53,8 @@ public class PetSkinGroup extends Sprite {
     }
 
     private function positionChildren():void {
-        this.upperContainer.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.upperContainer.width) / 2);
-        this.lowerContainer.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.lowerContainer.width) / 2);
+        this.upperContainer.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.upperContainer.width) / 2;
+        this.lowerContainer.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.lowerContainer.width) / 2;
         this.lowerContainer.y = 50;
     }
 
@@ -81,7 +81,7 @@ public class PetSkinGroup extends Sprite {
             _local_5.setIcon(_local_4);
             _local_6 = new NativeSignal(_local_5, MouseEvent.CLICK, MouseEvent);
             _local_6.add(this.onSkinClicked);
-            if ((_local_1 < 4)) {
+            if (_local_1 < 4) {
                 this.addToUpper(_local_5);
             }
             else {
@@ -101,7 +101,7 @@ public class PetSkinGroup extends Sprite {
         var _local_3:PetIconFactory = new PetIconFactory();
         var _local_4:PetIcon = _local_3.create(_arg_1, _arg_2);
         _local_4.setTooltipEnabled(false);
-        return (_local_4);
+        return _local_4;
     }
 
     private function onSkinClicked(_arg_1:MouseEvent):void {
@@ -109,13 +109,13 @@ public class PetSkinGroup extends Sprite {
     }
 
     private function addToUpper(_arg_1:Sprite):void {
-        _arg_1.x = (this.SPACING * this.numUpper);
+        _arg_1.x = this.SPACING * this.numUpper;
         this.upperContainer.addChild(_arg_1);
         this.numUpper++;
     }
 
     private function addToLower(_arg_1:Sprite):void {
-        _arg_1.x = (this.SPACING * this.numLower);
+        _arg_1.x = this.SPACING * this.numLower;
         this.lowerContainer.addChild(_arg_1);
         this.numLower++;
     }
@@ -127,7 +127,7 @@ public class PetSkinGroup extends Sprite {
         while (_local_4 < this.slots.length) {
             _local_2 = FeedFuseSlot(this.slots[_local_4]);
             _local_3 = PetItem(_local_2.getIcon()).getPetVO().getSkinID();
-            _local_2.highlight((_local_3 == _arg_1));
+            _local_2.highlight(_local_3 == _arg_1);
             _local_4++;
         }
     }

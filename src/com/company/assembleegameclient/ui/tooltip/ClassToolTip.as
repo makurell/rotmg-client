@@ -47,7 +47,7 @@ public class ClassToolTip extends ToolTip {
         super(0x363636, 1, 0xFFFFFF, 1);
         var _local_4:AnimatedChar = AnimatedChars.getAnimatedChar(String(_arg_1.AnimatedTexture.File), int(_arg_1.AnimatedTexture.Index));
         var _local_5:MaskedImage = _local_4.imageFromDir(AnimatedChar.RIGHT, AnimatedChar.STAND, 0);
-        var _local_6:int = ((4 / _local_5.width()) * 100);
+        var _local_6:int = (4 / _local_5.width()) * 100;
         var _local_7:BitmapData = TextureRedrawer.redraw(_local_5.image_, _local_6, true, 0);
         this.showUnlockRequirements = this.shouldShowUnlockRequirements(_arg_2, _arg_1);
         if (this.showUnlockRequirements) {
@@ -103,17 +103,17 @@ public class ClassToolTip extends ToolTip {
             addChild(this.coinBitmap_);
         }
         else {
-            _local_13 = (((_arg_3 == null)) ? 0 : _arg_3.numStars());
+            _local_13 = _arg_3 == null ? 0 : _arg_3.numStars();
             this.bestLevel_ = new TextFieldDisplayConcrete().setSize(14).setColor(6206769).setMultiLine(true);
             this.bestLevel_.setStringBuilder(new LineBuilder().setParams(TextKey.BEST_LEVEL_STATS, {
                 "numStars": _local_13,
-                "bestLevel": (((_arg_3) != null) ? _arg_3.bestLevel() : 0),
-                "fame": (((_arg_3) != null) ? _arg_3.bestFame() : 0)
+                "bestLevel": _arg_3 != null ? _arg_3.bestLevel() : 0,
+                "fame": _arg_3 != null ? _arg_3.bestFame() : 0
             }));
             this.bestLevel_.filters = [new DropShadowFilter(0, 0, 0)];
             waiter.push(this.bestLevel_.textChanged);
             addChild(this.bestLevel_);
-            _local_14 = FameUtil.nextStarFame((((_arg_3 == null)) ? 0 : _arg_3.bestFame()), 0);
+            _local_14 = FameUtil.nextStarFame(_arg_3 == null ? 0 : _arg_3.bestFame(), 0);
             if (_local_14 > 0) {
                 this.nextClassQuest_ = new TextFieldDisplayConcrete().setSize(13).setColor(16549442).setTextWidth(160).setMultiLine(true).setWordWrap(true);
                 this.nextClassQuest_.setStringBuilder(new LineBuilder().setParams(TextKey.NEXT_CLASS_QUEST, {
@@ -136,20 +136,20 @@ public class ClassToolTip extends ToolTip {
         this.lineBreak_.y = height;
         if (this.showUnlockRequirements) {
             this.toUnlockText_.x = 8;
-            this.toUnlockText_.y = (height - 2);
+            this.toUnlockText_.y = height - 2;
             this.unlockText_.x = 12;
-            this.unlockText_.y = (height - 4);
+            this.unlockText_.y = height - 4;
             this.costText_.x = 12;
-            this.costText_.y = (height - 4);
-            this.coinBitmap_.y = (this.costText_.y - 2);
-            this.coinBitmap_.x = ((this.costText_.x + this.costText_.getBounds(this.costText_).width) + 4);
+            this.costText_.y = height - 4;
+            this.coinBitmap_.y = this.costText_.y - 2;
+            this.coinBitmap_.x = this.costText_.x + this.costText_.getBounds(this.costText_).width + 4;
         }
         else {
             this.bestLevel_.x = 8;
-            this.bestLevel_.y = (height - 2);
+            this.bestLevel_.y = height - 2;
             if (this.nextClassQuest_) {
                 this.nextClassQuest_.x = 8;
-                this.nextClassQuest_.y = (height - 2);
+                this.nextClassQuest_.y = height - 2;
             }
         }
         this.draw();
@@ -159,11 +159,11 @@ public class ClassToolTip extends ToolTip {
     private function shouldShowUnlockRequirements(_arg_1:PlayerModel, _arg_2:XML):Boolean {
         var _local_3:Boolean = _arg_1.isClassAvailability(String(_arg_2.@id), SavedCharactersList.UNRESTRICTED);
         var _local_4:Boolean = _arg_1.isLevelRequirementsMet(int(_arg_2.@type));
-        return (((!(_local_3)) && (!(_local_4))));
+        return !_local_3 && !_local_4;
     }
 
     override public function draw():void {
-        this.lineBreak_.setWidthColor((width - 10), 0x1C1C1C);
+        this.lineBreak_.setWidthColor(width - 10, 0x1C1C1C);
         super.draw();
     }
 

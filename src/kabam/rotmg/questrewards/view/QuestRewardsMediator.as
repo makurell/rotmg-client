@@ -52,7 +52,7 @@ public class QuestRewardsMediator extends Mediator {
             return;
         }
         var _local_1:Number = 0.2;
-        if (((!((this.view == null))) && (!((this.view.parent == null))))) {
+        if (!(this.view == null) && !(this.view.parent == null)) {
             this.removeEvents();
             this.oldView = this.view;
             this.resetVars();
@@ -64,7 +64,7 @@ public class QuestRewardsMediator extends Mediator {
         this.container.addChild(this.view);
         this.view.alpha = 0;
         new GTween(this.view, _local_1, {"alpha": 1});
-        if (((((!((this.hudModel == null))) && (!((this.hudModel.gameSprite == null))))) && (!((this.hudModel.gameSprite.gsc_ == null))))) {
+        if (!(this.hudModel == null) && !(this.hudModel.gameSprite == null) && !(this.hudModel.gameSprite.gsc_ == null)) {
             this.gsc = this.hudModel.gameSprite.gsc_;
             this.gsc.questFetch();
             this.view.setCloseButton(true);
@@ -84,7 +84,7 @@ public class QuestRewardsMediator extends Mediator {
     }
 
     private function removeOldView():void {
-        if (((!((this.oldView == null))) && (!((this.oldView.parent == null))))) {
+        if (!(this.oldView == null) && !(this.oldView.parent == null)) {
             this.container.removeChild(this.oldView);
         }
     }
@@ -113,7 +113,7 @@ public class QuestRewardsMediator extends Mediator {
         }
         else {
             if (_local_2 == -1) {
-                if (((!((this.oldView == null))) || (((!((questsCompletedDayUTC == -1))) && ((questsCompletedDayUTC == new Date().dayUTC)))))) {
+                if (!(this.oldView == null) || !(questsCompletedDayUTC == -1) && questsCompletedDayUTC == new Date().dayUTC) {
                     this.view.noNewQuests();
                     questsCompletedDayUTC = new Date().dayUTC;
                 }
@@ -181,7 +181,7 @@ public class QuestRewardsMediator extends Mediator {
     }
 
     private function onNewItem(_arg_1:int):void {
-        if (((!((this.itemslot == null))) && (!(this.state_tinkering)))) {
+        if (!(this.itemslot == null) && !this.state_tinkering) {
             if (_arg_1 == this.targetItem) {
                 this.exchangeButton.addEventListener(MouseEvent.CLICK, this.onExchangeClick);
                 this.itemslot.hideOuterSlot(false);

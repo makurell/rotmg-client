@@ -22,17 +22,17 @@ public class RegionLibrary {
     public static function getIdFromType(_arg_1:int):String {
         var _local_2:XML = xmlLibrary_[_arg_1];
         if (_local_2 == null) {
-            return (null);
+            return null;
         }
-        return (String(_local_2.@id));
+        return String(_local_2.@id);
     }
 
     public static function getColor(_arg_1:int):uint {
         var _local_2:XML = xmlLibrary_[_arg_1];
         if (_local_2 == null) {
-            return (0);
+            return 0;
         }
-        return (uint(_local_2.Color));
+        return uint(_local_2.Color);
     }
 
 

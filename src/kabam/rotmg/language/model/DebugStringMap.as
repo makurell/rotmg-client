@@ -15,22 +15,22 @@ public class DebugStringMap implements StringMap {
     }
 
     public function hasKey(_arg_1:String):Boolean {
-        return (true);
+        return true;
     }
 
     public function getValue(_arg_1:String):String {
-        if (((!((_arg_1 == ""))) && (this.isInvalid(_arg_1)))) {
-            return (_arg_1);
+        if (!(_arg_1 == "") && this.isInvalid(_arg_1)) {
+            return _arg_1;
         }
-        return (this.delegate.getValue(_arg_1));
+        return this.delegate.getValue(_arg_1);
     }
 
     private function isInvalid(_arg_1:String):Boolean {
-        return (((this.hasNo(_arg_1)) || (this.hasWrongLanguage(_arg_1))));
+        return this.hasNo(_arg_1) || this.hasWrongLanguage(_arg_1);
     }
 
     private function hasNo(_arg_1:String):Boolean {
-        return (!(this.delegate.hasKey(_arg_1)));
+        return !this.delegate.hasKey(_arg_1);
     }
 
     private function pushDebugInfo(_arg_1:String):void {
@@ -44,7 +44,7 @@ public class DebugStringMap implements StringMap {
     }
 
     private function hasWrongLanguage(_arg_1:String):Boolean {
-        return (!((this.getLanguageFamily(_arg_1) == this.languageModel.getLanguage())));
+        return !(this.getLanguageFamily(_arg_1) == this.languageModel.getLanguage());
     }
 
     public function clear():void {
@@ -55,7 +55,7 @@ public class DebugStringMap implements StringMap {
     }
 
     public function getLanguageFamily(_arg_1:String):String {
-        return (this.delegate.getLanguageFamily(_arg_1));
+        return this.delegate.getLanguageFamily(_arg_1);
     }
 
 

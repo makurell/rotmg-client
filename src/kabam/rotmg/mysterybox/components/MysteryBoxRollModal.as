@@ -112,22 +112,22 @@ public class MysteryBoxRollModal extends Sprite {
         this.infoText.filters = [];
         this.addComponemts();
         open = true;
-        this.boxButton.x = (this.boxButton.x + ((WIDTH / 2) - 100));
-        this.boxButton.y = (this.boxButton.y + (HEIGHT - 43));
+        this.boxButton.x = this.boxButton.x + (WIDTH / 2 - 100);
+        this.boxButton.y = this.boxButton.y + (HEIGHT - 43);
         this.boxButton._width = 200;
         this.boxButton.addEventListener(MouseEvent.CLICK, this.onRollClick);
         this.minusNavSprite = UIAssetsHelper.createLeftNevigatorIcon(UIAssetsHelper.LEFT_NEVIGATOR, 3);
         this.minusNavSprite.addEventListener(MouseEvent.CLICK, this.onNavClick);
         this.minusNavSprite.filters = [new GlowFilter(0, 1, 2, 2, 10, 1)];
-        this.minusNavSprite.x = ((WIDTH / 2) + 110);
-        this.minusNavSprite.y = (HEIGHT - 35);
+        this.minusNavSprite.x = WIDTH / 2 + 110;
+        this.minusNavSprite.y = HEIGHT - 35;
         this.minusNavSprite.alpha = 0;
         addChild(this.minusNavSprite);
         this.plusNavSprite = UIAssetsHelper.createLeftNevigatorIcon(UIAssetsHelper.RIGHT_NEVIGATOR, 3);
         this.plusNavSprite.addEventListener(MouseEvent.CLICK, this.onNavClick);
         this.plusNavSprite.filters = [new GlowFilter(0, 1, 2, 2, 10, 1)];
-        this.plusNavSprite.x = ((WIDTH / 2) + 110);
-        this.plusNavSprite.y = (HEIGHT - 50);
+        this.plusNavSprite.x = WIDTH / 2 + 110;
+        this.plusNavSprite.y = HEIGHT - 50;
         this.plusNavSprite.alpha = 0;
         addChild(this.plusNavSprite);
         var _local_3:Injector = StaticInjectorContext.getInjector();
@@ -146,7 +146,7 @@ public class MysteryBoxRollModal extends Sprite {
     private static function makeModalBackground(_arg_1:int, _arg_2:int):PopupWindowBackground {
         var _local_3:PopupWindowBackground = new PopupWindowBackground();
         _local_3.draw(_arg_1, _arg_2, PopupWindowBackground.TYPE_TRANSPARENT_WITH_HEADER);
-        return (_local_3);
+        return _local_3;
     }
 
 
@@ -180,11 +180,11 @@ public class MysteryBoxRollModal extends Sprite {
                 this.totalRollTimer.delay = 2000;
         }
         if (this.mbi.isOnSale()) {
-            _local_2 = (this.mbi.saleAmount * this.quantity_);
+            _local_2 = this.mbi.saleAmount * this.quantity_;
             _local_3 = this.mbi.saleCurrency;
         }
         else {
-            _local_2 = (this.mbi.priceAmount * this.quantity_);
+            _local_2 = this.mbi.priceAmount * this.quantity_;
             _local_3 = this.mbi.priceCurrency;
         }
         if (this.quantity_ == 1) {
@@ -194,14 +194,14 @@ public class MysteryBoxRollModal extends Sprite {
             this.boxButton.currency = _local_3;
             this.boxButton.price = _local_2;
             this.boxButton.setStringBuilder(new LineBuilder().setParams(this.playAgainXTimesString, {
-                "cost": _local_2.toString(), 
+                "cost": _local_2.toString(),
                 "repeat": this.quantity_.toString()
             }));
         }
     }
 
     public function getText(_arg_1:String, _arg_2:int, _arg_3:int, _arg_4:Boolean = false):TextFieldDisplayConcrete {
-        var _local_5:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth((WIDTH - (TEXT_MARGIN * 2)));
+        var _local_5:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(WIDTH - TEXT_MARGIN * 2);
         _local_5.setBold(true);
         if (_arg_4) {
             _local_5.setStringBuilder(new StaticStringBuilder(_arg_1));
@@ -216,7 +216,7 @@ public class MysteryBoxRollModal extends Sprite {
         _local_5.filters = [new DropShadowFilter(0, 0, 0)];
         _local_5.x = _arg_2;
         _local_5.y = _arg_3;
-        return (_local_5);
+        return _local_5;
     }
 
     private function addComponemts():void {
@@ -224,23 +224,23 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_2:int = 28;
         this.goldBackgroundMask.y = (this.goldBackground.y = _local_1);
         this.goldBackgroundMask.x = (this.goldBackground.x = 1);
-        this.goldBackgroundMask.width = (this.goldBackground.width = (WIDTH - 1));
-        this.goldBackgroundMask.height = (this.goldBackground.height = (HEIGHT - _local_2));
+        this.goldBackgroundMask.width = (this.goldBackground.width = WIDTH - 1);
+        this.goldBackgroundMask.height = (this.goldBackground.height = HEIGHT - _local_2);
         addChild(this.goldBackground);
         addChild(this.goldBackgroundMask);
         var _local_3:Spinner = new Spinner();
         var _local_4:Spinner = new Spinner();
         _local_3.degreesPerSecond = 50;
-        _local_4.degreesPerSecond = (_local_3.degreesPerSecond * 1.5);
+        _local_4.degreesPerSecond = _local_3.degreesPerSecond * 1.5;
         var _local_5:Number = 0.7;
-        _local_4.width = (_local_3.width * _local_5);
-        _local_4.height = (_local_3.height * _local_5);
+        _local_4.width = _local_3.width * _local_5;
+        _local_4.height = _local_3.height * _local_5;
         _local_4.alpha = (_local_3.alpha = 0.7);
         this.spinners.addChild(_local_3);
         this.spinners.addChild(_local_4);
         this.spinners.mask = this.goldBackgroundMask;
-        this.spinners.x = (WIDTH / 2);
-        this.spinners.y = (((HEIGHT - 30) / 3) + 50);
+        this.spinners.x = WIDTH / 2;
+        this.spinners.y = (HEIGHT - 30) / 3 + 50;
         this.spinners.alpha = 0;
         addChild(this.spinners);
         addChild(makeModalBackground(WIDTH, HEIGHT));
@@ -313,8 +313,7 @@ public class MysteryBoxRollModal extends Sprite {
         this.prepareNextRoll();
     }
 
-    private function prepareNextRoll():void
-    {
+    private function prepareNextRoll():void {
         this.titleText = this.getText(this.mbi._title, TEXT_MARGIN, 6, true).setSize(18);
         this.titleText.setColor(0xFFDE00);
         addChild(this.titleText);
@@ -330,10 +329,10 @@ public class MysteryBoxRollModal extends Sprite {
         this.swapImageTimer.stop();
         var _local_2:uint = 0;
         while (_local_2 < this.indexInRolls.length) {
-            if (this.indexInRolls[_local_2] < (this.mbi._rollsWithContentsUnique.length - 1)) {
+            if (this.indexInRolls[_local_2] < this.mbi._rollsWithContentsUnique.length - 1) {
                 var _local_3 = this.indexInRolls;
                 var _local_4 = _local_2;
-                var _local_5 = (_local_3[_local_4] + 1);
+                var _local_5 = _local_3[_local_4] + 1;
                 _local_3[_local_4] = _local_5;
             }
             else {
@@ -349,22 +348,22 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_2:Bitmap;
         switch (_arg_1.length) {
             case 1:
-                _arg_1[0].x = (_arg_1[0].x + ((WIDTH / 2) - 40));
-                _arg_1[0].y = (_arg_1[0].y + (HEIGHT / 3));
+                _arg_1[0].x = _arg_1[0].x + (WIDTH / 2 - 40);
+                _arg_1[0].y = _arg_1[0].y + HEIGHT / 3;
                 break;
             case 2:
-                _arg_1[0].x = (_arg_1[0].x + ((WIDTH / 2) + 20));
-                _arg_1[0].y = (_arg_1[0].y + (HEIGHT / 3));
-                _arg_1[1].x = (_arg_1[1].x + ((WIDTH / 2) - 100));
-                _arg_1[1].y = (_arg_1[1].y + (HEIGHT / 3));
+                _arg_1[0].x = _arg_1[0].x + (WIDTH / 2 + 20);
+                _arg_1[0].y = _arg_1[0].y + HEIGHT / 3;
+                _arg_1[1].x = _arg_1[1].x + (WIDTH / 2 - 100);
+                _arg_1[1].y = _arg_1[1].y + HEIGHT / 3;
                 break;
             case 3:
-                _arg_1[0].x = (_arg_1[0].x + ((WIDTH / 2) - 140));
-                _arg_1[0].y = (_arg_1[0].y + (HEIGHT / 3));
-                _arg_1[1].x = (_arg_1[1].x + ((WIDTH / 2) - 40));
-                _arg_1[1].y = (_arg_1[1].y + (HEIGHT / 3));
-                _arg_1[2].x = (_arg_1[2].x + ((WIDTH / 2) + 60));
-                _arg_1[2].y = (_arg_1[2].y + (HEIGHT / 3));
+                _arg_1[0].x = _arg_1[0].x + (WIDTH / 2 - 140);
+                _arg_1[0].y = _arg_1[0].y + HEIGHT / 3;
+                _arg_1[1].x = _arg_1[1].x + (WIDTH / 2 - 40);
+                _arg_1[1].y = _arg_1[1].y + HEIGHT / 3;
+                _arg_1[2].x = _arg_1[2].x + (WIDTH / 2 + 60);
+                _arg_1[2].y = _arg_1[2].y + HEIGHT / 3;
                 break;
         }
         for each (_local_2 in _arg_1) {
@@ -388,100 +387,77 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_15:int;
         var _local_16:Array;
         this.requestComplete = true;
-        if(_arg_1)
-        {
+        if (_arg_1) {
             _local_3 = new XML(_arg_2);
-            for each(_local_4 in _local_3.elements("Awards"))
-            {
+            for each(_local_4 in _local_3.elements("Awards")) {
                 this.rewardsList.push(_local_4.toString());
             }
             this.lastReward = this.rewardsList[0];
-            if(this.timerComplete)
-            {
+            if (this.timerComplete) {
                 this.showReward();
             }
-            if(_local_3.hasOwnProperty("Left") && this.mbi.unitsLeft != -1)
-            {
+            if (_local_3.hasOwnProperty("Left") && this.mbi.unitsLeft != -1) {
                 this.mbi.unitsLeft = int(_local_3.Left);
             }
             _local_5 = StaticInjectorContext.getInjector().getInstance(GameModel).player;
-            if(_local_5 != null)
-            {
-                if(_local_3.hasOwnProperty("Gold"))
-                {
+            if (_local_5 != null) {
+                if (_local_3.hasOwnProperty("Gold")) {
                     _local_5.setCredits(int(_local_3.Gold));
                 }
-                else if(_local_3.hasOwnProperty("Fame"))
-                {
+                else if (_local_3.hasOwnProperty("Fame")) {
                     _local_5.fame_ = _local_3.Fame;
                 }
             }
-            else
-            {
+            else {
                 _local_6 = StaticInjectorContext.getInjector().getInstance(PlayerModel);
-                if(_local_6 != null)
-                {
-                    if(_local_3.hasOwnProperty("Gold"))
-                    {
+                if (_local_6 != null) {
+                    if (_local_3.hasOwnProperty("Gold")) {
                         _local_6.setCredits(int(_local_3.Gold));
                     }
-                    else if(_local_3.hasOwnProperty("Fame"))
-                    {
+                    else if (_local_3.hasOwnProperty("Fame")) {
                         _local_6.setFame(int(_local_3.Fame));
                     }
                 }
             }
         }
-        else
-        {
-            this.totalRollTimer.removeEventListener(TimerEvent.TIMER,this.onTotalRollTimeComplete);
+        else {
+            this.totalRollTimer.removeEventListener(TimerEvent.TIMER, this.onTotalRollTimeComplete);
             this.totalRollTimer.stop();
             _local_7 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
             _local_8 = "MysteryBoxRollModal.pleaseTryAgainString";
-            if(LineBuilder.getLocalizedStringFromKey(_arg_2) != "")
-            {
+            if (LineBuilder.getLocalizedStringFromKey(_arg_2) != "") {
                 _local_8 = _arg_2;
             }
-            if(_arg_2.indexOf("MysteryBoxError.soldOut") >= 0)
-            {
+            if (_arg_2.indexOf("MysteryBoxError.soldOut") >= 0) {
                 _local_12 = _arg_2.split("|");
-                if(_local_12.length == 2)
-                {
+                if (_local_12.length == 2) {
                     _local_13 = _local_12[1];
-                    if(_local_13 == 0)
-                    {
+                    if (_local_13 == 0) {
                         _local_8 = "MysteryBoxError.soldOutAll";
                     }
-                    else
-                    {
+                    else {
                         _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.soldOutLeft", {
                             "left": this.mbi.unitsLeft,
-                            "box": (this.mbi.unitsLeft == 1 ? LineBuilder.getLocalizedStringFromKey("MysteryBoxError.box") : LineBuilder.getLocalizedStringFromKey("MysteryBoxError.boxes"))
+                            "box": this.mbi.unitsLeft == 1 ? LineBuilder.getLocalizedStringFromKey("MysteryBoxError.box") : LineBuilder.getLocalizedStringFromKey("MysteryBoxError.boxes")
                         });
                     }
                 }
             }
-            if(_arg_2.indexOf("MysteryBoxError.maxPurchase") >= 0)
-            {
+            if (_arg_2.indexOf("MysteryBoxError.maxPurchase") >= 0) {
                 _local_14 = _arg_2.split("|");
-                if(_local_14.length == 2)
-                {
+                if (_local_14.length == 2) {
                     _local_15 = _local_14[1];
-                    if(_local_15 == 0)
-                    {
+                    if (_local_15 == 0) {
                         _local_8 = "MysteryBoxError.maxPurchase";
                     }
-                    else
-                    {
-                        _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.maxPurchaseLeft",{"left": _local_15});
+                    else {
+                        _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.maxPurchaseLeft", {"left": _local_15});
                     }
                 }
             }
-            if(_arg_2.indexOf("blockedForUser") >= 0)
-            {
+            if (_arg_2.indexOf("blockedForUser") >= 0) {
                 _local_16 = _arg_2.split("|");
-                if(_local_16.length == 2)
-                {
+                if (_local_16.length == 2) {
                     _local_8 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.blockedForUser", {"date": _local_16[1]});
                 }
             }
@@ -507,13 +483,13 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_2:int;
         var _local_7:OpenDialogSignal;
         var _local_8:PlayerModel;
-        if (((this.mbi.isOnSale()) && (!((this.mbi.saleAmount == ""))))) {
+        if (this.mbi.isOnSale() && !(this.mbi.saleAmount == "")) {
             _local_1 = int(this.mbi.saleCurrency);
-            _local_2 = (int(this.mbi.saleAmount) * this.quantity_);
+            _local_2 = int(this.mbi.saleAmount) * this.quantity_;
         }
         else {
             _local_1 = int(this.mbi.priceCurrency);
-            _local_2 = (int(this.mbi.priceAmount) * this.quantity_);
+            _local_2 = int(this.mbi.priceAmount) * this.quantity_;
         }
         var _local_3:Boolean = true;
         var _local_4:int;
@@ -530,19 +506,19 @@ public class MysteryBoxRollModal extends Sprite {
                 _local_4 = _local_8.getFame();
             }
         }
-        if ((((_local_1 == Currency.GOLD)) && ((_local_5 < _local_2)))) {
+        if (_local_1 == Currency.GOLD && _local_5 < _local_2) {
             _local_7 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
             _local_7.dispatch(new NotEnoughGoldDialog());
             _local_3 = false;
         }
         else {
-            if ((((_local_1 == Currency.FAME)) && ((_local_4 < _local_2)))) {
+            if (_local_1 == Currency.FAME && _local_4 < _local_2) {
                 _local_7 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                 _local_7.dispatch(new NotEnoughFameDialog());
                 _local_3 = false;
             }
         }
-        return (_local_3);
+        return _local_3;
     }
 
     public function onCloseClick(_arg_1:MouseEvent):void {
@@ -596,7 +572,7 @@ public class MysteryBoxRollModal extends Sprite {
             _local_6.x = 20;
             addChild(_local_6);
             this.descTexts.push(_local_6);
-            _local_3 = (_local_3 + 25);
+            _local_3 = _local_3 + 25;
         }
         _local_5 = 0;
         while (_local_5 < _local_2.length) {
@@ -608,10 +584,10 @@ public class MysteryBoxRollModal extends Sprite {
         _local_5 = 0;
         while (_local_5 < this.itemBitmaps.length) {
             this.doEaseInAnimation(this.itemBitmaps[_local_5], {
-                "scaleX": 1.25, 
+                "scaleX": 1.25,
                 "scaleY": 1.25
             }, {
-                "scaleX": 1, 
+                "scaleX": 1,
                 "scaleY": 1
             });
             _local_5++;
@@ -628,8 +604,8 @@ public class MysteryBoxRollModal extends Sprite {
     }
 
     private function doEaseInAnimation(_arg_1:DisplayObject, _arg_2:Object = null, _arg_3:Object = null):void {
-        var _local_4:GTween = new GTween(_arg_1, (0.5 * 1), _arg_2, {"ease": Sine.easeOut});
-        _local_4.nextTween = new GTween(_arg_1, (0.5 * 1), _arg_3, {"ease": Sine.easeIn});
+        var _local_4:GTween = new GTween(_arg_1, 0.5 * 1, _arg_2, {"ease": Sine.easeOut});
+        _local_4.nextTween = new GTween(_arg_1, 0.5 * 1, _arg_3, {"ease": Sine.easeIn});
         _local_4.nextTween.paused = true;
     }
 
@@ -644,14 +620,14 @@ public class MysteryBoxRollModal extends Sprite {
         var _local_1:Array = this.lastReward.split(", ");
         if (_local_1.length > 0) {
             _local_2 = new ItemWithTooltip(int(_local_1[0]), 64);
-            _local_3 = ((HEIGHT / 6) - 10);
-            _local_4 = (WIDTH - 65);
-            _local_2.x = (5 + (_local_4 * int((this.rollCount / 5))));
-            _local_2.y = (80 + (_local_3 * (this.rollCount % 5)));
-            _local_5 = (((WIDTH / 2) - 40) + (this.itemBitmaps[0].width * 0.5));
-            _local_6 = ((HEIGHT / 3) + (this.itemBitmaps[0].height * 0.5));
-            _local_7 = (_local_2.x + (_local_2.height * 0.5));
-            _local_8 = ((100 + (_local_3 * (this.rollCount % 5))) + (0.5 * ((HEIGHT / 6) - 20)));
+            _local_3 = HEIGHT / 6 - 10;
+            _local_4 = WIDTH - 65;
+            _local_2.x = 5 + _local_4 * int(this.rollCount / 5);
+            _local_2.y = 80 + _local_3 * (this.rollCount % 5);
+            _local_5 = (WIDTH / 2 - 40) + this.itemBitmaps[0].width * 0.5;
+            _local_6 = HEIGHT / 3 + this.itemBitmaps[0].height * 0.5;
+            _local_7 = _local_2.x + _local_2.height * 0.5;
+            _local_8 = 100 + _local_3 * (this.rollCount % 5) + 0.5 * (HEIGHT / 6 - 20);
             this.particleModalMap.doLightning(_local_5, _local_6, _local_7, _local_8, 115, 15787660, 0.2);
             addChild(_local_2);
             this.rewardsArray.push(_local_2);
@@ -691,8 +667,8 @@ public class MysteryBoxRollModal extends Sprite {
     }
 
     private function centerModal():void {
-        x = ((WebMain.STAGE.stageWidth / 2) - (WIDTH / 2));
-        y = ((WebMain.STAGE.stageHeight / 2) - (HEIGHT / 2));
+        x = WebMain.STAGE.stageWidth / 2 - WIDTH / 2;
+        y = WebMain.STAGE.stageHeight / 2 - HEIGHT / 2;
     }
 
     private function onNavClick(_arg_1:MouseEvent):void {

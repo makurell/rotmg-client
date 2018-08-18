@@ -8,7 +8,7 @@ public class FrameData {
     public var textureData_:TextureData;
 
     public function FrameData(_arg_1:XML) {
-        this.time_ = int((Number(_arg_1.@time) * 1000));
+        this.time_ = int(Number(_arg_1.time) * 1000);
         this.textureData_ = new TextureDataConcrete(_arg_1);
     }
 

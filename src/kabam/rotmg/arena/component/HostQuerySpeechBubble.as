@@ -26,7 +26,7 @@ public class HostQuerySpeechBubble extends Sprite {
     private function makeBubble():Shape {
         var _local_1:Shape = new Shape();
         this.drawBubble(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function drawBubble(_arg_1:Shape):void {
@@ -37,16 +37,16 @@ public class HostQuerySpeechBubble extends Sprite {
         _local_2.drawBevelRect(0, 0, _local_3, _arg_1.graphics);
         _arg_1.graphics.endFill();
         _arg_1.graphics.beginFill(0xE0E0E0);
-        _arg_1.graphics.moveTo(0, (_local_4 - this.POINT));
-        _arg_1.graphics.lineTo(-(this.POINT), _local_4);
-        _arg_1.graphics.lineTo(0, (_local_4 + this.POINT));
+        _arg_1.graphics.moveTo(0, _local_4 - this.POINT);
+        _arg_1.graphics.lineTo(-this.POINT, _local_4);
+        _arg_1.graphics.lineTo(0, _local_4 + this.POINT);
         _arg_1.graphics.endFill();
     }
 
     private function makeText(_arg_1:String):TextFieldDisplayConcrete {
-        var _local_2:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setLeading(3).setAutoSize(TextFieldAutoSize.LEFT).setVerticalAlign(VerticalAlign.TOP).setMultiLine(true).setWordWrap(true).setPosition(this.PADDING, this.PADDING).setTextWidth((this.WIDTH - (2 * this.PADDING))).setTextHeight((this.HEIGHT - (2 * this.PADDING)));
+        var _local_2:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setLeading(3).setAutoSize(TextFieldAutoSize.LEFT).setVerticalAlign(VerticalAlign.TOP).setMultiLine(true).setWordWrap(true).setPosition(this.PADDING, this.PADDING).setTextWidth(this.WIDTH - 2 * this.PADDING).setTextHeight(this.HEIGHT - 2 * this.PADDING);
         _local_2.setStringBuilder(new LineBuilder().setParams(_arg_1));
-        return (_local_2);
+        return _local_2;
     }
 
 

@@ -76,7 +76,7 @@ public class ItemWithTooltip extends Sprite implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -84,23 +84,23 @@ public class ItemWithTooltip extends Sprite implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
     public function setXPos(_arg_1:Number):void {
-        this.x = (_arg_1 - (this.width / 2));
+        this.x = _arg_1 - this.width / 2;
     }
 
     public function setYPos(_arg_1:Number):void {
-        this.y = (_arg_1 - (this.height / 2));
+        this.y = _arg_1 - this.height / 2;
     }
 
     public function getCenterX():Number {
-        return ((this.x + (this.width / 2)));
+        return this.x + this.width / 2;
     }
 
     public function getCenterY():Number {
-        return ((this.y + (this.height / 2)));
+        return this.y + this.height / 2;
     }
 
 

@@ -23,7 +23,7 @@ public class ChatInputNotAllowed extends Sprite {
 
     public function setup(_arg_1:ChatModel):void {
         x = 0;
-        y = (_arg_1.bounds.height - _arg_1.lineHeight);
+        y = _arg_1.bounds.height - _arg_1.lineHeight;
     }
 
     private function makeTextField():TextFieldDisplayConcrete {
@@ -33,7 +33,7 @@ public class ChatInputNotAllowed extends Sprite {
         _local_2.setStringBuilder(_local_1);
         _local_2.x = 29;
         addChild(_local_2);
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeSpeechBubble():Bitmap {
@@ -44,7 +44,7 @@ public class ChatInputNotAllowed extends Sprite {
         _local_2.x = -5;
         _local_2.y = -10;
         addChild(_local_2);
-        return (_local_2);
+        return _local_2;
     }
 
 

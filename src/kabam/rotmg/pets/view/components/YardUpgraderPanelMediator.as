@@ -40,10 +40,10 @@ public class YardUpgraderPanelMediator extends Mediator {
     private function doShowUpgradeButton():Boolean {
         var _local_1:int;
         if (!this.account.isRegistered()) {
-            return (false);
+            return false;
         }
         _local_1 = this.petModel.getPetYardType();
-        return ((_local_1 < PetYardEnum.MAX_ORDINAL));
+        return _local_1 < PetYardEnum.MAX_ORDINAL;
     }
 
     override public function destroy():void {

@@ -10,11 +10,11 @@ public class LoaderProxy extends Sprite {
 
 
     public function get content():DisplayObject {
-        return (null);
+        return null;
     }
 
     public function get contentLoaderInfo():LoaderInfoProxy {
-        return (null);
+        return null;
     }
 
     public function load(_arg_1:URLRequest, _arg_2:LoaderContext = null):void {

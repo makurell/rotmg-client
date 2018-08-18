@@ -19,8 +19,8 @@ public class DropDownItem extends Sprite {
         this.nameText_.text = _arg_1;
         this.nameText_.updateMetrics();
         this.nameText_.filters = [new DropShadowFilter(0, 0, 0)];
-        this.nameText_.x = ((this.w_ / 2) - (this.nameText_.width / 2));
-        this.nameText_.y = ((this.h_ / 2) - (this.nameText_.height / 2));
+        this.nameText_.x = this.w_ / 2 - this.nameText_.width / 2;
+        this.nameText_.y = this.h_ / 2 - this.nameText_.height / 2;
         addChild(this.nameText_);
         this.drawBackground(0x363636);
         addEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
@@ -28,7 +28,7 @@ public class DropDownItem extends Sprite {
     }
 
     public function getValue():String {
-        return (this.nameText_.text);
+        return this.nameText_.text;
     }
 
     private function onMouseOver(_arg_1:MouseEvent):void {

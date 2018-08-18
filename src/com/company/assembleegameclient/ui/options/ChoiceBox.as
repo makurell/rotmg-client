@@ -45,8 +45,8 @@ public class ChoiceBox extends Sprite {
         this.labels_ = _arg_1;
         this.values_ = _arg_2;
         this.labelText_ = new TextFieldDisplayConcrete().setSize(16).setColor(_arg_4);
-        this.labelText_.x = (WIDTH / 2);
-        this.labelText_.y = (HEIGHT / 2);
+        this.labelText_.x = WIDTH / 2;
+        this.labelText_.y = HEIGHT / 2;
         this.labelText_.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         this.labelText_.setBold(true);
         this.labelText_.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
@@ -76,7 +76,7 @@ public class ChoiceBox extends Sprite {
     }
 
     public function value() {
-        return (this.values_[this.selectedIndex_]);
+        return this.values_[this.selectedIndex_];
     }
 
     private function onMouseOver(_arg_1:MouseEvent):void {
@@ -90,14 +90,14 @@ public class ChoiceBox extends Sprite {
     }
 
     private function onClick(_arg_1:MouseEvent):void {
-        this.setSelected(((this.selectedIndex_ + 1) % this.values_.length));
+        this.setSelected((this.selectedIndex_ + 1) % this.values_.length);
         dispatchEvent(new Event(Event.CHANGE));
     }
 
     private function drawBackground():void {
         GraphicsUtil.clearPath(this.path_);
         GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, HEIGHT, 4, [1, 1, 1, 1], this.path_);
-        this.lineStyle_.fill = ((this.over_) ? this.overLineFill_ : this.normalLineFill_);
+        this.lineStyle_.fill = this.over_ ? this.overLineFill_ : this.normalLineFill_;
         graphics.drawGraphicsData(this.graphicsData_);
         var _local_1:Graphics = graphics;
         _local_1.clear();
@@ -106,7 +106,7 @@ public class ChoiceBox extends Sprite {
 
     private function setSelected(_arg_1:int):void {
         this.selectedIndex_ = _arg_1;
-        if ((((this.selectedIndex_ < 0)) || ((this.selectedIndex_ >= this.labels_.length)))) {
+        if (this.selectedIndex_ < 0 || this.selectedIndex_ >= this.labels_.length) {
             this.selectedIndex_ = 0;
         }
         this.setText(this.labels_[this.selectedIndex_]);

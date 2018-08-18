@@ -37,7 +37,7 @@ public class NewsModal extends EmptyFrame {
     public static const MODAL_HEIGHT:int = 400;
     public static var modalWidth:int = MODAL_WIDTH;//440
     public static var modalHeight:int = MODAL_HEIGHT;//400
-    private static const OVER_COLOR_TRANSFORM:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
+    private static const OVER_COLOR_TRANSFORM:ColorTransform = new ColorTransform(1, 220 / 0xFF, 133 / 0xFF);
     private static const DROP_SHADOW_FILTER:DropShadowFilter = new DropShadowFilter(0, 0, 0);
     private static const GLOW_FILTER:GlowFilter = new GlowFilter(0xFF0000, 1, 11, 5);
     private static const filterWithGlow:Array = [DROP_SHADOW_FILTER, GLOW_FILTER];
@@ -66,7 +66,7 @@ public class NewsModal extends EmptyFrame {
 
     public static function refreshNewsButton():void {
         var _local_1:HUDModel = StaticInjectorContext.getInjector().getInstance(HUDModel);
-        if (((!((_local_1 == null))) && (!((_local_1.gameSprite == null))))) {
+        if (!(_local_1 == null) && !(_local_1.gameSprite == null)) {
             _local_1.gameSprite.refreshNewsUpdateButton();
         }
     }
@@ -74,17 +74,17 @@ public class NewsModal extends EmptyFrame {
     public static function hasUpdates():Boolean {
         var _local_1:int = 1;
         while (_local_1 <= NewsModel.MODAL_PAGE_COUNT) {
-            if (((!((Parameters.data_[("hasNewsUpdate" + _local_1)] == null))) && ((Parameters.data_[("hasNewsUpdate" + _local_1)] == true)))) {
-                return (true);
+            if (!(Parameters.data_[("hasNewsUpdate" + _local_1)] == null) && Parameters.data_[("hasNewsUpdate" + _local_1)] == true) {
+                return true;
             }
             _local_1++;
         }
-        return (false);
+        return false;
     }
 
     public static function getText(_arg_1:String, _arg_2:int, _arg_3:int, _arg_4:Boolean):TextFieldDisplayConcrete {
         var _local_5:TextFieldDisplayConcrete;
-        _local_5 = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setTextWidth((NewsModal.modalWidth - (TEXT_MARGIN * 2)));
+        _local_5 = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setTextWidth(NewsModal.modalWidth - TEXT_MARGIN * 2);
         _local_5.setBold(true);
         if (_arg_4) {
             _local_5.setStringBuilder(new StaticStringBuilder(_arg_1));
@@ -99,7 +99,7 @@ public class NewsModal extends EmptyFrame {
         _local_5.filters = [new DropShadowFilter(0, 0, 0)];
         _local_5.x = _arg_2;
         _local_5.y = _arg_3;
-        return (_local_5);
+        return _local_5;
     }
 
 
@@ -120,15 +120,15 @@ public class NewsModal extends EmptyFrame {
         for each (_local_4 in this.pageNavs) {
             _local_2.apply(_local_4, 20, 0xFFFFFF, true);
             _local_4.filters = filterNoGlow;
-            if ((((_local_3 > 0)) && ((_local_3 <= NewsModel.MODAL_PAGE_COUNT)))) {
-                _local_4.text = (("  " + _local_3) + "  ");
+            if (_local_3 > 0 && _local_3 <= NewsModel.MODAL_PAGE_COUNT) {
+                _local_4.text = "  " + _local_3 + "  ";
                 _local_4.width = _local_4.textWidth;
-                _local_4.x = (((modalWidth * (_local_3 + 3)) / 11) - (_local_4.textWidth / 2));
+                _local_4.x = (modalWidth * (_local_3 + 3)) / 11 - _local_4.textWidth / 2;
                 _local_4.addEventListener(MouseEvent.ROLL_OVER, this.onNavHover);
                 _local_4.addEventListener(MouseEvent.ROLL_OUT, this.onNavHoverOut);
             }
             _local_4.height = _local_4.textHeight;
-            _local_4.y = (modalHeight - 33);
+            _local_4.y = modalHeight - 33;
             _local_4.selectable = false;
             _local_4.addEventListener(MouseEvent.CLICK, this.onClick);
             addChild(_local_4);
@@ -136,34 +136,34 @@ public class NewsModal extends EmptyFrame {
         }
         this.leftNavSprite = this.makeLeftNav();
         this.rightNavSprite = this.makeRightNav();
-        this.leftNavSprite.x = (((modalWidth * 3) / 11) - (this.rightNavSprite.width / 2));
-        this.leftNavSprite.y = (modalHeight - 4);
+        this.leftNavSprite.x = (modalWidth * 3) / 11 - this.rightNavSprite.width / 2;
+        this.leftNavSprite.y = modalHeight - 4;
         addChild(this.leftNavSprite);
-        this.rightNavSprite.x = (((modalWidth * 8) / 11) - (this.rightNavSprite.width / 2));
-        this.rightNavSprite.y = (modalHeight - 4);
+        this.rightNavSprite.x = (modalWidth * 8) / 11 - this.rightNavSprite.width / 2;
+        this.rightNavSprite.y = modalHeight - 4;
         addChild(this.rightNavSprite);
     }
 
     public function onNavHover(_arg_1:MouseEvent):void {
-        var _local_2:TextField = (_arg_1.currentTarget as TextField);
+        var _local_2:TextField = _arg_1.currentTarget as TextField;
         _local_2.textColor = 16701832;
     }
 
     public function onNavHoverOut(_arg_1:MouseEvent):void {
-        var _local_2:TextField = (_arg_1.currentTarget as TextField);
+        var _local_2:TextField = _arg_1.currentTarget as TextField;
         _local_2.textColor = 0xFFFFFF;
     }
 
     public function onClick(_arg_1:MouseEvent):void {
         switch (_arg_1.currentTarget) {
             case this.rightNavSprite:
-                if ((this.currentPageNum + 1) <= NewsModel.MODAL_PAGE_COUNT) {
-                    this.setPage((this.currentPageNum + 1));
+                if (this.currentPageNum + 1 <= NewsModel.MODAL_PAGE_COUNT) {
+                    this.setPage(this.currentPageNum + 1);
                 }
                 return;
             case this.leftNavSprite:
-                if ((this.currentPageNum - 1) >= 1) {
-                    this.setPage((this.currentPageNum - 1));
+                if (this.currentPageNum - 1 >= 1) {
+                    this.setPage(this.currentPageNum - 1);
                 }
                 return;
             case this.pageOneNav:
@@ -183,9 +183,9 @@ public class NewsModal extends EmptyFrame {
 
     private function getPageNavForGlow(_arg_1:int):TextField {
         if ((_arg_1 >= 0) < NewsModel.MODAL_PAGE_COUNT) {
-            return (this.pageNavs[(_arg_1 - 1)]);
+            return this.pageNavs[(_arg_1 - 1)];
         }
-        return (null);
+        return null;
     }
 
     private function destroy(_arg_1:Event):void {
@@ -210,7 +210,7 @@ public class NewsModal extends EmptyFrame {
     private function setPage(_arg_1:int):void {
         var _local_3:TextField;
         var _local_2:Boolean = hasUpdates();
-        if ((((_arg_1 < 1)) || ((_arg_1 > NewsModel.MODAL_PAGE_COUNT)))) {
+        if (_arg_1 < 1 || _arg_1 > NewsModel.MODAL_PAGE_COUNT) {
             return;
         }
         if (this.currentPageNum != -1) {
@@ -240,13 +240,13 @@ public class NewsModal extends EmptyFrame {
         var _local_3:DisplayObject;
         var _local_1:Sprite = new Sprite();
         var _local_2:DisplayObject = new backgroundImageEmbed();
-        _local_2.width = (modalWidth + 1);
-        _local_2.height = (modalHeight - 25);
+        _local_2.width = modalWidth + 1;
+        _local_2.height = modalHeight - 25;
         _local_2.y = 27;
         _local_2.alpha = 0.95;
         _local_3 = new foregroundImageEmbed();
-        _local_3.width = (modalWidth + 1);
-        _local_3.height = (modalHeight - 67);
+        _local_3.width = modalWidth + 1;
+        _local_3.height = modalHeight - 67;
         _local_3.y = 27;
         _local_3.alpha = 1;
         var _local_4:PopupWindowBackground = new PopupWindowBackground();
@@ -254,19 +254,19 @@ public class NewsModal extends EmptyFrame {
         _local_1.addChild(_local_2);
         _local_1.addChild(_local_3);
         _local_1.addChild(_local_4);
-        return (_local_1);
+        return _local_1;
     }
 
     private function keyDownListener(_arg_1:KeyboardEvent):void {
         if (_arg_1.keyCode == KeyCodes.RIGHT) {
-            if ((this.currentPageNum + 1) <= NewsModel.MODAL_PAGE_COUNT) {
-                this.setPage((this.currentPageNum + 1));
+            if (this.currentPageNum + 1 <= NewsModel.MODAL_PAGE_COUNT) {
+                this.setPage(this.currentPageNum + 1);
             }
         }
         else {
             if (_arg_1.keyCode == KeyCodes.LEFT) {
-                if ((this.currentPageNum - 1) >= 1) {
-                    this.setPage((this.currentPageNum - 1));
+                if (this.currentPageNum - 1 >= 1) {
+                    this.setPage(this.currentPageNum - 1);
                 }
             }
         }
@@ -283,7 +283,7 @@ public class NewsModal extends EmptyFrame {
         _local_3.addEventListener(MouseEvent.MOUSE_OVER, this.onArrowHover);
         _local_3.addEventListener(MouseEvent.MOUSE_OUT, this.onArrowHoverOut);
         _local_3.addEventListener(MouseEvent.CLICK, this.onClick);
-        return (_local_3);
+        return _local_3;
     }
 
     private function makeRightNav():Sprite {
@@ -297,7 +297,7 @@ public class NewsModal extends EmptyFrame {
         _local_3.addEventListener(MouseEvent.MOUSE_OVER, this.onArrowHover);
         _local_3.addEventListener(MouseEvent.MOUSE_OUT, this.onArrowHoverOut);
         _local_3.addEventListener(MouseEvent.CLICK, this.onClick);
-        return (_local_3);
+        return _local_3;
     }
 
     private function onArrowHover(_arg_1:MouseEvent):void {

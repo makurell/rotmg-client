@@ -60,7 +60,7 @@ public class SlotComparisonFactory {
             _local_5.lineBuilder = _local_4.comparisonStringBuilder;
             _local_5.processedTags = _local_4.processedTags;
         }
-        return (_local_5);
+        return _local_5;
     }
 
 

@@ -142,13 +142,13 @@ public class ChatMediator extends Mediator {
         if (this.listenersAdded) {
             this.checkForInputTrigger(_arg_1.keyCode);
         }
-        if ((((_arg_1.keyCode == this.shortcuts.getScrollUp())) || ((_arg_1.keyCode == this.shortcuts.getScrollDown())))) {
+        if (_arg_1.keyCode == this.shortcuts.getScrollUp() || _arg_1.keyCode == this.shortcuts.getScrollDown()) {
             this.view.removeEventListener(Event.ENTER_FRAME, this.iterate);
         }
     }
 
     private function checkForInputTrigger(_arg_1:uint):void {
-        if ((((this.stage.focus == null)) || ((_arg_1 == this.shortcuts.getTellShortcut())))) {
+        if (this.stage.focus == null || _arg_1 == this.shortcuts.getTellShortcut()) {
             if (_arg_1 == this.shortcuts.getCommandShortcut()) {
                 this.triggerOrPromptRegistration("/");
             }
@@ -162,7 +162,7 @@ public class ChatMediator extends Mediator {
                     }
                     else {
                         if (_arg_1 == this.shortcuts.getTellShortcut()) {
-                            this.triggerOrPromptRegistration((("/tell " + this.tellModel.getNext()) + " "));
+                            this.triggerOrPromptRegistration("/tell " + this.tellModel.getNext() + " ");
                         }
                     }
                 }
@@ -175,7 +175,7 @@ public class ChatMediator extends Mediator {
             this.showChatInput.dispatch(true, _arg_1);
         }
         else {
-            if (((!((this.hudModel.gameSprite == null))) && (this.hudModel.gameSprite.evalIsNotInCombatMapArea()))) {
+            if (!(this.hudModel.gameSprite == null) && this.hudModel.gameSprite.evalIsNotInCombatMapArea()) {
                 this.openDialog.dispatch(new RegisterPromptDialog(TextKey.CHAT_REGISTER_TO_CHAT));
             }
         }

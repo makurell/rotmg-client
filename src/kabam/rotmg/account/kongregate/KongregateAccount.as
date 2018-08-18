@@ -21,42 +21,42 @@ public class KongregateAccount implements Account {
     }
 
     public function getUserName():String {
-        return (this.api.getUserName());
+        return this.api.getUserName();
     }
 
     public function getUserId():String {
-        return (this.userId);
+        return this.userId;
     }
 
     public function getPassword():String {
-        return ("");
+        return "";
     }
 
     public function getSecret():String {
-        return (((this.password) || ("")));
+        return this.password || "";
     }
 
     public function getCredentials():Object {
-        return ({
+        return {
             "guid": this.getUserId(),
             "secret": this.getSecret()
-        });
+        };
     }
 
     public function isRegistered():Boolean {
-        return (!((this.getSecret() == "")));
+        return !(this.getSecret() == "");
     }
 
     public function gameNetworkUserId():String {
-        return (this.api.getUserId());
+        return this.api.getUserId();
     }
 
     public function gameNetwork():String {
-        return (NETWORK_NAME);
+        return NETWORK_NAME;
     }
 
     public function playPlatform():String {
-        return ("kongregate");
+        return "kongregate";
     }
 
     public function reportIntStat(_arg_1:String, _arg_2:int):void {
@@ -64,11 +64,11 @@ public class KongregateAccount implements Account {
     }
 
     public function getRequestPrefix():String {
-        return ("/kongregate");
+        return "/kongregate";
     }
 
     public function getEntryTag():String {
-        return ("kongregate");
+        return "kongregate";
     }
 
     public function clear():void {
@@ -79,11 +79,11 @@ public class KongregateAccount implements Account {
     }
 
     public function isVerified():Boolean {
-        return (this.isVerifiedEmail);
+        return this.isVerifiedEmail;
     }
 
     public function getPlatformToken():String {
-        return (((this.platformToken) || ("")));
+        return this.platformToken || "";
     }
 
     public function setPlatformToken(_arg_1:String):void {
@@ -91,25 +91,22 @@ public class KongregateAccount implements Account {
     }
 
     public function getMoneyAccessToken():String {
-        throw (new Error("No current support for new Kabam offer wall on Kongregate."));
+        throw new Error("No current support for new Kabam offer wall on Kongregate.");
     }
 
     public function getMoneyUserId():String {
-        throw (new Error("No current support for new Kabam offer wall on Kongregate."));
+        throw new Error("No current support for new Kabam offer wall on Kongregate.");
     }
 
-    public function set rememberMe(_arg_1:Boolean):void
-    {
+    public function set rememberMe(_arg_1:Boolean):void {
         this._rememberMe = _arg_1;
     }
 
-    public function get rememberMe():Boolean
-    {
+    public function get rememberMe():Boolean {
         return this._rememberMe;
     }
 
-    public function getToken() : String
-    {
+    public function getToken():String {
         return "";
     }
 

@@ -118,20 +118,20 @@ public class ToolTip extends Sprite {
         if (stage == null) {
             return;
         }
-        if (((((!(this.forcePositionLeft_)) && ((stage.mouseX < (stage.stageWidth / 2))))) || (this.forcePositionRight_))) {
-            x = (stage.mouseX + 12);
+        if (!this.forcePositionLeft_ && stage.mouseX < stage.stageWidth / 2 || this.forcePositionRight_) {
+            x = stage.mouseX + 12;
         }
         else {
-            x = ((stage.mouseX - width) - 1);
+            x = stage.mouseX - width - 1;
         }
         if (x < 12) {
             x = 12;
         }
-        if (((((!(this.forcePositionLeft_)) && ((stage.mouseY < (stage.stageHeight / 3))))) || (this.forcePositionRight_))) {
-            y = (stage.mouseY + 12);
+        if (!this.forcePositionLeft_ && stage.mouseY < stage.stageHeight / 3 || this.forcePositionRight_) {
+            y = stage.mouseY + 12;
         }
         else {
-            y = ((stage.mouseY - height) - 1);
+            y = stage.mouseY - height - 1;
         }
         if (y < 12) {
             y = 12;
@@ -147,7 +147,7 @@ public class ToolTip extends Sprite {
         this.contentWidth_ = width;
         this.contentHeight_ = height;
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(-6, -6, (this.contentWidth_ + 12), (this.contentHeight_ + 12), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(-6, -6, this.contentWidth_ + 12, this.contentHeight_ + 12, 4, [1, 1, 1, 1], this.path_);
         graphics.drawGraphicsData(this.graphicsData_);
     }
 

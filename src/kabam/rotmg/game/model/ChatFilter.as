@@ -7,9 +7,9 @@ public class ChatFilter {
     public function guestChatFilter(_arg_1:String):Boolean {
         var _local_2:Boolean;
         if (_arg_1 == null) {
-            return (true);
+            return true;
         }
-        if ((((((((_arg_1 == Parameters.SERVER_CHAT_NAME)) || ((_arg_1 == Parameters.HELP_CHAT_NAME)))) || ((_arg_1 == Parameters.ERROR_CHAT_NAME)))) || ((_arg_1 == Parameters.CLIENT_CHAT_NAME)))) {
+        if (_arg_1 == Parameters.SERVER_CHAT_NAME || _arg_1 == Parameters.HELP_CHAT_NAME || _arg_1 == Parameters.ERROR_CHAT_NAME || _arg_1 == Parameters.CLIENT_CHAT_NAME) {
             _local_2 = true;
         }
         if (_arg_1.charAt(0) == "#") {
@@ -18,7 +18,7 @@ public class ChatFilter {
         if (_arg_1.charAt(0) == "@") {
             _local_2 = true;
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

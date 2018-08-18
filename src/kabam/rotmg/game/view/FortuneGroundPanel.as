@@ -53,7 +53,7 @@ public class FortuneGroundPanel extends Panel {
         var _local_4:GetMysteryBoxesTask = _local_3.getInstance(GetMysteryBoxesTask);
         _local_4.start();
         super(_arg_1);
-        this.nameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth((WIDTH - 44));
+        this.nameText_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(WIDTH - 44);
         this.nameText_.setBold(true);
         this.nameText_.setStringBuilder(new LineBuilder().setParams(TextKey.SELLABLEOBJECTPANEL_TEXT));
         this.nameText_.setWordWrap(true);
@@ -70,7 +70,7 @@ public class FortuneGroundPanel extends Panel {
         var _local_7 = "FortuneGroundPanel.alchemist";
         var _local_8:FortuneModel = _local_3.getInstance(FortuneModel);
         var _local_9:Account = _local_3.getInstance(Account);
-        if (((FortuneModel.HAS_FORTUNES) && (_local_9.isRegistered()))) {
+        if (FortuneModel.HAS_FORTUNES && _local_9.isRegistered()) {
             this.infoButton_ = new DeprecatedTextButton(16, _local_5);
             addChild(this.infoButton_);
         }
@@ -102,8 +102,8 @@ public class FortuneGroundPanel extends Panel {
         if (this.onHoverPanel == null) {
             _local_2 = StaticInjectorContext.getInjector().getInstance(FortuneModel).getFortune();
             this.onHoverPanel = InfoHoverPaneFactory.make(_local_2.infoImage);
-            this.onHoverPanel.x = (this.onHoverPanel.x - (this.onHoverPanel.width + 10));
-            this.onHoverPanel.y = (this.onHoverPanel.y - (this.onHoverPanel.height - this.height));
+            this.onHoverPanel.x = this.onHoverPanel.x - (this.onHoverPanel.width + 10);
+            this.onHoverPanel.y = this.onHoverPanel.y - (this.onHoverPanel.height - this.height);
             if (this.onHoverPanel != null) {
                 addChild(this.onHoverPanel);
             }
@@ -111,7 +111,7 @@ public class FortuneGroundPanel extends Panel {
     }
 
     private function onHoverExit(_arg_1:MouseEvent):void {
-        if (((!((this.onHoverPanel == null))) && (this.onHoverPanel.parent))) {
+        if (!(this.onHoverPanel == null) && this.onHoverPanel.parent) {
             removeChild(this.onHoverPanel);
             this.onHoverPanel = null;
         }
@@ -152,7 +152,7 @@ public class FortuneGroundPanel extends Panel {
         var _local_2:FortuneModel = _local_1.getInstance(FortuneModel);
         var _local_3:Account = _local_1.getInstance(Account);
         var _local_4:OpenDialogSignal = _local_1.getInstance(OpenDialogSignal);
-        if (((_local_2.isInitialized()) && (_local_3.isRegistered()))) {
+        if (_local_2.isInitialized() && _local_3.isRegistered()) {
             _local_4.dispatch(new FortuneModal());
             stage.removeEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
             this.infoButton_.removeEventListener(MouseEvent.CLICK, this.onInfoButtonClick);
@@ -166,15 +166,15 @@ public class FortuneGroundPanel extends Panel {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             this.onInfoButton();
         }
     }
 
     override public function draw():void {
-        this.nameText_.y = (((this.nameText_.height) > 30) ? 0 : 12);
-        this.infoButton_.x = ((WIDTH / 2) - (this.infoButton_.width / 2));
-        this.infoButton_.y = ((HEIGHT - (this.infoButton_.height / 2)) - this.BUTTON_OFFSET);
+        this.nameText_.y = this.nameText_.height > 30 ? 0 : 12;
+        this.infoButton_.x = WIDTH / 2 - this.infoButton_.width / 2;
+        this.infoButton_.y = HEIGHT - this.infoButton_.height / 2 - this.BUTTON_OFFSET;
         if (!contains(this.infoButton_)) {
             addChild(this.infoButton_);
         }

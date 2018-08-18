@@ -23,14 +23,14 @@ public class PetPickerMediator extends Mediator {
 
     override public function initialize():void {
         this.view.setPets(this.model.getAllPets());
-        var _local_1:PetVO = (((this.petSlotsState.selected) == PetSlotsState.LEFT) ? this.petSlotsState.rightSlotPetVO : this.petSlotsState.leftSlotPetVO);
+        var _local_1:PetVO = this.petSlotsState.selected == PetSlotsState.LEFT ? this.petSlotsState.rightSlotPetVO : this.petSlotsState.leftSlotPetVO;
         if (_local_1) {
             this.view.filterFusible(_local_1);
         }
-        if (((this.petSlotsState.rightSlotPetVO) && (this.view.doDisableUsed))) {
+        if (this.petSlotsState.rightSlotPetVO && this.view.doDisableUsed) {
             this.view.filterUsedPetVO(this.petSlotsState.rightSlotPetVO);
         }
-        if (((this.petSlotsState.leftSlotPetVO) && (this.view.doDisableUsed))) {
+        if (this.petSlotsState.leftSlotPetVO && this.view.doDisableUsed) {
             this.view.filterUsedPetVO(this.petSlotsState.leftSlotPetVO);
         }
         this.view.petPicked.addOnce(this.onPetPicked);

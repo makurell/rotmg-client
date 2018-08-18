@@ -24,8 +24,8 @@ public class UIDrawArrow {
         var _local_6:Point;
         var _local_4:Point = new Point();
         if (_arg_3 < this.ANIMATION_MS) {
-            _local_4.x = (this.p0_.x + (((this.p1_.x - this.p0_.x) * _arg_3) / this.ANIMATION_MS));
-            _local_4.y = (this.p0_.y + (((this.p1_.y - this.p0_.y) * _arg_3) / this.ANIMATION_MS));
+            _local_4.x = this.p0_.x + ((this.p1_.x - this.p0_.x) * _arg_3) / this.ANIMATION_MS;
+            _local_4.y = this.p0_.y + ((this.p1_.y - this.p0_.y) * _arg_3) / this.ANIMATION_MS;
         }
         else {
             _local_4.x = this.p1_.x;
@@ -35,9 +35,9 @@ public class UIDrawArrow {
         _arg_2.moveTo(this.p0_.x, this.p0_.y);
         _arg_2.lineTo(_local_4.x, _local_4.y);
         var _local_5:Number = PointUtil.angleTo(_local_4, this.p0_);
-        _local_6 = PointUtil.pointAt(_local_4, (_local_5 + (Math.PI / 8)), 30);
+        _local_6 = PointUtil.pointAt(_local_4, _local_5 + Math.PI / 8, 30);
         _arg_2.lineTo(_local_6.x, _local_6.y);
-        _local_6 = PointUtil.pointAt(_local_4, (_local_5 - (Math.PI / 8)), 30);
+        _local_6 = PointUtil.pointAt(_local_4, _local_5 - Math.PI / 8, 30);
         _arg_2.moveTo(_local_4.x, _local_4.y);
         _arg_2.lineTo(_local_6.x, _local_6.y);
     }

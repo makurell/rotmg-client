@@ -16,7 +16,7 @@ public class Load extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("LOAD", "charId_", "isFromArena_"));
+        return formatToString("LOAD", "charId_", "isFromArena_");
     }
 
 

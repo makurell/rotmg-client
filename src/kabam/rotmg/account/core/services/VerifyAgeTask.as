@@ -31,11 +31,11 @@ public class VerifyAgeTask extends BaseTask {
     private function makeDataPacket():Object {
         var _local_1:Object = this.account.getCredentials();
         _local_1.isAgeVerified = 1;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.verifyUserAge()));
+        _arg_1 && this.verifyUserAge();
         completeTask(_arg_1, _arg_2);
     }
 

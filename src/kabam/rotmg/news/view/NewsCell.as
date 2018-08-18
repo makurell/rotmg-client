@@ -52,11 +52,11 @@ public class NewsCell extends Sprite {
     private function setSize(_arg_1:Number, _arg_2:Number):void {
         this.w = _arg_1;
         this.h = _arg_2;
-        if ((((_arg_1 == 306)) && ((_arg_2 == 194)))) {
+        if (_arg_1 == 306 && _arg_2 == 194) {
             this.size = LARGE;
         }
         else {
-            if ((((_arg_1 == 151)) && ((_arg_2 == 189)))) {
+            if (_arg_1 == 151 && _arg_2 == 189) {
                 this.size = SMALL;
             }
         }
@@ -70,8 +70,8 @@ public class NewsCell extends Sprite {
     }
 
     private function addDisplayAssets():void {
-        addChild((this.maskShape = new Shape()));
-        addChild((this.boxShape = new Shape()));
+        addChild(this.maskShape = new Shape());
+        addChild(this.boxShape = new Shape());
     }
 
     private function initImageContainer():void {
@@ -90,7 +90,7 @@ public class NewsCell extends Sprite {
     private function initBox():void {
         this.boxShape = new Shape();
         this.boxShape.graphics.beginFill(0, 0.8);
-        this.boxShape.graphics.drawRect(0, (this.h - BOX_HEIGHT), this.w, BOX_HEIGHT);
+        this.boxShape.graphics.drawRect(0, this.h - BOX_HEIGHT, this.w, BOX_HEIGHT);
         addChild(this.boxShape);
     }
 
@@ -100,14 +100,14 @@ public class NewsCell extends Sprite {
         this.textField.setBold(true).setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         this.textField.setStringBuilder(new StaticStringBuilder(this._vo.headline));
         this.resizeTextField();
-        this.textField.x = (this.w / 2);
-        this.textField.y = (this.h - (25 / 2));
+        this.textField.x = this.w / 2;
+        this.textField.y = this.h - 25 / 2;
         this.textField.filters = [new DropShadowFilter(0, 0, 0)];
     }
 
     private function resizeTextField():void {
-        if (this.textField.width > (this.w - 10)) {
-            this.textSize = (this.textSize - 2);
+        if (this.textField.width > this.w - 10) {
+            this.textSize = this.textSize - 2;
             this.textField.setSize(this.textSize).setColor(0xFFFFFF);
             this.resizeTextField();
         }

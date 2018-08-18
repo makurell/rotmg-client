@@ -22,7 +22,7 @@ public class CharacterSkinListView extends Sprite {
         _local_1.scrollStateChanged.add(this.onScrollStateChanged);
         _local_1.setPadding(PADDING);
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setItems(_arg_1:Vector.<DisplayObject>):void {
@@ -35,7 +35,7 @@ public class CharacterSkinListView extends Sprite {
         var _local_3:CharacterSkinListItem;
         var _local_2:int = CharacterSkinListItem.WIDTH;
         if (!_arg_1) {
-            _local_2 = (_local_2 + VerticalScrollingList.SCROLLBAR_GUTTER);
+            _local_2 = _local_2 + VerticalScrollingList.SCROLLBAR_GUTTER;
         }
         for each (_local_3 in this.items) {
             _local_3.setWidth(_local_2);
@@ -43,7 +43,7 @@ public class CharacterSkinListView extends Sprite {
     }
 
     public function getListHeight():Number {
-        return (this.list.getListHeight());
+        return this.list.getListHeight();
     }
 
 

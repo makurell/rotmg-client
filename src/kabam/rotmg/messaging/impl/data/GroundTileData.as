@@ -15,7 +15,7 @@ public class GroundTileData {
     }
 
     public function toString():String {
-        return (((((("x_: " + this.x_) + " y_: ") + this.y_) + " type_:") + this.type_));
+        return "x_: " + this.x_ + " y_: " + this.y_ + " type_:" + this.type_;
     }
 
 

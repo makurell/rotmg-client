@@ -21,7 +21,7 @@ public class MapMediator extends Mediator {
     }
 
     private function onQueuedStatusText(_arg_1:String, _arg_2:uint):void {
-        ((this.view.player_) && (this.queueText(_arg_1, _arg_2)));
+        this.view.player_ && this.queueText(_arg_1, _arg_2);
     }
 
     private function queueText(_arg_1:String, _arg_2:uint):void {

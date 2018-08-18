@@ -44,7 +44,7 @@ public class FriendTabView extends Sprite {
 
     public function destroy():void {
         while (numChildren > 0) {
-            this.removeChildAt((numChildren - 1));
+            this.removeChildAt(numChildren - 1);
         }
         this.tabSprite.removeEventListener(MouseEvent.CLICK, this.onTabClicked);
         this.tabs = null;
@@ -53,10 +53,10 @@ public class FriendTabView extends Sprite {
 
     public function addTab(_arg_1:BaseSimpleText, _arg_2:Sprite):void {
         var _local_3:int = this.tabs.length;
-        var _local_4:TabView = this.addTextTab(_local_3, (_arg_1 as BaseSimpleText));
+        var _local_4:TabView = this.addTextTab(_local_3, _arg_1 as BaseSimpleText);
         this.tabs.push(_local_4);
         this.tabSprite.addChild(_local_4);
-        _arg_2.y = (this.TAB_HEIGHT + 5);
+        _arg_2.y = this.TAB_HEIGHT + 5;
         this.contents.push(_arg_2);
         this.containerSprite.addChild(_arg_2);
         if (_local_3 > 0) {
@@ -96,7 +96,7 @@ public class FriendTabView extends Sprite {
     }
 
     private function onTabClicked(_arg_1:MouseEvent):void {
-        this.selectTab((_arg_1.target.parent as TabView));
+        this.selectTab(_arg_1.target.parent as TabView);
     }
 
     private function selectTab(_arg_1:TabView):void {
@@ -116,9 +116,9 @@ public class FriendTabView extends Sprite {
         var _local_4:TabTextView;
         var _local_3:Sprite = new TabBackground(this.TAB_WIDTH, this.TAB_HEIGHT);
         _local_4 = new TabTextView(_arg_1, _local_3, _arg_2);
-        _local_4.x = (_arg_1 * (_arg_2.width + 12));
+        _local_4.x = _arg_1 * (_arg_2.width + 12);
         _local_4.y = 4;
-        return (_local_4);
+        return _local_4;
     }
 
     private function showContent(_arg_1:int):void {
@@ -137,7 +137,7 @@ public class FriendTabView extends Sprite {
         var _local_1:GraphicsSolidFill = new GraphicsSolidFill(TabConstants.BACKGROUND_COLOR, 1);
         var _local_2:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         var _local_3:Vector.<IGraphicsData> = new <IGraphicsData>[_local_1, _local_2, GraphicsUtil.END_FILL];
-        GraphicsUtil.drawCutEdgeRect(0, 0, this._width, (this._height - TabConstants.TAB_TOP_OFFSET), 6, [1, 1, 1, 1], _local_2);
+        GraphicsUtil.drawCutEdgeRect(0, 0, this._width, this._height - TabConstants.TAB_TOP_OFFSET, 6, [1, 1, 1, 1], _local_2);
         this.background.graphics.drawGraphicsData(_local_3);
         this.background.y = TabConstants.TAB_TOP_OFFSET;
         addChild(this.background);

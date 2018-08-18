@@ -17,7 +17,7 @@ public class File extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CLIENTSTAT", "filename_", "file_"));
+        return formatToString("CLIENTSTAT", "filename_", "file_");
     }
 
 

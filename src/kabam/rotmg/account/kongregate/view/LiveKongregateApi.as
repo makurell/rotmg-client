@@ -33,7 +33,7 @@ public class LiveKongregateApi extends Sprite implements KongregateApi {
     public function load(_arg_1:String):void {
         Security.allowDomain(_arg_1);
         this.logger.info("kongregate api loading");
-        addChild((this.loader = new Loader()));
+        addChild(this.loader = new Loader());
         this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onAPILoaded);
         this.loader.load(new URLRequest(_arg_1));
     }
@@ -60,7 +60,7 @@ public class LiveKongregateApi extends Sprite implements KongregateApi {
     }
 
     public function get loaded():Signal {
-        return (this._loaded);
+        return this._loaded;
     }
 
     public function showRegistrationDialog():void {
@@ -69,7 +69,7 @@ public class LiveKongregateApi extends Sprite implements KongregateApi {
     }
 
     public function isGuest():Boolean {
-        return (this.api.services.isGuest());
+        return this.api.services.isGuest();
     }
 
     public function getAuthentication():Object {
@@ -77,7 +77,7 @@ public class LiveKongregateApi extends Sprite implements KongregateApi {
         _local_1.userId = this.api.services.getUserId();
         _local_1.username = this.api.services.getUsername();
         _local_1.gameAuthToken = this.api.services.getGameAuthToken();
-        return (_local_1);
+        return _local_1;
     }
 
     public function reportStatistic(_arg_1:String, _arg_2:int):void {
@@ -85,11 +85,11 @@ public class LiveKongregateApi extends Sprite implements KongregateApi {
     }
 
     public function getUserName():String {
-        return (this.api.services.getUsername());
+        return this.api.services.getUsername();
     }
 
     public function getUserId():String {
-        return (this.api.services.getUserId());
+        return this.api.services.getUserId();
     }
 
     public function purchaseItems(_arg_1:Object):void {
@@ -101,7 +101,7 @@ public class LiveKongregateApi extends Sprite implements KongregateApi {
     }
 
     public function get purchaseResponse():Signal {
-        return (this._purchaseResponse);
+        return this._purchaseResponse;
     }
 
 

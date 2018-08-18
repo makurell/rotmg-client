@@ -17,16 +17,16 @@ public class XMLEffect extends ParticleEffect {
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         if (this.go_.map_ == null) {
-            return (false);
+            return false;
         }
-        var _local_3:Number = (_arg_2 / 1000);
-        this.cooldownLeft_ = (this.cooldownLeft_ - _local_3);
+        var _local_3:Number = _arg_2 / 1000;
+        this.cooldownLeft_ = this.cooldownLeft_ - _local_3;
         if (this.cooldownLeft_ >= 0) {
-            return (true);
+            return true;
         }
         this.cooldownLeft_ = this.cooldown_;
         map_.addObj(new XMLParticle(this.partProps_), this.go_.x_, this.go_.y_);
-        return (true);
+        return true;
     }
 
 

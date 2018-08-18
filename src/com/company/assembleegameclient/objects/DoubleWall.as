@@ -33,7 +33,7 @@ public class DoubleWall extends GameObject {
     }
 
     override public function getColor():uint {
-        return (BitmapUtil.mostCommonColor(this.topTexture_));
+        return BitmapUtil.mostCommonColor(this.topTexture_);
     }
 
     override public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -56,8 +56,8 @@ public class DoubleWall extends GameObject {
         var _local_5:int;
         while (_local_5 < this.faces_.length) {
             _local_7 = this.faces_[_local_5];
-            _local_8 = map_.lookupSquare((x_ + sqX[_local_5]), (y_ + sqY[_local_5]));
-            if ((((((_local_8 == null)) || ((_local_8.texture_ == null)))) || (((((!((_local_8 == null))) && ((_local_8.obj_ is DoubleWall)))) && (!(_local_8.obj_.dead_)))))) {
+            _local_8 = map_.lookupSquare(x_ + sqX[_local_5], y_ + sqY[_local_5]);
+            if (_local_8 == null || _local_8.texture_ == null || !(_local_8 == null) && (_local_8.obj_ is DoubleWall) && !_local_8.obj_.dead_) {
                 _local_7.blackOut_ = true;
             }
             else {
@@ -79,10 +79,10 @@ public class DoubleWall extends GameObject {
         var _local_3:Vector.<Number> = new <Number>[_local_1, _local_2, 2, (_local_1 + 1), _local_2, 2, (_local_1 + 1), (_local_2 + 1), 2, _local_1, (_local_2 + 1), 2];
         this.topFace_ = new Face3D(this.topTexture_, _local_3, UVT, false, true);
         this.topFace_.bitmapFill_.repeat = true;
-        this.addWall(_local_1, _local_2, 2, (_local_1 + 1), _local_2, 2);
-        this.addWall((_local_1 + 1), _local_2, 2, (_local_1 + 1), (_local_2 + 1), 2);
-        this.addWall((_local_1 + 1), (_local_2 + 1), 2, _local_1, (_local_2 + 1), 2);
-        this.addWall(_local_1, (_local_2 + 1), 2, _local_1, _local_2, 2);
+        this.addWall(_local_1, _local_2, 2, _local_1 + 1, _local_2, 2);
+        this.addWall(_local_1 + 1, _local_2, 2, _local_1 + 1, _local_2 + 1, 2);
+        this.addWall(_local_1 + 1, _local_2 + 1, 2, _local_1, _local_2 + 1, 2);
+        this.addWall(_local_1, _local_2 + 1, 2, _local_1, _local_2, 2);
     }
 
     private function addWall(_arg_1:Number, _arg_2:Number, _arg_3:Number, _arg_4:Number, _arg_5:Number, _arg_6:Number):void {

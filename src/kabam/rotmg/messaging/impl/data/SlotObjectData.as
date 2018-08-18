@@ -22,7 +22,7 @@ public class SlotObjectData {
     }
 
     public function toString():String {
-        return (((((("objectId_: " + this.objectId_) + " slotId_: ") + this.slotId_) + " objectType_: ") + this.objectType_));
+        return "objectId_: " + this.objectId_ + " slotId_: " + this.slotId_ + " objectType_: " + this.objectType_;
     }
 
 

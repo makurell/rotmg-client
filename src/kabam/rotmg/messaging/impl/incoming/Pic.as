@@ -15,13 +15,13 @@ public class Pic extends IncomingMessage {
         var _local_2:int = _arg_1.readInt();
         var _local_3:int = _arg_1.readInt();
         var _local_4:ByteArray = new ByteArray();
-        _arg_1.readBytes(_local_4, 0, ((_local_2 * _local_3) * 4));
+        _arg_1.readBytes(_local_4, 0, _local_2 * _local_3 * 4);
         this.bitmapData_ = new BitmapDataSpy(_local_2, _local_3);
         this.bitmapData_.setPixels(this.bitmapData_.rect, _local_4);
     }
 
     override public function toString():String {
-        return (formatToString("PIC", "bitmapData_"));
+        return formatToString("PIC", "bitmapData_");
     }
 
 

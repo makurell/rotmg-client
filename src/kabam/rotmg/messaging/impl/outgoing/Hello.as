@@ -20,12 +20,12 @@ public class Hello extends OutgoingMessage {
     public var userToken:String = "";
 
     public function Hello(_arg_1:uint, _arg_2:Function) {
-        this.buildVersion_ = new String();
-        this.guid_ = new String();
-        this.password_ = new String();
-        this.secret_ = new String();
+        this.buildVersion_ = String();
+        this.guid_ = String();
+        this.password_ = String();
+        this.secret_ = String();
         this.key_ = new ByteArray();
-        this.mapJSON_ = new String();
+        this.mapJSON_ = String();
         super(_arg_1, _arg_2);
     }
 
@@ -33,9 +33,9 @@ public class Hello extends OutgoingMessage {
         _arg_1.writeUTF(this.buildVersion_);
         _arg_1.writeInt(this.gameId_);
         _arg_1.writeUTF(this.guid_);
-        _arg_1.writeInt(int(Math.floor((Math.random() * 0x3B9ACA00))));
+        _arg_1.writeInt(int(Math.floor(Math.random() * 0x3B9ACA00)));
         _arg_1.writeUTF(this.password_);
-        _arg_1.writeInt(int(Math.floor((Math.random() * 0x3B9ACA00))));
+        _arg_1.writeInt(int(Math.floor(Math.random() * 0x3B9ACA00)));
         _arg_1.writeUTF(this.secret_);
         _arg_1.writeInt(this.keyTime_);
         _arg_1.writeShort(this.key_.length);
@@ -51,7 +51,7 @@ public class Hello extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("HELLO", "buildVersion_", "gameId_", "guid_", "password_", "secret_"));
+        return formatToString("HELLO", "buildVersion_", "gameId_", "guid_", "password_", "secret_");
     }
 
 

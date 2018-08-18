@@ -25,12 +25,12 @@ public class CompileTimeBuildData implements BuildData {
 
 
     public function getEnvironmentString():String {
-        return ("production".toLowerCase());
+        return "production".toLowerCase();
     }
 
     public function getEnvironment():BuildEnvironment {
-        ((this.isParsed) || (this.parseEnvironment()));
-        return (this.environment);
+        this.isParsed || this.parseEnvironment();
+        return this.environment;
     }
 
     private function parseEnvironment():void {
@@ -43,7 +43,7 @@ public class CompileTimeBuildData implements BuildData {
         var _local_2:Boolean = this.conditionsRequireTesting(_arg_1);
         if (_local_2) {
             _local_3 = new LocalConnection();
-            if ((((_local_3.domain == ROTMG_TESTING)) || ((_local_3.domain == ROTMG_TESTING_MAP)))) {
+            if (_local_3.domain == ROTMG_TESTING || _local_3.domain == ROTMG_TESTING_MAP) {
                 this.environment = BuildEnvironment.TESTING;
             }
             else {
@@ -58,25 +58,25 @@ public class CompileTimeBuildData implements BuildData {
     }
 
     private function conditionsRequireTesting(_arg_1:String):Boolean {
-        return ((((_arg_1 == BuildEnvironments.PRODUCTION)) && (!(this.isMarkedAsProductionRelease()))));
+        return _arg_1 == BuildEnvironments.PRODUCTION && !this.isMarkedAsProductionRelease();
     }
 
     private function isMarkedAsProductionRelease():Boolean {
-        return (((this.isDesktopPlayer()) ? this.isSteamProductionDeployment() : this.isHostedOnProductionServers()));
+        return this.isDesktopPlayer() ? this.isSteamProductionDeployment() : this.isHostedOnProductionServers();
     }
 
     private function isDesktopPlayer():Boolean {
-        return ((Capabilities.playerType == DESKTOP));
+        return Capabilities.playerType == DESKTOP;
     }
 
     private function isSteamProductionDeployment():Boolean {
         var _local_1:Object = this.loaderInfo.parameters;
-        return ((_local_1.deployment == STEAM_PRODUCTION_CONFIG));
+        return _local_1.deployment == STEAM_PRODUCTION_CONFIG;
     }
 
     private function isHostedOnProductionServers():Boolean {
         var _local_1:LocalConnection = new LocalConnection();
-        return ((((_local_1.domain == ROTMG)) || ((_local_1.domain == ROTMG_APPSPOT))));
+        return _local_1.domain == ROTMG || _local_1.domain == ROTMG_APPSPOT;
     }
 
 

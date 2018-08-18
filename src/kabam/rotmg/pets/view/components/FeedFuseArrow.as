@@ -34,7 +34,7 @@ public class FeedFuseArrow extends Sprite {
 
     public function highlight(_arg_1:Boolean):void {
         var _local_2:ColorTransform = transform.colorTransform;
-        _local_2.color = ((_arg_1) ? 16777103 : 0x545454);
+        _local_2.color = _arg_1 ? 16777103 : 0x545454;
         transform.colorTransform = _local_2;
     }
 

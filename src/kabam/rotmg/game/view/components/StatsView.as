@@ -52,7 +52,7 @@ public class StatsView extends Sprite {
             _local_3 = this.createStat(_local_2, _local_1);
             this.stats_.push(_local_3);
             this.containerSprite.addChild(_local_3);
-            _local_1 = (_local_1 + (_local_2 % 2));
+            _local_1 = _local_1 + _local_2 % 2;
             _local_2++;
         }
     }
@@ -61,9 +61,9 @@ public class StatsView extends Sprite {
         var _local_4:StatView;
         var _local_3:StatModel = statsModel[_arg_1];
         _local_4 = new StatView(_local_3.name, _local_3.abbreviation, _local_3.description, _local_3.redOnZero);
-        _local_4.x = (((_arg_1 % 2) * this.WIDTH) / 2);
-        _local_4.y = (_arg_2 * (this.HEIGHT / 3));
-        return (_local_4);
+        _local_4.x = ((_arg_1 % 2) * this.WIDTH) / 2;
+        _local_4.y = _arg_2 * (this.HEIGHT / 3);
+        return _local_4;
     }
 
     public function draw(_arg_1:Player):void {
@@ -71,7 +71,7 @@ public class StatsView extends Sprite {
             this.setBackgroundVisibility();
             this.drawStats(_arg_1);
         }
-        this.containerSprite.x = ((this.WIDTH - this.containerSprite.width) / 2);
+        this.containerSprite.x = (this.WIDTH - this.containerSprite.width) / 2;
     }
 
     private function drawStats(_arg_1:Player):void {
@@ -96,9 +96,9 @@ public class StatsView extends Sprite {
         this.background.graphics.clear();
         this.background.graphics.beginFill(0x363636);
         this.background.graphics.lineStyle(2, 0xFFFFFF);
-        this.background.graphics.drawRoundRect(-5, -5, (this.WIDTH + 10), (this.HEIGHT + 13), 10);
+        this.background.graphics.drawRoundRect(-5, -5, this.WIDTH + 10, this.HEIGHT + 13, 10);
         this.background.filters = [new GlowFilter(0, 1, 10, 10, 1, 3)];
-        return (this.background);
+        return this.background;
     }
 
     private function setBackgroundVisibility():void {

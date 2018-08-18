@@ -49,7 +49,7 @@ public class TaskGroup extends BaseTask {
     }
 
     public function toString():String {
-        return ((("[TaskGroup(" + this.tasks.join(",")) + ")]"));
+        return "[TaskGroup(" + this.tasks.join(",") + ")]";
     }
 
 

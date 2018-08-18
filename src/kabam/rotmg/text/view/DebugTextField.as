@@ -30,9 +30,9 @@ public class DebugTextField extends TextField {
             else {
                 this.setBackground(INVALID_KEY_COLOR);
             }
-            return (_local_2.key);
+            return _local_2.key;
         }
-        return (_arg_1);
+        return _arg_1;
     }
 
     private function setBackground(_arg_1:uint):void {

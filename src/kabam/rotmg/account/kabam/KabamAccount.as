@@ -38,66 +38,66 @@ public class KabamAccount implements Account {
     }
 
     public function getRequestPrefix():String {
-        return ("/credits");
+        return "/credits";
     }
 
     public function getCredentials():Object {
-        return ({
+        return {
             "guid": this.getUserId(),
             "secret": this.getSecret(),
             "signedRequest": this.signedRequest
-        });
+        };
     }
 
     public function getEntryTag():String {
-        return (((this.entryTag) || ("")));
+        return this.entryTag || "";
     }
 
     public function gameNetworkUserId():String {
-        if ((((this.userSession == null)) || ((this.userSession["kabam_naid"] == null)))) {
-            return ("");
+        if (this.userSession == null || this.userSession["kabam_naid"] == null) {
+            return "";
         }
-        return (this.userSession["kabam_naid"]);
+        return this.userSession["kabam_naid"];
     }
 
     public function gameNetwork():String {
-        return (NETWORK_NAME);
+        return NETWORK_NAME;
     }
 
     public function getUserName():String {
-        if ((((((this.userSession == null)) || ((this.userSession["user"] == null)))) || ((this.userSession["user"]["email"] == null)))) {
-            return ("");
+        if (this.userSession == null || this.userSession["user"] == null || this.userSession["user"]["email"] == null) {
+            return "";
         }
         var _local_1:String = this.userSession["user"]["email"];
         var _local_2:Array = _local_1.split("@", 2);
         if (_local_2.length != 2) {
-            return ("");
+            return "";
         }
-        return (_local_2[0]);
+        return _local_2[0];
     }
 
     public function getUserId():String {
-        return (this.userId);
+        return this.userId;
     }
 
     public function isLinked():Boolean {
-        return (false);
+        return false;
     }
 
     public function isRegistered():Boolean {
-        return (true);
+        return true;
     }
 
     public function playPlatform():String {
-        return (PLAY_PLATFORM_NAME);
+        return PLAY_PLATFORM_NAME;
     }
 
     public function getSecret():String {
-        return (((this.password) || ("")));
+        return this.password || "";
     }
 
     public function getPassword():String {
-        return ("");
+        return "";
     }
 
     public function clear():void {
@@ -111,11 +111,11 @@ public class KabamAccount implements Account {
     }
 
     public function isVerified():Boolean {
-        return (this.isVerifiedEmail);
+        return this.isVerifiedEmail;
     }
 
     public function getPlatformToken():String {
-        return (((this.platformToken) || ("")));
+        return this.platformToken || "";
     }
 
     public function setPlatformToken(_arg_1:String):void {
@@ -123,15 +123,14 @@ public class KabamAccount implements Account {
     }
 
     public function getMoneyAccessToken():String {
-        return (this.userSession["oauth_token"]);
+        return this.userSession["oauth_token"];
     }
 
     public function getMoneyUserId():String {
-        return (this.gameNetworkUserId());
+        return this.gameNetworkUserId();
     }
 
-    public function getToken():String
-    {
+    public function getToken():String {
         return "";
     }
 

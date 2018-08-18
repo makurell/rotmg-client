@@ -62,11 +62,9 @@ public class WebAccountInfoMediator extends Mediator {
         this.view.setInfo("", false);
     }
 
-    private function onResetComplete(_arg_1:Boolean, _arg_2:String):void
-    {
+    private function onResetComplete(_arg_1:Boolean, _arg_2:String):void {
         var _local_3:AccountData = null;
-        if(_arg_1)
-        {
+        if (_arg_1) {
             _local_3 = new AccountData();
             _local_3.username = this.email;
             _local_3.password = this.pass;
@@ -74,14 +72,12 @@ public class WebAccountInfoMediator extends Mediator {
         }
     }
 
-    private function onResetPhase1():void
-    {
+    private function onResetPhase1():void {
         var _local_1:ConfirmDialog = new ConfirmDialog("ResetAccount", "Are you sure you want to reset your account back to realmofthemadgod.com values?", this.onResetPhase2);
         this.openDialog.dispatch(_local_1);
     }
 
-    private function onResetPhase2():void
-    {
+    private function onResetPhase2():void {
         var _local_1:Object = this.account.getCredentials();
         this.email = this.account.getUserId();
         this.pass = this.account.getPassword();

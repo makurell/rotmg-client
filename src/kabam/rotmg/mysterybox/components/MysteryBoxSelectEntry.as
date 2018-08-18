@@ -52,13 +52,13 @@ public class MysteryBoxSelectEntry extends Sprite {
         var _local_2:DisplayObject;
         this.redbar = new redBarEmbed();
         this.redbar.y = -5;
-        this.redbar.width = (MysteryBoxSelectModal.modalWidth - 5);
-        this.redbar.height = (MysteryBoxSelectModal.aMysteryBoxHeight - 8);
+        this.redbar.width = MysteryBoxSelectModal.modalWidth - 5;
+        this.redbar.height = MysteryBoxSelectModal.aMysteryBoxHeight - 8;
         addChild(this.redbar);
         _local_2 = new redBarEmbed();
         _local_2.y = 0;
-        _local_2.width = (MysteryBoxSelectModal.modalWidth - 5);
-        _local_2.height = ((MysteryBoxSelectModal.aMysteryBoxHeight - 8) + 5);
+        _local_2.width = MysteryBoxSelectModal.modalWidth - 5;
+        _local_2.height = (MysteryBoxSelectModal.aMysteryBoxHeight - 8) + 5;
         _local_2.alpha = 0;
         addChild(_local_2);
         this.mbi = _arg_1;
@@ -68,24 +68,20 @@ public class MysteryBoxSelectEntry extends Sprite {
         addChild(this.title);
         this.addNewText();
         this.buyButton = new LegacyBuyButton("", 16, 0, Currency.INVALID, false, this.mbi.isOnSale());
-        if(this.mbi.unitsLeft == 0)
-        {
+        if (this.mbi.unitsLeft == 0) {
             this.buyButton.setText(LineBuilder.getLocalizedStringFromKey("MysteryBoxError.soldOutButton"));
         }
-        else if(this.mbi.isOnSale())
-        {
+        else if (this.mbi.isOnSale()) {
             this.buyButton.setPrice(this.mbi.saleAmount, this.mbi.saleCurrency);
         }
-        else
-        {
+        else {
             this.buyButton.setPrice(this.mbi.priceAmount, this.mbi.priceCurrency);
         }
-        this.buyButton.x = (MysteryBoxSelectModal.modalWidth - 120);
+        this.buyButton.x = MysteryBoxSelectModal.modalWidth - 120;
         this.buyButton.y = 16;
         this.buyButton._width = 70;
         this.addSaleText();
-        if(this.mbi.unitsLeft > 0 || this.mbi.unitsLeft == -1)
-        {
+        if (this.mbi.unitsLeft > 0 || this.mbi.unitsLeft == -1) {
             this.buyButton.addEventListener(MouseEvent.CLICK, this.onBoxBuy);
         }
         addChild(this.buyButton);
@@ -104,8 +100,7 @@ public class MysteryBoxSelectEntry extends Sprite {
             this.addInfoImageChild();
         }
         this.mbi.quantity = this.quantity_.toString();
-        if(this.mbi.unitsLeft > 0 || this.mbi.unitsLeft == -1)
-        {
+        if (this.mbi.unitsLeft > 0 || this.mbi.unitsLeft == -1) {
             this.leftNavSprite = UIAssetsHelper.createLeftNevigatorIcon(UIAssetsHelper.LEFT_NEVIGATOR, 3);
             this.leftNavSprite.x = this.buyButton.x + this.buyButton.width + 45;
             this.leftNavSprite.y = this.buyButton.y + this.buyButton.height / 2 - 2;
@@ -123,40 +118,31 @@ public class MysteryBoxSelectEntry extends Sprite {
         addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
     }
 
-    private function updateTextPosition():void
-    {
+    private function updateTextPosition():void {
         this.title.y = Math.round((this.redbar.height - (this.title.getTextHeight() + (this.title.textField.numLines == 1 ? 8 : 10))) / 2);
-        if((this.mbi.isNew() || this.mbi.isOnSale()) && this.title.textField.numLines == 2)
-        {
+        if ((this.mbi.isNew() || this.mbi.isOnSale()) && this.title.textField.numLines == 2) {
             this.title.y = this.title.y + 6;
         }
     }
 
-    public function updateContent():void
-    {
-        if(this.left)
-        {
+    public function updateContent():void {
+        if (this.left) {
             this.left.setStringBuilder(new LineBuilder().setParams(this.mbi.unitsLeft + " " + LineBuilder.getLocalizedStringFromKey("MysteryBoxSelectEntry.left")));
         }
     }
 
-    private function addUnitsLeftText():void
-    {
+    private function addUnitsLeftText():void {
         var _local_1:uint = 0;
         var _loc2_:int = 0;
-        if(this.mbi.unitsLeft >= 0)
-        {
+        if (this.mbi.unitsLeft >= 0) {
             _loc2_ = this.mbi.unitsLeft / this.mbi.totalUnits;
-            if(_loc2_ <= 0.1)
-            {
+            if (_loc2_ <= 0.1) {
                 _local_1 = 0xFF0000;
             }
-            else if(_loc2_ <= 0.5)
-            {
+            else if (_loc2_ <= 0.5) {
                 _local_1 = 0xFFA900;
             }
-            else
-            {
+            else {
                 _local_1 = 0x00FF00;
             }
             this.left = this.getText(this.mbi.unitsLeft + " left", 20, 46, 11).setColor(_local_1);
@@ -164,17 +150,14 @@ public class MysteryBoxSelectEntry extends Sprite {
         }
     }
 
-    private function markAsSold():void
-    {
+    private function markAsSold():void {
         this.buyButton.setPrice(0, Currency.INVALID);
         this.buyButton.setText(LineBuilder.getLocalizedStringFromKey("MysteryBoxError.soldOutButton"));
-        if(this.leftNavSprite && this.leftNavSprite.parent == this)
-        {
+        if (this.leftNavSprite && this.leftNavSprite.parent == this) {
             removeChild(this.leftNavSprite);
             this.leftNavSprite.removeEventListener(MouseEvent.CLICK, this.onClick);
         }
-        if(this.rightNavSprite && this.rightNavSprite.parent == this)
-        {
+        if (this.rightNavSprite && this.rightNavSprite.parent == this) {
             removeChild(this.rightNavSprite);
             this.rightNavSprite.removeEventListener(MouseEvent.CLICK, this.onClick);
         }
@@ -194,45 +177,44 @@ public class MysteryBoxSelectEntry extends Sprite {
         switch (_arg_1.currentTarget) {
             case this.rightNavSprite:
                 if (this.quantity_ == 1) {
-                    this.quantity_ = (this.quantity_ + 4);
+                    this.quantity_ = this.quantity_ + 4;
                 }
                 else {
                     if (this.quantity_ < 10) {
-                        this.quantity_ = (this.quantity_ + 5);
+                        this.quantity_ = this.quantity_ + 5;
                     }
                 }
                 break;
             case this.leftNavSprite:
                 if (this.quantity_ == 10) {
-                    this.quantity_ = (this.quantity_ - 5);
+                    this.quantity_ = this.quantity_ - 5;
                 }
                 else {
                     if (this.quantity_ > 1) {
-                        this.quantity_ = (this.quantity_ - 4);
+                        this.quantity_ = this.quantity_ - 4;
                     }
                 }
                 break;
         }
         this.mbi.quantity = this.quantity_.toString();
         if (this.mbi.isOnSale()) {
-            this.buyButton.setPrice((this.mbi.saleAmount * this.quantity_), this.mbi.saleCurrency);
+            this.buyButton.setPrice(this.mbi.saleAmount * this.quantity_, this.mbi.saleCurrency);
         }
         else {
-            this.buyButton.setPrice((this.mbi.priceAmount * this.quantity_), this.mbi.priceCurrency);
+            this.buyButton.setPrice(this.mbi.priceAmount * this.quantity_, this.mbi.priceCurrency);
         }
     }
 
     private function addNewText():void {
-        if(this.mbi.isNew() && !this.mbi.isOnSale()) {
+        if (this.mbi.isNew() && !this.mbi.isOnSale()) {
             this.newText = this.getText(this.newString, 74, 0).setColor(0xFFDE00);
             addChild(this.newText);
         }
     }
 
     private function onEnterFrame(_arg_1:Event):void {
-        var _local_2:Number = (1.05 + (0.05 * Math.sin((getTimer() / 200))));
-        if(this.sale)
-        {
+        var _local_2:Number = 1.05 + 0.05 * Math.sin(getTimer() / 200);
+        if (this.sale) {
             this.sale.scaleX = _local_2;
             this.sale.scaleY = _local_2;
         }
@@ -240,7 +222,7 @@ public class MysteryBoxSelectEntry extends Sprite {
             this.newText.scaleX = _local_2;
             this.newText.scaleY = _local_2;
         }
-        if(this.mbi.unitsLeft == 0 && !this.soldOut) {
+        if (this.mbi.unitsLeft == 0 && !this.soldOut) {
             this.soldOut = true;
             this.markAsSold();
         }
@@ -275,7 +257,7 @@ public class MysteryBoxSelectEntry extends Sprite {
     }
 
     public function getText(_arg_1:String, _arg_2:int, _arg_3:int, _arg_4:int = 12, _arg_5:Boolean = false):TextFieldDisplayConcrete {
-        var _local_6:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(_arg_4).setColor(0xFFFFFF).setTextWidth((MysteryBoxSelectModal.modalWidth - 185));
+        var _local_6:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(_arg_4).setColor(0xFFFFFF).setTextWidth(MysteryBoxSelectModal.modalWidth - 185);
         _local_6.setBold(true);
         if (_arg_5) {
             _local_6.setStringBuilder(new StaticStringBuilder(_arg_1));
@@ -290,7 +272,7 @@ public class MysteryBoxSelectEntry extends Sprite {
         _local_6.filters = [new DropShadowFilter(0, 0, 0)];
         _local_6.x = _arg_2;
         _local_6.y = _arg_3;
-        return (_local_6);
+        return _local_6;
     }
 
     private function addIconImageChild():void {
@@ -300,12 +282,10 @@ public class MysteryBoxSelectEntry extends Sprite {
         this.iconImage.width = 58;
         this.iconImage.height = 58;
         this.iconImage.x = 14;
-        if(this.mbi.unitsLeft != -1)
-        {
+        if (this.mbi.unitsLeft != -1) {
             this.iconImage.y = -6;
         }
-        else
-        {
+        else {
             this.iconImage.y = 1;
         }
         addChild(this.iconImage);
@@ -318,18 +298,18 @@ public class MysteryBoxSelectEntry extends Sprite {
             return;
         }
         var _local_1:int = 8;
-        this.infoImage.width = (291 - _local_1);
-        this.infoImage.height = ((598 - (_local_1 * 2)) - 2);
+        this.infoImage.width = 291 - _local_1;
+        this.infoImage.height = 598 - _local_1 * 2 - 2;
         var _local_2:Point = this.globalToLocal(new Point(MysteryBoxSelectModal.getRightBorderX() + 1 + 14, 2 + _local_1));
         this.infoImage.x = _local_2.x;
         this.infoImage.y = _local_2.y;
-        if (((this.hoverState) && (!(this.descriptionShowing)))) {
+        if (this.hoverState && !this.descriptionShowing) {
             this.descriptionShowing = true;
             addChild(this.infoImage);
             this.infoImageBorder = new PopupWindowBackground();
-            this.infoImageBorder.draw(this.infoImage.width, (this.infoImage.height + 2), PopupWindowBackground.TYPE_TRANSPARENT_WITHOUT_HEADER);
+            this.infoImageBorder.draw(this.infoImage.width, this.infoImage.height + 2, PopupWindowBackground.TYPE_TRANSPARENT_WITHOUT_HEADER);
             this.infoImageBorder.x = this.infoImage.x;
-            this.infoImageBorder.y = (this.infoImage.y - 1);
+            this.infoImageBorder.y = this.infoImage.y - 1;
             addChild(this.infoImageBorder);
             _local_3 = [3.0742, -1.8282, -0.246, 0, 50, -0.9258, 2.1718, -0.246, 0, 50, -0.9258, -1.8282, 3.754, 0, 50, 0, 0, 0, 1, 0];
             _local_4 = new ColorMatrixFilter(_local_3);
@@ -352,31 +332,26 @@ public class MysteryBoxSelectEntry extends Sprite {
         var _local_4:Dialog = null;
         var _local_5:MysteryBoxRollModal = null;
         var _local_6:Boolean = false;
-        if(this.mbi.unitsLeft != -1 && this.quantity_ > this.mbi.unitsLeft)
-        {
+        if (this.mbi.unitsLeft != -1 && this.quantity_ > this.mbi.unitsLeft) {
             _local_2 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
             _local_3 = "";
-            if(this.mbi.unitsLeft == 0)
-            {
+            if (this.mbi.unitsLeft == 0) {
                 _local_3 = "MysteryBoxError.soldOutAll";
             }
-            else
-            {
+            else {
                 _local_3 = LineBuilder.getLocalizedStringFromKey("MysteryBoxError.soldOutLeft", {
                     "left": this.mbi.unitsLeft,
-                    "box": (this.mbi.unitsLeft == 1 ? LineBuilder.getLocalizedStringFromKey("MysteryBoxError.box") : LineBuilder.getLocalizedStringFromKey("MysteryBoxError.boxes"))
+                    "box": this.mbi.unitsLeft == 1 ? LineBuilder.getLocalizedStringFromKey("MysteryBoxError.box") : LineBuilder.getLocalizedStringFromKey("MysteryBoxError.boxes")
                 });
             }
             _local_4 = new Dialog("MysteryBoxRollModal.purchaseFailedString", _local_3, "MysteryBoxRollModal.okString", null, null);
             _local_4.addEventListener(Dialog.LEFT_BUTTON, this.onErrorOk);
             _local_2.dispatch(_local_4);
         }
-        else
-        {
+        else {
             _local_5 = new MysteryBoxRollModal(this.mbi, this.quantity_);
             _local_6 = _local_5.moneyCheckPass();
-            if(_local_6)
-            {
+            if (_local_6) {
                 _local_5.parentSelectModal = MysteryBoxSelectModal(parent.parent);
                 _local_2 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                 _local_2.dispatch(_local_5);
@@ -384,8 +359,7 @@ public class MysteryBoxSelectEntry extends Sprite {
         }
     }
 
-    private function onErrorOk(_arg_1:Event):void
-    {
+    private function onErrorOk(_arg_1:Event):void {
         var _local_2:OpenDialogSignal;
         _local_2 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
         _local_2.dispatch(new MysteryBoxSelectModal());

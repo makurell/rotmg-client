@@ -78,8 +78,8 @@ public class TabStripMediator extends Mediator {
     }
 
     private function onTabHotkey():void {
-        var _local_1:int = (this.view.currentTabIndex + 1);
-        _local_1 = (_local_1 % this.view.tabs.length);
+        var _local_1:int = this.view.currentTabIndex + 1;
+        _local_1 = _local_1 % this.view.tabs.length;
         this.view.setSelectedTab(_local_1);
     }
 

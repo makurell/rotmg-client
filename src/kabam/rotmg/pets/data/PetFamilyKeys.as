@@ -20,7 +20,7 @@ public class PetFamilyKeys {
 
     public static function getTranslationKey(_arg_1:String):String {
         var _local_2:String = keys[_arg_1];
-        return (((_local_2) || ((((_arg_1 == "? ? ? ?")) ? "Pets.miscellaneous" : ""))));
+        return _local_2 || (_arg_1 == "? ? ? ?" ? "Pets.miscellaneous" : "");
     }
 
 

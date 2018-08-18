@@ -28,7 +28,7 @@ public class AbilityVO {
     }
 
     public function getUnlocked():Boolean {
-        return (this.unlocked);
+        return this.unlocked;
     }
 
 

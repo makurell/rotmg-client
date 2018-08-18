@@ -27,7 +27,7 @@ public class FeedFuseCostModel {
             "gold": 1800,
             "fame": 15000
         };
-        return (_local_1);
+        return _local_1;
     }
 
     private static function makeFeedDictionary():Dictionary {
@@ -52,23 +52,23 @@ public class FeedFuseCostModel {
             "gold": 150,
             "fame": 1000
         };
-        return (_local_1);
+        return _local_1;
     }
 
     public static function getFuseGoldCost(_arg_1:PetRarityEnum):int {
-        return (((fuseCosts[_arg_1]) ? fuseCosts[_arg_1].gold : 0));
+        return fuseCosts[_arg_1] ? fuseCosts[_arg_1].gold : 0;
     }
 
     public static function getFuseFameCost(_arg_1:PetRarityEnum):int {
-        return (((fuseCosts[_arg_1]) ? fuseCosts[_arg_1].fame : 0));
+        return fuseCosts[_arg_1] ? fuseCosts[_arg_1].fame : 0;
     }
 
     public static function getFeedGoldCost(_arg_1:PetRarityEnum):int {
-        return (feedCosts[_arg_1].gold);
+        return feedCosts[_arg_1].gold;
     }
 
     public static function getFeedFameCost(_arg_1:PetRarityEnum):int {
-        return (feedCosts[_arg_1].fame);
+        return feedCosts[_arg_1].fame;
     }
 
 

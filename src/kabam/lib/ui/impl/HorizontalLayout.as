@@ -9,7 +9,7 @@ public class HorizontalLayout implements Layout {
 
 
     public function getPadding():int {
-        return (this.padding);
+        return this.padding;
     }
 
     public function setPadding(_arg_1:int):void {
@@ -24,7 +24,7 @@ public class HorizontalLayout implements Layout {
         while (_local_5 < _local_4) {
             _local_6 = _arg_1[_local_5];
             _local_6.x = _local_3;
-            _local_3 = (_local_3 + (_local_6.width + this.padding));
+            _local_3 = _local_3 + (_local_6.width + this.padding);
             _local_5++;
         }
     }

@@ -16,7 +16,7 @@ public class Buy extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("BUY", "objectId_", "quantity_"));
+        return formatToString("BUY", "objectId_", "quantity_");
     }
 
 

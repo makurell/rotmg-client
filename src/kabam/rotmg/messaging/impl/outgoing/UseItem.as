@@ -25,7 +25,7 @@ public class UseItem extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("USEITEM", "slotObject_", "itemUsePos_", "useType_"));
+        return formatToString("USEITEM", "slotObject_", "itemUsePos_", "useType_");
     }
 
 

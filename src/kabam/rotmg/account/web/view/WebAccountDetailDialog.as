@@ -30,7 +30,7 @@ public class WebAccountDetailDialog extends Frame {
         this.headerText = _arg_2;
         this.makeLoginText();
         this.makeEmailText();
-        h_ = (h_ + 88);
+        h_ = h_ + 88;
         this.cancel = new NativeMappedSignal(rightButton_, MouseEvent.CLICK);
         this.change = new Signal();
         this.logout = new Signal();
@@ -86,14 +86,14 @@ public class WebAccountDetailDialog extends Frame {
         this.loginText.setBold(true);
         this.loginText.setStringBuilder(new LineBuilder().setParams(this.headerText));
         this.loginText.filters = [new DropShadowFilter(0, 0, 0)];
-        this.loginText.y = (h_ - 60);
+        this.loginText.y = h_ - 60;
         this.loginText.x = 17;
         addChild(this.loginText);
     }
 
     private function makeEmailText():void {
         this.emailText = new TextFieldDisplayConcrete().setSize(16).setColor(0xB3B3B3);
-        this.emailText.y = (h_ - 30);
+        this.emailText.y = h_ - 30;
         this.emailText.x = 17;
         addChild(this.emailText);
     }

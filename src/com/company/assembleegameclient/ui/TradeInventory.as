@@ -50,13 +50,13 @@ public class TradeInventory extends Sprite {
         this.taglineText_.filters = [new DropShadowFilter(0, 0, 0)];
         addChild(this.taglineText_);
         var _local_5:int;
-        while (_local_5 < (GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS)) {
+        while (_local_5 < GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS) {
             _local_6 = _arg_3[_local_5];
-            _local_7 = new TradeSlot(_local_6.item_, _local_6.tradeable_, _local_6.included_, _local_6.slotType_, (_local_5 - 3), cuts[_local_5], _local_5);
+            _local_7 = new TradeSlot(_local_6.item_, _local_6.tradeable_, _local_6.included_, _local_6.slotType_, _local_5 - 3, cuts[_local_5], _local_5);
             _local_7.setPlayer(this.gs_.map.player_);
-            _local_7.x = (int((_local_5 % 4)) * (Slot.WIDTH + 4));
-            _local_7.y = ((int((_local_5 / 4)) * (Slot.HEIGHT + 4)) + 46);
-            if (((_arg_4) && (_local_6.tradeable_))) {
+            _local_7.x = int(_local_5 % 4) * (Slot.WIDTH + 4);
+            _local_7.y = int(_local_5 / 4) * (Slot.HEIGHT + 4) + 46;
+            if (_arg_4 && _local_6.tradeable_) {
                 _local_7.addEventListener(MouseEvent.MOUSE_DOWN, this.onSlotClick);
             }
             this.slots_.push(_local_7);
@@ -72,7 +72,7 @@ public class TradeInventory extends Sprite {
             _local_1.push(this.slots_[_local_2].included_);
             _local_2++;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function setOffer(_arg_1:Vector.<Boolean>):void {
@@ -87,11 +87,11 @@ public class TradeInventory extends Sprite {
         var _local_2:int;
         while (_local_2 < this.slots_.length) {
             if (_arg_1[_local_2] != this.slots_[_local_2].included_) {
-                return (false);
+                return false;
             }
             _local_2++;
         }
-        return (true);
+        return true;
     }
 
     public function numIncluded():int {
@@ -103,7 +103,7 @@ public class TradeInventory extends Sprite {
             }
             _local_2++;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function numEmpty():int {
@@ -115,7 +115,7 @@ public class TradeInventory extends Sprite {
             }
             _local_2++;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function setMessage(_arg_1:int):void {
@@ -146,8 +146,8 @@ public class TradeInventory extends Sprite {
     }
 
     private function onSlotClick(_arg_1:MouseEvent):void {
-        var _local_2:TradeSlot = (_arg_1.currentTarget as TradeSlot);
-        _local_2.setIncluded(!(_local_2.included_));
+        var _local_2:TradeSlot = _arg_1.currentTarget as TradeSlot;
+        _local_2.setIncluded(!_local_2.included_);
         dispatchEvent(new Event(Event.CHANGE));
     }
 

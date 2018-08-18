@@ -49,7 +49,7 @@ public class CreditsScreen extends Sprite {
         this.closeButton = new TitleMenuOption("Close.text", 36, false);
         this.closeButton.setAutoSize(TextFieldAutoSize.CENTER);
         this.closeButton.addEventListener(MouseEvent.CLICK, this.onDoneClick);
-        return (this.closeButton);
+        return this.closeButton;
     }
 
     private function makeKabamLogo():KabamLogo {
@@ -58,7 +58,7 @@ public class CreditsScreen extends Sprite {
         this.kabamLogo.addEventListener(MouseEvent.CLICK, this.onKabamLogoClick);
         this.kabamLogo.buttonMode = true;
         this.kabamLogo.useHandCursor = true;
-        return (this.kabamLogo);
+        return this.kabamLogo;
     }
 
     private function makeWildshadowLogo():StackedLogoR {
@@ -67,7 +67,7 @@ public class CreditsScreen extends Sprite {
         this.wildshadowLogo.addEventListener(MouseEvent.CLICK, this.onWSLogoClick);
         this.wildshadowLogo.buttonMode = true;
         this.wildshadowLogo.useHandCursor = true;
-        return (this.wildshadowLogo);
+        return this.wildshadowLogo;
     }
 
     private function makeCreditsText():TextFieldDisplayConcrete {
@@ -76,17 +76,17 @@ public class CreditsScreen extends Sprite {
         this.creditsText.setStringBuilder(new LineBuilder().setParams(TextKey.CREDITS_DEVELOPED));
         this.creditsText.filters = [new DropShadowFilter(0, 0, 0)];
         this.creditsText.setAutoSize(TextFieldAutoSize.CENTER);
-        return (this.creditsText);
+        return this.creditsText;
     }
 
     public function initialize():void {
-        this.creditsText.x = (stage.stageWidth / 2);
+        this.creditsText.x = stage.stageWidth / 2;
         this.creditsText.y = 10;
-        this.wildshadowLogo.x = ((stage.stageWidth / 2) - (this.wildshadowLogo.width / 2));
+        this.wildshadowLogo.x = stage.stageWidth / 2 - this.wildshadowLogo.width / 2;
         this.wildshadowLogo.y = 50;
-        this.kabamLogo.x = ((stage.stageWidth / 2) - (this.kabamLogo.width / 2));
+        this.kabamLogo.x = stage.stageWidth / 2 - this.kabamLogo.width / 2;
         this.kabamLogo.y = 325;
-        this.closeButton.x = ((stage.stageWidth / 2) - (this.closeButton.width / 2));
+        this.closeButton.x = stage.stageWidth / 2 - this.closeButton.width / 2;
         this.closeButton.y = ScreenConstants.CENTER_BUTTON_Y_POS;
     }
 

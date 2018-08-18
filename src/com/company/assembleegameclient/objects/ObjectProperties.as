@@ -55,11 +55,11 @@ public class ObjectProperties {
         if (_arg_1.hasOwnProperty("DisplayId")) {
             this.displayId_ = _arg_1.DisplayId;
         }
-        this.shadowSize_ = ((_arg_1.hasOwnProperty("ShadowSize")) ? _arg_1.ShadowSize : 100);
+        this.shadowSize_ = _arg_1.hasOwnProperty("ShadowSize") ? _arg_1.ShadowSize : 100;
         this.isPlayer_ = _arg_1.hasOwnProperty("Player");
         this.isEnemy_ = _arg_1.hasOwnProperty("Enemy");
         this.drawOnGround_ = _arg_1.hasOwnProperty("DrawOnGround");
-        if (((this.drawOnGround_) || (_arg_1.hasOwnProperty("DrawUnder")))) {
+        if (this.drawOnGround_ || _arg_1.hasOwnProperty("DrawUnder")) {
             this.drawUnder_ = true;
         }
         this.occupySquare_ = _arg_1.hasOwnProperty("OccupySquare");
@@ -92,13 +92,13 @@ public class ObjectProperties {
                 this.sizeStep_ = _arg_1.SizeStep;
             }
         }
-        this.oldSound_ = ((_arg_1.hasOwnProperty("OldSound")) ? String(_arg_1.OldSound) : null);
+        this.oldSound_ = _arg_1.hasOwnProperty("OldSound") ? String(_arg_1.OldSound) : null;
         for each (_local_2 in _arg_1.Projectile) {
             _local_4 = int(_local_2.@id);
             this.projectiles_[_local_4] = new ProjectileProperties(_local_2);
         }
-        this.angleCorrection_ = ((_arg_1.hasOwnProperty("AngleCorrection")) ? ((Number(_arg_1.AngleCorrection) * Math.PI) / 4) : 0);
-        this.rotation_ = ((_arg_1.hasOwnProperty("Rotation")) ? _arg_1.Rotation : 0);
+        this.angleCorrection_ = _arg_1.hasOwnProperty("AngleCorrection") ? (Number(_arg_1.AngleCorrection) * Math.PI) / 4 : 0;
+        this.rotation_ = _arg_1.hasOwnProperty("Rotation") ? _arg_1.Rotation : 0;
         if (_arg_1.hasOwnProperty("BloodProb")) {
             this.bloodProb_ = Number(_arg_1.BloodProb);
         }
@@ -134,10 +134,10 @@ public class ObjectProperties {
 
     public function getSize():int {
         if (this.minSize_ == this.maxSize_) {
-            return (this.minSize_);
+            return this.minSize_;
         }
-        var _local_1:int = ((this.maxSize_ - this.minSize_) / this.sizeStep_);
-        return ((this.minSize_ + (int((Math.random() * _local_1)) * this.sizeStep_)));
+        var _local_1:int = (this.maxSize_ - this.minSize_) / this.sizeStep_;
+        return this.minSize_ + int(Math.random() * _local_1) * this.sizeStep_;
     }
 
 

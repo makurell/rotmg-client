@@ -17,7 +17,7 @@ public class AlreadyBoughtPackageCommand {
     }
 
     private function makeDialog():PackageInfoDialog {
-        return (new PackageInfoDialog().setTitle(DIALOG_TITLE).setBody(MESSAGE_TITLE, MESSAGE_BODY));
+        return new PackageInfoDialog().setTitle(DIALOG_TITLE).setBody(MESSAGE_TITLE, MESSAGE_BODY);
     }
 
 

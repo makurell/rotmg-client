@@ -36,12 +36,12 @@ public class JitterWatcher extends Sprite {
             this.lastRecord_ = _local_1;
             return;
         }
-        var _local_2:int = (_local_1 - this.lastRecord_);
+        var _local_2:int = _local_1 - this.lastRecord_;
         this.ticks_.push(_local_2);
-        this.sum_ = (this.sum_ + _local_2);
+        this.sum_ = this.sum_ + _local_2;
         if (this.ticks_.length > 50) {
             _local_3 = this.ticks_.shift();
-            this.sum_ = (this.sum_ - _local_3);
+            this.sum_ = this.sum_ - _local_3;
         }
         this.lastRecord_ = _local_1;
     }
@@ -62,14 +62,14 @@ public class JitterWatcher extends Sprite {
         var _local_4:int;
         var _local_1:int = this.ticks_.length;
         if (_local_1 == 0) {
-            return (0);
+            return 0;
         }
-        var _local_2:Number = (this.sum_ / _local_1);
+        var _local_2:Number = this.sum_ / _local_1;
         var _local_3:Number = 0;
         for each (_local_4 in this.ticks_) {
-            _local_3 = (_local_3 + ((_local_4 - _local_2) * (_local_4 - _local_2)));
+            _local_3 = _local_3 + (_local_4 - _local_2) * (_local_4 - _local_2);
         }
-        return (Math.sqrt((_local_3 / _local_1)));
+        return Math.sqrt(_local_3 / _local_1);
     }
 
 

@@ -23,11 +23,11 @@ public class ConfigurePaymentsWindowCommand {
     }
 
     private function getPaymentsCommandClass():Class {
-        return (((this.useExternalPaymentsWindow()) ? ExternalOpenMoneyWindowCommand : InternalOpenMoneyWindowCommand));
+        return this.useExternalPaymentsWindow() ? ExternalOpenMoneyWindowCommand : InternalOpenMoneyWindowCommand;
     }
 
     private function useExternalPaymentsWindow():Boolean {
-        return ((((((((this.account is KabamAccount)) || ((this.account is WebAccount)))) && ((this.data["UseExternalPayments"] == null)))) || (Boolean(int(this.data["UseExternalPayments"])))));
+        return ((this.account is KabamAccount) || (this.account is WebAccount)) && this.data["UseExternalPayments"] == null || Boolean(int(this.data["UseExternalPayments"]));
     }
 
 

@@ -10,11 +10,11 @@ public class SimpleFameVO implements FameVO {
     }
 
     public function getAccountId():String {
-        return (this.accountId);
+        return this.accountId;
     }
 
     public function getCharacterId():int {
-        return (this.characterId);
+        return this.characterId;
     }
 
 

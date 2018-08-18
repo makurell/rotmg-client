@@ -82,8 +82,7 @@ public class BaseSimpleText extends TextField {
         this.text = _arg_1;
     }
 
-    public function setMultiLine(_arg_1:Boolean):void
-    {
+    public function setMultiLine(_arg_1:Boolean):void {
         multiline = _arg_1;
         wordWrap = _arg_1;
     }
@@ -106,21 +105,21 @@ public class BaseSimpleText extends TextField {
         var _local_1:int;
         while (_local_1 < numLines) {
             _local_2 = getLineMetrics(_local_1);
-            _local_3 = (_local_2.width + 4);
-            _local_4 = (_local_2.height + 4);
+            _local_3 = _local_2.width + 4;
+            _local_4 = _local_2.height + 4;
             if (_local_3 > this.actualWidth_) {
                 this.actualWidth_ = _local_3;
             }
-            this.actualHeight_ = (this.actualHeight_ + _local_4);
+            this.actualHeight_ = this.actualHeight_ + _local_4;
             _local_1++;
         }
-        width = (((this.inputWidth_) == 0) ? this.actualWidth_ : this.inputWidth_);
-        height = (((this.inputHeight_) == 0) ? this.actualHeight_ : this.inputHeight_);
+        width = this.inputWidth_ == 0 ? this.actualWidth_ : this.inputWidth_;
+        height = this.inputHeight_ == 0 ? this.actualHeight_ : this.inputHeight_;
     }
 
     public function useTextDimensions():void {
-        width = (((this.inputWidth_) == 0) ? (textWidth + 4) : this.inputWidth_);
-        height = (((this.inputHeight_) == 0) ? (textHeight + 4) : this.inputHeight_);
+        width = this.inputWidth_ == 0 ? textWidth + 4 : this.inputWidth_;
+        height = this.inputHeight_ == 0 ? textHeight + 4 : this.inputHeight_;
     }
 
 

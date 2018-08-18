@@ -39,7 +39,7 @@ public class PetSkinGroupMediator extends Mediator {
         var _local_2:PetVO = this.petFormModel.getSelectedPet();
         var _local_3:PetRarityEnum = PetRarityEnum.selectByValue(_local_2.getRarity());
         var _local_4:int = _local_3.ordinal;
-        return ((_arg_1.ordinal > _local_4));
+        return _arg_1.ordinal > _local_4;
     }
 
 

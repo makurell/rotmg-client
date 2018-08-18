@@ -73,7 +73,7 @@ public class WebLoginDialogForced extends Frame {
 
     private function onSignInSub():void {
         var _local_1:AccountData;
-        if (((this.isEmailValid()) && (this.isPasswordValid()))) {
+        if (this.isEmailValid() && this.isPasswordValid()) {
             _local_1 = new AccountData();
             _local_1.username = this.email.text();
             _local_1.password = this.password.text();
@@ -82,19 +82,19 @@ public class WebLoginDialogForced extends Frame {
     }
 
     private function isPasswordValid():Boolean {
-        var _local_1 = !((this.password.text() == ""));
+        var _local_1 = !(this.password.text() == "");
         if (!_local_1) {
             this.password.setError(TextKey.WEB_LOGIN_DIALOG_PASSWORD_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isEmailValid():Boolean {
-        var _local_1 = !((this.email.text() == ""));
+        var _local_1 = !(this.email.text() == "");
         if (!_local_1) {
             this.email.setError(TextKey.WEBLOGINDIALOG_EMAIL_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function setError(_arg_1:String):void {
@@ -113,7 +113,7 @@ public class WebLoginDialogForced extends Frame {
         _local_4.filters = [new DropShadowFilter(0, 0, 0)];
         _local_4.x = _arg_2;
         _local_4.y = _arg_3;
-        return (_local_4);
+        return _local_4;
     }
 
 

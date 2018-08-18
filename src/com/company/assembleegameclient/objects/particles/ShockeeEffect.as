@@ -19,11 +19,11 @@ public class ShockeeEffect extends ParticleEffect {
         var _local_3:Timer = new Timer(50, 12);
         _local_3.addEventListener(TimerEvent.TIMER, this.onTimer);
         _local_3.start();
-        return (false);
+        return false;
     }
 
     private function onTimer(_arg_1:TimerEvent):void {
-        this.isShocked = !(this.isShocked);
+        this.isShocked = !this.isShocked;
         this.go.toggleShockEffect(this.isShocked);
     }
 

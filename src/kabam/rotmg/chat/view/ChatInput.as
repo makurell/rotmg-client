@@ -25,10 +25,10 @@ public class ChatInput extends Sprite {
     }
 
     public function setup(_arg_1:ChatModel, _arg_2:TextField):void {
-        addChild((this.input = _arg_2));
-        _arg_2.width = (_arg_1.bounds.width - 2);
+        addChild(this.input = _arg_2);
+        _arg_2.width = _arg_1.bounds.width - 2;
         _arg_2.height = _arg_1.lineHeight;
-        _arg_2.y = (_arg_1.bounds.height - _arg_1.lineHeight);
+        _arg_2.y = _arg_1.bounds.height - _arg_1.lineHeight;
     }
 
     public function activate(_arg_1:String, _arg_2:Boolean):void {
@@ -36,7 +36,7 @@ public class ChatInput extends Sprite {
         if (_arg_1 != null) {
             this.input.text = _arg_1;
         }
-        var _local_3:int = ((_arg_1) ? _arg_1.length : 0);
+        var _local_3:int = _arg_1 ? _arg_1.length : 0;
         this.input.setSelection(_local_3, _local_3);
         if (_arg_2) {
             this.activateEnabled();
@@ -52,11 +52,11 @@ public class ChatInput extends Sprite {
         removeEventListener(KeyboardEvent.KEY_UP, this.onKeyUp);
         stage.removeEventListener(KeyboardEvent.KEY_UP, this.onTextChange);
         visible = false;
-        ((stage) && ((stage.focus = null)));
+        stage && (stage.focus = null);
     }
 
     public function hasEnteredText():Boolean {
-        return (this.enteredText);
+        return this.enteredText;
     }
 
     private function activateEnabled():void {
@@ -69,7 +69,7 @@ public class ChatInput extends Sprite {
         this.input.filters = [new GlowFilter(0, 1, 3, 3, 2, 1)];
         addEventListener(KeyboardEvent.KEY_UP, this.onKeyUp);
         stage.addEventListener(KeyboardEvent.KEY_UP, this.onTextChange);
-        ((stage) && ((stage.focus = this.input)));
+        stage && (stage.focus = this.input);
     }
 
     private function onTextChange(_arg_1:Event):void {

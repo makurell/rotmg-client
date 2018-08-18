@@ -22,7 +22,7 @@ public class BuyCharacterRect extends CharacterRect {
         this.model = _arg_1;
         super.color = 0x1F1F1F;
         super.overColor = 0x424242;
-        className = new LineBuilder().setParams(BUY_CHARACTER_RECT_CLASS_NAME_TEXT, {"nth": (_arg_1.getMaxCharacters() + 1)});
+        className = new LineBuilder().setParams(BUY_CHARACTER_RECT_CLASS_NAME_TEXT, {"nth": _arg_1.getMaxCharacters() + 1});
         super.init();
         this.makeIcon();
         this.makeTagline();
@@ -34,8 +34,8 @@ public class BuyCharacterRect extends CharacterRect {
         var _local_2:Bitmap;
         var _local_1:BitmapData = IconFactory.makeCoin();
         _local_2 = new Bitmap(_local_1);
-        _local_2.x = (WIDTH - 43);
-        _local_2.y = (((HEIGHT - _local_2.height) * 0.5) - 1);
+        _local_2.x = WIDTH - 43;
+        _local_2.y = (HEIGHT - _local_2.height) * 0.5 - 1;
         selectContainer.addChild(_local_2);
     }
 
@@ -44,13 +44,13 @@ public class BuyCharacterRect extends CharacterRect {
         _local_1 = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setAutoSize(TextFieldAutoSize.RIGHT);
         _local_1.setStringBuilder(new StaticStringBuilder(this.model.getNextCharSlotPrice().toString()));
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        _local_1.x = (WIDTH - 43);
+        _local_1.x = WIDTH - 43;
         _local_1.y = 19;
         selectContainer.addChild(_local_1);
     }
 
     private function makeTagline():void {
-        var _local_1:int = (100 - (this.model.getNextCharSlotPrice() / 10));
+        var _local_1:int = 100 - this.model.getNextCharSlotPrice() / 10;
         var _local_2:String = String(_local_1);
         if (_local_1 != 0) {
             makeTaglineText(new LineBuilder().setParams(TextKey.BUY_CHARACTER_RECT_TAGLINE_TEXT, {"percentage": _local_2}));
@@ -60,8 +60,8 @@ public class BuyCharacterRect extends CharacterRect {
     private function makeIcon():void {
         var _local_1:Shape;
         _local_1 = this.buildIcon();
-        _local_1.x = (CharacterRectConstants.ICON_POS_X + 5);
-        _local_1.y = ((HEIGHT - _local_1.height) * 0.5);
+        _local_1.x = CharacterRectConstants.ICON_POS_X + 5;
+        _local_1.y = (HEIGHT - _local_1.height) * 0.5;
         addChild(_local_1);
     }
 
@@ -78,7 +78,7 @@ public class BuyCharacterRect extends CharacterRect {
         _local_1.graphics.beginFill(0x1F1F1F);
         _local_1.graphics.drawRect(17, 11, 4, 16);
         _local_1.graphics.endFill();
-        return (_local_1);
+        return _local_1;
     }
 
 

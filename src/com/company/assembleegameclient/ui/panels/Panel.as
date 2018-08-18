@@ -5,8 +5,8 @@ import flash.display.Sprite;
 
 public class Panel extends Sprite {
 
-    public static const WIDTH:int = (200 - 12);//188
-    public static const HEIGHT:int = (100 - 16);//84
+    public static const WIDTH:int = 200 - 12;//188
+    public static const HEIGHT:int = 100 - 16;//84
 
     public var gs_:AGameSprite;
 

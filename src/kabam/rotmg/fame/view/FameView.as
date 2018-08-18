@@ -43,8 +43,8 @@ public class FameView extends Sprite {
 
     public function FameView() {
         addChild(new ScreenBase());
-        addChild((this.infoContainer = new Sprite()));
-        addChild((this.overlayContainer = new Bitmap()));
+        addChild(this.infoContainer = new Sprite());
+        addChild(this.overlayContainer = new Bitmap());
         this.continueBtn = new TitleMenuOption(TextKey.OPTIONS_CONTINUE_BUTTON, 36, false);
         this.continueBtn.setAutoSize(TextFieldAutoSize.CENTER);
         this.continueBtn.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
@@ -84,7 +84,7 @@ public class FameView extends Sprite {
             "level": _arg_2,
             "type": _local_4
         }));
-        this.title.x = (stage.stageWidth / 2);
+        this.title.x = stage.stageWidth / 2;
         this.title.y = 225;
         this.infoContainer.addChild(this.title);
     }
@@ -104,7 +104,7 @@ public class FameView extends Sprite {
             _local_3.setParams(TextKey.DEATH_INFO_SHORT, {"date": this.date});
         }
         this.date.setStringBuilder(_local_3);
-        this.date.x = (stage.stageWidth / 2);
+        this.date.x = stage.stageWidth / 2;
         this.date.y = 272;
         this.infoContainer.addChild(this.date);
     }
@@ -117,11 +117,11 @@ public class FameView extends Sprite {
         _local_3.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
         _local_2.addChild(_local_3);
         _local_4 = new Bitmap(_arg_1);
-        _local_4.x = ((_local_2.width / 2) - (_local_4.width / 2));
-        _local_4.y = ((_local_2.height / 2) - (_local_4.height / 2));
+        _local_4.x = _local_2.width / 2 - _local_4.width / 2;
+        _local_4.y = _local_2.height / 2 - _local_4.height / 2;
         _local_2.addChild(_local_4);
         _local_2.y = 20;
-        _local_2.x = ((stage.stageWidth / 2) - (_local_2.width / 2));
+        _local_2.x = stage.stageWidth / 2 - _local_2.width / 2;
         this.infoContainer.addChild(_local_2);
     }
 
@@ -132,20 +132,20 @@ public class FameView extends Sprite {
         addChild(this.scoringBox);
         this.infoContainer.addChild(this.scoringBox);
         var _local_3:BitmapData = FameUtil.getFameIcon();
-        _local_3 = BitmapUtil.cropToBitmapData(_local_3, 6, 6, (_local_3.width - 12), (_local_3.height - 12));
+        _local_3 = BitmapUtil.cropToBitmapData(_local_3, 6, 6, _local_3.width - 12, _local_3.height - 12);
         this.finalLine = new ScoreTextLine(24, 0xCCCCCC, 0xFFC800, TextKey.FAMEVIEW_TOTAL_FAME_EARNED, null, 0, _arg_1, "", "", new Bitmap(_local_3));
         this.finalLine.x = 10;
         this.finalLine.y = 470;
         this.infoContainer.addChild(this.finalLine);
         this.isDataPopulated = true;
-        if (((!(this.isAnimation)) || (this.isFadeComplete))) {
+        if (!this.isAnimation || this.isFadeComplete) {
             this.makeContinueButton();
         }
     }
 
     private function makeContinueButton():void {
         this.infoContainer.addChild(new ScreenGraphic());
-        this.continueBtn.x = (stage.stageWidth / 2);
+        this.continueBtn.x = stage.stageWidth / 2;
         this.continueBtn.y = 550;
         this.infoContainer.addChild(this.continueBtn);
         if (this.isAnimation) {

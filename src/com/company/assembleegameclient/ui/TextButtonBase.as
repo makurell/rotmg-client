@@ -25,7 +25,7 @@ public class TextButtonBase extends BackgroundFilledText {
             return;
         }
         mouseEnabled = _arg_1;
-        graphicsData_[0] = ((_arg_1) ? enabledFill_ : disabledFill_);
+        graphicsData_[0] = _arg_1 ? enabledFill_ : disabledFill_;
         this.draw();
     }
 

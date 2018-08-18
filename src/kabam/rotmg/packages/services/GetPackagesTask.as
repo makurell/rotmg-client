@@ -12,7 +12,7 @@ import robotlegs.bender.framework.api.ILogger;
 
 public class GetPackagesTask extends BaseTask {
 
-    private static const HOUR:int = ((1000 * 60) * 60);//3600000
+    private static const HOUR:int = 1000 * 60 * 60;//3600000
 
     public var timer:Timer;
     [Inject]
@@ -65,7 +65,7 @@ public class GetPackagesTask extends BaseTask {
 
     private function hasNoPackage(_arg_1:*):Boolean {
         var _local_2:XMLList = XML(_arg_1).Packages;
-        return ((_local_2.length() == 0));
+        return _local_2.length() == 0;
     }
 
     private function parse(_arg_1:XML):void {
@@ -108,7 +108,7 @@ public class GetPackagesTask extends BaseTask {
                 numPurchased = int(packageHistory.Count);
             }
         }
-        return (numPurchased);
+        return numPurchased;
     }
 
     private function timer_timerHandler(_arg_1:TimerEvent):void {

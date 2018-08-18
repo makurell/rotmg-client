@@ -16,25 +16,25 @@ public class StageProxy implements IEventDispatcher {
     }
 
     public function getStage():DisplayObjectContainer {
-        return (this.reference.stage);
+        return this.reference.stage;
     }
 
     public function getStageWidth():Number {
         if (this.reference.stage != null) {
-            return (this.reference.stage.stageWidth);
+            return this.reference.stage.stageWidth;
         }
-        return (800);
+        return 800;
     }
 
     public function getStageHeight():Number {
         if (this.reference.stage != null) {
-            return (this.reference.stage.stageHeight);
+            return this.reference.stage.stageHeight;
         }
-        return (600);
+        return 600;
     }
 
     public function getFocus():InteractiveObject {
-        return (this.reference.stage.focus);
+        return this.reference.stage.focus;
     }
 
     public function setFocus(_arg_1:InteractiveObject):void {
@@ -50,19 +50,19 @@ public class StageProxy implements IEventDispatcher {
     }
 
     public function dispatchEvent(_arg_1:Event):Boolean {
-        return (this.reference.stage.dispatchEvent(_arg_1));
+        return this.reference.stage.dispatchEvent(_arg_1);
     }
 
     public function hasEventListener(_arg_1:String):Boolean {
-        return (this.reference.stage.hasEventListener(_arg_1));
+        return this.reference.stage.hasEventListener(_arg_1);
     }
 
     public function willTrigger(_arg_1:String):Boolean {
-        return (this.reference.stage.willTrigger(_arg_1));
+        return this.reference.stage.willTrigger(_arg_1);
     }
 
     public function getQuality():String {
-        return (this.reference.stage.quality);
+        return this.reference.stage.quality;
     }
 
     public function setQuality(_arg_1:String):void {
@@ -73,7 +73,7 @@ public class StageProxy implements IEventDispatcher {
         if (stage3D == null) {
             stage3D = new Stage3DProxy(this.reference.stage.stage3Ds[_arg_1]);
         }
-        return (stage3D);
+        return stage3D;
     }
 
 

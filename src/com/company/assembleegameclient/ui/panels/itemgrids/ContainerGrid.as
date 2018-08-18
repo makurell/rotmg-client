@@ -15,7 +15,7 @@ public class ContainerGrid extends ItemGrid {
         this.tiles = new Vector.<InteractiveItemTile>(this.NUM_SLOTS);
         var _local_3:int;
         while (_local_3 < this.NUM_SLOTS) {
-            _local_4 = new InteractiveItemTile((_local_3 + indexOffset), this, interactive);
+            _local_4 = new InteractiveItemTile(_local_3 + indexOffset, this, interactive);
             addToGrid(_local_4, 2, _local_3);
             this.tiles[_local_3] = _local_4;
             _local_3++;
@@ -31,7 +31,7 @@ public class ContainerGrid extends ItemGrid {
             _local_4 = _arg_1.length;
             _local_5 = 0;
             while (_local_5 < this.NUM_SLOTS) {
-                if ((_local_5 + indexOffset) < _local_4) {
+                if (_local_5 + indexOffset < _local_4) {
                     if (this.tiles[_local_5].setItem(_arg_1[(_local_5 + indexOffset)])) {
                         _local_3 = true;
                     }

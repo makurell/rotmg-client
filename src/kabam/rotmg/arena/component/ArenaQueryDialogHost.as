@@ -17,14 +17,14 @@ public class ArenaQueryDialogHost extends Sprite {
         _local_1 = new HostQuerySpeechBubble(HostQueryDialog.QUERY);
         _local_1.x = 60;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeDetailBubble():HostQueryDetailBubble {
         var _local_1:HostQueryDetailBubble;
         _local_1 = new HostQueryDetailBubble();
         _local_1.y = 60;
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeHostIcon():Bitmap {
@@ -32,11 +32,11 @@ public class ArenaQueryDialogHost extends Sprite {
         _local_1.x = 0;
         _local_1.y = 0;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeDebugBitmapData():BitmapData {
-        return (new BitmapData(42, 42, true, 0xFF00FF00));
+        return new BitmapData(42, 42, true, 0xFF00FF00);
     }
 
     public function showDetail(_arg_1:String):void {

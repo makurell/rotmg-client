@@ -59,8 +59,8 @@ public class RequestCharacterFameTask extends BaseTask {
     private function getDataPacket():Object {
         var _local_1:Object = {};
         _local_1.accountId = this.accountId;
-        _local_1.charId = (((this.accountId == "")) ? -1 : this.charId);
-        return (_local_1);
+        _local_1.charId = this.accountId == "" ? -1 : this.charId;
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
@@ -87,22 +87,22 @@ public class RequestCharacterFameTask extends BaseTask {
         this.level = charXml.Level;
         this.type = charXml.ObjectType;
         this.deathDate = this.getDeathDate();
-        this.killer = ((this.xml.KilledBy) || (""));
+        this.killer = this.xml.KilledBy || "";
         this.totalFame = this.xml.TotalFame;
         char = this.classes.getCharacterClass(charXml.ObjectType);
-        skin = ((charXml.hasOwnProperty("Texture")) ? char.skins.getSkin(charXml.Texture) : char.skins.getDefaultSkin());
+        skin = charXml.hasOwnProperty("Texture") ? char.skins.getSkin(charXml.Texture) : char.skins.getDefaultSkin();
         this.template = skin.template;
-        this.texture1 = ((charXml.hasOwnProperty("Tex1")) ? charXml.Tex1 : 0);
-        this.texture2 = ((charXml.hasOwnProperty("Tex2")) ? charXml.Tex2 : 0);
+        this.texture1 = charXml.hasOwnProperty("Tex1") ? charXml.Tex1 : 0;
+        this.texture2 = charXml.hasOwnProperty("Tex2") ? charXml.Tex2 : 0;
         this.size = skin.is16x16 ? 140 : 250;
     }
 
     private function getDeathDate():String {
-        var _local_1:Number = (Number(this.xml.CreatedOn) * 1000);
+        var _local_1:Number = Number(this.xml.CreatedOn) * 1000;
         var _local_2:Date = new Date(_local_1);
         var _local_3:DateFormatterReplacement = new DateFormatterReplacement();
         _local_3.formatString = "MMMM D, YYYY";
-        return (_local_3.format(_local_2));
+        return _local_3.format(_local_2);
     }
 
     private function onFameError(_arg_1:String):void {

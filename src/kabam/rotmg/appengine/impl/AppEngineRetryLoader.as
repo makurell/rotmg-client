@@ -34,11 +34,11 @@ public class AppEngineRetryLoader implements RetryLoader {
     }
 
     public function get complete():OnceSignal {
-        return (this._complete);
+        return this._complete;
     }
 
     public function isInProgress():Boolean {
-        return (this.inProgress);
+        return this.inProgress;
     }
 
     public function setDataFormat(_arg_1:String):void {
@@ -68,7 +68,7 @@ public class AppEngineRetryLoader implements RetryLoader {
         var _local_1:URLRequest = new URLRequest(this.url);
         _local_1.method = URLRequestMethod.POST;
         _local_1.data = this.makeUrlVariables();
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeUrlVariables():URLVariables {
@@ -78,7 +78,7 @@ public class AppEngineRetryLoader implements RetryLoader {
         for (_local_2 in this.params) {
             _local_1[_local_2] = this.params[_local_2];
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeUrlLoader():URLLoader {
@@ -87,7 +87,7 @@ public class AppEngineRetryLoader implements RetryLoader {
         _local_1.addEventListener(IOErrorEvent.IO_ERROR, this.onIOError);
         _local_1.addEventListener(SecurityErrorEvent.SECURITY_ERROR, this.onSecurityError);
         _local_1.addEventListener(Event.COMPLETE, this.onComplete);
-        return (_local_1);
+        return _local_1;
     }
 
     private function onIOError(_arg_1:IOErrorEvent):void {
@@ -138,7 +138,7 @@ public class AppEngineRetryLoader implements RetryLoader {
     }
 
     private function cleanUpAndComplete(_arg_1:Boolean, _arg_2:*):void {
-        if (((!(_arg_1)) && ((_arg_2 is String)))) {
+        if (!_arg_1 && (_arg_2 is String)) {
             _arg_2 = this.parseXML(_arg_2);
         }
         this.cancelPendingRequest();
@@ -147,7 +147,7 @@ public class AppEngineRetryLoader implements RetryLoader {
 
     private function parseXML(_arg_1:String):String {
         var _local_2:Array = _arg_1.match("<.*>(.*)</.*>");
-        return (((((_local_2) && ((_local_2.length > 1)))) ? _local_2[1] : _arg_1));
+        return _local_2 && _local_2.length > 1 ? _local_2[1] : _arg_1;
     }
 
     private function cancelPendingRequest():void {

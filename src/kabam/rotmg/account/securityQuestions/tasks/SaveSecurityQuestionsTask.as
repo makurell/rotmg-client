@@ -15,22 +15,19 @@ public class SaveSecurityQuestionsTask extends BaseTask {
     [Inject]
     public var client:AppEngineClient;
 
-    override protected function startTask():void
-    {
+    override protected function startTask():void {
         this.client.complete.addOnce(this.onComplete);
         this.client.sendRequest("/account/saveSecurityQuestions", this.makeDataPacket());
     }
 
-    private function makeDataPacket():Object
-    {
+    private function makeDataPacket():Object {
         var _local_1:Object = {};
         _local_1.answers = this.data.answers.join("|");
         MoreObjectUtil.addToObject(_local_1, this.account.getCredentials());
         return _local_1;
     }
 
-    private function onComplete(_arg_1:Boolean, _arg_2:String):void
-    {
+    private function onComplete(_arg_1:Boolean, _arg_2:String):void {
         _arg_1 = _arg_1 || _arg_2 == "<Success/>";
         completeTask(_arg_1, _arg_2);
     }

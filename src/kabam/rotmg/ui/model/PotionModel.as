@@ -28,13 +28,13 @@ public class PotionModel {
 
     public function set costs(_arg_1:Array):void {
         this._costs = _arg_1;
-        if (((!((_arg_1 == null))) && ((_arg_1.length > 0)))) {
+        if (!(_arg_1 == null) && _arg_1.length > 0) {
             this.costIndex = 0;
         }
     }
 
     public function get costs():Array {
-        return (this._costs);
+        return this._costs;
     }
 
     public function set priceCooldownMillis(_arg_1:uint):void {
@@ -58,7 +58,7 @@ public class PotionModel {
             this.purchaseCoolDownTimer.reset();
             this.purchaseCoolDownTimer.start();
             this.available = false;
-            if (this.costIndex < (this.costs.length - 1)) {
+            if (this.costIndex < this.costs.length - 1) {
                 this.costIndex++;
             }
             this.update.dispatch(this.position);
@@ -86,7 +86,7 @@ public class PotionModel {
         if (_arg_1 <= 0) {
             _local_2 = this.costs[this.costIndex];
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

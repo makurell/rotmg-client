@@ -28,7 +28,7 @@ public class OfferRadioButtons extends Sprite {
     }
 
     public function getChoice():OfferRadioButton {
-        return ((this.group.getSelected() as OfferRadioButton));
+        return this.group.getSelected() as OfferRadioButton;
     }
 
     private function makeGoldChoices():void {
@@ -45,11 +45,11 @@ public class OfferRadioButtons extends Sprite {
         var _local_2:OfferRadioButton = new OfferRadioButton(_arg_1, this.config);
         _local_2.addEventListener(MouseEvent.CLICK, this.onSelected);
         addChild(_local_2);
-        return (_local_2);
+        return _local_2;
     }
 
     private function onSelected(_arg_1:MouseEvent):void {
-        var _local_2:Selectable = (_arg_1.currentTarget as Selectable);
+        var _local_2:Selectable = _arg_1.currentTarget as Selectable;
         this.group.setSelected(_local_2.getValue());
     }
 
@@ -68,7 +68,7 @@ public class OfferRadioButtons extends Sprite {
             _local_2[_local_3] = this.choices[_local_3];
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeSelectionGroup():void {
@@ -85,7 +85,7 @@ public class OfferRadioButtons extends Sprite {
             _local_2[_local_3] = this.choices[_local_3];
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public function showBonuses(_arg_1:Boolean):void {

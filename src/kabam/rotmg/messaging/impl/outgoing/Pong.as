@@ -16,7 +16,7 @@ public class Pong extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("PONG", "serial_", "time_"));
+        return formatToString("PONG", "serial_", "time_");
     }
 
 

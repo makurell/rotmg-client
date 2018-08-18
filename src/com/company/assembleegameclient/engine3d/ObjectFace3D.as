@@ -46,11 +46,11 @@ public class ObjectFace3D {
         var _local_4:Vector.<int> = new Vector.<int>();
         var _local_5:int;
         while (_local_5 < this.indices_.length) {
-            _local_4.push((((_local_5 == 0)) ? GraphicsPathCommand.MOVE_TO : GraphicsPathCommand.LINE_TO));
+            _local_4.push(_local_5 == 0 ? GraphicsPathCommand.MOVE_TO : GraphicsPathCommand.LINE_TO);
             _local_5++;
         }
         var _local_6:Vector.<Number> = new Vector.<Number>();
-        _local_6.length = (this.indices_.length * 2);
+        _local_6.length = this.indices_.length * 2;
         this.path_ = new GraphicsPath(_local_4, _local_6);
     }
 
@@ -72,23 +72,23 @@ public class ObjectFace3D {
 
     public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:uint, _arg_3:BitmapData):void {
         var _local_13:int;
-        var _local_4:int = (this.indices_[0] * 2);
-        var _local_5:int = (this.indices_[1] * 2);
-        var _local_6:int = (this.indices_[(this.indices_.length - 1)] * 2);
+        var _local_4:int = this.indices_[0] * 2;
+        var _local_5:int = this.indices_[1] * 2;
+        var _local_6:int = this.indices_[(this.indices_.length - 1)] * 2;
         var _local_7:Vector.<Number> = this.obj_.vS_;
-        var _local_8:Number = (_local_7[_local_5] - _local_7[_local_4]);
-        var _local_9:Number = (_local_7[(_local_5 + 1)] - _local_7[(_local_4 + 1)]);
-        var _local_10:Number = (_local_7[_local_6] - _local_7[_local_4]);
-        var _local_11:Number = (_local_7[(_local_6 + 1)] - _local_7[(_local_4 + 1)]);
-        if (((_local_8 * _local_11) - (_local_9 * _local_10)) < 0) {
+        var _local_8:Number = _local_7[_local_5] - _local_7[_local_4];
+        var _local_9:Number = _local_7[(_local_5 + 1)] - _local_7[(_local_4 + 1)];
+        var _local_10:Number = _local_7[_local_6] - _local_7[_local_4];
+        var _local_11:Number = _local_7[(_local_6 + 1)] - _local_7[(_local_4 + 1)];
+        if (_local_8 * _local_11 - _local_9 * _local_10 < 0) {
             return;
         }
-        if (((!(Parameters.data_.GPURender)) && (((!(this.useTexture_)) || ((_arg_3 == null)))))) {
+        if (!Parameters.data_.GPURender && (!this.useTexture_ || _arg_3 == null)) {
             this.solidFill_.color = MoreColorUtil.transformColor(new ColorTransform(this.shade_, this.shade_, this.shade_), _arg_2);
             _arg_1.push(this.solidFill_);
         }
         else {
-            if ((((_arg_3 == null)) && (Parameters.data_.GPURender))) {
+            if (_arg_3 == null && Parameters.data_.GPURender) {
                 _arg_3 = blackBitmap;
             }
             else {
@@ -107,37 +107,37 @@ public class ObjectFace3D {
         }
         _arg_1.push(this.path_);
         _arg_1.push(GraphicsUtil.END_FILL);
-        if (((((this.softwareException_) && (Parameters.isGpuRender()))) && (!((this.bitmapFill_ == null))))) {
+        if (this.softwareException_ && Parameters.isGpuRender() && !(this.bitmapFill_ == null)) {
             GraphicsFillExtra.setSoftwareDraw(this.bitmapFill_, true);
         }
     }
 
     private function tToS(_arg_1:BitmapData):Matrix {
         var _local_2:Vector.<Number> = this.obj_.uvts_;
-        var _local_3:int = (this.indices_[0] * 3);
-        var _local_4:int = (this.indices_[1] * 3);
-        var _local_5:int = (this.indices_[(this.indices_.length - 1)] * 3);
-        var _local_6:Number = (_local_2[_local_3] * _arg_1.width);
-        var _local_7:Number = (_local_2[(_local_3 + 1)] * _arg_1.height);
-        this.tToS_.a = ((_local_2[_local_4] * _arg_1.width) - _local_6);
-        this.tToS_.b = ((_local_2[(_local_4 + 1)] * _arg_1.height) - _local_7);
-        this.tToS_.c = ((_local_2[_local_5] * _arg_1.width) - _local_6);
-        this.tToS_.d = ((_local_2[(_local_5 + 1)] * _arg_1.height) - _local_7);
+        var _local_3:int = this.indices_[0] * 3;
+        var _local_4:int = this.indices_[1] * 3;
+        var _local_5:int = this.indices_[(this.indices_.length - 1)] * 3;
+        var _local_6:Number = _local_2[_local_3] * _arg_1.width;
+        var _local_7:Number = _local_2[(_local_3 + 1)] * _arg_1.height;
+        this.tToS_.a = _local_2[_local_4] * _arg_1.width - _local_6;
+        this.tToS_.b = _local_2[(_local_4 + 1)] * _arg_1.height - _local_7;
+        this.tToS_.c = _local_2[_local_5] * _arg_1.width - _local_6;
+        this.tToS_.d = _local_2[(_local_5 + 1)] * _arg_1.height - _local_7;
         this.tToS_.tx = _local_6;
         this.tToS_.ty = _local_7;
         this.tToS_.invert();
-        _local_3 = (this.indices_[0] * 2);
-        _local_4 = (this.indices_[1] * 2);
-        _local_5 = (this.indices_[(this.indices_.length - 1)] * 2);
+        _local_3 = this.indices_[0] * 2;
+        _local_4 = this.indices_[1] * 2;
+        _local_5 = this.indices_[(this.indices_.length - 1)] * 2;
         var _local_8:Vector.<Number> = this.obj_.vS_;
-        this.tempMatrix_.a = (_local_8[_local_4] - _local_8[_local_3]);
-        this.tempMatrix_.b = (_local_8[(_local_4 + 1)] - _local_8[(_local_3 + 1)]);
-        this.tempMatrix_.c = (_local_8[_local_5] - _local_8[_local_3]);
-        this.tempMatrix_.d = (_local_8[(_local_5 + 1)] - _local_8[(_local_3 + 1)]);
+        this.tempMatrix_.a = _local_8[_local_4] - _local_8[_local_3];
+        this.tempMatrix_.b = _local_8[(_local_4 + 1)] - _local_8[(_local_3 + 1)];
+        this.tempMatrix_.c = _local_8[_local_5] - _local_8[_local_3];
+        this.tempMatrix_.d = _local_8[(_local_5 + 1)] - _local_8[(_local_3 + 1)];
         this.tempMatrix_.tx = _local_8[_local_3];
         this.tempMatrix_.ty = _local_8[(_local_3 + 1)];
         this.tToS_.concat(this.tempMatrix_);
-        return (this.tToS_);
+        return this.tToS_;
     }
 
 

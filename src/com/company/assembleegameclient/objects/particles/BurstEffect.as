@@ -28,13 +28,13 @@ public class BurstEffect extends ParticleEffect {
         var _local_5:int = 24;
         var _local_6:int;
         while (_local_6 < _local_5) {
-            _local_7 = (((_local_6 * 2) * Math.PI) / _local_5);
-            _local_8 = new Point((this.center_.x + (_local_3 * Math.cos(_local_7))), (this.center_.y + (_local_3 * Math.sin(_local_7))));
-            _local_9 = new SparkerParticle(_local_4, this.color_, (100 + (Math.random() * 200)), this.center_, _local_8);
+            _local_7 = (_local_6 * 2 * Math.PI) / _local_5;
+            _local_8 = new Point(this.center_.x + _local_3 * Math.cos(_local_7), this.center_.y + _local_3 * Math.sin(_local_7));
+            _local_9 = new SparkerParticle(_local_4, this.color_, 100 + Math.random() * 200, this.center_, _local_8);
             map_.addObj(_local_9, x_, y_);
             _local_6++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
@@ -48,13 +48,13 @@ public class BurstEffect extends ParticleEffect {
         var _local_5:int = 10;
         var _local_6:int;
         while (_local_6 < _local_5) {
-            _local_7 = (((_local_6 * 2) * Math.PI) / _local_5);
-            _local_8 = new Point((this.center_.x + (_local_3 * Math.cos(_local_7))), (this.center_.y + (_local_3 * Math.sin(_local_7))));
-            _local_9 = new SparkerParticle(_local_4, this.color_, (50 + (Math.random() * 20)), this.center_, _local_8);
+            _local_7 = (_local_6 * 2 * Math.PI) / _local_5;
+            _local_8 = new Point(this.center_.x + _local_3 * Math.cos(_local_7), this.center_.y + _local_3 * Math.sin(_local_7));
+            _local_9 = new SparkerParticle(_local_4, this.color_, 50 + Math.random() * 20, this.center_, _local_8);
             map_.addObj(_local_9, x_, y_);
             _local_6++;
         }
-        return (false);
+        return false;
     }
 
 

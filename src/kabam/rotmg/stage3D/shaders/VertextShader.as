@@ -10,12 +10,12 @@ public class VertextShader extends AGALMiniAssembler {
 
     public function VertextShader() {
         var _local_1:AGALMiniAssembler = new AGALMiniAssembler();
-        _local_1.assemble(Context3DProgramType.VERTEX, (("m44 op, va0, vc0\n" + "add vt1, va1, vc4\n") + "mov v0, vt1"));
+        _local_1.assemble(Context3DProgramType.VERTEX, "m44 op, va0, vc0\n" + "add vt1, va1, vc4\n" + "mov v0, vt1");
         this.vertexProgram = _local_1.agalcode;
     }
 
     public function getVertexProgram():ByteArray {
-        return (this.vertexProgram);
+        return this.vertexProgram;
     }
 
 

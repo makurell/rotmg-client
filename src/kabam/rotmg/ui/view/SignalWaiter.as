@@ -19,15 +19,15 @@ public class SignalWaiter {
     public function push(_arg_1:Signal):SignalWaiter {
         this.texts[_arg_1] = true;
         this.listenTo(_arg_1);
-        return (this);
+        return this;
     }
 
-    public function pushArgs(... rest):SignalWaiter {
+    public function pushArgs(...rest):SignalWaiter {
         var _local_2:Signal;
         for each (_local_2 in rest) {
             this.push(_local_2);
         }
-        return (this);
+        return this;
     }
 
     private function listenTo(value:Signal):void {
@@ -46,7 +46,7 @@ public class SignalWaiter {
     }
 
     public function isEmpty():Boolean {
-        return ((DictionaryUtil.getKeys(this.texts).length == 0));
+        return DictionaryUtil.getKeys(this.texts).length == 0;
     }
 
 

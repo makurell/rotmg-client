@@ -13,23 +13,23 @@ public class ClosedVaultChest extends SellableObject {
     }
 
     override public function soldObjectName():String {
-        return (TextKey.VAULT_CHEST);
+        return TextKey.VAULT_CHEST;
     }
 
     override public function soldObjectInternalName():String {
-        return ("Vault Chest");
+        return "Vault Chest";
     }
 
     override public function getTooltip():ToolTip {
-        return (new TextToolTip(0x363636, 0x9B9B9B, this.soldObjectName(), TextKey.VAULT_CHEST_DESCRIPTION, 200));
+        return new TextToolTip(0x363636, 0x9B9B9B, this.soldObjectName(), TextKey.VAULT_CHEST_DESCRIPTION, 200);
     }
 
     override public function getSellableType():int {
-        return (ObjectLibrary.idToType_["Vault Chest"]);
+        return ObjectLibrary.idToType_["Vault Chest"];
     }
 
     override public function getIcon():BitmapData {
-        return (ObjectLibrary.getRedrawnTextureFromType(ObjectLibrary.idToType_["Vault Chest"], 80, true));
+        return ObjectLibrary.getRedrawnTextureFromType(ObjectLibrary.idToType_["Vault Chest"], 80, true);
     }
 
 

@@ -17,7 +17,7 @@ public class ConsoleLogTarget implements ILogTarget {
     }
 
     public function log(_arg_1:Object, _arg_2:uint, _arg_3:int, _arg_4:String, _arg_5:Array = null):void {
-        var _local_6:String = ((((LogLevel.NAME[_arg_2] + " ") + _arg_1) + " ") + this.messageParser.parseMessage(_arg_4, _arg_5));
+        var _local_6:String = LogLevel.NAME[_arg_2] + " " + _arg_1 + " " + this.messageParser.parseMessage(_arg_4, _arg_5);
         this.consoleLog.dispatch(_local_6);
     }
 

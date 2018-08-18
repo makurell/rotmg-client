@@ -36,8 +36,8 @@ public class Offers {
         var _local_4:int = int(_arg_1.RealmGold);
         var _local_5:String = _arg_1.CheckoutJWT;
         var _local_6:String = _arg_1.Data;
-        var _local_7:String = ((_arg_1.hasOwnProperty("Currency")) ? _arg_1.Currency : null);
-        return (new Offer(_local_2, _local_3, _local_4, _local_5, _local_6, _local_7));
+        var _local_7:String = _arg_1.hasOwnProperty("Currency") ? _arg_1.Currency : null;
+        return new Offer(_local_2, _local_3, _local_4, _local_5, _local_6, _local_7);
     }
 
     private function sortOfferList():void {
@@ -54,20 +54,20 @@ public class Offers {
         }
         var _local_1:int = this.offerList[0].realmGold_;
         var _local_2:int = this.offerList[0].price_;
-        var _local_3:Number = (_local_1 / _local_2);
+        var _local_3:Number = _local_1 / _local_2;
         var _local_4:int = 1;
         while (_local_4 < this.offerList.length) {
             _local_5 = this.offerList[_local_4].realmGold_;
             _local_6 = this.offerList[_local_4].price_;
-            _local_7 = (_local_6 * _local_3);
-            _local_8 = (_local_5 - _local_7);
-            this.offerList[_local_4].bonus = (_local_8 / _local_6);
+            _local_7 = _local_6 * _local_3;
+            _local_8 = _local_5 - _local_7;
+            this.offerList[_local_4].bonus = _local_8 / _local_6;
             _local_4++;
         }
     }
 
     private function sortOffers(_arg_1:Offer, _arg_2:Offer):int {
-        return ((_arg_1.price_ - _arg_2.price_));
+        return _arg_1.price_ - _arg_2.price_;
     }
 
     private function defineMostPopularTagline():void {

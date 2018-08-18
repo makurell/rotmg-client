@@ -26,20 +26,20 @@ public class CharacterAnimationFactory {
 
     public function make():Animation {
         this.currentChar = this.playerModel.getCharacterById(this.playerModel.currentCharId);
-        this.characterClass = ((this.currentChar) ? this.getCurrentCharacterClass() : this.getDefaultCharacterClass());
+        this.characterClass = this.currentChar ? this.getCurrentCharacterClass() : this.getDefaultCharacterClass();
         this.skin = this.characterClass.skins.getSelectedSkin();
-        this.tex1 = ((this.currentChar) ? this.currentChar.tex1() : 0);
-        this.tex2 = ((this.currentChar) ? this.currentChar.tex2() : 0);
-        var _local_1:int = (((Parameters.skinTypes16.indexOf(this.skin.id)) != -1) ? 70 : 100);
-        return (this.factory.makeWalkingIcon(this.skin.template, _local_1, this.tex1, this.tex2));
+        this.tex1 = this.currentChar ? this.currentChar.tex1() : 0;
+        this.tex2 = this.currentChar ? this.currentChar.tex2() : 0;
+        var _local_1:int = Parameters.skinTypes16.indexOf(this.skin.id) != -1 ? 70 : 100;
+        return this.factory.makeWalkingIcon(this.skin.template, _local_1, this.tex1, this.tex2);
     }
 
     private function getDefaultCharacterClass():CharacterClass {
-        return (this.classesModel.getSelected());
+        return this.classesModel.getSelected();
     }
 
     private function getCurrentCharacterClass():CharacterClass {
-        return (this.classesModel.getCharacterClass(this.currentChar.objectType()));
+        return this.classesModel.getCharacterClass(this.currentChar.objectType());
     }
 
 

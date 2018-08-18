@@ -67,18 +67,18 @@ public class PetTooltip extends ToolTip {
             _local_3 = this.petVO.abilityList[_local_1];
             _local_4 = new PetAbilityDisplay(_local_3, 174);
             _local_4.x = 8;
-            _local_4.y = (86 + (17 * _local_1));
+            _local_4.y = 86 + 17 * _local_1;
             this.petsContent.addChild(_local_4);
             _local_1++;
         }
     }
 
     private function getNumAbilities():uint {
-        var _local_1:Boolean = (((this.petVO.getRarity() == PetRarityEnum.DIVINE.value)) || ((this.petVO.getRarity() == PetRarityEnum.LEGENDARY.value)));
+        var _local_1:Boolean = this.petVO.getRarity() == PetRarityEnum.DIVINE.value || this.petVO.getRarity() == PetRarityEnum.LEGENDARY.value;
         if (_local_1) {
-            return (2);
+            return 2;
         }
-        return (3);
+        return 3;
     }
 
     private function positionChildren():void {

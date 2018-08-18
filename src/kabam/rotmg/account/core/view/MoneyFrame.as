@@ -46,7 +46,7 @@ public class MoneyFrame extends Sprite {
         this.offers = _arg_1;
         this.config = _arg_2;
         this.frame = new Frame(TITLE, "", "", WIDTH);
-        ((_arg_2.showPaymentMethods()) && (this.addPaymentMethods()));
+        _arg_2.showPaymentMethods() && this.addPaymentMethods();
         this.addOffers();
         this.addBuyNowButton();
         addChild(this.frame);
@@ -75,13 +75,13 @@ public class MoneyFrame extends Sprite {
         for each (_local_2 in PaymentMethod.PAYMENT_METHODS) {
             _local_1.push(_local_2.label_);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function addLine(_arg_1:int, _arg_2:int, _arg_3:int, _arg_4:int):void {
         var _local_5:Shape = new Shape();
         _local_5.graphics.beginFill(_arg_1);
-        _local_5.graphics.drawRect(_arg_4, 0, (_arg_2 - (_arg_4 * 2)), _arg_3);
+        _local_5.graphics.drawRect(_arg_4, 0, _arg_2 - _arg_4 * 2, _arg_3);
         _local_5.graphics.endFill();
         this.frame.addComponent(_local_5, 0);
     }
@@ -97,7 +97,7 @@ public class MoneyFrame extends Sprite {
         this.buyNowButton = new DeprecatedTextButton(16, BUY_NOW);
         this.buyNowButton.addEventListener(MouseEvent.CLICK, this.onBuyNowClick);
         this.buyNowButton.x = 8;
-        this.buyNowButton.y = (this.frame.h_ - 52);
+        this.buyNowButton.y = this.frame.h_ - 52;
         this.frame.addChild(this.buyNowButton);
     }
 
@@ -105,8 +105,8 @@ public class MoneyFrame extends Sprite {
         this.cancelButton = new DeprecatedClickableText(18, true, _arg_1);
         if (_arg_1 != "") {
             this.cancelButton.buttonMode = true;
-            this.cancelButton.x = ((((800 / 2) + (this.frame.w_ / 2)) - this.cancelButton.width) - 26);
-            this.cancelButton.y = (((600 / 2) + (this.frame.h_ / 2)) - 52);
+            this.cancelButton.x = (800 / 2 + this.frame.w_ / 2) - this.cancelButton.width - 26;
+            this.cancelButton.y = (600 / 2 + this.frame.h_ / 2) - 52;
             this.cancelButton.setAutoSize(TextFieldAutoSize.RIGHT);
             addChild(this.cancelButton);
         }
@@ -115,8 +115,8 @@ public class MoneyFrame extends Sprite {
     protected function onBuyNowClick(_arg_1:MouseEvent):void {
         this.disable();
         var _local_2:Offer = this.offerButtons.getChoice().offer;
-        var _local_3:String = ((this.paymentMethodButtons) ? this.paymentMethodButtons.getSelected() : null);
-        this.buyNow.dispatch(_local_2, ((_local_3) || ("")));
+        var _local_3:String = this.paymentMethodButtons ? this.paymentMethodButtons.getSelected() : null;
+        this.buyNow.dispatch(_local_2, _local_3 || "");
     }
 
     public function disable():void {

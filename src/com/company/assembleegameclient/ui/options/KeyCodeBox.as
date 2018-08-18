@@ -42,7 +42,7 @@ public class KeyCodeBox extends Sprite {
     }
 
     public function value():uint {
-        return (this.keyCode_);
+        return this.keyCode_;
     }
 
     public function setKeyCode(_arg_1:uint):void {
@@ -61,7 +61,7 @@ public class KeyCodeBox extends Sprite {
     private function drawBackground():void {
         var _local_1:Graphics = graphics;
         _local_1.clear();
-        _local_1.lineStyle(2, ((((this.selected_) || (this.inputMode_))) ? 0xB3B3B3 : 0x444444));
+        _local_1.lineStyle(2, this.selected_ || this.inputMode_ ? 0xB3B3B3 : 0x444444);
         _local_1.beginFill(0x333333);
         _local_1.drawRect(0, 0, WIDTH, HEIGHT);
         _local_1.endFill();
@@ -80,8 +80,8 @@ public class KeyCodeBox extends Sprite {
 
     private function setText(_arg_1:StringBuilder):void {
         this.char_.setStringBuilder(_arg_1);
-        this.char_.x = (WIDTH / 2);
-        this.char_.y = (HEIGHT / 2);
+        this.char_.x = WIDTH / 2;
+        this.char_.y = HEIGHT / 2;
         this.drawBackground();
     }
 
@@ -114,8 +114,8 @@ public class KeyCodeBox extends Sprite {
     }
 
     private function onInputEnterFrame(_arg_1:Event):void {
-        var _local_2:int = (getTimer() / 400);
-        var _local_3 = ((_local_2 % 2) == 0);
+        var _local_2:int = getTimer() / 400;
+        var _local_3 = _local_2 % 2 == 0;
         if (_local_3) {
             this.setText(new StaticStringBuilder(""));
         }

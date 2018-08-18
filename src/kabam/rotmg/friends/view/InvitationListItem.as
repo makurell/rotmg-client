@@ -45,21 +45,21 @@ public class InvitationListItem extends FListItem {
         var _local_4:BitmapData = AssetLibrary.getImageFromSet("lofiInterfaceBig", 11);
         _local_4.colorTransform(_local_4.rect, new ColorTransform(0, 1, 0, 1, 182, 0xFF, 160, 0));
         this._acceptButton = _local_3.create(_local_4, TextKey.GUILD_ACCEPT, "", "");
-        this._acceptButton.x = (this.width - 200);
+        this._acceptButton.x = this.width - 200;
         this._acceptButton.y = 11;
         this._acceptButton.addEventListener(MouseEvent.CLICK, this.onAcceptClicked);
         addChild(this._acceptButton);
         _local_4 = AssetLibrary.getImageFromSet("lofiInterfaceBig", 12);
         _local_4.colorTransform(_local_4.rect, new ColorTransform(1, 0, 0, 1, 0xFF, 188, 188, 0));
         this._rejectButton = _local_3.create(_local_4, TextKey.GUILD_REJECTION, "", "");
-        this._rejectButton.x = (this.width - 110);
+        this._rejectButton.x = this.width - 110;
         this._rejectButton.y = 11;
         this._rejectButton.addEventListener(MouseEvent.CLICK, this.onRejectClicked);
         addChild(this._rejectButton);
         this._blockButton = _local_3.create(AssetLibrary.getImageFromSet("lofiInterfaceBig", 8), "", TextKey.FRIEND_BLOCK_BUTTON, "");
         this._blockButton.setToolTipText(TextKey.FRIEND_BLOCK_BUTTON_DESC);
         this._blockButton.addEventListener(MouseEvent.CLICK, this.onBlockClicked);
-        this._blockButton.x = (this.width - 25);
+        this._blockButton.x = this.width - 25;
         this._blockButton.y = 12;
         addChild(this._blockButton);
         this.addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromState);
@@ -70,13 +70,13 @@ public class InvitationListItem extends FListItem {
             this._senderName = _arg_1.getName();
             this._portrait.bitmapData = _arg_1.getPortrait();
             this._nameText.setStringBuilder(new StaticStringBuilder(this._senderName));
-            this._nameText.x = (this._portrait.width + 12);
+            this._nameText.x = this._portrait.width + 12;
         }
     }
 
     override public function destroy():void {
         while (numChildren > 0) {
-            this.removeChildAt((numChildren - 1));
+            this.removeChildAt(numChildren - 1);
         }
         this._portrait = null;
         this._nameText = null;

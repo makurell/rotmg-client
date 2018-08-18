@@ -31,7 +31,7 @@ public class WebRegisterAccountTask extends BaseTask implements RegisterAccountT
         _local_1.entrytag = this.account.getEntryTag();
         _local_1.signedUpKabamEmail = this.data.signedUpKabamEmail;
         _local_1.isAgeVerified = 1;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:String):void {
@@ -42,13 +42,11 @@ public class WebRegisterAccountTask extends BaseTask implements RegisterAccountT
     private function onRegisterDone(_arg_1:String):void {
         this.model.setIsAgeVerified(true);
         var _local_2:XML = new XML(_arg_1);
-        if(_local_2.hasOwnProperty("token"))
-        {
+        if (_local_2.hasOwnProperty("token")) {
             this.data.token = _local_2.token;
             this.account.updateUser(this.data.username, this.data.password, _local_2.token);
         }
-        else
-        {
+        else {
             this.account.updateUser(this.data.username, this.data.password, "");
         }
     }

@@ -52,7 +52,7 @@ public class PlayGameCommand {
             this.petsModel.setActivePet(_local_1.getPetVO());
         }
         else {
-            if (((((this.model.currentCharId) && (this.petsModel.getActivePet()))) && (!(this.data.isNewGame)))) {
+            if (this.model.currentCharId && this.petsModel.getActivePet() && !this.data.isNewGame) {
                 return;
             }
             this.petsModel.setActivePet(null);
@@ -65,11 +65,11 @@ public class PlayGameCommand {
     }
 
     private function makeGameView():void {
-        var _local_1:Server = ((this.data.server) || (this.servers.getServer()));
-        var _local_2:int = ((this.data.isNewGame) ? this.getInitialGameId() : this.data.gameId);
+        var _local_1:Server = this.data.server || this.servers.getServer();
+        var _local_2:int = this.data.isNewGame ? this.getInitialGameId() : this.data.gameId;
         var _local_3:Boolean = this.data.createCharacter;
         var _local_4:int = this.data.charId;
-        var _local_5:int = ((this.data.isNewGame) ? -1 : this.data.keyTime);
+        var _local_5:int = this.data.isNewGame ? -1 : this.data.keyTime;
         var _local_6:ByteArray = this.data.key;
         this.model.currentCharId = _local_4;
         this.setScreen.dispatch(new GameSprite(_local_1, _local_2, _local_3, _local_4, _local_5, _local_6, this.model, null, this.data.isFromArena));
@@ -88,7 +88,7 @@ public class PlayGameCommand {
                 _local_1 = Parameters.NEXUS_GAMEID;
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

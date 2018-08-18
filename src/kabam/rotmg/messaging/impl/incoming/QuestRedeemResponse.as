@@ -16,7 +16,7 @@ public class QuestRedeemResponse extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("QUESTREDEEMRESPONSE", "ok", "message"));
+        return formatToString("QUESTREDEEMRESPONSE", "ok", "message");
     }
 
 

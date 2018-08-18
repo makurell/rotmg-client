@@ -57,31 +57,30 @@ public class ItemTile extends Sprite {
 
     public function setItem(_arg_1:int):Boolean {
         if (_arg_1 == this.itemSprite.itemId) {
-            return (false);
+            return false;
         }
         if (this.blockingItemUpdates) {
-            return (true);
+            return true;
         }
         this.itemSprite.setType(_arg_1);
         this.updateUseability(this.ownerGrid.curPlayer);
-        return (true);
+        return true;
     }
 
     public function setItemSprite(_arg_1:ItemTileSprite):void {
         this.itemSprite = _arg_1;
-        this.itemSprite.x = (WIDTH / 2);
-        this.itemSprite.y = (HEIGHT / 2);
+        this.itemSprite.x = WIDTH / 2;
+        this.itemSprite.y = HEIGHT / 2;
         addChild(this.itemSprite);
     }
 
     public function updateUseability(_arg_1:Player):void {
         var _local_2:int = this.itemSprite.itemId;
-        if(_local_2 >= 0x9000 && _local_2 < 0xF000)
-        {
+        if (_local_2 >= 0x9000 && _local_2 < 0xF000) {
             _local_2 = 0x8FFF;
         }
         if (this.itemSprite.itemId != ItemConstants.NO_ITEM) {
-            this.restrictedUseIndicator.visible = !(ObjectLibrary.isUsableByPlayer(_local_2, _arg_1));
+            this.restrictedUseIndicator.visible = !ObjectLibrary.isUsableByPlayer(_local_2, _arg_1);
         }
         else {
             this.restrictedUseIndicator.visible = false;
@@ -89,7 +88,7 @@ public class ItemTile extends Sprite {
     }
 
     public function canHoldItem(_arg_1:int):Boolean {
-        return (true);
+        return true;
     }
 
     public function resetItemPosition():void {
@@ -97,15 +96,14 @@ public class ItemTile extends Sprite {
     }
 
     public function getItemId():int {
-        if(this.itemSprite.itemId >= 0x9000 && this.itemSprite.itemId < 0xF000)
-        {
+        if (this.itemSprite.itemId >= 0x9000 && this.itemSprite.itemId < 0xF000) {
             return 0x8FFF;
         }
-        return (this.itemSprite.itemId);
+        return this.itemSprite.itemId;
     }
 
     protected function getBackgroundColor():int {
-        return (0x545454);
+        return 0x545454;
     }
 
 

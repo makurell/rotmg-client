@@ -55,7 +55,7 @@ public class QuestRewardsPanelMediator extends Mediator {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((WebMain.STAGE.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && WebMain.STAGE.focus == null) {
             this.onButtonLeftClick(null);
         }
     }

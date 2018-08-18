@@ -22,23 +22,20 @@ public class SaveSecurityQuestionsCommand {
     [Inject]
     public var securityQuestionsModel:SecurityQuestionsModel;
 
-    public function execute():void
-    {
+    public function execute():void {
         var _local_1:BranchingTask = new BranchingTask(this.task, this.makeSuccess(), this.makeFailure());
         this.monitor.add(_local_1);
         _local_1.start();
     }
 
-    private function makeSuccess():Task
-    {
+    private function makeSuccess():Task {
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new DispatchSignalTask(this.closeDialogs));
         this.securityQuestionsModel.showSecurityQuestionsOnStartup = false;
         return _local_1;
     }
 
-    private function makeFailure():DispatchSignalTask
-    {
+    private function makeFailure():DispatchSignalTask {
         return new DispatchSignalTask(this.taskError, this.task);
     }
 

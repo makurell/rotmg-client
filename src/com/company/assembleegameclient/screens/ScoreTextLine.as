@@ -54,7 +54,7 @@ public class ScoreTextLine extends Sprite implements TooltipAble {
         if (this.number_ != -1) {
             this.numberText_ = new TextFieldDisplayConcrete().setSize(_arg_1).setColor(_arg_3);
             this.numberText_.setBold(true);
-            this.numberText_.setStringBuilder(new StaticStringBuilder((((_arg_8 + "0") + " ") + _arg_9)));
+            this.numberText_.setStringBuilder(new StaticStringBuilder(_arg_8 + "0" + " " + _arg_9));
             this.numberText_.x = 450;
             this.numberText_.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
             addChild(this.numberText_);
@@ -74,12 +74,12 @@ public class ScoreTextLine extends Sprite implements TooltipAble {
 
     private function onTextChanged():void {
         if (this.numberText_ != null) {
-            this.unitIcon_.x = ((this.numberText_.x + this.numberText_.width) - 4);
-            this.unitIcon_.y = (((this.numberText_.height / 2) - (this.unitIcon_.height / 2)) + 2);
+            this.unitIcon_.x = (this.numberText_.x + this.numberText_.width) - 4;
+            this.unitIcon_.y = (this.numberText_.height / 2 - this.unitIcon_.height / 2) + 2;
         }
         else {
             this.unitIcon_.x = 450;
-            this.unitIcon_.y = (((this.nameText_.height / 2) - (this.unitIcon_.height / 2)) + 2);
+            this.unitIcon_.y = (this.nameText_.height / 2 - this.unitIcon_.height / 2) + 2;
         }
     }
 
@@ -88,7 +88,7 @@ public class ScoreTextLine extends Sprite implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -96,7 +96,7 @@ public class ScoreTextLine extends Sprite implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
     public function skip():void {
@@ -118,13 +118,13 @@ public class ScoreTextLine extends Sprite implements TooltipAble {
 
     public function onEnterFrame(_arg_1:Event):void {
         var _local_3:int;
-        var _local_2:Number = Math.min(1, ((getTimer() - this.startTime_) / 500));
+        var _local_2:Number = Math.min(1, (getTimer() - this.startTime_) / 500);
         if (this.numberText_ != null) {
-            _local_3 = (this.number_ * _local_2);
-            this.numberText_.setStringBuilder(new StaticStringBuilder((((this.numberPrefix_ + _local_3.toString()) + " ") + this.unit_)));
+            _local_3 = this.number_ * _local_2;
+            this.numberText_.setStringBuilder(new StaticStringBuilder(this.numberPrefix_ + _local_3.toString() + " " + this.unit_));
             if (this.unitIcon_ != null) {
-                this.unitIcon_.x = ((this.numberText_.x + this.numberText_.width) - 4);
-                this.unitIcon_.y = (((this.numberText_.height / 2) - (this.unitIcon_.height / 2)) + 2);
+                this.unitIcon_.x = (this.numberText_.x + this.numberText_.width) - 4;
+                this.unitIcon_.y = (this.numberText_.height / 2 - this.unitIcon_.height / 2) + 2;
             }
         }
         if (_local_2 == 1) {
@@ -148,7 +148,7 @@ public class ScoreTextLine extends Sprite implements TooltipAble {
             _local_1.pushParams("FameBonus.LevelRequirement", {"level": this.level});
             _local_1.pushParams(TextKey.BLANK, {"data": ")"});
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

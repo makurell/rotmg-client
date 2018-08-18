@@ -82,8 +82,8 @@ public class PetFeeder extends Sprite {
             this.leftSlot.highlight(true);
         }
         else {
-            this.rightSlot.highlight((this.state.rightSlotItemId == -1));
-            this.leftSlot.highlight((this.state.leftSlotPetVO == null));
+            this.rightSlot.highlight(this.state.rightSlotItemId == -1);
+            this.leftSlot.highlight(this.state.leftSlotPetVO == null);
             this.arrow.highlight(false);
         }
     }

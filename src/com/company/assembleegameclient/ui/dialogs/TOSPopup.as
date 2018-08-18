@@ -73,19 +73,17 @@ public class TOSPopup extends Sprite {
     }
 
     protected function setDialogWidth():int {
-        return (WIDTH);
+        return WIDTH;
     }
 
     private function _makeUIAndAdd():void {
         this.makeButton();
         var _local_1:BuildData = StaticInjectorContext.getInjector().getInstance(BuildData);
-        if(_local_1.getEnvironment() != BuildEnvironment.PRODUCTION)
-        {
+        if (_local_1.getEnvironment() != BuildEnvironment.PRODUCTION) {
             this.initText3();
             this.addTextFieldDisplay(this.textText3_);
         }
-        else
-        {
+        else {
             this.initText();
             this.addTextFieldDisplay(this.textText_);
             this.initText2();
@@ -95,7 +93,7 @@ public class TOSPopup extends Sprite {
 
     protected function initText():void {
         this.textText_ = new TextFieldDisplayConcrete().setSize(16).setColor(GREY);
-        this.textText_.setTextWidth((this.dialogWidth - (this.textMargin * 2)));
+        this.textText_.setTextWidth(this.dialogWidth - this.textMargin * 2);
         this.textText_.x = this.textMargin;
         this.textText_.y = this.textTextYPosition;
         this.textText_.setMultiLine(true).setWordWrap(true).setAutoSize(TextFieldAutoSize.CENTER);
@@ -109,12 +107,12 @@ public class TOSPopup extends Sprite {
 
     protected function initText2():void {
         this.textText2_ = new TextFieldDisplayConcrete().setSize(16).setColor(GREY);
-        this.textText2_.setTextWidth((this.dialogWidth - (this.textMargin * 2)));
+        this.textText2_.setTextWidth(this.dialogWidth - this.textMargin * 2);
         this.textText2_.x = this.textMargin;
         this.textText2_.y = this.textText_.y + this.textText_.height + 15;
         this.textText2_.setMultiLine(true).setWordWrap(true).setAutoSize(TextFieldAutoSize.CENTER);
-        var _local_1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
-        var _local_2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
+        var _local_1 = '<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL + '" target="_blank">';
+        var _local_2 = '<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL + '" target="_blank">';
         var _local_3:LineBuilder = new LineBuilder().setParams("Legal.tos2", {
             "tou": _local_1,
             "_tou": "</a></font>",
@@ -127,8 +125,7 @@ public class TOSPopup extends Sprite {
         this.textText2_.filters = [new DropShadowFilter(0, 0, 0, 1, 6, 6, 1)];
     }
 
-    protected function initText3():void
-    {
+    protected function initText3():void {
         this.textText3_ = new TextFieldDisplayConcrete().setSize(16).setColor(GREY);
         this.textText3_.setTextWidth(this.dialogWidth - this.textMargin * 2);
         this.textText3_.x = this.textMargin;
@@ -160,8 +157,8 @@ public class TOSPopup extends Sprite {
     }
 
     private function positionDialog():void {
-        this.box_.x = ((this.offsetX + (WebMain.STAGE.stageWidth / 2)) - (this.box_.width / 2));
-        this.box_.y = ((this.offsetY + (WebMain.STAGE.stageHeight / 2)) - (this.getBoxHeight() / 2));
+        this.box_.x = (this.offsetX + WebMain.STAGE.stageWidth / 2) - this.box_.width / 2;
+        this.box_.y = (this.offsetY + WebMain.STAGE.stageHeight / 2) - this.getBoxHeight() / 2;
     }
 
     private function draw():void {
@@ -181,25 +178,25 @@ public class TOSPopup extends Sprite {
 
     private function drawBackground():void {
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(0, 0, this.dialogWidth, this.getBoxHeight() + this.bottomSpace, 4, [1, 1, 1, 1], this.path_);
         var _local_1:Graphics = this.rect_.graphics;
         _local_1.clear();
         _local_1.drawGraphicsData(this.graphicsData_);
     }
 
     protected function getBoxHeight():Number {
-        return (this.box_.height);
+        return this.box_.height;
     }
 
     private function addButtonsAndLayout():void {
-        var _local_1:int = (this.box_.height + this.buttonSpace);
+        var _local_1:int = this.box_.height + this.buttonSpace;
         this.box_.addChild(this.buttonAccept);
         this.buttonAccept.y = _local_1;
-        this.buttonAccept.x = ((this.dialogWidth / 2) - (this.buttonAccept.width / 2));
+        this.buttonAccept.x = this.dialogWidth / 2 - this.buttonAccept.width / 2;
     }
 
     private function removeButtonsIfAlreadyAdded():void {
-        if (((this.buttonAccept) && (this.box_.contains(this.buttonAccept)))) {
+        if (this.buttonAccept && this.box_.contains(this.buttonAccept)) {
             this.box_.removeChild(this.buttonAccept);
         }
     }

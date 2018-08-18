@@ -54,7 +54,7 @@ public class WebRegisterDialog extends Frame {
         addCheckBox(this.checkbox);
         addSpace(17);
         this.makeTosText();
-        addSpace((17 * 2));
+        addSpace(17 * 2);
         this.makeSignInText();
     }
 
@@ -71,8 +71,8 @@ public class WebRegisterDialog extends Frame {
 
     public function makeTosText():void {
         this.tosText = new TextFieldDisplayConcrete();
-        var _local_1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
-        var _local_2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
+        var _local_1 = '<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL + '" target="_blank">';
+        var _local_2 = '<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL + '" target="_blank">';
         this.tosText.setStringBuilder(new LineBuilder().setParams(TextKey.TOS_TEXT, {
             "tou": _local_1,
             "_tou": this.endLink,
@@ -113,57 +113,57 @@ public class WebRegisterDialog extends Frame {
     private function areInputsValid():Boolean {
         this.errors.length = 0;
         var _local_1:Boolean = true;
-        _local_1 = ((this.isEmailValid()) && (_local_1));
-        _local_1 = ((this.isPasswordValid()) && (_local_1));
-        _local_1 = ((this.isPasswordVerified()) && (_local_1));
-        _local_1 = ((this.isAgeVerified()) && (_local_1));
-        return (((this.isAgeValid()) && (_local_1)));
+        _local_1 = this.isEmailValid() && _local_1;
+        _local_1 = this.isPasswordValid() && _local_1;
+        _local_1 = this.isPasswordVerified() && _local_1;
+        _local_1 = this.isAgeVerified() && _local_1;
+        return this.isAgeValid() && _local_1;
     }
 
     private function isAgeVerified():Boolean {
         var _local_1:uint = DateFieldValidator.getPlayerAge(this.ageVerificationInput);
-        var _local_2 = (_local_1 >= 13);
-        this.ageVerificationInput.setErrorHighlight(!(_local_2));
+        var _local_2 = _local_1 >= 13;
+        this.ageVerificationInput.setErrorHighlight(!_local_2);
         if (!_local_2) {
             this.errors.push(TextKey.INELIGIBLE_AGE);
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function isAgeValid():Boolean {
         var _local_1:Boolean = this.ageVerificationInput.isValidDate();
-        this.ageVerificationInput.setErrorHighlight(!(_local_1));
+        this.ageVerificationInput.setErrorHighlight(!_local_1);
         if (!_local_1) {
             this.errors.push(TextKey.INVALID_BIRTHDATE);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isEmailValid():Boolean {
         var _local_1:Boolean = EmailValidator.isValidEmail(this.emailInput.text());
-        this.emailInput.setErrorHighlight(!(_local_1));
+        this.emailInput.setErrorHighlight(!_local_1);
         if (!_local_1) {
             this.errors.push(TextKey.INVALID_EMAIL_ADDRESS);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isPasswordValid():Boolean {
-        var _local_1 = (this.passwordInput.text().length >= 5);
-        this.passwordInput.setErrorHighlight(!(_local_1));
+        var _local_1 = this.passwordInput.text().length >= 5;
+        this.passwordInput.setErrorHighlight(!_local_1);
         if (!_local_1) {
             this.errors.push(TextKey.PASSWORD_TOO_SHORT);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isPasswordVerified():Boolean {
-        var _local_1 = (this.passwordInput.text() == this.retypePasswordInput.text());
-        this.retypePasswordInput.setErrorHighlight(!(_local_1));
+        var _local_1 = this.passwordInput.text() == this.retypePasswordInput.text();
+        this.retypePasswordInput.setErrorHighlight(!_local_1);
         if (!_local_1) {
             this.errors.push(TextKey.PASSWORDS_DONT_MATCH);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function displayErrors():void {
@@ -171,7 +171,7 @@ public class WebRegisterDialog extends Frame {
             this.clearErrors();
         }
         else {
-            this.displayErrorText((((this.errors.length == 1)) ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE));
+            this.displayErrorText(this.errors.length == 1 ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE);
         }
     }
 
@@ -193,7 +193,7 @@ public class WebRegisterDialog extends Frame {
         var _local_1:AccountData = new AccountData();
         _local_1.username = this.emailInput.text();
         _local_1.password = this.passwordInput.text();
-        _local_1.signedUpKabamEmail = ((this.checkbox.isChecked()) ? 1 : 0);
+        _local_1.signedUpKabamEmail = this.checkbox.isChecked() ? 1 : 0;
         this.register.dispatch(_local_1);
     }
 

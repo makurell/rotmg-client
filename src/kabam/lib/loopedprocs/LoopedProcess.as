@@ -18,12 +18,12 @@ public class LoopedProcess {
 
     public static function addProcess(_arg_1:LoopedProcess):uint {
         if (loopProcs[_arg_1.id] == _arg_1) {
-            return (_arg_1.id);
+            return _arg_1.id;
         }
         var _local_2 = ++maxId;
         loopProcs[_local_2] = _arg_1;
         _arg_1.lastRun = getTimer();
-        return (maxId);
+        return maxId;
     }
 
     public static function runProcesses(_arg_1:int):void {
@@ -31,7 +31,7 @@ public class LoopedProcess {
         var _local_3:int;
         for each (_local_2 in loopProcs) {
             if (!_local_2.paused) {
-                _local_3 = (_arg_1 - _local_2.lastRun);
+                _local_3 = _arg_1 - _local_2.lastRun;
                 if (_local_3 >= _local_2.interval) {
                     _local_2.lastRun = _arg_1;
                     _local_2.run();

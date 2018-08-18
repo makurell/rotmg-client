@@ -17,7 +17,7 @@ public class EmbeddedProTipModel implements IProTipModel {
 
     public function getTip():String {
         var _local_1:int = this.indices[(this.index++ % this.count)];
-        return (this.tips[_local_1]);
+        return this.tips[_local_1];
     }
 
     private function makeTipsVector():void {
@@ -39,7 +39,7 @@ public class EmbeddedProTipModel implements IProTipModel {
         }
         this.indices = new Vector.<int>(0);
         while (_local_2 > 0) {
-            this.indices.push(_local_1.splice(Math.floor((Math.random() * _local_2--)), 1)[0]);
+            this.indices.push(_local_1.splice(Math.floor(Math.random() * _local_2--), 1)[0]);
         }
         this.indices.fixed = true;
     }

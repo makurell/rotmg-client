@@ -32,7 +32,7 @@ public class BuyPackageTask extends BaseTask {
     override protected function startTask():void {
         var _local_1:Object = this.account.getCredentials();
         _local_1.packageId = this.packageInfo.packageID;
-        this.playerModel.changeCredits(-(this.packageInfo.price));
+        this.playerModel.changeCredits(-this.packageInfo.price);
         this.client.complete.addOnce(this.onComplete);
         this.client.sendRequest("/account/purchasePackage", _local_1);
     }

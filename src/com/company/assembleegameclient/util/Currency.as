@@ -11,15 +11,15 @@ public class Currency {
     public static function typeToName(_arg_1:int):String {
         switch (_arg_1) {
             case GOLD:
-                return ("Gold");
+                return "Gold";
             case FAME:
-                return ("Fame");
+                return "Fame";
             case GUILD_FAME:
-                return ("Guild Fame");
+                return "Guild Fame";
             case FORTUNE:
-                return ("Fortune Token");
+                return "Fortune Token";
         }
-        return ("");
+        return "";
     }
 
 

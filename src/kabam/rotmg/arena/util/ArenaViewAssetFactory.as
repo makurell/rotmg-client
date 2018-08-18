@@ -13,12 +13,12 @@ public class ArenaViewAssetFactory {
         var _local_5:TextFieldDisplayConcrete = new TextFieldDisplayConcrete();
         _local_5.setSize(_arg_2).setColor(_arg_1).setBold(_arg_3);
         _local_5.setVerticalAlign(TextFieldDisplayConcrete.BOTTOM);
-        _local_5.filters = ((_arg_4) ? [new DropShadowFilter(0, 0, 0)] : []);
-        return (_local_5);
+        _local_5.filters = _arg_4 ? [new DropShadowFilter(0, 0, 0)] : [];
+        return _local_5;
     }
 
     public static function returnHostBitmap(_arg_1:uint):Bitmap {
-        return (new Bitmap(ObjectLibrary.getRedrawnTextureFromType(_arg_1, 80, true)));
+        return new Bitmap(ObjectLibrary.getRedrawnTextureFromType(_arg_1, 80, true));
     }
 
 

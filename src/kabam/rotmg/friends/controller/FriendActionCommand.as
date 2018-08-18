@@ -24,8 +24,7 @@ public class FriendActionCommand {
 
     public function execute():void {
         var _local_3:AddTextLineSignal;
-        if(this.vo.request == FriendConstant.INVITE)
-        {
+        if (this.vo.request == FriendConstant.INVITE) {
             _local_3 = StaticInjectorContext.getInjector().getInstance(AddTextLineSignal);
             _local_3.dispatch(ChatMessage.make("", "Friend request sent"));
         }

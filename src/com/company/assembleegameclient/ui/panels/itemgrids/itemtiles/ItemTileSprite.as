@@ -18,7 +18,7 @@ public class ItemTileSprite extends Sprite {
     private static const DOSE_MATRIX:Matrix = function ():Matrix {
         var _local_1:Matrix = new Matrix();
         _local_1.translate(10, 5);
-        return (_local_1);
+        return _local_1;
     }();
 
     public var itemId:int;
@@ -32,7 +32,7 @@ public class ItemTileSprite extends Sprite {
     }
 
     public function setDim(_arg_1:Boolean):void {
-        filters = ((_arg_1) ? DIM_FILTER : null);
+        filters = _arg_1 ? DIM_FILTER : null;
     }
 
     public function setType(_arg_1:int):void {
@@ -45,22 +45,18 @@ public class ItemTileSprite extends Sprite {
         var _local_3:XML;
         var _local_4:BitmapData;
         var _local_1:int = this.itemId;
-        if(_local_1 != ItemConstants.NO_ITEM)
-        {
-            if(_local_1 >= 0x9000 && _local_1 < 0xF000)
-            {
+        if (_local_1 != ItemConstants.NO_ITEM) {
+            if (_local_1 >= 0x9000 && _local_1 < 0xF000) {
                 _local_1 = 0x8FFF;
             }
             _local_2 = ObjectLibrary.getRedrawnTextureFromType(_local_1, 80, true);
             _local_3 = ObjectLibrary.xmlLibrary_[_local_1];
-            if(_local_3 && _local_3.hasOwnProperty("Doses") && this.bitmapFactory)
-            {
+            if (_local_3 && _local_3.hasOwnProperty("Doses") && this.bitmapFactory) {
                 _local_2 = _local_2.clone();
                 _local_4 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_3.Doses)), 12, 16777215, false, IDENTITY_MATRIX, false);
                 _local_2.draw(_local_4, DOSE_MATRIX);
             }
-            if(_local_3 && _local_3.hasOwnProperty("Quantity") && this.bitmapFactory)
-            {
+            if (_local_3 && _local_3.hasOwnProperty("Quantity") && this.bitmapFactory) {
                 _local_2 = _local_2.clone();
                 _local_4 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_3.Quantity)), 12, 16777215, false, IDENTITY_MATRIX, false);
                 _local_2.draw(_local_4, DOSE_MATRIX);
@@ -70,8 +66,7 @@ public class ItemTileSprite extends Sprite {
             this.itemBitmap.y = -_local_2.height / 2;
             visible = true;
         }
-        else
-        {
+        else {
             visible = false;
         }
     }

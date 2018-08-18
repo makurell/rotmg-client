@@ -11,7 +11,7 @@ public class CharacterChanger extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new CharacterChangerPanel(_arg_1));
+        return new CharacterChangerPanel(_arg_1);
     }
 
 

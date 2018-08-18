@@ -44,22 +44,22 @@ public class ApplicationConfig implements IConfig {
         var _local_1:BuildEnvironment = this.data.getEnvironment();
         switch (_local_1) {
             case BuildEnvironment.LOCALHOST:
-                return (new LocalhostSetup());
+                return new LocalhostSetup();
             case BuildEnvironment.FIXED_IP:
-                return (this.makeFixedIPSetup());
+                return this.makeFixedIPSetup();
             case BuildEnvironment.PRIVATE:
-                return (new PrivateSetup());
+                return new PrivateSetup();
             case BuildEnvironment.TESTING:
-                return (new TestingSetup());
+                return new TestingSetup();
             case BuildEnvironment.TESTING2:
-                return (new Testing2Setup());
+                return new Testing2Setup();
             default:
-                return (new ProductionSetup());
+                return new ProductionSetup();
         }
     }
 
     private function makeFixedIPSetup():FixedIPSetup {
-        return (new FixedIPSetup().setAddress(this.data.getEnvironmentString()));
+        return new FixedIPSetup().setAddress(this.data.getEnvironmentString());
     }
 
 

@@ -66,17 +66,17 @@ public class QuestRewardsView extends EmptyFrame {
     public function init(_arg_1:int, _arg_2:int, _arg_3:String, _arg_4:String):void {
         var _local_7:TextField;
         var _local_10:TextFormat;
-        var _local_5:String = ("Tier " + _arg_1.toString());
+        var _local_5:String = "Tier " + _arg_1.toString();
         setTitle(_local_5, true);
         this.dqbanner = new dailyQuestBanner();
         addChild(this.dqbanner);
-        this.dqbanner.x = (((modalWidth / 4) * 1.1) - (this.dqbanner.width / 2));
-        this.dqbanner.y = ((modalHeight / 20) + 2);
-        this.leftCenter = (this.dqbanner.x + (this.dqbanner.width / 2));
+        this.dqbanner.x = (modalWidth / 4) * 1.1 - this.dqbanner.width / 2;
+        this.dqbanner.y = modalHeight / 20 + 2;
+        this.leftCenter = this.dqbanner.x + this.dqbanner.width / 2;
         title.setSize(20);
         title.setColor(16689154);
-        title.x = (((modalWidth / 4) * 1.1) - (title.width / 2));
-        title.y = ((this.dqbanner.y + this.dqbanner.height) + 5);
+        title.x = (modalWidth / 4) * 1.1 - title.width / 2;
+        title.y = this.dqbanner.y + this.dqbanner.height + 5;
         title.setBold(false);
         if (title.textField != null) {
             _local_10 = title.getTextFormat(0, _local_5.length);
@@ -118,7 +118,7 @@ public class QuestRewardsView extends EmptyFrame {
         this.exchangeButton.scaleButtonHeight(2.4);
         var _local_9:BitmapData = ObjectLibrary.getRedrawnTextureFromType(_arg_2, 80, true, false);
         this.rightSlot.setEmbeddedImage(new Bitmap(_local_9));
-        ((this.infoImageLoader) && (this.infoImageLoader.unload()));
+        this.infoImageLoader && this.infoImageLoader.unload();
         this.infoImageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onRewardLoadComplete);
         this.infoImageLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this.onRewardLoadError);
         this.infoImageLoader.contentLoaderInfo.addEventListener(IOErrorEvent.DISK_ERROR, this.onRewardLoadError);
@@ -128,18 +128,18 @@ public class QuestRewardsView extends EmptyFrame {
     }
 
     private function positionAssets():void {
-        this.rightSlot.x = (this.leftCenter - (this.rightSlot.width / 2));
+        this.rightSlot.x = this.leftCenter - this.rightSlot.width / 2;
         this.rightSlot.y = 350;
-        this.prevSlot.width = (this.prevSlot.width * 0.8);
-        this.prevSlot.height = (this.prevSlot.height * 0.8);
-        this.prevSlot.x = (this.rightSlot.x - this.prevSlot.width);
-        this.prevSlot.y = (this.rightSlot.y + ((82 - this.prevSlot.height) / 2));
-        this.nextSlot.width = (this.nextSlot.width * 0.8);
-        this.nextSlot.height = (this.nextSlot.height * 0.8);
-        this.nextSlot.x = (this.rightSlot.x + this.rightSlot.width);
-        this.nextSlot.y = (this.rightSlot.y + ((82 - this.nextSlot.height) / 2));
-        this.exchangeButton.x = (this.leftCenter - (this.exchangeButton.width / 2));
-        this.exchangeButton.y = (this.rightSlot.y + 100);
+        this.prevSlot.width = this.prevSlot.width * 0.8;
+        this.prevSlot.height = this.prevSlot.height * 0.8;
+        this.prevSlot.x = this.rightSlot.x - this.prevSlot.width;
+        this.prevSlot.y = this.rightSlot.y + (82 - this.prevSlot.height) / 2;
+        this.nextSlot.width = this.nextSlot.width * 0.8;
+        this.nextSlot.height = this.nextSlot.height * 0.8;
+        this.nextSlot.x = this.rightSlot.x + this.rightSlot.width;
+        this.nextSlot.y = this.rightSlot.y + (82 - this.nextSlot.height) / 2;
+        this.exchangeButton.x = this.leftCenter - this.exchangeButton.width / 2;
+        this.exchangeButton.y = this.rightSlot.y + 100;
         this.exchangeButton.height = 50;
         background = this.makeModalBackground();
     }
@@ -151,8 +151,8 @@ public class QuestRewardsView extends EmptyFrame {
         this.infoImage.alpha = 0;
         addChild(this.infoImage);
         var _local_1:int = 8;
-        this.infoImage.x = ((desc.x + desc.width) + 1);
-        this.infoImage.y = (modalHeight / 20);
+        this.infoImage.x = desc.x + desc.width + 1;
+        this.infoImage.y = modalHeight / 20;
         var _local_2:Shape = new Shape();
         var _local_3:Graphics = _local_2.graphics;
         _local_3.beginFill(0);
@@ -168,7 +168,7 @@ public class QuestRewardsView extends EmptyFrame {
         this.infoImageLoader.removeEventListener(IOErrorEvent.IO_ERROR, this.onRewardLoadError);
         this.infoImageLoader.removeEventListener(IOErrorEvent.DISK_ERROR, this.onRewardLoadError);
         this.infoImageLoader.removeEventListener(IOErrorEvent.NETWORK_ERROR, this.onRewardLoadError);
-        if (((!((this.infoImage == null))) && (!((this.infoImage.parent == null))))) {
+        if (!(this.infoImage == null) && !(this.infoImage.parent == null)) {
             removeChild(this.infoImage);
         }
         this.infoImage = DisplayObject(this.infoImageLoader);
@@ -183,11 +183,11 @@ public class QuestRewardsView extends EmptyFrame {
     }
 
     public function getItemSlot():ModalItemSlot {
-        return (this.rightSlot);
+        return this.rightSlot;
     }
 
     public function getExchangeButton():LegacyBuyButton {
-        return (this.exchangeButton);
+        return this.exchangeButton;
     }
 
     private function onRemovedFromStage(_arg_1:Event):void {
@@ -206,14 +206,14 @@ public class QuestRewardsView extends EmptyFrame {
         _local_2.height = modalHeight;
         _local_2.alpha = 0.74;
         _local_1.addChild(_local_2);
-        return (_local_1);
+        return _local_1;
     }
 
     private function addCloseButton():void {
         var _local_1:DialogCloseButton = new DialogCloseButton(0.82);
         addChild(_local_1);
         _local_1.y = 4;
-        _local_1.x = ((modalWidth - _local_1.width) - 5);
+        _local_1.x = modalWidth - _local_1.width - 5;
         _local_1.clicked.add(this.onClosed);
         closeButton = _local_1;
     }
@@ -223,7 +223,7 @@ public class QuestRewardsView extends EmptyFrame {
         var _local_1:TextField = new TextField();
         var _local_2 = "ALL QUESTS COMPLETED!";
         var _local_3 = "";
-        _local_1.text = ((_local_2 + "\n\n\n\n") + _local_3);
+        _local_1.text = _local_2 + "\n\n\n\n" + _local_3;
         _local_1.width = 600;
         var _local_4:FontModel = StaticInjectorContext.getInjector().getInstance(FontModel);
         var _local_5:TextFormat = _local_4.apply(_local_1, 32, 0xFFFFFF, true, true);
@@ -237,7 +237,7 @@ public class QuestRewardsView extends EmptyFrame {
         _local_1 = new TextField();
         _local_2 = "";
         _local_3 = "Return at 5pm Pacific Time for New Quests!";
-        _local_1.text = ((_local_2 + "\n\n\n") + _local_3);
+        _local_1.text = _local_2 + "\n\n\n" + _local_3;
         _local_1.width = 600;
         _local_4.apply(_local_1, 17, 49941, false, true);
         _local_1.selectable = false;
@@ -264,8 +264,8 @@ public class QuestRewardsView extends EmptyFrame {
         desc.setBold(false);
         desc.setSize(15);
         desc.setTextWidth(315);
-        desc.x = ((((modalWidth / 4) * 1.1) - (desc.width / 2)) + 3);
-        desc.y = (((title) != null) ? ((title.y + title.height) + 6) : 165);
+        desc.x = ((modalWidth / 4) * 1.1 - desc.width / 2) + 3;
+        desc.y = title != null ? title.y + title.height + 6 : 165;
         desc.setAutoSize(TextFieldAutoSize.LEFT);
         desc.setHorizontalAlign("left");
         desc.filters = [new DropShadowFilter(0, 0, 0)];
@@ -274,10 +274,10 @@ public class QuestRewardsView extends EmptyFrame {
         _local_5.leading = 4;
         desc.setTextFormat(_local_5, 0, _local_4.length);
         if (_local_3 != -1) {
-            _local_6 = desc.getTextFormat(_local_3, (_local_3 + _arg_2.length));
+            _local_6 = desc.getTextFormat(_local_3, _local_3 + _arg_2.length);
             _local_6.color = 196098;
             _local_6.bold = true;
-            desc.setTextFormat(_local_6, _local_3, (_local_3 + _arg_2.length));
+            desc.setTextFormat(_local_6, _local_3, _local_3 + _arg_2.length);
         }
     }
 
@@ -296,8 +296,8 @@ public class QuestRewardsView extends EmptyFrame {
         });
         addChild(_local_1);
         var _local_2:DisplayObject = new rewardgranted();
-        _local_2.x = (this.infoImage.x + 4);
-        _local_2.y = (this.infoImage.y + 4);
+        _local_2.x = this.infoImage.x + 4;
+        _local_2.y = this.infoImage.y + 4;
         _local_2.alpha = 0;
         addChild(_local_2);
         new GTween(_local_2, 0.4, {"alpha": 1});

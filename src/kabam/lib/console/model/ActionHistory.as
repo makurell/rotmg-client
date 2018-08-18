@@ -14,15 +14,15 @@ final class ActionHistory {
     }
 
     public function get length():int {
-        return (this.stack.length);
+        return this.stack.length;
     }
 
     public function getPrevious():String {
-        return ((((this.index > 0)) ? this.stack[--this.index] : ""));
+        return this.index > 0 ? this.stack[--this.index] : "";
     }
 
     public function getNext():String {
-        return ((((this.index < (this.stack.length - 1))) ? this.stack[++this.index] : ""));
+        return this.index < this.stack.length - 1 ? this.stack[++this.index] : "";
     }
 
 

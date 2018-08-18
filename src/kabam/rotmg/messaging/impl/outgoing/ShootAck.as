@@ -14,7 +14,7 @@ public class ShootAck extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("SHOOTACK", "time_"));
+        return formatToString("SHOOTACK", "time_");
     }
 
 

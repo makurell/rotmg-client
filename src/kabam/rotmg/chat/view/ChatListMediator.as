@@ -48,7 +48,7 @@ public class ChatListMediator extends Mediator {
     }
 
     private function onShowChatInput(_arg_1:Boolean, _arg_2:String):void {
-        this.view.y = (this.model.bounds.height - ((_arg_1) ? this.model.lineHeight : 0));
+        this.view.y = this.model.bounds.height - (_arg_1 ? this.model.lineHeight : 0);
     }
 
     private function onScrollList(_arg_1:int):void {
@@ -68,7 +68,7 @@ public class ChatListMediator extends Mediator {
 
     private function getChatLabel():String {
         var _local_1:String = this.setup.getBuildLabel();
-        return (_local_1.replace(/<font .+>(.+)<\/font>/g, "$1"));
+        return _local_1.replace(/<font .+>(.+)<\/font>/g, "$1");
     }
 
 

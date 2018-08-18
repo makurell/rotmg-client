@@ -29,7 +29,7 @@ public class GetArenaLeaderboardTask extends BaseTask {
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.updateLeaderboard(_arg_2)));
+        _arg_1 && this.updateLeaderboard(_arg_2);
         completeTask(_arg_1, _arg_2);
     }
 
@@ -42,7 +42,7 @@ public class GetArenaLeaderboardTask extends BaseTask {
     private function makeRequestObject():Object {
         var _local_1:Object = {"type": this.filter.getKey()};
         MoreObjectUtil.addToObject(_local_1, this.account.getCredentials());
-        return (_local_1);
+        return _local_1;
     }
 
 

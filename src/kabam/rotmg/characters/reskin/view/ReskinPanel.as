@@ -35,28 +35,28 @@ public class ReskinPanel extends Panel {
     private function makeTitle():TextFieldDisplayConcrete {
         var _local_1:TextFieldDisplayConcrete;
         _local_1 = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setAutoSize(TextFieldAutoSize.CENTER);
-        _local_1.x = (WIDTH / 2);
+        _local_1.x = WIDTH / 2;
         _local_1.setBold(true);
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.RESKINPANEL_CHANGESKIN));
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeButton():DeprecatedTextButton {
         var _local_1:DeprecatedTextButton = new DeprecatedTextButton(16, TextKey.RESKINPANEL_CHOOSE);
         _local_1.textChanged.addOnce(this.onTextSet);
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function onTextSet():void {
-        this.button.x = ((WIDTH / 2) - (this.button.width / 2));
-        this.button.y = ((HEIGHT - this.button.height) - 4);
+        this.button.x = WIDTH / 2 - this.button.width / 2;
+        this.button.y = HEIGHT - this.button.height - 4;
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             this.reskin.dispatch();
         }
     }

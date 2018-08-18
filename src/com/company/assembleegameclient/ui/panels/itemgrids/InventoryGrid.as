@@ -17,8 +17,8 @@ public class InventoryGrid extends ItemGrid {
         this.isBackpack = _arg_4;
         var _local_5:int;
         while (_local_5 < this.NUM_SLOTS) {
-            _local_6 = new InventoryTile((_local_5 + indexOffset), this, interactive);
-            _local_6.addTileNumber((_local_5 + 1));
+            _local_6 = new InventoryTile(_local_5 + indexOffset, this, interactive);
+            _local_6.addTileNumber(_local_5 + 1);
             addToGrid(_local_6, 2, _local_5);
             this.tiles[_local_5] = _local_6;
             _local_5++;
@@ -34,7 +34,7 @@ public class InventoryGrid extends ItemGrid {
             _local_4 = _arg_1.length;
             _local_5 = 0;
             while (_local_5 < this.NUM_SLOTS) {
-                if ((_local_5 + indexOffset) < _local_4) {
+                if (_local_5 + indexOffset < _local_4) {
                     if (this.tiles[_local_5].setItem(_arg_1[(_local_5 + indexOffset)])) {
                         _local_3 = true;
                     }

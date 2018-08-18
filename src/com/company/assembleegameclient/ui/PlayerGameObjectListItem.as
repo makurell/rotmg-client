@@ -22,7 +22,7 @@ public class PlayerGameObjectListItem extends GameObjectListItem implements Tool
 
     public function PlayerGameObjectListItem(_arg_1:uint, _arg_2:Boolean, _arg_3:GameObject) {
         super(_arg_1, _arg_2, _arg_3);
-        var _local_4:Player = (_arg_3 as Player);
+        var _local_4:Player = _arg_3 as Player;
         if (_local_4) {
             this.starred = _local_4.starred_;
         }
@@ -42,13 +42,13 @@ public class PlayerGameObjectListItem extends GameObjectListItem implements Tool
     }
 
     private function onMouseOver(_arg_1:MouseEvent):void {
-        this.hoverTooltipDelegate.tooltip = ((this.enabled) ? new PlayerToolTip(Player(go)) : null);
+        this.hoverTooltipDelegate.tooltip = this.enabled ? new PlayerToolTip(Player(go)) : null;
     }
 
     public function setEnabled(_arg_1:Boolean):void {
-        if (((!((this.enabled == _arg_1))) && (!((Player(go) == null))))) {
+        if (!(this.enabled == _arg_1) && !(Player(go) == null)) {
             this.enabled = _arg_1;
-            this.hoverTooltipDelegate.tooltip = ((this.enabled) ? new PlayerToolTip(Player(go)) : null);
+            this.hoverTooltipDelegate.tooltip = this.enabled ? new PlayerToolTip(Player(go)) : null;
             if (!this.enabled) {
                 this.hoverTooltipDelegate.getShowToolTip().dispatch(this.hoverTooltipDelegate.tooltip);
             }
@@ -56,9 +56,9 @@ public class PlayerGameObjectListItem extends GameObjectListItem implements Tool
     }
 
     override public function draw(_arg_1:GameObject, _arg_2:ColorTransform = null):void {
-        var _local_3:Player = (_arg_1 as Player);
-        if (((_local_3) && (!((this.starred == _local_3.starred_))))) {
-            transform.colorTransform = ((_arg_2) || (MoreColorUtil.identity));
+        var _local_3:Player = _arg_1 as Player;
+        if (_local_3 && !(this.starred == _local_3.starred_)) {
+            transform.colorTransform = _arg_2 || MoreColorUtil.identity;
             this.starred = _local_3.starred_;
         }
         super.draw(_arg_1, _arg_2);
@@ -69,7 +69,7 @@ public class PlayerGameObjectListItem extends GameObjectListItem implements Tool
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -77,7 +77,7 @@ public class PlayerGameObjectListItem extends GameObjectListItem implements Tool
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
 

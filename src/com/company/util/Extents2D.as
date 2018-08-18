@@ -33,7 +33,7 @@ public class Extents2D {
     }
 
     public function toString():String {
-        return ((((((((("min:(" + this.minX_) + ", ") + this.minY_) + ") max:(") + this.maxX_) + ", ") + this.maxY_) + ")"));
+        return "min:(" + this.minX_ + ", " + this.minY_ + ") max:(" + this.maxX_ + ", " + this.maxY_ + ")";
     }
 
 

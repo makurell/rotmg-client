@@ -11,7 +11,7 @@ public final class ListActionsCommand {
 
 
     public function execute():void {
-        var _local_1:String = ("  " + this.console.getNames().join("\r  "));
+        var _local_1:String = "  " + this.console.getNames().join("\r  ");
         this.log.dispatch(_local_1);
     }
 

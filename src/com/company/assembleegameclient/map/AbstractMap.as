@@ -70,7 +70,7 @@ public class AbstractMap extends Sprite {
     }
 
     public function pSTopW(_arg_1:Number, _arg_2:Number):Point {
-        return (null);
+        return null;
     }
 
     public function removeObj(_arg_1:int):void {
@@ -80,7 +80,7 @@ public class AbstractMap extends Sprite {
     }
 
     public function allowPlayerTeleport():Boolean {
-        return (((!((this.name_ == Map.NEXUS))) && (this.allowPlayerTeleport_)));
+        return !(this.name_ == Map.NEXUS) && this.allowPlayerTeleport_;
     }
 
 

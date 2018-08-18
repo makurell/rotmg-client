@@ -35,7 +35,7 @@ public class GameObjectListItem extends Sprite {
         this.color = _arg_1;
         this.portrait = new Bitmap();
         this.portrait.x = -4;
-        this.portrait.y = ((_arg_4) ? -1 : -4);
+        this.portrait.y = _arg_4 ? -1 : -4;
         addChild(this.portrait);
         this.text = new TextFieldDisplayConcrete().setSize(13).setColor(_arg_1).setHTML(_arg_2);
         if (!_arg_2) {
@@ -53,10 +53,10 @@ public class GameObjectListItem extends Sprite {
         var _local_3:Boolean;
         _local_3 = this.isClear();
         this.go = _arg_1;
-        visible = !((_arg_1 == null));
-        if (((visible) && (((this.hasChanged()) || (_local_3))))) {
+        visible = !(_arg_1 == null);
+        if (visible && (this.hasChanged() || _local_3)) {
             this.redraw();
-            transform.colorTransform = ((_arg_2) || (MoreColorUtil.identity));
+            transform.colorTransform = _arg_2 || MoreColorUtil.identity;
         }
     }
 
@@ -66,13 +66,13 @@ public class GameObjectListItem extends Sprite {
     }
 
     public function isClear():Boolean {
-        return ((((this.go == null)) && ((visible == false))));
+        return this.go == null && visible == false;
     }
 
     private function hasChanged():Boolean {
-        var _local_1:Boolean = ((((!((this.go.name_ == this.objname))) || (!((this.go.level_ == this.level))))) || (!((this.go.objectType_ == this.type))));
-        ((_local_1) && (this.updateData()));
-        return (_local_1);
+        var _local_1:Boolean = !(this.go.name_ == this.objname) || !(this.go.level_ == this.level) || !(this.go.objectType_ == this.type);
+        _local_1 && this.updateData();
+        return _local_1;
     }
 
     private function updateData():void {
@@ -89,7 +89,7 @@ public class GameObjectListItem extends Sprite {
     }
 
     private function prepareText():TemplateBuilder {
-        this.builder = ((this.builder) || (new TemplateBuilder()));
+        this.builder = this.builder || new TemplateBuilder();
         if (this.isLongVersion) {
             this.applyLongTextToBuilder();
         }
@@ -101,7 +101,7 @@ public class GameObjectListItem extends Sprite {
                 this.builder.setTemplate(ObjectLibrary.typeToDisplayId_[this.type]);
             }
         }
-        return (this.builder);
+        return this.builder;
     }
 
     private function applyLongTextToBuilder():void {
@@ -114,14 +114,14 @@ public class GameObjectListItem extends Sprite {
             else {
                 _local_1 = "<b>{name}</b> ({type}{level})";
             }
-            if ((((this.go.name_.length > 8)) && (!(this.positionClassBelow)))) {
-                _local_2.name = (this.go.name_.slice(0, 6) + "...");
+            if (this.go.name_.length > 8 && !this.positionClassBelow) {
+                _local_2.name = this.go.name_.slice(0, 6) + "...";
             }
             else {
                 _local_2.name = this.go.name_;
             }
             _local_2.type = ObjectLibrary.typeToDisplayId_[this.type];
-            _local_2.level = (((this.level < 1)) ? "" : (" " + this.level));
+            _local_2.level = this.level < 1 ? "" : " " + this.level;
         }
         else {
             _local_1 = "<b>{name}</b>";
@@ -131,21 +131,21 @@ public class GameObjectListItem extends Sprite {
     }
 
     private function isNameDefined():Boolean {
-        return (((!((this.go.name_ == null))) && (!((this.go.name_ == "")))));
+        return !(this.go.name_ == null) && !(this.go.name_ == "");
     }
 
     private function getDrawColor():int {
-        var _local_1:Player = (this.go as Player);
+        var _local_1:Player = this.go as Player;
         if (_local_1 == null) {
-            return (this.color);
+            return this.color;
         }
         if (_local_1.isFellowGuild_) {
-            return (Parameters.FELLOW_GUILD_COLOR);
+            return Parameters.FELLOW_GUILD_COLOR;
         }
         if (_local_1.nameChosen_) {
-            return (Parameters.NAME_CHOSEN_COLOR);
+            return Parameters.NAME_CHOSEN_COLOR;
         }
-        return (this.color);
+        return this.color;
     }
 
 

@@ -16,7 +16,7 @@ public class NameResult extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("NAMERESULT", "success_", "errorText_"));
+        return formatToString("NAMERESULT", "success_", "errorText_");
     }
 
 

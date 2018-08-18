@@ -37,7 +37,7 @@ public class ArenaPortalPanel extends Panel {
         this.owner_ = _arg_2;
         addChild(this.openContainer);
         addChild(this.closeContainer);
-        if ((((gs_.map == null)) || ((gs_.map.player_ == null)))) {
+        if (gs_.map == null || gs_.map.player_ == null) {
             return;
         }
         var _local_3:Player = gs_.map.player_;
@@ -47,7 +47,7 @@ public class ArenaPortalPanel extends Panel {
         this.goldButton.addEventListener(MouseEvent.CLICK, this.onGoldClick);
         this.openContainer.addChild(this.goldButton);
         this.fameButton = new LegacyBuyButton("", 20, 250, Currency.FAME);
-        if ((_local_3.fame_ < 250)) {
+        if (_local_3.fame_ < 250) {
             this.fameButton.setEnabled(false);
         }
         else {
@@ -59,17 +59,17 @@ public class ArenaPortalPanel extends Panel {
         this.closedText.setSize(18).setColor(0xFF0000).setTextWidth(WIDTH).setWordWrap(true).setMultiLine(true).setAutoSize(TextFieldAutoSize.CENTER).setBold(true).setHTML(true);
         this.closedText.setStringBuilder(new LineBuilder().setParams(TextKey.PORTAL_PANEL_FULL).setPrefix('<p align="center">').setPostfix("</p>"));
         this.closedText.filters = [new DropShadowFilter(0, 0, 0)];
-        this.closedText.y = (HEIGHT - 45);
+        this.closedText.y = HEIGHT - 45;
         this.closeContainer.addChild(this.closedText);
         this.closeNameText = this.makeTitle();
         this.closeContainer.addChild(this.closeNameText);
     }
 
     private function alignUI():void {
-        this.goldButton.x = ((WIDTH * 0.25) - (this.goldButton.width / 2));
-        this.goldButton.y = ((HEIGHT - this.goldButton.height) - 4);
-        this.fameButton.x = ((WIDTH * 0.75) - (this.fameButton.width / 2));
-        this.fameButton.y = ((HEIGHT - this.fameButton.height) - 4);
+        this.goldButton.x = WIDTH * 0.25 - this.goldButton.width / 2;
+        this.goldButton.y = HEIGHT - this.goldButton.height - 4;
+        this.fameButton.x = WIDTH * 0.75 - this.fameButton.width / 2;
+        this.fameButton.y = HEIGHT - this.fameButton.height - 4;
     }
 
     private function onGoldClick(_arg_1:MouseEvent):void {
@@ -82,7 +82,7 @@ public class ArenaPortalPanel extends Panel {
 
     override public function draw():void {
         this.openContainer.visible = this.owner_.active_;
-        this.closeContainer.visible = !(this.owner_.active_);
+        this.closeContainer.visible = !this.owner_.active_;
     }
 
     private function makeTitle():StaticTextDisplay {
@@ -92,7 +92,7 @@ public class ArenaPortalPanel extends Panel {
         _local_1.setStringBuilder(new LineBuilder().setParams(TextKey.ARENA_PORTAL_PANEL_TITLE).setPrefix('<p align="center">').setPostfix("</p>"));
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
         _local_1.y = 6;
-        return (_local_1);
+        return _local_1;
     }
 
 

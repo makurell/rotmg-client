@@ -28,16 +28,16 @@ public class CountdownTimer extends Sprite {
         super();
         this.text = new TextFieldDisplayConcrete().setSize(40).setColor(0xFFFFFF).setBold(true);
         this.text.filters = [new DropShadowFilter(0, 0, 0), new GlowFilter(0xFFFF00, 1, 1.5, 1.5, 4.5, 1)];
-        this.text.setStringBuilder(new StaticStringBuilder(("" + this.countdownSeconds)));
+        this.text.setStringBuilder(new StaticStringBuilder("" + this.countdownSeconds));
         addChild(this.text);
         this.text.visible = false;
     }
 
     public function start(_arg_1:int = 5):void {
-        if (((!((this.text == null))) && (!((this.text.parent == null))))) {
+        if (!(this.text == null) && !(this.text.parent == null)) {
             removeChild(this.text);
         }
-        this.text.setStringBuilder(new StaticStringBuilder(("" + _arg_1)));
+        this.text.setStringBuilder(new StaticStringBuilder("" + _arg_1));
         this.text.alpha = 0.5;
         this.text.scaleX = 1;
         this.text.scaleY = 1;
@@ -55,10 +55,10 @@ public class CountdownTimer extends Sprite {
     }
 
     public function end():void {
-        if (((!((this.background == null))) && (!((this.background.parent == null))))) {
+        if (!(this.background == null) && !(this.background.parent == null)) {
             removeChild(this.background);
         }
-        if (((!((this.text == null))) && (!((this.text.parent == null))))) {
+        if (!(this.text == null) && !(this.text.parent == null)) {
             removeChild(this.text);
         }
         this.countdownSeconds = 0;
@@ -70,10 +70,10 @@ public class CountdownTimer extends Sprite {
     }
 
     public function remove():void {
-        if (((!((this.background == null))) && (!((this.background.parent == null))))) {
+        if (!(this.background == null) && !(this.background.parent == null)) {
             removeChild(this.background);
         }
-        if (((!((this.text == null))) && (!((this.text.parent == null))))) {
+        if (!(this.text == null) && !(this.text.parent == null)) {
             removeChild(this.text);
         }
         this.countdownSeconds = 0;
@@ -82,7 +82,7 @@ public class CountdownTimer extends Sprite {
     }
 
     public function isRunning():Boolean {
-        return (!((this.countdownSeconds == 0)));
+        return !(this.countdownSeconds == 0);
     }
 
     public function countdown(_arg_1:TimerEvent):void {
@@ -91,11 +91,11 @@ public class CountdownTimer extends Sprite {
             this.end();
         }
         else {
-            this.text.setStringBuilder(new StaticStringBuilder(("" + this.countdownSeconds)));
+            this.text.setStringBuilder(new StaticStringBuilder("" + this.countdownSeconds));
             this.text.alpha = 0.5;
             this.text.scaleX = 1;
             this.text.scaleY = 1;
-            if ((((this.countdownSeconds == 9)) || ((this.countdownSeconds == 99)))) {
+            if (this.countdownSeconds == 9 || this.countdownSeconds == 99) {
                 this.reAlign();
             }
             new GTween(this.text, 0.25, {
@@ -108,23 +108,23 @@ public class CountdownTimer extends Sprite {
 
     public function setXPos(_arg_1:Number):void {
         this.centerX = _arg_1;
-        this.x = (this.centerX - ((this.width * 1.25) / 2));
+        this.x = this.centerX - (this.width * 1.25) / 2;
     }
 
     public function reAlign():void {
-        this.x = (this.centerX - ((this.width * 1.25) / 2));
+        this.x = this.centerX - (this.width * 1.25) / 2;
     }
 
     public function setYPos(_arg_1:Number):void {
-        this.y = (_arg_1 - ((this.height * 1.25) / 2));
+        this.y = _arg_1 - (this.height * 1.25) / 2;
     }
 
     public function getCenterX():Number {
-        return ((this.x + (this.width / 2)));
+        return this.x + this.width / 2;
     }
 
     public function getCenterY():Number {
-        return ((this.y + (this.height / 2)));
+        return this.y + this.height / 2;
     }
 
 

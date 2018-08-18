@@ -19,9 +19,9 @@ public class KeyMapper extends BaseOption {
 
     public function setDisabled(_arg_1:Boolean):void {
         this.disabled_ = _arg_1;
-        transform.colorTransform = ((this.disabled_) ? MoreColorUtil.darkCT : MoreColorUtil.identity);
-        mouseEnabled = !(this.disabled_);
-        mouseChildren = !(this.disabled_);
+        transform.colorTransform = this.disabled_ ? MoreColorUtil.darkCT : MoreColorUtil.identity;
+        mouseEnabled = !this.disabled_;
+        mouseChildren = !this.disabled_;
     }
 
     override public function refresh():void {

@@ -47,7 +47,7 @@ public class Parameters {
     public static const USER_GENERATED_CONTENT_TERMS:String = "/UGDTermsofUse.html";
     public static const RANDOM1:String = "311f80691451c71b09a13a2a6e";
     public static const RANDOM2:String = "72c5583cafb6818995cbd74b80";
-    public static const RSA_PUBLIC_KEY:String = ((((("-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO") + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo") + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7") + "F3yWYqUbZd/HCBtawwIDAQAB\n") + "-----END PUBLIC KEY-----");
+    public static const RSA_PUBLIC_KEY:String = "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
     private static var savedOptions_:SharedObject = null;
     public static var toggleHPBar_:Boolean = false;
     public static const skinTypes16:Vector.<int> = new <int>[1027, 0x0404, 1029, 1030];
@@ -101,7 +101,7 @@ public class Parameters {
     }
 
     public static function isGpuRender():Boolean {
-        return (((((!(GPURenderError)) && (data_.GPURender))) && (!(Map.forceSoftwareRender))));
+        return !GPURenderError && data_.GPURender && !Map.forceSoftwareRender;
     }
 
     public static function clearGpuRenderEvent(_arg_1:Event):void {
@@ -161,8 +161,8 @@ public class Parameters {
         setDefault("preferredServer", null);
         setDefault("needsTutorial", true);
         setDefault("needsRandomRealm", true);
-        setDefault("cameraAngle", ((7 * Math.PI) / 4));
-        setDefault("defaultCameraAngle", ((7 * Math.PI) / 4));
+        setDefault("cameraAngle", (7 * Math.PI) / 4);
+        setDefault("defaultCameraAngle", (7 * Math.PI) / 4);
         setDefault("showQuestPortraits", true);
         setDefault("fullscreenMode", false);
         setDefault("showProtips", true);
@@ -208,13 +208,13 @@ public class Parameters {
         setDefault("chatTrade", true);
         setDefault("toggleBarText", false);
         setDefault("particleEffect", true);
-        if (((data_.hasOwnProperty("playMusic")) && ((data_.playMusic == true)))) {
+        if (data_.hasOwnProperty("playMusic") && data_.playMusic == true) {
             setDefault("musicVolume", 1);
         }
         else {
             setDefault("musicVolume", 0);
         }
-        if (((data_.hasOwnProperty("playSFX")) && ((data_.playMusic == true)))) {
+        if (data_.hasOwnProperty("playSFX") && data_.playMusic == true) {
             setDefault("SFXVolume", 1);
         }
         else {
@@ -227,30 +227,30 @@ public class Parameters {
         setDefault("HPBar", false);
         if (!data_.hasOwnProperty("needsSurvey")) {
             data_.needsSurvey = data_.needsTutorial;
-            switch (int((Math.random() * 5))) {
+            switch (int(Math.random() * 5)) {
                 case 0:
                     data_.surveyDate = 0;
-                    data_.playTimeLeftTillSurvey = (5 * 60);
+                    data_.playTimeLeftTillSurvey = 5 * 60;
                     data_.surveyGroup = "5MinPlaytime";
                     return;
                 case 1:
                     data_.surveyDate = 0;
-                    data_.playTimeLeftTillSurvey = (10 * 60);
+                    data_.playTimeLeftTillSurvey = 10 * 60;
                     data_.surveyGroup = "10MinPlaytime";
                     return;
                 case 2:
                     data_.surveyDate = 0;
-                    data_.playTimeLeftTillSurvey = (30 * 60);
+                    data_.playTimeLeftTillSurvey = 30 * 60;
                     data_.surveyGroup = "30MinPlaytime";
                     return;
                 case 3:
-                    data_.surveyDate = (new Date().time + ((((1000 * 60) * 60) * 24) * 7));
-                    data_.playTimeLeftTillSurvey = (2 * 60);
+                    data_.surveyDate = new Date().time + 1000 * 60 * 60 * 24 * 7;
+                    data_.playTimeLeftTillSurvey = 2 * 60;
                     data_.surveyGroup = "1WeekRealtime";
                     return;
                 case 4:
-                    data_.surveyDate = (new Date().time + ((((1000 * 60) * 60) * 24) * 14));
-                    data_.playTimeLeftTillSurvey = (2 * 60);
+                    data_.surveyDate = new Date().time + 1000 * 60 * 60 * 24 * 14;
+                    data_.playTimeLeftTillSurvey = 2 * 60;
                     data_.surveyGroup = "2WeekRealtime";
                     return;
             }

@@ -28,29 +28,29 @@ public class FusionStrength extends Sprite {
 
     private static function getKeyFor(_arg_1:Number):String {
         if (isMaxed(_arg_1)) {
-            return (MAXED);
+            return MAXED;
         }
         if (_arg_1 > 0.8) {
-            return (FANTASTIC);
+            return FANTASTIC;
         }
         if (_arg_1 > 0.6) {
-            return (GREAT);
+            return GREAT;
         }
         if (_arg_1 > 0.4) {
-            return (GOOD);
+            return GOOD;
         }
         if (_arg_1 > 0.2) {
-            return (LOW);
+            return LOW;
         }
-        return (BAD);
+        return BAD;
     }
 
     private static function isMaxed(_arg_1:Number):Boolean {
-        return ((Math.abs((_arg_1 - 1)) < 0.001));
+        return Math.abs(_arg_1 - 1) < 0.001;
     }
 
     private static function isBad(_arg_1:Number):Boolean {
-        return ((_arg_1 < 0.2));
+        return _arg_1 < 0.2;
     }
 
 
@@ -68,7 +68,7 @@ public class FusionStrength extends Sprite {
 
     private function addFusionText():void {
         this.fusionText = FusionStrengthFactory.makeFusionText();
-        this.fusionText.x = (width - PADDING);
+        this.fusionText.x = width - PADDING;
         this.fusionText.y = this.getMiddle();
         this.fusionText.setStringBuilder(new LineBuilder().setParams(NONE));
         this.fusionText.setColor(DEFAULT_COLOR);
@@ -76,7 +76,7 @@ public class FusionStrength extends Sprite {
     }
 
     private function getMiddle():Number {
-        return ((height / 2));
+        return height / 2;
     }
 
     public function setFusionStrength(_arg_1:Number):void {

@@ -14,7 +14,7 @@ public class Ping extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("PING", "serial_"));
+        return formatToString("PING", "serial_");
     }
 
 

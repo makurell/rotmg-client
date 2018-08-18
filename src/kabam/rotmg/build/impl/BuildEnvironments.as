@@ -14,31 +14,31 @@ public final class BuildEnvironments {
 
 
     public function getEnvironment(_arg_1:String):BuildEnvironment {
-        return (((this.isFixedIP(_arg_1)) ? BuildEnvironment.FIXED_IP : this.getEnvironmentFromName(_arg_1)));
+        return this.isFixedIP(_arg_1) ? BuildEnvironment.FIXED_IP : this.getEnvironmentFromName(_arg_1);
     }
 
     private function isFixedIP(_arg_1:String):Boolean {
-        return (!((_arg_1.match(IP_MATCHER) == null)));
+        return !(_arg_1.match(IP_MATCHER) == null);
     }
 
     private function getEnvironmentFromName(_arg_1:String):BuildEnvironment {
         switch (_arg_1) {
             case LOCALHOST:
-                return (BuildEnvironment.LOCALHOST);
+                return BuildEnvironment.LOCALHOST;
             case PRIVATE:
-                return (BuildEnvironment.PRIVATE);
+                return BuildEnvironment.PRIVATE;
             case DEV:
-                return (BuildEnvironment.DEV);
+                return BuildEnvironment.DEV;
             case TESTING:
-                return (BuildEnvironment.TESTING);
+                return BuildEnvironment.TESTING;
             case TESTING2:
-                return (BuildEnvironment.TESTING2);
+                return BuildEnvironment.TESTING2;
             case PRODTEST:
-                return (BuildEnvironment.PRODTEST);
+                return BuildEnvironment.PRODTEST;
             case PRODUCTION:
-                return (BuildEnvironment.PRODUCTION);
+                return BuildEnvironment.PRODUCTION;
         }
-        return (null);
+        return null;
     }
 
 

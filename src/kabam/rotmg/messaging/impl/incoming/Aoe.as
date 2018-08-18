@@ -27,7 +27,7 @@ public class Aoe extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("AOE", "pos_", "radius_", "damage_", "effect_", "duration_", "origType_"));
+        return formatToString("AOE", "pos_", "radius_", "damage_", "effect_", "duration_", "origType_");
     }
 
 

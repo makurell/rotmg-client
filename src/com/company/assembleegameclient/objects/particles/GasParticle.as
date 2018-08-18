@@ -10,19 +10,19 @@ public class GasParticle extends SparkParticle {
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
         var _local_4:Number;
-        timeLeft_ = (timeLeft_ - _arg_2);
+        timeLeft_ = timeLeft_ - _arg_2;
         if (timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        if (((square_.obj_) && (square_.obj_.props_.static_))) {
-            return (false);
+        if (square_.obj_ && square_.obj_.props_.static_) {
+            return false;
         }
-        var _local_3:Number = (Math.random() * this.noise);
-        _local_4 = (Math.random() * this.noise);
-        x_ = (x_ + (((dx_ * _local_3) * _arg_2) / 1000));
-        y_ = (y_ + (((dy_ * _local_4) * _arg_2) / 1000));
-        setSize(((timeLeft_ / lifetime_) * initialSize_));
-        return (true);
+        var _local_3:Number = Math.random() * this.noise;
+        _local_4 = Math.random() * this.noise;
+        x_ = x_ + (dx_ * _local_3 * _arg_2) / 1000;
+        y_ = y_ + (dy_ * _local_4 * _arg_2) / 1000;
+        setSize((timeLeft_ / lifetime_) * initialSize_);
+        return true;
     }
 
 

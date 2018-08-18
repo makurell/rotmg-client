@@ -87,7 +87,7 @@ public class TitleView extends Sprite {
         _local_6.addButton(_local_5, MenuOptionsBar.LEFT);
         _local_6.addButton(_local_3, MenuOptionsBar.RIGHT);
         _local_6.addButton(_local_4, MenuOptionsBar.RIGHT);
-        return (_local_6);
+        return _local_6;
     }
 
     private function makeChildren():void {
@@ -105,7 +105,7 @@ public class TitleView extends Sprite {
     public function makeText():TextFieldDisplayConcrete {
         var _local_1:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(12).setColor(0x7F7F7F);
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
-        return (_local_1);
+        return _local_1;
     }
 
     public function initialize(_arg_1:EnvironmentData):void {
@@ -114,8 +114,7 @@ public class TitleView extends Sprite {
         this.handleOptionalButtons();
     }
 
-    public function putNoticeTagToOption(_arg_1:TitleMenuOption, _arg_2:String, _arg_3:int = 14, _arg_4:uint = 0x99FF66, _arg_5:Boolean = true):void
-    {
+    public function putNoticeTagToOption(_arg_1:TitleMenuOption, _arg_2:String, _arg_3:int = 14, _arg_4:uint = 0x99FF66, _arg_5:Boolean = true):void {
         _arg_1.createNoticeTag(_arg_2, _arg_3, _arg_4, _arg_5);
     }
 

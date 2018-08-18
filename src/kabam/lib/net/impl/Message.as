@@ -13,7 +13,7 @@ public class Message {
 
     public function Message(_arg_1:uint, _arg_2:Function = null) {
         this.id = _arg_1;
-        this.isCallback = !((_arg_2 == null));
+        this.isCallback = !(_arg_2 == null);
         this.callback = _arg_2;
     }
 
@@ -24,21 +24,21 @@ public class Message {
     }
 
     public function toString():String {
-        return (this.formatToString("MESSAGE", "id"));
+        return this.formatToString("MESSAGE", "id");
     }
 
-    protected function formatToString(_arg_1:String, ... rest):String {
-        var _local_3:String = ("[" + _arg_1);
+    protected function formatToString(_arg_1:String, ...rest):String {
+        var _local_3:String = "[" + _arg_1;
         var _local_4:int;
         while (_local_4 < rest.length) {
-            _local_3 = (_local_3 + ((((" " + rest[_local_4]) + '="') + this[rest[_local_4]]) + '"'));
+            _local_3 = _local_3 + (" " + rest[_local_4] + '="' + this[rest[_local_4]] + '"');
             _local_4++;
         }
-        return ((_local_3 + "]"));
+        return _local_3 + "]";
     }
 
     public function consume():void {
-        ((this.isCallback) && (this.callback(this)));
+        this.isCallback && this.callback(this);
         this.prev = null;
         this.next = null;
         this.pool.append(this);

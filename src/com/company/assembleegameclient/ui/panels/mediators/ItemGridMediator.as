@@ -87,26 +87,23 @@ public class ItemGridMediator extends Mediator {
         var _local_8:int;
         var _local_2:InteractiveItemTile = _arg_1.tile;
         var _local_3:* = DisplayHierarchy.getParentWithTypeArray(_local_2.getDropTarget(), TabStripView, InteractiveItemTile, FoodFeedFuseSlot, QuestRewardsView, Map);
-        if ((((_local_2.getItemId() == PotionInventoryModel.HEALTH_POTION_ID)) || ((((_local_2.getItemId() == PotionInventoryModel.MAGIC_POTION_ID)) && (!(Boolean((_local_3 as FoodFeedFuseSlot)))))))) {
+        if (_local_2.getItemId() == PotionInventoryModel.HEALTH_POTION_ID || _local_2.getItemId() == PotionInventoryModel.MAGIC_POTION_ID && !Boolean(_local_3 as FoodFeedFuseSlot)) {
             this.onPotionMove(_arg_1);
             return;
         }
-        if ((_local_3 is InteractiveItemTile)) {
+        if (_local_3 is InteractiveItemTile) {
             _local_4 = (_local_3 as InteractiveItemTile);
-            if(this.view.curPlayer.lockedSlot[_local_4.tileId] == 0)
-            {
-                if(this.canSwapItems(_local_2, _local_4))
-                {
+            if (this.view.curPlayer.lockedSlot[_local_4.tileId] == 0) {
+                if (this.canSwapItems(_local_2, _local_4)) {
                     this.swapItemTiles(_local_2, _local_4);
                 }
             }
-            else
-            {
+            else {
                 this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "You cannot put items into this slot right now."));
             }
         }
         else {
-            if ((_local_3 is TabStripView)) {
+            if (_local_3 is TabStripView) {
                 _local_5 = (_local_3 as TabStripView);
                 _local_6 = _local_2.ownerGrid.curPlayer.nextAvailableInventorySlot();
                 if (_local_6 != -1) {
@@ -116,7 +113,7 @@ public class ItemGridMediator extends Mediator {
                 }
             }
             else {
-                if ((_local_3 is FoodFeedFuseSlot)) {
+                if (_local_3 is FoodFeedFuseSlot) {
                     _local_7 = (_local_3 as FoodFeedFuseSlot);
                     if (!_local_7.processing) {
                         this.petSlotsState.rightSlotId = _local_2.tileId;
@@ -130,7 +127,7 @@ public class ItemGridMediator extends Mediator {
                     }
                 }
                 else {
-                    if ((((_local_3 is Map)) || ((this.hudModel.gameSprite.map.mouseX < 300)))) {
+                    if ((_local_3 is Map) || this.hudModel.gameSprite.map.mouseX < 300) {
                         this.dropItem(_local_2);
                     }
                 }
@@ -140,19 +137,19 @@ public class ItemGridMediator extends Mediator {
     }
 
     private function petFoodCancel(itemSlot:InteractiveItemTile):Function {
-        return (function ():void {
+        return function ():void {
             itemSlot.blockingItemUpdates = false;
-        });
+        };
     }
 
     private function onPotionMove(_arg_1:ItemTileEvent):void {
         var _local_2:InteractiveItemTile = _arg_1.tile;
         var _local_3:* = DisplayHierarchy.getParentWithTypeArray(_local_2.getDropTarget(), TabStripView, Map);
-        if ((_local_3 is TabStripView)) {
+        if (_local_3 is TabStripView) {
             this.addToPotionStack(_local_2);
         }
         else {
-            if ((((_local_3 is Map)) || ((this.hudModel.gameSprite.map.mouseX < 300)))) {
+            if ((_local_3 is Map) || this.hudModel.gameSprite.map.mouseX < 300) {
                 this.dropItem(_local_2);
             }
         }
@@ -160,7 +157,7 @@ public class ItemGridMediator extends Mediator {
     }
 
     private function addToPotionStack(_arg_1:InteractiveItemTile):void {
-        if (((((((!(GameServerConnection.instance)) || (!(this.view.interactive)))) || (!(_arg_1)))) || ((this.potionInventoryModel.getPotionModel(_arg_1.getItemId()).maxPotionCount <= this.hudModel.gameSprite.map.player_.getPotionCount(_arg_1.getItemId()))))) {
+        if (!GameServerConnection.instance || !this.view.interactive || !_arg_1 || this.potionInventoryModel.getPotionModel(_arg_1.getItemId()).maxPotionCount <= this.hudModel.gameSprite.map.player_.getPotionCount(_arg_1.getItemId())) {
             return;
         }
         GameServerConnection.instance.invSwapPotion(this.view.curPlayer, this.view.owner, _arg_1.tileId, _arg_1.itemSprite.itemId, this.view.curPlayer, PotionInventoryModel.getPotionSlot(_arg_1.getItemId()), ItemConstants.NO_ITEM);
@@ -170,18 +167,18 @@ public class ItemGridMediator extends Mediator {
 
     private function canSwapItems(_arg_1:InteractiveItemTile, _arg_2:InteractiveItemTile):Boolean {
         if (!_arg_1.canHoldItem(_arg_2.getItemId())) {
-            return (false);
+            return false;
         }
         if (!_arg_2.canHoldItem(_arg_1.getItemId())) {
-            return (false);
+            return false;
         }
-        if ((ItemGrid(_arg_2.parent).owner is OneWayContainer)) {
-            return (false);
+        if (ItemGrid(_arg_2.parent).owner is OneWayContainer) {
+            return false;
         }
-        if (((_arg_1.blockingItemUpdates) || (_arg_2.blockingItemUpdates))) {
-            return (false);
+        if (_arg_1.blockingItemUpdates || _arg_2.blockingItemUpdates) {
+            return false;
         }
-        return (true);
+        return true;
     }
 
     private function dropItem(_arg_1:InteractiveItemTile):void {
@@ -190,8 +187,8 @@ public class ItemGridMediator extends Mediator {
         var _local_6:int;
         var _local_7:int;
         var _local_2:Boolean = ObjectLibrary.isSoulbound(_arg_1.itemSprite.itemId);
-        var _local_3:Container = (this.view.owner as Container);
-        if ((((this.view.owner == this.view.curPlayer)) || (((((_local_3) && ((_local_3.ownerId_ == this.view.curPlayer.accountId_)))) && (!(_local_2)))))) {
+        var _local_3:Container = this.view.owner as Container;
+        if (this.view.owner == this.view.curPlayer || _local_3 && _local_3.ownerId_ == this.view.curPlayer.accountId_ && !_local_2) {
             _local_4 = (this.mapModel.currentInteractiveTarget as Container);
             if (_local_4) {
                 _local_5 = _local_4.equipment_;
@@ -216,8 +213,8 @@ public class ItemGridMediator extends Mediator {
     }
 
     private function swapItemTiles(_arg_1:ItemTile, _arg_2:ItemTile):Boolean {
-        if (((((((!(GameServerConnection.instance)) || (!(this.view.interactive)))) || (!(_arg_1)))) || (!(_arg_2)))) {
-            return (false);
+        if (!GameServerConnection.instance || !this.view.interactive || !_arg_1 || !_arg_2) {
+            return false;
         }
         GameServerConnection.instance.invSwap(this.view.curPlayer, this.view.owner, _arg_1.tileId, _arg_1.itemSprite.itemId, _arg_2.ownerGrid.owner, _arg_2.tileId, _arg_2.itemSprite.itemId);
         var _local_3:int = _arg_1.getItemId();
@@ -225,11 +222,11 @@ public class ItemGridMediator extends Mediator {
         _arg_2.setItem(_local_3);
         _arg_1.updateUseability(this.view.curPlayer);
         _arg_2.updateUseability(this.view.curPlayer);
-        return (true);
+        return true;
     }
 
     private function dropWithoutDestTile(_arg_1:ItemTile, _arg_2:Container, _arg_3:int):void {
-        if (((((((!(GameServerConnection.instance)) || (!(this.view.interactive)))) || (!(_arg_1)))) || (!(_arg_2)))) {
+        if (!GameServerConnection.instance || !this.view.interactive || !_arg_1 || !_arg_2) {
             return;
         }
         GameServerConnection.instance.invSwap(this.view.curPlayer, this.view.owner, _arg_1.tileId, _arg_1.itemSprite.itemId, _arg_2, _arg_3, -1);
@@ -238,7 +235,7 @@ public class ItemGridMediator extends Mediator {
 
     private function onShiftClick(_arg_1:ItemTileEvent):void {
         var _local_2:InteractiveItemTile = _arg_1.tile;
-        if ((((_local_2.ownerGrid is InventoryGrid)) || ((_local_2.ownerGrid is ContainerGrid)))) {
+        if ((_local_2.ownerGrid is InventoryGrid) || (_local_2.ownerGrid is ContainerGrid)) {
             GameServerConnection.instance.useItem_new(_local_2.ownerGrid.owner, _local_2.tileId);
         }
     }
@@ -248,7 +245,7 @@ public class ItemGridMediator extends Mediator {
         var _local_3:int;
         if (Parameters.data_.inventorySwap) {
             _local_2 = _arg_1.tile;
-            if ((_local_2.ownerGrid is InventoryGrid)) {
+            if (_local_2.ownerGrid is InventoryGrid) {
                 _local_3 = _local_2.ownerGrid.curPlayer.swapInventoryIndex(this.tabStripModel.currentSelection);
                 if (_local_3 != -1) {
                     GameServerConnection.instance.invSwap(this.view.curPlayer, _local_2.ownerGrid.owner, _local_2.tileId, _local_2.itemSprite.itemId, this.view.curPlayer, _local_3, ItemConstants.NO_ITEM);
@@ -269,7 +266,7 @@ public class ItemGridMediator extends Mediator {
                 this.addToPotionStack(_local_2);
             }
             else {
-                if ((_local_2.ownerGrid is ContainerGrid)) {
+                if (_local_2.ownerGrid is ContainerGrid) {
                     this.equipOrUseContainer(_local_2);
                 }
                 else {
@@ -281,7 +278,7 @@ public class ItemGridMediator extends Mediator {
     }
 
     private function handlePetFormStone(_arg_1:InteractiveItemTile):void {
-        if ((_arg_1.ownerGrid is ContainerGrid)) {
+        if (_arg_1.ownerGrid is ContainerGrid) {
             this.pickUpItem(_arg_1);
         }
         else {
@@ -296,11 +293,11 @@ public class ItemGridMediator extends Mediator {
     }
 
     private function isPetFormStone(_arg_1:InteractiveItemTile):Boolean {
-        return ((_arg_1.getItemId() == 3321));
+        return _arg_1.getItemId() == 3321;
     }
 
     private function isStackablePotion(_arg_1:InteractiveItemTile):Boolean {
-        return ((((_arg_1.getItemId() == PotionInventoryModel.HEALTH_POTION_ID)) || ((_arg_1.getItemId() == PotionInventoryModel.MAGIC_POTION_ID))));
+        return _arg_1.getItemId() == PotionInventoryModel.HEALTH_POTION_ID || _arg_1.getItemId() == PotionInventoryModel.MAGIC_POTION_ID;
     }
 
     private function pickUpItem(_arg_1:InteractiveItemTile):void {

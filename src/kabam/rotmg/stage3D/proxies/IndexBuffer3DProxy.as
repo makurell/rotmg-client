@@ -14,7 +14,7 @@ public class IndexBuffer3DProxy {
     }
 
     public function getIndexBuffer3D():IndexBuffer3D {
-        return (this.indexBuffer);
+        return this.indexBuffer;
     }
 
 

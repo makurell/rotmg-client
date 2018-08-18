@@ -42,7 +42,7 @@ public class PetFuser extends Sprite {
     public function setPet(_arg_1:PetVO, _arg_2:String):void {
         var _local_3:PetFeedFuseSlot;
         if (_arg_1) {
-            _local_3 = (((_arg_2 == PetSlotsState.LEFT)) ? this.leftSlot : this.rightSlot);
+            _local_3 = _arg_2 == PetSlotsState.LEFT ? this.leftSlot : this.rightSlot;
             _local_3.setPet(_arg_1);
         }
     }
@@ -62,8 +62,8 @@ public class PetFuser extends Sprite {
             this.leftSlot.highlight(true);
         }
         else {
-            this.rightSlot.highlight((this.state.rightSlotPetVO == null));
-            this.leftSlot.highlight((this.state.leftSlotPetVO == null));
+            this.rightSlot.highlight(this.state.rightSlotPetVO == null);
+            this.leftSlot.highlight(this.state.leftSlotPetVO == null);
             this.arrow.highlight(false);
         }
     }

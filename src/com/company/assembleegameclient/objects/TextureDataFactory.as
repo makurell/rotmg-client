@@ -3,7 +3,7 @@ public class TextureDataFactory {
 
 
     public function create(_arg_1:XML):TextureData {
-        return (new TextureDataConcrete(_arg_1));
+        return new TextureDataConcrete(_arg_1);
     }
 
 

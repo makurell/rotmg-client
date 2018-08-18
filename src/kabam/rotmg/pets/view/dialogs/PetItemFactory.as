@@ -15,7 +15,7 @@ public class PetItemFactory {
         _local_3.setPetIcon(_local_4);
         _local_3.setSize(_arg_2);
         _local_3.setBackground(PetItem.REGULAR);
-        return (_local_3);
+        return _local_3;
     }
 
 

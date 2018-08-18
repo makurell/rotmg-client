@@ -17,11 +17,11 @@ public class Timespan {
     }
 
     public function getName():String {
-        return (this.name);
+        return this.name;
     }
 
     public function getId():String {
-        return (this.id);
+        return this.id;
     }
 
 

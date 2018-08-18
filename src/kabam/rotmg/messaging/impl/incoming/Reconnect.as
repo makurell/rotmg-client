@@ -30,7 +30,7 @@ public class Reconnect extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("RECONNECT", "name_", "host_", "port_", "gameId_", "keyTime_", "key_", "isFromArena_"));
+        return formatToString("RECONNECT", "name_", "host_", "port_", "gameId_", "keyTime_", "key_", "isFromArena_");
     }
 
 

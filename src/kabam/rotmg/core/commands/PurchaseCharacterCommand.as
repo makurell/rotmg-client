@@ -64,7 +64,7 @@ public class PurchaseCharacterCommand {
     }
 
     private function purchaseCharacterClass():void {
-        this.playerModel.changeCredits((-1 * this.cost));
+        this.playerModel.changeCredits(-1 * this.cost);
         this.buyCharacterPending.dispatch(this.classType);
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new BranchingTask(this.task, this.charList, this.makeFailureTask()));
@@ -75,7 +75,7 @@ public class PurchaseCharacterCommand {
 
     private function makeFailureTask():Task {
         this.failure.parentTask = this.task;
-        return (this.failure);
+        return this.failure;
     }
 
     private function showNotEnoughGoldDialog():void {
@@ -86,11 +86,11 @@ public class PurchaseCharacterCommand {
     }
 
     private function getCostToUnlockCharacter():int {
-        return (ObjectLibrary.xmlLibrary_[this.classType].UnlockCost);
+        return ObjectLibrary.xmlLibrary_[this.classType].UnlockCost;
     }
 
     private function isCharacterUnlockAffordable():Boolean {
-        return (((!(this.cost)) || ((this.cost <= this.playerModel.getCredits()))));
+        return !this.cost || this.cost <= this.playerModel.getCredits();
     }
 
 

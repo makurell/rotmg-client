@@ -60,7 +60,7 @@ public class CharacterBox extends Sprite {
         this.model = _arg_3;
         this.playerXML_ = _arg_1;
         this.charStats_ = _arg_2;
-        this.available_ = ((_arg_4) || (_arg_3.isLevelRequirementsMet(this.objectType())));
+        this.available_ = _arg_4 || _arg_3.isLevelRequirementsMet(this.objectType());
         if (!this.available_) {
             this.graphic_ = new LockedCharBoxGraphic();
             this.cost = this.playerXML_.UnlockCost;
@@ -84,7 +84,7 @@ public class CharacterBox extends Sprite {
         if (this.available_) {
             _local_5 = this.getStars(FameUtil.numStars(_arg_3.getBestFame(this.objectType())), FameUtil.STARS.length);
             _local_5.y = 60;
-            _local_5.x = ((this.graphic_.width / 2) - (_local_5.width / 2));
+            _local_5.x = this.graphic_.width / 2 - _local_5.width / 2;
             _local_5.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4)];
             this.graphicContainer_.addChild(_local_5);
             this.classNameText_.y = 74;
@@ -103,7 +103,7 @@ public class CharacterBox extends Sprite {
     }
 
     public function objectType():int {
-        return (int(this.playerXML_.@type));
+        return int(this.playerXML_.@type);
     }
 
     public function unlock():void {
@@ -123,18 +123,18 @@ public class CharacterBox extends Sprite {
             if (contains(this.buyButton_)) {
                 removeChild(this.buyButton_);
             }
-            if (((this.lock_) && (contains(this.lock_)))) {
+            if (this.lock_ && contains(this.lock_)) {
                 removeChild(this.lock_);
             }
-            if (((this.saleTag_) && (contains(this.saleTag_)))) {
+            if (this.saleTag_ && contains(this.saleTag_)) {
                 removeChild(this.saleTag_);
             }
-            if (((this.saleText_) && (contains(this.saleText_)))) {
+            if (this.saleText_ && contains(this.saleText_)) {
                 removeChild(this.saleText_);
             }
             _local_1 = this.getStars(FameUtil.numStars(this.model.getBestFame(this.objectType())), FameUtil.STARS.length);
             _local_1.y = 60;
-            _local_1.x = ((this.graphic_.width / 2) - (_local_1.width / 2));
+            _local_1.x = this.graphic_.width / 2 - _local_1.width / 2;
             _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4)];
             addChild(_local_1);
             this.classNameText_.y = 74;
@@ -155,7 +155,7 @@ public class CharacterBox extends Sprite {
     }
 
     public function getTooltip():ToolTip {
-        return (new ClassToolTip(this.playerXML_, this.model, this.charStats_));
+        return new ClassToolTip(this.playerXML_, this.model, this.charStats_);
     }
 
     public function setOver(_arg_1:Boolean):void {
@@ -172,7 +172,7 @@ public class CharacterBox extends Sprite {
 
     private function setImage(_arg_1:int, _arg_2:int, _arg_3:Number):void {
         this.bitmap_.bitmapData = SavedCharacter.getImage(null, this.playerXML_, _arg_1, _arg_2, _arg_3, this.available_, false);
-        this.bitmap_.x = ((this.graphic_.width / 2) - (this.bitmap_.bitmapData.width / 2));
+        this.bitmap_.x = this.graphic_.width / 2 - this.bitmap_.bitmapData.width / 2;
     }
 
     private function getStars(_arg_1:int, _arg_2:int):Sprite {
@@ -185,7 +185,7 @@ public class CharacterBox extends Sprite {
             _local_5.x = _local_6;
             _local_5.transform.colorTransform = fullCT;
             _local_3.addChild(_local_5);
-            _local_6 = (_local_6 + _local_5.width);
+            _local_6 = _local_6 + _local_5.width;
             _local_4++;
         }
         while (_local_4 < _arg_2) {
@@ -193,10 +193,10 @@ public class CharacterBox extends Sprite {
             _local_5.x = _local_6;
             _local_5.transform.colorTransform = emptyCT;
             _local_3.addChild(_local_5);
-            _local_6 = (_local_6 + _local_5.width);
+            _local_6 = _local_6 + _local_5.width;
             _local_4++;
         }
-        return (_local_3);
+        return _local_3;
     }
 
     public function setSale(_arg_1:int):void {
@@ -215,7 +215,7 @@ public class CharacterBox extends Sprite {
 
     private function setBuyButton():void {
         this.buyButton_ = new LegacyBuyButton(TextKey.BUY_FOR, 13, this.cost, Currency.GOLD);
-        this.buyButton_.y = (this.buyButton_.y + this.graphic_.height);
+        this.buyButton_.y = this.buyButton_.y + this.graphic_.height;
         this.buyButton_.setWidth(this.graphic_.width);
         this.buyButtonClicked_ = new NativeSignal(this.buyButton_, MouseEvent.CLICK, MouseEvent);
     }

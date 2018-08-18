@@ -19,10 +19,10 @@ public class PrismComparison extends SlotComparison {
         this.decoy = itemXML.Activate.(text() == "Decoy");
         this.otherDecoy = curItemXML.Activate.(text() == "Decoy");
         comparisonStringBuilder = new AppendingLineBuilder();
-        if ((((this.decoy.length() == 1)) && ((this.otherDecoy.length() == 1)))) {
+        if (this.decoy.length() == 1 && this.otherDecoy.length() == 1) {
             duration = Number(this.decoy[0].@duration);
             otherDuration = Number(this.otherDecoy[0].@duration);
-            textColor = getTextColor((duration - otherDuration));
+            textColor = getTextColor(duration - otherDuration);
             comparisonStringBuilder.pushParams(TextKey.DECOY, {"data": new LineBuilder().setParams(TextKey.SEC_COUNT, {"duration": duration.toString()}).setPrefix(TooltipHelper.getOpenTag(textColor)).setPostfix(TooltipHelper.getCloseTag())});
             test = this.decoy[0].toXMLString();
             processedTags[this.decoy[0].toXMLString()] = true;

@@ -15,7 +15,7 @@ public class Program3DProxy {
     }
 
     public function getProgram3D():Program3D {
-        return (this.program3D);
+        return this.program3D;
     }
 
 

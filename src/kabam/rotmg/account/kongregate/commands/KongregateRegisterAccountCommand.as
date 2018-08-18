@@ -37,11 +37,11 @@ public class KongregateRegisterAccountCommand {
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new DispatchSignalTask(this.update));
         _local_1.add(new DispatchSignalTask(this.openDialog, new KongregateAccountDetailDialog()));
-        return (_local_1);
+        return _local_1;
     }
 
     private function onFailure():Task {
-        return (new DispatchSignalTask(this.taskError, this.task));
+        return new DispatchSignalTask(this.taskError, this.task);
     }
 
 

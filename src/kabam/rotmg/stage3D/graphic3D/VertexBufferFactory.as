@@ -18,7 +18,7 @@ public class VertexBufferFactory implements DependencyProvider {
     }
 
     public function apply(_arg_1:Class, _arg_2:Injector, _arg_3:Dictionary):Object {
-        return (this.vertexBuffer);
+        return this.vertexBuffer;
     }
 
     public function destroy():void {

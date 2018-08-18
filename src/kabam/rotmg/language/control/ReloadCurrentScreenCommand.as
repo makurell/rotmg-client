@@ -18,10 +18,10 @@ public class ReloadCurrentScreenCommand {
 
 
     public function execute():void {
-        var _local_1:Class = ((this.screensModel.getCurrentScreenType()) || (TitleView));
+        var _local_1:Class = this.screensModel.getCurrentScreenType() || TitleView;
         this.invalidate.dispatch();
         this.closeDialogs.dispatch();
-        this.setScreen.dispatch(new (_local_1)());
+        this.setScreen.dispatch(new _local_1());
     }
 
 

@@ -22,7 +22,7 @@ public class ServerBox extends Sprite {
     private var over_:Boolean = false;
 
     public function ServerBox(_arg_1:Server) {
-        this.value_ = (((_arg_1 == null)) ? null : _arg_1.name);
+        this.value_ = _arg_1 == null ? null : _arg_1.name;
         this.nameText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setBold(true);
         if (_arg_1 == null) {
             this.nameText_.setStringBuilder(new LineBuilder().setParams(TextKey.SERVER_BOX_BEST));
@@ -33,7 +33,7 @@ public class ServerBox extends Sprite {
         this.nameText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         this.nameText_.x = 18;
         this.nameText_.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
-        this.nameText_.y = (ServerBox.HEIGHT / 2);
+        this.nameText_.y = ServerBox.HEIGHT / 2;
         addChild(this.nameText_);
         this.addUI(_arg_1);
         this.draw();
@@ -69,8 +69,8 @@ public class ServerBox extends Sprite {
         this.statusText_ = new TextFieldDisplayConcrete().setSize(18).setColor(_arg_1).setBold(true).setAutoSize(TextFieldAutoSize.CENTER);
         this.statusText_.setStringBuilder(new LineBuilder().setParams(_arg_2));
         this.statusText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        this.statusText_.x = ((WIDTH / 2) + (WIDTH / 4));
-        this.statusText_.y = ((ServerBox.HEIGHT / 2) - (this.nameText_.height / 2));
+        this.statusText_.x = WIDTH / 2 + WIDTH / 4;
+        this.statusText_.y = ServerBox.HEIGHT / 2 - this.nameText_.height / 2;
         addChild(this.statusText_);
     }
 
@@ -94,7 +94,7 @@ public class ServerBox extends Sprite {
         if (this.selected_) {
             graphics.lineStyle(2, 16777103);
         }
-        graphics.beginFill(((this.over_) ? 0x6B6B6B : 0x5C5C5C), 1);
+        graphics.beginFill(this.over_ ? 0x6B6B6B : 0x5C5C5C, 1);
         graphics.drawRect(0, 0, WIDTH, HEIGHT);
         if (this.selected_) {
             graphics.lineStyle();

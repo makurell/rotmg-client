@@ -27,7 +27,7 @@ public class CaretakerQueryDetailBubble extends Sprite {
     }
 
     private function makeText():TextFieldDisplayConcrete {
-        return (new TextFieldDisplayConcrete().setSize(16).setLeading(3).setAutoSize(TextFieldAutoSize.LEFT).setVerticalAlign(VerticalAlign.TOP).setMultiLine(true).setWordWrap(true).setPosition(this.PADDING, this.PADDING).setTextWidth((this.WIDTH - (2 * this.PADDING))).setTextHeight((this.HEIGHT - (2 * this.PADDING))));
+        return new TextFieldDisplayConcrete().setSize(16).setLeading(3).setAutoSize(TextFieldAutoSize.LEFT).setVerticalAlign(VerticalAlign.TOP).setMultiLine(true).setWordWrap(true).setPosition(this.PADDING, this.PADDING).setTextWidth(this.WIDTH - 2 * this.PADDING).setTextHeight(this.HEIGHT - 2 * this.PADDING);
     }
 
     public function setText(_arg_1:String):void {
@@ -41,14 +41,14 @@ public class CaretakerQueryDetailBubble extends Sprite {
 
     private function makeBubble():void {
         var _local_1:GraphicsHelper = new GraphicsHelper();
-        var _local_2:BevelRect = new BevelRect(this.WIDTH, (this.textfield.height + 16), this.BEVEL);
+        var _local_2:BevelRect = new BevelRect(this.WIDTH, this.textfield.height + 16, this.BEVEL);
         this.bubble.graphics.beginFill(0xE0E0E0);
         _local_1.drawBevelRect(0, 0, _local_2, this.bubble.graphics);
         this.bubble.graphics.endFill();
         this.bubble.graphics.beginFill(0xE0E0E0);
-        this.bubble.graphics.moveTo((this.POINT_CENTER - this.POINT), 0);
-        this.bubble.graphics.lineTo(this.POINT_CENTER, -(this.POINT));
-        this.bubble.graphics.lineTo((this.POINT_CENTER + this.POINT), 0);
+        this.bubble.graphics.moveTo(this.POINT_CENTER - this.POINT, 0);
+        this.bubble.graphics.lineTo(this.POINT_CENTER, -this.POINT);
+        this.bubble.graphics.lineTo(this.POINT_CENTER + this.POINT, 0);
         this.bubble.graphics.endFill();
     }
 

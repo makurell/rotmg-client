@@ -87,7 +87,7 @@ public class PotionSlotView extends Sprite {
         this.bg = new Sprite();
         GraphicsUtil.clearPath(this.outerPath);
         GraphicsUtil.drawCutEdgeRect(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT, 4, _arg_1, this.outerPath);
-        GraphicsUtil.drawCutEdgeRect(2, 2, (BUTTON_WIDTH - SMALL_SIZE), (BUTTON_HEIGHT - SMALL_SIZE), 4, _arg_1, this.innerPath);
+        GraphicsUtil.drawCutEdgeRect(2, 2, BUTTON_WIDTH - SMALL_SIZE, BUTTON_HEIGHT - SMALL_SIZE, 4, _arg_1, this.innerPath);
         this.bg.graphics.drawGraphicsData(this.buyOuterGraphicsData);
         this.bg.graphics.drawGraphicsData(this.buyInnerGraphicsData);
         addChild(this.bg);
@@ -120,17 +120,17 @@ public class PotionSlotView extends Sprite {
             addChild(this.potionIcon);
             _local_7 = ObjectLibrary.getRedrawnTextureFromType(_arg_4, 80, true);
             _local_8 = new Bitmap(_local_7);
-            _local_8.x = (_local_8.x - 30);
-            _local_8.y = (_local_8.y - 30);
+            _local_8.x = _local_8.x - 30;
+            _local_8.y = _local_8.y - 30;
             this.potionIconDraggableSprite.addChild(_local_8);
         }
-        var _local_5 = (_arg_1 > 0);
+        var _local_5 = _arg_1 > 0;
         if (_local_5) {
             this.setTextString(String(_arg_1));
             _local_6 = CENTER_ICON_X;
             this.bg.graphics.clear();
             this.bg.graphics.drawGraphicsData(this.useGraphicsData);
-            this.text.x = ((BUTTON_WIDTH / 2) + 5);
+            this.text.x = BUTTON_WIDTH / 2 + 5;
         }
         else {
             this.setTextString(String(_arg_2));
@@ -138,7 +138,7 @@ public class PotionSlotView extends Sprite {
             this.bg.graphics.clear();
             this.bg.graphics.drawGraphicsData(this.buyOuterGraphicsData);
             this.bg.graphics.drawGraphicsData(this.buyInnerGraphicsData);
-            this.text.x = ((this.costIcon.x - this.text.width) + 6);
+            this.text.x = (this.costIcon.x - this.text.width) + 6;
         }
         if (this.potionIcon) {
             this.potionIcon.x = _local_6;
@@ -220,9 +220,9 @@ public class PotionSlotView extends Sprite {
     }
 
     private function onMouseMoveCheckDrag(_arg_1:MouseEvent):void {
-        var _local_2:Number = (_arg_1.stageX - this.dragStart.x);
-        var _local_3:Number = (_arg_1.stageY - this.dragStart.y);
-        var _local_4:Number = Math.sqrt(((_local_2 * _local_2) + (_local_3 * _local_3)));
+        var _local_2:Number = _arg_1.stageX - this.dragStart.x;
+        var _local_3:Number = _arg_1.stageY - this.dragStart.y;
+        var _local_4:Number = Math.sqrt(_local_2 * _local_2 + _local_3 * _local_3);
         if (_local_4 > DRAG_DIST) {
             this.cancelDragCheck(null);
             this.setPendingDoubleClick(false);

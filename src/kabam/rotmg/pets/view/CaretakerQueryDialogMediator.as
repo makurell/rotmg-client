@@ -26,7 +26,7 @@ public class CaretakerQueryDialogMediator extends Mediator {
 
     private function makeCaretakerIcon():BitmapData {
         var _local_1:int = this.model.getPetYardObjectID();
-        return (ObjectLibrary.getRedrawnTextureFromType(_local_1, 80, true));
+        return ObjectLibrary.getRedrawnTextureFromType(_local_1, 80, true);
     }
 
     override public function destroy():void {

@@ -47,12 +47,12 @@ public class SocketServer {
 
     public function setOutgoingCipher(_arg_1:ICipher):SocketServer {
         this.outgoingCipher = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setIncomingCipher(_arg_1:ICipher):SocketServer {
         this.incomingCipher = _arg_1;
-        return (this);
+        return this;
     }
 
     public function connect(_arg_1:String, _arg_2:int):void {
@@ -104,7 +104,7 @@ public class SocketServer {
     public function sendMessage(_arg_1:Message):void {
         this.tail.next = _arg_1;
         this.tail = _arg_1;
-        ((this.socket.connected) && (this.sendPendingMessages()));
+        this.socket.connected && this.sendPendingMessages();
     }
 
     private function sendPendingMessages():void {
@@ -118,7 +118,7 @@ public class SocketServer {
                 this.outgoingCipher.encrypt(this.data);
                 this.data.position = 0;
             }
-            this.socket.writeInt((this.data.bytesAvailable + 5));
+            this.socket.writeInt(this.data.bytesAvailable + 5);
             this.socket.writeByte(_local_2.id);
             this.socket.writeBytes(this.data);
             _local_2.consume();
@@ -157,7 +157,7 @@ public class SocketServer {
         var data:ByteArray;
         var errorMessage:String;
         while (true) {
-            if ((((this.socket == null)) || (!(this.socket.connected)))) break;
+            if (this.socket == null || !this.socket.connected) break;
             if (this.messageLen == -1) {
                 if (this.socket.bytesAvailable < 4) break;
                 try {
@@ -170,12 +170,12 @@ public class SocketServer {
                     return;
                 }
             }
-            if (this.socket.bytesAvailable < (this.messageLen - MESSAGE_LENGTH_SIZE_IN_BYTES)) break;
+            if (this.socket.bytesAvailable < this.messageLen - MESSAGE_LENGTH_SIZE_IN_BYTES) break;
             messageId = this.socket.readUnsignedByte();
             message = this.messages.require(messageId);
             data = new ByteArray();
-            if ((this.messageLen - 5) > 0) {
-                this.socket.readBytes(data, 0, (this.messageLen - 5));
+            if (this.messageLen - 5 > 0) {
+                this.socket.readBytes(data, 0, this.messageLen - 5);
             }
             data.position = 0;
             if (this.incomingCipher != null) {
@@ -207,14 +207,14 @@ public class SocketServer {
         var _local_3:int = _arg_2.length;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _arg_1 = _arg_1.replace((("{" + _local_4) + "}"), _arg_2[_local_4]);
+            _arg_1 = _arg_1.replace("{" + _local_4 + "}", _arg_2[_local_4]);
             _local_4++;
         }
-        return (_arg_1);
+        return _arg_1;
     }
 
     public function isConnected():Boolean {
-        return (this.socket.connected);
+        return this.socket.connected;
     }
 
 

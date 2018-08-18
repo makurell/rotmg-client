@@ -35,8 +35,8 @@ public class HUDMediator extends Mediator {
     private function onStatsUndocked(_arg_1:StatsView):void {
         this.stats = _arg_1;
         this.view.addChild(_arg_1);
-        _arg_1.x = (this.view.mouseX - (_arg_1.width / 2));
-        _arg_1.y = (this.view.mouseY - (_arg_1.height / 2));
+        _arg_1.x = this.view.mouseX - _arg_1.width / 2;
+        _arg_1.y = this.view.mouseY - _arg_1.height / 2;
         this.startDraggingStatsAsset(_arg_1);
     }
 
@@ -76,7 +76,7 @@ public class HUDMediator extends Mediator {
     override public function destroy():void {
         this.updateHUD.remove(this.onUpdateHUD);
         this.statsUndocked.remove(this.onStatsUndocked);
-        if (((this.stats) && (this.stats.hasEventListener(MouseEvent.MOUSE_DOWN)))) {
+        if (this.stats && this.stats.hasEventListener(MouseEvent.MOUSE_DOWN)) {
             this.stats.removeEventListener(MouseEvent.MOUSE_DOWN, this.onStatsMouseDown);
         }
     }

@@ -17,7 +17,7 @@ public class PetRarityEnum {
     }
 
     public static function get list():Array {
-        return ([COMMON, UNCOMMON, RARE, LEGENDARY, DIVINE]);
+        return [COMMON, UNCOMMON, RARE, LEGENDARY, DIVINE];
     }
 
     public static function selectByValue(_arg_1:String):PetRarityEnum {
@@ -28,7 +28,7 @@ public class PetRarityEnum {
                 _local_2 = _local_3;
             }
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public static function selectByOrdinal(_arg_1:int):PetRarityEnum {
@@ -39,7 +39,7 @@ public class PetRarityEnum {
                 _local_2 = _local_3;
             }
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

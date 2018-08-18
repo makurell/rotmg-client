@@ -14,11 +14,11 @@ public class ArrayIterator implements IIterator {
     }
 
     public function next():Object {
-        return (this.objects_[this.index_++]);
+        return this.objects_[this.index_++];
     }
 
     public function hasNext():Boolean {
-        return ((this.index_ < this.objects_.length));
+        return this.index_ < this.objects_.length;
     }
 
 

@@ -19,9 +19,9 @@ public class Music {
 
     public static function load():void {
         var _local_1:ApplicationSetup = StaticInjectorContext.getInjector().getInstance(ApplicationSetup);
-        var _local_2 = (_local_1.getAppEngineUrl(true) + "/music/sorc.mp3");
+        var _local_2 = _local_1.getAppEngineUrl(true) + "/music/sorc.mp3";
         volume = Parameters.data_.musicVolume;
-        musicVolumeTransform = new SoundTransform(((Parameters.data_.playMusic) ? volume : 0));
+        musicVolumeTransform = new SoundTransform(Parameters.data_.playMusic ? volume : 0);
         music_ = new Sound();
         music_.load(new URLRequest(_local_2));
         musicChannel_ = music_.play(0, int.MAX_VALUE, musicVolumeTransform);
@@ -30,7 +30,7 @@ public class Music {
     public static function setPlayMusic(_arg_1:Boolean):void {
         Parameters.data_.playMusic = _arg_1;
         Parameters.save();
-        musicVolumeTransform.volume = ((Parameters.data_.playMusic) ? volume : 0);
+        musicVolumeTransform.volume = Parameters.data_.playMusic ? volume : 0;
         musicChannel_.soundTransform = musicVolumeTransform;
     }
 

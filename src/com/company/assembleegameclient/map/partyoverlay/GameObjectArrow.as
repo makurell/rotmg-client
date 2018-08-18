@@ -131,8 +131,8 @@ public class GameObjectArrow extends Sprite {
         }
         x = this.tempPoint.x;
         y = this.tempPoint.y;
-        var _local_6:Number = Trig.boundTo180((270 - (Trig.toDegrees * Math.atan2(_local_4, _local_5))));
-        if (this.tempPoint.x < (_local_3.left + 5)) {
+        var _local_6:Number = Trig.boundTo180(270 - Trig.toDegrees * Math.atan2(_local_4, _local_5));
+        if (this.tempPoint.x < _local_3.left + 5) {
             if (_local_6 > 45) {
                 _local_6 = 45;
             }
@@ -141,7 +141,7 @@ public class GameObjectArrow extends Sprite {
             }
         }
         else {
-            if (this.tempPoint.x > (_local_3.right - 5)) {
+            if (this.tempPoint.x > _local_3.right - 5) {
                 if (_local_6 > 0) {
                     if (_local_6 < 135) {
                         _local_6 = 135;
@@ -154,7 +154,7 @@ public class GameObjectArrow extends Sprite {
                 }
             }
         }
-        if (this.tempPoint.y < (_local_3.top + 5)) {
+        if (this.tempPoint.y < _local_3.top + 5) {
             if (_local_6 < 45) {
                 _local_6 = 45;
             }
@@ -163,7 +163,7 @@ public class GameObjectArrow extends Sprite {
             }
         }
         else {
-            if (this.tempPoint.y > (_local_3.bottom - 5)) {
+            if (this.tempPoint.y > _local_3.bottom - 5) {
                 if (_local_6 > -45) {
                     _local_6 = -45;
                 }
@@ -184,32 +184,32 @@ public class GameObjectArrow extends Sprite {
         var _local_8:Number;
         var _local_9:Number;
         var _local_2:Number = this.arrow_.rotation;
-        var _local_3:int = ((DIST + BIG_SIZE) + 12);
-        var _local_4:Number = (_local_3 * Math.cos((_local_2 * Trig.toRadians)));
-        _local_5 = (_local_3 * Math.sin((_local_2 * Trig.toRadians)));
+        var _local_3:int = DIST + BIG_SIZE + 12;
+        var _local_4:Number = _local_3 * Math.cos(_local_2 * Trig.toRadians);
+        _local_5 = _local_3 * Math.sin(_local_2 * Trig.toRadians);
         var _local_6:Number = _arg_1.contentWidth_;
         var _local_7:Number = _arg_1.contentHeight_;
-        if ((((_local_2 >= 45)) && ((_local_2 <= 135)))) {
-            _local_8 = (_local_4 + (_local_6 / Math.tan((_local_2 * Trig.toRadians))));
-            _arg_1.x = (((_local_4 + _local_8) / 2) - (_local_6 / 2));
+        if (_local_2 >= 45 && _local_2 <= 135) {
+            _local_8 = _local_4 + _local_6 / Math.tan(_local_2 * Trig.toRadians);
+            _arg_1.x = (_local_4 + _local_8) / 2 - _local_6 / 2;
             _arg_1.y = _local_5;
         }
         else {
-            if ((((_local_2 <= -45)) && ((_local_2 >= -135)))) {
-                _local_8 = (_local_4 - (_local_6 / Math.tan((_local_2 * Trig.toRadians))));
-                _arg_1.x = (((_local_4 + _local_8) / 2) - (_local_6 / 2));
-                _arg_1.y = (_local_5 - _local_7);
+            if (_local_2 <= -45 && _local_2 >= -135) {
+                _local_8 = _local_4 - _local_6 / Math.tan(_local_2 * Trig.toRadians);
+                _arg_1.x = (_local_4 + _local_8) / 2 - _local_6 / 2;
+                _arg_1.y = _local_5 - _local_7;
             }
             else {
-                if ((((_local_2 < 45)) && ((_local_2 > -45)))) {
+                if (_local_2 < 45 && _local_2 > -45) {
                     _arg_1.x = _local_4;
-                    _local_9 = (_local_5 + (_local_7 * Math.tan((_local_2 * Trig.toRadians))));
-                    _arg_1.y = (((_local_5 + _local_9) / 2) - (_local_7 / 2));
+                    _local_9 = _local_5 + _local_7 * Math.tan(_local_2 * Trig.toRadians);
+                    _arg_1.y = (_local_5 + _local_9) / 2 - _local_7 / 2;
                 }
                 else {
-                    _arg_1.x = (_local_4 - _local_6);
-                    _local_9 = (_local_5 - (_local_7 * Math.tan((_local_2 * Trig.toRadians))));
-                    _arg_1.y = (((_local_5 + _local_9) / 2) - (_local_7 / 2));
+                    _arg_1.x = _local_4 - _local_6;
+                    _local_9 = _local_5 - _local_7 * Math.tan(_local_2 * Trig.toRadians);
+                    _arg_1.y = (_local_5 + _local_9) / 2 - _local_7 / 2;
                 }
             }
         }
@@ -218,12 +218,12 @@ public class GameObjectArrow extends Sprite {
     private function drawArrow():void {
         var _local_1:Graphics = this.arrow_.graphics;
         _local_1.clear();
-        var _local_2:int = ((((this.big_) || (this.mouseOver_))) ? BIG_SIZE : SMALL_SIZE);
+        var _local_2:int = this.big_ || this.mouseOver_ ? BIG_SIZE : SMALL_SIZE;
         _local_1.lineStyle(1, this.lineColor_);
         _local_1.beginFill(this.fillColor_);
         _local_1.moveTo(DIST, 0);
-        _local_1.lineTo((_local_2 + DIST), _local_2);
-        _local_1.lineTo((_local_2 + DIST), -(_local_2));
+        _local_1.lineTo(_local_2 + DIST, _local_2);
+        _local_1.lineTo(_local_2 + DIST, -_local_2);
         _local_1.lineTo(DIST, 0);
         _local_1.endFill();
         _local_1.lineStyle();

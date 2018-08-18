@@ -13,7 +13,7 @@ public class CancelTrade extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CANCELTRADE"));
+        return formatToString("CANCELTRADE");
     }
 
 

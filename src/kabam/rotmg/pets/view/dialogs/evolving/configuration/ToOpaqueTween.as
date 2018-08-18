@@ -17,7 +17,7 @@ public class ToOpaqueTween extends TweenProxy {
     }
 
     private function pauseComplete(_arg_1:GTween):void {
-        var _local_2:GTween = new GTween(target, (1.4 / 2), {"alpha": 1});
+        var _local_2:GTween = new GTween(target, 1.4 / 2, {"alpha": 1});
         _local_2.onComplete = this.tweenComplete;
     }
 

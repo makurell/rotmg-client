@@ -30,17 +30,17 @@ public class ConfettiEffect extends ParticleEffect {
         var _local_6:int;
         while (_local_6 < _local_3) {
             if (this.confettiColor_) {
-                _local_4 = _local_5[int(Math.floor((Math.random() * (_local_5.length + 1))))];
+                _local_4 = _local_5[int(Math.floor(Math.random() * (_local_5.length + 1)))];
             }
             else {
                 _local_4 = this.color_;
             }
-            _local_7 = ((3 + int((Math.random() * 5))) * 20);
-            _local_8 = new ConfettiParticle(1.85, _local_7, _local_4, ((500 * this.lifetime_) + ((Math.random() * 500) * this.lifetime_)), (0.1 + (Math.random() * 0.1)), this.start_, this.end_);
+            _local_7 = (3 + int(Math.random() * 5)) * 20;
+            _local_8 = new ConfettiParticle(1.85, _local_7, _local_4, 500 * this.lifetime_ + Math.random() * 500 * this.lifetime_, 0.1 + Math.random() * 0.1, this.start_, this.end_);
             map_.addObj(_local_8, x_, y_);
             _local_6++;
         }
-        return (false);
+        return false;
     }
 
 
@@ -73,27 +73,27 @@ class ConfettiParticle extends Particle {
         this.timeLeft_ = _arg_4;
         this.start_ = _arg_6;
         this.end_ = _arg_7;
-        this.dx_ = ((this.end_.x - this.start_.x) / this.timeLeft_);
-        this.dy_ = ((this.end_.y - this.start_.y) / this.timeLeft_);
-        var _local_8:Number = (Point.distance(_arg_6, _arg_7) / this.timeLeft_);
+        this.dx_ = (this.end_.x - this.start_.x) / this.timeLeft_;
+        this.dy_ = (this.end_.y - this.start_.y) / this.timeLeft_;
+        var _local_8:Number = Point.distance(_arg_6, _arg_7) / this.timeLeft_;
         var _local_9:Number = 0.25;
-        this.xDeflect_ = ((this.dy_ / _local_8) * _local_9);
-        this.yDeflect_ = ((-(this.dx_) / _local_8) * _local_9);
+        this.xDeflect_ = (this.dy_ / _local_8) * _local_9;
+        this.yDeflect_ = (-this.dx_ / _local_8) * _local_9;
         this.pathX_ = (x_ = this.start_.x);
         this.pathY_ = (y_ = this.start_.y);
-        this.period_ = (0.25 + (Math.random() * 0.5));
+        this.period_ = 0.25 + Math.random() * 0.5;
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        this.pathX_ = (this.pathX_ + (this.dx_ * _arg_2));
-        this.pathY_ = (this.pathY_ + (this.dy_ * _arg_2));
-        var _local_3:Number = Math.sin(((this.timeLeft_ / 1000) / this.period_));
-        moveToInModal((this.pathX_ + (this.xDeflect_ * _local_3)), (this.pathY_ + (this.yDeflect_ * _local_3)));
-        return (true);
+        this.pathX_ = this.pathX_ + this.dx_ * _arg_2;
+        this.pathY_ = this.pathY_ + this.dy_ * _arg_2;
+        var _local_3:Number = Math.sin(this.timeLeft_ / 1000 / this.period_);
+        moveToInModal(this.pathX_ + this.xDeflect_ * _local_3, this.pathY_ + this.yDeflect_ * _local_3);
+        return true;
     }
 
 

@@ -22,7 +22,7 @@ public class ReskinPet extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ENTER_ARENA", "petInstanceId", "pickedNewPetType"));
+        return formatToString("ENTER_ARENA", "petInstanceId", "pickedNewPetType");
     }
 
 

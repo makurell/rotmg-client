@@ -13,7 +13,7 @@ import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
 public class TeleportMenuOption extends MenuOption {
 
-    private static const inactiveCT:ColorTransform = new ColorTransform((84 / 0xFF), (84 / 0xFF), (84 / 0xFF));
+    private static const inactiveCT:ColorTransform = new ColorTransform(84 / 0xFF, 84 / 0xFF, 84 / 0xFF);
 
     private var player_:Player;
     private var mouseOver_:Boolean = false;
@@ -58,7 +58,7 @@ public class TeleportMenuOption extends MenuOption {
                 addChild(this.barMask);
                 this.barText_.mask = this.barMask;
             }
-            _local_3 = (this.barTextOrigWidth_ * (1 - (_local_2 / Player.MS_BETWEEN_TELEPORT)));
+            _local_3 = this.barTextOrigWidth_ * (1 - _local_2 / Player.MS_BETWEEN_TELEPORT);
             this.barMask.width = _local_3;
             setColorTransform(inactiveCT);
         }

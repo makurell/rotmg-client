@@ -66,7 +66,7 @@ public class LegendsMediator extends Mediator {
     }
 
     private function updateLegendList(_arg_1:Timespan = null):void {
-        _arg_1 = ((_arg_1) || (this.model.getTimespan()));
+        _arg_1 = _arg_1 || this.model.getTimespan();
         this.view.hideLoading();
         this.view.setLegendsList(_arg_1, this.model.getLegendList());
     }

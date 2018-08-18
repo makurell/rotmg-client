@@ -37,7 +37,7 @@ public class EnemyShoot extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("SHOOT", "bulletId_", "ownerId_", "bulletType_", "startingPos_", "angle_", "damage_", "numShots_", "angleInc_"));
+        return formatToString("SHOOT", "bulletId_", "ownerId_", "bulletType_", "startingPos_", "angle_", "damage_", "numShots_", "angleInc_");
     }
 
 

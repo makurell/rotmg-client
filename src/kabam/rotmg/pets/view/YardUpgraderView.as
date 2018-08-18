@@ -56,12 +56,12 @@ public class YardUpgraderView extends Sprite {
         this.titleTextfield.setStringBuilder(new LineBuilder().setParams("YardUpgraderView.title"));
         this.rarityTextfield.setStringBuilder(new LineBuilder().setParams(this.wrapInBraces(this.vo.nextRarityLevel)));
         this.upgradeTextfield.setStringBuilder(new LineBuilder().setParams("YardUpgraderView.info"));
-        this.upgradeTextfield.setTextWidth((PetsConstants.WINDOW_BACKGROUND_WIDTH - 40)).setWordWrap(true).setHorizontalAlign(TextFormatAlign.CENTER);
+        this.upgradeTextfield.setTextWidth(PetsConstants.WINDOW_BACKGROUND_WIDTH - 40).setWordWrap(true).setHorizontalAlign(TextFormatAlign.CENTER);
         this.currentMaxBox.updateTextfields("YardUpgraderView.currentMax", this.wrapInBraces(this.vo.currentRarityLevel));
     }
 
     private function wrapInBraces(_arg_1:String):String {
-        return ((("{" + _arg_1) + "}"));
+        return "{" + _arg_1 + "}";
     }
 
     private function onClosed():void {
@@ -105,8 +105,8 @@ public class YardUpgraderView extends Sprite {
     }
 
     private function positionThis():void {
-        this.x = ((stage.stageWidth - this.width) * 0.5);
-        this.y = ((stage.stageHeight - this.height) * 0.5);
+        this.x = (stage.stageWidth - this.width) * 0.5;
+        this.y = (stage.stageHeight - this.height) * 0.5;
     }
 
     private function waitForTextChanged():void {
@@ -119,16 +119,16 @@ public class YardUpgraderView extends Sprite {
     }
 
     private function positionTextField():void {
-        this.titleTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5);
-        this.upgradeTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.upgradeTextfield.width) * 0.5);
-        this.rarityTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.rarityTextfield.width) * 0.5);
+        this.titleTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5;
+        this.upgradeTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.upgradeTextfield.width) * 0.5;
+        this.rarityTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.rarityTextfield.width) * 0.5;
         this.titleTextfield.y = 20;
         this.upgradeTextfield.y = 229;
         this.rarityTextfield.y = 269;
     }
 
     private function positionButtonBar():void {
-        this.buttonBar.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2);
+        this.buttonBar.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2;
     }
 
 

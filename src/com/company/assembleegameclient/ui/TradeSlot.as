@@ -68,7 +68,7 @@ public class TradeSlot extends Slot implements TooltipAble {
     private static function makeDoseMatrix():Matrix {
         var _local_1:Matrix = new Matrix();
         _local_1.translate(10, 5);
-        return (_local_1);
+        return _local_1;
     }
 
 
@@ -84,21 +84,20 @@ public class TradeSlot extends Slot implements TooltipAble {
         SpriteUtil.safeRemoveChild(this, backgroundImage_);
         var _local_1:BitmapData = ObjectLibrary.getRedrawnTextureFromType(this.item_, 80, true);
         var _local_2:XML = ObjectLibrary.xmlLibrary_[this.item_];
-        if (((_local_2.hasOwnProperty("Doses")) && (this.bitmapFactory))) {
+        if (_local_2.hasOwnProperty("Doses") && this.bitmapFactory) {
             _local_1 = _local_1.clone();
             _local_5 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_2.Doses)), 12, 0xFFFFFF, false, IDENTITY_MATRIX, false);
             _local_1.draw(_local_5, DOSE_MATRIX);
         }
-        if(_local_2.hasOwnProperty("Quantity") && this.bitmapFactory)
-        {
+        if (_local_2.hasOwnProperty("Quantity") && this.bitmapFactory) {
             _local_1 = _local_1.clone();
             _local_5 = this.bitmapFactory.make(new StaticStringBuilder(String(_local_2.Quantity)), 12, 0xFFFFFF, false, IDENTITY_MATRIX, false);
             _local_1.draw(_local_5, DOSE_MATRIX);
         }
         var _local_3:Point = offsets(this.item_, type_, false);
         _local_4 = new Bitmap(_local_1);
-        _local_4.x = (((WIDTH / 2) - (_local_4.width / 2)) + _local_3.x);
-        _local_4.y = (((HEIGHT / 2) - (_local_4.height / 2)) + _local_3.y);
+        _local_4.x = (WIDTH / 2 - _local_4.width / 2) + _local_3.x;
+        _local_4.y = (HEIGHT / 2 - _local_4.height / 2) + _local_3.y;
         SpriteUtil.safeAddChild(this, _local_4);
     }
 
@@ -124,7 +123,7 @@ public class TradeSlot extends Slot implements TooltipAble {
         GraphicsUtil.clearPath(this.overlayPath_);
         GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, HEIGHT, 4, cuts_, this.overlayPath_);
         _local_1.graphics.drawGraphicsData(this.graphicsData_);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setShowToolTipSignal(_arg_1:ShowTooltipSignal):void {
@@ -132,7 +131,7 @@ public class TradeSlot extends Slot implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -140,7 +139,7 @@ public class TradeSlot extends Slot implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
     public function setPlayer(_arg_1:Player):void {
@@ -150,7 +149,7 @@ public class TradeSlot extends Slot implements TooltipAble {
     }
 
     public function isEmpty():Boolean {
-        return ((this.item_ == EMPTY));
+        return this.item_ == EMPTY;
     }
 
 

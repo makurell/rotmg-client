@@ -12,9 +12,9 @@ public class Text extends IncomingMessage {
     public var cleanText_:String;
 
     public function Text(_arg_1:uint, _arg_2:Function) {
-        this.name_ = new String();
-        this.text_ = new String();
-        this.cleanText_ = new String();
+        this.name_ = String();
+        this.text_ = String();
+        this.cleanText_ = String();
         super(_arg_1, _arg_2);
     }
 
@@ -29,7 +29,7 @@ public class Text extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("TEXT", "name_", "objectId_", "numStars_", "bubbleTime_", "recipient_", "text_", "cleanText_"));
+        return formatToString("TEXT", "name_", "objectId_", "numStars_", "bubbleTime_", "recipient_", "text_", "cleanText_");
     }
 
 

@@ -48,7 +48,7 @@ public class ExternalOpenMoneyWindowCommand {
 
 
     public function execute():void {
-        if (((this.isGoldPurchaseEnabled()) && (this.account.isRegistered()))) {
+        if (this.isGoldPurchaseEnabled() && this.account.isRegistered()) {
             this.handleValidMoneyWindowRequest();
         }
         else {
@@ -68,25 +68,19 @@ public class ExternalOpenMoneyWindowCommand {
     }
 
     private function handleValidMoneyWindowRequest():void {
-        if(this.account is WebAccount && WebAccount(this.account).paymentProvider == "paymentwall")
-        {
-            try
-            {
+        if (this.account is WebAccount && WebAccount(this.account).paymentProvider == "paymentwall") {
+            try {
                 this.openPaymentwallMoneyWindowFromBrowser(WebAccount(account).paymentData);
             }
-            catch(e:Error)
-            {
+            catch (e:Error) {
                 openPaymentwallMoneyWindowFromStandalonePlayer(WebAccount(account).paymentData);
             }
         }
-        else
-        {
-            try
-            {
+        else {
+            try {
                 this.openKabamMoneyWindowFromBrowser();
             }
-            catch(e:Error)
-            {
+            catch (e:Error) {
                 openKabamMoneyWindowFromStandalonePlayer();
             }
         }
@@ -104,7 +98,7 @@ public class ExternalOpenMoneyWindowCommand {
         else {
             _local_2.createdat = 0;
         }
-        _local_3.url = (_local_1 + "/credits/kabamadd");
+        _local_3.url = _local_1 + "/credits/kabamadd";
         _local_3.method = URLRequestMethod.POST;
         _local_3.data = _local_2;
         navigateToURL(_local_3, "_blank");
@@ -137,21 +131,19 @@ public class ExternalOpenMoneyWindowCommand {
         }
     }
 
-    private function openKabamMoneyWindowFromBrowser():void
-    {
+    private function openKabamMoneyWindowFromBrowser():void {
         this.initializeMoneyWindow();
         this.logger.debug("Attempting External Payments");
         ExternalInterface.call("rotmg.KabamPayment.displayPaymentWall");
     }
 
-    private function openPaymentwallMoneyWindowFromBrowser(_arg_1:String):void
-    {
+    private function openPaymentwallMoneyWindowFromBrowser(_arg_1:String):void {
         this.logger.debug("Attempting External Payments via Paymentwall");
         ExternalInterface.call("rotmg.Paymentwall.showPaymentwall", _arg_1);
     }
 
     private function isGoldPurchaseEnabled():Boolean {
-        return (((!((this.buildData.getEnvironment() == BuildEnvironment.TESTING))) || (this.playerModel.isAdmin())));
+        return !(this.buildData.getEnvironment() == BuildEnvironment.TESTING) || this.playerModel.isAdmin();
     }
 
 

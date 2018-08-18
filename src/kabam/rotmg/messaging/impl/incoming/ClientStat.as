@@ -16,7 +16,7 @@ public class ClientStat extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CLIENTSTAT", "name_", "value_"));
+        return formatToString("CLIENTSTAT", "name_", "value_");
     }
 
 

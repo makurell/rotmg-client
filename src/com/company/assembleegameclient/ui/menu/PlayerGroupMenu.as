@@ -38,7 +38,7 @@ public class PlayerGroupMenu extends Menu {
             _local_2.y = this.posY;
             addChild(_local_2);
             this.playerPanels_.push(_local_2);
-            this.posY = (this.posY + 32);
+            this.posY = this.posY + 32;
         }
     }
 

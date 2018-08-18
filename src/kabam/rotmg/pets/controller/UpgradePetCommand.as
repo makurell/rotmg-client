@@ -31,7 +31,7 @@ public class UpgradePetCommand extends Command {
 
     override public function execute():void {
         var _local_1:PetUpgradeRequest;
-        if ((this.vo is UpgradePetYardRequestVO)) {
+        if (this.vo is UpgradePetYardRequestVO) {
             if (!this.account.isRegistered()) {
                 this.showPromptToRegister(PET_YARD_REGISTER_STRING);
             }
@@ -40,14 +40,14 @@ public class UpgradePetCommand extends Command {
             _local_1.objectId = UpgradePetYardRequestVO(this.vo).objectID;
             _local_1.paymentTransType = UpgradePetYardRequestVO(this.vo).paymentTransType;
         }
-        if ((this.vo is FeedPetRequestVO)) {
+        if (this.vo is FeedPetRequestVO) {
             _local_1 = (this.messages.require(GameServerConnection.PETUPGRADEREQUEST) as PetUpgradeRequest);
             _local_1.petTransType = 2;
             _local_1.PIDOne = FeedPetRequestVO(this.vo).petInstanceId;
             _local_1.slotObject = FeedPetRequestVO(this.vo).slotObject;
             _local_1.paymentTransType = FeedPetRequestVO(this.vo).paymentTransType;
         }
-        if ((this.vo is FusePetRequestVO)) {
+        if (this.vo is FusePetRequestVO) {
             _local_1 = (this.messages.require(GameServerConnection.PETUPGRADEREQUEST) as PetUpgradeRequest);
             _local_1.petTransType = 3;
             _local_1.PIDOne = FusePetRequestVO(this.vo).petInstanceIdOne;

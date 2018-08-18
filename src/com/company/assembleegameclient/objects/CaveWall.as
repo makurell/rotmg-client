@@ -15,11 +15,11 @@ public class CaveWall extends ConnectedObject {
 
     override protected function buildDot():void {
         var _local_6:ObjectFace3D;
-        var _local_1:Vector3D = new Vector3D((-0.25 - (Math.random() * 0.25)), (-0.25 - (Math.random() * 0.25)), 0);
-        var _local_2:Vector3D = new Vector3D((0.25 + (Math.random() * 0.25)), (-0.25 - (Math.random() * 0.25)), 0);
-        var _local_3:Vector3D = new Vector3D((0.25 + (Math.random() * 0.25)), (0.25 + (Math.random() * 0.25)), 0);
-        var _local_4:Vector3D = new Vector3D((-0.25 - (Math.random() * 0.25)), (0.25 + (Math.random() * 0.25)), 0);
-        var _local_5:Vector3D = new Vector3D((-0.25 + (Math.random() * 0.5)), (-0.25 + (Math.random() * 0.5)), 1);
+        var _local_1:Vector3D = new Vector3D(-0.25 - Math.random() * 0.25, -0.25 - Math.random() * 0.25, 0);
+        var _local_2:Vector3D = new Vector3D(0.25 + Math.random() * 0.25, -0.25 - Math.random() * 0.25, 0);
+        var _local_3:Vector3D = new Vector3D(0.25 + Math.random() * 0.25, 0.25 + Math.random() * 0.25, 0);
+        var _local_4:Vector3D = new Vector3D(-0.25 - Math.random() * 0.25, 0.25 + Math.random() * 0.25, 0);
+        var _local_5:Vector3D = new Vector3D(-0.25 + Math.random() * 0.5, -0.25 + Math.random() * 0.5, 1);
         this.faceHelper(null, texture_, _local_5, _local_1, _local_2);
         this.faceHelper(null, texture_, _local_5, _local_2, _local_3);
         this.faceHelper(null, texture_, _local_5, _local_3, _local_4);
@@ -35,12 +35,12 @@ public class CaveWall extends ConnectedObject {
         var _local_9:ObjectFace3D;
         var _local_1:Vector3D = this.getVertex(0, 0);
         var _local_2:Vector3D = this.getVertex(0, 3);
-        var _local_3:Vector3D = new Vector3D((0.25 + (Math.random() * 0.25)), (0.25 + (Math.random() * 0.25)), 0);
-        var _local_4:Vector3D = new Vector3D((-0.25 - (Math.random() * 0.25)), (0.25 + (Math.random() * 0.25)), 0);
+        var _local_3:Vector3D = new Vector3D(0.25 + Math.random() * 0.25, 0.25 + Math.random() * 0.25, 0);
+        var _local_4:Vector3D = new Vector3D(-0.25 - Math.random() * 0.25, 0.25 + Math.random() * 0.25, 0);
         var _local_5:Vector3D = this.getVertex(0, 1);
         var _local_6:Vector3D = this.getVertex(0, 2);
-        var _local_7:Vector3D = new Vector3D((Math.random() * 0.25), (Math.random() * 0.25), 0.5);
-        var _local_8:Vector3D = new Vector3D((Math.random() * -0.25), (Math.random() * 0.25), 0.5);
+        var _local_7:Vector3D = new Vector3D(Math.random() * 0.25, Math.random() * 0.25, 0.5);
+        var _local_8:Vector3D = new Vector3D(Math.random() * -0.25, Math.random() * 0.25, 0.5);
         this.faceHelper(null, texture_, _local_5, _local_8, _local_4, _local_1);
         this.faceHelper(null, texture_, _local_8, _local_7, _local_3, _local_4);
         this.faceHelper(null, texture_, _local_7, _local_6, _local_2, _local_3);
@@ -58,12 +58,12 @@ public class CaveWall extends ConnectedObject {
         var _local_2:Vector3D = this.getVertex(0, 3);
         var _local_3:Vector3D = this.getVertex(1, 0);
         var _local_4:Vector3D = this.getVertex(1, 3);
-        var _local_5:Vector3D = new Vector3D((-(Math.random()) * 0.25), (Math.random() * 0.25), 0);
+        var _local_5:Vector3D = new Vector3D(-Math.random() * 0.25, Math.random() * 0.25, 0);
         var _local_6:Vector3D = this.getVertex(0, 1);
         var _local_7:Vector3D = this.getVertex(0, 2);
         var _local_8:Vector3D = this.getVertex(1, 1);
         var _local_9:Vector3D = this.getVertex(1, 2);
-        var _local_10:Vector3D = new Vector3D((Math.random() * 0.25), (-(Math.random()) * 0.25), 1);
+        var _local_10:Vector3D = new Vector3D(Math.random() * 0.25, -Math.random() * 0.25, 1);
         this.faceHelper(null, texture_, _local_6, _local_10, _local_5, _local_1);
         this.faceHelper(null, texture_, _local_10, _local_9, _local_4, _local_5);
         this.faceHelper(N2, texture_, _local_8, _local_7, _local_2, _local_3);
@@ -156,7 +156,7 @@ public class CaveWall extends ConnectedObject {
         var _local_8:Number;
         var _local_3:int = x_;
         var _local_4:int = y_;
-        var _local_5:int = ((_arg_1 + rotation_) % 4);
+        var _local_5:int = (_arg_1 + rotation_) % 4;
         switch (_local_5) {
             case 1:
                 _local_3++;
@@ -168,49 +168,49 @@ public class CaveWall extends ConnectedObject {
         switch (_arg_2) {
             case 0:
             case 3:
-                _local_6 = (15 + (((_local_3 * 1259) ^ (_local_4 * 2957)) % 35));
+                _local_6 = 15 + (_local_3 * 1259 ^ _local_4 * 2957) % 35;
                 break;
             case 1:
             case 2:
-                _local_6 = (3 + (((_local_3 * 2179) ^ (_local_4 * 1237)) % 35));
+                _local_6 = 3 + (_local_3 * 2179 ^ _local_4 * 1237) % 35;
                 break;
         }
         switch (_arg_2) {
             case 0:
-                _local_7 = (-(_local_6) / 100);
+                _local_7 = -_local_6 / 100;
                 _local_8 = 0;
                 break;
             case 1:
-                _local_7 = (-(_local_6) / 100);
+                _local_7 = -_local_6 / 100;
                 _local_8 = 1;
                 break;
             case 2:
-                _local_7 = (_local_6 / 100);
+                _local_7 = _local_6 / 100;
                 _local_8 = 1;
                 break;
             case 3:
-                _local_7 = (_local_6 / 100);
+                _local_7 = _local_6 / 100;
                 _local_8 = 0;
                 break;
         }
         switch (_arg_1) {
             case 0:
-                return (new Vector3D(_local_7, -0.5, _local_8));
+                return new Vector3D(_local_7, -0.5, _local_8);
             case 1:
-                return (new Vector3D(0.5, _local_7, _local_8));
+                return new Vector3D(0.5, _local_7, _local_8);
             case 2:
-                return (new Vector3D(_local_7, 0.5, _local_8));
+                return new Vector3D(_local_7, 0.5, _local_8);
             case 3:
-                return (new Vector3D(-0.5, _local_7, _local_8));
+                return new Vector3D(-0.5, _local_7, _local_8);
         }
-        return (null);
+        return null;
     }
 
-    protected function faceHelper(_arg_1:Vector3D, _arg_2:BitmapData, ... rest):void {
+    protected function faceHelper(_arg_1:Vector3D, _arg_2:BitmapData, ...rest):void {
         var _local_5:Vector3D;
         var _local_6:int;
         var _local_7:int;
-        var _local_4:int = (obj3D_.vL_.length / 3);
+        var _local_4:int = obj3D_.vL_.length / 3;
         for each (_local_5 in rest) {
             obj3D_.vL_.push(_local_5.x, _local_5.y, _local_5.z);
         }
@@ -248,7 +248,7 @@ public class CaveWall extends ConnectedObject {
                 }
             }
         }
-        if (((!((_arg_1 == null))) || (!((_arg_2 == null))))) {
+        if (!(_arg_1 == null) || !(_arg_2 == null)) {
             _local_7 = _local_6;
             while (_local_7 < obj3D_.faces_.length) {
                 obj3D_.faces_[_local_7].normalL_ = _arg_1;

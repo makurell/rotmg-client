@@ -43,8 +43,7 @@ public class MapEditor extends Sprite {
         addChild(this.gameSprite_);
     }
 
-    private function onMapTestDoneSub():void
-    {
+    private function onMapTestDoneSub():void {
         this.onMapTestDone(null);
     }
 
@@ -53,12 +52,10 @@ public class MapEditor extends Sprite {
         addChild(this.editingScreen_);
     }
 
-    private function onSubmitMapPopup(_arg_1:SubmitJMEvent) : void
-    {
+    private function onSubmitMapPopup(_arg_1:SubmitJMEvent):void {
         var _local_2:SubmitMapForm;
-        if(!SubmitMapForm.isInitialized())
-        {
-            _local_2 = new SubmitMapForm(_arg_1.mapJSON_,_arg_1.mapInfo_,this.model.account);
+        if (!SubmitMapForm.isInitialized()) {
+            _local_2 = new SubmitMapForm(_arg_1.mapJSON_, _arg_1.mapInfo_, this.model.account);
             this.showCurtain();
             addChild(_local_2);
             _local_2.x = (800 - _local_2.width) / 2;
@@ -68,8 +65,7 @@ public class MapEditor extends Sprite {
         }
     }
 
-    private function onSubmitClose():void
-    {
+    private function onSubmitClose():void {
         this.hideCurtain();
         this.editingScreen_.enableInput();
     }
@@ -79,22 +75,18 @@ public class MapEditor extends Sprite {
         addChild(this.editingScreen_);
     }
 
-    private function showCurtain():void
-    {
-        if(this.blackBackground == null)
-        {
+    private function showCurtain():void {
+        if (this.blackBackground == null) {
             this.blackBackground = new Sprite();
             this.blackBackground.graphics.beginFill(0, 0.4);
-            this.blackBackground.graphics.drawRect(0, 0, width,height);
+            this.blackBackground.graphics.drawRect(0, 0, width, height);
             this.blackBackground.graphics.endFill();
         }
         addChild(this.blackBackground);
     }
 
-    private function hideCurtain():void
-    {
-        if(this.blackBackground != null && this.blackBackground.parent)
-        {
+    private function hideCurtain():void {
+        if (this.blackBackground != null && this.blackBackground.parent) {
             removeChild(this.blackBackground);
         }
     }

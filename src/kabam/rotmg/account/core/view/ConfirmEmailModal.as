@@ -55,7 +55,7 @@ public class ConfirmEmailModal extends Frame {
         addTextInputField(this.emailInput);
         this.closeButton = new DialogCloseButton();
         this.closeButton.y = -2;
-        this.closeButton.x = ((w_ - this.closeButton.width) - 8);
+        this.closeButton.x = w_ - this.closeButton.width - 8;
         addChild(this.closeButton);
     }
 
@@ -71,7 +71,7 @@ public class ConfirmEmailModal extends Frame {
     }
 
     private function close():void {
-        if (((parent) && (parent.contains(this)))) {
+        if (parent && parent.contains(this)) {
             parent.removeChild(this);
         }
     }
@@ -130,12 +130,12 @@ public class ConfirmEmailModal extends Frame {
         if (!_local_1) {
             this.emailInput.setError(TextKey.INVALID_EMAIL_ADDRESS);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function positionAndStuff():void {
-        this.x = ((WebMain.STAGE.stageWidth / 2) - (this.w_ / 2));
-        this.y = ((WebMain.STAGE.stageHeight / 2) - (this.h_ / 2));
+        this.x = WebMain.STAGE.stageWidth / 2 - this.w_ / 2;
+        this.y = WebMain.STAGE.stageHeight / 2 - this.h_ / 2;
     }
 
 

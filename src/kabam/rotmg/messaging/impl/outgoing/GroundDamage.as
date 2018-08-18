@@ -19,7 +19,7 @@ public class GroundDamage extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("GROUNDDAMAGE", "time_", "position_"));
+        return formatToString("GROUNDDAMAGE", "time_", "position_");
     }
 
 

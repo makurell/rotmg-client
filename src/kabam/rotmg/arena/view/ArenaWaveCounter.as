@@ -17,7 +17,7 @@ public class ArenaWaveCounter extends Sprite {
         _local_1.setSize(24).setBold(true).setColor(0xFFFFFF);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setWaveNumber(_arg_1:int):void {

@@ -11,7 +11,7 @@ public class Context3DProxy {
     }
 
     public function GetContext3D():Context3D {
-        return (this.context3D);
+        return this.context3D;
     }
 
     public function configureBackBuffer(_arg_1:int, _arg_2:int, _arg_3:int, _arg_4:Boolean = true):void {
@@ -19,7 +19,7 @@ public class Context3DProxy {
     }
 
     public function createProgram():Program3DProxy {
-        return (new Program3DProxy(this.context3D.createProgram()));
+        return new Program3DProxy(this.context3D.createProgram());
     }
 
     public function clear():void {
@@ -31,11 +31,11 @@ public class Context3DProxy {
     }
 
     public function createIndexBuffer(_arg_1:int):IndexBuffer3DProxy {
-        return (new IndexBuffer3DProxy(this.context3D.createIndexBuffer(_arg_1)));
+        return new IndexBuffer3DProxy(this.context3D.createIndexBuffer(_arg_1));
     }
 
     public function createVertexBuffer(_arg_1:int, _arg_2:int):VertexBuffer3DProxy {
-        return (new VertexBuffer3DProxy(this.context3D.createVertexBuffer(_arg_1, _arg_2)));
+        return new VertexBuffer3DProxy(this.context3D.createVertexBuffer(_arg_1, _arg_2));
     }
 
     public function setVertexBufferAt(_arg_1:int, _arg_2:VertexBuffer3DProxy, _arg_3:int, _arg_4:String = "float4"):void {
@@ -51,7 +51,7 @@ public class Context3DProxy {
     }
 
     public function createTexture(_arg_1:int, _arg_2:int, _arg_3:String, _arg_4:Boolean):TextureProxy {
-        return (new TextureProxy(this.context3D.createTexture(_arg_1, _arg_2, _arg_3, _arg_4)));
+        return new TextureProxy(this.context3D.createTexture(_arg_1, _arg_2, _arg_3, _arg_4));
     }
 
     public function setTextureAt(_arg_1:int, _arg_2:TextureProxy):void {

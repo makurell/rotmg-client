@@ -14,7 +14,7 @@ public class JoinGuild extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("JOINGUILD", "guildName_"));
+        return formatToString("JOINGUILD", "guildName_");
     }
 
 

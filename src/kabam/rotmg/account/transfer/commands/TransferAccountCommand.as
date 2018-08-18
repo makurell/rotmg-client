@@ -46,12 +46,12 @@ public class TransferAccountCommand {
         var _local_1:TaskSequence = new TaskSequence();
         var _local_2:PlatformModel = StaticInjectorContext.getInjector().getInstance(PlatformModel);
         _local_1.add(new DispatchSignalTask(this.updateAccount));
-        _local_1.add(new DispatchSignalTask(this.openDialog, new DebugDialog((this.data.newEmail + " please check your inbox."), "Email Verification Sent!", HTMLUtil.refreshPageNoParams)));
-        return (_local_1);
+        _local_1.add(new DispatchSignalTask(this.openDialog, new DebugDialog(this.data.newEmail + " please check your inbox.", "Email Verification Sent!", HTMLUtil.refreshPageNoParams)));
+        return _local_1;
     }
 
     private function makeFailure():Task {
-        return (new DispatchSignalTask(this.loginError, this.task));
+        return new DispatchSignalTask(this.loginError, this.task);
     }
 
 

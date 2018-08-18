@@ -24,13 +24,13 @@ public class RadioButton extends Sprite {
     private var selected:Shape;
 
     public function RadioButton() {
-        addChild((this.unselected = this.makeUnselected()));
-        addChild((this.selected = this.makeSelected()));
+        addChild(this.unselected = this.makeUnselected());
+        addChild(this.selected = this.makeSelected());
         this.setSelected(false);
     }
 
     public function setSelected(_arg_1:Boolean):void {
-        this.unselected.visible = !(_arg_1);
+        this.unselected.visible = !_arg_1;
         this.selected.visible = _arg_1;
         this.changed.dispatch(_arg_1);
     }
@@ -38,14 +38,14 @@ public class RadioButton extends Sprite {
     private function makeUnselected():Shape {
         var _local_1:Shape = new Shape();
         this.drawOutline(_local_1.graphics);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeSelected():Shape {
         var _local_1:Shape = new Shape();
         this.drawOutline(_local_1.graphics);
         this.drawFill(_local_1.graphics);
-        return (_local_1);
+        return _local_1;
     }
 
     private function drawOutline(_arg_1:Graphics):void {
@@ -61,7 +61,7 @@ public class RadioButton extends Sprite {
     private function drawFill(_arg_1:Graphics):void {
         var _local_2:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
         var _local_3:GraphicsPath = new GraphicsPath();
-        GraphicsUtil.drawCutEdgeRect(4, 4, (this.WIDTH - 8), (this.HEIGHT - 8), 2, GraphicsUtil.ALL_CUTS, _local_3);
+        GraphicsUtil.drawCutEdgeRect(4, 4, this.WIDTH - 8, this.HEIGHT - 8, 2, GraphicsUtil.ALL_CUTS, _local_3);
         var _local_4:Vector.<IGraphicsData> = new <IGraphicsData>[_local_2, _local_3, GraphicsUtil.END_FILL];
         _arg_1.drawGraphicsData(_local_4);
     }

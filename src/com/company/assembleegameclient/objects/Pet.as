@@ -33,11 +33,11 @@ public class Pet extends GameObject implements IInteractiveObject {
     }
 
     public function getTooltip():ToolTip {
-        return (new TextToolTip(0x363636, 0x9B9B9B, TextKey.CLOSEDGIFTCHEST_TITLE, TextKey.TEXTPANEL_GIFTCHESTISEMPTY, 200));
+        return new TextToolTip(0x363636, 0x9B9B9B, TextKey.CLOSEDGIFTCHEST_TITLE, TextKey.TEXTPANEL_GIFTCHESTISEMPTY, 200);
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new PetPanel(_arg_1, this.vo));
+        return new PetPanel(_arg_1, this.vo);
     }
 
     public function setSkin(_arg_1:int):void {
@@ -54,7 +54,7 @@ public class Pet extends GameObject implements IInteractiveObject {
         else {
             this.skin = AnimatedChars.getAnimatedChar(_local_3, _local_4);
         }
-        this.isDefaultAnimatedChar = (this.skin == this.defaultSkin);
+        this.isDefaultAnimatedChar = this.skin == this.defaultSkin;
         _local_5 = this.skin.imageFromAngle(0, AnimatedChar.STAND, 0);
         animatedChar_ = this.skin;
         texture_ = _local_5.image_;

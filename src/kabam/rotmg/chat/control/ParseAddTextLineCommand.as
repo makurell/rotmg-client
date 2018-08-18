@@ -30,16 +30,16 @@ public class ParseAddTextLineCommand extends Command {
     private function translateName():void {
         var _local_1:LineBuilder;
         var _local_2:String;
-        if ((((this.chatMessage.name.length > 0)) && ((this.chatMessage.name.charAt(0) == "#")))) {
-            _local_1 = new LineBuilder().setParams(this.chatMessage.name.substr(1, (this.chatMessage.name.length - 1)), this.chatMessage.tokens);
+        if (this.chatMessage.name.length > 0 && this.chatMessage.name.charAt(0) == "#") {
+            _local_1 = new LineBuilder().setParams(this.chatMessage.name.substr(1, this.chatMessage.name.length - 1), this.chatMessage.tokens);
             _local_1.setStringMap(this.textStringMap.getStringMap());
             _local_2 = _local_1.getString();
-            this.chatMessage.name = ((_local_2) ? ("#" + _local_2) : this.chatMessage.name);
+            this.chatMessage.name = _local_2 ? "#" + _local_2 : this.chatMessage.name;
         }
     }
 
     private function translateMessage():void {
-        if ((((((((((this.chatMessage.name == Parameters.CLIENT_CHAT_NAME)) || ((this.chatMessage.name == Parameters.SERVER_CHAT_NAME)))) || ((this.chatMessage.name == Parameters.ERROR_CHAT_NAME)))) || ((this.chatMessage.name == Parameters.HELP_CHAT_NAME)))) || ((this.chatMessage.name.charAt(0) == "#")))) {
+        if (this.chatMessage.name == Parameters.CLIENT_CHAT_NAME || this.chatMessage.name == Parameters.SERVER_CHAT_NAME || this.chatMessage.name == Parameters.ERROR_CHAT_NAME || this.chatMessage.name == Parameters.HELP_CHAT_NAME || this.chatMessage.name.charAt(0) == "#") {
             this.translateChatMessage();
         }
     }
@@ -48,7 +48,7 @@ public class ParseAddTextLineCommand extends Command {
         var _local_1:LineBuilder = new LineBuilder().setParams(this.chatMessage.text, this.chatMessage.tokens);
         _local_1.setStringMap(this.textStringMap.getStringMap());
         var _local_2:String = _local_1.getString();
-        this.chatMessage.text = ((_local_2) ? _local_2 : this.chatMessage.text);
+        this.chatMessage.text = _local_2 ? _local_2 : this.chatMessage.text;
     }
 
 

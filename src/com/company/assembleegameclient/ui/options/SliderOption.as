@@ -20,8 +20,8 @@ public class SliderOption extends BaseOption {
 
     public function setDisabled(_arg_1:Boolean):void {
         this.disabled_ = _arg_1;
-        mouseEnabled = !(this.disabled_);
-        mouseChildren = !(this.disabled_);
+        mouseEnabled = !this.disabled_;
+        mouseChildren = !this.disabled_;
     }
 
     override public function refresh():void {

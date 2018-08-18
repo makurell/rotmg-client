@@ -8,11 +8,11 @@ public class HTMLUtil {
 
 
     public static function unescape(_arg_1:String):String {
-        return (new XMLDocument(_arg_1).firstChild.nodeValue);
+        return new XMLDocument(_arg_1).firstChild.nodeValue;
     }
 
     public static function escape(_arg_1:String):String {
-        return (XML(new XMLNode(XMLNodeType.TEXT_NODE, _arg_1)).toXMLString());
+        return XML(new XMLNode(XMLNodeType.TEXT_NODE, _arg_1)).toXMLString();
     }
 
     public static function refreshPageNoParams():void {

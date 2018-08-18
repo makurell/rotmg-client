@@ -42,8 +42,8 @@ public class ItemGrid extends Panel {
         this.owner = _arg_1;
         this.curPlayer = _arg_2;
         this.indexOffset = _arg_3;
-        var _local_4:Container = (_arg_1 as Container);
-        if ((((_arg_1 == _arg_2)) || (_local_4))) {
+        var _local_4:Container = _arg_1 as Container;
+        if (_arg_1 == _arg_2 || _local_4) {
             this.interactive = true;
         }
     }
@@ -57,7 +57,7 @@ public class ItemGrid extends Panel {
     }
 
     public function refreshTooltip():void {
-        if (((((!(stage)) || (!(this.tooltip)))) || (!(this.tooltip.stage)))) {
+        if (!stage || !this.tooltip || !this.tooltip.stage) {
             return;
         }
         if (this.tooltipFocusTile) {
@@ -71,7 +71,7 @@ public class ItemGrid extends Panel {
         if (!stage) {
             return;
         }
-        var _local_2:ItemTile = (_arg_1.currentTarget as ItemTile);
+        var _local_2:ItemTile = _arg_1.currentTarget as ItemTile;
         this.addToolTipToTile(_local_2);
         this.tooltipFocusTile = _local_2;
     }
@@ -79,10 +79,10 @@ public class ItemGrid extends Panel {
     private function addToolTipToTile(_arg_1:ItemTile):void {
         var _local_2:String;
         if (_arg_1.itemSprite.itemId > 0) {
-            this.tooltip = new EquipmentToolTip(_arg_1.itemSprite.itemId, this.curPlayer, ((this.owner) ? this.owner.objectType_ : -1), this.getCharacterType());
+            this.tooltip = new EquipmentToolTip(_arg_1.itemSprite.itemId, this.curPlayer, this.owner ? this.owner.objectType_ : -1, this.getCharacterType());
         }
         else {
-            if ((_arg_1 is EquipmentTile)) {
+            if (_arg_1 is EquipmentTile) {
                 _local_2 = ItemConstants.itemTypeToName((_arg_1 as EquipmentTile).itemType);
             }
             else {
@@ -96,19 +96,19 @@ public class ItemGrid extends Panel {
 
     private function getCharacterType():String {
         if (this.owner == this.curPlayer) {
-            return (InventoryOwnerTypes.CURRENT_PLAYER);
+            return InventoryOwnerTypes.CURRENT_PLAYER;
         }
-        if ((this.owner is Player)) {
-            return (InventoryOwnerTypes.OTHER_PLAYER);
+        if (this.owner is Player) {
+            return InventoryOwnerTypes.OTHER_PLAYER;
         }
-        return (InventoryOwnerTypes.NPC);
+        return InventoryOwnerTypes.NPC;
     }
 
     protected function addToGrid(_arg_1:ItemTile, _arg_2:uint, _arg_3:uint):void {
         _arg_1.drawBackground(CutsByNum[_arg_2][_arg_3]);
         _arg_1.addEventListener(MouseEvent.ROLL_OVER, this.onTileHover);
-        _arg_1.x = (int((_arg_3 % this.rowLength)) * (ItemTile.WIDTH + this.padding));
-        _arg_1.y = (int((_arg_3 / this.rowLength)) * (ItemTile.HEIGHT + this.padding));
+        _arg_1.x = int(_arg_3 % this.rowLength) * (ItemTile.WIDTH + this.padding);
+        _arg_1.y = int(_arg_3 / this.rowLength) * (ItemTile.HEIGHT + this.padding);
         addChild(_arg_1);
     }
 

@@ -18,7 +18,7 @@ public class LoaderProxyConcrete extends LoaderProxy {
     }
 
     override public function get content():DisplayObject {
-        return (this.loader.content);
+        return this.loader.content;
     }
 
     override public function get contentLoaderInfo():LoaderInfoProxy {
@@ -26,7 +26,7 @@ public class LoaderProxyConcrete extends LoaderProxy {
             this._contentLoaderInfo = new LoaderInfoProxyConcrete();
             this._contentLoaderInfo.loaderInfo = this.loader.contentLoaderInfo;
         }
-        return (this._contentLoaderInfo);
+        return this._contentLoaderInfo;
     }
 
     override public function load(_arg_1:URLRequest, _arg_2:LoaderContext = null):void {

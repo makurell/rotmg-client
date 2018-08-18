@@ -57,18 +57,18 @@ public class PetsTabContentView extends Sprite {
         while (_local_1 < _local_2) {
             _local_3 = new PetAbilityDisplay(this.petVO.abilityList[_local_1], 171);
             _local_3.x = 3;
-            _local_3.y = (72 + (17 * _local_1));
+            _local_3.y = 72 + 17 * _local_1;
             this.petsContent.addChild(_local_3);
             _local_1++;
         }
     }
 
     private function getNumAbilities():uint {
-        var _local_1:Boolean = (((this.petVO.getRarity() == PetRarityEnum.DIVINE.value)) || ((this.petVO.getRarity() == PetRarityEnum.LEGENDARY.value)));
+        var _local_1:Boolean = this.petVO.getRarity() == PetRarityEnum.DIVINE.value || this.petVO.getRarity() == PetRarityEnum.LEGENDARY.value;
         if (_local_1) {
-            return (2);
+            return 2;
         }
-        return (3);
+        return 3;
     }
 
     private function updateTextFields():void {
@@ -86,7 +86,7 @@ public class PetsTabContentView extends Sprite {
     }
 
     private function positionChildren():void {
-        this.petBitmap.x = (this.petBitmap.x - 8);
+        this.petBitmap.x = this.petBitmap.x - 8;
         this.petBitmap.y--;
         this.petsContent.x = 7;
         this.petsContent.y = 6;

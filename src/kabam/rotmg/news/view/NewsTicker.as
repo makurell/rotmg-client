@@ -46,7 +46,7 @@ public class NewsTicker extends Sprite {
         else {
             return;
         }
-        this.scrollText.text = ((this.SCROLL_PREPEND + _arg_1) + this.SCROLL_APPEND);
+        this.scrollText.text = this.SCROLL_PREPEND + _arg_1 + this.SCROLL_APPEND;
         this.timer.addEventListener(TimerEvent.TIMER, this.scrollAnimation);
         this.currentRepeat = 1;
         this.timer.start();
@@ -60,7 +60,7 @@ public class NewsTicker extends Sprite {
             this.timer.start();
         }
         else {
-            if ((((this.currentRepeat >= 1)) && ((this.currentRepeat < this.MAX_REPEATS)))) {
+            if (this.currentRepeat >= 1 && this.currentRepeat < this.MAX_REPEATS) {
                 this.currentRepeat++;
                 this.scrollOffset = 0;
                 this.scrollText.scrollH = 0;
@@ -100,10 +100,10 @@ public class NewsTicker extends Sprite {
         _local_1.wordWrap = false;
         _local_1.multiline = false;
         _local_1.selectable = false;
-        _local_1.width = (this.WIDTH - 10);
+        _local_1.width = this.WIDTH - 10;
         _local_1.height = 25;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
 

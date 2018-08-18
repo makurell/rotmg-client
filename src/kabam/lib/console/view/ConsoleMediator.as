@@ -40,7 +40,7 @@ public class ConsoleMediator extends Mediator {
     }
 
     private function onToggleConsole():void {
-        this.view.visible = !(this.view.visible);
+        this.view.visible = !this.view.visible;
     }
 
     private function onShowConsole():void {

@@ -43,22 +43,22 @@ public class TutorialMessage extends Sprite {
         y = this.rect_.y;
         this.rect_.x = 0;
         this.rect_.y = 0;
-        this.messageText_ = new TextFieldDisplayConcrete().setSize(15).setColor(0xFFFFFF).setTextWidth((this.rect_.width - (4 * BORDER)));
+        this.messageText_ = new TextFieldDisplayConcrete().setSize(15).setColor(0xFFFFFF).setTextWidth(this.rect_.width - 4 * BORDER);
         this.messageText_.setStringBuilder(new LineBuilder().setParams(_arg_2));
-        this.messageText_.x = (2 * BORDER);
-        this.messageText_.y = (2 * BORDER);
+        this.messageText_.x = 2 * BORDER;
+        this.messageText_.y = 2 * BORDER;
         if (_arg_3) {
             this.nextButton_ = new DeprecatedTextButton(18, "Next");
             this.nextButton_.addEventListener(MouseEvent.CLICK, this.onNextButton);
-            this.nextButton_.x = ((this.rect_.width - this.nextButton_.width) - 20);
-            this.nextButton_.y = ((this.rect_.height - this.nextButton_.height) - 10);
+            this.nextButton_.x = this.rect_.width - this.nextButton_.width - 20;
+            this.nextButton_.y = this.rect_.height - this.nextButton_.height - 10;
         }
         addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
         addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
     }
 
     private function drawRect():void {
-        var _local_1:Number = Math.min(1, (0.1 + ((0.9 * (getTimer() - this.startTime_)) / 200)));
+        var _local_1:Number = Math.min(1, 0.1 + (0.9 * (getTimer() - this.startTime_)) / 200);
         if (_local_1 == 1) {
             addChild(this.messageText_);
             if (this.nextButton_ != null) {
@@ -67,7 +67,7 @@ public class TutorialMessage extends Sprite {
             removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
         }
         var _local_2:Rectangle = this.rect_.clone();
-        _local_2.inflate(((-((1 - _local_1)) * this.rect_.width) / 2), ((-((1 - _local_1)) * this.rect_.height) / 2));
+        _local_2.inflate((-(1 - _local_1) * this.rect_.width) / 2, (-(1 - _local_1) * this.rect_.height) / 2);
         GraphicsUtil.clearPath(this.path_);
         GraphicsUtil.drawCutEdgeRect(_local_2.x, _local_2.y, _local_2.width, _local_2.height, 4, [1, 1, 1, 1], this.path_);
         graphics.clear();

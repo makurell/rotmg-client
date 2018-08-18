@@ -50,7 +50,7 @@ public class GetLanguageService extends BaseTask {
 
     private function onLanguageError():void {
         this.strings.setValue("ok", "ok", this.model.getLanguageFamily());
-        var _local_1:ErrorDialog = new ErrorDialog((("Unable to load language [" + this.language) + "]"));
+        var _local_1:ErrorDialog = new ErrorDialog("Unable to load language [" + this.language + "]");
         this.openDialog.dispatch(_local_1);
         completeTask(false);
     }

@@ -20,7 +20,7 @@ public class StatsTabContent extends Sprite {
     }
 
     private function positionChildren(_arg_1:uint):void {
-        this.stats.y = (((_arg_1 - TabConstants.TAB_TOP_OFFSET) / 2) - (this.stats.height / 2));
+        this.stats.y = (_arg_1 - TabConstants.TAB_TOP_OFFSET) / 2 - this.stats.height / 2;
     }
 
     private function init():void {

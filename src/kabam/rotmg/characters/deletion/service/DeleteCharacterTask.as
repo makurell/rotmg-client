@@ -28,11 +28,11 @@ public class DeleteCharacterTask extends BaseTask {
         var _local_1:Object = this.account.getCredentials();
         _local_1.charId = this.character.charId();
         _local_1.reason = 1;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.updateUserData()));
+        _arg_1 && this.updateUserData();
         completeTask(_arg_1, _arg_2);
     }
 

@@ -74,11 +74,11 @@ public class StaticDialog extends Sprite {
     }
 
     public function getLeftButtonKey():String {
-        return (this.leftButtonKey);
+        return this.leftButtonKey;
     }
 
     public function getRightButtonKey():String {
-        return (this.rightButtonKey);
+        return this.rightButtonKey;
     }
 
     public function setTextParams(_arg_1:String, _arg_2:Object):void {
@@ -90,7 +90,7 @@ public class StaticDialog extends Sprite {
     }
 
     protected function setDialogWidth():int {
-        return (WIDTH);
+        return WIDTH;
     }
 
     private function _makeUIAndAdd(_arg_1:String, _arg_2:String):void {
@@ -105,7 +105,7 @@ public class StaticDialog extends Sprite {
 
     protected function initText(_arg_1:String):void {
         this.textText_ = new TextFieldDisplayConcrete().setSize(14).setColor(GREY);
-        this.textText_.setTextWidth((this.dialogWidth - 40));
+        this.textText_.setTextWidth(this.dialogWidth - 40);
         this.textText_.x = 20;
         this.textText_.setMultiLine(true).setWordWrap(true).setAutoSize(TextFieldAutoSize.CENTER);
         this.textText_.setHTML(true);
@@ -148,8 +148,8 @@ public class StaticDialog extends Sprite {
     }
 
     private function positionDialog():void {
-        this.box_.x = ((this.offsetX + (this.stageProxy.getStageWidth() / 2)) - (this.box_.width / 2));
-        this.box_.y = ((this.offsetY + (this.stageProxy.getStageHeight() / 2)) - (this.getBoxHeight() / 2));
+        this.box_.x = (this.offsetX + this.stageProxy.getStageWidth() / 2) - this.box_.width / 2;
+        this.box_.y = (this.offsetY + this.stageProxy.getStageHeight() / 2) - this.getBoxHeight() / 2;
     }
 
     private function draw():void {
@@ -178,29 +178,29 @@ public class StaticDialog extends Sprite {
 
     private function drawBackground():void {
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(0, 0, this.dialogWidth, this.getBoxHeight() + this.bottomSpace, 4, [1, 1, 1, 1], this.path_);
         var _local_1:Graphics = this.rect_.graphics;
         _local_1.clear();
         _local_1.drawGraphicsData(this.graphicsData_);
     }
 
     protected function getBoxHeight():Number {
-        return (this.box_.height);
+        return this.box_.height;
     }
 
     private function addButtonsAndLayout():void {
         var _local_1:int;
         if (this.leftButton != null) {
-            _local_1 = (this.box_.height + this.buttonSpace);
+            _local_1 = this.box_.height + this.buttonSpace;
             this.box_.addChild(this.leftButton);
             this.leftButton.y = _local_1;
             if (this.rightButton == null) {
-                this.leftButton.x = ((this.dialogWidth / 2) - (this.leftButton.width / 2));
+                this.leftButton.x = this.dialogWidth / 2 - this.leftButton.width / 2;
             }
             else {
-                this.leftButton.x = ((this.dialogWidth / 4) - (this.leftButton.width / 2));
+                this.leftButton.x = this.dialogWidth / 4 - this.leftButton.width / 2;
                 this.box_.addChild(this.rightButton);
-                this.rightButton.x = (((3 * this.dialogWidth) / 4) - (this.rightButton.width / 2));
+                this.rightButton.x = (3 * this.dialogWidth) / 4 - this.rightButton.width / 2;
                 this.rightButton.y = _local_1;
             }
         }
@@ -208,9 +208,9 @@ public class StaticDialog extends Sprite {
 
     private function drawTitleAndText():void {
         if (this.titleText_ != null) {
-            this.titleText_.x = (this.dialogWidth / 2);
+            this.titleText_.x = this.dialogWidth / 2;
             this.titleText_.y = this.titleYPosition;
-            this.textText_.y = (this.titleText_.height + this.titleTextSpace);
+            this.textText_.y = this.titleText_.height + this.titleTextSpace;
         }
         else {
             this.textText_.y = 4;
@@ -218,10 +218,10 @@ public class StaticDialog extends Sprite {
     }
 
     private function removeButtonsIfAlreadyAdded():void {
-        if (((this.leftButton) && (this.box_.contains(this.leftButton)))) {
+        if (this.leftButton && this.box_.contains(this.leftButton)) {
             this.box_.removeChild(this.leftButton);
         }
-        if (((this.rightButton) && (this.box_.contains(this.rightButton)))) {
+        if (this.rightButton && this.box_.contains(this.rightButton)) {
             this.box_.removeChild(this.rightButton);
         }
     }

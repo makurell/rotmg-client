@@ -19,15 +19,15 @@ public class CharacterSkinState {
     }
 
     public function isDisabled():Boolean {
-        return (this._isDisabled);
+        return this._isDisabled;
     }
 
     public function isSkinStateDeterminedByLevel():Boolean {
-        return (this._skinStateDeterminedByLevel);
+        return this._skinStateDeterminedByLevel;
     }
 
     public function toString():String {
-        return ("[CharacterSkinState {NAME}]".replace("{NAME}", this.name));
+        return "[CharacterSkinState {NAME}]".replace("{NAME}", this.name);
     }
 
 

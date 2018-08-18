@@ -17,7 +17,7 @@ public class DebugDialog extends StaticDialog {
     private function onDialogComplete(_arg_1:Event):void {
         var _local_2:CloseDialogsSignal = StaticInjectorContext.getInjector().getInstance(CloseDialogsSignal);
         _local_2.dispatch();
-        if (((!((this.parent == null))) && (this.parent.contains(this)))) {
+        if (!(this.parent == null) && this.parent.contains(this)) {
             this.parent.removeChild(this);
         }
         if (this.f != null) {

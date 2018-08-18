@@ -22,7 +22,7 @@ public class GetBestArenaRunTask extends BaseTask {
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.updateBestRun(_arg_2)));
+        _arg_1 && this.updateBestRun(_arg_2);
         completeTask(_arg_1, _arg_2);
     }
 
@@ -33,7 +33,7 @@ public class GetBestArenaRunTask extends BaseTask {
     }
 
     private function makeRequestObject():Object {
-        return (this.account.getCredentials());
+        return this.account.getCredentials();
     }
 
 

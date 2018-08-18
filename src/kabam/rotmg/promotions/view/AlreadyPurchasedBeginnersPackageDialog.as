@@ -37,8 +37,8 @@ public class AlreadyPurchasedBeginnersPackageDialog extends Sprite implements Re
     }
 
     public function resize(_arg_1:Rectangle):void {
-        x = ((_arg_1.width - width) / 2);
-        y = ((_arg_1.height - height) / 2);
+        x = (_arg_1.width - width) / 2;
+        y = (_arg_1.height - height) / 2;
     }
 
 

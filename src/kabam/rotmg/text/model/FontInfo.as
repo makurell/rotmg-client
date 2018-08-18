@@ -22,15 +22,15 @@ public class FontInfo {
     }
 
     public function getName():String {
-        return (this.name);
+        return this.name;
     }
 
     public function getXHeight(_arg_1:Number):Number {
-        return ((this.xHeightRatio * _arg_1));
+        return this.xHeightRatio * _arg_1;
     }
 
     public function getVerticalSpace(_arg_1:Number):Number {
-        return ((this.verticalSpaceRatio * _arg_1));
+        return this.verticalSpaceRatio * _arg_1;
     }
 
     private function computeRatiosByRendering():void {
@@ -40,7 +40,7 @@ public class FontInfo {
         var _local_3:uint = 0xFFFFFF;
         var _local_4:Rectangle = _local_2.getColorBoundsRect(_local_3, this.textColor, true);
         this.xHeightRatio = this.deNormalize(_local_4.height);
-        this.verticalSpaceRatio = this.deNormalize(((_local_1.height - _local_4.bottom) - GUTTER));
+        this.verticalSpaceRatio = this.deNormalize(_local_1.height - _local_4.bottom - GUTTER);
     }
 
     private function makeTextField():TextField {
@@ -49,11 +49,11 @@ public class FontInfo {
         _local_1.text = "x";
         _local_1.textColor = this.textColor;
         _local_1.setTextFormat(new TextFormat(this.name, renderingFontSize));
-        return (_local_1);
+        return _local_1;
     }
 
     private function deNormalize(_arg_1:Number):Number {
-        return ((_arg_1 / renderingFontSize));
+        return _arg_1 / renderingFontSize;
     }
 
 

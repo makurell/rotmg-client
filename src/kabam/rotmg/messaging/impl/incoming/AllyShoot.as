@@ -20,7 +20,7 @@ public class AllyShoot extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ALLYSHOOT", "bulletId_", "ownerId_", "containerType_", "angle_"));
+        return formatToString("ALLYSHOOT", "bulletId_", "ownerId_", "containerType_", "angle_");
     }
 
 

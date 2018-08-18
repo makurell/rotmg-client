@@ -29,7 +29,7 @@ public class AcceptTrade extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ACCEPTTRADE", "myOffer_", "yourOffer_"));
+        return formatToString("ACCEPTTRADE", "myOffer_", "yourOffer_");
     }
 
 

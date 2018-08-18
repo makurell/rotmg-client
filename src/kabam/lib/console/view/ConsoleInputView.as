@@ -54,14 +54,14 @@ public final class ConsoleInputView extends TextField implements Resizable {
     }
 
     public function resize(_arg_1:Rectangle):void {
-        var _local_2:int = (_arg_1.height * 0.5);
+        var _local_2:int = _arg_1.height * 0.5;
         if (_local_2 > HEIGHT) {
             _local_2 = HEIGHT;
         }
         width = _arg_1.width;
         height = _local_2;
         x = _arg_1.x;
-        y = (_arg_1.bottom - height);
+        y = _arg_1.bottom - height;
     }
 
 

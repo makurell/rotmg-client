@@ -24,7 +24,7 @@ public class EquipmentTile extends InteractiveItemTile {
     }
 
     override public function canHoldItem(_arg_1:int):Boolean {
-        return ((((_arg_1 <= 0)) || ((this.itemType == ObjectLibrary.getSlotTypeFromType(_arg_1)))));
+        return _arg_1 <= 0 || this.itemType == ObjectLibrary.getSlotTypeFromType(_arg_1);
     }
 
     public function setType(_arg_1:int):void {
@@ -122,10 +122,10 @@ public class EquipmentTile extends InteractiveItemTile {
     override public function setItem(_arg_1:int):Boolean {
         var _local_2:Boolean = super.setItem(_arg_1);
         if (_local_2) {
-            this.backgroundDetail.visible = (itemSprite.itemId <= 0);
+            this.backgroundDetail.visible = itemSprite.itemId <= 0;
             this.updateMinMana();
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function updateMinMana():void {
@@ -133,7 +133,7 @@ public class EquipmentTile extends InteractiveItemTile {
         this.minManaUsage = 0;
         if (itemSprite.itemId > 0) {
             _local_1 = ObjectLibrary.xmlLibrary_[itemSprite.itemId];
-            if (((_local_1) && (_local_1.hasOwnProperty("Usable")))) {
+            if (_local_1 && _local_1.hasOwnProperty("Usable")) {
                 if (_local_1.hasOwnProperty("MultiPhase")) {
                     this.minManaUsage = _local_1.MpEndCost;
                 }
@@ -145,7 +145,7 @@ public class EquipmentTile extends InteractiveItemTile {
     }
 
     public function updateDim(_arg_1:Player):void {
-        itemSprite.setDim(((_arg_1) && ((_arg_1.mp_ < this.minManaUsage))));
+        itemSprite.setDim(_arg_1 && _arg_1.mp_ < this.minManaUsage);
     }
 
     override protected function beginDragCallback():void {
@@ -153,11 +153,11 @@ public class EquipmentTile extends InteractiveItemTile {
     }
 
     override protected function endDragCallback():void {
-        this.backgroundDetail.visible = (itemSprite.itemId <= 0);
+        this.backgroundDetail.visible = itemSprite.itemId <= 0;
     }
 
     override protected function getBackgroundColor():int {
-        return (0x454545);
+        return 0x454545;
     }
 
 

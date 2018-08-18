@@ -89,15 +89,15 @@ public class PetFormView extends PetInteractionView implements DialogCloser {
         while (_local_1 < this.NUM_CATEGORIES) {
             this.skinGroups[_local_1].x = 0;
             this.skinGroups[_local_1].y = this.posY;
-            this.posY = (this.posY + this.skinGroups[_local_1].height);
+            this.posY = this.posY + this.skinGroups[_local_1].height;
             _local_1++;
         }
-        this.reskinButton.y = (this.posY + 10);
-        this.background.height = (this.posY + 50);
+        this.reskinButton.y = this.posY + 10;
+        this.background.height = this.posY + 50;
     }
 
     public function createPetPicker(_arg_1:PetPicker, _arg_2:Vector.<PetVO>):void {
-        _arg_1.setSize(new Size((this.background.width - 10), 240));
+        _arg_1.setSize(new Size(this.background.width - 10, 240));
         _arg_1.setPadding(5);
         _arg_1.setPetSize(52);
         _arg_1.doDisableUsed = false;
@@ -122,8 +122,8 @@ public class PetFormView extends PetInteractionView implements DialogCloser {
     }
 
     private function positionReskinButton():void {
-        this.reskinButton.x = ((this.background.width - this.reskinButton.width) / 2);
-        this.reskinButton.y = (this.background.height - (this.reskinButton.height + 10));
+        this.reskinButton.x = (this.background.width - this.reskinButton.width) / 2;
+        this.reskinButton.y = this.background.height - (this.reskinButton.height + 10);
     }
 
     private function waitForTextChanged():void {
@@ -134,7 +134,7 @@ public class PetFormView extends PetInteractionView implements DialogCloser {
 
     private function positionTextField():void {
         this.titleTextfield.y = 5;
-        this.titleTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5);
+        this.titleTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) * 0.5;
     }
 
     private function onClose():void {
@@ -142,7 +142,7 @@ public class PetFormView extends PetInteractionView implements DialogCloser {
     }
 
     public function getCloseSignal():Signal {
-        return (closeDialogSignal);
+        return closeDialogSignal;
     }
 
     public function setState(_arg_1:String):void {

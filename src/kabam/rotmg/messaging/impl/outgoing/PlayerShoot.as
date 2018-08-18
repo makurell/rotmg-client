@@ -25,7 +25,7 @@ public class PlayerShoot extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("PLAYERSHOOT", "time_", "bulletId_", "containerType_", "startingPos_", "angle_"));
+        return formatToString("PLAYERSHOOT", "time_", "bulletId_", "containerType_", "startingPos_", "angle_");
     }
 
 

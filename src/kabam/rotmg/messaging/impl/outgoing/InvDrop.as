@@ -17,7 +17,7 @@ public class InvDrop extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("INVDROP", "slotObject_"));
+        return formatToString("INVDROP", "slotObject_");
     }
 
 

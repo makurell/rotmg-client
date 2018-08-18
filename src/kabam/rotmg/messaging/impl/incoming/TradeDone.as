@@ -19,7 +19,7 @@ public class TradeDone extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("TRADEDONE", "code_", "description_"));
+        return formatToString("TRADEDONE", "code_", "description_");
     }
 
 

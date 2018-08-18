@@ -29,10 +29,10 @@ public class PaymentMethod {
         var _local_2:PaymentMethod;
         for each (_local_2 in PAYMENT_METHODS) {
             if (_local_2.label_ == _arg_1) {
-                return (_local_2);
+                return _local_2;
             }
         }
-        return (null);
+        return null;
     }
 
 
@@ -54,7 +54,7 @@ public class PaymentMethod {
                 _local_6["paymentid"] = this.paymentid_;
                 break;
         }
-        return (((_local_5.getAppEngineUrl(true) + "/credits/add?") + _local_6.toString()));
+        return _local_5.getAppEngineUrl(true) + "/credits/add?" + _local_6.toString();
     }
 
 

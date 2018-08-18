@@ -8,7 +8,7 @@ public class BitmapDataSpy extends BitmapData {
     }
 
     override public function clone():BitmapData {
-        return (super.clone());
+        return super.clone();
     }
 
 

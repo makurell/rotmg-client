@@ -30,7 +30,7 @@ public class CharacterRect extends Sprite {
     }
 
     private static function makeDropShadowFilter():Array {
-        return ([new DropShadowFilter(0, 0, 0, 1, 8, 8)]);
+        return [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
     }
 
 
@@ -62,7 +62,7 @@ public class CharacterRect extends Sprite {
 
     private function drawBox(_arg_1:Boolean):void {
         this.box.graphics.clear();
-        this.box.graphics.beginFill(((_arg_1) ? this.overColor : this.color));
+        this.box.graphics.beginFill(_arg_1 ? this.overColor : this.color);
         this.box.graphics.drawRect(0, 0, WIDTH, HEIGHT);
         this.box.graphics.endFill();
     }
@@ -78,7 +78,7 @@ public class CharacterRect extends Sprite {
 
     protected function makeTaglineIcon():void {
         this.taglineIcon = new StarGraphic();
-        this.taglineIcon.transform.colorTransform = new ColorTransform((179 / 0xFF), (179 / 0xFF), (179 / 0xFF));
+        this.taglineIcon.transform.colorTransform = new ColorTransform(179 / 0xFF, 179 / 0xFF, 179 / 0xFF);
         this.taglineIcon.scaleX = 1.2;
         this.taglineIcon.scaleY = 1.2;
         this.taglineIcon.x = CharacterRectConstants.TAGLINE_ICON_POS_X;

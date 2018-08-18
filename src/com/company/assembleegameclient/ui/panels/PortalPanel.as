@@ -46,7 +46,7 @@ public class PortalPanel extends Panel {
         addChild(this.enterButton_);
         this.waiter.push(this.enterButton_.textChanged);
         this.fullText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xFF0000).setHTML(true).setBold(true).setAutoSize(TextFieldAutoSize.CENTER);
-        var _local_3:String = ((this.owner_.lockedPortal_) ? TextKey.PORTAL_PANEL_LOCKED : TextKey.PORTAL_PANEL_FULL);
+        var _local_3:String = this.owner_.lockedPortal_ ? TextKey.PORTAL_PANEL_LOCKED : TextKey.PORTAL_PANEL_FULL;
         this.fullText_.setStringBuilder(new LineBuilder().setParams(_local_3).setPrefix('<p align="center">').setPostfix("</p>"));
         this.fullText_.filters = [new DropShadowFilter(0, 0, 0)];
         this.fullText_.textChanged.addOnce(this.alignUI);
@@ -57,10 +57,10 @@ public class PortalPanel extends Panel {
 
     private function alignUI():void {
         this.nameText_.y = 6;
-        this.enterButton_.x = ((WIDTH / 2) - (this.enterButton_.width / 2));
-        this.enterButton_.y = ((HEIGHT - this.enterButton_.height) - 4);
-        this.fullText_.y = (HEIGHT - 30);
-        this.fullText_.x = (WIDTH / 2);
+        this.enterButton_.x = WIDTH / 2 - this.enterButton_.width / 2;
+        this.enterButton_.y = HEIGHT - this.enterButton_.height - 4;
+        this.fullText_.y = HEIGHT - 30;
+        this.fullText_.x = WIDTH / 2;
     }
 
     private function onAddedToStage(_arg_1:Event):void {
@@ -77,7 +77,7 @@ public class PortalPanel extends Panel {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             this.enterPortal();
         }
     }
@@ -91,12 +91,12 @@ public class PortalPanel extends Panel {
 
     override public function draw():void {
         this.updateNameText();
-        if (((((!(this.owner_.lockedPortal_)) && (this.owner_.active_))) && (contains(this.fullText_)))) {
+        if (!this.owner_.lockedPortal_ && this.owner_.active_ && contains(this.fullText_)) {
             removeChild(this.fullText_);
             addChild(this.enterButton_);
         }
         else {
-            if (((((this.owner_.lockedPortal_) || (!(this.owner_.active_)))) && (contains(this.enterButton_)))) {
+            if ((this.owner_.lockedPortal_ || !this.owner_.active_) && contains(this.enterButton_)) {
                 removeChild(this.enterButton_);
                 addChild(this.fullText_);
             }
@@ -107,21 +107,21 @@ public class PortalPanel extends Panel {
         var _local_1:String = this.getName();
         var _local_2:StringBuilder = new PortalNameParser().makeBuilder(_local_1);
         this.nameText_.setStringBuilder(_local_2);
-        this.nameText_.x = ((WIDTH - this.nameText_.width) * 0.5);
-        this.nameText_.y = (((this.nameText_.height > 30)) ? 0 : 6);
+        this.nameText_.x = (WIDTH - this.nameText_.width) * 0.5;
+        this.nameText_.y = this.nameText_.height > 30 ? 0 : 6;
     }
 
     private function getName():String {
         var _local_1:String = this.owner_.getName();
-        if (((this.owner_.lockedPortal_) && ((_local_1.indexOf(this.LOCKED) == 0)))) {
-            return (_local_1.substr(this.LOCKED.length));
+        if (this.owner_.lockedPortal_ && _local_1.indexOf(this.LOCKED) == 0) {
+            return _local_1.substr(this.LOCKED.length);
         }
-        return (this.parseJson(_local_1));
+        return this.parseJson(_local_1);
     }
 
     private function parseJson(_arg_1:String):String {
         var _local_2:Array = _arg_1.match(this.TEXT_PATTERN);
-        return (((_local_2) ? _local_2[1] : _arg_1));
+        return _local_2 ? _local_2[1] : _arg_1;
     }
 
 

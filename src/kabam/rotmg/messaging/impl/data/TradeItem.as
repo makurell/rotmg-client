@@ -17,7 +17,7 @@ public class TradeItem {
     }
 
     public function toString():String {
-        return (((((((("item: " + this.item_) + " slotType: ") + this.slotType_) + " tradeable: ") + this.tradeable_) + " included:") + this.included_));
+        return "item: " + this.item_ + " slotType: " + this.slotType_ + " tradeable: " + this.tradeable_ + " included:" + this.included_;
     }
 
 

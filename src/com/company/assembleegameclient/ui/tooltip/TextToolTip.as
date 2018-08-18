@@ -24,7 +24,7 @@ public class TextToolTip extends ToolTip {
     }
 
     override protected function alignUI():void {
-        this.tipText_.y = ((this.titleText_) ? (this.titleText_.height + 8) : 0);
+        this.tipText_.y = this.titleText_ ? this.titleText_.height + 8 : 0;
     }
 
     public function configureTextFieldDisplayAndAddChild(_arg_1:TextFieldDisplayConcrete, _arg_2:int, _arg_3:String, _arg_4:Object = null):void {

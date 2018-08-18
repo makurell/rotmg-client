@@ -37,8 +37,8 @@ public class FoodFeedFuseSlot extends FeedFuseSlot {
         var _local_2:ColorTransform;
         if (this.processing != _arg_1) {
             this.processing = _arg_1;
-            itemSprite.filters = ((_arg_1) ? [this.grayscaleMatrix] : []);
-            _local_2 = ((_arg_1) ? MoreColorUtil.darkCT : new ColorTransform());
+            itemSprite.filters = _arg_1 ? [this.grayscaleMatrix] : [];
+            _local_2 = _arg_1 ? MoreColorUtil.darkCT : new ColorTransform();
             itemSprite.transform.colorTransform = _local_2;
         }
     }
@@ -68,10 +68,10 @@ public class FoodFeedFuseSlot extends FeedFuseSlot {
     public function updateTitle():void {
         var _local_1:XML;
         var _local_2:String;
-        if (((itemId) && (!((itemId == -1))))) {
+        if (itemId && !(itemId == -1)) {
             setTitle(TextKey.PETORFOODSLOT_ITEM_POWER, {});
             _local_1 = ObjectLibrary.getXMLfromId(ObjectLibrary.getIdFromType(itemId));
-            _local_2 = ((_local_1.hasOwnProperty("feedPower")) ? _local_1.feedPower : "0");
+            _local_2 = _local_1.hasOwnProperty("feedPower") ? _local_1.feedPower : "0";
             setSubtitle(TextKey.BLANK, {"data": _local_2});
         }
         else {
@@ -94,13 +94,13 @@ public class FoodFeedFuseSlot extends FeedFuseSlot {
     }
 
     private function clearAndCallCancel():void {
-        ((this.cancelCallback) && (this.cancelCallback()));
+        this.cancelCallback && this.cancelCallback();
         this.cancelCallback = null;
     }
 
     private function alignBitmapOnMouse(_arg_1:int, _arg_2:int):void {
-        itemBitmap.x = (-(itemBitmap.width) / 2);
-        itemBitmap.y = (-(itemBitmap.height) / 2);
+        itemBitmap.x = -itemBitmap.width / 2;
+        itemBitmap.y = -itemBitmap.height / 2;
         itemSprite.x = _arg_1;
         itemSprite.y = _arg_2;
     }
@@ -110,7 +110,7 @@ public class FoodFeedFuseSlot extends FeedFuseSlot {
             this.alignBitmapOnMouse(_arg_1.stageX, _arg_1.stageY);
             itemSprite.startDrag(true);
             itemSprite.addEventListener(MouseEvent.MOUSE_UP, this.endDrag);
-            if (((!((itemSprite.parent == null))) && (!((itemSprite.parent == stage))))) {
+            if (!(itemSprite.parent == null) && !(itemSprite.parent == stage)) {
                 removeChild(itemSprite);
                 stage.addChild(itemSprite);
             }
@@ -124,7 +124,7 @@ public class FoodFeedFuseSlot extends FeedFuseSlot {
         addChild(itemSprite);
         alignBitmapInBox();
         var _local_2:* = DisplayHierarchy.getParentWithTypeArray(itemSprite.dropTarget, FeedPetView, FusePetView, ModalItemSlot);
-        if (((((!((_local_2 is FeedPetView))) && (!((_local_2 is FusePetView))))) && (!((((_local_2 is ModalItemSlot)) && (((_local_2 as ModalItemSlot).interactable == true))))))) {
+        if (!(_local_2 is FeedPetView) && !(_local_2 is FusePetView) && !((_local_2 is ModalItemSlot) && (_local_2 as ModalItemSlot).interactable == true)) {
             this.empty = true;
             itemId = ItemConstants.NO_ITEM;
             itemBitmap.bitmapData = null;

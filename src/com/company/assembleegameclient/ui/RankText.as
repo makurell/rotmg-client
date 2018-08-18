@@ -36,11 +36,11 @@ public class RankText extends Sprite {
     }
 
     public function makeText():TextFieldDisplayConcrete {
-        var _local_1:int = ((this.largeText_) ? 18 : 16);
+        var _local_1:int = this.largeText_ ? 18 : 16;
         var _local_2:TextFieldDisplayConcrete = new TextFieldDisplayConcrete();
         _local_2.setSize(_local_1).setColor(0xB3B3B3);
         _local_2.setBold(this.largeText_);
-        return (_local_2);
+        return _local_2;
     }
 
     public function draw(numStars:int):void {
@@ -48,13 +48,13 @@ public class RankText extends Sprite {
         var onTextChanged:Function;
         onTextChanged = function ():void {
             text.y = text.height;
-            icon.x = (text.width + 2);
-            icon.y = (text.y - icon.height);
-            var _local_1:int = (icon.x + icon.width);
+            icon.x = text.width + 2;
+            icon.y = text.y - icon.height;
+            var _local_1:int = icon.x + icon.width;
             background.graphics.clear();
             background.graphics.beginFill(0, 0.4);
-            var _local_2:Number = (icon.height + 8);
-            background.graphics.drawRoundRect(-2, (icon.y - 3), (_local_1 + 6), _local_2, 12, 12);
+            var _local_2:Number = icon.height + 8;
+            background.graphics.drawRoundRect(-2, icon.y - 3, _local_1 + 6, _local_2, 12, 12);
             background.graphics.endFill();
             position();
         };
@@ -62,7 +62,7 @@ public class RankText extends Sprite {
             return;
         }
         this.numStars_ = numStars;
-        if (((!((this.background == null))) && (contains(this.background)))) {
+        if (!(this.background == null) && contains(this.background)) {
             removeChild(this.background);
         }
         if (this.numStars_ < 0) {
@@ -74,7 +74,7 @@ public class RankText extends Sprite {
         text.setStringBuilder(new StaticStringBuilder(this.numStars_.toString()));
         text.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
         this.background.addChild(text);
-        this.icon = ((this.largeText_) ? FameUtil.numStarsToBigImage(this.numStars_) : FameUtil.numStarsToImage(this.numStars_));
+        this.icon = this.largeText_ ? FameUtil.numStarsToBigImage(this.numStars_) : FameUtil.numStarsToImage(this.numStars_);
         this.background.addChild(this.icon);
         text.textChanged.addOnce(onTextChanged);
         addChild(this.background);
@@ -95,7 +95,7 @@ public class RankText extends Sprite {
     private function position():void {
         if (this.prefix_) {
             this.background.x = this.prefix_.width;
-            this.prefix_.y = (this.icon.y - 3);
+            this.prefix_.y = this.icon.y - 3;
         }
     }
 

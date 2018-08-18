@@ -29,18 +29,18 @@ public class SpellComparison extends SlotComparison {
         var _local_2:int = int(this.projXML.MaxDamage);
         var _local_3:int = int(this.otherProjXML.MinDamage);
         var _local_4:int = int(this.otherProjXML.MaxDamage);
-        var _local_5:Number = ((_local_1 + _local_2) / 2);
-        var _local_6:Number = ((_local_3 + _local_4) / 2);
-        var _local_7:uint = getTextColor((_local_5 - _local_6));
-        var _local_8:String = (((_local_1) == _local_2) ? _local_2.toString() : ((_local_1 + " - ") + _local_2));
-        return (comparisonStringBuilder.pushParams(TextKey.DAMAGE, {"damage": (((('<font color="#' + _local_7.toString(16)) + '">') + _local_8) + "</font>")}));
+        var _local_5:Number = (_local_1 + _local_2) / 2;
+        var _local_6:Number = (_local_3 + _local_4) / 2;
+        var _local_7:uint = getTextColor(_local_5 - _local_6);
+        var _local_8:String = _local_1 == _local_2 ? _local_2.toString() : _local_1 + " - " + _local_2;
+        return comparisonStringBuilder.pushParams(TextKey.DAMAGE, {"damage": '<font color="#' + _local_7.toString(16) + '">' + _local_8 + "</font>"});
     }
 
     private function getRangeText():StringBuilder {
-        var _local_1:Number = ((Number(this.projXML.Speed) * Number(this.projXML.LifetimeMS)) / 10000);
-        var _local_2:Number = ((Number(this.otherProjXML.Speed) * Number(this.otherProjXML.LifetimeMS)) / 10000);
-        var _local_3:uint = getTextColor((_local_1 - _local_2));
-        return (comparisonStringBuilder.pushParams(TextKey.RANGE, {"range": (((('<font color="#' + _local_3.toString(16)) + '">') + _local_1) + "</font>")}));
+        var _local_1:Number = (Number(this.projXML.Speed) * Number(this.projXML.LifetimeMS)) / 10000;
+        var _local_2:Number = (Number(this.otherProjXML.Speed) * Number(this.otherProjXML.LifetimeMS)) / 10000;
+        var _local_3:uint = getTextColor(_local_1 - _local_2);
+        return comparisonStringBuilder.pushParams(TextKey.RANGE, {"range": '<font color="#' + _local_3.toString(16) + '">' + _local_1 + "</font>"});
     }
 
 

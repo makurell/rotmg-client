@@ -30,7 +30,7 @@ public class NewAbility extends PetDialog implements DialogCloser {
     }
 
     public function getAbility():String {
-        return (this.ability);
+        return this.ability;
     }
 
     override protected function makeUIAndAdd():void {
@@ -43,15 +43,15 @@ public class NewAbility extends PetDialog implements DialogCloser {
 
     override protected function drawAdditionalUI():void {
         super.drawAdditionalUI();
-        this.abilityText.x = (this.ABILITY_BOX_WIDTH / 2);
-        this.abilityText.y = (this.ABILITY_BOX_HEIGHT / 2);
-        this.abilityBox.x = ((WIDTH - this.abilityBox.width) / 2);
-        this.abilityBox.y = (textText_.getBounds(box_).bottom + titleYPosition);
-        leftButton.y = (this.abilityBox.getBounds(box_).bottom + buttonSpace);
+        this.abilityText.x = this.ABILITY_BOX_WIDTH / 2;
+        this.abilityText.y = this.ABILITY_BOX_HEIGHT / 2;
+        this.abilityBox.x = (WIDTH - this.abilityBox.width) / 2;
+        this.abilityBox.y = textText_.getBounds(box_).bottom + titleYPosition;
+        leftButton.y = this.abilityBox.getBounds(box_).bottom + buttonSpace;
     }
 
     public function getCloseSignal():Signal {
-        return (this.closeDialogComponent.getCloseSignal());
+        return this.closeDialogComponent.getCloseSignal();
     }
 
 

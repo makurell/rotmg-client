@@ -16,7 +16,7 @@ public class SetCondition extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("SETCONDITION", "conditionEffect_", "conditionDuration_"));
+        return formatToString("SETCONDITION", "conditionEffect_", "conditionDuration_");
     }
 
 

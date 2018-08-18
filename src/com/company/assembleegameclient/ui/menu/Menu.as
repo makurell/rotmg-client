@@ -46,7 +46,7 @@ public class Menu extends Sprite implements UnFocusAble {
         _arg_1.x = 8;
         _arg_1.y = this.yOffset;
         addChild(_arg_1);
-        this.yOffset = (this.yOffset + 28);
+        this.yOffset = this.yOffset + 28;
     }
 
     protected function onAddedToStage(_arg_1:Event):void {
@@ -76,20 +76,20 @@ public class Menu extends Sprite implements UnFocusAble {
         if (stage == null) {
             return;
         }
-        if (stage.mouseX < (stage.stageWidth / 2)) {
-            x = (stage.mouseX + 12);
+        if (stage.mouseX < stage.stageWidth / 2) {
+            x = stage.mouseX + 12;
         }
         else {
-            x = ((stage.mouseX - width) - 1);
+            x = stage.mouseX - width - 1;
         }
         if (x < 12) {
             x = 12;
         }
-        if (stage.mouseY < (stage.stageHeight / 3)) {
-            y = (stage.mouseY + 12);
+        if (stage.mouseY < stage.stageHeight / 3) {
+            y = stage.mouseY + 12;
         }
         else {
-            y = ((stage.mouseY - height) - 1);
+            y = stage.mouseY - height - 1;
         }
         if (y < 12) {
             y = 12;
@@ -111,7 +111,7 @@ public class Menu extends Sprite implements UnFocusAble {
         this.outlineFill_.color = this.outline_;
         graphics.clear();
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(-6, -6, Math.max(154, (width + 12)), (height + 12), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(-6, -6, Math.max(154, width + 12), height + 12, 4, [1, 1, 1, 1], this.path_);
         graphics.drawGraphicsData(this.graphicsData_);
     }
 

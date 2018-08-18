@@ -25,11 +25,11 @@ public class SoundIcon extends Sprite {
     }
 
     private function setBitmap():void {
-        this.bitmap_.bitmapData = ((((Parameters.data_.playMusic) || (Parameters.data_.playSFX))) ? AssetLibrary.getImageFromSet("lofiInterfaceBig", 3) : AssetLibrary.getImageFromSet("lofiInterfaceBig", 4));
+        this.bitmap_.bitmapData = Parameters.data_.playMusic || Parameters.data_.playSFX ? AssetLibrary.getImageFromSet("lofiInterfaceBig", 3) : AssetLibrary.getImageFromSet("lofiInterfaceBig", 4);
     }
 
     private function onIconClick(_arg_1:MouseEvent):void {
-        var _local_2 = !(((Parameters.data_.playMusic) || (Parameters.data_.playSFX)));
+        var _local_2 = !(Parameters.data_.playMusic || Parameters.data_.playSFX);
         Music.setPlayMusic(_local_2);
         SFX.setPlaySFX(_local_2);
         Parameters.data_.playPewPew = _local_2;

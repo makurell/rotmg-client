@@ -3,10 +3,9 @@ import kabam.rotmg.account.securityQuestions.data.SecurityQuestionsData;
 
 import org.osflash.signals.Signal;
 
-public class SaveSecurityQuestionsSignal extends Signal{
+public class SaveSecurityQuestionsSignal extends Signal {
 
-    public function SaveSecurityQuestionsSignal()
-    {
+    public function SaveSecurityQuestionsSignal() {
         super(SecurityQuestionsData);
     }
 

@@ -3,7 +3,7 @@ public class IsAccountRegisteredToBuyGoldGuard extends IsAccountRegisteredGuard 
 
 
     override protected function getString():String {
-        return ("Dialog.registerToUseGold");
+        return "Dialog.registerToUseGold";
     }
 
 

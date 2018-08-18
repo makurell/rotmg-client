@@ -16,7 +16,7 @@ public class TooltipsView extends Sprite {
     }
 
     public function hide():void {
-        if (((this.toolTip) && (this.toolTip.parent))) {
+        if (this.toolTip && this.toolTip.parent) {
             this.toolTip.parent.removeChild(this.toolTip);
         }
         this.toolTip = null;

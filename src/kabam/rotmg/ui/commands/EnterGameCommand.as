@@ -64,7 +64,7 @@ public class EnterGameCommand {
         _local_1.charId = this.model.getNextCharId();
         _local_1.keyTime = -1;
         _local_1.isNewGame = true;
-        return (_local_1);
+        return _local_1;
     }
 
     private function showAgeVerificationDialog():void {

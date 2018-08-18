@@ -19,7 +19,7 @@ public class AoeAck extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("AOEACK", "time_", "position_"));
+        return formatToString("AOEACK", "time_", "position_");
     }
 
 

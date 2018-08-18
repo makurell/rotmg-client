@@ -32,8 +32,7 @@ public class SubmitMapForm extends Frame {
     var account:Account;
     var checkbox:CheckBoxField;
 
-    public function SubmitMapForm(_arg_1:String, _arg_2:Object, _arg_3:Account)
-    {
+    public function SubmitMapForm(_arg_1:String, _arg_2:Object, _arg_3:Account) {
         super("SubmitMapForm.Title", TextKey.FRAME_CANCEL, TextKey.WEB_CHANGE_PASSWORD_RIGHT, 300);
         cancel = new Signal();
         this.account = _arg_3;
@@ -52,25 +51,21 @@ public class SubmitMapForm extends Frame {
         addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
     }
 
-    public static function isInitialized():Boolean
-    {
+    public static function isInitialized():Boolean {
         return cancel != null;
     }
 
-    private function disableButtons():void
-    {
+    private function disableButtons():void {
         rightButton_.removeEventListener(MouseEvent.CLICK, this.onSubmit);
         leftButton_.removeEventListener(MouseEvent.CLICK, this.onCancel);
     }
 
-    private function enableButtons():void
-    {
+    private function enableButtons():void {
         rightButton_.addEventListener(MouseEvent.CLICK, this.onSubmit);
         leftButton_.addEventListener(MouseEvent.CLICK, this.onCancel);
     }
 
-    private function onSubmit(_arg_1:MouseEvent):void
-    {
+    private function onSubmit(_arg_1:MouseEvent):void {
         this.disableButtons();
         this.mapName.clearError();
         var _local_2:JsonParser = StaticInjectorContext.getInjector().getInstance(JsonParser);
@@ -94,100 +89,83 @@ public class SubmitMapForm extends Frame {
         var _local_8:String = _local_7.getAppEngineUrl(true) + "/ugc/save";
         this.enableButtons();
         var _local_9:Object = {
-            "name":this.mapName.text(), 
-            "description":this.descr.text(), 
-            "width":_local_4, 
-            "height":_local_5, 
-            "mapjm":this.mapjm, 
-            "tags":this.tags.text(), 
-            "totalObjects":this.mapInfo.numObjects, 
-            "totalTiles":this.mapInfo.numTiles, 
-            "thumbnail":this.mapInfo.thumbnail, 
-            "overwrite":this.checkbox.isChecked() ? "on" : "off"
+            "name": this.mapName.text(),
+            "description": this.descr.text(),
+            "width": _local_4,
+            "height": _local_5,
+            "mapjm": this.mapjm,
+            "tags": this.tags.text(),
+            "totalObjects": this.mapInfo.numObjects,
+            "totalTiles": this.mapInfo.numTiles,
+            "thumbnail": this.mapInfo.thumbnail,
+            "overwrite": this.checkbox.isChecked() ? "on" : "off"
         };
-        if(this.validated(_local_9))
-        {
+        if (this.validated(_local_9)) {
             _local_6.addEventListener(Event.COMPLETE, this.onComplete);
             _local_6.addEventListener(IOErrorEvent.IO_ERROR, this.onCompleteException);
             _local_6.load(_local_8);
         }
-        else
-        {
+        else {
             this.enableButtons();
         }
     }
 
-    private function onCompleteException(_arg_1:IOErrorEvent):void
-    {
+    private function onCompleteException(_arg_1:IOErrorEvent):void {
         this.descr.setError("Exception. If persists, please contact dev team.");
         this.enableButtons();
     }
 
-    private function onComplete(_arg_1:Event):void
-    {
+    private function onComplete(_arg_1:Event):void {
         var _local_3:Array = null;
         var _local_4:String = null;
         var _local_2:MultipartURLLoader = MultipartURLLoader(_arg_1.target);
-        if(_local_2.loader.data == "<Success/>")
-        {
+        if (_local_2.loader.data == "<Success/>") {
             this.descr.setError("Success! Thank you!");
             new TimerCallback(2, this.onCancel);
         }
-        else
-        {
+        else {
             _local_3 = _local_2.loader.data.match("<.*>(.*)</.*>");
-            _local_4 = _local_3.length > 1?_local_3[1]:_local_2.loader.data;
+            _local_4 = _local_3.length > 1 ? _local_3[1] : _local_2.loader.data;
             this.descr.setError(_local_4);
         }
         this.enableButtons();
     }
 
-    private function onCancel(_arg_1:MouseEvent = null):void
-    {
+    private function onCancel(_arg_1:MouseEvent = null):void {
         cancel.dispatch();
-        if(parent)
-        {
+        if (parent) {
             parent.removeChild(this);
         }
     }
 
-    private function onRemovedFromStage(_arg_1:Event):void
-    {
-        if(rightButton_)
-        {
+    private function onRemovedFromStage(_arg_1:Event):void {
+        if (rightButton_) {
             rightButton_.removeEventListener(MouseEvent.CLICK, this.onSubmit);
         }
-        if(cancel)
-        {
+        if (cancel) {
             cancel.removeAll();
             cancel = null;
         }
     }
 
-    private function validated(_arg_1:Object):Boolean
-    {
-        if(_arg_1["name"].length < 6 || _arg_1["name"].length > 24)
-        {
+    private function validated(_arg_1:Object):Boolean {
+        if (_arg_1["name"].length < 6 || _arg_1["name"].length > 24) {
             this.mapName.setError("Map name length out of range (6-24 chars)");
             return false;
         }
-        if(_arg_1["description"].length < 10 || _arg_1["description"].length > 250)
-        {
+        if (_arg_1["description"].length < 10 || _arg_1["description"].length > 250) {
             this.descr.setError("Description length out of range (10-250 chars)");
             return false;
         }
         return this.isValidMap();
     }
 
-    private function isValidMap():Boolean
-    {
-        if(this.mapInfo.numExits < 1)
-        {
+    private function isValidMap():Boolean {
+        if (this.mapInfo.numExits < 1) {
             this.descr.setError("Must have at least one User Dungeon End region drawn in this dungeon. (tmp)");
             return false;
         }
-        if(this.mapInfo.numEntries < 1)
-        {
+        if (this.mapInfo.numEntries < 1) {
             this.descr.setError("Must have at least one Spawn Region drawn in this dungeon. (tmp)");
             return false;
         }

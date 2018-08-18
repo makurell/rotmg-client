@@ -74,7 +74,7 @@ public class Options extends Sprite {
         _local_2.setStringBuilder(new LineBuilder().setParams(TextKey.OPTIONS_TITLE));
         _local_2.setAutoSize(TextFieldAutoSize.CENTER);
         _local_2.filters = [new DropShadowFilter(0, 0, 0)];
-        _local_2.x = ((800 / 2) - (_local_2.width / 2));
+        _local_2.x = 800 / 2 - _local_2.width / 2;
         _local_2.y = 8;
         addChild(_local_2);
         addChild(new ScreenGraphic());
@@ -113,7 +113,7 @@ public class Options extends Sprite {
             addChild(_local_6);
             _local_6.addEventListener(MouseEvent.CLICK, this.onTabClick);
             this.tabs_.push(_local_6);
-            _local_3 = (_local_3 + ((UIUtils.SHOW_EXPERIMENTAL_MENU) ? 90 : 108));
+            _local_3 = _local_3 + (UIUtils.SHOW_EXPERIMENTAL_MENU ? 90 : 108);
             _local_4++;
         }
         addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
@@ -121,31 +121,31 @@ public class Options extends Sprite {
     }
 
     private static function makePotionBuy():ChoiceOption {
-        return (new ChoiceOption("contextualPotionBuy", makeOnOffLabels(), [true, false], TextKey.OPTIONS_CONTEXTUAL_POTION_BUY, TextKey.OPTIONS_CONTEXTUAL_POTION_BUY_DESC, null));
+        return new ChoiceOption("contextualPotionBuy", makeOnOffLabels(), [true, false], TextKey.OPTIONS_CONTEXTUAL_POTION_BUY, TextKey.OPTIONS_CONTEXTUAL_POTION_BUY_DESC, null);
     }
 
     private static function makeOnOffLabels():Vector.<StringBuilder> {
-        return (new <StringBuilder>[makeLineBuilder(TextKey.OPTIONS_ON), makeLineBuilder(TextKey.OPTIONS_OFF)]);
+        return new <StringBuilder>[makeLineBuilder(TextKey.OPTIONS_ON), makeLineBuilder(TextKey.OPTIONS_OFF)];
     }
 
     private static function makeHighLowLabels():Vector.<StringBuilder> {
-        return (new <StringBuilder>[new StaticStringBuilder("High"), new StaticStringBuilder("Low")]);
+        return new <StringBuilder>[new StaticStringBuilder("High"), new StaticStringBuilder("Low")];
     }
 
     private static function makeStarSelectLabels():Vector.<StringBuilder> {
-        return (new <StringBuilder>[new StaticStringBuilder("Off"), new StaticStringBuilder("1"), new StaticStringBuilder("2"), new StaticStringBuilder("3"), new StaticStringBuilder("5"), new StaticStringBuilder("10")]);
+        return new <StringBuilder>[new StaticStringBuilder("Off"), new StaticStringBuilder("1"), new StaticStringBuilder("2"), new StaticStringBuilder("3"), new StaticStringBuilder("5"), new StaticStringBuilder("10")];
     }
 
     private static function makeCursorSelectLabels():Vector.<StringBuilder> {
-        return (new <StringBuilder>[new StaticStringBuilder("Off"), new StaticStringBuilder("ProX"), new StaticStringBuilder("X2"), new StaticStringBuilder("X3"), new StaticStringBuilder("X4"), new StaticStringBuilder("Corner1"), new StaticStringBuilder("Corner2"), new StaticStringBuilder("Symb"), new StaticStringBuilder("Alien"), new StaticStringBuilder("Xhair"), new StaticStringBuilder("Dystopia+")]);
+        return new <StringBuilder>[new StaticStringBuilder("Off"), new StaticStringBuilder("ProX"), new StaticStringBuilder("X2"), new StaticStringBuilder("X3"), new StaticStringBuilder("X4"), new StaticStringBuilder("Corner1"), new StaticStringBuilder("Corner2"), new StaticStringBuilder("Symb"), new StaticStringBuilder("Alien"), new StaticStringBuilder("Xhair"), new StaticStringBuilder("Dystopia+")];
     }
 
     private static function makeLineBuilder(_arg_1:String):LineBuilder {
-        return (new LineBuilder().setParams(_arg_1));
+        return new LineBuilder().setParams(_arg_1);
     }
 
     private static function makeClickForGold():ChoiceOption {
-        return (new ChoiceOption("clickForGold", makeOnOffLabels(), [true, false], TextKey.OPTIONS_CLICK_FOR_GOLD, TextKey.OPTIONS_CLICK_FOR_GOLD_DESC, null));
+        return new ChoiceOption("clickForGold", makeOnOffLabels(), [true, false], TextKey.OPTIONS_CLICK_FOR_GOLD, TextKey.OPTIONS_CLICK_FOR_GOLD_DESC, null);
     }
 
     private static function onUIQualityToggle():void {
@@ -159,7 +159,7 @@ public class Options extends Sprite {
     public static function refreshCursor():void {
         var _local_1:MouseCursorData;
         var _local_2:Vector.<BitmapData>;
-        if (((!((Parameters.data_.cursorSelect == MouseCursor.AUTO))) && ((registeredCursors.indexOf(Parameters.data_.cursorSelect) == -1)))) {
+        if (!(Parameters.data_.cursorSelect == MouseCursor.AUTO) && registeredCursors.indexOf(Parameters.data_.cursorSelect) == -1) {
             _local_1 = new MouseCursorData();
             _local_1.hotSpot = new Point(15, 15);
             _local_2 = new Vector.<BitmapData>(1, true);
@@ -172,7 +172,7 @@ public class Options extends Sprite {
     }
 
     private static function makeDegreeOptions():Vector.<StringBuilder> {
-        return (new <StringBuilder>[new StaticStringBuilder("45°"), new StaticStringBuilder("0°")]);
+        return new <StringBuilder>[new StaticStringBuilder("45°"), new StaticStringBuilder("0°")];
     }
 
     private static function onDefaultCameraAngleChange():void {
@@ -206,7 +206,7 @@ public class Options extends Sprite {
     }
 
     private function onTabClick(_arg_1:MouseEvent):void {
-        var _local_2:OptionsTabTitle = (_arg_1.currentTarget as OptionsTabTitle);
+        var _local_2:OptionsTabTitle = _arg_1.currentTarget as OptionsTabTitle;
         this.setSelected(_local_2);
     }
 
@@ -249,14 +249,14 @@ public class Options extends Sprite {
     }
 
     private function onAddedToStage(_arg_1:Event):void {
-        this.continueButton_.x = (stage.stageWidth / 2);
+        this.continueButton_.x = stage.stageWidth / 2;
         this.continueButton_.y = Y_POSITION;
         this.resetToDefaultsButton_.x = 20;
         this.resetToDefaultsButton_.y = Y_POSITION;
-        this.homeButton_.x = (stage.stageWidth - 20);
+        this.homeButton_.x = stage.stageWidth - 20;
         this.homeButton_.y = Y_POSITION;
         if (Capabilities.playerType == "Desktop") {
-            Parameters.data_.fullscreenMode = (stage.displayState == "fullScreenInteractive");
+            Parameters.data_.fullscreenMode = stage.displayState == "fullScreenInteractive";
             Parameters.save();
         }
         this.setSelected(this.tabs_[0]);
@@ -270,7 +270,7 @@ public class Options extends Sprite {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((Capabilities.playerType == "Desktop")) && ((_arg_1.keyCode == KeyCodes.ESCAPE)))) {
+        if (Capabilities.playerType == "Desktop" && _arg_1.keyCode == KeyCodes.ESCAPE) {
             Parameters.data_.fullscreenMode = false;
             Parameters.save();
             this.refresh();
@@ -305,8 +305,8 @@ public class Options extends Sprite {
         this.addOptionAndPosition(new KeyMapper("moveRight", TextKey.OPTIONS_MOVE_RIGHT, TextKey.OPTIONS_MOVE_RIGHT_DESC));
         this.addOptionAndPosition(this.makeAllowCameraRotation());
         this.addOptionAndPosition(this.makeAllowMiniMapRotation());
-        this.addOptionAndPosition(new KeyMapper("rotateLeft", TextKey.OPTIONS_ROTATE_LEFT, TextKey.OPTIONS_ROTATE_LEFT_DESC, !(Parameters.data_.allowRotation)));
-        this.addOptionAndPosition(new KeyMapper("rotateRight", TextKey.OPTIONS_ROTATE_RIGHT, TextKey.OPTIONS_ROTATE_RIGHT_DESC, !(Parameters.data_.allowRotation)));
+        this.addOptionAndPosition(new KeyMapper("rotateLeft", TextKey.OPTIONS_ROTATE_LEFT, TextKey.OPTIONS_ROTATE_LEFT_DESC, !Parameters.data_.allowRotation));
+        this.addOptionAndPosition(new KeyMapper("rotateRight", TextKey.OPTIONS_ROTATE_RIGHT, TextKey.OPTIONS_ROTATE_RIGHT_DESC, !Parameters.data_.allowRotation));
         this.addOptionAndPosition(new KeyMapper("useSpecial", TextKey.OPTIONS_USE_SPECIAL_ABILITY, TextKey.OPTIONS_USE_SPECIAL_ABILITY_DESC));
         this.addOptionAndPosition(new KeyMapper("autofireToggle", TextKey.OPTIONS_AUTOFIRE_TOGGLE, TextKey.OPTIONS_AUTOFIRE_TOGGLE_DESC));
         this.addOptionAndPosition(new KeyMapper("toggleHPBar", TextKey.OPTIONS_TOGGLE_HPBAR, TextKey.OPTIONS_TOGGLE_HPBAR_DESC));
@@ -319,11 +319,11 @@ public class Options extends Sprite {
     }
 
     private function makeAllowCameraRotation():ChoiceOption {
-        return (new ChoiceOption("allowRotation", makeOnOffLabels(), [true, false], TextKey.OPTIONS_ALLOW_ROTATION, TextKey.OPTIONS_ALLOW_ROTATION_DESC, this.onAllowRotationChange));
+        return new ChoiceOption("allowRotation", makeOnOffLabels(), [true, false], TextKey.OPTIONS_ALLOW_ROTATION, TextKey.OPTIONS_ALLOW_ROTATION_DESC, this.onAllowRotationChange);
     }
 
     private function makeAllowMiniMapRotation():ChoiceOption {
-        return (new ChoiceOption("allowMiniMapRotation", makeOnOffLabels(), [true, false], TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION, TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION_DESC, null));
+        return new ChoiceOption("allowMiniMapRotation", makeOnOffLabels(), [true, false], TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION, TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION_DESC, null);
     }
 
     private function onAllowRotationChange():void {
@@ -332,8 +332,8 @@ public class Options extends Sprite {
         while (_local_1 < this.options_.length) {
             _local_2 = (this.options_[_local_1] as KeyMapper);
             if (_local_2 != null) {
-                if ((((_local_2.paramName_ == "rotateLeft")) || ((_local_2.paramName_ == "rotateRight")))) {
-                    _local_2.setDisabled(!(Parameters.data_.allowRotation));
+                if (_local_2.paramName_ == "rotateLeft" || _local_2.paramName_ == "rotateRight") {
+                    _local_2.setDisabled(!Parameters.data_.allowRotation);
                 }
             }
             _local_1++;
@@ -357,11 +357,11 @@ public class Options extends Sprite {
     }
 
     public function isAirApplication():Boolean {
-        return ((Capabilities.playerType == "Desktop"));
+        return Capabilities.playerType == "Desktop";
     }
 
     public function addOptionsChoiceOption():void {
-        var _local_1:String = (((Capabilities.os.split(" ")[0] == "Mac")) ? "Command" : "Ctrl");
+        var _local_1:String = Capabilities.os.split(" ")[0] == "Mac" ? "Command" : "Ctrl";
         var _local_2:ChoiceOption = new ChoiceOption("inventorySwap", makeOnOffLabels(), [true, false], TextKey.OPTIONS_SWITCH_ITEM_IN_BACKPACK, "", null);
         _local_2.setTooltipText(new LineBuilder().setParams(TextKey.OPTIONS_SWITCH_ITEM_IN_BACKPACK_DESC, {"key": _local_1}));
         this.addOptionAndPosition(_local_2);
@@ -371,7 +371,7 @@ public class Options extends Sprite {
         var _local_2:KeyMapper;
         var _local_1:int = 1;
         while (_local_1 <= 8) {
-            _local_2 = new KeyMapper(("useInvSlot" + _local_1), "", "");
+            _local_2 = new KeyMapper("useInvSlot" + _local_1, "", "");
             _local_2.setDescription(new LineBuilder().setParams(TextKey.OPTIONS_INVENTORY_SLOT_N, {"n": _local_1}));
             _local_2.setTooltipText(new LineBuilder().setParams(TextKey.OPTIONS_INVENTORY_SLOT_N_DESC, {"n": _local_1}));
             this.addOptionAndPosition(_local_2);
@@ -473,13 +473,13 @@ public class Options extends Sprite {
     }
 
     private function onShowQuestPortraitsChange():void {
-        if (((((((!((this.gs_ == null))) && (!((this.gs_.map == null))))) && (!((this.gs_.map.partyOverlay_ == null))))) && (!((this.gs_.map.partyOverlay_.questArrow_ == null))))) {
+        if (!(this.gs_ == null) && !(this.gs_.map == null) && !(this.gs_.map.partyOverlay_ == null) && !(this.gs_.map.partyOverlay_.questArrow_ == null)) {
             this.gs_.map.partyOverlay_.questArrow_.refreshToolTip();
         }
     }
 
     private function onFullscreenChange():void {
-        stage.displayState = ((Parameters.data_.fullscreenMode) ? "fullScreenInteractive" : StageDisplayState.NORMAL);
+        stage.displayState = Parameters.data_.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
     }
 
     private function addSoundOptions():void {
@@ -517,7 +517,7 @@ public class Options extends Sprite {
 
     private function onPlaySoundEffectsChange():void {
         SFX.setPlaySFX(Parameters.data_.playSFX);
-        if (((Parameters.data_.playSFX) || (Parameters.data_.playPewPew))) {
+        if (Parameters.data_.playSFX || Parameters.data_.playPewPew) {
             SFX.setSFXVolume(1);
         }
         else {
@@ -551,8 +551,8 @@ public class Options extends Sprite {
     private function addOptionAndPosition(option:Option, offsetX:Number = 0, offsetY:Number = 0):void {
         var positionOption:Function;
         positionOption = function ():void {
-            option.x = (((((options_.length % 2) == 0)) ? 20 : 415) + offsetX);
-            option.y = (((int((options_.length / 2)) * 44) + 122) + offsetY);
+            option.x = (options_.length % 2 == 0 ? 20 : 415) + offsetX;
+            option.y = int(options_.length / 2) * 44 + 122 + offsetY;
         };
         option.textChanged.addOnce(positionOption);
         this.addOption(option);

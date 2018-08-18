@@ -17,7 +17,7 @@ public class StatsRecorderAppEngineClient extends EventDispatcher implements App
 
 
     public function get complete():OnceSignal {
-        return (this.wrapped.complete);
+        return this.wrapped.complete;
     }
 
     public function setDataFormat(_arg_1:String):void {
@@ -40,11 +40,11 @@ public class StatsRecorderAppEngineClient extends EventDispatcher implements App
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        this.stats.recordStats(this.target, _arg_1, (getTimer() - this.timeAtRequest));
+        this.stats.recordStats(this.target, _arg_1, getTimer() - this.timeAtRequest);
     }
 
     public function requestInProgress():Boolean {
-        return (false);
+        return false;
     }
 
 

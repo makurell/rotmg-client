@@ -14,7 +14,7 @@ public class Teleport extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("TELEPORT", "objectId_"));
+        return formatToString("TELEPORT", "objectId_");
     }
 
 

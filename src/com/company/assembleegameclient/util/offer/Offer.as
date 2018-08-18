@@ -16,7 +16,7 @@ public class Offer {
         this.realmGold_ = _arg_3;
         this.jwt_ = _arg_4;
         this.data_ = _arg_5;
-        this.currency_ = (((_arg_6) != null) ? _arg_6 : "USD");
+        this.currency_ = _arg_6 != null ? _arg_6 : "USD";
     }
 
 }

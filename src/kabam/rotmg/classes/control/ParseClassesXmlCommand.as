@@ -64,14 +64,14 @@ public class ParseClassesXmlCommand {
         _local_4.template = new CharacterTemplate(_local_2, _local_3);
         _local_4.setState(CharacterSkinState.OWNED);
         _local_4.setIsSelected(true);
-        return (_local_4);
+        return _local_4;
     }
 
     private function parseUnlock(_arg_1:XML):CharacterClassUnlock {
         var _local_2:CharacterClassUnlock = new CharacterClassUnlock();
         _local_2.level = _arg_1.@level;
         _local_2.character = this.classes.getCharacterClass(_arg_1.@type);
-        return (_local_2);
+        return _local_2;
     }
 
     private function parseCharacterStat(_arg_1:XML, _arg_2:String):CharacterClassStat {
@@ -87,9 +87,9 @@ public class ParseClassesXmlCommand {
         _local_6 = new CharacterClassStat();
         _local_6.initial = int(_local_3.toString());
         _local_6.max = _local_3.@max;
-        _local_6.rampMin = ((_local_4) ? int(_local_4.@min) : 0);
-        _local_6.rampMax = ((_local_4) ? int(_local_4.@max) : 0);
-        return (_local_6);
+        _local_6.rampMin = _local_4 ? int(_local_4.min) : 0;
+        _local_6.rampMax = _local_4 ? int(_local_4.max) : 0;
+        return _local_6;
     }
 
     private function parseIntList(_arg_1:String):Vector.<int> {
@@ -101,7 +101,7 @@ public class ParseClassesXmlCommand {
             _local_4[_local_5] = int(_local_2[_local_5]);
             _local_5++;
         }
-        return (_local_4);
+        return _local_4;
     }
 
 

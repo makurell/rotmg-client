@@ -27,20 +27,20 @@ public class PetsModel {
     public function getPetVO(_arg_1:int):PetVO {
         var _local_2:PetVO;
         if (this.hash[_arg_1] != null) {
-            return (this.hash[_arg_1]);
+            return this.hash[_arg_1];
         }
         _local_2 = new PetVO(_arg_1);
         this.pets.push(_local_2);
         this.hash[_arg_1] = _local_2;
-        return (_local_2);
+        return _local_2;
     }
 
     public function getCachedVOOnly(_arg_1:int):PetVO {
-        return (this.hash[_arg_1]);
+        return this.hash[_arg_1];
     }
 
     public function getAllPets():Vector.<PetVO> {
-        return (this.pets);
+        return this.pets;
     }
 
     public function addPet(_arg_1:PetVO):void {
@@ -57,7 +57,7 @@ public class PetsModel {
     }
 
     public function getActivePet():PetVO {
-        return (this.activePet);
+        return this.activePet;
     }
 
     public function removeActivePet():void {
@@ -72,9 +72,9 @@ public class PetsModel {
     public function getPet(_arg_1:int):PetVO {
         var _local_2:int = this.getPetIndex(_arg_1);
         if (_local_2 == -1) {
-            return (null);
+            return null;
         }
-        return (this.pets[_local_2]);
+        return this.pets[_local_2];
     }
 
     private function getPetIndex(_arg_1:int):int {
@@ -83,11 +83,11 @@ public class PetsModel {
         while (_local_3 < this.pets.length) {
             _local_2 = this.pets[_local_3];
             if (_local_2.getID() == _arg_1) {
-                return (_local_3);
+                return _local_3;
             }
             _local_3++;
         }
-        return (-1);
+        return -1;
     }
 
     public function setPetYardType(_arg_1:int):void {
@@ -96,27 +96,27 @@ public class PetsModel {
     }
 
     public function getPetYardRarity():uint {
-        return (PetYardEnum.selectByValue(this.yardXmlData.@id).rarity.ordinal);
+        return PetYardEnum.selectByValue(this.yardXmlData.id).rarity.ordinal;
     }
 
     public function getPetYardType():int {
-        return (((this.yardXmlData) ? PetYardEnum.selectByValue(this.yardXmlData.@id).ordinal : 1));
+        return this.yardXmlData ? PetYardEnum.selectByValue(this.yardXmlData.id).ordinal : 1;
     }
 
     public function isMapNameYardName(_arg_1:AbstractMap):Boolean {
-        return (((_arg_1.name_) && ((_arg_1.name_.substr(0, 8) == "Pet Yard"))));
+        return _arg_1.name_ && _arg_1.name_.substr(0, 8) == "Pet Yard";
     }
 
     public function getPetYardUpgradeFamePrice():int {
-        return (int(this.yardXmlData.Fame));
+        return int(this.yardXmlData.Fame);
     }
 
     public function getPetYardUpgradeGoldPrice():int {
-        return (int(this.yardXmlData.Price));
+        return int(this.yardXmlData.Price);
     }
 
     public function getPetYardObjectID():int {
-        return (this.type);
+        return this.type;
     }
 
     public function deletePet(_arg_1:int):void {

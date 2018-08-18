@@ -37,7 +37,7 @@ public class ErrorMediator extends Mediator {
     }
 
     private function canCatchGlobalErrors():Boolean {
-        return (this.loaderInfo.hasOwnProperty(this.UNCAUGHT_ERROR_EVENTS));
+        return this.loaderInfo.hasOwnProperty(this.UNCAUGHT_ERROR_EVENTS);
     }
 
     private function addGlobalErrorListener():void {

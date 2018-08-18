@@ -11,7 +11,7 @@ public class GuildRegister extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new GuildRegisterPanel(_arg_1));
+        return new GuildRegisterPanel(_arg_1);
     }
 
 

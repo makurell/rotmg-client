@@ -29,7 +29,7 @@ public class ReskinCharacterMediator extends Mediator {
     }
 
     private function getCharacterSkins():CharacterSkins {
-        return (this.model.getSelected().skins);
+        return this.model.getSelected().skins;
     }
 
     override public function destroy():void {

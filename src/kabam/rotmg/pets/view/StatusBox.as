@@ -47,7 +47,7 @@ public class StatusBox extends Sprite {
     private function positionTextField():void {
         this.labelTextfield.x = this.PADDING;
         this.labelTextfield.y = this.POS_Y;
-        this.valueTextfield.x = ((this.WIDTH - this.PADDING) - this.valueTextfield.width);
+        this.valueTextfield.x = this.WIDTH - this.PADDING - this.valueTextfield.width;
         this.valueTextfield.y = this.POS_Y;
     }
 

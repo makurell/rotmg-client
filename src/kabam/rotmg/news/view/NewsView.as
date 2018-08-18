@@ -27,9 +27,9 @@ public class NewsView extends Sprite {
     }
 
     private function positionChildren():void {
-        this.cellTwo.y = (this.LARGE_CELL_HEIGHT + this.SPACER);
-        this.cellThree.x = (this.SMALL_CELL_WIDTH + this.SPACER);
-        this.cellThree.y = (this.LARGE_CELL_HEIGHT + this.SPACER);
+        this.cellTwo.y = this.LARGE_CELL_HEIGHT + this.SPACER;
+        this.cellThree.x = this.SMALL_CELL_WIDTH + this.SPACER;
+        this.cellThree.y = this.LARGE_CELL_HEIGHT + this.SPACER;
     }
 
     function update(_arg_1:Vector.<NewsCellVO>):void {

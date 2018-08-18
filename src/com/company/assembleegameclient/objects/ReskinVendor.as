@@ -12,7 +12,7 @@ public class ReskinVendor extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new ReskinPanel(_arg_1));
+        return new ReskinPanel(_arg_1);
     }
 
 

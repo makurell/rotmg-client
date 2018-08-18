@@ -27,7 +27,7 @@ public class TradeStart extends IncomingMessage {
         }
         this.myItems_.length = Math.min(_local_3, this.myItems_.length);
         while (this.myItems_.length < _local_3) {
-            this.myItems_.push((FreeList.newObject(TradeItem) as TradeItem));
+            this.myItems_.push(FreeList.newObject(TradeItem) as TradeItem);
         }
         _local_2 = 0;
         while (_local_2 < _local_3) {
@@ -43,7 +43,7 @@ public class TradeStart extends IncomingMessage {
         }
         this.yourItems_.length = Math.min(_local_3, this.yourItems_.length);
         while (this.yourItems_.length < _local_3) {
-            this.yourItems_.push((FreeList.newObject(TradeItem) as TradeItem));
+            this.yourItems_.push(FreeList.newObject(TradeItem) as TradeItem);
         }
         _local_2 = 0;
         while (_local_2 < _local_3) {
@@ -53,7 +53,7 @@ public class TradeStart extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("TRADESTART", "myItems_", "yourName_", "yourItems_"));
+        return formatToString("TRADESTART", "myItems_", "yourName_", "yourItems_");
     }
 
 

@@ -41,7 +41,7 @@ public class TimerCallback {
         if (_arg_10 != null) {
             this.data8 = _arg_10;
         }
-        this.tbo = new Timer((_arg_1 * 1000), 1);
+        this.tbo = new Timer(_arg_1 * 1000, 1);
         this.tbo.addEventListener(TimerEvent.TIMER_COMPLETE, this.callbackWrapper);
         this.tbo.start();
     }

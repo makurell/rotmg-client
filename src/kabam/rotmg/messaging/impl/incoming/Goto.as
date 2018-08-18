@@ -19,7 +19,7 @@ public class Goto extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("GOTO", "objectId_", "pos_"));
+        return formatToString("GOTO", "objectId_", "pos_");
     }
 
 

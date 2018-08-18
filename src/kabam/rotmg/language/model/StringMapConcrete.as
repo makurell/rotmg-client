@@ -21,15 +21,15 @@ public class StringMapConcrete implements StringMap {
     }
 
     public function hasKey(_arg_1:String):Boolean {
-        return (!((this.valueMap[_arg_1] == null)));
+        return !(this.valueMap[_arg_1] == null);
     }
 
     public function getValue(_arg_1:String):String {
-        return (this.valueMap[_arg_1]);
+        return this.valueMap[_arg_1];
     }
 
     public function getLanguageFamily(_arg_1:String):String {
-        return (this.languageFamilyMap[_arg_1]);
+        return this.languageFamilyMap[_arg_1];
     }
 
 

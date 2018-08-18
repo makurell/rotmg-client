@@ -22,7 +22,7 @@ public class Reskin extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("RESKIN", "skinID"));
+        return formatToString("RESKIN", "skinID");
     }
 
 

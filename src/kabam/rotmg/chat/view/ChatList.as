@@ -35,7 +35,7 @@ public class ChatList extends Sprite {
         var _local_2:ChatListItem;
         var _local_3:ChatListItem;
         for each (_local_2 in this.visibleItems) {
-            if (((_local_2.isTimedOut()) && (!(this.ignoreTimeOuts)))) {
+            if (_local_2.isTimedOut() && !this.ignoreTimeOuts) {
                 this.itemsToRemove.push(_local_2);
             }
             else {
@@ -48,7 +48,7 @@ public class ChatList extends Sprite {
                 _local_3 = this.listItems[this.index++];
                 if (!_local_3.isTimedOut()) {
                     this.addNewItem(_local_3);
-                    this.isCurrent = (this.index == this.listItems.length);
+                    this.isCurrent = this.index == this.listItems.length;
                     this.positionItems();
                 }
             }
@@ -65,7 +65,7 @@ public class ChatList extends Sprite {
             _local_2 = this.listItems.shift();
             this.onItemTimedOut(_local_2);
             this.index--;
-            if (((!(this.isCurrent)) && ((this.index < this.visibleItemCount)))) {
+            if (!this.isCurrent && this.index < this.visibleItemCount) {
                 this.pageDown();
             }
         }
@@ -80,7 +80,7 @@ public class ChatList extends Sprite {
         if (_local_2 != -1) {
             removeChild(_arg_1);
             this.visibleItems.splice(_local_2, 1);
-            this.isCurrent = (this.index == this.listItems.length);
+            this.isCurrent = this.index == this.listItems.length;
         }
     }
 
@@ -92,7 +92,7 @@ public class ChatList extends Sprite {
     }
 
     public function scrollUp():void {
-        if (((this.ignoreTimeOuts) && (this.canScrollUp()))) {
+        if (this.ignoreTimeOuts && this.canScrollUp()) {
             this.scrollItemsUp();
         }
         else {
@@ -103,8 +103,8 @@ public class ChatList extends Sprite {
 
     public function showAvailable():void {
         var _local_4:ChatListItem;
-        var _local_1:int = ((this.index - this.visibleItems.length) - 1);
-        var _local_2:int = Math.max(0, ((this.index - this.visibleItemCount) - 1));
+        var _local_1:int = this.index - this.visibleItems.length - 1;
+        var _local_2:int = Math.max(0, this.index - this.visibleItemCount - 1);
         var _local_3:int = _local_1;
         while (_local_3 > _local_2) {
             _local_4 = this.listItems[_local_3];
@@ -133,7 +133,7 @@ public class ChatList extends Sprite {
     }
 
     public function scrollToCurrent():void {
-        while (!(this.isCurrent)) {
+        while (!this.isCurrent) {
             this.scrollItemsDown();
         }
     }
@@ -184,7 +184,7 @@ public class ChatList extends Sprite {
     }
 
     private function canScrollUp():Boolean {
-        return ((this.index > this.visibleItemCount));
+        return this.index > this.visibleItemCount;
     }
 
     private function scrollItemsUp():void {
@@ -203,7 +203,7 @@ public class ChatList extends Sprite {
         this.index++;
         this.addNewItem(_local_1);
         this.removeOldestVisibleIfNeeded();
-        this.isCurrent = (this.index == this.listItems.length);
+        this.isCurrent = this.index == this.listItems.length;
         this.positionItems();
     }
 
@@ -225,7 +225,7 @@ public class ChatList extends Sprite {
         while (_local_2--) {
             _local_3 = this.visibleItems[_local_2];
             _local_3.y = _local_1;
-            _local_1 = (_local_1 - _local_3.height);
+            _local_1 = _local_1 - _local_3.height;
         }
     }
 

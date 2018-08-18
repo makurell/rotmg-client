@@ -12,11 +12,11 @@ public class TaskDelegate implements StartupDelegate {
 
 
     public function getPriority():int {
-        return (this.priority);
+        return this.priority;
     }
 
     public function make():Task {
-        return (this.injector.getInstance(this.taskClass));
+        return this.injector.getInstance(this.taskClass);
     }
 
 

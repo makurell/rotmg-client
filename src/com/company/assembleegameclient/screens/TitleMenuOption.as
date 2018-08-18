@@ -16,7 +16,7 @@ import org.osflash.signals.Signal;
 
 public class TitleMenuOption extends Sprite {
 
-    protected static const OVER_COLOR_TRANSFORM:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
+    protected static const OVER_COLOR_TRANSFORM:ColorTransform = new ColorTransform(1, 220 / 0xFF, 133 / 0xFF);
     private static const DROP_SHADOW_FILTER:DropShadowFilter = new DropShadowFilter(0, 0, 0, 0.5, 12, 12);
 
     public const clicked:Signal = new Signal();
@@ -65,15 +65,15 @@ public class TitleMenuOption extends Sprite {
 
     public function setColor(_arg_1:uint):void {
         this.color = _arg_1;
-        var _local_2:uint = ((_arg_1 & 0xFF0000) >> 16);
-        var _local_3:uint = ((_arg_1 & 0xFF00) >> 8);
-        var _local_4:uint = (_arg_1 & 0xFF);
-        var _local_5:ColorTransform = new ColorTransform((_local_2 / 0xFF), (_local_3 / 0xFF), (_local_4 / 0xFF));
+        var _local_2:uint = (_arg_1 & 0xFF0000) >> 16;
+        var _local_3:uint = (_arg_1 & 0xFF00) >> 8;
+        var _local_4:uint = _arg_1 & 0xFF;
+        var _local_5:ColorTransform = new ColorTransform(_local_2 / 0xFF, _local_3 / 0xFF, _local_4 / 0xFF);
         this.setColorTransform(_local_5);
     }
 
     public function isActive():Boolean {
-        return (this.active);
+        return this.active;
     }
 
     private function makeTextFieldDisplayConcrete():TextFieldDisplayConcrete {
@@ -81,7 +81,7 @@ public class TitleMenuOption extends Sprite {
         _local_1 = new TextFieldDisplayConcrete();
         _local_1.filters = [DROP_SHADOW_FILTER];
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setTextKey(_arg_1:String):void {
@@ -110,7 +110,7 @@ public class TitleMenuOption extends Sprite {
     }
 
     private function onEnterFrame(_arg_1:Event):void {
-        var _local_2:Number = (1.05 + (0.05 * Math.sin((getTimer() / 200))));
+        var _local_2:Number = 1.05 + 0.05 * Math.sin(getTimer() / 200);
         this.textField.scaleX = _local_2;
         this.textField.scaleY = _local_2;
     }
@@ -147,11 +147,10 @@ public class TitleMenuOption extends Sprite {
     }
 
     override public function toString():String {
-        return ((("[TitleMenuOption " + this.textField.getText()) + "]"));
+        return "[TitleMenuOption " + this.textField.getText() + "]";
     }
 
-    public function createNoticeTag(_arg_1:String, _arg_2:int, _arg_3:uint, _arg_4:Boolean):void
-    {
+    public function createNoticeTag(_arg_1:String, _arg_2:int, _arg_3:uint, _arg_4:Boolean):void {
         var _local_5:TextFieldDisplayConcrete = new TextFieldDisplayConcrete();
         _local_5.setSize(_arg_2).setColor(_arg_3).setBold(_arg_4);
         _local_5.setStringBuilder(new LineBuilder().setParams(_arg_1));

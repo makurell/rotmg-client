@@ -42,7 +42,7 @@ public class PetAbilityTooltip extends ToolTip {
         this.titleTextField.x = PetsConstants.ABILITY_TOOLTIP_TITLE_POSITION_X;
         this.titleTextField.y = PetsConstants.ABILITY_TOOLTIP_TITLE_POSITION_Y;
         this.descriptionTextField.x = PetsConstants.ABILITY_TOOLTIP_TITLE_POSITION_X;
-        this.descriptionTextField.y = (this.titleTextField.y + this.titleTextField.height);
+        this.descriptionTextField.y = this.titleTextField.y + this.titleTextField.height;
     }
 
 

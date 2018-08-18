@@ -44,19 +44,19 @@ public class GridList extends Sprite {
             return;
         }
         var _local_3:DisplayObject = _arg_1[0];
-        this.maxItemsPerRow = (this.maxRowWidth() / _local_3.width);
+        this.maxItemsPerRow = this.maxRowWidth() / _local_3.width;
     }
 
     public function getSize():Size {
-        return (this.size);
+        return this.size;
     }
 
     public function getItems():Array {
-        return (this.items);
+        return this.items;
     }
 
     public function getItem(_arg_1:int):DisplayObject {
-        return (this.items[_arg_1]);
+        return this.items[_arg_1];
     }
 
     private function makeNewList():void {
@@ -82,8 +82,8 @@ public class GridList extends Sprite {
         else {
             this.positionRightOfPrevious(_arg_1);
         }
-        this.lastItemRight = (_arg_1.x + _arg_1.width);
-        this.lastItemRight = (this.lastItemRight + this.padding);
+        this.lastItemRight = _arg_1.x + _arg_1.width;
+        this.lastItemRight = this.lastItemRight + this.padding;
     }
 
     private function addRow():void {
@@ -97,45 +97,45 @@ public class GridList extends Sprite {
     }
 
     private function exceedsWidthFor(_arg_1:DisplayObject):Boolean {
-        return (((this.lastItemRight + _arg_1.width) > this.maxRowWidth()));
+        return this.lastItemRight + _arg_1.width > this.maxRowWidth();
     }
 
     private function maxRowWidth():int {
-        return ((this.size.width - VerticalScrollingList.SCROLLBAR_GUTTER));
+        return this.size.width - VerticalScrollingList.SCROLLBAR_GUTTER;
     }
 
     public function getTopLeft():DisplayObject {
         if (this.items.length) {
-            return (this.items[0]);
+            return this.items[0];
         }
-        return (null);
+        return null;
     }
 
     public function getTopRight():DisplayObject {
         var _local_1:Array;
         if (this.grid.length) {
             _local_1 = this.grid[0];
-            return (_local_1[(this.maxItemsPerRow - 1)]);
+            return _local_1[(this.maxItemsPerRow - 1)];
         }
-        return (null);
+        return null;
     }
 
     public function getBottomLeft():DisplayObject {
         var _local_1:Array;
         if (this.grid.length >= 2) {
             _local_1 = this.grid[(this.grid.length - 1)];
-            return (_local_1[0]);
+            return _local_1[0];
         }
-        return (null);
+        return null;
     }
 
     public function getBottomRight():DisplayObject {
         var _local_1:Array;
         if (this.grid.length >= 2) {
             _local_1 = this.grid[(this.grid.length - 1)];
-            return (_local_1[(this.maxItemsPerRow - 1)]);
+            return _local_1[(this.maxItemsPerRow - 1)];
         }
-        return (null);
+        return null;
     }
 
 

@@ -47,7 +47,7 @@ public final class ConsoleOutputView extends Sprite implements Resizable {
     }
 
     public function watch(_arg_1:Watch):void {
-        var _local_2:Watch = (this.watchMap[_arg_1.name] = ((this.watchMap[_arg_1.name]) || (this.makeWatch(_arg_1.name))));
+        var _local_2:Watch = this.watchMap[_arg_1.name] = this.watchMap[_arg_1.name] || this.makeWatch(_arg_1.name);
         _local_2.data = _arg_1.data.replace(this.PATTERN, this.HTML_TEMPLATE);
         this.updateOutputText();
     }
@@ -63,7 +63,7 @@ public final class ConsoleOutputView extends Sprite implements Resizable {
     private function makeWatch(_arg_1:String):Watch {
         var _local_2:Watch = new Watch(_arg_1);
         this.watched.push(_local_2);
-        return (_local_2);
+        return _local_2;
     }
 
     public function log(_arg_1:String):void {
@@ -82,7 +82,7 @@ public final class ConsoleOutputView extends Sprite implements Resizable {
     }
 
     public function resize(_arg_1:Rectangle):void {
-        this.watchBottom = (_arg_1.height - ConsoleInputView.HEIGHT);
+        this.watchBottom = _arg_1.height - ConsoleInputView.HEIGHT;
         x = _arg_1.x;
         y = _arg_1.y;
         this.watchTextField.width = _arg_1.width;
@@ -91,7 +91,7 @@ public final class ConsoleOutputView extends Sprite implements Resizable {
     }
 
     private function snapWatchTextToInputView():void {
-        this.watchTextField.y = (this.watchBottom - this.watchTextField.height);
+        this.watchTextField.y = this.watchBottom - this.watchTextField.height;
     }
 
     private function updateOutputText():void {
@@ -100,7 +100,7 @@ public final class ConsoleOutputView extends Sprite implements Resizable {
     }
 
     public function getText():String {
-        return (this.logged.join("\r"));
+        return this.logged.join("\r");
     }
 
 

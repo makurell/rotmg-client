@@ -26,7 +26,7 @@ public class BeginnersPackageModel {
     }
 
     public function isBeginnerAvailable():Boolean {
-        return ((this.getBeginnersOfferSecondsLeft() > 0));
+        return this.getBeginnersOfferSecondsLeft() > 0;
     }
 
     public function setBeginnersOfferSecondsLeft(_arg_1:Number):void {
@@ -36,32 +36,32 @@ public class BeginnersPackageModel {
 
     private function getNowTimeSeconds():Number {
         var _local_1:Date = new Date();
-        return (Math.round((_local_1.time * 0.001)));
+        return Math.round(_local_1.time * 0.001);
     }
 
     public function getBeginnersOfferSecondsLeft():Number {
-        return ((this.beginnersOfferSecondsLeft - (this.getNowTimeSeconds() - this.beginnersOfferSetTimestamp)));
+        return this.beginnersOfferSecondsLeft - (this.getNowTimeSeconds() - this.beginnersOfferSetTimestamp);
     }
 
     public function getUserCreatedAt():Number {
-        return (((this.getNowTimeSeconds() + this.getBeginnersOfferSecondsLeft()) - ONE_WEEK_IN_SECONDS));
+        return (this.getNowTimeSeconds() + this.getBeginnersOfferSecondsLeft()) - ONE_WEEK_IN_SECONDS;
     }
 
     public function getDaysRemaining():Number {
-        return (Math.ceil(TimeUtil.secondsToDays(this.getBeginnersOfferSecondsLeft())));
+        return Math.ceil(TimeUtil.secondsToDays(this.getBeginnersOfferSecondsLeft()));
     }
 
     public function getOffer():Offer {
         var _local_1:Offer;
         if (!this.model.offers) {
-            return (null);
+            return null;
         }
         for each (_local_1 in this.model.offers.offerList) {
             if (_local_1.realmGold_ == REALM_GOLD_FOR_BEGINNERS_PKG) {
-                return (_local_1);
+                return _local_1;
             }
         }
-        return (null);
+        return null;
     }
 
     public function markAsPurchased():void {

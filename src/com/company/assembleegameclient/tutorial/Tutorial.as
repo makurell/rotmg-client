@@ -87,8 +87,8 @@ public class Tutorial extends Sprite {
         var _local_11:Boolean;
         var _local_12:GameObject;
         var _local_13:Number;
-        var _local_2:Number = Math.abs(Math.sin((getTimer() / 300)));
-        this.boxesBack_.filters = [new BlurFilter((5 + (_local_2 * 5)), (5 + (_local_2 * 5)))];
+        var _local_2:Number = Math.abs(Math.sin(getTimer() / 300));
+        this.boxesBack_.filters = [new BlurFilter(5 + _local_2 * 5, 5 + _local_2 * 5)];
         this.boxes_.graphics.clear();
         this.boxesBack_.graphics.clear();
         var _local_3:int;
@@ -101,7 +101,7 @@ public class Tutorial extends Sprite {
                     case NEAR_REQUIREMENT:
                         _local_11 = false;
                         for each (_local_12 in this.gs_.map.goDict_) {
-                            if (!((!((_local_12.objectType_ == _local_6.objectType_))) || (((!((_local_6.objectName_ == ""))) && (!((_local_12.name_ == _local_6.objectName_))))))) {
+                            if (!(!(_local_12.objectType_ == _local_6.objectType_) || !(_local_6.objectName_ == "") && !(_local_12.name_ == _local_6.objectName_))) {
                                 _local_13 = PointUtil.distanceXY(_local_12.x_, _local_12.y_, _local_10.x_, _local_10.y_);
                                 if (_local_13 <= _local_6.radius_) {
                                     _local_11 = true;
@@ -122,14 +122,14 @@ public class Tutorial extends Sprite {
                 if (_local_4.satisfiedSince_ == 0) {
                     _local_4.satisfiedSince_ = getTimer();
                 }
-                _local_7 = (getTimer() - _local_4.satisfiedSince_);
+                _local_7 = getTimer() - _local_4.satisfiedSince_;
                 for each (_local_8 in _local_4.uiDrawBoxes_) {
-                    _local_8.draw((5 * _local_2), this.boxes_.graphics, _local_7);
-                    _local_8.draw((6 * _local_2), this.boxesBack_.graphics, _local_7);
+                    _local_8.draw(5 * _local_2, this.boxes_.graphics, _local_7);
+                    _local_8.draw(6 * _local_2, this.boxesBack_.graphics, _local_7);
                 }
                 for each (_local_9 in _local_4.uiDrawArrows_) {
-                    _local_9.draw((5 * _local_2), this.boxes_.graphics, _local_7);
-                    _local_9.draw((6 * _local_2), this.boxesBack_.graphics, _local_7);
+                    _local_9.draw(5 * _local_2, this.boxes_.graphics, _local_7);
+                    _local_9.draw(6 * _local_2, this.boxesBack_.graphics, _local_7);
                 }
             }
             _local_3++;

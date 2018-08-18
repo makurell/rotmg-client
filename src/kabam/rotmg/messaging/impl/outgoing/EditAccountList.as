@@ -18,7 +18,7 @@ public class EditAccountList extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("EDITACCOUNTLIST", "accountListId_", "add_", "objectId_"));
+        return formatToString("EDITACCOUNTLIST", "accountListId_", "add_", "objectId_");
     }
 
 

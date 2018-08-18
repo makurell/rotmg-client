@@ -10,7 +10,7 @@ public class OutgoingMessage extends Message {
     }
 
     final override public function parseFromInput(_arg_1:IDataInput):void {
-        throw (new Error((("Client should not receive " + id) + " messages")));
+        throw new Error("Client should not receive " + id + " messages");
     }
 
 

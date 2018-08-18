@@ -14,34 +14,34 @@ public class ClassesModel {
 
 
     public function getCount():uint {
-        return (this.count);
+        return this.count;
     }
 
     public function getClassAtIndex(_arg_1:int):CharacterClass {
-        return (this.classes[_arg_1]);
+        return this.classes[_arg_1];
     }
 
     public function getCharacterClass(_arg_1:int):CharacterClass {
-        return ((this.map[_arg_1] = ((this.map[_arg_1]) || (this.makeCharacterClass()))));
+        return this.map[_arg_1] = this.map[_arg_1] || this.makeCharacterClass();
     }
 
     private function makeCharacterClass():CharacterClass {
         var _local_1:CharacterClass = new CharacterClass();
         _local_1.selected.add(this.onClassSelected);
         this.count = this.classes.push(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function onClassSelected(_arg_1:CharacterClass):void {
         if (this.selectedChar != _arg_1) {
-            ((this.selectedChar) && (this.selectedChar.setIsSelected(false)));
+            this.selectedChar && this.selectedChar.setIsSelected(false);
             this.selectedChar = _arg_1;
             this.selected.dispatch(_arg_1);
         }
     }
 
     public function getSelected():CharacterClass {
-        return (((this.selectedChar) || (this.getCharacterClass(WIZARD_ID))));
+        return this.selectedChar || this.getCharacterClass(WIZARD_ID);
     }
 
     public function getCharacterSkin(_arg_1:int):CharacterSkin {
@@ -51,7 +51,7 @@ public class ClassesModel {
             _local_2 = _local_3.skins.getSkin(_arg_1);
             if (_local_2 != _local_3.skins.getDefaultSkin()) break;
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

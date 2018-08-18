@@ -10,7 +10,7 @@ public class IncomingMessage extends Message {
     }
 
     final override public function writeToOutput(_arg_1:IDataOutput):void {
-        throw (new Error((("Client should not send " + id) + " messages")));
+        throw new Error("Client should not send " + id + " messages");
     }
 
 

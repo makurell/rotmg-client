@@ -22,14 +22,14 @@ public class HealParticle extends Particle {
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        x_ = (this.go_.x_ + (this.dist_ * Math.cos(this.angle_)));
-        y_ = (this.go_.y_ + (this.dist_ * Math.sin(this.angle_)));
-        z_ = (z_ + ((this.moveVec_.z * _arg_2) * 0.008));
-        return (true);
+        x_ = this.go_.x_ + this.dist_ * Math.cos(this.angle_);
+        y_ = this.go_.y_ + this.dist_ * Math.sin(this.angle_);
+        z_ = z_ + this.moveVec_.z * _arg_2 * 0.008;
+        return true;
     }
 
 

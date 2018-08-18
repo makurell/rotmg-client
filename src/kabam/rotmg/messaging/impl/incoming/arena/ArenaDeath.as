@@ -16,7 +16,7 @@ public class ArenaDeath extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("ARENADEATH", "cost"));
+        return formatToString("ARENADEATH", "cost");
     }
 
 

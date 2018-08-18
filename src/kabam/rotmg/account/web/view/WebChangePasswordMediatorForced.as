@@ -40,7 +40,7 @@ public class WebChangePasswordMediatorForced extends Mediator {
     private function onChange():void {
         var _local_1:AppEngineClient;
         var _local_2:Object;
-        if (((((this.isCurrentPasswordValid()) && (this.isNewPasswordValid()))) && (this.isNewPasswordVerified()))) {
+        if (this.isCurrentPasswordValid() && this.isNewPasswordValid() && this.isNewPasswordVerified()) {
             this.view.clearError();
             this.view.disable();
             _local_1 = StaticInjectorContext.getInjector().getInstance(AppEngineClient);
@@ -55,27 +55,27 @@ public class WebChangePasswordMediatorForced extends Mediator {
     }
 
     private function isCurrentPasswordValid():Boolean {
-        var _local_1 = (this.view.password_.text().length >= 5);
+        var _local_1 = this.view.password_.text().length >= 5;
         if (!_local_1) {
             this.view.password_.setError(TextKey.WEB_CHANGE_PASSWORD_INCORRECT);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isNewPasswordValid():Boolean {
-        var _local_1 = (this.view.newPassword_.text().length >= 10);
+        var _local_1 = this.view.newPassword_.text().length >= 10;
         if (!_local_1) {
             this.view.newPassword_.setError(TextKey.REGISTER_WEB_SHORT_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isNewPasswordVerified():Boolean {
-        var _local_1 = (this.view.newPassword_.text() == this.view.retypeNewPassword_.text());
+        var _local_1 = this.view.newPassword_.text() == this.view.retypeNewPassword_.text();
         if (!_local_1) {
             this.view.retypeNewPassword_.setError(TextKey.REGISTER_WEB_MATCH_ERROR);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {

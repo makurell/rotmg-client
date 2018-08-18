@@ -42,7 +42,7 @@ public class GraphicsFillExtra {
 
     public static function getColorTransform(_arg_1:BitmapData):ColorTransform {
         var _local_2:ColorTransform;
-        if ((_arg_1 in colorTransforms)) {
+        if (_arg_1 in colorTransforms) {
             _local_2 = colorTransforms[_arg_1];
             colorTransforms[_arg_1] = new ColorTransform();
         }
@@ -51,7 +51,7 @@ public class GraphicsFillExtra {
             colorTransforms[_arg_1] = _local_2;
             colorTransformsSize++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public static function setOffsetUV(_arg_1:GraphicsBitmapFill, _arg_2:Number, _arg_3:Number):void {
@@ -65,9 +65,9 @@ public class GraphicsFillExtra {
 
     public static function getOffsetUV(_arg_1:GraphicsBitmapFill):Vector.<Number> {
         if (textureOffsets[_arg_1] != null) {
-            return (textureOffsets[_arg_1]);
+            return textureOffsets[_arg_1];
         }
-        return (DEFAULT_OFFSET);
+        return DEFAULT_OFFSET;
     }
 
     private static function testOffsetUV(_arg_1:GraphicsBitmapFill):void {
@@ -91,10 +91,10 @@ public class GraphicsFillExtra {
     }
 
     public static function getSinkLevel(_arg_1:GraphicsBitmapFill):Number {
-        if (((!((waterSinks[_arg_1] == null))) && ((waterSinks[_arg_1] is Number)))) {
-            return (waterSinks[_arg_1]);
+        if (!(waterSinks[_arg_1] == null) && (waterSinks[_arg_1] is Number)) {
+            return waterSinks[_arg_1];
         }
-        return (0);
+        return 0;
     }
 
     public static function setVertexBuffer(_arg_1:GraphicsBitmapFill, _arg_2:Vector.<Number>):void {
@@ -113,10 +113,10 @@ public class GraphicsFillExtra {
     }
 
     public static function getVertexBuffer(_arg_1:GraphicsBitmapFill):VertexBuffer3D {
-        if (((!((vertexBuffers[_arg_1] == null))) && ((vertexBuffers[_arg_1] is VertexBuffer3D)))) {
-            return (vertexBuffers[_arg_1]);
+        if (!(vertexBuffers[_arg_1] == null) && (vertexBuffers[_arg_1] is VertexBuffer3D)) {
+            return vertexBuffers[_arg_1];
         }
-        return (null);
+        return null;
     }
 
     public static function clearSink(_arg_1:GraphicsBitmapFill):void {
@@ -140,10 +140,10 @@ public class GraphicsFillExtra {
     }
 
     public static function isSoftwareDraw(_arg_1:GraphicsBitmapFill):Boolean {
-        if (((!((softwareDraw[_arg_1] == null))) && ((softwareDraw[_arg_1] is Boolean)))) {
-            return (softwareDraw[_arg_1]);
+        if (!(softwareDraw[_arg_1] == null) && (softwareDraw[_arg_1] is Boolean)) {
+            return softwareDraw[_arg_1];
         }
-        return (false);
+        return false;
     }
 
     public static function setSoftwareDrawSolid(_arg_1:GraphicsSolidFill, _arg_2:Boolean):void {
@@ -157,10 +157,10 @@ public class GraphicsFillExtra {
     }
 
     public static function isSoftwareDrawSolid(_arg_1:GraphicsSolidFill):Boolean {
-        if (((!((softwareDrawSolid[_arg_1] == null))) && ((softwareDrawSolid[_arg_1] is Boolean)))) {
-            return (softwareDrawSolid[_arg_1]);
+        if (!(softwareDrawSolid[_arg_1] == null) && (softwareDrawSolid[_arg_1] is Boolean)) {
+            return softwareDrawSolid[_arg_1];
         }
-        return (false);
+        return false;
     }
 
     public static function dispose():void {

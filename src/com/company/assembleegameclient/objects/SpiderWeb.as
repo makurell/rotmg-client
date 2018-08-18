@@ -23,26 +23,26 @@ public class SpiderWeb extends GameObject {
 
     private function findWall():Boolean {
         var _local_1:Square;
-        _local_1 = map_.lookupSquare((x_ - 1), y_);
-        if (((!((_local_1 == null))) && ((_local_1.obj_ is Wall)))) {
-            return (true);
+        _local_1 = map_.lookupSquare(x_ - 1, y_);
+        if (!(_local_1 == null) && (_local_1.obj_ is Wall)) {
+            return true;
         }
-        _local_1 = map_.lookupSquare(x_, (y_ - 1));
-        if (((!((_local_1 == null))) && ((_local_1.obj_ is Wall)))) {
+        _local_1 = map_.lookupSquare(x_, y_ - 1);
+        if (!(_local_1 == null) && (_local_1.obj_ is Wall)) {
             obj3D_.setPosition(x_, y_, 0, 90);
-            return (true);
+            return true;
         }
-        _local_1 = map_.lookupSquare((x_ + 1), y_);
-        if (((!((_local_1 == null))) && ((_local_1.obj_ is Wall)))) {
+        _local_1 = map_.lookupSquare(x_ + 1, y_);
+        if (!(_local_1 == null) && (_local_1.obj_ is Wall)) {
             obj3D_.setPosition(x_, y_, 0, 180);
-            return (true);
+            return true;
         }
-        _local_1 = map_.lookupSquare(x_, (y_ + 1));
-        if (((!((_local_1 == null))) && ((_local_1.obj_ is Wall)))) {
+        _local_1 = map_.lookupSquare(x_, y_ + 1);
+        if (!(_local_1 == null) && (_local_1.obj_ is Wall)) {
             obj3D_.setPosition(x_, y_, 0, 270);
-            return (true);
+            return true;
         }
-        return (false);
+        return false;
     }
 
 

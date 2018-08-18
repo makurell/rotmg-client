@@ -23,7 +23,7 @@ public class Stage3DProxy implements IEventDispatcher {
         if (context3D == null) {
             context3D = new Context3DProxy(this.stage3D.context3D);
         }
-        return (context3D);
+        return context3D;
     }
 
     public function addEventListener(_arg_1:String, _arg_2:Function, _arg_3:Boolean = false, _arg_4:int = 0, _arg_5:Boolean = false):void {
@@ -35,15 +35,15 @@ public class Stage3DProxy implements IEventDispatcher {
     }
 
     public function dispatchEvent(_arg_1:Event):Boolean {
-        return (this.stage3D.dispatchEvent(_arg_1));
+        return this.stage3D.dispatchEvent(_arg_1);
     }
 
     public function hasEventListener(_arg_1:String):Boolean {
-        return (this.stage3D.hasEventListener(_arg_1));
+        return this.stage3D.hasEventListener(_arg_1);
     }
 
     public function willTrigger(_arg_1:String):Boolean {
-        return (this.stage3D.willTrigger(_arg_1));
+        return this.stage3D.willTrigger(_arg_1);
     }
 
 

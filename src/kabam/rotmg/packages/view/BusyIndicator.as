@@ -28,16 +28,16 @@ public class BusyIndicator extends Sprite {
         _local_1.graphics.beginFill(this.color);
         _local_1.graphics.drawCircle(0, 0, this.radius);
         _local_1.graphics.endFill();
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeInner():Sprite {
         var _local_1:Sprite = new Sprite();
         _local_1.blendMode = BlendMode.ERASE;
-        _local_1.graphics.beginFill((0xFFFFFF * 0.6));
-        _local_1.graphics.drawCircle(0, 0, (this.radius / 2));
+        _local_1.graphics.beginFill(0xFFFFFF * 0.6);
+        _local_1.graphics.drawCircle(0, 0, this.radius / 2);
         _local_1.graphics.endFill();
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeQuarter():Sprite {
@@ -45,7 +45,7 @@ public class BusyIndicator extends Sprite {
         _local_1.graphics.beginFill(0xFFFFFF);
         _local_1.graphics.drawRect(0, 0, this.radius, this.radius);
         _local_1.graphics.endFill();
-        return (_local_1);
+        return _local_1;
     }
 
     private function addChildren():void {
@@ -66,7 +66,7 @@ public class BusyIndicator extends Sprite {
     }
 
     private function updatePinwheel(_arg_1:TimerEvent):void {
-        this.quarterCircleMask.rotation = (this.quarterCircleMask.rotation + 20);
+        this.quarterCircleMask.rotation = this.quarterCircleMask.rotation + 20;
     }
 
 

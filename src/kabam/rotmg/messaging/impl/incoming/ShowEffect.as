@@ -47,7 +47,7 @@ public class ShowEffect extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("SHOW_EFFECT", "effectType_", "targetObjectId_", "pos1_", "pos2_", "color_"));
+        return formatToString("SHOW_EFFECT", "effectType_", "targetObjectId_", "pos1_", "pos2_", "color_");
     }
 
 

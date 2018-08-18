@@ -9,7 +9,7 @@ public class CommandList {
     }
 
     public function empty():Boolean {
-        return ((this.list_.length == 0));
+        return this.list_.length == 0;
     }
 
     public function addCommand(_arg_1:Command):void {

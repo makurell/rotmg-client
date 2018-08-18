@@ -35,34 +35,34 @@ public class PlayerToolTip extends ToolTip {
         this.rankText_.x = 6;
         this.rankText_.y = _local_2;
         addChild(this.rankText_);
-        _local_2 = (_local_2 + 30);
-        if (((!((_arg_1.guildName_ == null))) && (!((_arg_1.guildName_ == ""))))) {
+        _local_2 = _local_2 + 30;
+        if (!(_arg_1.guildName_ == null) && !(_arg_1.guildName_ == "")) {
             this.guildText_ = new GuildText(this.player_.guildName_, this.player_.guildRank_, 136);
             this.guildText_.x = 6;
-            this.guildText_.y = (_local_2 - 2);
+            this.guildText_.y = _local_2 - 2;
             addChild(this.guildText_);
-            _local_2 = (_local_2 + 30);
+            _local_2 = _local_2 + 30;
         }
         this.hpBar_ = new StatusBar(176, 16, 14693428, 0x545454, TextKey.STATUS_BAR_HEALTH_POINTS);
         this.hpBar_.x = 6;
         this.hpBar_.y = _local_2;
         addChild(this.hpBar_);
-        _local_2 = (_local_2 + 24);
+        _local_2 = _local_2 + 24;
         this.mpBar_ = new StatusBar(176, 16, 6325472, 0x545454, TextKey.STATUS_BAR_MANA_POINTS);
         this.mpBar_.x = 6;
         this.mpBar_.y = _local_2;
         addChild(this.mpBar_);
-        _local_2 = (_local_2 + 24);
+        _local_2 = _local_2 + 24;
         this.eGrid = new EquippedGrid(null, this.player_.slotTypes_, this.player_);
         this.eGrid.x = 8;
         this.eGrid.y = _local_2;
         addChild(this.eGrid);
-        _local_2 = (_local_2 + 52);
+        _local_2 = _local_2 + 52;
         this.clickMessage_ = new TextFieldDisplayConcrete().setSize(12).setColor(0xB3B3B3);
         this.clickMessage_.setAutoSize(TextFieldAutoSize.CENTER);
         this.clickMessage_.setStringBuilder(new LineBuilder().setParams(TextKey.PLAYER_TOOL_TIP_CLICK_MESSAGE));
         this.clickMessage_.filters = [new DropShadowFilter(0, 0, 0)];
-        this.clickMessage_.x = (width / 2);
+        this.clickMessage_.x = width / 2;
         this.clickMessage_.y = _local_2;
         waiter.push(this.clickMessage_.textChanged);
         addChild(this.clickMessage_);

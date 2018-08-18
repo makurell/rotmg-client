@@ -16,7 +16,7 @@ public class MapDecoder {
 
 
     private static function get json():JsonParser {
-        return (StaticInjectorContext.getInjector().getInstance(JsonParser));
+        return StaticInjectorContext.getInjector().getInstance(JsonParser);
     }
 
     public static function decodeMap(_arg_1:String):Map {
@@ -25,7 +25,7 @@ public class MapDecoder {
         _local_3.setProps(_local_2["width"], _local_2["height"], _local_2["name"], _local_2["back"], false, false);
         _local_3.initialize();
         writeMapInternal(_local_2, _local_3, 0, 0);
-        return (_local_3);
+        return _local_3;
     }
 
     public static function writeMap(_arg_1:String, _arg_2:Map, _arg_3:int, _arg_4:int):void {
@@ -35,7 +35,7 @@ public class MapDecoder {
 
     public static function getSize(_arg_1:String):IntPoint {
         var _local_2:Object = json.parse(_arg_1);
-        return (new IntPoint(_local_2["width"], _local_2["height"]));
+        return new IntPoint(_local_2["width"], _local_2["height"]);
     }
 
     private static function writeMapInternal(_arg_1:Object, _arg_2:Map, _arg_3:int, _arg_4:int):void {
@@ -50,11 +50,11 @@ public class MapDecoder {
         _local_5.uncompress();
         var _local_6:Array = _arg_1["dict"];
         _local_7 = _arg_4;
-        while (_local_7 < (_arg_4 + _arg_1["height"])) {
+        while (_local_7 < _arg_4 + _arg_1["height"]) {
             _local_8 = _arg_3;
-            while (_local_8 < (_arg_3 + _arg_1["width"])) {
+            while (_local_8 < _arg_3 + _arg_1["width"]) {
                 _local_9 = _local_6[_local_5.readShort()];
-                if (!(((((((_local_8 < 0)) || ((_local_8 >= _arg_2.width_)))) || ((_local_7 < 0)))) || ((_local_7 >= _arg_2.height_)))) {
+                if (!(_local_8 < 0 || _local_8 >= _arg_2.width_ || _local_7 < 0 || _local_7 >= _arg_2.height_)) {
                     if (_local_9.hasOwnProperty("ground")) {
                         _local_11 = GroundLibrary.idToType_[_local_9["ground"]];
                         _arg_2.setGroundTile(_local_8, _local_7, _local_11);
@@ -64,7 +64,7 @@ public class MapDecoder {
                         for each (_local_12 in _local_10) {
                             _local_13 = getGameObject(_local_12);
                             _local_13.objectId_ = BasicObject.getNextFakeObjectId();
-                            _arg_2.addObj(_local_13, (_local_8 + 0.5), (_local_7 + 0.5));
+                            _arg_2.addObj(_local_13, _local_8 + 0.5, _local_7 + 0.5);
                         }
                     }
                 }
@@ -78,8 +78,8 @@ public class MapDecoder {
         var _local_2:int = ObjectLibrary.idToType_[_arg_1["id"]];
         var _local_3:XML = ObjectLibrary.xmlLibrary_[_local_2];
         var _local_4:GameObject = ObjectLibrary.getObjectFromType(_local_2);
-        _local_4.size_ = ((_arg_1.hasOwnProperty("size")) ? _arg_1["size"] : _local_4.props_.getSize());
-        return (_local_4);
+        _local_4.size_ = _arg_1.hasOwnProperty("size") ? _arg_1["size"] : _local_4.props_.getSize();
+        return _local_4;
     }
 
 

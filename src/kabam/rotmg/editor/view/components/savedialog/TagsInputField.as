@@ -17,8 +17,7 @@ public class TagsInputField extends Sprite {
     public var inputText_:BaseSimpleText;
     public var instructionsText_:BaseSimpleText;
 
-    public function TagsInputField(_arg_1:String, _arg_2:int = 260, _arg_3:int = 100, _arg_4:Boolean = false)
-    {
+    public function TagsInputField(_arg_1:String, _arg_2:int = 260, _arg_3:int = 100, _arg_4:Boolean = false) {
         this.nameText_ = new BaseSimpleText(18, 11776947, false, 0, 0);
         this.nameText_.setBold(true);
         this.nameText_.text = "Tags: ";
@@ -49,29 +48,23 @@ public class TagsInputField extends Sprite {
         this.instructionsText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 1)];
         this.instructionsText_.x = this.inputText_.x;
         this.instructionsText_.y = this.inputText_.y;
-        if(this.inputText_.text == "")
-        {
+        if (this.inputText_.text == "") {
             addChild(this.instructionsText_);
         }
     }
 
-    public function text():String
-    {
+    public function text():String {
         return this.inputText_.text;
     }
 
-    private function onFocusIn(_arg_1:FocusEvent):void
-    {
-        if(contains(this.instructionsText_))
-        {
+    private function onFocusIn(_arg_1:FocusEvent):void {
+        if (contains(this.instructionsText_)) {
             removeChild(this.instructionsText_);
         }
     }
 
-    private function onFocusOut(_arg_1:FocusEvent):void
-    {
-        if(!contains(this.instructionsText_) && this.inputText_.text == "")
-        {
+    private function onFocusOut(_arg_1:FocusEvent):void {
+        if (!contains(this.instructionsText_) && this.inputText_.text == "") {
             addChild(this.instructionsText_);
         }
     }

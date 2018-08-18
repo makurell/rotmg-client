@@ -37,14 +37,14 @@ public class PetIcon extends Sprite implements TooltipAble, Disableable {
     }
 
     public function isEnabled():Boolean {
-        return (this.enabled);
+        return this.enabled;
     }
 
     override public function dispatchEvent(_arg_1:Event):Boolean {
         if (this.enabled) {
-            return (super.dispatchEvent(_arg_1));
+            return super.dispatchEvent(_arg_1);
         }
-        return (false);
+        return false;
     }
 
     public function setBitmap(_arg_1:Bitmap):void {
@@ -57,7 +57,7 @@ public class PetIcon extends Sprite implements TooltipAble, Disableable {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -65,11 +65,11 @@ public class PetIcon extends Sprite implements TooltipAble, Disableable {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
     public function getPetVO():PetVO {
-        return (this.petVO);
+        return this.petVO;
     }
 
     public function setTooltipEnabled(_arg_1:Boolean):void {

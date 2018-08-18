@@ -18,7 +18,7 @@ public final class Console {
     }
 
     public function hasAction(_arg_1:String):Boolean {
-        return (this.hash.has(_arg_1));
+        return this.hash.has(_arg_1);
     }
 
     public function execute(_arg_1:String):void {
@@ -27,15 +27,15 @@ public final class Console {
     }
 
     public function getNames():Vector.<String> {
-        return (this.hash.getNames());
+        return this.hash.getNames();
     }
 
     public function getPreviousAction():String {
-        return (this.history.getPrevious());
+        return this.history.getPrevious();
     }
 
     public function getNextAction():String {
-        return (this.history.getNext());
+        return this.history.getNext();
     }
 
 

@@ -19,12 +19,10 @@ class ObjectElement extends Element {
         this.objXML_ = _arg_1;
         var _local_2:BitmapData = ObjectLibrary.getRedrawnTextureFromType(type_, 100, true, false);
         var _local_4:AnimationsData = ObjectLibrary.typeToAnimationsData_[int(_arg_1.@type)];
-        if(_local_4 != null)
-        {
+        if (_local_4 != null) {
             _local_3 = new Animations(_local_4);
             _local_7 = _local_3.getTexture(0.4);
-            if(_local_7 != null)
-            {
+            if (_local_7 != null) {
                 _local_2 = _local_7;
             }
         }
@@ -37,7 +35,7 @@ class ObjectElement extends Element {
     }
 
     override protected function getToolTip():ToolTip {
-        return (new ObjectTypeToolTip(this.objXML_));
+        return new ObjectTypeToolTip(this.objXML_);
     }
 
 

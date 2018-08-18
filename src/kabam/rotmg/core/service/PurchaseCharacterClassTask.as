@@ -38,12 +38,12 @@ public class PurchaseCharacterClassTask extends BaseTask {
         _local_1.do_login = Parameters.sendLogin_;
         _local_1.classType = this.classType;
         MoreObjectUtil.addToObject(_local_1, this.account.getCredentials());
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
         this.logger.info("PurchaseCharacterClassTask.onComplete: Ended ");
-        ((_arg_1) && (this.onReceiveResponseFromClassPurchase()));
+        _arg_1 && this.onReceiveResponseFromClassPurchase();
         completeTask(_arg_1, _arg_2);
     }
 

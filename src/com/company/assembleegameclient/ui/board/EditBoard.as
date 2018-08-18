@@ -63,43 +63,43 @@ class EditBoard extends Sprite {
         this.boardText_.addEventListener(Event.CHANGE, this.onTextChange);
         this.boardText_.addEventListener(Event.SCROLL, this.onTextChange);
         this.mainSprite_.addChild(this.boardText_);
-        this.scrollBar_ = new Scrollbar(16, (TEXT_HEIGHT - 4));
-        this.scrollBar_.x = (TEXT_WIDTH + 6);
+        this.scrollBar_ = new Scrollbar(16, TEXT_HEIGHT - 4);
+        this.scrollBar_.x = TEXT_WIDTH + 6;
         this.scrollBar_.y = 0;
         this.scrollBar_.setIndicatorSize(400, this.boardText_.height);
         this.scrollBar_.addEventListener(Event.CHANGE, this.onScrollBarChange);
         addChild(this.scrollBar_);
-        this.w_ = (TEXT_WIDTH + 26);
+        this.w_ = TEXT_WIDTH + 26;
         this.cancelButton_ = new DeprecatedTextButton(14, TextKey.FRAME_CANCEL, 120);
         this.cancelButton_.x = 4;
-        this.cancelButton_.y = (TEXT_HEIGHT + 4);
+        this.cancelButton_.y = TEXT_HEIGHT + 4;
         this.cancelButton_.addEventListener(MouseEvent.CLICK, this.onCancel);
         addChild(this.cancelButton_);
         this.saveButton_ = new DeprecatedTextButton(14, TextKey.EDIT_GUILD_BOARD_SAVE, 120);
-        this.saveButton_.x = (this.w_ - 124);
-        this.saveButton_.y = (TEXT_HEIGHT + 4);
+        this.saveButton_.x = this.w_ - 124;
+        this.saveButton_.y = TEXT_HEIGHT + 4;
         this.saveButton_.addEventListener(MouseEvent.CLICK, this.onSave);
         this.saveButton_.textChanged.add(this.layoutBackground);
         addChild(this.saveButton_);
     }
 
     private function layoutBackground():void {
-        this.h_ = ((TEXT_HEIGHT + this.saveButton_.height) + 8);
-        x = ((800 / 2) - (this.w_ / 2));
-        y = ((600 / 2) - (this.h_ / 2));
+        this.h_ = TEXT_HEIGHT + this.saveButton_.height + 8;
+        x = 800 / 2 - this.w_ / 2;
+        y = 600 / 2 - this.h_ / 2;
         graphics.clear();
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(-6, -6, (this.w_ + 12), (this.h_ + 12), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(-6, -6, this.w_ + 12, this.h_ + 12, 4, [1, 1, 1, 1], this.path_);
         graphics.drawGraphicsData(this.graphicsData_);
         this.scrollBar_.setIndicatorSize(TEXT_HEIGHT, this.boardText_.textHeight, false);
     }
 
     public function getText():String {
-        return (this.boardText_.text);
+        return this.boardText_.text;
     }
 
     private function onScrollBarChange(_arg_1:Event):void {
-        this.boardText_.scrollV = (1 + (this.scrollBar_.pos() * this.boardText_.maxScrollV));
+        this.boardText_.scrollV = 1 + this.scrollBar_.pos() * this.boardText_.maxScrollV;
     }
 
     private function onCancel(_arg_1:Event):void {
@@ -119,7 +119,7 @@ class EditBoard extends Sprite {
             this.scrollBar_.setPos(0);
         }
         else {
-            this.scrollBar_.setPos(((this.boardText_.scrollV - 1) / (this.boardText_.maxScrollV - 1)));
+            this.scrollBar_.setPos((this.boardText_.scrollV - 1) / (this.boardText_.maxScrollV - 1));
         }
     }
 

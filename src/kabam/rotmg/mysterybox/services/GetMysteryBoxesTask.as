@@ -46,8 +46,8 @@ public class GetMysteryBoxesTask extends BaseTask {
         else {
             _local_1 = TEN_MINUTES;
         }
-        if ((((this.lastRan == 0)) || (((this.lastRan + _local_1) < (getTimer() / 1000))))) {
-            this.lastRan = (getTimer() / 1000);
+        if (this.lastRan == 0 || this.lastRan + _local_1 < getTimer() / 1000) {
+            this.lastRan = getTimer() / 1000;
             completeTask(true);
             _local_2 = this.account.getCredentials();
             _local_2.language = this.languageModel.getLanguage();
@@ -99,7 +99,7 @@ public class GetMysteryBoxesTask extends BaseTask {
 
     private function hasNoBoxes(_arg_1:*):Boolean {
         var _local_2:XMLList = XML(_arg_1).children();
-        return ((_local_2.length() == 0));
+        return _local_2.length() == 0;
     }
 
     private function parseFortune(_arg_1:XMLList):void {
@@ -139,19 +139,17 @@ public class GetMysteryBoxesTask extends BaseTask {
                 _local_5.saleCurrency = _local_4.Sale.attribute("currency").toString();
                 _local_5.saleEnd = TimeUtil.parseUTCDate(_local_4.Sale.End.toString());
             }
-            if(_local_4.hasOwnProperty("Left"))
-            {
+            if (_local_4.hasOwnProperty("Left")) {
                 _local_5.unitsLeft = _local_4.Left;
             }
-            if(_local_4.hasOwnProperty("Total"))
-            {
+            if (_local_4.hasOwnProperty("Total")) {
                 _local_5.totalUnits = _local_4.Total;
             }
             _local_5.iconImageUrl = _local_4.Icon.toString();
             _local_5.infoImageUrl = _local_4.Image.toString();
             _local_5.startTime = TimeUtil.parseUTCDate(_local_4.StartTime.toString());
             _local_5.parseContents();
-            if (((!(_local_3)) && (((_local_5.isNew()) || (_local_5.isOnSale()))))) {
+            if (!_local_3 && (_local_5.isNew() || _local_5.isOnSale())) {
                 _local_3 = true;
             }
             _local_2.push(_local_5);

@@ -29,7 +29,7 @@ public class YardUpgraderMediator extends Mediator {
     override public function initialize():void {
         var _local_1:YardUpgraderVO = new YardUpgraderVO();
         var _local_2:int = this.petModel.getPetYardRarity();
-        var _local_3:int = (((_local_2 < PetRarityEnum.DIVINE.ordinal)) ? PetRarityEnum.selectByOrdinal((_local_2 + 1)).ordinal : PetRarityEnum.DIVINE.ordinal);
+        var _local_3:int = _local_2 < PetRarityEnum.DIVINE.ordinal ? PetRarityEnum.selectByOrdinal(_local_2 + 1).ordinal : PetRarityEnum.DIVINE.ordinal;
         _local_1.currentRarityLevel = PetRarityEnum.selectByOrdinal(_local_2).value;
         _local_1.nextRarityLevel = PetRarityEnum.selectByOrdinal(_local_3).value;
         _local_1.famePrice = this.petModel.getPetYardUpgradeFamePrice();

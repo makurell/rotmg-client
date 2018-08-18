@@ -68,19 +68,18 @@ public class EquipmentToolTip extends ToolTip {
         this.player = _arg_2;
         this.invType = _arg_3;
         this.inventoryOwnerType = _arg_4;
-        this.isInventoryFull = ((_arg_2) ? _arg_2.isInventoryFull() : false);
-        if(this.objectType >= 0x9000 && this.objectType < 0xF000)
-        {
+        this.isInventoryFull = _arg_2 ? _arg_2.isInventoryFull() : false;
+        if (this.objectType >= 0x9000 && this.objectType < 0xF000) {
             this.objectType = 0x8FFF;
         }
-        this.playerCanUse = ((_arg_2) ? ObjectLibrary.isUsableByPlayer(this.objectType, _arg_2) : false);
-        var _local_5:int = ((_arg_2) ? ObjectLibrary.getMatchingSlotIndex(this.objectType, _arg_2) : -1);
-        var _local_6:uint = ((((this.playerCanUse) || ((this.player == null)))) ? 0x363636 : 0x5C1D1D);
-        var _local_7:uint = ((((this.playerCanUse) || ((_arg_2 == null)))) ? 0x9B9B9B : 0xA7502F);
+        this.playerCanUse = _arg_2 ? ObjectLibrary.isUsableByPlayer(this.objectType, _arg_2) : false;
+        var _local_5:int = _arg_2 ? ObjectLibrary.getMatchingSlotIndex(this.objectType, _arg_2) : -1;
+        var _local_6:uint = this.playerCanUse || this.player == null ? 0x363636 : 0x5C1D1D;
+        var _local_7:uint = this.playerCanUse || _arg_2 == null ? 0x9B9B9B : 0xA7502F;
         super(_local_6, 1, _local_7, 1, true);
         this.slotTypeToTextBuilder = new SlotComparisonFactory();
         this.objectXML = ObjectLibrary.xmlLibrary_[this.objectType];
-        this.isEquippable = !((_local_5 == -1));
+        this.isEquippable = !(_local_5 == -1);
         this.effects = new Vector.<Effect>();
         this.itemSlotTypeId = int(this.objectXML.SlotType);
         if (this.player == null) {
@@ -94,10 +93,8 @@ public class EquipmentToolTip extends ToolTip {
             }
         }
         this.addIcon();
-        if(this.originalObjectType >= 0x9000 && this.originalObjectType <= 0xF000)
-        {
-            if(keyInfo[this.originalObjectType] == null)
-            {
+        if (this.originalObjectType >= 0x9000 && this.originalObjectType <= 0xF000) {
+            if (keyInfo[this.originalObjectType] == null) {
                 this.addTitle();
                 this.addDescriptionText();
                 this.keyInfoResponse = StaticInjectorContext.getInjector().getInstance(KeyInfoResponseSignal);
@@ -105,16 +102,14 @@ public class EquipmentToolTip extends ToolTip {
                 _loc8_ = StaticInjectorContext.getInjector().getInstance(HUDModel);
                 _loc8_.gameSprite.gsc_.keyInfoRequest(this.originalObjectType);
             }
-            else
-            {
+            else {
                 this.titleOverride = keyInfo[this.originalObjectType][0] + " Key";
                 this.descriptionOverride = keyInfo[this.originalObjectType][1] + "\n" + "Created By: " + keyInfo[this.originalObjectType][2];
                 this.addTitle();
                 this.addDescriptionText();
             }
         }
-        else
-        {
+        else {
             this.addTitle();
             this.addDescriptionText();
         }
@@ -139,17 +134,16 @@ public class EquipmentToolTip extends ToolTip {
     private function makeItemPowerText():void {
         var _local_1:int;
         if (this.objectXML.hasOwnProperty("feedPower")) {
-            _local_1 = ((((this.playerCanUse) || ((this.player == null)))) ? 0xFFFFFF : 16549442);
-            this.powerText = new TextFieldDisplayConcrete().setSize(12).setColor(_local_1).setBold(true).setTextWidth((((MAX_WIDTH - this.icon.width) - 4) - 30)).setWordWrap(true);
-            this.powerText.setStringBuilder(new StaticStringBuilder().setString(("Feed Power: " + this.objectXML.feedPower)));
+            _local_1 = this.playerCanUse || this.player == null ? 0xFFFFFF : 16549442;
+            this.powerText = new TextFieldDisplayConcrete().setSize(12).setColor(_local_1).setBold(true).setTextWidth(MAX_WIDTH - this.icon.width - 4 - 30).setWordWrap(true);
+            this.powerText.setStringBuilder(new StaticStringBuilder().setString("Feed Power: " + this.objectXML.feedPower));
             this.powerText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
             waiter.push(this.powerText.textChanged);
             addChild(this.powerText);
         }
     }
 
-    private function onKeyInfoResponse(_arg_1:KeyInfoResponse):void
-    {
+    private function onKeyInfoResponse(_arg_1:KeyInfoResponse):void {
         this.keyInfoResponse.remove(this.onKeyInfoResponse);
         this.removeTitle();
         this.removeDesc();
@@ -172,7 +166,7 @@ public class EquipmentToolTip extends ToolTip {
             for each (_local_2 in _local_1) {
                 _local_3 = _local_2.attribute("name");
                 _local_4 = _local_2.attribute("description");
-                _local_5 = ((((_local_3) && (_local_4))) ? ": " : "\n");
+                _local_5 = _local_3 && _local_4 ? ": " : "\n";
                 _local_6 = new AppendingLineBuilder();
                 if (_local_3) {
                     _local_6.pushParams(_local_3);
@@ -187,30 +181,30 @@ public class EquipmentToolTip extends ToolTip {
     }
 
     private function isEmptyEquipSlot():Boolean {
-        return (((this.isEquippable) && ((this.curItemXML == null))));
+        return this.isEquippable && this.curItemXML == null;
     }
 
     private function addIcon():void {
         var _local_1:XML = ObjectLibrary.xmlLibrary_[this.objectType];
         var _local_2:int = 5;
-        if ((((this.objectType == 4874)) || ((this.objectType == 4618)))) {
+        if (this.objectType == 4874 || this.objectType == 4618) {
             _local_2 = 8;
         }
         if (_local_1.hasOwnProperty("ScaleValue")) {
             _local_2 = _local_1.ScaleValue;
         }
         var _local_3:BitmapData = ObjectLibrary.getRedrawnTextureFromType(this.objectType, 60, true, true, _local_2);
-        _local_3 = BitmapUtil.cropToBitmapData(_local_3, 4, 4, (_local_3.width - 8), (_local_3.height - 8));
+        _local_3 = BitmapUtil.cropToBitmapData(_local_3, 4, 4, _local_3.width - 8, _local_3.height - 8);
         this.icon = new Bitmap(_local_3);
         addChild(this.icon);
     }
 
     private function addTierText():void {
-        var _local_1 = (this.isPet() == false);
-        var _local_2 = (this.objectXML.hasOwnProperty("Consumable") == false);
-        var _local_3 = (this.objectXML.hasOwnProperty("Treasure") == false);
+        var _local_1 = this.isPet() == false;
+        var _local_2 = this.objectXML.hasOwnProperty("Consumable") == false;
+        var _local_3 = this.objectXML.hasOwnProperty("Treasure") == false;
         var _local_4:Boolean = this.objectXML.hasOwnProperty("Tier");
-        if (((((_local_1) && (_local_2))) && (_local_3))) {
+        if (_local_1 && _local_2 && _local_3) {
             this.tierText = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(30).setBold(true);
             if (_local_4) {
                 this.tierText.setStringBuilder(new LineBuilder().setParams(TextKey.TIER_ABBR, {"tier": this.objectXML.Tier}));
@@ -232,28 +226,24 @@ public class EquipmentToolTip extends ToolTip {
     private function isPet():Boolean {
         var activateTags:XMLList;
         activateTags = this.objectXML.Activate.(text() == "PermaPet");
-        return ((activateTags.length() >= 1));
+        return activateTags.length() >= 1;
     }
 
-    private function removeTitle():void
-    {
+    private function removeTitle():void {
         removeChild(this.titleText);
     }
 
-    private function removeDesc():void
-    {
+    private function removeDesc():void {
         removeChild(this.descText);
     }
 
     private function addTitle():void {
-        var _local_1:int = ((((this.playerCanUse) || ((this.player == null)))) ? 0xFFFFFF : 16549442);
-        this.titleText = new TextFieldDisplayConcrete().setSize(16).setColor(_local_1).setBold(true).setTextWidth((((MAX_WIDTH - this.icon.width) - 4) - 30)).setWordWrap(true);
-        if(this.titleOverride)
-        {
+        var _local_1:int = this.playerCanUse || this.player == null ? 0xFFFFFF : 16549442;
+        this.titleText = new TextFieldDisplayConcrete().setSize(16).setColor(_local_1).setBold(true).setTextWidth(MAX_WIDTH - this.icon.width - 4 - 30).setWordWrap(true);
+        if (this.titleOverride) {
             this.titleText.setStringBuilder(new StaticStringBuilder(this.titleOverride));
         }
-        else
-        {
+        else {
             this.titleText.setStringBuilder(new LineBuilder().setParams(ObjectLibrary.typeToDisplayId_[this.objectType]));
         }
         this.titleText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
@@ -272,13 +262,13 @@ public class EquipmentToolTip extends ToolTip {
                 _local_2.push(new Effect(_local_3.attribute("name"), _local_3.attribute("description")));
             }
         }
-        return ("");
+        return "";
     }
 
     private function makeEffectsList():void {
         var _local_1:AppendingLineBuilder;
-        if (((((!((this.effects.length == 0))) || (!((this.comparisonResults.lineBuilder == null))))) || (this.objectXML.hasOwnProperty("ExtraTooltipData")))) {
-            this.line1 = new LineBreakDesign((MAX_WIDTH - 12), 0);
+        if (!(this.effects.length == 0) || !(this.comparisonResults.lineBuilder == null) || this.objectXML.hasOwnProperty("ExtraTooltipData")) {
+            this.line1 = new LineBreakDesign(MAX_WIDTH - 12, 0);
             this.effectsText = new TextFieldDisplayConcrete().setSize(14).setColor(0xB3B3B3).setTextWidth(MAX_WIDTH).setWordWrap(true).setHTML(true);
             _local_1 = this.getEffectsStringBuilder();
             this.effectsText.setStringBuilder(_local_1);
@@ -297,7 +287,7 @@ public class EquipmentToolTip extends ToolTip {
             _local_1.pushParams(TextKey.BLANK, {"data": this.comparisonResults.lineBuilder});
         }
         this.appendEffects(this.effects, _local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function appendEffects(_arg_1:Vector.<Effect>, _arg_2:AppendingLineBuilder):void {
@@ -308,7 +298,7 @@ public class EquipmentToolTip extends ToolTip {
             _local_4 = "";
             _local_5 = "";
             if (_local_3.color_) {
-                _local_4 = (('<font color="#' + _local_3.color_.toString(16)) + '">');
+                _local_4 = '<font color="#' + _local_3.color_.toString(16) + '">';
                 _local_5 = "</font>";
             }
             _arg_2.pushParams(_local_3.name_, _local_3.getValueReplacementsWithColor(), _local_4, _local_5);
@@ -316,7 +306,7 @@ public class EquipmentToolTip extends ToolTip {
     }
 
     private function addNumProjectilesTagsToEffectsList():void {
-        if (((this.objectXML.hasOwnProperty("NumProjectiles")) && (!((this.comparisonResults.processedTags.hasOwnProperty(this.objectXML.NumProjectiles.toXMLString()) == true))))) {
+        if (this.objectXML.hasOwnProperty("NumProjectiles") && !(this.comparisonResults.processedTags.hasOwnProperty(this.objectXML.NumProjectiles.toXMLString()) == true)) {
             this.effects.push(new Effect(TextKey.SHOTS, {"numShots": this.objectXML.NumProjectiles}));
         }
     }
@@ -327,12 +317,12 @@ public class EquipmentToolTip extends ToolTip {
         var _local_3:int;
         if (this.objectXML.hasOwnProperty("FameBonus")) {
             _local_1 = int(this.objectXML.FameBonus);
-            _local_2 = ((this.playerCanUse) ? TooltipHelper.BETTER_COLOR : TooltipHelper.NO_DIFF_COLOR);
-            if (((!((this.curItemXML == null))) && (this.curItemXML.hasOwnProperty("FameBonus")))) {
+            _local_2 = this.playerCanUse ? TooltipHelper.BETTER_COLOR : TooltipHelper.NO_DIFF_COLOR;
+            if (!(this.curItemXML == null) && this.curItemXML.hasOwnProperty("FameBonus")) {
                 _local_3 = int(this.curItemXML.FameBonus.text());
-                _local_2 = TooltipHelper.getTextColor((_local_1 - _local_3));
+                _local_2 = TooltipHelper.getTextColor(_local_1 - _local_3);
             }
-            this.effects.push(new Effect(TextKey.FAME_BONUS, {"percent": (this.objectXML.FameBonus + "%")}).setReplacementsColor(_local_2));
+            this.effects.push(new Effect(TextKey.FAME_BONUS, {"percent": this.objectXML.FameBonus + "%"}).setReplacementsColor(_local_2));
         }
     }
 
@@ -343,7 +333,7 @@ public class EquipmentToolTip extends ToolTip {
             }
         }
         else {
-            if (((this.objectXML.hasOwnProperty("MpCost")) && (!(this.comparisonResults.processedTags[this.objectXML.MpCost[0].toXMLString()])))) {
+            if (this.objectXML.hasOwnProperty("MpCost") && !this.comparisonResults.processedTags[this.objectXML.MpCost[0].toXMLString()]) {
                 if (!this.comparisonResults.processedTags[this.objectXML.MpCost[0].toXMLString()]) {
                     this.effects.push(new Effect(TextKey.MP_COST, {"cost": this.objectXML.MpCost}));
                 }
@@ -355,9 +345,8 @@ public class EquipmentToolTip extends ToolTip {
         if (this.objectXML.hasOwnProperty("Doses")) {
             this.effects.push(new Effect(TextKey.DOSES, {"dose": this.objectXML.Doses}));
         }
-        if(this.objectXML.hasOwnProperty("Quantity"))
-        {
-            this.effects.push(new Effect("Quantity: {quantity}",{"quantity": this.objectXML.Quantity}));
+        if (this.objectXML.hasOwnProperty("Quantity")) {
+            this.effects.push(new Effect("Quantity: {quantity}", {"quantity": this.objectXML.Quantity}));
         }
     }
 
@@ -367,12 +356,12 @@ public class EquipmentToolTip extends ToolTip {
         var _local_3:int;
         var _local_4:Number;
         var _local_5:XML;
-        if (((this.objectXML.hasOwnProperty("Projectile")) && (!(this.comparisonResults.processedTags.hasOwnProperty(this.objectXML.Projectile.toXMLString()))))) {
+        if (this.objectXML.hasOwnProperty("Projectile") && !this.comparisonResults.processedTags.hasOwnProperty(this.objectXML.Projectile.toXMLString())) {
             _local_1 = XML(this.objectXML.Projectile);
             _local_2 = int(_local_1.MinDamage);
             _local_3 = int(_local_1.MaxDamage);
-            this.effects.push(new Effect(TextKey.DAMAGE, {"damage": (((_local_2 == _local_3)) ? _local_2 : ((_local_2 + " - ") + _local_3)).toString()}));
-            _local_4 = ((Number(_local_1.Speed) * Number(_local_1.LifetimeMS)) / 10000);
+            this.effects.push(new Effect(TextKey.DAMAGE, {"damage": (_local_2 == _local_3 ? _local_2 : _local_2 + " - " + _local_3).toString()}));
+            _local_4 = (Number(_local_1.Speed) * Number(_local_1.LifetimeMS)) / 10000;
             this.effects.push(new Effect(TextKey.RANGE, {"range": TooltipHelper.getFormattedRangeString(_local_4)}));
             if (this.objectXML.Projectile.hasOwnProperty("MultiHit")) {
                 this.effects.push(new Effect(TextKey.MULTIHIT, {}).setColor(TooltipHelper.NO_DIFF_COLOR));
@@ -448,7 +437,7 @@ public class EquipmentToolTip extends ToolTip {
                         break;
                     case ActivationType.HEAL:
                         this.effects.push(new Effect(TextKey.INCREMENT_STAT, {
-                            "statAmount": (("+" + _local_1.@amount) + " "),
+                            "statAmount": "+" + _local_1.amount + " ",
                             "statName": new LineBuilder().setParams(TextKey.STATUS_BAR_HEALTH_POINTS)
                         }));
                         break;
@@ -462,12 +451,12 @@ public class EquipmentToolTip extends ToolTip {
                         break;
                     case ActivationType.MAGIC:
                         this.effects.push(new Effect(TextKey.INCREMENT_STAT, {
-                            "statAmount": (("+" + _local_1.@amount) + " "),
+                            "statAmount": "+" + _local_1.amount + " ",
                             "statName": new LineBuilder().setParams(TextKey.STATUS_BAR_MANA_POINTS)
                         }));
                         break;
                     case ActivationType.MAGIC_NOVA:
-                        this.effects.push(new Effect(TextKey.FILL_PARTY_MAGIC, (((_local_1.@amount + " MP at ") + _local_1.@range) + " sqrs")));
+                        this.effects.push(new Effect(TextKey.FILL_PARTY_MAGIC, _local_1.amount + " MP at " + _local_1.range + " sqrs"));
                         break;
                     case ActivationType.TELEPORT:
                         this.effects.push(new Effect(TextKey.BLANK, {"data": new LineBuilder().setParams(TextKey.TELEPORT_TO_TARGET)}));
@@ -481,8 +470,8 @@ public class EquipmentToolTip extends ToolTip {
                         }));
                         break;
                     case ActivationType.TRAP:
-                        _local_7 = ((_local_1.hasOwnProperty("@condEffect")) ? _local_1.@condEffect : new LineBuilder().setParams(TextKey.CONDITION_EFFECT_SLOWED));
-                        _local_8 = ((_local_1.hasOwnProperty("@condDuration")) ? _local_1.@condDuration : "5");
+                        _local_7 = _local_1.hasOwnProperty("@condEffect") ? _local_1.condEffect : new LineBuilder().setParams(TextKey.CONDITION_EFFECT_SLOWED);
+                        _local_8 = _local_1.hasOwnProperty("@condDuration") ? _local_1.condDuration : "5";
                         this.effects.push(new Effect(TextKey.TRAP, {
                             "data": new AppendingLineBuilder().pushParams(TextKey.HP_WITHIN_SQRS, {
                                 "amount": _local_1.@totalDamage,
@@ -530,7 +519,7 @@ public class EquipmentToolTip extends ToolTip {
                                 _local_20 = Number(_local_10.@range);
                                 _local_21 = Number(_local_1.@duration);
                                 _local_22 = Number(_local_10.@duration);
-                                _local_23 = ((_local_19 - _local_20) + (_local_21 - _local_22));
+                                _local_23 = (_local_19 - _local_20) + (_local_21 - _local_22);
                                 if (_local_23 > 0) {
                                     _local_9 = 0xFF00;
                                 }
@@ -565,7 +554,7 @@ public class EquipmentToolTip extends ToolTip {
                                 _local_27 = Number(_local_14.@duration);
                                 _local_28 = Number(_local_1.@amount);
                                 _local_29 = Number(_local_14.@amount);
-                                _local_30 = (((_local_24 - _local_25) + (_local_26 - _local_27)) + (_local_28 - _local_29));
+                                _local_30 = (_local_24 - _local_25) + (_local_26 - _local_27) + (_local_28 - _local_29);
                                 if (_local_30 > 0) {
                                     _local_13 = 0xFF00;
                                 }
@@ -591,7 +580,7 @@ public class EquipmentToolTip extends ToolTip {
                         _local_3 = int(_local_1.@stat);
                         _local_4 = int(_local_1.@amount);
                         _local_18 = {};
-                        if (((!((_local_3 == StatData.HP_STAT))) && (!((_local_3 == StatData.MP_STAT))))) {
+                        if (!(_local_3 == StatData.HP_STAT) && !(_local_3 == StatData.MP_STAT)) {
                             _local_2 = TextKey.PERMANENTLY_INCREASES;
                             _local_18["statName"] = new LineBuilder().setParams(StatData.statToName(_local_3));
                             this.effects.push(new Effect(_local_2, _local_18).setColor(16777103));
@@ -599,7 +588,7 @@ public class EquipmentToolTip extends ToolTip {
                         }
                         _local_2 = TextKey.BLANK;
                         _local_31 = new AppendingLineBuilder().setDelimiter(" ");
-                        _local_31.pushParams(TextKey.BLANK, {"data": new StaticStringBuilder(("+" + _local_4))});
+                        _local_31.pushParams(TextKey.BLANK, {"data": new StaticStringBuilder("+" + _local_4)});
                         _local_31.pushParams(StatData.statToName(_local_3));
                         _local_18["data"] = _local_31;
                         this.effects.push(new Effect(_local_2, _local_18));
@@ -615,10 +604,10 @@ public class EquipmentToolTip extends ToolTip {
         matches = xml.Activate.(text() == ActivationType.GENERIC_ACTIVATE);
         for each (tag in matches) {
             if (tag.@effect == effectValue) {
-                return (tag);
+                return tag;
             }
         }
-        return (null);
+        return null;
     }
 
     private function getStatTag(xml:XML, statValue:String):XML {
@@ -627,10 +616,10 @@ public class EquipmentToolTip extends ToolTip {
         matches = xml.Activate.(text() == ActivationType.STAT_BOOST_AURA);
         for each (tag in matches) {
             if (tag.@stat == statValue) {
-                return (tag);
+                return tag;
             }
         }
-        return (null);
+        return null;
     }
 
     private function addActivateOnEquipTagsToEffectsList():void {
@@ -650,11 +639,11 @@ public class EquipmentToolTip extends ToolTip {
     private function getComparedStatText(_arg_1:XML):Object {
         var _local_2:int = int(_arg_1.@stat);
         var _local_3:int = int(_arg_1.@amount);
-        var _local_4:String = (((_local_3) > -1) ? "+" : "");
-        return ({
-            "statAmount": ((_local_4 + String(_local_3)) + " "),
+        var _local_4:String = _local_3 > -1 ? "+" : "";
+        return {
+            "statAmount": _local_4 + String(_local_3) + " ",
             "statName": new LineBuilder().setParams(StatData.statToName(_local_2))
-        });
+        };
     }
 
     private function getComparedStatColor(activateXML:XML):uint {
@@ -662,26 +651,26 @@ public class EquipmentToolTip extends ToolTip {
         var otherAmount:int;
         var stat:int = int(activateXML.@stat);
         var amount:int = int(activateXML.@amount);
-        var textColor:uint = ((this.playerCanUse) ? TooltipHelper.BETTER_COLOR : TooltipHelper.NO_DIFF_COLOR);
+        var textColor:uint = this.playerCanUse ? TooltipHelper.BETTER_COLOR : TooltipHelper.NO_DIFF_COLOR;
         var otherMatches:XMLList;
         if (this.curItemXML != null) {
             otherMatches = this.curItemXML.ActivateOnEquip.(@stat == stat);
         }
-        if (((!((otherMatches == null))) && ((otherMatches.length() == 1)))) {
+        if (!(otherMatches == null) && otherMatches.length() == 1) {
             match = XML(otherMatches[0]);
             otherAmount = int(match.@amount);
-            textColor = TooltipHelper.getTextColor((amount - otherAmount));
+            textColor = TooltipHelper.getTextColor(amount - otherAmount);
         }
         if (amount < 0) {
             textColor = 0xFF0000;
         }
-        return (textColor);
+        return textColor;
     }
 
     private function addEquipmentItemRestrictions():void {
         if (this.objectXML.hasOwnProperty("Treasure") == false) {
             this.restrictions.push(new Restriction(TextKey.EQUIP_TO_USE, 0xB3B3B3, false));
-            if (((this.isInventoryFull) || ((this.inventoryOwnerType == InventoryOwnerTypes.CURRENT_PLAYER)))) {
+            if (this.isInventoryFull || this.inventoryOwnerType == InventoryOwnerTypes.CURRENT_PLAYER) {
                 this.restrictions.push(new Restriction(TextKey.DOUBLE_CLICK_EQUIP, 0xB3B3B3, false));
             }
             else {
@@ -696,7 +685,7 @@ public class EquipmentToolTip extends ToolTip {
 
     private function addConsumableItemRestrictions():void {
         this.restrictions.push(new Restriction(TextKey.CONSUMED_WITH_USE, 0xB3B3B3, false));
-        if (((this.isInventoryFull) || ((this.inventoryOwnerType == InventoryOwnerTypes.CURRENT_PLAYER)))) {
+        if (this.isInventoryFull || this.inventoryOwnerType == InventoryOwnerTypes.CURRENT_PLAYER) {
             this.restrictions.push(new Restriction(TextKey.DOUBLE_CLICK_OR_SHIFT_CLICK_TO_USE, 0xFFFFFF, false));
         }
         else {
@@ -715,14 +704,14 @@ public class EquipmentToolTip extends ToolTip {
         var _local_4:int;
         var _local_5:int;
         this.restrictions = new Vector.<Restriction>();
-        if (((((this.objectXML.hasOwnProperty("VaultItem")) && (!((this.invType == -1))))) && (!((this.invType == ObjectLibrary.idToType_["Vault Chest"]))))) {
+        if (this.objectXML.hasOwnProperty("VaultItem") && !(this.invType == -1) && !(this.invType == ObjectLibrary.idToType_["Vault Chest"])) {
             this.restrictions.push(new Restriction(TextKey.STORE_IN_VAULT, 16549442, true));
         }
         if (this.objectXML.hasOwnProperty("Soulbound")) {
             this.restrictions.push(new Restriction(TextKey.ITEM_SOULBOUND, 0xB3B3B3, false));
         }
         if (this.objectXML.hasOwnProperty("@setType")) {
-            this.restrictions.push(new Restriction(("This item is a part of " + this.objectXML.attribute("setName")), 0xFF9900, false));
+            this.restrictions.push(new Restriction("This item is a part of " + this.objectXML.attribute("setName"), 0xFF9900, false));
         }
         if (this.playerCanUse) {
             if (this.objectXML.hasOwnProperty("Usable")) {
@@ -757,19 +746,19 @@ public class EquipmentToolTip extends ToolTip {
             if (_local_2.toString() == "Stat") {
                 _local_4 = int(_local_2.@stat);
                 _local_5 = int(_local_2.@value);
-                this.restrictions.push(new Restriction(((("Requires " + StatData.statToName(_local_4)) + " of ") + _local_5), ((_local_3) ? 0xB3B3B3 : 16549442), ((_local_3) ? false : true)));
+                this.restrictions.push(new Restriction("Requires " + StatData.statToName(_local_4) + " of " + _local_5, _local_3 ? 0xB3B3B3 : 16549442, _local_3 ? false : true));
             }
         }
     }
 
     private function makeLineTwo():void {
-        this.line2 = new LineBreakDesign((MAX_WIDTH - 12), 0);
+        this.line2 = new LineBreakDesign(MAX_WIDTH - 12, 0);
         addChild(this.line2);
     }
 
     private function makeRestrictionText():void {
         if (this.restrictions.length != 0) {
-            this.restrictionsText = new TextFieldDisplayConcrete().setSize(14).setColor(0xB3B3B3).setTextWidth((MAX_WIDTH - 4)).setIndent(-10).setLeftMargin(10).setWordWrap(true).setHTML(true);
+            this.restrictionsText = new TextFieldDisplayConcrete().setSize(14).setColor(0xB3B3B3).setTextWidth(MAX_WIDTH - 4).setIndent(-10).setLeftMargin(10).setWordWrap(true).setHTML(true);
             this.restrictionsText.setStringBuilder(this.buildRestrictionsLineBuilder());
             this.restrictionsText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
             waiter.push(this.restrictionsText.textChanged);
@@ -784,18 +773,18 @@ public class EquipmentToolTip extends ToolTip {
         var _local_5:String;
         var _local_1:AppendingLineBuilder = new AppendingLineBuilder();
         for each (_local_2 in this.restrictions) {
-            _local_3 = ((_local_2.bold_) ? "<b>" : "");
-            _local_3 = _local_3.concat((('<font color="#' + _local_2.color_.toString(16)) + '">'));
+            _local_3 = _local_2.bold_ ? "<b>" : "";
+            _local_3 = _local_3.concat('<font color="#' + _local_2.color_.toString(16) + '">');
             _local_4 = "</font>";
-            _local_4 = _local_4.concat(((_local_2.bold_) ? "</b>" : ""));
-            _local_5 = ((this.player) ? ObjectLibrary.typeToDisplayId_[this.player.objectType_] : "");
+            _local_4 = _local_4.concat(_local_2.bold_ ? "</b>" : "");
+            _local_5 = this.player ? ObjectLibrary.typeToDisplayId_[this.player.objectType_] : "";
             _local_1.pushParams(_local_2.text_, {
                 "unUsableClass": _local_5,
                 "usableClasses": this.getUsableClasses(),
                 "keyCode": KeyCodes.CharCodeStrings[Parameters.data_.useSpecial]
             }, _local_3, _local_4);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function getUsableClasses():StringBuilder {
@@ -806,17 +795,15 @@ public class EquipmentToolTip extends ToolTip {
         for each (_local_3 in _local_1) {
             _local_2.pushParams(_local_3);
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function addDescriptionText():void {
         this.descText = new TextFieldDisplayConcrete().setSize(14).setColor(0xB3B3B3).setTextWidth(MAX_WIDTH).setWordWrap(true);
-        if(this.descriptionOverride)
-        {
+        if (this.descriptionOverride) {
             this.descText.setStringBuilder(new StaticStringBuilder(this.descriptionOverride));
         }
-        else
-        {
+        else {
             this.descText.setStringBuilder(new LineBuilder().setParams(String(this.objectXML.Description)));
         }
         this.descText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
@@ -825,31 +812,31 @@ public class EquipmentToolTip extends ToolTip {
     }
 
     override protected function alignUI():void {
-        this.titleText.x = (this.icon.width + 4);
-        this.titleText.y = ((this.icon.height / 2) - (this.titleText.height / 2));
+        this.titleText.x = this.icon.width + 4;
+        this.titleText.y = this.icon.height / 2 - this.titleText.height / 2;
         if (this.tierText) {
-            this.tierText.y = ((this.icon.height / 2) - (this.tierText.height / 2));
-            this.tierText.x = (MAX_WIDTH - 30);
+            this.tierText.y = this.icon.height / 2 - this.tierText.height / 2;
+            this.tierText.x = MAX_WIDTH - 30;
         }
         this.descText.x = 4;
-        this.descText.y = (this.icon.height + 2);
+        this.descText.y = this.icon.height + 2;
         if (contains(this.line1)) {
             this.line1.x = 8;
-            this.line1.y = ((this.descText.y + this.descText.height) + 8);
+            this.line1.y = this.descText.y + this.descText.height + 8;
             this.effectsText.x = 4;
-            this.effectsText.y = (this.line1.y + 8);
+            this.effectsText.y = this.line1.y + 8;
         }
         else {
-            this.line1.y = (this.descText.y + this.descText.height);
+            this.line1.y = this.descText.y + this.descText.height;
             this.effectsText.y = this.line1.y;
         }
         this.line2.x = 8;
-        this.line2.y = ((this.effectsText.y + this.effectsText.height) + 8);
-        var _local_1:uint = (this.line2.y + 8);
+        this.line2.y = this.effectsText.y + this.effectsText.height + 8;
+        var _local_1:uint = this.line2.y + 8;
         if (this.restrictionsText) {
             this.restrictionsText.x = 4;
             this.restrictionsText.y = _local_1;
-            _local_1 = (_local_1 + this.restrictionsText.height);
+            _local_1 = _local_1 + this.restrictionsText.height;
         }
         if (this.powerText) {
             if (contains(this.powerText)) {
@@ -876,7 +863,7 @@ public class EquipmentToolTip extends ToolTip {
         if (this.player == null) {
             return;
         }
-        var _local_1:Number = (this.player.wisdom_ + this.player.wisdomBoost_);
+        var _local_1:Number = this.player.wisdom_ + this.player.wisdomBoost_;
         if (_local_1 < 30) {
             return;
         }
@@ -894,7 +881,7 @@ public class EquipmentToolTip extends ToolTip {
                 _local_5 = _local_3.toString();
                 if (_local_3.@effect != "Stasis") {
                     _local_6 = _local_3.@useWisMod;
-                    if (!(((((((_local_6 == "")) || ((_local_6 == "false")))) || ((_local_6 == "0")))) || ((_local_3.@effect == "Stasis")))) {
+                    if (!(_local_6 == "" || _local_6 == "false" || _local_6 == "0" || _local_3.effect == "Stasis")) {
                         switch (_local_5) {
                             case ActivationType.HEAL_NOVA:
                                 _local_3.@amount = this.modifyWisModStat(_local_3.@amount, 0);
@@ -928,23 +915,23 @@ public class EquipmentToolTip extends ToolTip {
         var _local_6:int;
         var _local_7:Number;
         var _local_3 = "-1";
-        var _local_4:Number = (this.player.wisdom_ + this.player.wisdomBoost_);
+        var _local_4:Number = this.player.wisdom_ + this.player.wisdomBoost_;
         if (_local_4 < 30) {
             _local_3 = _arg_1;
         }
         else {
             _local_5 = Number(_arg_1);
-            _local_6 = (((_local_5) < 0) ? -1 : 1);
-            _local_7 = (((_local_5 * _local_4) / 150) + (_local_5 * _local_6));
-            _local_7 = (Math.floor((_local_7 * Math.pow(10, _arg_2))) / Math.pow(10, _arg_2));
-            if ((_local_7 - (int(_local_7) * _local_6)) >= ((1 / Math.pow(10, _arg_2)) * _local_6)) {
+            _local_6 = _local_5 < 0 ? -1 : 1;
+            _local_7 = (_local_5 * _local_4) / 150 + _local_5 * _local_6;
+            _local_7 = Math.floor(_local_7 * Math.pow(10, _arg_2)) / Math.pow(10, _arg_2);
+            if (_local_7 - int(_local_7) * _local_6 >= (1 / Math.pow(10, _arg_2)) * _local_6) {
                 _local_3 = _local_7.toFixed(1);
             }
             else {
                 _local_3 = _local_7.toFixed(0);
             }
         }
-        return (_local_3);
+        return _local_3;
     }
 
 
@@ -968,12 +955,12 @@ class Effect {
 
     public function setColor(_arg_1:uint):Effect {
         this.color_ = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setReplacementsColor(_arg_1:uint):Effect {
         this.replacementColor_ = _arg_1;
-        return (this);
+        return this;
     }
 
     public function getValueReplacementsWithColor():Object {
@@ -983,25 +970,25 @@ class Effect {
         var _local_2 = "";
         var _local_3 = "";
         if (this.replacementColor_) {
-            _local_2 = (('</font><font color="#' + this.replacementColor_.toString(16)) + '">');
-            _local_3 = (('</font><font color="#' + this.color_.toString(16)) + '">');
+            _local_2 = '</font><font color="#' + this.replacementColor_.toString(16) + '">';
+            _local_3 = '</font><font color="#' + this.color_.toString(16) + '">';
         }
         for (_local_4 in this.valueReplacements_) {
-            if ((this.valueReplacements_[_local_4] is AppendingLineBuilder)) {
+            if (this.valueReplacements_[_local_4] is AppendingLineBuilder) {
                 _local_1[_local_4] = this.valueReplacements_[_local_4];
             }
             else {
-                if ((this.valueReplacements_[_local_4] is LineBuilder)) {
+                if (this.valueReplacements_[_local_4] is LineBuilder) {
                     _local_5 = (this.valueReplacements_[_local_4] as LineBuilder);
                     _local_5.setPrefix(_local_2).setPostfix(_local_3);
                     _local_1[_local_4] = _local_5;
                 }
                 else {
-                    _local_1[_local_4] = ((_local_2 + this.valueReplacements_[_local_4]) + _local_3);
+                    _local_1[_local_4] = _local_2 + this.valueReplacements_[_local_4] + _local_3;
                 }
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

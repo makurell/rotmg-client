@@ -10,11 +10,11 @@ public class GeometricSeries {
     }
 
     public function getSummation(_arg_1:int):Number {
-        return (((this.a * (1 - Math.pow(this.r, _arg_1))) / (1 - this.r)));
+        return (this.a * (1 - Math.pow(this.r, _arg_1))) / (1 - this.r);
     }
 
     public function getTerm(_arg_1:int):Number {
-        return ((this.a * Math.pow(this.r, _arg_1)));
+        return this.a * Math.pow(this.r, _arg_1);
     }
 
 

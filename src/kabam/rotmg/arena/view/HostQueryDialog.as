@@ -38,7 +38,7 @@ public class HostQueryDialog extends Sprite {
     private function makeDeferredLayout():SignalWaiter {
         var _local_1:SignalWaiter = new SignalWaiter();
         _local_1.complete.addOnce(this.onLayout);
-        return (_local_1);
+        return _local_1;
     }
 
     private function onLayout():void {
@@ -49,10 +49,10 @@ public class HostQueryDialog extends Sprite {
     private function makeContainer():DisplayObjectContainer {
         var _local_1:Sprite;
         _local_1 = new Sprite();
-        _local_1.x = ((800 - WIDTH) / 2);
-        _local_1.y = ((600 - HEIGHT) / 2);
+        _local_1.x = (800 - WIDTH) / 2;
+        _local_1.y = (600 - HEIGHT) / 2;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeBackground():PopupWindowBackground {
@@ -60,7 +60,7 @@ public class HostQueryDialog extends Sprite {
         _local_1.draw(WIDTH, HEIGHT);
         _local_1.divide(PopupWindowBackground.HORIZONTAL_DIVISION, 34);
         this.container.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeHost():ArenaQueryDialogHost {
@@ -69,7 +69,7 @@ public class HostQueryDialog extends Sprite {
         _local_1.x = 20;
         _local_1.y = 50;
         this.container.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeTitle():TextFieldDisplayConcrete {
@@ -77,10 +77,10 @@ public class HostQueryDialog extends Sprite {
         _local_1 = ArenaViewAssetFactory.returnTextfield(0xFFFFFF, 18, true);
         _local_1.setStringBuilder(new LineBuilder().setParams(TITLE));
         _local_1.setAutoSize(TextFieldAutoSize.CENTER);
-        _local_1.x = (WIDTH / 2);
+        _local_1.x = WIDTH / 2;
         _local_1.y = 24;
         this.container.addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeBackButton():DeprecatedTextButton {
@@ -89,7 +89,7 @@ public class HostQueryDialog extends Sprite {
         this.container.addChild(_local_1);
         this.layoutWaiter.push(_local_1.textChanged);
         _local_1.y = 292;
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCloseButton():DeprecatedTextButton {
@@ -98,7 +98,7 @@ public class HostQueryDialog extends Sprite {
         _local_1.y = 292;
         this.container.addChild(_local_1);
         this.layoutWaiter.push(_local_1.textChanged);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setHostIcon(_arg_1:BitmapData):void {

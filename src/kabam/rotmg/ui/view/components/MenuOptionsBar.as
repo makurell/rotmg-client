@@ -32,7 +32,7 @@ public class MenuOptionsBar extends Sprite {
         switch (_arg_2) {
             case CENTER:
                 this.leftObjects[0] = (this.rightObjects[0] = _arg_1);
-                _arg_1.x = (this.screenGraphic.width / 2);
+                _arg_1.x = this.screenGraphic.width / 2;
                 _arg_1.y = Y_POSITION;
                 return;
             case LEFT:
@@ -59,7 +59,7 @@ public class MenuOptionsBar extends Sprite {
     private function layoutToLeftOf(_arg_1:TitleMenuOption, _arg_2:TitleMenuOption):void {
         var _local_3:Rectangle = _arg_1.getBounds(_arg_1);
         var _local_4:Rectangle = _arg_2.getBounds(_arg_2);
-        _arg_2.x = (((_arg_1.x + _local_3.left) - _local_4.right) - SPACING);
+        _arg_2.x = (_arg_1.x + _local_3.left) - _local_4.right - SPACING;
         _arg_2.y = Y_POSITION;
     }
 
@@ -74,7 +74,7 @@ public class MenuOptionsBar extends Sprite {
     private function layoutToRightOf(_arg_1:TitleMenuOption, _arg_2:TitleMenuOption):void {
         var _local_3:Rectangle = _arg_1.getBounds(_arg_1);
         var _local_4:Rectangle = _arg_2.getBounds(_arg_2);
-        _arg_2.x = (((_arg_1.x + _local_3.right) - _local_4.left) + SPACING);
+        _arg_2.x = ((_arg_1.x + _local_3.right) - _local_4.left) + SPACING;
         _arg_2.y = Y_POSITION;
     }
 

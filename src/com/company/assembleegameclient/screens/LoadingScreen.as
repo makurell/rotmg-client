@@ -30,7 +30,7 @@ public class LoadingScreen extends Sprite {
 
     private function onAdded(_arg_1:Event):void {
         removeEventListener(Event.ADDED_TO_STAGE, this.onAdded);
-        this.text.x = (stage.stageWidth / 2);
+        this.text.x = stage.stageWidth / 2;
     }
 
     public function setTextKey(_arg_1:String):void {

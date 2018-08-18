@@ -66,7 +66,7 @@ public class StatMetersView extends Sprite {
                     this.expBar_.removeEventListener("MULTIPLIER_OUT", this.onExpBarOut);
                     this.areTempXpListenersAdded = false;
                 }
-                if (((this.expTimer) && (this.expTimer.parent))) {
+                if (this.expTimer && this.expTimer.parent) {
                     removeChild(this.expTimer);
                     this.expTimer = null;
                 }
@@ -84,11 +84,11 @@ public class StatMetersView extends Sprite {
     }
 
     private function onExpBarOver(_arg_1:Event):void {
-        addChild((this.expTimer = new ExperienceBoostTimerPopup()));
+        addChild(this.expTimer = new ExperienceBoostTimerPopup());
     }
 
     private function onExpBarOut(_arg_1:Event):void {
-        if (((this.expTimer) && (this.expTimer.parent))) {
+        if (this.expTimer && this.expTimer.parent) {
             removeChild(this.expTimer);
             this.expTimer = null;
         }

@@ -34,7 +34,7 @@ public class PetItem extends Sprite implements Disableable {
     }
 
     public function isEnabled():Boolean {
-        return (this.petIcon.isEnabled());
+        return this.petIcon.isEnabled();
     }
 
     public function setSize(_arg_1:int):void {
@@ -55,15 +55,15 @@ public class PetItem extends Sprite implements Disableable {
         if (this.background != REGULAR) {
             _local_1[CUT_STATES.indexOf(this.background)] = 1;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function getBackground():String {
-        return (this.background);
+        return this.background;
     }
 
     public function getPetVO():PetVO {
-        return (this.petIcon.getPetVO());
+        return this.petIcon.getPetVO();
     }
 
 

@@ -5,7 +5,7 @@ public class IsAccountRegisteredToBuyPackageGuard extends IsAccountRegisteredGua
 
 
     override protected function getString():String {
-        return ("Dialog.registerToBuyPackage");
+        return "Dialog.registerToBuyPackage";
     }
 
 

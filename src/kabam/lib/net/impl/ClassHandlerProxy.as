@@ -12,24 +12,24 @@ public class ClassHandlerProxy implements MessageHandlerProxy {
 
     public function setType(_arg_1:Class):ClassHandlerProxy {
         this.handlerType = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setInjector(_arg_1:Injector):ClassHandlerProxy {
         this.injector = _arg_1;
-        return (this);
+        return this;
     }
 
     public function getMethod():Function {
-        return (((this.handler) ? this.handler.execute : this.makeHandlerAndReturnExecute()));
+        return this.handler ? this.handler.execute : this.makeHandlerAndReturnExecute();
     }
 
     private function makeHandlerAndReturnExecute():Function {
         if (!this.handlerType) {
-            return (null);
+            return null;
         }
         this.handler = this.injector.getInstance(this.handlerType);
-        return (this.handler.execute);
+        return this.handler.execute;
     }
 
 

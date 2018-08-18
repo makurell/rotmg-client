@@ -26,7 +26,7 @@ public class KeysView extends Sprite {
         this.keys[3] = new yellowKeyPng();
         var _local_1:int;
         while (_local_1 < 4) {
-            this.keys[_local_1].x = (12 + (40 * _local_1));
+            this.keys[_local_1].x = 12 + 40 * _local_1;
             this.keys[_local_1].y = 12;
             _local_1++;
         }

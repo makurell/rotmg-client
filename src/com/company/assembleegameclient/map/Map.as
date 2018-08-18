@@ -50,7 +50,7 @@ public class Map extends AbstractMap {
     private static const VISIBLE_SORT_FIELDS:Array = ["sortVal_", "objectId_"];
     private static const VISIBLE_SORT_PARAMS:Array = [Array.NUMERIC, Array.NUMERIC];
     protected static const BLIND_FILTER:ColorMatrixFilter = new ColorMatrixFilter([0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 1, 0]);
-    protected static var BREATH_CT:ColorTransform = new ColorTransform((0xFF / 0xFF), (55 / 0xFF), (0 / 0xFF), 0);
+    protected static var BREATH_CT:ColorTransform = new ColorTransform(0xFF / 0xFF, 55 / 0xFF, 0 / 0xFF, 0);
     public static var texture:BitmapData;
 
     public var ifDrawEffectFlag:Boolean = true;
@@ -123,7 +123,7 @@ public class Map extends AbstractMap {
     }
 
     override public function initialize():void {
-        squares_.length = (width_ * height_);
+        squares_.length = width_ * height_;
         background_ = Background.getBackground(back_);
         if (background_ != null) {
             addChild(background_);
@@ -133,7 +133,7 @@ public class Map extends AbstractMap {
         addChild(gradientOverlay_);
         addChild(mapOverlay_);
         addChild(partyOverlay_);
-        isPetYard = (name_.substr(0, 8) == "Pet Yard");
+        isPetYard = name_.substr(0, 8) == "Pet Yard";
     }
 
     override public function dispose():void {
@@ -202,11 +202,11 @@ public class Map extends AbstractMap {
     override public function pSTopW(_arg_1:Number, _arg_2:Number):Point {
         var _local_3:Square;
         for each (_local_3 in this.visibleSquares_) {
-            if (((!((_local_3.faces_.length == 0))) && (_local_3.faces_[0].face_.contains(_arg_1, _arg_2)))) {
-                return (new Point(_local_3.center_.x, _local_3.center_.y));
+            if (!(_local_3.faces_.length == 0) && _local_3.faces_[0].face_.contains(_arg_1, _arg_2)) {
+                return new Point(_local_3.center_.x, _local_3.center_.y);
             }
         }
-        return (null);
+        return null;
     }
 
     override public function setGroundTile(_arg_1:int, _arg_2:int, _arg_3:uint):void {
@@ -215,15 +215,15 @@ public class Map extends AbstractMap {
         var _local_10:Square;
         var _local_4:Square = this.getSquare(_arg_1, _arg_2);
         _local_4.setTileType(_arg_3);
-        var _local_5:int = (((_arg_1 < (width_ - 1))) ? (_arg_1 + 1) : _arg_1);
-        var _local_6:int = (((_arg_2 < (height_ - 1))) ? (_arg_2 + 1) : _arg_2);
-        var _local_7:int = (((_arg_1 > 0)) ? (_arg_1 - 1) : _arg_1);
+        var _local_5:int = _arg_1 < width_ - 1 ? _arg_1 + 1 : _arg_1;
+        var _local_6:int = _arg_2 < height_ - 1 ? _arg_2 + 1 : _arg_2;
+        var _local_7:int = _arg_1 > 0 ? _arg_1 - 1 : _arg_1;
         while (_local_7 <= _local_5) {
-            _local_8 = (((_arg_2 > 0)) ? (_arg_2 - 1) : _arg_2);
+            _local_8 = _arg_2 > 0 ? _arg_2 - 1 : _arg_2;
             while (_local_8 <= _local_6) {
-                _local_9 = (_local_7 + (_local_8 * width_));
+                _local_9 = _local_7 + _local_8 * width_;
                 _local_10 = squares_[_local_9];
-                if (((!((_local_10 == null))) && (((_local_10.props_.hasEdge_) || (!((_local_10.tileType_ == _arg_3))))))) {
+                if (!(_local_10 == null) && (_local_10.props_.hasEdge_ || !(_local_10.tileType_ == _arg_3))) {
                     _local_10.faces_.length = 0;
                 }
                 _local_8++;
@@ -235,8 +235,8 @@ public class Map extends AbstractMap {
     override public function addObj(_arg_1:BasicObject, _arg_2:Number, _arg_3:Number):void {
         _arg_1.x_ = _arg_2;
         _arg_1.y_ = _arg_3;
-        if ((_arg_1 is ParticleEffect)) {
-            (_arg_1 as ParticleEffect).reducedDrawEnabled = !(Parameters.data_.particleEffect);
+        if (_arg_1 is ParticleEffect) {
+            (_arg_1 as ParticleEffect).reducedDrawEnabled = !Parameters.data_.particleEffect;
         }
         if (this.inUpdate_) {
             this.objsToAdd_.push(_arg_1);
@@ -250,7 +250,7 @@ public class Map extends AbstractMap {
         if (!_arg_1.addTo(this, _arg_1.x_, _arg_1.y_)) {
             return;
         }
-        var _local_2:Dictionary = (((_arg_1 is GameObject)) ? goDict_ : boDict_);
+        var _local_2:Dictionary = (_arg_1 is GameObject) ? goDict_ : boDict_;
         if (_local_2[_arg_1.objectId_] != null) {
             if (!isPetYard) {
                 return;
@@ -283,24 +283,24 @@ public class Map extends AbstractMap {
     }
 
     public function getSquare(_arg_1:Number, _arg_2:Number):Square {
-        if ((((((((_arg_1 < 0)) || ((_arg_1 >= width_)))) || ((_arg_2 < 0)))) || ((_arg_2 >= height_)))) {
-            return (null);
+        if (_arg_1 < 0 || _arg_1 >= width_ || _arg_2 < 0 || _arg_2 >= height_) {
+            return null;
         }
-        var _local_3:int = (int(_arg_1) + (int(_arg_2) * width_));
+        var _local_3:int = int(_arg_1) + int(_arg_2) * width_;
         var _local_4:Square = squares_[_local_3];
         if (_local_4 == null) {
             _local_4 = new Square(this, int(_arg_1), int(_arg_2));
             squares_[_local_3] = _local_4;
             squareList_.push(_local_4);
         }
-        return (_local_4);
+        return _local_4;
     }
 
     public function lookupSquare(_arg_1:int, _arg_2:int):Square {
-        if ((((((((_arg_1 < 0)) || ((_arg_1 >= width_)))) || ((_arg_2 < 0)))) || ((_arg_2 >= height_)))) {
-            return (null);
+        if (_arg_1 < 0 || _arg_1 >= width_ || _arg_2 < 0 || _arg_2 >= height_) {
+            return null;
         }
-        return (squares_[(_arg_1 + (_arg_2 * width_))]);
+        return squares_[(_arg_1 + (_arg_2 * width_))];
     }
 
     override public function draw(_arg_1:Camera, _arg_2:int):void {
@@ -319,7 +319,7 @@ public class Map extends AbstractMap {
         var _local_24:Array;
         var _local_25:Number;
         if (wasLastFrameGpu != Parameters.isGpuRender()) {
-            if ((((((wasLastFrameGpu == true)) && (!((WebMain.STAGE.stage3Ds[0].context3D == null))))) && (!(((!((WebMain.STAGE.stage3Ds[0].context3D == null))) && (!((WebMain.STAGE.stage3Ds[0].context3D.driverInfo.toLowerCase().indexOf("disposed") == -1)))))))) {
+            if (wasLastFrameGpu == true && !(WebMain.STAGE.stage3Ds[0].context3D == null) && !(!(WebMain.STAGE.stage3Ds[0].context3D == null) && !(WebMain.STAGE.stage3Ds[0].context3D.driverInfo.toLowerCase().indexOf("disposed") == -1))) {
                 WebMain.STAGE.stage3Ds[0].context3D.clear();
                 WebMain.STAGE.stage3Ds[0].context3D.present();
             }
@@ -330,10 +330,10 @@ public class Map extends AbstractMap {
             wasLastFrameGpu = Parameters.isGpuRender();
         }
         var _local_3:Rectangle = _arg_1.clipRect_;
-        x = -(_local_3.x);
-        y = -(_local_3.y);
-        var _local_4:Number = ((-(_local_3.y) - (_local_3.height / 2)) / 50);
-        var _local_5:Point = new Point((_arg_1.x_ + (_local_4 * Math.cos((_arg_1.angleRad_ - (Math.PI / 2))))), (_arg_1.y_ + (_local_4 * Math.sin((_arg_1.angleRad_ - (Math.PI / 2))))));
+        x = -_local_3.x;
+        y = -_local_3.y;
+        var _local_4:Number = (-_local_3.y - _local_3.height / 2) / 50;
+        var _local_5:Point = new Point(_arg_1.x_ + _local_4 * Math.cos(_arg_1.angleRad_ - Math.PI / 2), _arg_1.y_ + _local_4 * Math.sin(_arg_1.angleRad_ - Math.PI / 2));
         if (background_ != null) {
             background_.draw(_arg_1, _arg_2);
         }
@@ -342,10 +342,10 @@ public class Map extends AbstractMap {
         this.visibleSquares_.length = 0;
         this.topSquares_.length = 0;
         var _local_7:int = _arg_1.maxDist_;
-        var _local_8:int = Math.max(0, (_local_5.x - _local_7));
-        var _local_9:int = Math.min((width_ - 1), (_local_5.x + _local_7));
-        var _local_10:int = Math.max(0, (_local_5.y - _local_7));
-        var _local_11:int = Math.min((height_ - 1), (_local_5.y + _local_7));
+        var _local_8:int = Math.max(0, _local_5.x - _local_7);
+        var _local_9:int = Math.min(width_ - 1, _local_5.x + _local_7);
+        var _local_10:int = Math.max(0, _local_5.y - _local_7);
+        var _local_11:int = Math.min(height_ - 1, _local_5.y + _local_7);
         this.graphicsData_.length = 0;
         this.graphicsDataStageSoftware_.length = 0;
         this.graphicsData3d_.length = 0;
@@ -355,9 +355,9 @@ public class Map extends AbstractMap {
             while (_local_15 <= _local_11) {
                 _local_6 = squares_[(_local_12 + (_local_15 * width_))];
                 if (_local_6 != null) {
-                    _local_16 = (_local_5.x - _local_6.center_.x);
-                    _local_17 = (_local_5.y - _local_6.center_.y);
-                    _local_18 = ((_local_16 * _local_16) + (_local_17 * _local_17));
+                    _local_16 = _local_5.x - _local_6.center_.x;
+                    _local_17 = _local_5.y - _local_6.center_.y;
+                    _local_18 = _local_16 * _local_16 + _local_17 * _local_17;
                     if (_local_18 <= _arg_1.maxDistSq_) {
                         _local_6.lastVisible_ = _arg_2;
                         _local_6.draw(this.graphicsData_, _arg_1, _arg_2);
@@ -375,7 +375,7 @@ public class Map extends AbstractMap {
             _local_13.drawn_ = false;
             if (!_local_13.dead_) {
                 _local_6 = _local_13.square_;
-                if (!(((_local_6 == null)) || (!((_local_6.lastVisible_ == _arg_2))))) {
+                if (!(_local_6 == null || !(_local_6.lastVisible_ == _arg_2))) {
                     _local_13.drawn_ = true;
                     _local_13.computeSortVal(_arg_1);
                     if (_local_13.props_.drawUnder_) {
@@ -395,7 +395,7 @@ public class Map extends AbstractMap {
         for each (_local_14 in boDict_) {
             _local_14.drawn_ = false;
             _local_6 = _local_14.square_;
-            if (!(((_local_6 == null)) || (!((_local_6.lastVisible_ == _arg_2))))) {
+            if (!(_local_6 == null || !(_local_6.lastVisible_ == _arg_2))) {
                 _local_14.drawn_ = true;
                 _local_14.computeSortVal(_arg_1);
                 this.visible_.push(_local_14);
@@ -426,10 +426,10 @@ public class Map extends AbstractMap {
                 _local_6.drawTop(this.graphicsData_, _arg_1, _arg_2);
             }
         }
-        if (((((!((player_ == null))) && ((player_.breath_ >= 0)))) && ((player_.breath_ < Parameters.BREATH_THRESH)))) {
-            _local_19 = ((Parameters.BREATH_THRESH - player_.breath_) / Parameters.BREATH_THRESH);
-            _local_20 = (Math.abs(Math.sin((_arg_2 / 300))) * 0.75);
-            BREATH_CT.alphaMultiplier = (_local_19 * _local_20);
+        if (!(player_ == null) && player_.breath_ >= 0 && player_.breath_ < Parameters.BREATH_THRESH) {
+            _local_19 = (Parameters.BREATH_THRESH - player_.breath_) / Parameters.BREATH_THRESH;
+            _local_20 = Math.abs(Math.sin(_arg_2 / 300)) * 0.75;
+            BREATH_CT.alphaMultiplier = _local_19 * _local_20;
             hurtOverlay_.transform.colorTransform = BREATH_CT;
             hurtOverlay_.visible = true;
             hurtOverlay_.x = _local_3.left;
@@ -438,27 +438,27 @@ public class Map extends AbstractMap {
         else {
             hurtOverlay_.visible = false;
         }
-        if (((!((player_ == null))) && (!(Parameters.screenShotMode_)))) {
+        if (!(player_ == null) && !Parameters.screenShotMode_) {
             gradientOverlay_.visible = true;
-            gradientOverlay_.x = (_local_3.right - 10);
+            gradientOverlay_.x = _local_3.right - 10;
             gradientOverlay_.y = _local_3.top;
         }
         else {
             gradientOverlay_.visible = false;
         }
-        if (((Parameters.isGpuRender()) && (Renderer.inGame))) {
+        if (Parameters.isGpuRender() && Renderer.inGame) {
             _local_21 = this.getFilterIndex();
             _local_22 = StaticInjectorContext.getInjector().getInstance(Render3D);
             _local_22.dispatch(this.graphicsData_, this.graphicsData3d_, width_, height_, _arg_1, _local_21);
             _local_23 = 0;
             while (_local_23 < this.graphicsData_.length) {
-                if ((((this.graphicsData_[_local_23] is GraphicsBitmapFill)) && (GraphicsFillExtra.isSoftwareDraw(GraphicsBitmapFill(this.graphicsData_[_local_23]))))) {
+                if ((this.graphicsData_[_local_23] is GraphicsBitmapFill) && GraphicsFillExtra.isSoftwareDraw(GraphicsBitmapFill(this.graphicsData_[_local_23]))) {
                     this.graphicsDataStageSoftware_.push(this.graphicsData_[_local_23]);
                     this.graphicsDataStageSoftware_.push(this.graphicsData_[(_local_23 + 1)]);
                     this.graphicsDataStageSoftware_.push(this.graphicsData_[(_local_23 + 2)]);
                 }
                 else {
-                    if ((((this.graphicsData_[_local_23] is GraphicsSolidFill)) && (GraphicsFillExtra.isSoftwareDrawSolid(GraphicsSolidFill(this.graphicsData_[_local_23]))))) {
+                    if ((this.graphicsData_[_local_23] is GraphicsSolidFill) && GraphicsFillExtra.isSoftwareDrawSolid(GraphicsSolidFill(this.graphicsData_[_local_23]))) {
                         this.graphicsDataStageSoftware_.push(this.graphicsData_[_local_23]);
                         this.graphicsDataStageSoftware_.push(this.graphicsData_[(_local_23 + 1)]);
                         this.graphicsDataStageSoftware_.push(this.graphicsData_[(_local_23 + 2)]);
@@ -479,7 +479,7 @@ public class Map extends AbstractMap {
                     this.lastSoftwareClear = true;
                 }
             }
-            if ((_arg_2 % 149) == 0) {
+            if (_arg_2 % 149 == 0) {
                 GraphicsFillExtra.manageSize();
             }
         }
@@ -488,10 +488,10 @@ public class Map extends AbstractMap {
             map_.graphics.drawGraphicsData(this.graphicsData_);
         }
         map_.filters.length = 0;
-        if (((!((player_ == null))) && (!(((player_.condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.MAP_FILTER_BITMASK) == 0))))) {
+        if (!(player_ == null) && !((player_.condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.MAP_FILTER_BITMASK) == 0)) {
             _local_24 = [];
             if (player_.isDrunk()) {
-                _local_25 = (20 + (10 * Math.sin((_arg_2 / 1000))));
+                _local_25 = 20 + 10 * Math.sin(_arg_2 / 1000);
                 _local_24.push(new BlurFilter(_local_25, _local_25));
             }
             if (player_.isBlind()) {
@@ -506,9 +506,9 @@ public class Map extends AbstractMap {
         }
         mapOverlay_.draw(_arg_1, _arg_2);
         partyOverlay_.draw(_arg_1, _arg_2);
-        if (((player_) && (player_.isDarkness()))) {
+        if (player_ && player_.isDarkness()) {
             this.darkness.x = -300;
-            this.darkness.y = ((Parameters.data_.centerOnPlayer) ? -525 : -515);
+            this.darkness.y = Parameters.data_.centerOnPlayer ? -525 : -515;
             this.darkness.alpha = 0.95;
             addChild(this.darkness);
         }
@@ -521,7 +521,7 @@ public class Map extends AbstractMap {
 
     private function getFilterIndex():uint {
         var _local_1:uint;
-        if (((!((player_ == null))) && (!(((player_.condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.MAP_FILTER_BITMASK) == 0))))) {
+        if (!(player_ == null) && !((player_.condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.MAP_FILTER_BITMASK) == 0)) {
             if (player_.isPaused()) {
                 _local_1 = Renderer.STAGE3D_FILTER_PAUSE;
             }
@@ -536,7 +536,7 @@ public class Map extends AbstractMap {
                 }
             }
         }
-        return (_local_1);
+        return _local_1;
     }
 
 

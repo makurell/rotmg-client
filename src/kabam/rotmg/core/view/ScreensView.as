@@ -17,14 +17,14 @@ public class ScreensView extends Sprite {
     }
 
     private function removePrevious():void {
-        if (((this.current) && (contains(this.current)))) {
+        if (this.current && contains(this.current)) {
             this.previous = this.current;
             removeChild(this.current);
         }
     }
 
     public function getPrevious():Sprite {
-        return (this.previous);
+        return this.previous;
     }
 
 

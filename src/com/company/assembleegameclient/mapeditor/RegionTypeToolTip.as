@@ -12,7 +12,7 @@ public class RegionTypeToolTip extends ToolTip {
 
     public function RegionTypeToolTip(_arg_1:XML) {
         super(0x363636, 1, 0x9B9B9B, 1, true);
-        this.titleText_ = new BaseSimpleText(16, 0xFFFFFF, false, (MAX_WIDTH - 4), 0);
+        this.titleText_ = new BaseSimpleText(16, 0xFFFFFF, false, MAX_WIDTH - 4, 0);
         this.titleText_.setBold(true);
         this.titleText_.wordWrap = true;
         this.titleText_.text = String(_arg_1.@id);

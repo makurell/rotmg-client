@@ -34,7 +34,7 @@ public class Object3DStage3D {
     }
 
     public function setPosition(_arg_1:Number, _arg_2:Number, _arg_3:Number, _arg_4:Number):void {
-        this.position = new Vector3D(_arg_1, -(_arg_2), _arg_3);
+        this.position = new Vector3D(_arg_1, -_arg_2, _arg_3);
         this.zRotation_ = _arg_4;
     }
 
@@ -53,13 +53,13 @@ public class Object3DStage3D {
     public function UpdateModelMatrix(_arg_1:Number, _arg_2:Number):void {
         this.modelMatrix_.identity();
         this.modelMatrix_.appendRotation(-90, Vector3D.Z_AXIS);
-        this.modelMatrix_.appendRotation(-(this.zRotation_), Vector3D.Z_AXIS);
+        this.modelMatrix_.appendRotation(-this.zRotation_, Vector3D.Z_AXIS);
         this.modelMatrix_.appendTranslation(this.position.x, this.position.y, 0);
         this.modelMatrix_.appendTranslation(_arg_1, _arg_2, 0);
     }
 
     public function GetModelMatrix():Matrix3D {
-        return (this.modelMatrix_);
+        return this.modelMatrix_;
     }
 
     public function draw(_arg_1:Context3D):void {
@@ -67,7 +67,7 @@ public class Object3DStage3D {
         _arg_1.setVertexBufferAt(0, this.model_.vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
         _arg_1.setVertexBufferAt(1, this.model_.vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_3);
         _arg_1.setVertexBufferAt(2, this.model_.vertexBuffer, 6, Context3DVertexBufferFormat.FLOAT_2);
-        if ((((this.texture_ == null)) && (!((this.bitmapData == null))))) {
+        if (this.texture_ == null && !(this.bitmapData == null)) {
             this.texture_ = _arg_1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
             this.texture_.uploadFromBitmapData(this.bitmapData);
         }

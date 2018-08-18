@@ -41,7 +41,7 @@ public class ArenaTimerMediator extends Mediator {
     private function onRestart(_arg_1:TimerEvent):void {
         this.delayTimer.stop();
         this.view.start();
-        this.view.x = (300 - (this.view.width / 2));
+        this.view.x = 300 - this.view.width / 2;
     }
 
     private function startView(_arg_1:int):void {

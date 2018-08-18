@@ -15,27 +15,27 @@ public class Quest {
     }
 
     public function setObject(_arg_1:int):void {
-        if ((((this.objectId_ == -1)) && (!((_arg_1 == -1))))) {
-            this.questAvailableAt_ = (getTimer() + 4000);
-            this.questOldAt_ = (this.questAvailableAt_ + 2000);
+        if (this.objectId_ == -1 && !(_arg_1 == -1)) {
+            this.questAvailableAt_ = getTimer() + 4000;
+            this.questOldAt_ = this.questAvailableAt_ + 2000;
         }
         this.objectId_ = _arg_1;
     }
 
     public function completed():void {
-        this.questAvailableAt_ = ((getTimer() + 15000) - (Math.random() * 10000));
-        this.questOldAt_ = (this.questAvailableAt_ + 2000);
+        this.questAvailableAt_ = (getTimer() + 15000) - Math.random() * 10000;
+        this.questOldAt_ = this.questAvailableAt_ + 2000;
     }
 
     public function getObject(_arg_1:int):GameObject {
         if (_arg_1 < this.questAvailableAt_) {
-            return (null);
+            return null;
         }
-        return (this.map_.goDict_[this.objectId_]);
+        return this.map_.goDict_[this.objectId_];
     }
 
     public function isNew(_arg_1:int):Boolean {
-        return ((_arg_1 < this.questOldAt_));
+        return _arg_1 < this.questOldAt_;
     }
 
 

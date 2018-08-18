@@ -25,7 +25,7 @@ public class UIAssetsHelper {
         _local_5.rotation = _arg_3;
         var _local_6:Sprite = new Sprite();
         _local_6.addChild(_local_5);
-        return (_local_6);
+        return _local_6;
     }
 
 

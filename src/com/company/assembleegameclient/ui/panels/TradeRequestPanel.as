@@ -41,7 +41,7 @@ public class TradeRequestPanel extends Panel {
         this.acceptButton_ = new DeprecatedTextButton(16, TextKey.TRADE_ACCEPT);
         this.acceptButton_.addEventListener(MouseEvent.CLICK, this.onAcceptClick);
         addChild(this.acceptButton_);
-        this.timer_ = new Timer((20 * 1000), 1);
+        this.timer_ = new Timer(20 * 1000, 1);
         this.timer_.start();
         this.timer_.addEventListener(TimerEvent.TIMER, this.onTimer);
         var _local_3:SignalWaiter = new SignalWaiter();
@@ -52,26 +52,22 @@ public class TradeRequestPanel extends Panel {
     }
 
     private function onComplete():void {
-        this.rejectButton_.x = ((WIDTH / 4) - (this.rejectButton_.width / 2));
-        this.acceptButton_.x = (((3 * WIDTH) / 4) - (this.acceptButton_.width / 2));
-        this.rejectButton_.y = ((HEIGHT - this.rejectButton_.height) - 4);
-        this.acceptButton_.y = ((HEIGHT - this.acceptButton_.height) - 4);
+        this.rejectButton_.x = WIDTH / 4 - this.rejectButton_.width / 2;
+        this.acceptButton_.x = (3 * WIDTH) / 4 - this.acceptButton_.width / 2;
+        this.rejectButton_.y = HEIGHT - this.rejectButton_.height - 4;
+        this.acceptButton_.y = HEIGHT - this.acceptButton_.height - 4;
     }
 
-    private function onAddedToStage(_arg_1:Event):void
-    {
+    private function onAddedToStage(_arg_1:Event):void {
         stage.addEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
     }
 
-    private function onRemovedFromStage(_arg_1:Event):void
-    {
+    private function onRemovedFromStage(_arg_1:Event):void {
         stage.removeEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
     }
 
-    private function onKeyDown(_arg_1:KeyboardEvent):void
-    {
-        if(_arg_1.keyCode == Parameters.data_.interact && stage.focus == null)
-        {
+    private function onKeyDown(_arg_1:KeyboardEvent):void {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             dispatchEvent(new Event(Event.COMPLETE));
         }
     }

@@ -71,15 +71,15 @@ public class MiniMapMediator implements IMediator {
     private function getFocusById(_arg_1:String):GameObject {
         var _local_3:GameObject;
         if (_arg_1 == "") {
-            return (this.view.map.player_);
+            return this.view.map.player_;
         }
         var _local_2:Dictionary = this.view.map.goDict_;
         for each (_local_3 in _local_2) {
             if (_local_3.name_ == _arg_1) {
-                return (_local_3);
+                return _local_3;
             }
         }
-        return (this.view.map.player_);
+        return this.view.map.player_;
     }
 
     private function onUpdateGroundTile(_arg_1:UpdateGroundTileVO):void {

@@ -43,8 +43,7 @@ public class WebLoginMediator extends Mediator {
     }
 
     private function onSignIn(_arg_1:AccountData):void {
-        if(this.account is WebAccount)
-        {
+        if (this.account is WebAccount) {
             WebAccount(this.account).rememberMe = this.view.isRememberMeSelected();
         }
         this.view.disable();

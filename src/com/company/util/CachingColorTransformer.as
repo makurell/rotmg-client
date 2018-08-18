@@ -25,7 +25,7 @@ public class CachingColorTransformer {
             _local_3.colorTransform(_local_3.rect, _arg_2);
             _local_4[_arg_2] = _local_3;
         }
-        return (_local_3);
+        return _local_3;
     }
 
     public static function filterBitmapData(_arg_1:BitmapData, _arg_2:BitmapFilter):BitmapData {
@@ -43,13 +43,13 @@ public class CachingColorTransformer {
             _local_3.applyFilter(_local_3, _local_3.rect, new Point(), _arg_2);
             _local_4[_arg_2] = _local_3;
         }
-        return (_local_3);
+        return _local_3;
     }
 
     public static function alphaBitmapData(_arg_1:BitmapData, _arg_2:Number):BitmapData {
-        var _local_3:int = int((_arg_2 * 100));
-        var _local_4:ColorTransform = new ColorTransform(1, 1, 1, (_local_3 / 100));
-        return (transformBitmapData(_arg_1, _local_4));
+        var _local_3:int = int(_arg_2 * 100);
+        var _local_4:ColorTransform = new ColorTransform(1, 1, 1, _local_3 / 100);
+        return transformBitmapData(_arg_1, _local_4);
     }
 
     public static function clear():void {

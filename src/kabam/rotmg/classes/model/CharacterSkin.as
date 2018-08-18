@@ -25,7 +25,7 @@ public class CharacterSkin {
     }
 
     public function getIsSelected():Boolean {
-        return (this.isSelected);
+        return this.isSelected;
     }
 
     public function setIsSelected(_arg_1:Boolean):void {
@@ -36,7 +36,7 @@ public class CharacterSkin {
     }
 
     public function getState():CharacterSkinState {
-        return (this.state);
+        return this.state;
     }
 
     public function setState(_arg_1:CharacterSkinState):void {

@@ -8,11 +8,11 @@ public class MethodHandlerProxy implements MessageHandlerProxy {
 
     public function setMethod(_arg_1:Function):MethodHandlerProxy {
         this.method = _arg_1;
-        return (this);
+        return this;
     }
 
     public function getMethod():Function {
-        return (this.method);
+        return this.method;
     }
 
 

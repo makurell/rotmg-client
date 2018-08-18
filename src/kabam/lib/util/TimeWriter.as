@@ -10,13 +10,13 @@ public class TimeWriter {
 
 
     public function parseTime(_arg_1:Number):String {
-        this.seconds = Math.floor((_arg_1 / 1000));
-        this.minutes = Math.floor((this.seconds / 60));
-        this.hours = Math.floor((this.minutes / 60));
-        this.days = Math.floor((this.hours / 24));
-        this.seconds = (this.seconds % 60);
-        this.minutes = (this.minutes % 60);
-        this.hours = (this.hours % 24);
+        this.seconds = Math.floor(_arg_1 / 1000);
+        this.minutes = Math.floor(this.seconds / 60);
+        this.hours = Math.floor(this.minutes / 60);
+        this.days = Math.floor(this.hours / 24);
+        this.seconds = this.seconds % 60;
+        this.minutes = this.minutes % 60;
+        this.hours = this.hours % 24;
         this.timeStringStarted = false;
         this.textValues = [];
         this.formatUnit(this.days, "d");
@@ -24,11 +24,11 @@ public class TimeWriter {
         this.formatUnit(this.minutes, "m", 2);
         this.formatUnit(this.seconds, "s", 2);
         this.timeStringStarted = false;
-        return (this.textValues.join(" "));
+        return this.textValues.join(" ");
     }
 
     private function formatUnit(_arg_1:int, _arg_2:String, _arg_3:int = -1):void {
-        if ((((_arg_1 == 0)) && (!(this.timeStringStarted)))) {
+        if (_arg_1 == 0 && !this.timeStringStarted) {
             return;
         }
         this.timeStringStarted = true;
@@ -39,10 +39,10 @@ public class TimeWriter {
         var _local_5 = "";
         var _local_6:int = _local_4.length;
         while (_local_6 < _arg_3) {
-            _local_5 = (_local_5 + "0");
+            _local_5 = _local_5 + "0";
             _local_6++;
         }
-        _local_4 = ((_local_5 + _local_4) + _arg_2);
+        _local_4 = _local_5 + _local_4 + _arg_2;
         this.textValues.push(_local_4);
     }
 

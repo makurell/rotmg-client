@@ -19,7 +19,7 @@ public class SelectionGroup {
     }
 
     public function getSelected():Selectable {
-        return (this.selected);
+        return this.selected;
     }
 
     private function replaceSelected(_arg_1:Selectable):void {

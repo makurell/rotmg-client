@@ -39,12 +39,12 @@ public class InfoPane extends Sprite {
         super();
         this.meMap_ = _arg_1;
         this.drawBackground();
-        this.rectText_ = new BaseSimpleText(12, 0xFFFFFF, false, (WIDTH - 10), 0);
+        this.rectText_ = new BaseSimpleText(12, 0xFFFFFF, false, WIDTH - 10, 0);
         this.rectText_.filters = [new DropShadowFilter(0, 0, 0)];
         this.rectText_.y = 4;
         this.rectText_.x = 4;
         addChild(this.rectText_);
-        this.typeText_ = new BaseSimpleText(12, 0xFFFFFF, false, (WIDTH - 10), 0);
+        this.typeText_ = new BaseSimpleText(12, 0xFFFFFF, false, WIDTH - 10, 0);
         this.typeText_.wordWrap = true;
         this.typeText_.filters = [new DropShadowFilter(0, 0, 0)];
         this.typeText_.x = 4;
@@ -64,17 +64,17 @@ public class InfoPane extends Sprite {
 
     private function onEnterFrame(_arg_1:Event):void {
         var _local_2:Rectangle = this.meMap_.mouseRectT();
-        this.rectText_.text = ((("Position: " + _local_2.x) + ", ") + _local_2.y);
-        if ((((_local_2.width > 1)) || ((_local_2.height > 1)))) {
-            this.rectText_.text = (this.rectText_.text + ((("\nRect: " + _local_2.width) + ", ") + _local_2.height));
+        this.rectText_.text = "Position: " + _local_2.x + ", " + _local_2.y;
+        if (_local_2.width > 1 || _local_2.height > 1) {
+            this.rectText_.text = this.rectText_.text + ("\nRect: " + _local_2.width + ", " + _local_2.height);
         }
         this.rectText_.useTextDimensions();
         var _local_3:METile = this.meMap_.getTile(_local_2.x, _local_2.y);
-        var _local_4:Vector.<int> = (((_local_3 == null)) ? Layer.EMPTY_TILE : _local_3.types_);
-        var _local_5:String = (((_local_4[Layer.GROUND] == -1)) ? "None" : GroundLibrary.getIdFromType(_local_4[Layer.GROUND]));
-        var _local_6:String = (((_local_4[Layer.OBJECT] == -1)) ? "None" : ObjectLibrary.getIdFromType(_local_4[Layer.OBJECT]));
-        var _local_7:String = (((_local_4[Layer.REGION] == -1)) ? "None" : RegionLibrary.getIdFromType(_local_4[Layer.REGION]));
-        this.typeText_.htmlText = (((((((("<span class='in'>" + "Ground: ") + _local_5) + "\nObject: ") + _local_6) + (((((_local_3 == null)) || ((_local_3.objName_ == null)))) ? "" : ((" (" + _local_3.objName_) + ")"))) + "\nRegion: ") + _local_7) + "</span>");
+        var _local_4:Vector.<int> = _local_3 == null ? Layer.EMPTY_TILE : _local_3.types_;
+        var _local_5:String = _local_4[Layer.GROUND] == -1 ? "None" : GroundLibrary.getIdFromType(_local_4[Layer.GROUND]);
+        var _local_6:String = _local_4[Layer.OBJECT] == -1 ? "None" : ObjectLibrary.getIdFromType(_local_4[Layer.OBJECT]);
+        var _local_7:String = _local_4[Layer.REGION] == -1 ? "None" : RegionLibrary.getIdFromType(_local_4[Layer.REGION]);
+        this.typeText_.htmlText = "<span class='in'>" + "Ground: " + _local_5 + "\nObject: " + _local_6 + (_local_3 == null || _local_3.objName_ == null ? "" : " (" + _local_3.objName_ + ")") + "\nRegion: " + _local_7 + "</span>";
         this.typeText_.useTextDimensions();
     }
 

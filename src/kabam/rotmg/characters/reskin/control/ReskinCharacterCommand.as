@@ -21,7 +21,7 @@ public class ReskinCharacterCommand {
 
 
     public function execute():void {
-        var _local_1:Reskin = (this.messages.require(GameServerConnection.RESKIN) as Reskin);
+        var _local_1:Reskin = this.messages.require(GameServerConnection.RESKIN) as Reskin;
         _local_1.skinID = this.skin.id;
         var _local_2:Player = StaticInjectorContext.getInjector().getInstance(GameModel).player;
         if (_local_2 != null) {

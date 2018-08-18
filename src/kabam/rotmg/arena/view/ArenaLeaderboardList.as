@@ -31,7 +31,7 @@ public class ArenaLeaderboardList extends Sprite {
         var _local_5:ArenaLeaderboardListItem;
         var _local_3:int;
         while (_local_3 < this.listItemPool.length) {
-            _local_4 = (((_local_3 < _arg_1.length)) ? _arg_1[_local_3] : null);
+            _local_4 = _local_3 < _arg_1.length ? _arg_1[_local_3] : null;
             _local_5 = (this.listItemPool[_local_3] as ArenaLeaderboardListItem);
             _local_5.apply(_local_4, _arg_2);
             _local_3++;

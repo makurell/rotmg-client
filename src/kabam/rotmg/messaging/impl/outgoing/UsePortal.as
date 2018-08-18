@@ -14,7 +14,7 @@ public class UsePortal extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("USEPORTAL", "objectId_"));
+        return formatToString("USEPORTAL", "objectId_");
     }
 
 

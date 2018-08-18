@@ -37,11 +37,11 @@ public class BuyCharacterSkinCommand {
     }
 
     private function isSkinPurchasable():Boolean {
-        return ((this.skin.getState() == CharacterSkinState.PURCHASABLE));
+        return this.skin.getState() == CharacterSkinState.PURCHASABLE;
     }
 
     private function isSkinAffordable():Boolean {
-        return ((this.model.getCredits() >= this.skin.cost));
+        return this.model.getCredits() >= this.skin.cost;
     }
 
     private function purchaseSkin():void {

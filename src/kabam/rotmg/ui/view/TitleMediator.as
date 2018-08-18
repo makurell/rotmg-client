@@ -67,12 +67,10 @@ public class TitleMediator extends Mediator {
         this.view.accountClicked.add(this.handleIntentionToReviewAccount);
         this.view.legendsClicked.add(this.showLegendsScreen);
         this.view.supportClicked.add(this.openSupportPage);
-        if(this.playerModel.isNewToEditing())
-        {
-            this.view.putNoticeTagToOption(ButtonFactory.getEditorButton(),"new");
+        if (this.playerModel.isNewToEditing()) {
+            this.view.putNoticeTagToOption(ButtonFactory.getEditorButton(), "new");
         }
-        if(this.securityQuestionsModel.showSecurityQuestionsOnStartup)
-        {
+        if (this.securityQuestionsModel.showSecurityQuestionsOnStartup) {
             this.openDialog.dispatch(new SecurityQuestionsInfoDialog());
         }
     }
@@ -81,11 +79,11 @@ public class TitleMediator extends Mediator {
         var _local_1:URLVariables = new URLVariables();
         var _local_2:URLRequest = new URLRequest();
         var _local_3:Boolean;
-        if (((DynamicSettings.settingExists("SalesforceMobile")) && ((DynamicSettings.getSettingValue("SalesforceMobile") == 1)))) {
+        if (DynamicSettings.settingExists("SalesforceMobile") && DynamicSettings.getSettingValue("SalesforceMobile") == 1) {
             _local_3 = true;
         }
         var _local_4:String = this.playerModel.getSalesForceData();
-        if ((((_local_4 == "unavailable")) || (!(_local_3)))) {
+        if (_local_4 == "unavailable" || !_local_3) {
             _local_1.language = "en_US";
             _local_1.game = "a0Za000000jIBFUEA4";
             _local_1.issue = "Other_Game_Issues";
@@ -95,7 +93,7 @@ public class TitleMediator extends Mediator {
             navigateToURL(_local_2, "_blank");
         }
         else {
-            if ((((Capabilities.playerType == "PlugIn")) || ((Capabilities.playerType == "ActiveX")))) {
+            if (Capabilities.playerType == "PlugIn" || Capabilities.playerType == "ActiveX") {
                 if (!supportCalledBefore) {
                     ExternalInterface.call("openSalesForceFirstTime", _local_4);
                     supportCalledBefore = true;
@@ -115,8 +113,8 @@ public class TitleMediator extends Mediator {
     }
 
     private function onOptionalButtonsAdded():void {
-        ((this.view.editorClicked) && (this.view.editorClicked.add(this.showMapEditor)));
-        ((this.view.quitClicked) && (this.view.quitClicked.add(this.attemptToCloseClient)));
+        this.view.editorClicked && this.view.editorClicked.add(this.showMapEditor);
+        this.view.quitClicked && this.view.quitClicked.add(this.attemptToCloseClient);
     }
 
     private function showLanguagesScreen():void {
@@ -125,10 +123,10 @@ public class TitleMediator extends Mediator {
 
     private function makeEnvironmentData():EnvironmentData {
         var _local_1:EnvironmentData = new EnvironmentData();
-        _local_1.isDesktop = (Capabilities.playerType == "Desktop");
+        _local_1.isDesktop = Capabilities.playerType == "Desktop";
         _local_1.canMapEdit = this.playerModel.isAdmin() || this.playerModel.mapEditor();
         _local_1.buildLabel = this.setup.getBuildLabel();
-        return (_local_1);
+        return _local_1;
     }
 
     override public function destroy():void {
@@ -138,8 +136,8 @@ public class TitleMediator extends Mediator {
         this.view.legendsClicked.remove(this.showLegendsScreen);
         this.view.supportClicked.remove(this.openSupportPage);
         this.view.optionalButtonsAdded.remove(this.onOptionalButtonsAdded);
-        ((this.view.editorClicked) && (this.view.editorClicked.remove(this.showMapEditor)));
-        ((this.view.quitClicked) && (this.view.quitClicked.remove(this.attemptToCloseClient)));
+        this.view.editorClicked && this.view.editorClicked.remove(this.showMapEditor);
+        this.view.quitClicked && this.view.quitClicked.remove(this.attemptToCloseClient);
     }
 
     private function openKabamTransferView():void {

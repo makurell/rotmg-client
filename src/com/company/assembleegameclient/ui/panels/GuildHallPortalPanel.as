@@ -32,7 +32,7 @@ public class GuildHallPortalPanel extends Panel {
         super(_arg_1);
         this.stageProxy = new StageProxy(this);
         this.owner_ = _arg_2;
-        if ((((gs_.map == null)) || ((gs_.map.player_ == null)))) {
+        if (gs_.map == null || gs_.map.player_ == null) {
             return;
         }
         _local_3 = gs_.map.player_;
@@ -41,7 +41,7 @@ public class GuildHallPortalPanel extends Panel {
         this.nameText_.filters = [new DropShadowFilter(0, 0, 0)];
         this.nameText_.y = 6;
         addChild(this.nameText_);
-        if (((!((_local_3.guildName_ == null))) && ((_local_3.guildName_.length > 0)))) {
+        if (!(_local_3.guildName_ == null) && _local_3.guildName_.length > 0) {
             this.enterButton_ = new DeprecatedTextButton(16, TextKey.PANEL_ENTER);
             this.enterButton_.addEventListener(MouseEvent.CLICK, this.onEnterSpriteClick);
             addChild(this.enterButton_);
@@ -60,11 +60,11 @@ public class GuildHallPortalPanel extends Panel {
 
     private function alignUI():void {
         if (this.noGuildText_) {
-            this.noGuildText_.y = ((HEIGHT - this.noGuildText_.height) - 12);
+            this.noGuildText_.y = HEIGHT - this.noGuildText_.height - 12;
         }
         if (this.enterButton_) {
-            this.enterButton_.x = ((WIDTH / 2) - (this.enterButton_.width / 2));
-            this.enterButton_.y = ((HEIGHT - this.enterButton_.height) - 4);
+            this.enterButton_.x = WIDTH / 2 - this.enterButton_.width / 2;
+            this.enterButton_.y = HEIGHT - this.enterButton_.height - 4;
         }
     }
 
@@ -82,7 +82,7 @@ public class GuildHallPortalPanel extends Panel {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             this.enterPortal();
         }
     }

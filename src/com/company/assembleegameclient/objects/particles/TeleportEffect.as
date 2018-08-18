@@ -10,14 +10,14 @@ public class TeleportEffect extends ParticleEffect {
         var _local_3:int = 20;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _local_5 = ((2 * Math.PI) * Math.random());
-            _local_6 = (0.7 * Math.random());
-            _local_7 = (500 + (1000 * Math.random()));
+            _local_5 = 2 * Math.PI * Math.random();
+            _local_6 = 0.7 * Math.random();
+            _local_7 = 500 + 1000 * Math.random();
             _local_8 = new TeleportParticle(0xFF, 50, 0.1, _local_7);
-            map_.addObj(_local_8, (x_ + (_local_6 * Math.cos(_local_5))), (y_ + (_local_6 * Math.sin(_local_5))));
+            map_.addObj(_local_8, x_ + _local_6 * Math.cos(_local_5), y_ + _local_6 * Math.sin(_local_5));
             _local_4++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
@@ -28,14 +28,14 @@ public class TeleportEffect extends ParticleEffect {
         var _local_3:int = 10;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _local_5 = ((2 * Math.PI) * Math.random());
-            _local_6 = (0.7 * Math.random());
-            _local_7 = (5 + (500 * Math.random()));
+            _local_5 = 2 * Math.PI * Math.random();
+            _local_6 = 0.7 * Math.random();
+            _local_7 = 5 + 500 * Math.random();
             _local_8 = new TeleportParticle(0xFF, 50, 0.1, _local_7);
-            map_.addObj(_local_8, (x_ + (_local_6 * Math.cos(_local_5))), (y_ + (_local_6 * Math.sin(_local_5))));
+            map_.addObj(_local_8, x_ + _local_6 * Math.cos(_local_5), y_ + _local_6 * Math.sin(_local_5));
             _local_4++;
         }
-        return (false);
+        return false;
     }
 
 
@@ -59,12 +59,12 @@ class TeleportParticle extends Particle {
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        z_ = (z_ + ((this.moveVec_.z * _arg_2) * 0.008));
-        return (true);
+        z_ = z_ + this.moveVec_.z * _arg_2 * 0.008;
+        return true;
     }
 
 

@@ -51,7 +51,7 @@ public class PetPanel extends Panel {
     }
 
     private static function sendToBottom(_arg_1:StaticTextButton):void {
-        _arg_1.y = ((HEIGHT - _arg_1.height) - 4);
+        _arg_1.y = HEIGHT - _arg_1.height - 4;
     }
 
 
@@ -65,17 +65,17 @@ public class PetPanel extends Panel {
     private function makeButton(_arg_1:String):StaticTextButton {
         var _local_2:StaticTextButton = new StaticTextButton(FONT_SIZE, _arg_1);
         addChild(_local_2);
-        return (_local_2);
+        return _local_2;
     }
 
     public function setState(_arg_1:uint):void {
-        this.toggleButtons((_arg_1 == PetsConstants.INTERACTING));
+        this.toggleButtons(_arg_1 == PetsConstants.INTERACTING);
     }
 
     public function toggleButtons(_arg_1:Boolean):void {
         this.followButton.visible = _arg_1;
         this.releaseButton.visible = _arg_1;
-        this.unFollowButton.visible = !(_arg_1);
+        this.unFollowButton.visible = !_arg_1;
     }
 
     private function addChildren():void {
@@ -111,12 +111,12 @@ public class PetPanel extends Panel {
     }
 
     private function positionRelease():void {
-        this.releaseButton.x = (((WIDTH - this.releaseButton.width) - INVENTORY_PADDING) - HUD_PADDING);
+        this.releaseButton.x = WIDTH - this.releaseButton.width - INVENTORY_PADDING - HUD_PADDING;
         sendToBottom(this.releaseButton);
     }
 
     private function positionUnfollow():void {
-        this.unFollowButton.x = ((WIDTH - this.unFollowButton.width) / 2);
+        this.unFollowButton.x = (WIDTH - this.unFollowButton.width) / 2;
         sendToBottom(this.unFollowButton);
     }
 

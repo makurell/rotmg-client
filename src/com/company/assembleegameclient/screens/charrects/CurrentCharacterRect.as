@@ -70,11 +70,11 @@ public class CurrentCharacterRect extends CharacterRect {
     }
 
     public function setIcon(_arg_1:DisplayObject):void {
-        ((this.icon) && (selectContainer.removeChild(this.icon)));
+        this.icon && selectContainer.removeChild(this.icon);
         this.icon = _arg_1;
         this.icon.x = CharacterRectConstants.ICON_POS_X;
         this.icon.y = CharacterRectConstants.ICON_POS_Y;
-        ((this.icon) && (selectContainer.addChild(this.icon)));
+        this.icon && selectContainer.addChild(this.icon);
     }
 
     private function makeTagline():void {
@@ -84,10 +84,9 @@ public class CurrentCharacterRect extends CharacterRect {
                 "fame": this.char.fame(),
                 "nextStarFame": this.getNextStarFame()
             }));
-            taglineText.x = (taglineText.x + taglineIcon.width);
+            taglineText.x = taglineText.x + taglineIcon.width;
         }
-        else
-        {
+        else {
             super.makeTaglineIcon();
             super.makeTaglineText(new LineBuilder().setParams(TextKey.CURRENT_CHARACTER_TAGLINE_NOQUEST, {"fame": this.char.fame()}));
             taglineText.x = taglineText.x + taglineIcon.width;
@@ -95,14 +94,14 @@ public class CurrentCharacterRect extends CharacterRect {
     }
 
     private function getNextStarFame():int {
-        return (FameUtil.nextStarFame((((this.charStats == null)) ? 0 : this.charStats.bestFame()), this.char.fame()));
+        return FameUtil.nextStarFame(this.charStats == null ? 0 : this.charStats.bestFame(), this.char.fame());
     }
 
     private function makeDeleteButton():void {
         this.deleteButton = new DeleteXGraphic();
         this.deleteButton.addEventListener(MouseEvent.MOUSE_DOWN, this.onDeleteDown);
-        this.deleteButton.x = (WIDTH - 40);
-        this.deleteButton.y = ((HEIGHT - this.deleteButton.height) * 0.5);
+        this.deleteButton.x = WIDTH - 40;
+        this.deleteButton.y = (HEIGHT - this.deleteButton.height) * 0.5;
         addChild(this.deleteButton);
     }
 

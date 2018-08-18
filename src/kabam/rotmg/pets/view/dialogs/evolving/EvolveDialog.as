@@ -19,7 +19,7 @@ public class EvolveDialog extends PetDialog implements DialogCloser {
         this.evolveAnimation = _arg_1;
         super("EvolveDialog.title", "", "ErrorDialog.ok", null, null);
         this.closeDialogComponent.add(this, Dialog.LEFT_BUTTON);
-        dialogWidth = (_arg_1.width + 1);
+        dialogWidth = _arg_1.width + 1;
     }
 
     override protected function makeUIAndAdd():void {
@@ -27,8 +27,8 @@ public class EvolveDialog extends PetDialog implements DialogCloser {
     }
 
     override protected function drawAdditionalUI():void {
-        this.evolveAnimation.x = ((dialogWidth - this.evolveAnimation.width) / 2);
-        this.evolveAnimation.y = (titleText_.getBounds(box_).bottom + VERTICAL_SPACE);
+        this.evolveAnimation.x = (dialogWidth - this.evolveAnimation.width) / 2;
+        this.evolveAnimation.y = titleText_.getBounds(box_).bottom + VERTICAL_SPACE;
     }
 
     override protected function drawGraphicsTemplate():void {
@@ -38,7 +38,7 @@ public class EvolveDialog extends PetDialog implements DialogCloser {
     }
 
     public function getCloseSignal():Signal {
-        return (this.closeDialogComponent.getCloseSignal());
+        return this.closeDialogComponent.getCloseSignal();
     }
 
 

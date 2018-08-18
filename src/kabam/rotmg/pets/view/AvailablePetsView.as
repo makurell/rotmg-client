@@ -43,8 +43,8 @@ public class AvailablePetsView extends Sprite {
     }
 
     private function positionThis():void {
-        this.x = ((stage.width - this.width) / 2);
-        this.y = ((stage.height - this.height) / 2);
+        this.x = (stage.width - this.width) / 2;
+        this.y = (stage.height - this.height) / 2;
     }
 
     private function waitForTextChanged():void {
@@ -54,7 +54,7 @@ public class AvailablePetsView extends Sprite {
     }
 
     private function positionTextField():void {
-        this.titleTextfield.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) / 2);
+        this.titleTextfield.x = (PetsConstants.WINDOW_BACKGROUND_WIDTH - this.titleTextfield.width) / 2;
     }
 
 

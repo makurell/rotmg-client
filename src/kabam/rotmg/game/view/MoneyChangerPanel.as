@@ -35,7 +35,7 @@ public class MoneyChangerPanel extends ButtonPanel {
     }
 
     private function onKeyDown(_arg_1:KeyboardEvent):void {
-        if ((((_arg_1.keyCode == Parameters.data_.interact)) && ((stage.focus == null)))) {
+        if (_arg_1.keyCode == Parameters.data_.interact && stage.focus == null) {
             this.triggered.dispatch();
         }
     }

@@ -4,8 +4,7 @@ public class SecurityQuestionsData {
 
     public var answers:Array;
 
-    public function SecurityQuestionsData()
-    {
+    public function SecurityQuestionsData() {
         this.answers = [];
     }
 

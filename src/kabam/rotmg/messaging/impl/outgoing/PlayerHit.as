@@ -16,7 +16,7 @@ public class PlayerHit extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("PLAYERHIT", "bulletId_", "objectId_"));
+        return formatToString("PLAYERHIT", "bulletId_", "objectId_");
     }
 
 

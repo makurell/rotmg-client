@@ -46,14 +46,14 @@ public class CurrentArenaRunModel {
     }
 
     public function hasEntry():Boolean {
-        return (!((this.entry.runtime == -1)));
+        return !(this.entry.runtime == -1);
     }
 
     public function saveCurrentUserInfo():void {
         this.clear();
         this.entry.name = this.gameModel.player.name_;
         var _local_1:CharacterSkin = this.classesModel.getCharacterClass(this.gameModel.player.objectType_).skins.getSkin(this.gameModel.player.skinId);
-        this.entry.playerBitmap = this.factory.makeIcon(_local_1.template, _local_1.is16x16 ? 50 : 100,this.gameModel.player.getTex1(), this.gameModel.player.getTex2());
+        this.entry.playerBitmap = this.factory.makeIcon(_local_1.template, _local_1.is16x16 ? 50 : 100, this.gameModel.player.getTex1(), this.gameModel.player.getTex2());
         this.entry.pet = this.petModel.getActivePet();
         this.entry.guildName = this.gameModel.player.guildName_;
         this.entry.guildRank = this.gameModel.player.guildRank_;

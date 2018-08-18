@@ -22,7 +22,7 @@ public class BaseOption extends Option {
         this.desc_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xB3B3B3);
         this.desc_.setStringBuilder(new LineBuilder().setParams(_arg_2));
         this.desc_.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
-        this.desc_.x = (KeyCodeBox.WIDTH + 24);
+        this.desc_.x = KeyCodeBox.WIDTH + 24;
         this.desc_.mouseEnabled = true;
         this.desc_.addEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
         this.desc_.addEventListener(MouseEvent.ROLL_OUT, this.onRollOut);
@@ -56,7 +56,7 @@ public class BaseOption extends Option {
     }
 
     private function removeToolTip():void {
-        if (((!((this.tooltip_ == null))) && (parent.contains(this.tooltip_)))) {
+        if (!(this.tooltip_ == null) && parent.contains(this.tooltip_)) {
             parent.removeChild(this.tooltip_);
         }
     }

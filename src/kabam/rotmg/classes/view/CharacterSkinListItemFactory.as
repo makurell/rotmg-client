@@ -29,7 +29,7 @@ public class CharacterSkinListItemFactory {
             _local_4[_local_5] = this.makeCharacterSkinTile(_local_2[_local_5]);
             _local_5++;
         }
-        return (_local_4);
+        return _local_4;
     }
 
     private function makeCharacterSkinTile(_arg_1:CharacterSkin):CharacterSkinListItem {
@@ -38,17 +38,17 @@ public class CharacterSkinListItemFactory {
         _local_2.setModel(_arg_1);
         _local_2.setLockIcon(AssetLibrary.getImageFromSet("lofiInterface2", 5));
         _local_2.setBuyButton(this.makeBuyButton());
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeBuyButton():LegacyBuyButton {
-        return (new LegacyBuyButton("", 16, 0, Currency.GOLD));
+        return new LegacyBuyButton("", 16, 0, Currency.GOLD);
     }
 
     private function makeIcon(_arg_1:CharacterSkin):Bitmap {
-        var _local_2:int = (((Parameters.skinTypes16.indexOf(_arg_1.id)) != -1) ? 50 : 100);
+        var _local_2:int = Parameters.skinTypes16.indexOf(_arg_1.id) != -1 ? 50 : 100;
         var _local_3:BitmapData = this.characters.makeIcon(_arg_1.template, _local_2);
-        return (new Bitmap(_local_3));
+        return new Bitmap(_local_3);
     }
 
 

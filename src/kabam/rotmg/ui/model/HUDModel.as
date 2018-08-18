@@ -8,11 +8,11 @@ public class HUDModel {
 
 
     public function getPlayerName():String {
-        return (((this.gameSprite.model.getName()) ? this.gameSprite.model.getName() : this.gameSprite.map.player_.name_));
+        return this.gameSprite.model.getName() ? this.gameSprite.model.getName() : this.gameSprite.map.player_.name_;
     }
 
     public function getButtonType():String {
-        return ((((this.gameSprite.gsc_.gameId_ == Parameters.NEXUS_GAMEID)) ? "OPTIONS_BUTTON" : "NEXUS_BUTTON"));
+        return this.gameSprite.gsc_.gameId_ == Parameters.NEXUS_GAMEID ? "OPTIONS_BUTTON" : "NEXUS_BUTTON";
     }
 
 

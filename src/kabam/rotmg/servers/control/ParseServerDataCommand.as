@@ -23,11 +23,11 @@ public class ParseServerDataCommand {
         for each (_local_3 in _local_1) {
             _local_2.push(this.makeServer(_local_3));
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeServer(_arg_1:XML):Server {
-        return (new Server().setName(_arg_1.Name).setAddress(_arg_1.DNS).setPort(Parameters.PORT).setLatLong(Number(_arg_1.Lat), Number(_arg_1.Long)).setUsage(_arg_1.Usage).setIsAdminOnly(_arg_1.hasOwnProperty("AdminOnly")));
+        return new Server().setName(_arg_1.Name).setAddress(_arg_1.DNS).setPort(Parameters.PORT).setLatLong(Number(_arg_1.Lat), Number(_arg_1.Long)).setUsage(_arg_1.Usage).setIsAdminOnly(_arg_1.hasOwnProperty("AdminOnly"));
     }
 
 

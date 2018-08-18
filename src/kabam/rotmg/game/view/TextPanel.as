@@ -23,8 +23,8 @@ public class TextPanel extends Panel {
     public function init(_arg_1:String):void {
         this.textField.setStringBuilder(new LineBuilder().setParams(_arg_1));
         this.textField.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
-        this.textField.x = (WIDTH / 2);
-        this.textField.y = (HEIGHT / 2);
+        this.textField.x = WIDTH / 2;
+        this.textField.y = HEIGHT / 2;
     }
 
     private function initTextfield():void {

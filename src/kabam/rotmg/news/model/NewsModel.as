@@ -43,8 +43,8 @@ public class NewsModel {
                 _local_2.push(_local_3);
             }
             else {
-                _local_4 = (_local_3.slot - 4);
-                _local_5 = (_local_4 + 1);
+                _local_4 = _local_3.slot - 4;
+                _local_5 = _local_4 + 1;
                 this.modalPageData[_local_4] = _local_3;
                 if (Parameters.data_[("newsTimestamp" + _local_5)] != _local_3.endDate) {
                     Parameters.data_[("newsTimestamp" + _local_5)] = _local_3.endDate;
@@ -58,31 +58,31 @@ public class NewsModel {
     }
 
     public function hasValidNews():Boolean {
-        return (((((!((this.news[0] == null))) && (!((this.news[1] == null))))) && (!((this.news[2] == null)))));
+        return !(this.news[0] == null) && !(this.news[1] == null) && !(this.news[2] == null);
     }
 
     public function hasValidModalNews():Boolean {
         var _local_1:int;
         while (_local_1 < MODAL_PAGE_COUNT) {
             if (this.modalPageData[_local_1] == null) {
-                return (false);
+                return false;
             }
             _local_1++;
         }
-        return (true);
+        return true;
     }
 
     private function sortByPriority(_arg_1:Vector.<NewsCellVO>):void {
         var _local_2:NewsCellVO;
         for each (_local_2 in _arg_1) {
-            if (((this.isNewsTimely(_local_2)) && (this.isValidForPlatform(_local_2)))) {
+            if (this.isNewsTimely(_local_2) && this.isValidForPlatform(_local_2)) {
                 this.prioritize(_local_2);
             }
         }
     }
 
     private function prioritize(_arg_1:NewsCellVO):void {
-        var _local_2:uint = (_arg_1.slot - 1);
+        var _local_2:uint = _arg_1.slot - 1;
         if (this.news[_local_2]) {
             _arg_1 = this.comparePriority(this.news[_local_2], _arg_1);
         }
@@ -90,12 +90,12 @@ public class NewsModel {
     }
 
     private function comparePriority(_arg_1:NewsCellVO, _arg_2:NewsCellVO):NewsCellVO {
-        return ((((_arg_1.priority) < _arg_2.priority) ? _arg_1 : _arg_2));
+        return _arg_1.priority < _arg_2.priority ? _arg_1 : _arg_2;
     }
 
     private function isNewsTimely(_arg_1:NewsCellVO):Boolean {
         var _local_2:Number = new Date().getTime();
-        return ((((_arg_1.startDate < _local_2)) && ((_local_2 < _arg_1.endDate))));
+        return _arg_1.startDate < _local_2 && _local_2 < _arg_1.endDate;
     }
 
     public function buildModalPages():void {
@@ -111,15 +111,15 @@ public class NewsModel {
     }
 
     public function getModalPage(_arg_1:int):NewsModalPage {
-        if (((((((!((this.modalPages == null))) && ((_arg_1 > 0)))) && ((_arg_1 <= this.modalPages.length)))) && (!((this.modalPages[(_arg_1 - 1)] == null))))) {
-            return (this.modalPages[(_arg_1 - 1)]);
+        if (!(this.modalPages == null) && _arg_1 > 0 && _arg_1 <= this.modalPages.length && !(this.modalPages[(_arg_1 - 1)] == null)) {
+            return this.modalPages[(_arg_1 - 1)];
         }
-        return (new NewsModalPage("No new information", "Please check back later."));
+        return new NewsModalPage("No new information", "Please check back later.");
     }
 
     private function isValidForPlatform(_arg_1:NewsCellVO):Boolean {
         var _local_2:String = this.account.gameNetwork();
-        return (!((_arg_1.networks.indexOf(_local_2) == -1)));
+        return !(_arg_1.networks.indexOf(_local_2) == -1);
     }
 
 

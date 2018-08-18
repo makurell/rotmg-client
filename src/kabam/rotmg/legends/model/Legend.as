@@ -18,11 +18,11 @@ public class Legend implements FameVO {
 
 
     public function getAccountId():String {
-        return (this.accountId);
+        return this.accountId;
     }
 
     public function getCharacterId():int {
-        return (this.charId);
+        return this.charId;
     }
 
 

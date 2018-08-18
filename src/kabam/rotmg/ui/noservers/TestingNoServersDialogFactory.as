@@ -8,7 +8,7 @@ public class TestingNoServersDialogFactory implements NoServersDialogFactory {
 
 
     public function makeDialog():Dialog {
-        return (new Dialog(TITLE, BODY, null, null));
+        return new Dialog(TITLE, BODY, null, null);
     }
 
 

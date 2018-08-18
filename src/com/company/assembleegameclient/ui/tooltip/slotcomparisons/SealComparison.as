@@ -35,7 +35,7 @@ public class SealComparison extends SlotComparison {
     }
 
     private function canCompare():Boolean {
-        return (((((((!((this.healingTag == null))) && (!((this.damageTag == null))))) && (!((this.otherHealingTag == null))))) && (!((this.otherDamageTag == null)))));
+        return !(this.healingTag == null) && !(this.damageTag == null) && !(this.otherHealingTag == null) && !(this.otherDamageTag == null);
     }
 
     private function getEffectTag(xml:XML, effectName:String):XML {
@@ -44,10 +44,10 @@ public class SealComparison extends SlotComparison {
         matches = xml.Activate.(text() == "ConditionEffectAura");
         for each (tag in matches) {
             if (tag.@effect == effectName) {
-                return (tag);
+                return tag;
             }
         }
-        return (null);
+        return null;
     }
 
     private function handleHealingText():void {
@@ -55,9 +55,9 @@ public class SealComparison extends SlotComparison {
         var _local_2:int = int(this.otherHealingTag.@duration);
         var _local_3:Number = Number(this.healingTag.@range);
         var _local_4:Number = Number(this.otherHealingTag.@range);
-        var _local_5:Number = (((0.5 * _local_1) * 0.5) * _local_3);
-        var _local_6:Number = (((0.5 * _local_2) * 0.5) * _local_4);
-        var _local_7:uint = getTextColor((_local_5 - _local_6));
+        var _local_5:Number = 0.5 * _local_1 * 0.5 * _local_3;
+        var _local_6:Number = 0.5 * _local_2 * 0.5 * _local_4;
+        var _local_7:uint = getTextColor(_local_5 - _local_6);
         var _local_8:AppendingLineBuilder = new AppendingLineBuilder();
         _local_8.pushParams(TextKey.WITHIN_SQRS, {"range": this.healingTag.@range}, TooltipHelper.getOpenTag(_local_7), TooltipHelper.getCloseTag());
         _local_8.pushParams(TextKey.EFFECT_FOR_DURATION, {
@@ -73,9 +73,9 @@ public class SealComparison extends SlotComparison {
         var _local_2:int = int(this.otherDamageTag.@duration);
         var _local_3:Number = Number(this.damageTag.@range);
         var _local_4:Number = Number(this.otherDamageTag.@range);
-        var _local_5:Number = (((0.5 * _local_1) * 0.5) * _local_3);
-        var _local_6:Number = (((0.5 * _local_2) * 0.5) * _local_4);
-        var _local_7:uint = getTextColor((_local_5 - _local_6));
+        var _local_5:Number = 0.5 * _local_1 * 0.5 * _local_3;
+        var _local_6:Number = 0.5 * _local_2 * 0.5 * _local_4;
+        var _local_7:uint = getTextColor(_local_5 - _local_6);
         var _local_8:AppendingLineBuilder = new AppendingLineBuilder();
         _local_8.pushParams(TextKey.WITHIN_SQRS, {"range": this.damageTag.@range}, TooltipHelper.getOpenTag(_local_7), TooltipHelper.getCloseTag());
         _local_8.pushParams(TextKey.EFFECT_FOR_DURATION, {

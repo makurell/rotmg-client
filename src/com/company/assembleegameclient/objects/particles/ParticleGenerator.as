@@ -31,7 +31,7 @@ public class ParticleGenerator extends ParticleEffect {
     }
 
     public static function attachParticleGenerator(_arg_1:EffectProperties, _arg_2:GameObject):ParticleGenerator {
-        return (new (ParticleGenerator)(_arg_1, _arg_2));
+        return new ParticleGenerator(_arg_1, _arg_2);
     }
 
 
@@ -39,17 +39,17 @@ public class ParticleGenerator extends ParticleEffect {
         var _local_4:Number;
         var _local_9:BaseParticle;
         var _local_10:BaseParticle;
-        var _local_3:Number = (_arg_1 / 1000);
-        _local_4 = (_arg_2 / 1000);
+        var _local_3:Number = _arg_1 / 1000;
+        _local_4 = _arg_2 / 1000;
         if (this.targetGO.map_ == null) {
-            return (false);
+            return false;
         }
         x_ = this.targetGO.x_;
         y_ = this.targetGO.y_;
-        z_ = (this.targetGO.z_ + this.effectProps.zOffset);
-        this.totalTime = (this.totalTime + _local_4);
-        var _local_5:Number = (this.effectProps.rate * this.totalTime);
-        var _local_6:int = (_local_5 - this.generatedParticles);
+        z_ = this.targetGO.z_ + this.effectProps.zOffset;
+        this.totalTime = this.totalTime + _local_4;
+        var _local_5:Number = this.effectProps.rate * this.totalTime;
+        var _local_6:int = _local_5 - this.generatedParticles;
         var _local_7:int;
         while (_local_7 < _local_6) {
             if (this.particlePool.length) {
@@ -58,16 +58,16 @@ public class ParticleGenerator extends ParticleEffect {
             else {
                 _local_9 = new BaseParticle(this.bitmapData);
             }
-            _local_9.initialize((this.effectProps.life + (this.effectProps.lifeVariance * ((2 * Math.random()) - 1))), (this.effectProps.speed + (this.effectProps.speedVariance * ((2 * Math.random()) - 1))), (this.effectProps.speed + (this.effectProps.speedVariance * ((2 * Math.random()) - 1))), (this.effectProps.rise + (this.effectProps.riseVariance * ((2 * Math.random()) - 1))), z_);
-            map_.addObj(_local_9, (x_ + (this.effectProps.rangeX * ((2 * Math.random()) - 1))), (y_ + (this.effectProps.rangeY * ((2 * Math.random()) - 1))));
+            _local_9.initialize(this.effectProps.life + this.effectProps.lifeVariance * (2 * Math.random() - 1), this.effectProps.speed + this.effectProps.speedVariance * (2 * Math.random() - 1), this.effectProps.speed + this.effectProps.speedVariance * (2 * Math.random() - 1), this.effectProps.rise + this.effectProps.riseVariance * (2 * Math.random() - 1), z_);
+            map_.addObj(_local_9, x_ + this.effectProps.rangeX * (2 * Math.random() - 1), y_ + this.effectProps.rangeY * (2 * Math.random() - 1));
             this.liveParticles.push(_local_9);
             _local_7++;
         }
-        this.generatedParticles = (this.generatedParticles + _local_6);
+        this.generatedParticles = this.generatedParticles + _local_6;
         var _local_8:int;
         while (_local_8 < this.liveParticles.length) {
             _local_10 = this.liveParticles[_local_8];
-            _local_10.timeLeft = (_local_10.timeLeft - _local_4);
+            _local_10.timeLeft = _local_10.timeLeft - _local_4;
             if (_local_10.timeLeft <= 0) {
                 this.liveParticles.splice(_local_8, 1);
                 map_.removeObj(_local_10.objectId_);
@@ -75,14 +75,14 @@ public class ParticleGenerator extends ParticleEffect {
                 this.particlePool.push(_local_10);
             }
             else {
-                _local_10.spdZ = (_local_10.spdZ + (this.effectProps.riseAcc * _local_4));
-                _local_10.x_ = (_local_10.x_ + (_local_10.spdX * _local_4));
-                _local_10.y_ = (_local_10.y_ + (_local_10.spdY * _local_4));
-                _local_10.z_ = (_local_10.z_ + (_local_10.spdZ * _local_4));
+                _local_10.spdZ = _local_10.spdZ + this.effectProps.riseAcc * _local_4;
+                _local_10.x_ = _local_10.x_ + _local_10.spdX * _local_4;
+                _local_10.y_ = _local_10.y_ + _local_10.spdY * _local_4;
+                _local_10.z_ = _local_10.z_ + _local_10.spdZ * _local_4;
             }
             _local_8++;
         }
-        return (true);
+        return true;
     }
 
     override public function removeFromMap():void {

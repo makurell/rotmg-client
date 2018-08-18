@@ -25,19 +25,19 @@ public class PetDialogStyler {
 
     public function drawGraphics():void {
         var _local_1:TextFieldDisplayConcrete = this.dialog.titleText_;
-        var _local_2:Number = (_local_1.getBounds(this.dialog.rect_).bottom + this.dialog.titleYPosition);
+        var _local_2:Number = _local_1.getBounds(this.dialog.rect_).bottom + this.dialog.titleYPosition;
         this.drawLine(_local_2);
     }
 
     public function drawLine(_arg_1:Number):void {
         this.dialog.rect_.graphics.moveTo(0, _arg_1);
         this.dialog.rect_.graphics.beginFill(0x666666, 1);
-        this.dialog.rect_.graphics.drawRect(0, _arg_1, (this.dialog.dialogWidth - 1), 2);
+        this.dialog.rect_.graphics.drawRect(0, _arg_1, this.dialog.dialogWidth - 1, 2);
     }
 
     public function positionText():void {
         var _local_1:TextFieldDisplayConcrete = this.dialog.titleText_;
-        this.dialog.textText_.y = ((_local_1.getBounds(this.dialog.rect_).bottom + this.dialog.titleYPosition) + lineToTextSpace);
+        this.dialog.textText_.y = _local_1.getBounds(this.dialog.rect_).bottom + this.dialog.titleYPosition + lineToTextSpace;
     }
 
 

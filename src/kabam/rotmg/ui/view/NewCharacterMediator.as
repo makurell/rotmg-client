@@ -57,8 +57,7 @@ public class NewCharacterMediator extends Mediator {
         this.updateNewCharacterScreen.add(this.onUpdate);
         this.buyCharacterPending.add(this.onBuyCharacterPending);
         this.view.initialize(this.playerModel);
-        if(this.securityQuestionsModel.showSecurityQuestionsOnStartup)
-        {
+        if (this.securityQuestionsModel.showSecurityQuestionsOnStartup) {
             this.openDialog.dispatch(new SecurityQuestionsInfoDialog());
         }
     }

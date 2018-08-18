@@ -12,7 +12,7 @@ public class Requirement {
     public function Requirement(_arg_1:XML) {
         this.type_ = String(_arg_1);
         var _local_2:String = String(_arg_1.@objectId);
-        if (((!((_local_2 == null))) && (!((_local_2 == ""))))) {
+        if (!(_local_2 == null) && !(_local_2 == "")) {
             this.objectType_ = ObjectLibrary.idToType_[_local_2];
         }
         this.objectName_ = String(_arg_1.@objectName).replace("tutorial_script", "tutorial");

@@ -13,7 +13,7 @@ public class LogErrorCommand {
 
     public function execute():void {
         this.logger.error(this.event.text);
-        if (((this.event["error"]) && ((this.event["error"] is Error)))) {
+        if (this.event["error"] && (this.event["error"] is Error)) {
             this.logErrorObject(this.event["error"]);
         }
     }

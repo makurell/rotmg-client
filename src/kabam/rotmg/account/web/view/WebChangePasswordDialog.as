@@ -32,7 +32,7 @@ public class WebChangePasswordDialog extends Frame {
 
     private function onChange(_arg_1:MouseEvent):void {
         var _local_2:ChangePasswordData;
-        if (((((this.isCurrentPasswordValid()) && (this.isNewPasswordValid()))) && (this.isNewPasswordVerified()))) {
+        if (this.isCurrentPasswordValid() && this.isNewPasswordValid() && this.isNewPasswordVerified()) {
             disable();
             _local_2 = new ChangePasswordData();
             _local_2.currentPassword = this.password_.text();
@@ -42,27 +42,27 @@ public class WebChangePasswordDialog extends Frame {
     }
 
     private function isCurrentPasswordValid():Boolean {
-        var _local_1 = (this.password_.text().length >= 5);
+        var _local_1 = this.password_.text().length >= 5;
         if (!_local_1) {
             this.password_.setError(TextKey.WEB_CHANGE_PASSWORD_INCORRECT);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isNewPasswordValid():Boolean {
-        var _local_1 = (this.newPassword_.text().length >= 5);
+        var _local_1 = this.newPassword_.text().length >= 5;
         if (!_local_1) {
             this.newPassword_.setError(TextKey.LINK_WEB_ACCOUNT_SHORT);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function isNewPasswordVerified():Boolean {
-        var _local_1 = (this.newPassword_.text() == this.retypeNewPassword_.text());
+        var _local_1 = this.newPassword_.text() == this.retypeNewPassword_.text();
         if (!_local_1) {
             this.retypeNewPassword_.setError(TextKey.PASSWORD_DOES_NOT_MATCH);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     public function setError(_arg_1:String):void {

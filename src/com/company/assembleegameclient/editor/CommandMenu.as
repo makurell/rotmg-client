@@ -18,7 +18,7 @@ public class CommandMenu extends Sprite {
     }
 
     public function getCommand():int {
-        return (this.selected_.command_);
+        return this.selected_.command_;
     }
 
     public function setCommand(_arg_1:int):void {
@@ -67,18 +67,17 @@ public class CommandMenu extends Sprite {
         var _local_5:CommandMenuItem = new CommandMenuItem(_arg_1, _arg_3, _arg_4);
         _local_5.y = this.yOffset_;
         addChild(_local_5);
-        if(_arg_2 != -1)
-        {
+        if (_arg_2 != -1) {
             this.keyCodeDict_[_arg_2] = _local_5;
         }
         if (this.selected_ == null) {
             this.setSelected(_local_5);
         }
-        this.yOffset_ = (this.yOffset_ + 30);
+        this.yOffset_ = this.yOffset_ + 30;
     }
 
     protected function addBreak():void {
-        this.yOffset_ = (this.yOffset_ + 30);
+        this.yOffset_ = this.yOffset_ + 30;
     }
 
 

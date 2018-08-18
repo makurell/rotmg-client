@@ -9,7 +9,7 @@ public class SFX {
 
 
     public static function load():void {
-        sfxTrans_ = new SoundTransform(((Parameters.data_.playSFX) ? 1 : 0));
+        sfxTrans_ = new SoundTransform(Parameters.data_.playSFX ? 1 : 0);
     }
 
     public static function setPlaySFX(_arg_1:Boolean):void {

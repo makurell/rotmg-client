@@ -14,37 +14,31 @@ public class SecurityQuestionsDialog extends Frame {
     private var fields:Array;
     private var questionsList:Array;
 
-    public function SecurityQuestionsDialog(_arg_1:Array, _arg_2:Array)
-    {
+    public function SecurityQuestionsDialog(_arg_1:Array, _arg_2:Array) {
         this.errors = [];
         this.questionsList = _arg_1;
         super(TextKey.SECURITY_QUESTIONS_DIALOG_TITLE, "", TextKey.SECURITY_QUESTIONS_DIALOG_SAVE);
         this.createAssets();
-        if(_arg_1.length == _arg_2.length)
-        {
+        if (_arg_1.length == _arg_2.length) {
             this.updateAnswers(_arg_2);
         }
     }
 
-    public function updateAnswers(_arg_1:Array):*
-    {
+    public function updateAnswers(_arg_1:Array):* {
         var _local_3:TextInputField;
         var _local_2:int = 1;
-        for each(_local_3 in this.fields)
-        {
+        for each(_local_3 in this.fields) {
             _local_3.inputText_.text = _arg_1[_local_2 - 1];
             _local_2++;
         }
     }
 
-    private function createAssets():void
-    {
+    private function createAssets():void {
         var _local_2:String;
         var _local_3:TextInputField;
         var _local_1:int = 1;
         this.fields = [];
-        for each(_local_2 in this.questionsList)
-        {
+        for each(_local_2 in this.questionsList) {
             _local_3 = new TextInputField(_local_2, false, 240);
             addTextInputField(_local_3);
             _local_3.inputText_.tabEnabled = true;
@@ -57,31 +51,25 @@ public class SecurityQuestionsDialog extends Frame {
         rightButton_.tabEnabled = true;
     }
 
-    public function clearErrors():void
-    {
+    public function clearErrors():void {
         var _local_1:TextInputField;
         titleText_.setStringBuilder(new LineBuilder().setParams(TextKey.SECURITY_QUESTIONS_DIALOG_TITLE));
         titleText_.setColor(0xB3B3B3);
         this.errors = [];
-        for each(_local_1 in this.fields)
-        {
+        for each(_local_1 in this.fields) {
             _local_1.setErrorHighlight(false);
         }
     }
 
-    public function areQuestionsValid():Boolean
-    {
+    public function areQuestionsValid():Boolean {
         var _local_1:TextInputField;
-        for each(_local_1 in this.fields)
-        {
-            if(_local_1.inputText_.length < this.minQuestionLength)
-            {
+        for each(_local_1 in this.fields) {
+            if (_local_1.inputText_.length < this.minQuestionLength) {
                 this.errors.push(TextKey.SECURITY_QUESTIONS_TOO_SHORT);
                 _local_1.setErrorHighlight(true);
                 return false;
             }
-            if(_local_1.inputText_.length > this.maxQuestionLength)
-            {
+            if (_local_1.inputText_.length > this.maxQuestionLength) {
                 this.errors.push(TextKey.SECURITY_QUESTIONS_TOO_LONG);
                 _local_1.setErrorHighlight(true);
                 return false;
@@ -90,38 +78,32 @@ public class SecurityQuestionsDialog extends Frame {
         return true;
     }
 
-    public function displayErrorText():void
-    {
-        var _local_1:String = this.errors.length == 1?this.errors[0]:TextKey.MULTIPLE_ERRORS_MESSAGE;
+    public function displayErrorText():void {
+        var _local_1:String = this.errors.length == 1 ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE;
         this.setError(_local_1);
     }
 
-    public function dispose():void
-    {
+    public function dispose():void {
         this.errors = null;
         this.fields = null;
         this.questionsList = null;
     }
 
-    public function getAnswers():Array
-    {
+    public function getAnswers():Array {
         var _local_2:TextInputField;
         var _local_1:Array = [];
-        for each(_local_2 in this.fields)
-        {
+        for each(_local_2 in this.fields) {
             _local_1.push(_local_2.inputText_.text);
         }
         return _local_1;
     }
 
-    override public function disable():void
-    {
+    override public function disable():void {
         super.disable();
         titleText_.setStringBuilder(new LineBuilder().setParams(TextKey.SECURITY_QUESTIONS_SAVING_IN_PROGRESS));
     }
 
-    public function setError(_arg_1:String):void
-    {
+    public function setError(_arg_1:String):void {
         titleText_.setStringBuilder(new LineBuilder().setParams(_arg_1, {"min": this.minQuestionLength}));
         titleText_.setColor(0xFC8642);
     }

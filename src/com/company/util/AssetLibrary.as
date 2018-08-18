@@ -38,7 +38,7 @@ public class AssetLibrary {
             imageSets_[_arg_1] = _local_3;
         }
         _local_3.add(_arg_2);
-        var _local_4:int = (_local_3.images_.length - 1);
+        var _local_4:int = _local_3.images_.length - 1;
         imageLookup_[_local_3.images_[_local_4]] = [_arg_1, _local_4];
     }
 
@@ -51,32 +51,32 @@ public class AssetLibrary {
     }
 
     public static function lookupImage(_arg_1:BitmapData):Object {
-        return (imageLookup_[_arg_1]);
+        return imageLookup_[_arg_1];
     }
 
     public static function getImage(_arg_1:String):BitmapData {
-        return (images_[_arg_1]);
+        return images_[_arg_1];
     }
 
     public static function getImageSet(_arg_1:String):ImageSet {
-        return (imageSets_[_arg_1]);
+        return imageSets_[_arg_1];
     }
 
     public static function getImageFromSet(_arg_1:String, _arg_2:int):BitmapData {
         var _local_3:ImageSet = imageSets_[_arg_1];
-        return (_local_3.images_[_arg_2]);
+        return _local_3.images_[_arg_2];
     }
 
     public static function getSound(_arg_1:String):Sound {
         var _local_2:Array = sounds_[_arg_1];
-        var _local_3:int = (Math.random() * _local_2.length);
-        return (new (sounds_[_arg_1][_local_3])());
+        var _local_3:int = Math.random() * _local_2.length;
+        return new sounds_[_arg_1][_local_3]();
     }
 
     public static function playSound(_arg_1:String, _arg_2:Number = 1):void {
         var _local_3:Array = sounds_[_arg_1];
-        var _local_4:int = (Math.random() * _local_3.length);
-        var _local_5:Sound = new (sounds_[_arg_1][_local_4])();
+        var _local_4:int = Math.random() * _local_3.length;
+        var _local_5:Sound = new sounds_[_arg_1][_local_4]();
         var _local_6:SoundTransform;
         if (_arg_2 != 1) {
             _local_6 = new SoundTransform(_arg_2);

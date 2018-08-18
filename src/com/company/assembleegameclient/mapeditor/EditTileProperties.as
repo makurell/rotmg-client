@@ -29,9 +29,9 @@ public class EditTileProperties extends Sprite {
 
     public function getObjectName():String {
         if (this.frame_.objectName_.text() == "") {
-            return (null);
+            return null;
         }
-        return (this.frame_.objectName_.text());
+        return this.frame_.objectName_.text();
     }
 
     public function onComplete(_arg_1:Event):void {

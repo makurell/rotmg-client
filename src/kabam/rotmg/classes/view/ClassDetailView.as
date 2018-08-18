@@ -41,7 +41,7 @@ public class ClassDetailView extends Sprite {
         this.waiter.complete.add(this.layout);
         _local_1 = new DropShadowFilter(0, 0, 0, 1, 8, 8);
         this.animContainer = new Sprite();
-        this.animContainer.x = ((WIDTH - 104) * 0.5);
+        this.animContainer.x = (WIDTH - 104) * 0.5;
         addChild(this.animContainer);
         this.classNameText = new TextFieldDisplayConcrete().setSize(20).setColor(0xFFFFFF).setBold(true).setTextWidth(TEXT_WIDTH);
         this.classNameText.filters = [_local_1];
@@ -98,23 +98,23 @@ public class ClassDetailView extends Sprite {
     }
 
     public function setNextGoal(_arg_1:String, _arg_2:int):void {
-        this.showNextGoal = !((_arg_2 == -1));
+        this.showNextGoal = !(_arg_2 == -1);
         if (this.showNextGoal) {
             this.nextGoalDetailText.setStringBuilder(new LineBuilder().setParams(TextKey.CLASS_NEXT_GOAL_DETAIL, {
                 "goal": String(_arg_2),
                 "quest": _arg_1
             }));
-            this.nextGoalDetailText.y = (this.nextGoalText.y + this.nextGoalText.height);
-            this.nextGoalDetailText.x = ((WIDTH / 2) - (this.nextGoalDetailText.width / 2));
+            this.nextGoalDetailText.y = this.nextGoalText.y + this.nextGoalText.height;
+            this.nextGoalDetailText.x = WIDTH / 2 - this.nextGoalDetailText.width / 2;
             this.waiter.push(this.nextGoalDetailText.textChanged);
             this.waiter.push(this.nextGoalText.textChanged);
         }
     }
 
     public function setWalkingAnimation(_arg_1:Animation):void {
-        ((this.animation) && (this.removeAnimation(this.animation)));
+        this.animation && this.removeAnimation(this.animation);
         this.animation = _arg_1;
-        ((this.animation) && (this.addAnimation(this.animation)));
+        this.animation && this.addAnimation(this.animation);
         this.layout();
     }
 
@@ -129,29 +129,29 @@ public class ClassDetailView extends Sprite {
     }
 
     private function layout():void {
-        this.classNameText.x = ((WIDTH / 2) - (this.classNameText.width / 2));
+        this.classNameText.x = WIDTH / 2 - this.classNameText.width / 2;
         this.classNameText.y = 110;
-        this.classDescriptionText.y = ((this.classNameText.y + this.classNameText.height) + 5);
-        this.classDescriptionText.x = ((WIDTH / 2) - (this.classDescriptionText.width / 2));
-        this.questCompletionText.y = ((this.classDescriptionText.y + this.classDescriptionText.height) + 20);
-        this.questCompletionText.x = (RIGHT_JUSTIFICATION_STATS - this.questCompletionText.width);
-        this.questCompletedStars.y = (this.questCompletionText.y - 2);
-        this.questCompletedStars.x = (RIGHT_JUSTIFICATION_STATS + 18);
-        this.levelTitleText.y = ((this.questCompletionText.y + this.questCompletionText.height) + 5);
-        this.levelTitleText.x = (RIGHT_JUSTIFICATION_STATS - this.levelTitleText.width);
+        this.classDescriptionText.y = this.classNameText.y + this.classNameText.height + 5;
+        this.classDescriptionText.x = WIDTH / 2 - this.classDescriptionText.width / 2;
+        this.questCompletionText.y = this.classDescriptionText.y + this.classDescriptionText.height + 20;
+        this.questCompletionText.x = RIGHT_JUSTIFICATION_STATS - this.questCompletionText.width;
+        this.questCompletedStars.y = this.questCompletionText.y - 2;
+        this.questCompletedStars.x = RIGHT_JUSTIFICATION_STATS + 18;
+        this.levelTitleText.y = this.questCompletionText.y + this.questCompletionText.height + 5;
+        this.levelTitleText.x = RIGHT_JUSTIFICATION_STATS - this.levelTitleText.width;
         this.levelText.y = this.levelTitleText.y;
-        this.levelText.x = (RIGHT_JUSTIFICATION_STATS + 18);
-        this.fameTitleText.y = ((this.levelTitleText.y + this.levelTitleText.height) + 5);
-        this.fameTitleText.x = (RIGHT_JUSTIFICATION_STATS - this.fameTitleText.width);
+        this.levelText.x = RIGHT_JUSTIFICATION_STATS + 18;
+        this.fameTitleText.y = this.levelTitleText.y + this.levelTitleText.height + 5;
+        this.fameTitleText.x = RIGHT_JUSTIFICATION_STATS - this.fameTitleText.width;
         this.fameText.y = this.fameTitleText.y;
-        this.fameText.x = (RIGHT_JUSTIFICATION_STATS + 18);
-        this.fameIcon.y = (this.fameTitleText.y - 2);
-        this.fameIcon.x = ((this.fameText.x + this.fameText.width) + 3);
-        this.nextGoalText.y = ((this.fameTitleText.y + this.fameTitleText.height) + 17);
-        this.nextGoalText.x = ((WIDTH / 2) - (this.nextGoalText.width / 2));
+        this.fameText.x = RIGHT_JUSTIFICATION_STATS + 18;
+        this.fameIcon.y = this.fameTitleText.y - 2;
+        this.fameIcon.x = this.fameText.x + this.fameText.width + 3;
+        this.nextGoalText.y = this.fameTitleText.y + this.fameTitleText.height + 17;
+        this.nextGoalText.x = WIDTH / 2 - this.nextGoalText.width / 2;
         this.nextGoalText.visible = this.showNextGoal;
-        this.nextGoalDetailText.y = (this.nextGoalText.y + this.nextGoalText.height);
-        this.nextGoalDetailText.x = ((WIDTH / 2) - (this.nextGoalDetailText.width / 2));
+        this.nextGoalDetailText.y = this.nextGoalText.y + this.nextGoalText.height;
+        this.nextGoalDetailText.x = WIDTH / 2 - this.nextGoalDetailText.width / 2;
         this.nextGoalDetailText.visible = this.showNextGoal;
     }
 

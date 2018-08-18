@@ -20,12 +20,12 @@ public class ClosedGiftChest extends GameObject implements IInteractiveObject {
     }
 
     public function getTooltip():ToolTip {
-        return (new TextToolTip(0x363636, 0x9B9B9B, TextKey.CLOSEDGIFTCHEST_TITLE, TextKey.TEXTPANEL_GIFTCHESTISEMPTY, 200));
+        return new TextToolTip(0x363636, 0x9B9B9B, TextKey.CLOSEDGIFTCHEST_TITLE, TextKey.TEXTPANEL_GIFTCHESTISEMPTY, 200);
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
         this.textPanelUpdateSignal.dispatch(TextKey.TEXTPANEL_GIFTCHESTISEMPTY);
-        return (new TextPanel(_arg_1));
+        return new TextPanel(_arg_1);
     }
 
 

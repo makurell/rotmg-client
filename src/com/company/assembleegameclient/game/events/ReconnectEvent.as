@@ -28,11 +28,11 @@ public class ReconnectEvent extends Event {
     }
 
     override public function clone():Event {
-        return (new ReconnectEvent(this.server_, this.gameId_, this.createCharacter_, this.charId_, this.keyTime_, this.key_, this.isFromArena_));
+        return new ReconnectEvent(this.server_, this.gameId_, this.createCharacter_, this.charId_, this.keyTime_, this.key_, this.isFromArena_);
     }
 
     override public function toString():String {
-        return (formatToString(RECONNECT, "server_", "gameId_", "charId_", "keyTime_", "key_", "isFromArena_"));
+        return formatToString(RECONNECT, "server_", "gameId_", "charId_", "keyTime_", "key_", "isFromArena_");
     }
 
 

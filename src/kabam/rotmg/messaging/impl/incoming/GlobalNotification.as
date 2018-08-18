@@ -16,7 +16,7 @@ public class GlobalNotification extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("GLOBAL_NOTIFICATION", "type", "text"));
+        return formatToString("GLOBAL_NOTIFICATION", "type", "text");
     }
 
 

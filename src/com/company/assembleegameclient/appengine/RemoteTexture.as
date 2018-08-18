@@ -33,7 +33,7 @@ public class RemoteTexture {
     }
 
     public function run():void {
-        var _local_1:String = (((this.instance_) == "testing") ? "rotmghrdtesting.appspot.com" : "realmofthemadgodhrd.appspot.com");
+        var _local_1:String = this.instance_ == "testing" ? "rotmghrdtesting.appspot.com" : "realmofthemadgodhrd.appspot.com";
         var _local_2:String = URL_PATTERN.replace("{DOMAIN}", _local_1);
         var _local_3:Object = {};
         _local_3.id = this.id_;

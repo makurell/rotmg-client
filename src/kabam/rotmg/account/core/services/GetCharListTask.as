@@ -81,7 +81,7 @@ public class GetCharListTask extends BaseTask {
         _local_1.play_platform = this.account.playPlatform();
         _local_1.do_login = Parameters.sendLogin_;
         MoreObjectUtil.addToObject(_local_1, this.account.getCredentials());
-        return (_local_1);
+        return _local_1;
     }
 
     private function onListComplete(_arg_1:String):void {
@@ -102,20 +102,17 @@ public class GetCharListTask extends BaseTask {
         }
         else {
             if (_local_2.hasOwnProperty("Account")) {
-                if ((this.account is WebAccount)) {
+                if (this.account is WebAccount) {
                     WebAccount(this.account).userDisplayName = _local_2.Account[0].Name;
                     WebAccount(this.account).paymentProvider = _local_2.Account[0].PaymentProvider;
-                    if(_local_2.Account[0].hasOwnProperty("PaymentData"))
-                    {
+                    if (_local_2.Account[0].hasOwnProperty("PaymentData")) {
                         WebAccount(this.account).paymentData = _local_2.Account[0].PaymentData;
                     }
                 }
-                if(_local_2.Account[0].hasOwnProperty("SecurityQuestions"))
-                {
+                if (_local_2.Account[0].hasOwnProperty("SecurityQuestions")) {
                     this.securityQuestionsModel.showSecurityQuestionsOnStartup = _local_2.Account[0].SecurityQuestions[0].ShowSecurityQuestionsDialog[0] == "1";
                     this.securityQuestionsModel.clearQuestionsList();
-                    for each(_local_5 in _local_2.Account[0].SecurityQuestions[0].SecurityQuestionsKeys[0].SecurityQuestionsKey)
-                    {
+                    for each(_local_5 in _local_2.Account[0].SecurityQuestions[0].SecurityQuestionsKeys[0].SecurityQuestionsKey) {
                         this.securityQuestionsModel.addSecurityQuestion(_local_5.toString());
                     }
                 }

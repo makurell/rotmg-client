@@ -51,7 +51,7 @@ public class StatusBar extends Sprite {
         this.defaultForegroundColor = (this.color_ = _arg_3);
         this.defaultBackgroundColor = (this.backColor_ = _arg_4);
         this.textColor_ = 0xFFFFFF;
-        if (((!((_arg_5 == null))) && (!((_arg_5.length == 0))))) {
+        if (!(_arg_5 == null) && !(_arg_5.length == 0)) {
             this.labelText_ = new TextFieldDisplayConcrete().setSize(14).setColor(this.textColor_);
             this.labelText_.setBold(true);
             this.labelTextStringBuilder_ = new LineBuilder().setParams(_arg_5);
@@ -71,7 +71,7 @@ public class StatusBar extends Sprite {
         this.centerVertically(this.boostText_);
         this.boostText_.filters = [new DropShadowFilter(0, 0, 0)];
         this.multiplierIcon = new Sprite();
-        this.multiplierIcon.x = (this.w_ - 25);
+        this.multiplierIcon.x = this.w_ - 25;
         this.multiplierIcon.y = -3;
         this.multiplierIcon.graphics.beginFill(0xFF00FF, 0);
         this.multiplierIcon.graphics.drawRect(0, 0, 20, 20);
@@ -91,7 +91,7 @@ public class StatusBar extends Sprite {
 
     public function centerVertically(_arg_1:TextFieldDisplayConcrete):void {
         _arg_1.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
-        _arg_1.y = ((this.h_ / 2) + 1);
+        _arg_1.y = this.h_ / 2 + 1;
     }
 
     private function onMultiplierOver(_arg_1:MouseEvent):void {
@@ -106,7 +106,7 @@ public class StatusBar extends Sprite {
         if (_arg_2 > 0) {
             _arg_1 = Math.min(_arg_2, Math.max(0, _arg_1));
         }
-        if ((((((((_arg_1 == this.val_)) && ((_arg_2 == this.max_)))) && ((_arg_3 == this.boost_)))) && ((_arg_4 == this.maxMax_)))) {
+        if (_arg_1 == this.val_ && _arg_2 == this.max_ && _arg_3 == this.boost_ && _arg_4 == this.maxMax_) {
             return;
         }
         this.val_ = _arg_1;
@@ -146,7 +146,7 @@ public class StatusBar extends Sprite {
         graphics.clear();
         this.colorSprite.graphics.clear();
         var _local_1:uint = 0xFFFFFF;
-        if ((((this.maxMax_ > 0)) && (((this.max_ - this.boost_) == this.maxMax_)))) {
+        if (this.maxMax_ > 0 && this.max_ - this.boost_ == this.maxMax_) {
             _local_1 = 0xFCDF00;
         }
         else {
@@ -166,7 +166,7 @@ public class StatusBar extends Sprite {
         }
         this.colorSprite.graphics.beginFill(this.color_);
         if (this.max_ > 0) {
-            this.colorSprite.graphics.drawRect(0, 0, (this.w_ * (this.val_ / this.max_)), this.h_);
+            this.colorSprite.graphics.drawRect(0, 0, this.w_ * (this.val_ / this.max_), this.h_);
         }
         else {
             this.colorSprite.graphics.drawRect(0, 0, this.w_, this.h_);
@@ -178,17 +178,17 @@ public class StatusBar extends Sprite {
         if (contains(this.boostText_)) {
             removeChild(this.boostText_);
         }
-        if (((Parameters.data_.toggleBarText) || (((this.mouseOver_) && ((this.h_ > 4)))))) {
+        if (Parameters.data_.toggleBarText || this.mouseOver_ && this.h_ > 4) {
             this.drawWithMouseOver();
         }
     }
 
     public function drawWithMouseOver():void {
         if (this.max_ > 0) {
-            this.valueText_.setStringBuilder(this.valueTextStringBuilder_.setString(((this.val_ + "/") + this.max_)));
+            this.valueText_.setStringBuilder(this.valueTextStringBuilder_.setString(this.val_ + "/" + this.max_));
         }
         else {
-            this.valueText_.setStringBuilder(this.valueTextStringBuilder_.setString(("" + this.val_)));
+            this.valueText_.setStringBuilder(this.valueTextStringBuilder_.setString("" + this.val_));
         }
         if (!contains(this.valueText_)) {
             this.valueText_.mouseEnabled = false;
@@ -196,17 +196,17 @@ public class StatusBar extends Sprite {
             addChild(this.valueText_);
         }
         if (this.boost_ != 0) {
-            this.boostText_.setStringBuilder(this.valueTextStringBuilder_.setString((((" (" + (((this.boost_ > 0)) ? "+" : "")) + this.boost_.toString()) + ")")));
+            this.boostText_.setStringBuilder(this.valueTextStringBuilder_.setString(" (" + (this.boost_ > 0 ? "+" : "") + this.boost_.toString() + ")"));
             if (!contains(this.boostText_)) {
                 this.boostText_.mouseEnabled = false;
                 this.boostText_.mouseChildren = false;
                 addChild(this.boostText_);
             }
-            this.valueText_.x = ((this.w_ / 2) - ((this.valueText_.width + this.boostText_.width) / 2));
-            this.boostText_.x = (this.valueText_.x + this.valueText_.width);
+            this.valueText_.x = this.w_ / 2 - (this.valueText_.width + this.boostText_.width) / 2;
+            this.boostText_.x = this.valueText_.x + this.valueText_.width;
         }
         else {
-            this.valueText_.x = ((this.w_ / 2) - (this.valueText_.width / 2));
+            this.valueText_.x = this.w_ / 2 - this.valueText_.width / 2;
             if (contains(this.boostText_)) {
                 removeChild(this.boostText_);
             }
@@ -236,8 +236,8 @@ public class StatusBar extends Sprite {
     }
 
     private function onPulse(_arg_1:Event):void {
-        if ((((this.colorSprite.alpha > 1)) || ((this.colorSprite.alpha < 0)))) {
-            this.direction = (this.direction * -1);
+        if (this.colorSprite.alpha > 1 || this.colorSprite.alpha < 0) {
+            this.direction = this.direction * -1;
             if (this.colorSprite.alpha > 1) {
                 this.repetitions--;
                 if (!this.repetitions) {
@@ -250,7 +250,7 @@ public class StatusBar extends Sprite {
                 }
             }
         }
-        this.colorSprite.alpha = (this.colorSprite.alpha + (this.speed * this.direction));
+        this.colorSprite.alpha = this.colorSprite.alpha + this.speed * this.direction;
     }
 
     private function onMouseOver(_arg_1:MouseEvent):void {

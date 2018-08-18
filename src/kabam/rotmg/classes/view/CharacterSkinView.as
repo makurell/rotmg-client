@@ -38,13 +38,13 @@ public class CharacterSkinView extends Sprite {
     private function makeScreenBase():ScreenBase {
         var _local_1:ScreenBase = new ScreenBase();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeAccountScreen():AccountScreen {
         var _local_1:AccountScreen = new AccountScreen();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeCreditDisplay():CreditDisplay {
@@ -57,7 +57,7 @@ public class CharacterSkinView extends Sprite {
         _local_1.x = 800;
         _local_1.y = 20;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeLines():Shape {
@@ -69,13 +69,13 @@ public class CharacterSkinView extends Sprite {
         _local_1.graphics.moveTo(346, 105);
         _local_1.graphics.lineTo(346, 526);
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeScreenGraphic():ScreenGraphic {
         var _local_1:ScreenGraphic = new ScreenGraphic();
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makePlayButton():TitleMenuOption {
@@ -83,10 +83,10 @@ public class CharacterSkinView extends Sprite {
         _local_1 = new TitleMenuOption(ScreenTypes.PLAY, 36, false);
         _local_1.setAutoSize(TextFieldAutoSize.CENTER);
         _local_1.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
-        _local_1.x = (400 - (_local_1.width / 2));
+        _local_1.x = 400 - _local_1.width / 2;
         _local_1.y = 550;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeBackButton():TitleMenuOption {
@@ -96,7 +96,7 @@ public class CharacterSkinView extends Sprite {
         _local_1.x = 30;
         _local_1.y = 550;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeListView():CharacterSkinListView {
@@ -105,7 +105,7 @@ public class CharacterSkinView extends Sprite {
         _local_1.x = 351;
         _local_1.y = 110;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeClassDetailView():ClassDetailView {
@@ -114,7 +114,7 @@ public class CharacterSkinView extends Sprite {
         _local_1.x = 5;
         _local_1.y = 110;
         addChild(_local_1);
-        return (_local_1);
+        return _local_1;
     }
 
     public function setPlayButtonEnabled(_arg_1:Boolean):void {
@@ -127,11 +127,11 @@ public class CharacterSkinView extends Sprite {
         var _local_1:SignalWaiter = new SignalWaiter();
         _local_1.push(this.playBtn.changed);
         _local_1.complete.add(this.positionOptions);
-        return (_local_1);
+        return _local_1;
     }
 
     private function positionOptions():void {
-        this.playBtn.x = (stage.stageWidth / 2);
+        this.playBtn.x = stage.stageWidth / 2;
     }
 
 

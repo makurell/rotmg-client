@@ -43,7 +43,7 @@ public class SteamRegisterAccountTask extends BaseTask implements RegisterAccoun
         _local_1.newGUID = this.data.username;
         _local_1.newPassword = this.data.password;
         _local_1.entrytag = this.account.getEntryTag();
-        return (_local_1);
+        return _local_1;
     }
 
     private function onRegisterDone(_arg_1:String):void {

@@ -16,14 +16,14 @@ public class SparkParticle extends Particle {
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        x_ = (x_ + ((this.dx_ * _arg_2) / 1000));
-        y_ = (y_ + ((this.dy_ * _arg_2) / 1000));
-        setSize(((this.timeLeft_ / this.lifetime_) * this.initialSize_));
-        return (true);
+        x_ = x_ + (this.dx_ * _arg_2) / 1000;
+        y_ = y_ + (this.dy_ * _arg_2) / 1000;
+        setSize((this.timeLeft_ / this.lifetime_) * this.initialSize_);
+        return true;
     }
 
 

@@ -19,7 +19,7 @@ public class Chat extends Sprite {
 
     public function setup(_arg_1:ChatModel, _arg_2:Boolean):void {
         this.model = _arg_1;
-        this.y = (600 - _arg_1.bounds.height);
+        this.y = 600 - _arg_1.bounds.height;
         this.list.y = _arg_1.bounds.height;
         if (_arg_2) {
             this.addChatInput();
@@ -37,14 +37,14 @@ public class Chat extends Sprite {
     private function addInputNotAllowed():void {
         this.notAllowed = new ChatInputNotAllowed();
         addChild(this.notAllowed);
-        this.list.y = (this.model.bounds.height - this.model.lineHeight);
+        this.list.y = this.model.bounds.height - this.model.lineHeight;
     }
 
     public function removeRegisterBlock():void {
-        if (((!((this.notAllowed == null))) && (contains(this.notAllowed)))) {
+        if (!(this.notAllowed == null) && contains(this.notAllowed)) {
             removeChild(this.notAllowed);
         }
-        if ((((this.input == null)) || (!(contains(this.input))))) {
+        if (this.input == null || !contains(this.input)) {
             this.addChatInput();
         }
     }

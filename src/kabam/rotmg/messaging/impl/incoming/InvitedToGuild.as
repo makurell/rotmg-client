@@ -16,7 +16,7 @@ public class InvitedToGuild extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("INVITEDTOGUILD", "name_", "guildName_"));
+        return formatToString("INVITEDTOGUILD", "name_", "guildName_");
     }
 
 

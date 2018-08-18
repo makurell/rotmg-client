@@ -38,10 +38,10 @@ public class HelmetComparison extends SlotComparison {
         matches = xml.Activate.(text() == ActivationType.COND_EFFECT_AURA);
         for each (tag in matches) {
             if (tag.@effect == typeName) {
-                return (tag);
+                return tag;
             }
         }
-        return (null);
+        return null;
     }
 
     private function getSelfTagByType(xml:XML, typeName:String):XML {
@@ -50,23 +50,23 @@ public class HelmetComparison extends SlotComparison {
         matches = xml.Activate.(text() == ActivationType.COND_EFFECT_SELF);
         for each (tag in matches) {
             if (tag.@effect == typeName) {
-                return (tag);
+                return tag;
             }
         }
-        return (null);
+        return null;
     }
 
     private function handleBerserk():void {
-        if ((((this.berserk == null)) || ((this.otherBerserk == null)))) {
+        if (this.berserk == null || this.otherBerserk == null) {
             return;
         }
         var _local_1:Number = Number(this.berserk.@range);
         var _local_2:Number = Number(this.otherBerserk.@range);
         var _local_3:Number = Number(this.berserk.@duration);
         var _local_4:Number = Number(this.otherBerserk.@duration);
-        var _local_5:Number = ((0.5 * _local_1) + (0.5 * _local_3));
-        var _local_6:Number = ((0.5 * _local_2) + (0.5 * _local_4));
-        var _local_7:uint = getTextColor((_local_5 - _local_6));
+        var _local_5:Number = 0.5 * _local_1 + 0.5 * _local_3;
+        var _local_6:Number = 0.5 * _local_2 + 0.5 * _local_4;
+        var _local_7:uint = getTextColor(_local_5 - _local_6);
         var _local_8:AppendingLineBuilder = new AppendingLineBuilder();
         _local_8.pushParams(TextKey.WITHIN_SQRS, {"range": _local_1.toString()}, TooltipHelper.getOpenTag(_local_7), TooltipHelper.getCloseTag());
         _local_8.pushParams(TextKey.EFFECT_FOR_DURATION, {
@@ -80,18 +80,18 @@ public class HelmetComparison extends SlotComparison {
     private function handleSpeedy():void {
         var _local_1:Number;
         var _local_2:Number;
-        if (((!((this.speedy == null))) && (!((this.otherSpeedy == null))))) {
+        if (!(this.speedy == null) && !(this.otherSpeedy == null)) {
             _local_1 = Number(this.speedy.@duration);
             _local_2 = Number(this.otherSpeedy.@duration);
             comparisonStringBuilder.pushParams(TextKey.EFFECT_ON_SELF, {"effect": ""});
             comparisonStringBuilder.pushParams(TextKey.EFFECT_FOR_DURATION, {
                 "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_SPEEDY),
                 "duration": _local_1.toString()
-            }, TooltipHelper.getOpenTag(getTextColor((_local_1 - _local_2))), TooltipHelper.getCloseTag());
+            }, TooltipHelper.getOpenTag(getTextColor(_local_1 - _local_2)), TooltipHelper.getCloseTag());
             processedTags[this.speedy.toXMLString()] = true;
         }
         else {
-            if (((!((this.speedy == null))) && ((this.otherSpeedy == null)))) {
+            if (!(this.speedy == null) && this.otherSpeedy == null) {
                 comparisonStringBuilder.pushParams(TextKey.EFFECT_ON_SELF, {"effect": ""});
                 comparisonStringBuilder.pushParams(TextKey.EFFECT_FOR_DURATION, {
                     "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_SPEEDY),

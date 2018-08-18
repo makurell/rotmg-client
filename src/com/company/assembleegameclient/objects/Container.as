@@ -20,30 +20,30 @@ public class Container extends GameObject implements IInteractiveObject {
 
     public function setOwnerId(_arg_1:String):void {
         this.ownerId_ = _arg_1;
-        isInteractive_ = (((this.ownerId_ == "")) || (this.isBoundToCurrentAccount()));
+        isInteractive_ = this.ownerId_ == "" || this.isBoundToCurrentAccount();
     }
 
     public function isBoundToCurrentAccount():Boolean {
-        return ((map_.player_.accountId_ == this.ownerId_));
+        return map_.player_.accountId_ == this.ownerId_;
     }
 
     override public function addTo(_arg_1:Map, _arg_2:Number, _arg_3:Number):Boolean {
         if (!super.addTo(_arg_1, _arg_2, _arg_3)) {
-            return (false);
+            return false;
         }
         if (map_.player_ == null) {
-            return (true);
+            return true;
         }
         var _local_4:Number = PointUtil.distanceXY(map_.player_.x_, map_.player_.y_, _arg_2, _arg_3);
-        if (((this.isLoot_) && ((_local_4 < 10)))) {
+        if (this.isLoot_ && _local_4 < 10) {
             SoundEffectLibrary.play("loot_appears");
         }
-        return (true);
+        return true;
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        var _local_2:Player = ((((_arg_1) && (_arg_1.map))) ? _arg_1.map.player_ : null);
-        return (new ContainerGrid(this, _local_2));
+        var _local_2:Player = _arg_1 && _arg_1.map ? _arg_1.map.player_ : null;
+        return new ContainerGrid(this, _local_2);
     }
 
 

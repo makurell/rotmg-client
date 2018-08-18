@@ -41,21 +41,21 @@ public class EvolveAnimation extends Sprite {
     }
 
     public function getPetInfo():EvolvePetInfo {
-        return (this.evolvePetInfo);
+        return this.evolvePetInfo;
     }
 
     private function makeEvolvedPet(_arg_1:PetVO):void {
         this.evolvedPet = this.injector.getInstance(EvolvedPet);
         this.evolvedPet.setPet(_arg_1);
         this.evolvedPet.mask = this.backgroundMask;
-        this.evolvedPet.x = (this.background.width / 2);
-        this.evolvedPet.y = (this.background.height / 2);
+        this.evolvedPet.x = this.background.width / 2;
+        this.evolvedPet.y = this.background.height / 2;
     }
 
     private function addInitialPet(_arg_1:PetVO):void {
         this.initialPet = this.petIconFactory.create(_arg_1, 100);
-        this.initialPet.x = ((this.background.width - this.initialPet.width) / 2);
-        this.initialPet.y = ((this.background.height - this.initialPet.height) / 2);
+        this.initialPet.x = (this.background.width - this.initialPet.width) / 2;
+        this.initialPet.y = (this.background.height - this.initialPet.height) / 2;
         addChild(this.initialPet);
     }
 

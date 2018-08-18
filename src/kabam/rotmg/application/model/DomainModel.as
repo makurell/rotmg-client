@@ -24,26 +24,26 @@ public class DomainModel {
     }
 
     public function isLocalDomainValid():Boolean {
-        return (((this.client.isDesktop()) || (this.isLocalDomainInWhiteList())));
+        return this.client.isDesktop() || this.isLocalDomainInWhiteList();
     }
 
     public function isLocalDomainProduction():Boolean {
         var _local_1:String = this.getLocalDomain();
-        return (!((this.PRODUCTION_WHITELIST.indexOf(_local_1) == -1)));
+        return !(this.PRODUCTION_WHITELIST.indexOf(_local_1) == -1);
     }
 
     private function isLocalDomainInWhiteList():Boolean {
         var _local_3:String;
         var _local_1:String = this.getLocalDomain();
-        var _local_2 = (_local_1 == this.LOCALHOST);
+        var _local_2 = _local_1 == this.LOCALHOST;
         for each (_local_3 in this.WHITELIST) {
-            _local_2 = ((_local_2) || ((_local_1 == _local_3)));
+            _local_2 = _local_2 || _local_1 == _local_3;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function getLocalDomain():String {
-        return ((this.localDomain = ((this.localDomain) || (new LocalConnection().domain))));
+        return this.localDomain = this.localDomain || new LocalConnection().domain;
     }
 
 

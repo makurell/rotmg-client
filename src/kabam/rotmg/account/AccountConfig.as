@@ -104,15 +104,15 @@ public class AccountConfig implements IConfig {
     }
 
     private function isKongregate():Boolean {
-        return (!((this.info.parameters.kongregate_api_path == null)));
+        return !(this.info.parameters.kongregate_api_path == null);
     }
 
     private function isSteam():Boolean {
-        return (!((this.info.parameters.steam_api_path == null)));
+        return !(this.info.parameters.steam_api_path == null);
     }
 
     private function isKabam():Boolean {
-        return (!((this.info.parameters.kabam_signed_request == null)));
+        return !(this.info.parameters.kabam_signed_request == null);
     }
 
     private function init():void {

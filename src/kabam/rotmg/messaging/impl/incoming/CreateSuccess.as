@@ -16,7 +16,7 @@ public class CreateSuccess extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CREATE_SUCCESS", "objectId_", "charId_"));
+        return formatToString("CREATE_SUCCESS", "objectId_", "charId_");
     }
 
 

@@ -43,13 +43,13 @@ class Chooser extends Sprite {
         this.elementSprite_.x = 4;
         this.elementSprite_.y = 6;
         addChild(this.elementSprite_);
-        this.scrollBar_ = new Scrollbar(SCROLLBAR_WIDTH, (HEIGHT - 8), 0.1, this);
-        this.scrollBar_.x = ((WIDTH - SCROLLBAR_WIDTH) - 6);
+        this.scrollBar_ = new Scrollbar(SCROLLBAR_WIDTH, HEIGHT - 8, 0.1, this);
+        this.scrollBar_.x = WIDTH - SCROLLBAR_WIDTH - 6;
         this.scrollBar_.y = 4;
         this.scrollBar_.addEventListener(Event.CHANGE, this.onScrollBarChange);
         var _local_2:Shape = new Shape();
         _local_2.graphics.beginFill(0);
-        _local_2.graphics.drawRect(0, 2, ((Chooser.WIDTH - SCROLLBAR_WIDTH) - 4), (Chooser.HEIGHT - 4));
+        _local_2.graphics.drawRect(0, 2, Chooser.WIDTH - SCROLLBAR_WIDTH - 4, Chooser.HEIGHT - 4);
         addChild(_local_2);
         this.elementSprite_.mask = _local_2;
         addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
@@ -57,7 +57,7 @@ class Chooser extends Sprite {
     }
 
     public function selectedType():int {
-        return (this.selected_.type_);
+        return this.selected_.type_;
     }
 
     public function setSelectedType(_arg_1:int):void {
@@ -73,8 +73,8 @@ class Chooser extends Sprite {
     protected function addElement(_arg_1:Element):void {
         var _local_2:int;
         _local_2 = this.elements_.length;
-        _arg_1.x = ((((_local_2 % 2)) == 0) ? 0 : (2 + Element.WIDTH));
-        _arg_1.y = ((int((_local_2 / 2)) * Element.HEIGHT) + 6);
+        _arg_1.x = _local_2 % 2 == 0 ? 0 : 2 + Element.WIDTH;
+        _arg_1.y = int(_local_2 / 2) * Element.HEIGHT + 6;
         this.elementSprite_.addChild(_arg_1);
         if (_local_2 == 0) {
             this.setSelected(_arg_1);
@@ -83,8 +83,7 @@ class Chooser extends Sprite {
         this.elements_.push(_arg_1);
     }
 
-    protected function removeElements():void
-    {
+    protected function removeElements():void {
         this.elements_ = new Vector.<Element>();
         removeChild(this.elementSprite_);
         this.elementSprite_ = new Sprite();
@@ -99,7 +98,7 @@ class Chooser extends Sprite {
     }
 
     protected function onMouseDown(_arg_1:MouseEvent):void {
-        var _local_2:Element = (_arg_1.currentTarget as Element);
+        var _local_2:Element = _arg_1.currentTarget as Element;
         this.setSelected(_local_2);
     }
 
@@ -112,7 +111,7 @@ class Chooser extends Sprite {
     }
 
     protected function onScrollBarChange(_arg_1:Event):void {
-        this.elementSprite_.y = (6 - (this.scrollBar_.pos() * ((this.elementSprite_.height + 12) - HEIGHT)));
+        this.elementSprite_.y = 6 - this.scrollBar_.pos() * ((this.elementSprite_.height + 12) - HEIGHT);
     }
 
     protected function onAddedToStage(_arg_1:Event):void {

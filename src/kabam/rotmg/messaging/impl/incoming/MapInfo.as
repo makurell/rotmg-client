@@ -61,7 +61,7 @@ public class MapInfo extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("MAPINFO", "width_", "height_", "name_", "fp_", "background_", "allowPlayerTeleport_", "showDisplays_", "clientXML_", "extraXML_"));
+        return formatToString("MAPINFO", "width_", "height_", "name_", "fp_", "background_", "allowPlayerTeleport_", "showDisplays_", "clientXML_", "extraXML_");
     }
 
 

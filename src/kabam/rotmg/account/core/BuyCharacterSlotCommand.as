@@ -45,7 +45,7 @@ public class BuyCharacterSlotCommand {
     }
 
     private function isSlotUnaffordable():Boolean {
-        return ((this.model.getCredits() < this.model.getNextCharSlotPrice()));
+        return this.model.getCredits() < this.model.getNextCharSlotPrice();
     }
 
     private function promptToGetMoreGold():void {
@@ -66,7 +66,7 @@ public class BuyCharacterSlotCommand {
     }
 
     private function makeFailureTask():Task {
-        return (new DispatchSignalTask(this.openDialog, new ErrorDialog("Unable to complete character slot purchase")));
+        return new DispatchSignalTask(this.openDialog, new ErrorDialog("Unable to complete character slot purchase"));
     }
 
 

@@ -18,21 +18,21 @@ public class StageLifecycleUtil {
     private function handleAddedToStage(_arg_1:Event):void {
         this.target.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
         this.target.addEventListener(Event.REMOVED_FROM_STAGE, this.handleRemovedFromStage);
-        ((this._addedToStage) && (this._addedToStage.dispatch()));
+        this._addedToStage && this._addedToStage.dispatch();
     }
 
     private function handleRemovedFromStage(_arg_1:Event):void {
         this.target.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
         this.target.removeEventListener(Event.REMOVED_FROM_STAGE, this.handleRemovedFromStage);
-        ((this._removedFromStage) && (this._removedFromStage.dispatch()));
+        this._removedFromStage && this._removedFromStage.dispatch();
     }
 
     public function get addedToStage():Signal {
-        return ((this._addedToStage = ((this._addedToStage) || (new Signal()))));
+        return this._addedToStage = this._addedToStage || new Signal();
     }
 
     public function get removedFromStage():Signal {
-        return ((this._removedFromStage = ((this._removedFromStage) || (new Signal()))));
+        return this._removedFromStage = this._removedFromStage || new Signal();
     }
 
 

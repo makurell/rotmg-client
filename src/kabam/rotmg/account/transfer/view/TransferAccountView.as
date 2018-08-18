@@ -75,8 +75,8 @@ public class TransferAccountView extends Frame {
 
     public function makeTosText():void {
         this.tosText = new TextFieldDisplayConcrete();
-        var _local_1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
-        var _local_2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
+        var _local_1 = '<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL + '" target="_blank">';
+        var _local_2 = '<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL + '" target="_blank">';
         this.tosText.setStringBuilder(new LineBuilder().setParams(TextKey.TOS_TEXT, {
             "tou": _local_1,
             "_tou": this.endLink,
@@ -112,9 +112,9 @@ public class TransferAccountView extends Frame {
     private function areInputsValid():Boolean {
         this.errors.length = 0;
         var _local_1:Boolean = true;
-        _local_1 = ((this.isEmailValid(this.newEmailInput)) && (_local_1));
-        _local_1 = ((this.isPasswordValid(this.newPasswordInput)) && (_local_1));
-        return (((this.isPasswordVerified()) && (_local_1)));
+        _local_1 = this.isEmailValid(this.newEmailInput) && _local_1;
+        _local_1 = this.isPasswordValid(this.newPasswordInput) && _local_1;
+        return this.isPasswordVerified() && _local_1;
     }
 
     public function displayErrors():void {
@@ -122,7 +122,7 @@ public class TransferAccountView extends Frame {
             this.clearErrors();
         }
         else {
-            this.displayErrorText((((this.errors.length == 1)) ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE));
+            this.displayErrorText(this.errors.length == 1 ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE);
         }
     }
 
@@ -142,29 +142,29 @@ public class TransferAccountView extends Frame {
 
     private function isEmailValid(_arg_1:LabeledField):Boolean {
         var _local_2:Boolean = EmailValidator.isValidEmail(_arg_1.text());
-        _arg_1.setErrorHighlight(!(_local_2));
+        _arg_1.setErrorHighlight(!_local_2);
         if (!_local_2) {
             this.errors.push(TextKey.INVALID_EMAIL_ADDRESS);
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function isPasswordValid(_arg_1:LabeledField):Boolean {
-        var _local_2 = (_arg_1.text().length >= 5);
-        _arg_1.setErrorHighlight(!(_local_2));
+        var _local_2 = _arg_1.text().length >= 5;
+        _arg_1.setErrorHighlight(!_local_2);
         if (!_local_2) {
             this.errors.push(TextKey.PASSWORD_TOO_SHORT);
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function isPasswordVerified():Boolean {
-        var _local_1 = (this.newPasswordInput.text() == this.retypePasswordInput.text());
-        this.retypePasswordInput.setErrorHighlight(!(_local_1));
+        var _local_1 = this.newPasswordInput.text() == this.retypePasswordInput.text();
+        this.retypePasswordInput.setErrorHighlight(!_local_1);
         if (!_local_1) {
             this.errors.push(TextKey.PASSWORDS_DONT_MATCH);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function sendData():void {

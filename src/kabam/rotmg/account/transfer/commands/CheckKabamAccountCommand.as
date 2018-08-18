@@ -38,11 +38,11 @@ public class CheckKabamAccountCommand {
     }
 
     private function makeSuccess():Task {
-        return (new DispatchSignalTask(this.openDialog, new TransferAccountView(this.data.currentEmail, this.data.currentPassword)));
+        return new DispatchSignalTask(this.openDialog, new TransferAccountView(this.data.currentEmail, this.data.currentPassword));
     }
 
     private function makeFailure():Task {
-        return (new DispatchSignalTask(this.loginError, this.checkKBMtask));
+        return new DispatchSignalTask(this.loginError, this.checkKBMtask);
     }
 
 

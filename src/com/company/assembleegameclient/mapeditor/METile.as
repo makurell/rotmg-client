@@ -14,18 +14,18 @@ public class METile {
         var _local_1:METile = new METile();
         _local_1.types_ = this.types_.concat();
         _local_1.objName_ = this.objName_;
-        return (_local_1);
+        return _local_1;
     }
 
     public function isEmpty():Boolean {
         var _local_1:int = 0;
         while (_local_1 < Layer.NUM_LAYERS) {
             if (this.types_[_local_1] != -1) {
-                return (false);
+                return false;
             }
             _local_1++;
         }
-        return (true);
+        return true;
     }
 
 

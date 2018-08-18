@@ -29,18 +29,18 @@ public class CharacterClass {
 
 
     public function getIsSelected():Boolean {
-        return (this.isSelected);
+        return this.isSelected;
     }
 
     public function setIsSelected(_arg_1:Boolean):void {
         if (this.isSelected != _arg_1) {
             this.isSelected = _arg_1;
-            ((this.isSelected) && (this.selected.dispatch(this)));
+            this.isSelected && this.selected.dispatch(this);
         }
     }
 
     public function getMaxLevelAchieved():int {
-        return (this.maxLevelAchieved);
+        return this.maxLevelAchieved;
     }
 
     public function setMaxLevelAchieved(_arg_1:int):void {

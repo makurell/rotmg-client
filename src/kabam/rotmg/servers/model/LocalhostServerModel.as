@@ -13,15 +13,15 @@ public class LocalhostServerModel implements ServerModel {
     }
 
     public function getServers():Vector.<Server> {
-        return (new <Server>[this.localhost]);
+        return new <Server>[this.localhost];
     }
 
     public function getServer():Server {
-        return (this.localhost);
+        return this.localhost;
     }
 
     public function isServerAvailable():Boolean {
-        return (true);
+        return true;
     }
 
     public function setServers(_arg_1:Vector.<Server>):void {

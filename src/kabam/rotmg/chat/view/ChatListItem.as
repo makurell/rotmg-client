@@ -47,16 +47,16 @@ public class ChatListItem extends Sprite {
         var aPlayer:Player;
         try {
             hmod = StaticInjectorContext.getInjector().getInstance(HUDModel);
-            if (((((!((hmod.gameSprite.map.goDict_[this.playerObjectId] == null))) && ((hmod.gameSprite.map.goDict_[this.playerObjectId] is Player)))) && (!((hmod.gameSprite.map.player_.objectId_ == this.playerObjectId))))) {
+            if (!(hmod.gameSprite.map.goDict_[this.playerObjectId] == null) && (hmod.gameSprite.map.goDict_[this.playerObjectId] is Player) && !(hmod.gameSprite.map.player_.objectId_ == this.playerObjectId)) {
                 aPlayer = (hmod.gameSprite.map.goDict_[this.playerObjectId] as Player);
                 hmod.gameSprite.addChatPlayerMenu(aPlayer, e.stageX, e.stageY);
             }
             else {
-                if (((((((!(this.isTrade)) && (!((this.playerName == null))))) && (!((this.playerName == ""))))) && (!((hmod.gameSprite.map.player_.name_ == this.playerName))))) {
+                if (!this.isTrade && !(this.playerName == null) && !(this.playerName == "") && !(hmod.gameSprite.map.player_.name_ == this.playerName)) {
                     hmod.gameSprite.addChatPlayerMenu(null, e.stageX, e.stageY, this.playerName, this.fromGuild);
                 }
                 else {
-                    if (((((((this.isTrade) && (!((this.playerName == null))))) && (!((this.playerName == ""))))) && (!((hmod.gameSprite.map.player_.name_ == this.playerName))))) {
+                    if (this.isTrade && !(this.playerName == null) && !(this.playerName == "") && !(hmod.gameSprite.map.player_.name_ == this.playerName)) {
                         hmod.gameSprite.addChatPlayerMenu(null, e.stageX, e.stageY, this.playerName, false, true);
                     }
                 }
@@ -67,7 +67,7 @@ public class ChatListItem extends Sprite {
     }
 
     public function isTimedOut():Boolean {
-        return ((((getTimer() > (this.creationTime + CHAT_ITEM_TIMEOUT))) || (this.timedOutOverride)));
+        return getTimer() > this.creationTime + CHAT_ITEM_TIMEOUT || this.timedOutOverride;
     }
 
     private function layoutItems():void {
@@ -81,17 +81,17 @@ public class ChatListItem extends Sprite {
             _local_3 = this.list[_local_2];
             _local_4 = _local_3.getRect(_local_3);
             _local_3.x = _local_1;
-            _local_3.y = (((this.layoutHeight - _local_4.height) * 0.5) - this.layoutHeight);
-            if ((_local_1 + _local_4.width) > this.itemWidth) {
+            _local_3.y = (this.layoutHeight - _local_4.height) * 0.5 - this.layoutHeight;
+            if (_local_1 + _local_4.width > this.itemWidth) {
                 _local_3.x = 0;
                 _local_1 = 0;
                 _local_5 = 0;
                 while (_local_5 < _local_2) {
-                    this.list[_local_5].y = (this.list[_local_5].y - this.layoutHeight);
+                    this.list[_local_5].y = this.list[_local_5].y - this.layoutHeight;
                     _local_5++;
                 }
             }
-            _local_1 = (_local_1 + _local_4.width);
+            _local_1 = _local_1 + _local_4.width;
             _local_2++;
         }
     }

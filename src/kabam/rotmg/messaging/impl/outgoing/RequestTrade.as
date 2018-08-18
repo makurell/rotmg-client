@@ -14,7 +14,7 @@ public class RequestTrade extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("REQUESTTRADE", "name_"));
+        return formatToString("REQUESTTRADE", "name_");
     }
 
 

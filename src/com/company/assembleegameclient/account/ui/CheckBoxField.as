@@ -32,7 +32,7 @@ public class CheckBoxField extends Sprite {
         addChild(this.checkBox_);
         this.text_ = new TextFieldDisplayConcrete().setSize(_arg_3).setColor(0xB3B3B3);
         this.text_.setTextWidth(243);
-        this.text_.x = ((this.checkBox_.x + BOX_SIZE) + 8);
+        this.text_.x = this.checkBox_.x + BOX_SIZE + 8;
         this.text_.setBold(true);
         this.text_.setMultiLine(true);
         this.text_.setWordWrap(true);
@@ -48,17 +48,15 @@ public class CheckBoxField extends Sprite {
     }
 
     public function isChecked():Boolean {
-        return (this.checked_);
+        return this.checked_;
     }
 
-    public function setChecked():void
-    {
+    public function setChecked():void {
         this.checked_ = true;
         this.redrawCheckBox();
     }
 
-    public function setUnchecked():void
-    {
+    public function setUnchecked():void {
         this.checked_ = false;
         this.redrawCheckBox();
     }
@@ -73,12 +71,12 @@ public class CheckBoxField extends Sprite {
 
     private function onTextChanged():void {
         this.errorText_.x = this.text_.x;
-        this.errorText_.y = (this.text_.y + 20);
+        this.errorText_.y = this.text_.y + 20;
     }
 
     private function onClick(_arg_1:MouseEvent):void {
         this.errorText_.setStringBuilder(new StaticStringBuilder(""));
-        this.checked_ = !(this.checked_);
+        this.checked_ = !this.checked_;
         this.redrawCheckBox();
     }
 
@@ -97,9 +95,9 @@ public class CheckBoxField extends Sprite {
         if (this.checked_) {
             _local_1.lineStyle(4, 0xB3B3B3, 1, false, LineScaleMode.NORMAL, CapsStyle.ROUND, JointStyle.ROUND);
             _local_1.moveTo(2, 2);
-            _local_1.lineTo((BOX_SIZE - 2), (BOX_SIZE - 2));
-            _local_1.moveTo(2, (BOX_SIZE - 2));
-            _local_1.lineTo((BOX_SIZE - 2), 2);
+            _local_1.lineTo(BOX_SIZE - 2, BOX_SIZE - 2);
+            _local_1.moveTo(2, BOX_SIZE - 2);
+            _local_1.lineTo(BOX_SIZE - 2, 2);
             _local_1.lineStyle();
             this.hasError = false;
         }

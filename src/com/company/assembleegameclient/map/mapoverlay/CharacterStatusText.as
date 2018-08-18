@@ -26,7 +26,7 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 
     public function CharacterStatusText(_arg_1:GameObject, _arg_2:uint, _arg_3:int, _arg_4:int = 0) {
         this.go_ = _arg_1;
-        this.offset_ = new Point(0, (((-(_arg_1.texture_.height) * (_arg_1.size_ / 100)) * 5) - 20));
+        this.offset_ = new Point(0, -_arg_1.texture_.height * (_arg_1.size_ / 100) * 5 - 20);
         this.color_ = _arg_2;
         this.lifetime_ = _arg_3;
         this.offsetTime_ = _arg_4;
@@ -38,29 +38,29 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 
     public function draw(_arg_1:Camera, _arg_2:int):Boolean {
         if (this.startTime_ == 0) {
-            this.startTime_ = (_arg_2 + this.offsetTime_);
+            this.startTime_ = _arg_2 + this.offsetTime_;
         }
         if (_arg_2 < this.startTime_) {
             visible = false;
-            return (true);
+            return true;
         }
-        var _local_3:int = (_arg_2 - this.startTime_);
-        if ((((_local_3 > this.lifetime_)) || (((!((this.go_ == null))) && ((this.go_.map_ == null)))))) {
-            return (false);
+        var _local_3:int = _arg_2 - this.startTime_;
+        if (_local_3 > this.lifetime_ || !(this.go_ == null) && this.go_.map_ == null) {
+            return false;
         }
-        if ((((this.go_ == null)) || (!(this.go_.drawn_)))) {
+        if (this.go_ == null || !this.go_.drawn_) {
             visible = false;
-            return (true);
+            return true;
         }
         visible = true;
-        x = ((((this.go_) != null) ? this.go_.posS_[0] : 0) + (((this.offset_) != null) ? this.offset_.x : 0));
-        var _local_4:Number = ((_local_3 / this.lifetime_) * this.MAX_DRIFT);
-        y = (((((this.go_) != null) ? this.go_.posS_[1] : 0) + (((this.offset_) != null) ? this.offset_.y : 0)) - _local_4);
-        return (true);
+        x = (this.go_ != null ? this.go_.posS_[0] : 0) + (this.offset_ != null ? this.offset_.x : 0);
+        var _local_4:Number = (_local_3 / this.lifetime_) * this.MAX_DRIFT;
+        y = ((this.go_ != null ? this.go_.posS_[1] : 0) + (this.offset_ != null ? this.offset_.y : 0)) - _local_4;
+        return true;
     }
 
     public function getGameObject():GameObject {
-        return (this.go_);
+        return this.go_;
     }
 
     public function dispose():void {
@@ -77,8 +77,8 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
         var _local_1:BitmapData = new BitmapData(this.textDisplay.width, this.textDisplay.height, true, 0);
         _local_2 = new Bitmap(_local_1);
         _local_1.draw(this.textDisplay, new Matrix());
-        _local_2.x = (_local_2.x - (_local_2.width * 0.5));
-        _local_2.y = (_local_2.y - (_local_2.height * 0.5));
+        _local_2.x = _local_2.x - _local_2.width * 0.5;
+        _local_2.y = _local_2.y - _local_2.height * 0.5;
         addChild(_local_2);
         removeChild(this.textDisplay);
         this.textDisplay = null;

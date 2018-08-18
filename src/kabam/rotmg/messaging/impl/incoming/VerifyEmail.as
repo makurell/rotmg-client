@@ -11,7 +11,7 @@ public class VerifyEmail extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("VERIFYEMAIL", "asdf", "asdf"));
+        return formatToString("VERIFYEMAIL", "asdf", "asdf");
     }
 
 

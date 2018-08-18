@@ -11,7 +11,7 @@ public class GuildBoard extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new GuildBoardPanel(_arg_1));
+        return new GuildBoardPanel(_arg_1);
     }
 
 

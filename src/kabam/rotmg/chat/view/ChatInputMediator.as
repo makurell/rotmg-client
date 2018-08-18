@@ -75,17 +75,17 @@ public class ChatInputMediator extends Mediator {
     private function makeTextfield():TextField {
         var _local_1:TextField = this.textAndMapProvider.getTextField();
         this.fontModel.apply(_local_1, 14, 0xFFFFFF, true);
-        return (_local_1);
+        return _local_1;
     }
 
     private function onKeyUp(_arg_1:KeyboardEvent):void {
-        if (((this.view.visible) && ((((_arg_1.keyCode == this.chatShortcutModel.getTellShortcut())) || ((((this.stage.focus == null)) || (this.viewDoesntHaveFocus()))))))) {
+        if (this.view.visible && (_arg_1.keyCode == this.chatShortcutModel.getTellShortcut() || (this.stage.focus == null || this.viewDoesntHaveFocus()))) {
             this.processKeyUp(_arg_1);
         }
     }
 
     private function viewDoesntHaveFocus():Boolean {
-        return (((!((this.stage.focus.parent == this.view))) && (!((this.stage.focus == this.view)))));
+        return !(this.stage.focus.parent == this.view) && !(this.stage.focus == this.view);
     }
 
     private function processKeyUp(_arg_1:KeyboardEvent):void {
@@ -113,7 +113,7 @@ public class ChatInputMediator extends Mediator {
 
     private function handleTell():void {
         if (!this.view.hasEnteredText()) {
-            this.view.activate((("/tell " + this.tellModel.getNext()) + " "), true);
+            this.view.activate("/tell " + this.tellModel.getNext() + " ", true);
         }
     }
 

@@ -20,7 +20,7 @@ public class ChangeTrade extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CHANGETRADE", "offer_"));
+        return formatToString("CHANGETRADE", "offer_");
     }
 
 

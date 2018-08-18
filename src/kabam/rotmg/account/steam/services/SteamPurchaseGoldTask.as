@@ -40,13 +40,11 @@ public class SteamPurchaseGoldTask extends BaseTask implements PurchaseGoldTask 
 
 
     override protected function startTask():void {
-        if(!this.steam.isOverlayEnabled)
-        {
+        if (!this.steam.isOverlayEnabled) {
             this.logger.debug("isOverlayEnabled false!");
             this.reportError("Can’t process purchase, because Steam Overlay is disabled for the RotMG! To enabled it go to you games library, right click on the \"Realm of the Mad God\" and select \"Properties\" from the drop-down menu. On the \"Properties\" popup, select \"GENERAL\" tab and select option \"Enable the Steam Overlay while in-game\". Next, restart the game and try again.");
         }
-        else
-        {
+        else {
             this.logger.debug("SteamPurchaseGoldTask startTask");
             this.steam.paymentAuthorized.addOnce(this.onPaymentAuthorized);
             this.first.setMaxRetries(2);
@@ -92,7 +90,7 @@ public class SteamPurchaseGoldTask extends BaseTask implements PurchaseGoldTask 
             this.second.sendRequest("/steamworks/finalizePurchase", {
                 "appid": _arg_1,
                 "orderid": _arg_2,
-                "authorized": ((_arg_3) ? 1 : 0)
+                "authorized": _arg_3 ? 1 : 0
             });
         }
     }
@@ -113,7 +111,7 @@ public class SteamPurchaseGoldTask extends BaseTask implements PurchaseGoldTask 
     }
 
     private function reportError(_arg_1:String):void {
-        var _local_2:String = ("Error: " + _arg_1);
+        var _local_2:String = "Error: " + _arg_1;
         this.logger.debug("finalize error {0}", [_local_2]);
         this.openDialog.dispatch(new DebugDialog(_local_2));
         completeTask(false);

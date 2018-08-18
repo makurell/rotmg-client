@@ -55,7 +55,7 @@ public class AccountScreenMediator extends Mediator {
                 _local_1 = new SteamAccountInfoView();
                 break;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     override public function destroy():void {

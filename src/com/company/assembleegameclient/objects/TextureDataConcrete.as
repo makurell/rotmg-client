@@ -57,22 +57,22 @@ public class TextureDataConcrete extends TextureData {
 
     override public function getTexture(_arg_1:int = 0):BitmapData {
         if (randomTextureData_ == null) {
-            return (texture_);
+            return texture_;
         }
         var _local_2:TextureData = randomTextureData_[(_arg_1 % randomTextureData_.length)];
-        return (_local_2.getTexture(_arg_1));
+        return _local_2.getTexture(_arg_1);
     }
 
     override public function getAltTextureData(_arg_1:int):TextureData {
         if (altTextures_ == null) {
-            return (null);
+            return null;
         }
-        return (altTextures_[_arg_1]);
+        return altTextures_[_arg_1];
     }
 
     private function getWhetherToUseLocalTextures():Boolean {
         var _local_1:ApplicationSetup = StaticInjectorContext.getInjector().getInstance(ApplicationSetup);
-        return (_local_1.useLocalTextures());
+        return _local_1.useLocalTextures();
     }
 
     private function parse(_arg_1:XML):void {
@@ -104,7 +104,7 @@ public class TextureDataConcrete extends TextureData {
                         remoteTexturesUsed = true;
                     }
                 }
-                remoteTextureDir_ = ((_arg_1.hasOwnProperty("Right")) ? AnimatedChar.RIGHT : AnimatedChar.DOWN);
+                remoteTextureDir_ = _arg_1.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;
                 return;
             case "RandomTexture":
                 randomTextureData_ = new Vector.<TextureData>();
@@ -123,7 +123,7 @@ public class TextureDataConcrete extends TextureData {
 
     private function onRemoteTexture(_arg_1:BitmapData):void {
         if (_arg_1.width > 16) {
-            AnimatedChars.add("remoteTexture", _arg_1, null, (_arg_1.width / 7), _arg_1.height, _arg_1.width, _arg_1.height, remoteTextureDir_);
+            AnimatedChars.add("remoteTexture", _arg_1, null, _arg_1.width / 7, _arg_1.height, _arg_1.width, _arg_1.height, remoteTextureDir_);
             animatedChar_ = AnimatedChars.getAnimatedChar("remoteTexture", 0);
             texture_ = animatedChar_.imageFromAngle(0, AnimatedChar.STAND, 0).image_;
         }

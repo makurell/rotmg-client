@@ -25,8 +25,7 @@ public class ParseChatMessageCommand {
 
 
     public function execute():void {
-        switch(this.data)
-        {
+        switch (this.data) {
             case "/help":
                 this.addTextLine.dispatch(ChatMessage.make(Parameters.HELP_CHAT_NAME, TextKey.HELP_COMMAND));
                 break;

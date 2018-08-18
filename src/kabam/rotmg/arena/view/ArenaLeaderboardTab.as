@@ -38,7 +38,7 @@ public class ArenaLeaderboardTab extends Sprite {
     }
 
     public function getFilter():ArenaLeaderboardFilter {
-        return (this.filter);
+        return this.filter;
     }
 
     public function setSelected(_arg_1:Boolean):void {
@@ -73,7 +73,7 @@ public class ArenaLeaderboardTab extends Sprite {
             this.label.setColor(OVER_COLOR);
         }
         else {
-            if (((this.isSelected) || (this.isDown))) {
+            if (this.isSelected || this.isDown) {
                 this.label.setColor(DOWN_COLOR);
             }
             else {
@@ -108,7 +108,7 @@ public class ArenaLeaderboardTab extends Sprite {
         _local_1 = new StaticTextDisplay();
         _local_1.setBold(true).setColor(0xB3B3B3).setSize(20);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        return (_local_1);
+        return _local_1;
     }
 
 

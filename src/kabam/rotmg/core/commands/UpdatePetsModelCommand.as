@@ -27,14 +27,14 @@ public class UpdatePetsModelCommand extends Command {
     private function parseYardFromXML():int {
         var _local_1:String = PetYardEnum.selectByOrdinal(this.data.Account.PetYardType).value;
         var _local_2:XML = ObjectLibrary.getXMLfromId(_local_1);
-        return (_local_2.@type);
+        return _local_2.type;
     }
 
     private function parsePetFromXML():PetVO {
         var _local_1:XMLList = this.data.Pet;
         var _local_2:PetVO = this.model.getPetVO(_local_1.@instanceId);
         _local_2.apply(_local_1[0]);
-        return (_local_2);
+        return _local_2;
     }
 
 

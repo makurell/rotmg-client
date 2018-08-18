@@ -42,7 +42,7 @@ public class UseBuyPotionCommand {
         this.potionId = this.vo.objectId;
         this.count = this.player.getPotionCount(this.potionId);
         this.potion = this.potInventoryModel.getPotionModel(this.potionId);
-        if ((((this.count > 0)) || (this.canPurchasePotion()))) {
+        if (this.count > 0 || this.canPurchasePotion()) {
             this.usePotionIfEffective();
         }
         else {
@@ -51,9 +51,9 @@ public class UseBuyPotionCommand {
     }
 
     private function canPurchasePotion():Boolean {
-        var _local_1 = (this.player.credits_ >= this.potion.currentCost(this.player.getPotionCount(this.potionId)));
+        var _local_1 = this.player.credits_ >= this.potion.currentCost(this.player.getPotionCount(this.potionId));
         var _local_2:Boolean = Parameters.data_.contextualPotionBuy;
-        return (((_local_1) && (_local_2)));
+        return _local_1 && _local_2;
     }
 
     private function usePotionIfEffective():void {
@@ -68,12 +68,12 @@ public class UseBuyPotionCommand {
 
     private function isPlayerStatMaxed():Boolean {
         if (this.potionId == PotionInventoryModel.HEALTH_POTION_ID) {
-            return ((this.player.hp_ >= this.player.maxHP_));
+            return this.player.hp_ >= this.player.maxHP_;
         }
         if (this.potionId == PotionInventoryModel.MAGIC_POTION_ID) {
-            return ((this.player.mp_ >= this.player.maxMP_));
+            return this.player.mp_ >= this.player.maxMP_;
         }
-        return (false);
+        return false;
     }
 
     private function sendServerRequest():void {

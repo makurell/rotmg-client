@@ -22,9 +22,9 @@ import robotlegs.bender.framework.api.IConfig;
 public class Stage3DConfig implements IConfig {
 
     public static const WIDTH:int = 600;
-    public static const HALF_WIDTH:int = (WIDTH / 2);//300
+    public static const HALF_WIDTH:int = WIDTH / 2;//300
     public static const HEIGHT:int = 600;
-    public static const HALF_HEIGHT:int = (HEIGHT / 2);//300
+    public static const HALF_HEIGHT:int = HEIGHT / 2;//300
 
     [Inject]
     public var stageProxy:StageProxy;

@@ -26,14 +26,14 @@ public class GoldDisplay extends Sprite {
         this.graphic = new Bitmap(_local_1);
         addChild(this.graphic);
         addChild(this.text);
-        this.graphic.x = (-(this.graphic.width) - 8);
-        this.graphic.y = ((-(this.graphic.height) / 2) - 6);
+        this.graphic.x = -this.graphic.width - 8;
+        this.graphic.y = -this.graphic.height / 2 - 6;
         this.text.textChanged.add(this.onTextChanged);
     }
 
     private function onTextChanged():void {
-        this.text.x = ((this.graphic.x - this.text.width) + 4);
-        this.text.y = ((-(this.text.height) / 2) - 6);
+        this.text.x = (this.graphic.x - this.text.width) + 4;
+        this.text.y = -this.text.height / 2 - 6;
     }
 
     public function setGold(_arg_1:int):void {

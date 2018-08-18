@@ -8,8 +8,7 @@ public class SubmitJMEvent extends Event {
     public var mapJSON_:String;
     public var mapInfo_:Object;
 
-    public function SubmitJMEvent(param1:String, param2:Object)
-    {
+    public function SubmitJMEvent(param1:String, param2:Object) {
         super(SUBMIT_JM_EVENT);
         this.mapJSON_ = param1;
         this.mapInfo_ = param2;

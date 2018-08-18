@@ -1,9 +1,6 @@
-package com.company.assembleegameclient.util
-{
-public class ColorUtil
-{
-    public static function rangeRandomSmart(_arg_1:uint, _arg_2:uint):Number
-    {
+package com.company.assembleegameclient.util {
+public class ColorUtil {
+    public static function rangeRandomSmart(_arg_1:uint, _arg_2:uint):Number {
         var _loc3_:uint = _arg_1 >> 16 & 255;
         var _loc4_:uint = _arg_1 >> 8 & 255;
         var _loc5_:uint = _arg_1 & 255;
@@ -16,8 +13,7 @@ public class ColorUtil
         return _loc9_ << 16 | _loc10_ << 8 | _loc11_;
     }
 
-    public static function rangeRandomMix(_arg_1:uint, _arg_2:uint):Number
-    {
+    public static function rangeRandomMix(_arg_1:uint, _arg_2:uint):Number {
         var _loc3_:uint = _arg_1 >> 16 & 255;
         var _loc4_:uint = _arg_1 >> 8 & 255;
         var _loc5_:uint = _arg_1 & 255;
@@ -31,8 +27,7 @@ public class ColorUtil
         return _loc10_ << 16 | _loc11_ << 8 | _loc12_;
     }
 
-    public static function rangeRandom(_arg_1:uint, _arg_2:uint):Number
-    {
+    public static function rangeRandom(_arg_1:uint, _arg_2:uint):Number {
         return _arg_2 + Math.random() * (_arg_1 - _arg_2);
     }
 }

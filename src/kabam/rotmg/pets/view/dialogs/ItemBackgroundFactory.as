@@ -3,7 +3,7 @@ public class ItemBackgroundFactory {
 
 
     public function create(_arg_1:int, _arg_2:Array):PetItemBackground {
-        return (new PetItemBackground(_arg_1, _arg_2));
+        return new PetItemBackground(_arg_1, _arg_2);
     }
 
 

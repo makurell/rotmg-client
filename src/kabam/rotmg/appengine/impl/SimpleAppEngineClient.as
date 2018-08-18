@@ -31,7 +31,7 @@ public class SimpleAppEngineClient implements AppEngineClient {
     }
 
     public function get complete():OnceSignal {
-        return (this.loader.complete);
+        return this.loader.complete;
     }
 
     public function setDataFormat(_arg_1:String):void {
@@ -47,40 +47,34 @@ public class SimpleAppEngineClient implements AppEngineClient {
     }
 
     public function sendRequest(_arg_1:String, _arg_2:Object):void {
-        try
-        {
-            if(_arg_2 == null)
-            {
+        try {
+            if (_arg_2 == null) {
                 _arg_2 = {};
                 _arg_2.gameClientVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
             }
-            else
-            {
+            else {
                 _arg_2.gameClientVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
             }
         }
-        catch(e:Error)
-        {
+        catch (e:Error) {
         }
-        if(_arg_2 != null && _arg_2.guid)
-        {
+        if (_arg_2 != null && _arg_2.guid) {
             this.loader.sendRequest(this.makeURL(_arg_1 + "?g=" + escape(_arg_2.guid)), _arg_2);
         }
-        else
-        {
+        else {
             this.loader.sendRequest(this.makeURL(_arg_1), _arg_2);
         }
     }
 
     private function makeURL(_arg_1:String):String {
         if (_arg_1.charAt(0) != "/") {
-            _arg_1 = ("/" + _arg_1);
+            _arg_1 = "/" + _arg_1;
         }
-        return ((this.setup.getAppEngineUrl() + _arg_1));
+        return this.setup.getAppEngineUrl() + _arg_1;
     }
 
     public function requestInProgress():Boolean {
-        return (this.loader.isInProgress());
+        return this.loader.isInProgress();
     }
 
 

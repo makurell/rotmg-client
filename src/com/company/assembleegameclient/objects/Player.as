@@ -444,13 +444,13 @@ public class Player extends Character {
                 return false;
             }
             if (_local_5 < 0.5) {
-                if (this.isFullOccupy(_arg_1, (_arg_2 - 1)) || this.isFullOccupy(_arg_1 - 1, _arg_2 - 1)) {
+                if (this.isFullOccupy(_arg_1, _arg_2 - 1) || this.isFullOccupy(_arg_1 - 1, _arg_2 - 1)) {
                     return false;
                 }
             }
             else {
                 if (_local_5 > 0.5) {
-                    if (this.isFullOccupy(_arg_1, (_arg_2 + 1)) || this.isFullOccupy(_arg_1 - 1, _arg_2 + 1)) {
+                    if (this.isFullOccupy(_arg_1, _arg_2 + 1) || this.isFullOccupy(_arg_1 - 1, _arg_2 + 1)) {
                         return false;
                     }
                 }
@@ -462,13 +462,13 @@ public class Player extends Character {
                     return false;
                 }
                 if (_local_5 < 0.5) {
-                    if (this.isFullOccupy(_arg_1, (_arg_2 - 1)) || this.isFullOccupy(_arg_1 + 1, _arg_2 - 1)) {
+                    if (this.isFullOccupy(_arg_1, _arg_2 - 1) || this.isFullOccupy(_arg_1 + 1, _arg_2 - 1)) {
                         return false;
                     }
                 }
                 else {
                     if (_local_5 > 0.5) {
-                        if (this.isFullOccupy(_arg_1, (_arg_2 + 1)) || this.isFullOccupy(_arg_1 + 1, _arg_2 + 1)) {
+                        if (this.isFullOccupy(_arg_1, _arg_2 + 1) || this.isFullOccupy(_arg_1 + 1, _arg_2 + 1)) {
                             return false;
                         }
                     }

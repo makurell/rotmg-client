@@ -72,57 +72,57 @@ public class Slot extends Sprite {
     public static function slotTypeToName(_arg_1:int):String {
         switch (_arg_1) {
             case ALL_TYPE:
-                return ("Any");
+                return "Any";
             case SWORD_TYPE:
-                return ("Sword");
+                return "Sword";
             case DAGGER_TYPE:
-                return ("Dagger");
+                return "Dagger";
             case BOW_TYPE:
-                return ("Bow");
+                return "Bow";
             case TOME_TYPE:
-                return ("Tome");
+                return "Tome";
             case SHIELD_TYPE:
-                return ("Shield");
+                return "Shield";
             case LEATHER_TYPE:
-                return ("Leather Armor");
+                return "Leather Armor";
             case PLATE_TYPE:
-                return ("Armor");
+                return "Armor";
             case WAND_TYPE:
-                return ("Wand");
+                return "Wand";
             case RING_TYPE:
-                return ("Accessory");
+                return "Accessory";
             case POTION_TYPE:
-                return ("Potion");
+                return "Potion";
             case SPELL_TYPE:
-                return ("Spell");
+                return "Spell";
             case SEAL_TYPE:
-                return ("Holy Seal");
+                return "Holy Seal";
             case CLOAK_TYPE:
-                return ("Cloak");
+                return "Cloak";
             case ROBE_TYPE:
-                return ("Robe");
+                return "Robe";
             case QUIVER_TYPE:
-                return ("Quiver");
+                return "Quiver";
             case HELM_TYPE:
-                return ("Helm");
+                return "Helm";
             case STAFF_TYPE:
-                return ("Staff");
+                return "Staff";
             case POISON_TYPE:
-                return ("Poison");
+                return "Poison";
             case SKULL_TYPE:
-                return ("Skull");
+                return "Skull";
             case TRAP_TYPE:
-                return ("Trap");
+                return "Trap";
             case ORB_TYPE:
-                return ("Orb");
+                return "Orb";
             case PRISM_TYPE:
-                return ("Prism");
+                return "Prism";
             case SCEPTER_TYPE:
-                return ("Scepter");
+                return "Scepter";
             case SHURIKEN_TYPE:
-                return ("Shuriken");
+                return "Shuriken";
         }
-        return ("Invalid Type!");
+        return "Invalid Type!";
     }
 
 
@@ -130,14 +130,14 @@ public class Slot extends Sprite {
         var _local_4:Point = new Point();
         switch (_arg_2) {
             case RING_TYPE:
-                _local_4.x = (((_arg_1) == 2878) ? 0 : -2);
-                _local_4.y = ((_arg_3) ? -2 : 0);
+                _local_4.x = _arg_1 == 2878 ? 0 : -2;
+                _local_4.y = _arg_3 ? -2 : 0;
                 break;
             case SPELL_TYPE:
                 _local_4.y = -2;
                 break;
         }
-        return (_local_4);
+        return _local_4;
     }
 
     protected function drawBackground():void {
@@ -224,8 +224,8 @@ public class Slot extends Sprite {
             if (_local_1 != null) {
                 _local_4 = this.offsets(-1, this.type_, true);
                 this.backgroundImage_ = new Bitmap(_local_1);
-                this.backgroundImage_.x = (BORDER + _local_4.x);
-                this.backgroundImage_.y = (BORDER + _local_4.y);
+                this.backgroundImage_.x = BORDER + _local_4.x;
+                this.backgroundImage_.y = BORDER + _local_4.y;
                 this.backgroundImage_.scaleX = 4;
                 this.backgroundImage_.scaleY = 4;
                 this.backgroundImage_.filters = [greyColorFilter];
@@ -236,8 +236,8 @@ public class Slot extends Sprite {
                     _local_5 = StaticInjectorContext.getInjector().getInstance(BitmapTextFactory);
                     _local_1 = _local_5.make(new StaticStringBuilder(String(this.hotkey_)), 26, 0x363636, true, IDENTITY_MATRIX, false);
                     this.backgroundImage_ = new Bitmap(_local_1);
-                    this.backgroundImage_.x = ((WIDTH / 2) - (_local_1.width / 2));
-                    this.backgroundImage_.y = ((HEIGHT / 2) - 18);
+                    this.backgroundImage_.x = WIDTH / 2 - _local_1.width / 2;
+                    this.backgroundImage_.y = HEIGHT / 2 - 18;
                     addChild(this.backgroundImage_);
                 }
             }

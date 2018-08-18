@@ -14,10 +14,10 @@ public class FreeList {
         }
         else {
             if (_local_2.length > 0) {
-                return (_local_2.pop());
+                return _local_2.pop();
             }
         }
-        return (new (_arg_1)());
+        return new _arg_1();
     }
 
     public static function storeObject(_arg_1:*, _arg_2:Object):void {
@@ -31,10 +31,10 @@ public class FreeList {
 
     public static function getObject(_arg_1:*):Object {
         var _local_2:Vector.<Object> = dict_[_arg_1];
-        if (((!((_local_2 == null))) && ((_local_2.length > 0)))) {
-            return (_local_2.pop());
+        if (!(_local_2 == null) && _local_2.length > 0) {
+            return _local_2.pop();
         }
-        return (null);
+        return null;
     }
 
     public static function dump(_arg_1:*):void {

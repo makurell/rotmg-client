@@ -23,7 +23,7 @@ public class CaretakerQueryDialogCategoryList extends LayoutList {
     private function makeLayout():VerticalLayout {
         var _local_1:VerticalLayout = new VerticalLayout();
         _local_1.setPadding(2);
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeItems(_arg_1:Array):Vector.<DisplayObject> {
@@ -33,18 +33,18 @@ public class CaretakerQueryDialogCategoryList extends LayoutList {
             _local_2.push(this.makeItem(_arg_1[_local_3]));
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     private function makeItem(_arg_1:Object):CaretakerQueryDialogCategoryItem {
         var _local_2:CaretakerQueryDialogCategoryItem = new CaretakerQueryDialogCategoryItem(_arg_1.category, _arg_1.info);
         _local_2.addEventListener(MouseEvent.CLICK, this.onClick);
         this.waiter.push(_local_2.textChanged);
-        return (_local_2);
+        return _local_2;
     }
 
     private function onClick(_arg_1:MouseEvent):void {
-        var _local_2:CaretakerQueryDialogCategoryItem = (_arg_1.currentTarget as CaretakerQueryDialogCategoryItem);
+        var _local_2:CaretakerQueryDialogCategoryItem = _arg_1.currentTarget as CaretakerQueryDialogCategoryItem;
         this.selected.dispatch(_local_2.info);
     }
 

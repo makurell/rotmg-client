@@ -25,7 +25,7 @@ public class GetOffersTask extends BaseTask {
 
 
     override protected function startTask():void {
-        this.target = (this.account.getRequestPrefix() + "/getoffers");
+        this.target = this.account.getRequestPrefix() + "/getoffers";
         this.guid = this.account.getUserId();
         this.updateModelRequestTimeAndGUID();
         this.sendGetOffersRequest();
@@ -33,7 +33,7 @@ public class GetOffersTask extends BaseTask {
 
     private function updateModelRequestTimeAndGUID():void {
         var _local_1:int = getTimer();
-        if (((!((this.guid == this.model.lastOfferRequestGUID))) || (((_local_1 - this.model.lastOfferRequestTime) > OfferModel.TIME_BETWEEN_REQS)))) {
+        if (!(this.guid == this.model.lastOfferRequestGUID) || _local_1 - this.model.lastOfferRequestTime > OfferModel.TIME_BETWEEN_REQS) {
             this.model.lastOfferRequestGUID = this.guid;
             this.model.lastOfferRequestTime = _local_1;
         }
@@ -51,7 +51,7 @@ public class GetOffersTask extends BaseTask {
         _local_1.game_net_user_id = this.account.gameNetworkUserId();
         _local_1.game_net = this.account.gameNetwork();
         _local_1.play_platform = this.account.playPlatform();
-        return (_local_1);
+        return _local_1;
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {

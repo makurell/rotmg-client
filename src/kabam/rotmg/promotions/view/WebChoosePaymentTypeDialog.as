@@ -29,8 +29,8 @@ public class WebChoosePaymentTypeDialog extends Sprite {
     }
 
     public function centerOnScreen():void {
-        x = ((stage.stageWidth - width) * 0.5);
-        y = (((stage.stageHeight - height) * 0.5) - 5);
+        x = (stage.stageWidth - width) * 0.5;
+        y = (stage.stageHeight - height) * 0.5 - 5;
     }
 
     private function makeBackground():void {
@@ -54,7 +54,7 @@ public class WebChoosePaymentTypeDialog extends Sprite {
     private function makeTransparentButton(_arg_1:int, _arg_2:int, _arg_3:int, _arg_4:int):Sprite {
         var _local_5:TransparentButton = new TransparentButton(_arg_1, _arg_2, _arg_3, _arg_4);
         addChild(_local_5);
-        return (_local_5);
+        return _local_5;
     }
 
 

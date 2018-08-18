@@ -16,15 +16,15 @@ public class PackageModel {
     }
 
     public function getInitialized():Boolean {
-        return (this.initialized);
+        return this.initialized;
     }
 
     public function getPackageById(_arg_1:int):PackageInfo {
-        return (this.models[_arg_1]);
+        return this.models[_arg_1];
     }
 
     public function hasPackage(_arg_1:int):Boolean {
-        return ((_arg_1 in this.models));
+        return _arg_1 in this.models;
     }
 
     public function setPackages(_arg_1:Array):void {
@@ -44,30 +44,30 @@ public class PackageModel {
 
     public function canPurchasePackage(_arg_1:int):Boolean {
         var _local_2:PackageInfo = this.models[_arg_1];
-        return (((_local_2) && (_local_2.canPurchase())));
+        return _local_2 && _local_2.canPurchase();
     }
 
     public function getPriorityPackage():PackageInfo {
         var _local_2:PackageInfo;
         var _local_1:PackageInfo;
         for each (_local_2 in this.models) {
-            if ((((_local_1 == null)) || ((_local_2.priority < _local_1.priority)))) {
+            if (_local_1 == null || _local_2.priority < _local_1.priority) {
                 _local_1 = _local_2;
             }
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public function shouldSpam():Boolean {
-        return ((((this.numSpammed == 0)) && (!(("production".toLowerCase() == "localhost")))));
+        return this.numSpammed == 0 && !("production".toLowerCase() == "localhost");
     }
 
     public function hasPackages():Boolean {
         var _local_1:Object;
         for each (_local_1 in this.models) {
-            return (true);
+            return true;
         }
-        return (false);
+        return false;
     }
 
 

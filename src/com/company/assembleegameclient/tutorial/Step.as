@@ -28,7 +28,7 @@ public class Step {
     }
 
     public function toString():String {
-        return ((("[" + this.text_) + "]"));
+        return "[" + this.text_ + "]";
     }
 
 

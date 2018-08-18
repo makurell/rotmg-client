@@ -17,31 +17,31 @@ public class MessageCenter implements MessageMap, MessageProvider {
 
     public function setInjector(_arg_1:Injector):MessageCenter {
         this.injector = _arg_1;
-        return (this);
+        return this;
     }
 
     public function map(_arg_1:int):MessageMapping {
-        return ((this.maps[_arg_1] = ((this.maps[_arg_1]) || (this.makeMapping(_arg_1)))));
+        return this.maps[_arg_1] = this.maps[_arg_1] || this.makeMapping(_arg_1);
     }
 
     public function unmap(_arg_1:int):void {
-        ((this.pools[_arg_1]) && (this.pools[_arg_1].dispose()));
+        this.pools[_arg_1] && this.pools[_arg_1].dispose();
         this.pools[_arg_1] = null;
         this.maps[_arg_1] = null;
     }
 
     private function makeMapping(_arg_1:int):MessageCenterMapping {
-        return ((new MessageCenterMapping().setInjector(this.injector).setID(_arg_1) as MessageCenterMapping));
+        return new MessageCenterMapping().setInjector(this.injector).setID(_arg_1) as MessageCenterMapping;
     }
 
     public function require(_arg_1:int):Message {
-        var _local_2:MessagePool = (this.pools[_arg_1] = ((this.pools[_arg_1]) || (this.makePool(_arg_1))));
-        return (_local_2.require());
+        var _local_2:MessagePool = this.pools[_arg_1] = this.pools[_arg_1] || this.makePool(_arg_1);
+        return _local_2.require();
     }
 
     private function makePool(_arg_1:uint):MessagePool {
         var _local_2:MessageCenterMapping = this.maps[_arg_1];
-        return (((_local_2) ? _local_2.makePool() : null));
+        return _local_2 ? _local_2.makePool() : null;
     }
 
 

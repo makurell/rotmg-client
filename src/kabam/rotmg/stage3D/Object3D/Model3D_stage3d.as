@@ -44,8 +44,8 @@ public class Model3D_stage3d {
                 _local_2._faces = null;
             }
         }
-        this.vertexBuffer = _arg_1.createVertexBuffer((this._vertices.length / 8), 8);
-        this.vertexBuffer.uploadFromVector(this._vertices, 0, (this._vertices.length / 8));
+        this.vertexBuffer = _arg_1.createVertexBuffer(this._vertices.length / 8, 8);
+        this.vertexBuffer.uploadFromVector(this._vertices, 0, this._vertices.length / 8);
     }
 
     public function readBytes(_arg_1:ByteArray):void {
@@ -66,7 +66,7 @@ public class Model3D_stage3d {
         var _local_9:Array = _local_8.split(/[\r\n]+/);
         for each (_local_10 in _local_9) {
             _local_10 = _local_10.replace(/^\s*|\s*$/g, "");
-            if (!(((_local_10 == "")) || ((_local_10.charAt(0) === "#")))) {
+            if (!(_local_10 == "" || _local_10.charAt(0) === "#")) {
                 _local_11 = _local_10.split(/\s+/);
                 switch (_local_11[0].toLowerCase()) {
                     case "v":
@@ -76,7 +76,7 @@ public class Model3D_stage3d {
                         _local_6.push(parseFloat(_local_11[1]), parseFloat(_local_11[2]), parseFloat(_local_11[3]));
                         break;
                     case "vt":
-                        _local_7.push(parseFloat(_local_11[1]), (1 - parseFloat(_local_11[2])));
+                        _local_7.push(parseFloat(_local_11[1]), 1 - parseFloat(_local_11[2]));
                         break;
                     case "f":
                         _local_2 = new Vector.<String>();
@@ -110,7 +110,7 @@ public class Model3D_stage3d {
         for each (_local_3 in this.groups) {
             _local_3._indices.length = 0;
             for each (_local_2 in _local_3._faces) {
-                _local_13 = (_local_2.length - 1);
+                _local_13 = _local_2.length - 1;
                 _local_14 = 1;
                 while (_local_14 < _local_13) {
                     _local_3._indices.push(this.mergeTuple(_local_2[_local_14], _local_5, _local_6, _local_7));
@@ -129,26 +129,26 @@ public class Model3D_stage3d {
         var _local_5:Array;
         var _local_6:uint;
         if (this._tupleIndices[_arg_1] !== undefined) {
-            return (this._tupleIndices[_arg_1]);
+            return this._tupleIndices[_arg_1];
         }
         _local_5 = _arg_1.split("/");
-        _local_6 = (parseInt(_local_5[0], 10) - 1);
+        _local_6 = parseInt(_local_5[0], 10) - 1;
         this._vertices.push(_arg_2[((_local_6 * 3) + 0)], _arg_2[((_local_6 * 3) + 1)], _arg_2[((_local_6 * 3) + 2)]);
-        if ((((_local_5.length > 2)) && ((_local_5[2].length > 0)))) {
-            _local_6 = (parseInt(_local_5[2], 10) - 1);
+        if (_local_5.length > 2 && _local_5[2].length > 0) {
+            _local_6 = parseInt(_local_5[2], 10) - 1;
             this._vertices.push(_arg_3[((_local_6 * 3) + 0)], _arg_3[((_local_6 * 3) + 1)], _arg_3[((_local_6 * 3) + 2)]);
         }
         else {
             this._vertices.push(0, 0, 0);
         }
-        if ((((_local_5.length > 1)) && ((_local_5[1].length > 0)))) {
-            _local_6 = (parseInt(_local_5[1], 10) - 1);
+        if (_local_5.length > 1 && _local_5[1].length > 0) {
+            _local_6 = parseInt(_local_5[1], 10) - 1;
             this._vertices.push(_arg_4[((_local_6 * 2) + 0)], _arg_4[((_local_6 * 2) + 1)]);
         }
         else {
             this._vertices.push(0, 0);
         }
-        return ((this._tupleIndices[_arg_1] = this._tupleIndex++));
+        return this._tupleIndices[_arg_1] = this._tupleIndex++;
     }
 
 

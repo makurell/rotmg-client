@@ -90,7 +90,7 @@ public class GameSpriteMediator extends Mediator {
     public static function sleepForMs(_arg_1:int):void {
         var _local_2:int = getTimer();
         while (true) {
-            if ((getTimer() - _local_2) >= _arg_1) break;
+            if (getTimer() - _local_2 >= _arg_1) break;
         }
     }
 
@@ -153,8 +153,7 @@ public class GameSpriteMediator extends Mediator {
     }
 
     private function onClosed():void {
-        if(!this.view.isEditor)
-        {
+        if (!this.view.isEditor) {
             this.gameClosed.dispatch();
         }
         this.closeDialogs.dispatch();

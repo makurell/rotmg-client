@@ -17,7 +17,7 @@ public class TimerDisplay extends Sprite {
     }
 
     private function initTextField(_arg_1:TextFieldDisplayConcrete):void {
-        addChild((this._textField = _arg_1));
+        addChild(this._textField = _arg_1);
     }
 
     public function update(_arg_1:Number):void {

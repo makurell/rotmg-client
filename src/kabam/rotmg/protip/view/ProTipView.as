@@ -26,7 +26,7 @@ public class ProTipView extends Sprite {
     }
 
     private function removeSelf(_arg_1:GTween):void {
-        ((parent) && (parent.removeChild(this)));
+        parent && parent.removeChild(this);
     }
 
 

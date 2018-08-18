@@ -19,7 +19,7 @@ public class PetYardEnum {
     }
 
     public static function get list():Array {
-        return ([PET_YARD_ONE, PET_YARD_TWO, PET_YARD_THREE, PET_YARD_FOUR, PET_YARD_FIVE]);
+        return [PET_YARD_ONE, PET_YARD_TWO, PET_YARD_THREE, PET_YARD_FOUR, PET_YARD_FIVE];
     }
 
     public static function selectByValue(_arg_1:String):PetYardEnum {
@@ -30,7 +30,7 @@ public class PetYardEnum {
                 _local_2 = _local_3;
             }
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public static function selectByOrdinal(_arg_1:int):PetYardEnum {
@@ -41,7 +41,7 @@ public class PetYardEnum {
                 _local_2 = _local_3;
             }
         }
-        return (_local_2);
+        return _local_2;
     }
 
 

@@ -16,7 +16,7 @@ public class ChangeGuildRank extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CHANGEGUILDRANK", "name_", "guildRank_"));
+        return formatToString("CHANGEGUILDRANK", "name_", "guildRank_");
     }
 
 

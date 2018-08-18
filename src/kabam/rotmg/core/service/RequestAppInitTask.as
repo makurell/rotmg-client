@@ -27,7 +27,7 @@ public class RequestAppInitTask extends BaseTask {
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
         var _local_3:XML = XML(_arg_2);
-        ((_arg_1) && (this.appInitConfigData.dispatch(_local_3)));
+        _arg_1 && this.appInitConfigData.dispatch(_local_3);
         this.initDynamicSettingsClass(_local_3);
         completeTask(_arg_1, _arg_2);
     }

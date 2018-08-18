@@ -14,7 +14,7 @@ public class GotoAck extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("GOTOACK", "time_"));
+        return formatToString("GOTOACK", "time_");
     }
 
 

@@ -121,13 +121,13 @@ public class ArenaLeaderboardListItem extends Sprite {
     }
 
     public function apply(_arg_1:ArenaLeaderboardEntry, _arg_2:Boolean):void {
-        this.isActive = !((_arg_1 == null));
+        this.isActive = !(_arg_1 == null);
         if (_arg_1) {
             this.initPlayerData(_arg_1);
             this.initArenaData(_arg_1);
-            if (((_arg_1.rank) && (_arg_2))) {
+            if (_arg_1.rank && _arg_2) {
                 this.rankNumber.visible = true;
-                this.rankNumber.setStringBuilder(this.rankNumberStringBuilder.setString((_arg_1.rank + ".")));
+                this.rankNumber.setStringBuilder(this.rankNumberStringBuilder.setString(_arg_1.rank + "."));
             }
             else {
                 this.rankNumber.visible = false;
@@ -174,7 +174,7 @@ public class ArenaLeaderboardListItem extends Sprite {
     }
 
     private function getPetBitmap(_arg_1:PetVO, _arg_2:int):Bitmap {
-        return (new Bitmap(this.petIconFactory.getPetSkinTexture(_arg_1, _arg_2)));
+        return new Bitmap(this.petIconFactory.getPetSkinTexture(_arg_1, _arg_2));
     }
 
     public function setColor():void {
@@ -212,7 +212,7 @@ public class ArenaLeaderboardListItem extends Sprite {
         _local_1 = new StaticTextDisplay();
         _local_1.setBold(true).setSize(24);
         _local_1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeBackground():Sprite {
@@ -221,7 +221,7 @@ public class ArenaLeaderboardListItem extends Sprite {
         _local_1.graphics.drawRect(0, 0, 750, 60);
         _local_1.graphics.endFill();
         _local_1.alpha = 0;
-        return (_local_1);
+        return _local_1;
     }
 
     private function makePetIconBackground():Sprite {
@@ -230,34 +230,34 @@ public class ArenaLeaderboardListItem extends Sprite {
         _local_1.graphics.drawRoundRect(0, 0, 40, 40, 10, 10);
         _local_1.graphics.endFill();
         _local_1.visible = false;
-        return (_local_1);
+        return _local_1;
     }
 
     private function formatTime(_arg_1:int):String {
-        var _local_2:int = Math.floor((_arg_1 / 60));
-        var _local_3:String = ((((_local_2 < 10)) ? "0" : "") + _local_2.toString());
-        var _local_4:int = (_arg_1 % 60);
-        var _local_5:String = ((((_local_4 < 10)) ? "0" : "") + _local_4.toString());
-        return (((_local_3 + ":") + _local_5));
+        var _local_2:int = Math.floor(_arg_1 / 60);
+        var _local_3:String = (_local_2 < 10 ? "0" : "") + _local_2.toString();
+        var _local_4:int = _arg_1 % 60;
+        var _local_5:String = (_local_4 < 10 ? "0" : "") + _local_4.toString();
+        return _local_3 + ":" + _local_5;
     }
 
     private function align():void {
         this.rankNumber.x = 75;
-        this.rankNumber.y = ((HEIGHT / 2) - (this.rankNumber.height / 2));
+        this.rankNumber.y = HEIGHT / 2 - this.rankNumber.height / 2;
         this.playerIcon.x = 110;
-        this.playerIcon.y = (((HEIGHT / 2) - (this.playerIcon.height / 2)) - 3);
+        this.playerIcon.y = HEIGHT / 2 - this.playerIcon.height / 2 - 3;
         if (this.petBitmap) {
             this.petBitmap.x = 170;
-            this.petBitmap.y = ((HEIGHT / 2) - (this.petBitmap.height / 2));
+            this.petBitmap.y = HEIGHT / 2 - this.petBitmap.height / 2;
             this.petIconBackground.x = 175;
-            this.petIconBackground.y = ((HEIGHT / 2) - (this.petIconBackground.height / 2));
+            this.petIconBackground.y = HEIGHT / 2 - this.petIconBackground.height / 2;
         }
         this.playerName.x = 230;
-        this.playerName.y = ((HEIGHT / 2) - (this.playerName.height / 2));
+        this.playerName.y = HEIGHT / 2 - this.playerName.height / 2;
         this.waveNumber.x = 485;
-        this.waveNumber.y = ((HEIGHT / 2) - (this.waveNumber.height / 2));
+        this.waveNumber.y = HEIGHT / 2 - this.waveNumber.height / 2;
         this.runTime.x = 635;
-        this.runTime.y = ((HEIGHT / 2) - (this.runTime.height / 2));
+        this.runTime.y = HEIGHT / 2 - this.runTime.height / 2;
     }
 
 

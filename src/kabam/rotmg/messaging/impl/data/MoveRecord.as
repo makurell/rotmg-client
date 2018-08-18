@@ -20,7 +20,7 @@ public class MoveRecord {
     }
 
     public function toString():String {
-        return (((((("time_: " + this.time_) + " x_: ") + this.x_) + " y_: ") + this.y_));
+        return "time_: " + this.time_ + " x_: " + this.x_ + " y_: " + this.y_;
     }
 
 

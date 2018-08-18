@@ -28,7 +28,7 @@ public class NewTick extends IncomingMessage {
         }
         this.statuses_.length = Math.min(_local_2, this.statuses_.length);
         while (this.statuses_.length < _local_2) {
-            this.statuses_.push((FreeList.newObject(ObjectStatusData) as ObjectStatusData));
+            this.statuses_.push(FreeList.newObject(ObjectStatusData) as ObjectStatusData);
         }
         _local_3 = 0;
         while (_local_3 < _local_2) {
@@ -38,7 +38,7 @@ public class NewTick extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("NEW_TICK", "tickId_", "tickTime_", "statuses_"));
+        return formatToString("NEW_TICK", "tickId_", "tickTime_", "statuses_");
     }
 
 

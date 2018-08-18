@@ -44,12 +44,12 @@ public class TradeButton extends BackgroundFilledText {
         this.myText.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
         this.myText.setSize(_arg_1).setColor(0x363636).setBold(true);
         this.myText.setStringBuilder(new LineBuilder().setParams(TextKey.PLAYERMENU_TRADE));
-        w_ = (((_arg_2) != 0) ? _arg_2 : (this.myText.width + 12));
-        this.h_ = (this.myText.height + 8);
-        this.myText.x = (w_ / 2);
-        this.myText.y = (this.h_ / 2);
+        w_ = _arg_2 != 0 ? _arg_2 : this.myText.width + 12;
+        this.h_ = this.myText.height + 8;
+        this.myText.x = w_ / 2;
+        this.myText.y = this.h_ / 2;
         GraphicsUtil.clearPath(path_);
-        GraphicsUtil.drawCutEdgeRect(0, 0, w_, (this.myText.height + 8), 4, [1, 1, 1, 1], path_);
+        GraphicsUtil.drawCutEdgeRect(0, 0, w_, this.myText.height + 8, 4, [1, 1, 1, 1], path_);
         this.statusBar_ = this.newStatusBar();
         addChild(this.statusBar_);
         addChild(this.myText);
@@ -92,7 +92,7 @@ public class TradeButton extends BackgroundFilledText {
         }
         mouseEnabled = _arg_1;
         mouseChildren = _arg_1;
-        graphicsData_[0] = ((_arg_1) ? enabledFill_ : disabledFill_);
+        graphicsData_[0] = _arg_1 ? enabledFill_ : disabledFill_;
         this.draw();
     }
 
@@ -141,13 +141,13 @@ public class TradeButton extends BackgroundFilledText {
         _local_4.graphics.clear();
         _local_4.graphics.drawGraphicsData(this.outlineGraphicsData_);
         _local_1.addChild(_local_4);
-        return (_local_1);
+        return _local_1;
     }
 
     private function drawCountDown(_arg_1:Number):void {
         this.barMask_.graphics.clear();
         this.barMask_.graphics.beginFill(0xBFBFBF);
-        this.barMask_.graphics.drawRect(0, 0, (w_ * _arg_1), this.h_);
+        this.barMask_.graphics.drawRect(0, 0, w_ * _arg_1, this.h_);
         this.barMask_.graphics.endFill();
     }
 
@@ -156,7 +156,7 @@ public class TradeButton extends BackgroundFilledText {
         var _local_2:Number;
         _local_1 = getTimer();
         if (this.state_ == COUNTDOWN_STATE) {
-            if ((_local_1 - this.lastResetTime_) >= WAIT_TIME) {
+            if (_local_1 - this.lastResetTime_ >= WAIT_TIME) {
                 this.state_ = NORMAL_STATE;
                 this.setEnabled(true);
             }
@@ -164,7 +164,7 @@ public class TradeButton extends BackgroundFilledText {
         switch (this.state_) {
             case COUNTDOWN_STATE:
                 this.statusBar_.visible = true;
-                _local_2 = ((_local_1 - this.lastResetTime_) / WAIT_TIME);
+                _local_2 = (_local_1 - this.lastResetTime_) / WAIT_TIME;
                 this.drawCountDown(_local_2);
                 break;
             case DISABLED_STATE:

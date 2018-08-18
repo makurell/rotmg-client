@@ -36,7 +36,7 @@ public class TradePanel extends Sprite {
         this.cancelButton_.textChanged.addOnce(this.onCancelTextChanged);
         addChild(this.cancelButton_);
         this.tradeButton_ = new TradeButton(16, 80);
-        this.tradeButton_.x = (((3 * WIDTH) / 4) - (this.tradeButton_.bWidth / 2));
+        this.tradeButton_.x = (3 * WIDTH) / 4 - this.tradeButton_.bWidth / 2;
         this.tradeButton_.addEventListener(MouseEvent.CLICK, this.onTradeClick);
         addChild(this.tradeButton_);
         this.checkTrade();
@@ -45,8 +45,8 @@ public class TradePanel extends Sprite {
     }
 
     private function onCancelTextChanged():void {
-        this.cancelButton_.x = ((WIDTH / 4) - (this.cancelButton_.bWidth / 2));
-        this.cancelButton_.y = ((HEIGHT - this.cancelButton_.height) - 10);
+        this.cancelButton_.x = WIDTH / 4 - this.cancelButton_.bWidth / 2;
+        this.cancelButton_.y = HEIGHT - this.cancelButton_.height - 10;
         this.tradeButton_.y = this.cancelButton_.y;
     }
 
@@ -56,7 +56,7 @@ public class TradePanel extends Sprite {
     }
 
     public function youAccepted(_arg_1:Vector.<Boolean>, _arg_2:Vector.<Boolean>):void {
-        if (((this.myInv_.isOffer(_arg_1)) && (this.yourInv_.isOffer(_arg_2)))) {
+        if (this.myInv_.isOffer(_arg_1) && this.yourInv_.isOffer(_arg_2)) {
             this.yourInv_.setMessage(TradeInventory.TRADEACCEPTED_MESSAGE);
         }
     }
@@ -94,14 +94,14 @@ public class TradePanel extends Sprite {
         var _local_3:int = this.yourInv_.numIncluded();
         var _local_4:int = this.yourInv_.numEmpty();
         var _local_5:Boolean = true;
-        if (((_local_3 - _local_1) - _local_2) > 0) {
+        if (_local_3 - _local_1 - _local_2 > 0) {
             this.myInv_.setMessage(TradeInventory.NOTENOUGHSPACE_MESSAGE);
             _local_5 = false;
         }
         else {
             this.myInv_.setMessage(TradeInventory.CLICKITEMS_MESSAGE);
         }
-        if (((_local_1 - _local_3) - _local_4) > 0) {
+        if (_local_1 - _local_3 - _local_4 > 0) {
             this.yourInv_.setMessage(TradeInventory.NOTENOUGHSPACE_MESSAGE);
             _local_5 = false;
         }

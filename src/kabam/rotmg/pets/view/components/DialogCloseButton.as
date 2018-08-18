@@ -23,8 +23,8 @@ public class DialogCloseButton extends Sprite {
         else {
             _local_2 = new CloseButtonLargeAsset();
             addChild(new CloseButtonLargeAsset());
-            scaleX = (scaleX * _arg_1);
-            scaleY = (scaleY * _arg_1);
+            scaleX = scaleX * _arg_1;
+            scaleY = scaleY * _arg_1;
         }
         buttonMode = true;
         addEventListener(MouseEvent.CLICK, this.onClicked);

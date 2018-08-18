@@ -19,7 +19,7 @@ public class ThrowEffect extends ParticleEffect {
         var _local_3 = 200;
         var _local_4:ThrowParticle = new ThrowParticle(_local_3, this.color_, 1500, this.start_, this.end_);
         map_.addObj(_local_4, x_, y_);
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
@@ -28,7 +28,7 @@ public class ThrowEffect extends ParticleEffect {
         var _local_3:int = 10;
         var _local_4:ThrowParticle = new ThrowParticle(_local_3, this.color_, 1500, this.start_, this.end_);
         map_.addObj(_local_4, x_, y_);
-        return (false);
+        return false;
     }
 
 
@@ -59,25 +59,25 @@ class ThrowParticle extends Particle {
         this.initialSize_ = _arg_1;
         this.start_ = _arg_4;
         this.end_ = _arg_5;
-        this.dx_ = ((this.end_.x - this.start_.x) / this.timeLeft_);
-        this.dy_ = ((this.end_.y - this.start_.y) / this.timeLeft_);
-        var _local_6:Number = (Point.distance(_arg_4, _arg_5) / this.timeLeft_);
+        this.dx_ = (this.end_.x - this.start_.x) / this.timeLeft_;
+        this.dy_ = (this.end_.y - this.start_.y) / this.timeLeft_;
+        var _local_6:Number = Point.distance(_arg_4, _arg_5) / this.timeLeft_;
         this.pathX_ = (x_ = this.start_.x);
         this.pathY_ = (y_ = this.start_.y);
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        z_ = (Math.sin(((this.timeLeft_ / this.lifetime_) * Math.PI)) * 2);
+        z_ = Math.sin((this.timeLeft_ / this.lifetime_) * Math.PI) * 2;
         setSize(0);
-        this.pathX_ = (this.pathX_ + (this.dx_ * _arg_2));
-        this.pathY_ = (this.pathY_ + (this.dy_ * _arg_2));
+        this.pathX_ = this.pathX_ + this.dx_ * _arg_2;
+        this.pathY_ = this.pathY_ + this.dy_ * _arg_2;
         moveTo(this.pathX_, this.pathY_);
-        map_.addObj(new SparkParticle((100 * (z_ + 1)), color_, 400, z_, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1)), this.pathX_, this.pathY_);
-        return (true);
+        map_.addObj(new SparkParticle(100 * (z_ + 1), color_, 400, z_, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1)), this.pathX_, this.pathY_);
+        return true;
     }
 
 

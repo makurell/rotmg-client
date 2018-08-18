@@ -98,64 +98,64 @@ public class DateField extends Sprite {
     }
 
     private function drawSimpleTextBackground(_arg_1:BaseSimpleText, _arg_2:int, _arg_3:int, _arg_4:Boolean):void {
-        var _local_5:uint = ((_arg_4) ? ERROR_BORDER_COLOR : NORMAL_BORDER_COLOR);
+        var _local_5:uint = _arg_4 ? ERROR_BORDER_COLOR : NORMAL_BORDER_COLOR;
         graphics.lineStyle(2, _local_5, 1, false, LineScaleMode.NORMAL, CapsStyle.ROUND, JointStyle.ROUND);
         graphics.beginFill(BACKGROUND_COLOR, 1);
-        graphics.drawRect(((_arg_1.x - _arg_2) - 5), (_arg_1.y - _arg_3), (_arg_1.width + (_arg_2 * 2)), (_arg_1.height + (_arg_3 * 2)));
+        graphics.drawRect(_arg_1.x - _arg_2 - 5, _arg_1.y - _arg_3, _arg_1.width + _arg_2 * 2, _arg_1.height + _arg_3 * 2);
         graphics.endFill();
         graphics.lineStyle();
     }
 
     private function createFormatHint(_arg_1:BaseSimpleText, _arg_2:String):TextFieldDisplayConcrete {
         var _local_3:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(FORMAT_HINT_COLOR);
-        _local_3.setTextWidth((_arg_1.width + 4)).setTextHeight(_arg_1.height);
-        _local_3.x = (_arg_1.x - 6);
-        _local_3.y = (_arg_1.y + 3);
+        _local_3.setTextWidth(_arg_1.width + 4).setTextHeight(_arg_1.height);
+        _local_3.x = _arg_1.x - 6;
+        _local_3.y = _arg_1.y + 3;
         _local_3.setStringBuilder(new LineBuilder().setParams(_arg_2));
         _local_3.setAutoSize(TextFieldAutoSize.CENTER);
-        return (_local_3);
+        return _local_3;
     }
 
     private function onMonthInput(_arg_1:TextEvent):void {
-        var _local_2:String = (this.months.text + _arg_1.text);
+        var _local_2:String = this.months.text + _arg_1.text;
         var _local_3:int = int(_local_2);
-        if (((!((_local_2 == "0"))) && (!(this.validator.isValidMonth(_local_3))))) {
+        if (!(_local_2 == "0") && !this.validator.isValidMonth(_local_3)) {
             _arg_1.preventDefault();
         }
     }
 
     private function onMonthFocusOut(_arg_1:FocusEvent):void {
         var _local_2:int = int(this.months.text);
-        if ((((_local_2 < 10)) && (!((this.days.text == ""))))) {
-            this.months.text = ("0" + _local_2.toString());
+        if (_local_2 < 10 && !(this.days.text == "")) {
+            this.months.text = "0" + _local_2.toString();
         }
     }
 
     private function onEditMonth(_arg_1:Event):void {
-        this.monthFormatText.visible = !(this.months.text);
+        this.monthFormatText.visible = !this.months.text;
     }
 
     private function onDayInput(_arg_1:TextEvent):void {
-        var _local_2:String = (this.days.text + _arg_1.text);
+        var _local_2:String = this.days.text + _arg_1.text;
         var _local_3:int = int(_local_2);
-        if (((!((_local_2 == "0"))) && (!(this.validator.isValidDay(_local_3))))) {
+        if (!(_local_2 == "0") && !this.validator.isValidDay(_local_3)) {
             _arg_1.preventDefault();
         }
     }
 
     private function onDayFocusOut(_arg_1:FocusEvent):void {
         var _local_2:int = int(this.days.text);
-        if ((((_local_2 < 10)) && (!((this.days.text == ""))))) {
-            this.days.text = ("0" + _local_2.toString());
+        if (_local_2 < 10 && !(this.days.text == "")) {
+            this.days.text = "0" + _local_2.toString();
         }
     }
 
     private function onEditDay(_arg_1:Event):void {
-        this.dayFormatText.visible = !(this.days.text);
+        this.dayFormatText.visible = !this.days.text;
     }
 
     private function onYearInput(_arg_1:TextEvent):void {
-        var _local_2:String = (this.years.text + _arg_1.text);
+        var _local_2:String = this.years.text + _arg_1.text;
         var _local_3:int = this.getEarliestYear(_local_2);
         if (_local_3 > this.thisYear) {
             _arg_1.preventDefault();
@@ -164,38 +164,38 @@ public class DateField extends Sprite {
 
     private function getEarliestYear(_arg_1:String):int {
         while (_arg_1.length < 4) {
-            _arg_1 = (_arg_1 + "0");
+            _arg_1 = _arg_1 + "0";
         }
-        return (int(_arg_1));
+        return int(_arg_1);
     }
 
     private function onEditYear(_arg_1:Event):void {
-        this.yearFormatText.visible = !(this.years.text);
+        this.yearFormatText.visible = !this.years.text;
     }
 
     public function isValidDate():Boolean {
         var _local_1:int = int(this.months.text);
         var _local_2:int = int(this.days.text);
         var _local_3:int = int(this.years.text);
-        return (this.validator.isValidDate(_local_1, _local_2, _local_3, 100));
+        return this.validator.isValidDate(_local_1, _local_2, _local_3, 100);
     }
 
     public function getDate():String {
         var _local_1:String = this.getFixedLengthString(this.months.text, 2);
         var _local_2:String = this.getFixedLengthString(this.days.text, 2);
         var _local_3:String = this.getFixedLengthString(this.years.text, 4);
-        return (((((_local_1 + "/") + _local_2) + "/") + _local_3));
+        return _local_1 + "/" + _local_2 + "/" + _local_3;
     }
 
     private function getFixedLengthString(_arg_1:String, _arg_2:int):String {
         while (_arg_1.length < _arg_2) {
-            _arg_1 = ("0" + _arg_1);
+            _arg_1 = "0" + _arg_1;
         }
-        return (_arg_1);
+        return _arg_1;
     }
 
     public function getTextChanged():Signal {
-        return (this.label.textChanged);
+        return this.label.textChanged;
     }
 
 

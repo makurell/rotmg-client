@@ -9,10 +9,10 @@ public class AnimatedChars {
 
     public static function getAnimatedChar(_arg_1:String, _arg_2:int):AnimatedChar {
         var _local_3:Vector.<AnimatedChar> = nameMap_[_arg_1];
-        if ((((_local_3 == null)) || ((_arg_2 >= _local_3.length)))) {
-            return (null);
+        if (_local_3 == null || _arg_2 >= _local_3.length) {
+            return null;
         }
-        return (_local_3[_arg_2]);
+        return _local_3[_arg_2];
     }
 
     public static function add(_arg_1:String, _arg_2:BitmapData, _arg_3:BitmapData, _arg_4:int, _arg_5:int, _arg_6:int, _arg_7:int, _arg_8:int):void {

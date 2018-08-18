@@ -41,7 +41,7 @@ public class InteractiveItemTile extends ItemTile {
     }
 
     public function getDropTarget():DisplayObject {
-        return (itemSprite.dropTarget);
+        return itemSprite.dropTarget;
     }
 
     protected function beginDragCallback():void {
@@ -80,8 +80,7 @@ public class InteractiveItemTile extends ItemTile {
     }
 
     private function onMouseDown(_arg_1:MouseEvent):void {
-        if(getItemId() == -1)
-        {
+        if (getItemId() == -1) {
             return;
         }
         this.beginDragCheck(_arg_1);
@@ -112,9 +111,9 @@ public class InteractiveItemTile extends ItemTile {
     }
 
     private function onMouseMoveCheckDrag(_arg_1:MouseEvent):void {
-        var _local_2:Number = (_arg_1.stageX - this.dragStart.x);
-        var _local_3:Number = (_arg_1.stageY - this.dragStart.y);
-        var _local_4:Number = Math.sqrt(((_local_2 * _local_2) + (_local_3 * _local_3)));
+        var _local_2:Number = _arg_1.stageX - this.dragStart.x;
+        var _local_3:Number = _arg_1.stageY - this.dragStart.y;
+        var _local_4:Number = Math.sqrt(_local_2 * _local_2 + _local_3 * _local_3);
         if (_local_4 > DRAG_DIST) {
             this.cancelDragCheck(null);
             this.setPendingDoubleClick(false);

@@ -32,13 +32,13 @@ public class GroundLibrary {
     public static function getIdFromType(_arg_1:int):String {
         var _local_2:GroundProperties = propsLibrary_[_arg_1];
         if (_local_2 == null) {
-            return (null);
+            return null;
         }
-        return (_local_2.id_);
+        return _local_2.id_;
     }
 
     public static function getBitmapData(_arg_1:int, _arg_2:int = 0):BitmapData {
-        return (typeToTextureData_[_arg_1].getTexture(_arg_2));
+        return typeToTextureData_[_arg_1].getTexture(_arg_2);
     }
 
     public static function getColor(_arg_1:*):uint {
@@ -56,7 +56,7 @@ public class GroundLibrary {
             }
             tileTypeColorDict_[_arg_1] = _local_3;
         }
-        return (tileTypeColorDict_[_arg_1]);
+        return tileTypeColorDict_[_arg_1];
     }
 
 

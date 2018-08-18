@@ -35,8 +35,8 @@ public class NexusBackground extends Background {
         this.graphicsData_.length = 0;
         var _local_3:Matrix = this.bitmapFill_.matrix;
         _local_3.identity();
-        _local_3.translate((_arg_2 * MOVEMENT.x), (_arg_2 * MOVEMENT.y));
-        _local_3.rotate(-(_arg_1.angleRad_));
+        _local_3.translate(_arg_2 * MOVEMENT.x, _arg_2 * MOVEMENT.y);
+        _local_3.rotate(-_arg_1.angleRad_);
         this.bitmapFill_.bitmapData = this.water_;
         this.graphicsData_.push(this.bitmapFill_);
         this.path_.data.length = 0;
@@ -95,18 +95,18 @@ class Island {
     }
 
     public function draw(_arg_1:Camera, _arg_2:int, _arg_3:Vector.<IGraphicsData>):void {
-        var _local_4:int = (_arg_2 - this.startTime_);
-        var _local_5:Number = (this.center_.x + (_local_4 * NexusBackground.MOVEMENT.x));
-        var _local_6:Number = (this.center_.y + (_local_4 * NexusBackground.MOVEMENT.y));
+        var _local_4:int = _arg_2 - this.startTime_;
+        var _local_5:Number = this.center_.x + _local_4 * NexusBackground.MOVEMENT.x;
+        var _local_6:Number = this.center_.y + _local_4 * NexusBackground.MOVEMENT.y;
         var _local_7:Matrix = this.bitmapFill_.matrix;
         _local_7.identity();
         _local_7.translate(_local_5, _local_6);
-        _local_7.rotate(-(_arg_1.angleRad_));
+        _local_7.rotate(-_arg_1.angleRad_);
         this.bitmapFill_.bitmapData = this.bitmapData_;
         _arg_3.push(this.bitmapFill_);
         this.path_.data.length = 0;
         var _local_8:Point = _local_7.transformPoint(new Point(_local_5, _local_6));
-        var _local_9:Point = _local_7.transformPoint(new Point((_local_5 + this.bitmapData_.width), (_local_6 + this.bitmapData_.height)));
+        var _local_9:Point = _local_7.transformPoint(new Point(_local_5 + this.bitmapData_.width, _local_6 + this.bitmapData_.height));
         this.path_.data.push(_local_8.x, _local_8.y, _local_9.x, _local_8.y, _local_9.x, _local_9.y, _local_8.x, _local_9.y);
         _arg_3.push(this.path_);
         _arg_3.push(GraphicsUtil.END_FILL);

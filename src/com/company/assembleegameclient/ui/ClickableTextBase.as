@@ -30,7 +30,7 @@ public class ClickableTextBase extends Sprite {
     }
 
     protected function makeText():TextFieldDisplayConcrete {
-        return (new TextFieldDisplayConcrete());
+        return new TextFieldDisplayConcrete();
     }
 
     public function setAutoSize(_arg_1:String):void {

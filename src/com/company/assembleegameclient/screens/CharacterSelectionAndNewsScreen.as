@@ -201,7 +201,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
         this.openGraveyardText.setBold(true);
         this.openGraveyardText.setStringBuilder(new LineBuilder().setParams(TextKey.CHARACTER_SELECTION_GRAVEYARD));
         this.openGraveyardText.filters = [this.DROP_SHADOW];
-        this.openGraveyardText.x = (this.CHARACTER_LIST_X_POS + 150);
+        this.openGraveyardText.x = this.CHARACTER_LIST_X_POS + 150;
         this.openGraveyardText.y = 79;
         this.openGraveyardText.addEventListener(MouseEvent.CLICK, this.onOpenGraveyard);
         addChild(this.openGraveyardText);
@@ -228,7 +228,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
         this.nameChooseLink_ = new DeprecatedClickableText(16, false, TextKey.CHARACTER_SELECTION_AND_NEWS_SCREEN_CHOOSE_NAME);
         this.nameChooseLink_.y = 50;
         this.nameChooseLink_.setAutoSize(TextFieldAutoSize.CENTER);
-        this.nameChooseLink_.x = (this.getReferenceRectangle().width / 2);
+        this.nameChooseLink_.x = this.getReferenceRectangle().width / 2;
         this.nameChooseLink_.addEventListener(MouseEvent.CLICK, this.onChooseName);
         addChild(this.nameChooseLink_);
     }
@@ -239,7 +239,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
         this.nameText.setStringBuilder(new StaticStringBuilder(this.model.getName()));
         this.nameText.filters = [this.DROP_SHADOW];
         this.nameText.y = 24;
-        this.nameText.x = ((this.getReferenceRectangle().width - this.nameText.width) / 2);
+        this.nameText.x = (this.getReferenceRectangle().width - this.nameText.width) / 2;
         addChild(this.nameText);
     }
 
@@ -248,7 +248,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
         if (stage) {
             _local_1 = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function createBoundaryLines():void {
@@ -269,7 +269,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
 
     private function onScrollBarChange(_arg_1:Event):void {
         if (this.characterList != null) {
-            this.characterList.setPos((-(this.scrollBar.pos()) * (this.characterListHeight - 400)));
+            this.characterList.setPos(-this.scrollBar.pos() * (this.characterListHeight - 400));
         }
     }
 
@@ -291,7 +291,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
     }
 
     private function removeIfAble(_arg_1:DisplayObject):void {
-        if (((_arg_1) && (contains(_arg_1)))) {
+        if (_arg_1 && contains(_arg_1)) {
             removeChild(_arg_1);
         }
     }
@@ -307,7 +307,7 @@ public class CharacterSelectionAndNewsScreen extends Sprite {
 
     public function setName(_arg_1:String):void {
         this.nameText.setStringBuilder(new StaticStringBuilder(this.model.getName()));
-        this.nameText.x = ((this.getReferenceRectangle().width - this.nameText.width) * 0.5);
+        this.nameText.x = (this.getReferenceRectangle().width - this.nameText.width) * 0.5;
         if (this.nameChooseLink_) {
             removeChild(this.nameChooseLink_);
             this.nameChooseLink_ = null;

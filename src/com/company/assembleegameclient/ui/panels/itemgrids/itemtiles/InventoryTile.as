@@ -29,8 +29,8 @@ public class InventoryTile extends InteractiveItemTile {
         var _local_1:BitmapTextFactory = StaticInjectorContext.getInjector().getInstance(BitmapTextFactory);
         var _local_2:BitmapData = _local_1.make(new StaticStringBuilder(String(this.hotKey)), 26, 0x363636, true, IDENTITY_MATRIX, false);
         this.hotKeyBMP = new Bitmap(_local_2);
-        this.hotKeyBMP.x = ((WIDTH / 2) - (this.hotKeyBMP.width / 2));
-        this.hotKeyBMP.y = ((HEIGHT / 2) - 14);
+        this.hotKeyBMP.x = WIDTH / 2 - this.hotKeyBMP.width / 2;
+        this.hotKeyBMP.y = HEIGHT / 2 - 14;
         addChildAt(this.hotKeyBMP, 0);
     }
 
@@ -42,9 +42,9 @@ public class InventoryTile extends InteractiveItemTile {
     override public function setItem(_arg_1:int):Boolean {
         var _local_2:Boolean = super.setItem(_arg_1);
         if (_local_2) {
-            this.hotKeyBMP.visible = (itemSprite.itemId <= 0);
+            this.hotKeyBMP.visible = itemSprite.itemId <= 0;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     override protected function beginDragCallback():void {
@@ -52,7 +52,7 @@ public class InventoryTile extends InteractiveItemTile {
     }
 
     override protected function endDragCallback():void {
-        this.hotKeyBMP.visible = (itemSprite.itemId <= 0);
+        this.hotKeyBMP.visible = itemSprite.itemId <= 0;
     }
 
 

@@ -21,7 +21,7 @@ public class WebChangePasswordTask extends BaseTask implements ChangePasswordTas
     }
 
     private function onComplete(_arg_1:Boolean, _arg_2:*):void {
-        ((_arg_1) && (this.onChangeDone()));
+        _arg_1 && this.onChangeDone();
         completeTask(_arg_1, _arg_2);
     }
 
@@ -30,7 +30,7 @@ public class WebChangePasswordTask extends BaseTask implements ChangePasswordTas
         _local_1.guid = this.account.getUserId();
         _local_1.password = this.data.currentPassword;
         _local_1.newPassword = this.data.newPassword;
-        return (_local_1);
+        return _local_1;
     }
 
     private function onChangeDone():void {

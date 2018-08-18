@@ -35,7 +35,7 @@ public class ProjectileProperties {
         this.objectId_ = _arg_1.ObjectId;
         this.lifetime_ = int(_arg_1.LifetimeMS);
         this.speed_ = int(_arg_1.Speed);
-        this.size_ = ((_arg_1.hasOwnProperty("Size")) ? Number(_arg_1.Size) : -1);
+        this.size_ = _arg_1.hasOwnProperty("Size") ? Number(_arg_1.Size) : -1;
         if (_arg_1.hasOwnProperty("Damage")) {
             this.minDamage_ = (this.maxDamage_ = int(_arg_1.Damage));
         }
@@ -60,21 +60,21 @@ public class ProjectileProperties {
         this.armorPiercing_ = _arg_1.hasOwnProperty("ArmorPiercing");
         this.particleTrail_ = _arg_1.hasOwnProperty("ParticleTrail");
         if (_arg_1.ParticleTrail.hasOwnProperty("@intensity")) {
-            this.particleTrailIntensity_ = (Number(_arg_1.ParticleTrail.@intensity) * 100);
+            this.particleTrailIntensity_ = Number(_arg_1.ParticleTrail.intensity) * 100;
         }
         if (_arg_1.ParticleTrail.hasOwnProperty("@lifetimeMS")) {
             this.particleTrailLifetimeMS = Number(_arg_1.ParticleTrail.@lifetimeMS);
         }
-        this.particleTrailColor_ = ((this.particleTrail_) ? Number(_arg_1.ParticleTrail) : Number(0xFF00FF));
+        this.particleTrailColor_ = this.particleTrail_ ? Number(_arg_1.ParticleTrail) : Number(0xFF00FF);
         if (this.particleTrailColor_ == 0) {
             this.particleTrailColor_ = 0xFF00FF;
         }
         this.wavy_ = _arg_1.hasOwnProperty("Wavy");
         this.parametric_ = _arg_1.hasOwnProperty("Parametric");
         this.boomerang_ = _arg_1.hasOwnProperty("Boomerang");
-        this.amplitude_ = ((_arg_1.hasOwnProperty("Amplitude")) ? Number(_arg_1.Amplitude) : 0);
-        this.frequency_ = ((_arg_1.hasOwnProperty("Frequency")) ? Number(_arg_1.Frequency) : 1);
-        this.magnitude_ = ((_arg_1.hasOwnProperty("Magnitude")) ? Number(_arg_1.Magnitude) : 3);
+        this.amplitude_ = _arg_1.hasOwnProperty("Amplitude") ? Number(_arg_1.Amplitude) : 0;
+        this.frequency_ = _arg_1.hasOwnProperty("Frequency") ? Number(_arg_1.Frequency) : 1;
+        this.magnitude_ = _arg_1.hasOwnProperty("Magnitude") ? Number(_arg_1.Magnitude) : 3;
     }
 
 }

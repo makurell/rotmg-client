@@ -41,7 +41,7 @@ public class PackageButton extends BasePackageButton {
         var _local_1:TextFieldDisplayConcrete;
         _local_1 = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF);
         _local_1.filters = [new DropShadowFilter(0, 0, 0)];
-        return (_local_1);
+        return _local_1;
     }
 
 
@@ -66,7 +66,7 @@ public class PackageButton extends BasePackageButton {
                 addChild(this.quantityText);
             }
             else {
-                throw (new Error(("PackageButton.setState: Unexpected state " + _arg_1)));
+                throw new Error("PackageButton.setState: Unexpected state " + _arg_1);
             }
         }
         this._state = _arg_1;
@@ -86,7 +86,7 @@ public class PackageButton extends BasePackageButton {
 
     public function setDuration(_arg_1:int):void {
         var _local_3:String;
-        var _local_2:int = Math.ceil((_arg_1 / TimeUtil.DAY_IN_MS));
+        var _local_2:int = Math.ceil(_arg_1 / TimeUtil.DAY_IN_MS);
         if (_local_2 > 1) {
             _local_3 = TextKey.PACKAGE_BUTTON_DAYS;
         }
@@ -109,7 +109,7 @@ public class PackageButton extends BasePackageButton {
     }
 
     public function getIcon():DisplayObject {
-        return (this._icon);
+        return this._icon;
     }
 
     private function onMouseUp(_arg_1:Event):void {

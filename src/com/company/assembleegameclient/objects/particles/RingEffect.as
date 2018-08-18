@@ -27,14 +27,14 @@ public class RingEffect extends ParticleEffect {
         var _local_5 = 200;
         var _local_6:int;
         while (_local_6 < _local_4) {
-            _local_7 = (((_local_6 * 2) * Math.PI) / _local_4);
-            _local_8 = new Point((this.start_.x + (this.novaRadius_ * Math.cos(_local_7))), (this.start_.y + (this.novaRadius_ * Math.sin(_local_7))));
-            _local_9 = new Point((this.start_.x + ((this.novaRadius_ * 0.9) * Math.cos(_local_7))), (this.start_.y + ((this.novaRadius_ * 0.9) * Math.sin(_local_7))));
+            _local_7 = (_local_6 * 2 * Math.PI) / _local_4;
+            _local_8 = new Point(this.start_.x + this.novaRadius_ * Math.cos(_local_7), this.start_.y + this.novaRadius_ * Math.sin(_local_7));
+            _local_9 = new Point(this.start_.x + this.novaRadius_ * 0.9 * Math.cos(_local_7), this.start_.y + this.novaRadius_ * 0.9 * Math.sin(_local_7));
             _local_10 = new SparkerParticle(_local_3, this.color_, _local_5, _local_9, _local_8);
             map_.addObj(_local_10, x_, y_);
             _local_6++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
@@ -49,14 +49,14 @@ public class RingEffect extends ParticleEffect {
         var _local_5:int = 50;
         var _local_6:int;
         while (_local_6 < _local_4) {
-            _local_7 = (((_local_6 * 2) * Math.PI) / _local_4);
-            _local_8 = new Point((this.start_.x + (this.novaRadius_ * Math.cos(_local_7))), (this.start_.y + (this.novaRadius_ * Math.sin(_local_7))));
-            _local_9 = new Point((this.start_.x + ((this.novaRadius_ * 0.9) * Math.cos(_local_7))), (this.start_.y + ((this.novaRadius_ * 0.9) * Math.sin(_local_7))));
+            _local_7 = (_local_6 * 2 * Math.PI) / _local_4;
+            _local_8 = new Point(this.start_.x + this.novaRadius_ * Math.cos(_local_7), this.start_.y + this.novaRadius_ * Math.sin(_local_7));
+            _local_9 = new Point(this.start_.x + this.novaRadius_ * 0.9 * Math.cos(_local_7), this.start_.y + this.novaRadius_ * 0.9 * Math.sin(_local_7));
             _local_10 = new SparkerParticle(_local_3, this.color_, _local_5, _local_9, _local_8);
             map_.addObj(_local_10, x_, y_);
             _local_6++;
         }
-        return (false);
+        return false;
     }
 
 

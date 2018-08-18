@@ -45,7 +45,7 @@ public class CommandMenuItem extends Sprite {
 
     private function redraw():void {
         graphics.clear();
-        if (((this.selected_) || (this.down_))) {
+        if (this.selected_ || this.down_) {
             graphics.lineStyle(2, 0xFFFFFF);
             graphics.beginFill(0x7F7F7F, 1);
             graphics.drawRect(0, 0, WIDTH, HEIGHT);

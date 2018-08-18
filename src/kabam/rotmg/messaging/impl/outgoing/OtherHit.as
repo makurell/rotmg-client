@@ -20,7 +20,7 @@ public class OtherHit extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("OTHERHIT", "time_", "bulletId_", "objectId_", "targetId_"));
+        return formatToString("OTHERHIT", "time_", "bulletId_", "objectId_", "targetId_");
     }
 
 

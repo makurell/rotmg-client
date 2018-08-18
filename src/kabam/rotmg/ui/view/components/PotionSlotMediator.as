@@ -59,7 +59,7 @@ public class PotionSlotMediator extends Mediator {
     private function update(_arg_1:Player):void {
         var _local_2:PotionModel;
         var _local_3:int;
-        if ((((((this.view.objectType == PotionInventoryModel.HEALTH_POTION_ID)) || ((this.view.objectType == PotionInventoryModel.MAGIC_POTION_ID)))) && (!(this.blockingUpdate)))) {
+        if ((this.view.objectType == PotionInventoryModel.HEALTH_POTION_ID || this.view.objectType == PotionInventoryModel.MAGIC_POTION_ID) && !this.blockingUpdate) {
             _local_2 = this.potionInventoryModel.getPotionModel(this.view.objectType);
             _local_3 = _arg_1.getPotionCount(_local_2.objectId);
             this.view.setData(_local_3, _local_2.currentCost(_local_3), _local_2.available);
@@ -70,13 +70,13 @@ public class PotionSlotMediator extends Mediator {
         var _local_4:InteractiveItemTile;
         var _local_2:Player = this.hudModel.gameSprite.map.player_;
         var _local_3:* = DisplayHierarchy.getParentWithTypeArray(_arg_1, InteractiveItemTile, Map, FoodFeedFuseSlot);
-        if ((((_local_3 is Map)) || (((Parameters.isGpuRender()) && ((_local_3 == null)))))) {
+        if ((_local_3 is Map) || Parameters.isGpuRender() && _local_3 == null) {
             GameServerConnection.instance.invDrop(_local_2, PotionInventoryModel.getPotionSlot(this.view.objectType), this.view.objectType);
         }
         else {
-            if ((_local_3 is InteractiveItemTile)) {
+            if (_local_3 is InteractiveItemTile) {
                 _local_4 = (_local_3 as InteractiveItemTile);
-                if ((((_local_4.getItemId() == ItemConstants.NO_ITEM)) && (!((_local_4.ownerGrid.owner == _local_2))))) {
+                if (_local_4.getItemId() == ItemConstants.NO_ITEM && !(_local_4.ownerGrid.owner == _local_2)) {
                     GameServerConnection.instance.invSwapPotion(_local_2, _local_2, PotionInventoryModel.getPotionSlot(this.view.objectType), this.view.objectType, _local_4.ownerGrid.owner, _local_4.tileId, ItemConstants.NO_ITEM);
                 }
             }

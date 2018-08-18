@@ -30,7 +30,7 @@ public class ScreensMediator extends Mediator {
     }
 
     private function onSetScreen(_arg_1:Sprite):void {
-        this.model.setCurrentScreenType((Object(_arg_1).constructor as Class));
+        this.model.setCurrentScreenType(Object(_arg_1).constructor as Class);
         this.view.setScreen(_arg_1);
     }
 

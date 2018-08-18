@@ -20,7 +20,7 @@ public class SquareFace {
         this.face_ = new Face3D(_arg_1, _arg_2, Square.UVT.concat());
         this.xOffset_ = _arg_3;
         this.yOffset_ = _arg_4;
-        if (((!((this.xOffset_ == 0))) || (!((this.yOffset_ == 0))))) {
+        if (!(this.xOffset_ == 0) || !(this.yOffset_ == 0)) {
             this.face_.bitmapFill_.repeat = true;
         }
         this.animate_ = _arg_5;
@@ -42,12 +42,12 @@ public class SquareFace {
         if (this.animate_ != AnimateProperties.NO_ANIMATE) {
             switch (this.animate_) {
                 case AnimateProperties.WAVE_ANIMATE:
-                    _local_4 = (this.xOffset_ + Math.sin(((this.animateDx_ * _arg_3) / 1000)));
-                    _local_5 = (this.yOffset_ + Math.sin(((this.animateDy_ * _arg_3) / 1000)));
+                    _local_4 = this.xOffset_ + Math.sin((this.animateDx_ * _arg_3) / 1000);
+                    _local_5 = this.yOffset_ + Math.sin((this.animateDy_ * _arg_3) / 1000);
                     break;
                 case AnimateProperties.FLOW_ANIMATE:
-                    _local_4 = (this.xOffset_ + ((this.animateDx_ * _arg_3) / 1000));
-                    _local_5 = (this.yOffset_ + ((this.animateDy_ * _arg_3) / 1000));
+                    _local_4 = this.xOffset_ + (this.animateDx_ * _arg_3) / 1000;
+                    _local_5 = this.yOffset_ + (this.animateDy_ * _arg_3) / 1000;
                     break;
             }
         }
@@ -61,9 +61,9 @@ public class SquareFace {
             _local_4 = _local_5;
         }
         this.face_.uvt_.length = 0;
-        this.face_.uvt_.push((0 + _local_4), (0 + _local_5), 0, (1 + _local_4), (0 + _local_5), 0, (1 + _local_4), (1 + _local_5), 0, (0 + _local_4), (1 + _local_5), 0);
+        this.face_.uvt_.push(0 + _local_4, 0 + _local_5, 0, 1 + _local_4, 0 + _local_5, 0, 1 + _local_4, 1 + _local_5, 0, 0 + _local_4, 1 + _local_5, 0);
         this.face_.setUVT(this.face_.uvt_);
-        return (this.face_.draw(_arg_1, _arg_2));
+        return this.face_.draw(_arg_1, _arg_2);
     }
 
 

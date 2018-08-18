@@ -73,7 +73,7 @@ public class ErrorDialog extends Sprite {
 
     protected function initText(_arg_1:String):void {
         this.textText_ = new TextFieldDisplayConcrete().setSize(14).setColor(GREY);
-        this.textText_.setTextWidth((WIDTH - 40));
+        this.textText_.setTextWidth(WIDTH - 40);
         this.textText_.x = 20;
         this.textText_.setMultiLine(true).setWordWrap(true).setAutoSize(TextFieldAutoSize.CENTER);
         this.textText_.setStringBuilder(new StaticStringBuilder(_arg_1));
@@ -115,8 +115,8 @@ public class ErrorDialog extends Sprite {
     }
 
     private function positionDialog():void {
-        this.box_.x = ((this.offsetX + (this.stageProxy.getStageWidth() / 2)) - (this.box_.width / 2));
-        this.box_.y = ((this.offsetY + (this.stageProxy.getStageHeight() / 2)) - (this.getBoxHeight() / 2));
+        this.box_.x = (this.offsetX + this.stageProxy.getStageWidth() / 2) - this.box_.width / 2;
+        this.box_.y = (this.offsetY + this.stageProxy.getStageHeight() / 2) - this.getBoxHeight() / 2;
     }
 
     private function draw():void {
@@ -141,39 +141,39 @@ public class ErrorDialog extends Sprite {
 
     private function drawBackground():void {
         GraphicsUtil.clearPath(this.path_);
-        GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, (this.getBoxHeight() + 10), 4, [1, 1, 1, 1], this.path_);
+        GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, this.getBoxHeight() + 10, 4, [1, 1, 1, 1], this.path_);
         var _local_1:Graphics = this.rect_.graphics;
         _local_1.clear();
         _local_1.drawGraphicsData(this.graphicsData_);
     }
 
     protected function getBoxHeight():Number {
-        return (this.box_.height);
+        return this.box_.height;
     }
 
     private function addButtonsAndLayout():void {
         var _local_1:int;
         if (this.button1_ != null) {
-            _local_1 = (this.box_.height + 16);
+            _local_1 = this.box_.height + 16;
             this.box_.addChild(this.button1_);
             this.button1_.y = _local_1;
             if (this.button2_ == null) {
-                this.button1_.x = ((WIDTH / 2) - (this.button1_.width / 2));
+                this.button1_.x = WIDTH / 2 - this.button1_.width / 2;
             }
             else {
-                this.button1_.x = ((WIDTH / 4) - (this.button1_.width / 2));
+                this.button1_.x = WIDTH / 4 - this.button1_.width / 2;
                 this.box_.addChild(this.button2_);
-                this.button2_.x = (((3 * WIDTH) / 4) - (this.button2_.width / 2));
+                this.button2_.x = (3 * WIDTH) / 4 - this.button2_.width / 2;
                 this.button2_.y = _local_1;
             }
         }
     }
 
     private function removeButtonsIfAlreadyAdded():void {
-        if (((this.button1_) && (this.box_.contains(this.button1_)))) {
+        if (this.button1_ && this.box_.contains(this.button1_)) {
             this.box_.removeChild(this.button1_);
         }
-        if (((this.button2_) && (this.box_.contains(this.button2_)))) {
+        if (this.button2_ && this.box_.contains(this.button2_)) {
             this.box_.removeChild(this.button2_);
         }
     }
@@ -181,7 +181,7 @@ public class ErrorDialog extends Sprite {
     private function drawTitleAndText():void {
         if (this.titleText_ != null) {
             this.titleText_.y = 2;
-            this.textText_.y = (this.titleText_.height + 8);
+            this.textText_.y = this.titleText_.height + 8;
         }
         else {
             this.textText_.y = 4;
@@ -197,7 +197,7 @@ public class ErrorDialog extends Sprite {
     }
 
     public function setBaseAlpha(_arg_1:Number):void {
-        this.rect_.alpha = (((_arg_1 > 1)) ? 1 : (((_arg_1 < 0)) ? 0 : _arg_1));
+        this.rect_.alpha = _arg_1 > 1 ? 1 : _arg_1 < 0 ? 0 : _arg_1;
     }
 
 

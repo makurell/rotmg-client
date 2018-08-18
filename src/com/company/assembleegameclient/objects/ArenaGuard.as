@@ -12,7 +12,7 @@ public class ArenaGuard extends GameObject implements IInteractiveObject {
     }
 
     public function getPanel(_arg_1:GameSprite):Panel {
-        return (new ArenaQueryPanel(_arg_1, objectType_));
+        return new ArenaQueryPanel(_arg_1, objectType_);
     }
 
 

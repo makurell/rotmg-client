@@ -110,33 +110,33 @@ public class StatData {
     public static function statToName(_arg_1:int):String {
         switch (_arg_1) {
             case MAX_HP_STAT:
-                return (TextKey.STAT_DATA_MAXHP);
+                return TextKey.STAT_DATA_MAXHP;
             case HP_STAT:
-                return (TextKey.STATUS_BAR_HEALTH_POINTS);
+                return TextKey.STATUS_BAR_HEALTH_POINTS;
             case SIZE_STAT:
-                return (TextKey.STAT_DATA_SIZE);
+                return TextKey.STAT_DATA_SIZE;
             case MAX_MP_STAT:
-                return (TextKey.STAT_DATA_MAXMP);
+                return TextKey.STAT_DATA_MAXMP;
             case MP_STAT:
-                return (TextKey.STATUS_BAR_MANA_POINTS);
+                return TextKey.STATUS_BAR_MANA_POINTS;
             case EXP_STAT:
-                return (TextKey.STAT_DATA_XP);
+                return TextKey.STAT_DATA_XP;
             case LEVEL_STAT:
-                return (TextKey.STAT_DATA_LEVEL);
+                return TextKey.STAT_DATA_LEVEL;
             case ATTACK_STAT:
-                return (TextKey.STAT_MODEL_ATTACK_LONG);
+                return TextKey.STAT_MODEL_ATTACK_LONG;
             case DEFENSE_STAT:
-                return (TextKey.STAT_MODEL_DEFENSE_LONG);
+                return TextKey.STAT_MODEL_DEFENSE_LONG;
             case SPEED_STAT:
-                return (TextKey.STAT_MODEL_SPEED_LONG);
+                return TextKey.STAT_MODEL_SPEED_LONG;
             case VITALITY_STAT:
-                return (TextKey.STAT_MODEL_VITALITY_LONG);
+                return TextKey.STAT_MODEL_VITALITY_LONG;
             case WISDOM_STAT:
-                return (TextKey.STAT_MODEL_WISDOM_LONG);
+                return TextKey.STAT_MODEL_WISDOM_LONG;
             case DEXTERITY_STAT:
-                return (TextKey.STAT_MODEL_DEXTERITY_LONG);
+                return TextKey.STAT_MODEL_DEXTERITY_LONG;
         }
-        return (TextKey.STAT_DATA_UNKNOWN_STAT);
+        return TextKey.STAT_DATA_UNKNOWN_STAT;
     }
 
 
@@ -147,9 +147,9 @@ public class StatData {
             case PET_NAME_STAT:
             case ACCOUNT_ID_STAT:
             case OWNER_ACCOUNT_ID_STAT:
-                return (true);
+                return true;
         }
-        return (false);
+        return false;
     }
 
     public function parseFromInput(_arg_1:IDataInput):void {
@@ -174,9 +174,9 @@ public class StatData {
 
     public function toString():String {
         if (!this.isStringStat()) {
-            return ((((("[" + this.statType_) + ": ") + this.statValue_) + "]"));
+            return "[" + this.statType_ + ": " + this.statValue_ + "]";
         }
-        return ((((("[" + this.statType_) + ': "') + this.strStatValue_) + '"]'));
+        return "[" + this.statType_ + ': "' + this.strStatValue_ + '"]';
     }
 
 

@@ -22,7 +22,7 @@ public class ReskinHandler {
         var _local_2:Player;
         var _local_3:int;
         var _local_4:CharacterClass;
-        _local_2 = ((_arg_1.player) || (this.model.player));
+        _local_2 = _arg_1.player || this.model.player;
         _local_3 = _arg_1.skinID;
         _local_4 = this.classes.getCharacterClass(_local_2.objectType_);
         var _local_5:CharacterSkin = _local_4.skins.getSkin(_local_3);

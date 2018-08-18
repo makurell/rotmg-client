@@ -30,7 +30,7 @@ public class LocalizedDropDown extends Sprite {
     }
 
     public function getValue():String {
-        return (this.selected_.getValue());
+        return this.selected_.getValue();
     }
 
     public function setValue(_arg_1:String):void {
@@ -46,7 +46,7 @@ public class LocalizedDropDown extends Sprite {
     }
 
     public function getClosedHeight():int {
-        return (this.h_);
+        return this.h_;
     }
 
     private function makeDropDownItems():void {
@@ -62,7 +62,7 @@ public class LocalizedDropDown extends Sprite {
         while (_local_2 < this.strings_.length) {
             _local_1 = this.makeDropDownItem(this.strings_[_local_2]);
             _local_1.addEventListener(MouseEvent.CLICK, this.onSelect);
-            _local_1.y = (this.h_ * _local_2);
+            _local_1.y = this.h_ * _local_2;
             this.items_.push(_local_1);
             this.all_.addChild(_local_1);
             _local_2++;
@@ -72,7 +72,7 @@ public class LocalizedDropDown extends Sprite {
     private function makeDropDownItem(_arg_1:String):LocalizedDropDownItem {
         var _local_2:LocalizedDropDownItem = new LocalizedDropDownItem(_arg_1, 0, this.h_);
         this.waiter.push(_local_2.getTextChanged());
-        return (_local_2);
+        return _local_2;
     }
 
     private function updateView():void {
@@ -119,7 +119,7 @@ public class LocalizedDropDown extends Sprite {
         this.selected_.addEventListener(MouseEvent.CLICK, this.onClick);
         this.selected_.removeEventListener(MouseEvent.CLICK, this.onSelect);
         this.hideAll();
-        var _local_2:LocalizedDropDownItem = (_arg_1.target as LocalizedDropDownItem);
+        var _local_2:LocalizedDropDownItem = _arg_1.target as LocalizedDropDownItem;
         this.setValue(_local_2.getValue());
     }
 

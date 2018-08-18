@@ -24,7 +24,7 @@ public class LegendFactory {
         this.legends = new Vector.<Legend>(0);
         this.makeLegendsFromList(_arg_1.FameListElem, false);
         this.makeLegendsFromList(_arg_1.MyFameListElem, true);
-        return (this.legends);
+        return this.legends;
     }
 
     private function makeLegendsFromList(_arg_1:XMLList, _arg_2:Boolean):void {
@@ -33,7 +33,7 @@ public class LegendFactory {
         for each (_local_3 in _arg_1) {
             if (!this.legendsContains(_local_3)) {
                 _local_4 = this.makeLegend(_local_3);
-                _local_4.isOwnLegend = (_local_3.@accountId == this.ownAccountId);
+                _local_4.isOwnLegend = _local_3.accountId == this.ownAccountId;
                 _local_4.isFocus = _arg_2;
                 this.legends.push(_local_4);
             }
@@ -43,11 +43,11 @@ public class LegendFactory {
     private function legendsContains(_arg_1:XML):Boolean {
         var _local_2:Legend;
         for each (_local_2 in this.legends) {
-            if ((((_local_2.accountId == _arg_1.@accountId)) && ((_local_2.charId == _arg_1.@charId)))) {
-                return (true);
+            if (_local_2.accountId == _arg_1.accountId && _local_2.charId == _arg_1.charId) {
+                return true;
             }
         }
-        return (false);
+        return false;
     }
 
     public function makeLegend(_arg_1:XML):Legend {
@@ -55,8 +55,8 @@ public class LegendFactory {
         var _local_3:int = _arg_1.Texture;
         var _local_4:CharacterClass = this.classesModel.getCharacterClass(_local_2);
         var _local_5:CharacterSkin = _local_4.skins.getSkin(_local_3);
-        var _local_6:int = ((_arg_1.hasOwnProperty("Tex1")) ? _arg_1.Tex1 : 0);
-        var _local_7:int = ((_arg_1.hasOwnProperty("Tex2")) ? _arg_1.Tex2 : 0);
+        var _local_6:int = _arg_1.hasOwnProperty("Tex1") ? _arg_1.Tex1 : 0;
+        var _local_7:int = _arg_1.hasOwnProperty("Tex2") ? _arg_1.Tex2 : 0;
         var _local_8:int = _local_5.is16x16 ? 50 : 100;
         var _local_9:Legend = new Legend();
         _local_9.accountId = _arg_1.@accountId;

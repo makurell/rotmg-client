@@ -31,15 +31,15 @@ public class LabeledField extends FormField {
     }
 
     public function text():String {
-        return (this.inputText_.text);
+        return this.inputText_.text;
     }
 
     override public function getHeight():Number {
-        return (68);
+        return 68;
     }
 
     public function textChanged():Signal {
-        return (this.nameText_.textChanged);
+        return this.nameText_.textChanged;
     }
 
     public function setErrorHighlight(_arg_1:Boolean):void {

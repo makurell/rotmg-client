@@ -36,18 +36,18 @@ public class Particle extends BasicObject {
         var _local_3:Square;
         _local_3 = map_.getSquare(_arg_1, _arg_2);
         if (_local_3 == null) {
-            return (false);
+            return false;
         }
         x_ = _arg_1;
         y_ = _arg_2;
         square_ = _local_3;
-        return (true);
+        return true;
     }
 
     public function moveToInModal(_arg_1:Number, _arg_2:Number):Boolean {
         x_ = _arg_1;
         y_ = _arg_2;
-        return (true);
+        return true;
     }
 
     public function setColor(_arg_1:uint):void {
@@ -59,7 +59,7 @@ public class Particle extends BasicObject {
     }
 
     public function setSize(_arg_1:int):void {
-        this.size_ = ((_arg_1 / 100) * 5);
+        this.size_ = (_arg_1 / 100) * 5;
     }
 
     override public function draw(_arg_1:Vector.<IGraphicsData>, _arg_2:Camera, _arg_3:int):void {
@@ -67,7 +67,7 @@ public class Particle extends BasicObject {
         var _local_5:int = _local_4.width;
         var _local_6:int = _local_4.height;
         this.vS_.length = 0;
-        this.vS_.push((posS_[3] - (_local_5 / 2)), (posS_[4] - (_local_6 / 2)), (posS_[3] + (_local_5 / 2)), (posS_[4] - (_local_6 / 2)), (posS_[3] + (_local_5 / 2)), (posS_[4] + (_local_6 / 2)), (posS_[3] - (_local_5 / 2)), (posS_[4] + (_local_6 / 2)));
+        this.vS_.push(posS_[3] - _local_5 / 2, posS_[4] - _local_6 / 2, posS_[3] + _local_5 / 2, posS_[4] - _local_6 / 2, posS_[3] + _local_5 / 2, posS_[4] + _local_6 / 2, posS_[3] - _local_5 / 2, posS_[4] + _local_6 / 2);
         this.path_.data = this.vS_;
         this.bitmapFill_.bitmapData = _local_4;
         this.fillMatrix_.identity();

@@ -23,11 +23,11 @@ public class PetSlotsState {
     }
 
     public function isAcceptableFeedState():Boolean {
-        return (((((((!((this.rightSlotId == -1))) && (!((this.rightSlotOwnerId == -1))))) && (!((this.rightSlotItemId == -1))))) && (!((this.leftSlotPetVO == null)))));
+        return !(this.rightSlotId == -1) && !(this.rightSlotOwnerId == -1) && !(this.rightSlotItemId == -1) && !(this.leftSlotPetVO == null);
     }
 
     public function isAcceptableFuseState():Boolean {
-        return (((!((this.rightSlotPetVO == null))) && (!((this.leftSlotPetVO == null)))));
+        return !(this.rightSlotPetVO == null) && !(this.leftSlotPetVO == null);
     }
 
 

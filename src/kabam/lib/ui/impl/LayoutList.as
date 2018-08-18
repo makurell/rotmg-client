@@ -34,26 +34,26 @@ public class LayoutList extends Sprite implements List {
     }
 
     public function getLayout():Layout {
-        return (this.layout);
+        return this.layout;
     }
 
     public function setLayout(_arg_1:Layout):void {
-        this.layout = ((_arg_1) || (NULL_LAYOUT));
-        _arg_1.layout(this.list, -(this.offset));
+        this.layout = _arg_1 || NULL_LAYOUT;
+        _arg_1.layout(this.list, -this.offset);
     }
 
     public function getSize():Size {
-        return (this.size);
+        return this.size;
     }
 
     public function setSize(_arg_1:Size):void {
-        this.size = ((_arg_1) || (ZERO_SIZE));
+        this.size = _arg_1 || ZERO_SIZE;
         this.applySizeToMask();
     }
 
     public function getSizeOfItems():Size {
         var _local_1:Rectangle = this.container.getRect(this.container);
-        return (new Size(_local_1.width, _local_1.height));
+        return new Size(_local_1.width, _local_1.height);
     }
 
     private function applySizeToMask():void {
@@ -72,7 +72,7 @@ public class LayoutList extends Sprite implements List {
     }
 
     public function getItemAt(_arg_1:int):DisplayObject {
-        return (this.list[_arg_1]);
+        return this.list[_arg_1];
     }
 
     public function setItems(_arg_1:Vector.<DisplayObject>):void {
@@ -84,7 +84,7 @@ public class LayoutList extends Sprite implements List {
     }
 
     public function getItemCount():int {
-        return (this.list.length);
+        return this.list.length;
     }
 
     private function clearList():void {
@@ -113,11 +113,11 @@ public class LayoutList extends Sprite implements List {
     }
 
     public function getOffset():int {
-        return (this.offset);
+        return this.offset;
     }
 
     public function updateLayout():void {
-        this.layout.layout(this.list, -(this.offset));
+        this.layout.layout(this.list, -this.offset);
     }
 
 

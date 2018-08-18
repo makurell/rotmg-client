@@ -19,7 +19,7 @@ public class CharacterSlotNeedGoldDialog extends Sprite {
 
     public function setPrice(_arg_1:int):void {
         this.price = _arg_1;
-        ((((this.dialog) && (contains(this.dialog)))) && (removeChild(this.dialog)));
+        this.dialog && contains(this.dialog) && removeChild(this.dialog);
         this.makeDialog();
         this.dialog.addEventListener(Dialog.LEFT_BUTTON, this.onCancel);
         this.dialog.addEventListener(Dialog.RIGHT_BUTTON, this.onBuyGold);

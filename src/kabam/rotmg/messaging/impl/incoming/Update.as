@@ -29,7 +29,7 @@ public class Update extends IncomingMessage {
         }
         this.tiles_.length = Math.min(_local_3, this.tiles_.length);
         while (this.tiles_.length < _local_3) {
-            this.tiles_.push((FreeList.newObject(GroundTileData) as GroundTileData));
+            this.tiles_.push(FreeList.newObject(GroundTileData) as GroundTileData);
         }
         _local_2 = 0;
         while (_local_2 < _local_3) {
@@ -45,7 +45,7 @@ public class Update extends IncomingMessage {
         }
         this.newObjs_.length = Math.min(_local_3, this.newObjs_.length);
         while (this.newObjs_.length < _local_3) {
-            this.newObjs_.push((FreeList.newObject(ObjectData) as ObjectData));
+            this.newObjs_.push(FreeList.newObject(ObjectData) as ObjectData);
         }
         _local_2 = 0;
         while (_local_2 < _local_3) {
@@ -62,7 +62,7 @@ public class Update extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("UPDATE", "tiles_", "newObjs_", "drops_"));
+        return formatToString("UPDATE", "tiles_", "newObjs_", "drops_");
     }
 
 

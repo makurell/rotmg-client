@@ -34,11 +34,11 @@ public class WebRegisterAccountCommand {
         var _local_1:TaskSequence = new TaskSequence();
         _local_1.add(new DispatchSignalTask(this.updateAccount));
         _local_1.add(new DispatchSignalTask(this.openDialog, new WebAccountDetailDialog()));
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeFailure():DispatchSignalTask {
-        return (new DispatchSignalTask(this.taskError, this.task));
+        return new DispatchSignalTask(this.taskError, this.task);
     }
 
 

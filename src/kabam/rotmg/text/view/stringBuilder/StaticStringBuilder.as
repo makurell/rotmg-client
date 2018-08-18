@@ -15,24 +15,24 @@ public class StaticStringBuilder implements StringBuilder {
 
     public function setString(_arg_1:String):StaticStringBuilder {
         this.string = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setPrefix(_arg_1:String):StaticStringBuilder {
         this.prefix = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setPostfix(_arg_1:String):StaticStringBuilder {
         this.postfix = _arg_1;
-        return (this);
+        return this;
     }
 
     public function setStringMap(_arg_1:StringMap):void {
     }
 
     public function getString():String {
-        return (((this.prefix + this.string) + this.postfix));
+        return this.prefix + this.string + this.postfix;
     }
 
 

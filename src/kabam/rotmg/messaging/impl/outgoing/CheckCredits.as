@@ -11,7 +11,7 @@ public class CheckCredits extends OutgoingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("CHECKCREDITS"));
+        return formatToString("CHECKCREDITS");
     }
 
 

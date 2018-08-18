@@ -20,7 +20,7 @@ public class ResetClassDataCommand {
     }
 
     private function resetClass(_arg_1:CharacterClass):void {
-        _arg_1.setIsSelected((_arg_1.id == ClassesModel.WIZARD_ID));
+        _arg_1.setIsSelected(_arg_1.id == ClassesModel.WIZARD_ID);
         this.resetClassSkins(_arg_1);
     }
 

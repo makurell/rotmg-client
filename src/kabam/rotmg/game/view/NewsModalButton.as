@@ -44,8 +44,8 @@ public class NewsModalButton extends Sprite {
         this.drawAsOpen();
         var _local_1:Rectangle = this.bitmap.getBounds(this);
         var _local_2:int = 10;
-        this.text.x = (_local_1.right - _local_2);
-        this.text.y = (_local_1.bottom - _local_2);
+        this.text.x = _local_1.right - _local_2;
+        this.text.y = _local_1.bottom - _local_2;
         addEventListener(MouseEvent.CLICK, this.onClick);
     }
 

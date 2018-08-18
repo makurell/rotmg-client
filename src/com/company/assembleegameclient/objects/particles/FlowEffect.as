@@ -21,38 +21,38 @@ public class FlowEffect extends ParticleEffect {
         var _local_5:int;
         var _local_6:Particle;
         if (FlowParticle.total_ > 200) {
-            return (false);
+            return false;
         }
         x_ = this.start_.x;
         y_ = this.start_.y;
         var _local_3:int = 5;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _local_5 = ((3 + int((Math.random() * 5))) * 20);
+            _local_5 = (3 + int(Math.random() * 5)) * 20;
             _local_6 = new FlowParticle(0.5, _local_5, this.color_, this.start_, this.go_);
             map_.addObj(_local_6, x_, y_);
             _local_4++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
         var _local_5:int;
         var _local_6:Particle;
         if (FlowParticle.total_ > 200) {
-            return (false);
+            return false;
         }
         x_ = this.start_.x;
         y_ = this.start_.y;
         var _local_3:int = 3;
         var _local_4:int;
         while (_local_4 < _local_3) {
-            _local_5 = ((3 + int((Math.random() * 5))) * 10);
+            _local_5 = (3 + int(Math.random() * 5)) * 10;
             _local_6 = new FlowParticle(0.5, _local_5, this.color_, this.start_, this.go_);
             map_.addObj(_local_6, x_, y_);
             _local_4++;
         }
-        return (false);
+        return false;
     }
 
 
@@ -80,7 +80,7 @@ class FlowParticle extends Particle {
         var _local_6:Point = new Point(x_, y_);
         var _local_7:Point = new Point(this.go_.x_, this.go_.y_);
         this.maxDist_ = Point.distance(_local_6, _local_7);
-        this.flowSpeed_ = (Math.random() * 5);
+        this.flowSpeed_ = Math.random() * 5;
         total_++;
     }
 
@@ -91,20 +91,20 @@ class FlowParticle extends Particle {
         var _local_6:Number = Point.distance(_local_4, _local_5);
         if (_local_6 < 0.5) {
             total_--;
-            return (false);
+            return false;
         }
-        this.flowSpeed_ = (this.flowSpeed_ + ((_local_3 * _arg_2) / 1000));
-        this.maxDist_ = (this.maxDist_ - ((this.flowSpeed_ * _arg_2) / 1000));
-        var _local_7:Number = (_local_6 - ((this.flowSpeed_ * _arg_2) / 1000));
+        this.flowSpeed_ = this.flowSpeed_ + (_local_3 * _arg_2) / 1000;
+        this.maxDist_ = this.maxDist_ - (this.flowSpeed_ * _arg_2) / 1000;
+        var _local_7:Number = _local_6 - (this.flowSpeed_ * _arg_2) / 1000;
         if (_local_7 > this.maxDist_) {
             _local_7 = this.maxDist_;
         }
-        var _local_8:Number = (this.go_.x_ - x_);
-        var _local_9:Number = (this.go_.y_ - y_);
-        _local_8 = (_local_8 * (_local_7 / _local_6));
-        _local_9 = (_local_9 * (_local_7 / _local_6));
-        moveTo((this.go_.x_ - _local_8), (this.go_.y_ - _local_9));
-        return (true);
+        var _local_8:Number = this.go_.x_ - x_;
+        var _local_9:Number = this.go_.y_ - y_;
+        _local_8 = _local_8 * (_local_7 / _local_6);
+        _local_9 = _local_9 * (_local_7 / _local_6);
+        moveTo(this.go_.x_ - _local_8, this.go_.y_ - _local_9);
+        return true;
     }
 
 
@@ -122,8 +122,8 @@ class FlowParticle2 extends Particle {
         this.start_ = _arg_5;
         this.go_ = _arg_6;
         this.accel_ = _arg_4;
-        this.dx_ = (Math.random() - 0.5);
-        this.dy_ = (Math.random() - 0.5);
+        this.dx_ = Math.random() - 0.5;
+        this.dy_ = Math.random() - 0.5;
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
@@ -131,15 +131,15 @@ class FlowParticle2 extends Particle {
         var _local_4:Point = new Point(this.go_.x_, this.go_.y_);
         var _local_5:Number = Point.distance(_local_3, _local_4);
         if (_local_5 < 0.5) {
-            return (false);
+            return false;
         }
-        var _local_6:Number = Math.atan2((this.go_.y_ - y_), (this.go_.x_ - x_));
-        this.dx_ = (this.dx_ + (((this.accel_ * Math.cos(_local_6)) * _arg_2) / 1000));
-        this.dy_ = (this.dy_ + (((this.accel_ * Math.sin(_local_6)) * _arg_2) / 1000));
-        var _local_7:Number = (x_ + ((this.dx_ * _arg_2) / 1000));
-        var _local_8:Number = (y_ + ((this.dy_ * _arg_2) / 1000));
+        var _local_6:Number = Math.atan2(this.go_.y_ - y_, this.go_.x_ - x_);
+        this.dx_ = this.dx_ + (this.accel_ * Math.cos(_local_6) * _arg_2) / 1000;
+        this.dy_ = this.dy_ + (this.accel_ * Math.sin(_local_6) * _arg_2) / 1000;
+        var _local_7:Number = x_ + (this.dx_ * _arg_2) / 1000;
+        var _local_8:Number = y_ + (this.dy_ * _arg_2) / 1000;
         moveTo(_local_7, _local_8);
-        return (true);
+        return true;
     }
 
 

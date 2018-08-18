@@ -21,7 +21,7 @@ public class Failure extends IncomingMessage {
     }
 
     override public function toString():String {
-        return (formatToString("FAILURE", "errorId_", "errorDescription_"));
+        return formatToString("FAILURE", "errorId_", "errorDescription_");
     }
 
 

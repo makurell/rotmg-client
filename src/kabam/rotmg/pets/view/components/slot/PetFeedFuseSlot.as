@@ -32,7 +32,7 @@ public class PetFeedFuseSlot extends FeedFuseSlot {
     }
 
     public function updateTitle():void {
-        if (((!(icon)) || (contains(icon)))) {
+        if (!icon || contains(icon)) {
             setTitle(TextKey.PETORFOODSLOT_FUSE_PET_TITLE, {});
         }
     }
@@ -55,7 +55,7 @@ public class PetFeedFuseSlot extends FeedFuseSlot {
             setTitle(TextKey.BLANK, {"data": _arg_1.getName()});
             _local_2 = new AppendingLineBuilder();
             _local_2.pushParams(_arg_1.getRarity());
-            ((this.showFamily) && (_local_2.pushParams(PetFamilyKeys.getTranslationKey(_arg_1.getFamily()))));
+            this.showFamily && _local_2.pushParams(PetFamilyKeys.getTranslationKey(_arg_1.getFamily()));
             setSubtitle(TextKey.BLANK, {"data": _local_2});
         }
     }
@@ -64,8 +64,8 @@ public class PetFeedFuseSlot extends FeedFuseSlot {
         var _local_2:ColorTransform;
         if (this.processing != _arg_1) {
             this.processing = _arg_1;
-            icon.filters = ((_arg_1) ? [this.grayscaleMatrix] : []);
-            _local_2 = ((_arg_1) ? MoreColorUtil.darkCT : new ColorTransform());
+            icon.filters = _arg_1 ? [this.grayscaleMatrix] : [];
+            _local_2 = _arg_1 ? MoreColorUtil.darkCT : new ColorTransform();
             icon.transform.colorTransform = _local_2;
         }
     }

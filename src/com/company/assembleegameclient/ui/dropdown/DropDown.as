@@ -27,20 +27,19 @@ public class DropDown extends Sprite {
         if (_arg_4 != null) {
             this.labelText_ = new BaseSimpleText(14, 0xFFFFFF, false, 0, 0);
             this.labelText_.setBold(true);
-            this.labelText_.text = (_arg_4 + ":");
+            this.labelText_.text = _arg_4 + ":";
             this.labelText_.updateMetrics();
             addChild(this.labelText_);
-            this.xOffset_ = (this.labelText_.width + 5);
+            this.xOffset_ = this.labelText_.width + 5;
         }
         this.setIndex(_arg_5);
     }
 
     public function getValue():String {
-        return (this.selected_.getValue());
+        return this.selected_.getValue();
     }
 
-    public function setListItems(_arg_1:Vector.<String>):void
-    {
+    public function setListItems(_arg_1:Vector.<String>):void {
         this.strings_ = _arg_1;
     }
 
@@ -57,8 +56,7 @@ public class DropDown extends Sprite {
     }
 
     public function setIndex(_arg_1:int):void {
-        if(_arg_1 >= this.strings_.length)
-        {
+        if (_arg_1 >= this.strings_.length) {
             _arg_1 = 0;
         }
         this.setSelected(this.strings_[_arg_1]);
@@ -68,15 +66,15 @@ public class DropDown extends Sprite {
         var _local_1:int = 0;
         while (_local_1 < this.strings_.length) {
             if (this.selected_.getValue() == this.strings_[_local_1]) {
-                return (_local_1);
+                return _local_1;
             }
             _local_1++;
         }
-        return (-1);
+        return -1;
     }
 
     private function setSelected(_arg_1:String):void {
-        var _local_2:String = (((this.selected_) != null) ? this.selected_.getValue() : null);
+        var _local_2:String = this.selected_ != null ? this.selected_.getValue() : null;
         this.selected_ = new DropDownItem(_arg_1, this.w_, this.h_);
         this.selected_.x = this.xOffset_;
         this.selected_.y = 0;
@@ -105,25 +103,22 @@ public class DropDown extends Sprite {
         this.all_.y = _local_1.y;
         var _local_2:int = Math.ceil(this.strings_.length / this.maxItems_);
         var _local_6:int = 0;
-        while(_local_6 < _local_2)
-        {
+        while (_local_6 < _local_2) {
             _local_3 = _local_6 * this.maxItems_;
             _local_4 = Math.min(_local_2 + this.maxItems_, this.strings_.length);
             _local_5 = this.xOffset_ - this.w_ * _local_6;
             this.listItems(_local_3, _local_4, _local_5);
             _local_6++;
         }
-        this.all_.addEventListener(MouseEvent.ROLL_OUT,this.onOut);
+        this.all_.addEventListener(MouseEvent.ROLL_OUT, this.onOut);
         stage.addChild(this.all_);
     }
 
-    private function listItems(_arg_1:int, _arg_2:int, _arg_3:int):void
-    {
+    private function listItems(_arg_1:int, _arg_2:int, _arg_3:int):void {
         var _local_4:int = 0;
         var _local_5:DropDownItem;
         var _local_6:int = _arg_1;
-        while(_local_6 < _arg_2)
-        {
+        while (_local_6 < _arg_2) {
             _local_5 = new DropDownItem(this.strings_[_local_6], this.w_, this.h_);
             _local_5.addEventListener(MouseEvent.CLICK, this.onSelect);
             _local_5.x = _arg_3;
@@ -142,7 +137,7 @@ public class DropDown extends Sprite {
     private function onSelect(_arg_1:MouseEvent):void {
         _arg_1.stopImmediatePropagation();
         this.hideAll();
-        var _local_2:DropDownItem = (_arg_1.target as DropDownItem);
+        var _local_2:DropDownItem = _arg_1.target as DropDownItem;
         this.setSelected(_local_2.getValue());
     }
 

@@ -21,7 +21,7 @@ import kabam.rotmg.tooltips.TooltipAble;
 
 public class IconButton extends Sprite implements TooltipAble {
 
-    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
+    protected static const mouseOverCT:ColorTransform = new ColorTransform(1, 220 / 0xFF, 133 / 0xFF);
     protected static const disableCT:ColorTransform = new ColorTransform(0.6, 0.6, 0.6, 1);
 
     public var hoverTooltipDelegate:HoverTooltipDelegate;
@@ -37,7 +37,7 @@ public class IconButton extends Sprite implements TooltipAble {
         this.hoverTooltipDelegate = new HoverTooltipDelegate();
         super();
         this.origIconBitmapData_ = _arg_1;
-        this.iconBitmapData_ = TextureRedrawer.redraw(this.origIconBitmapData_, (320 / this.origIconBitmapData_.width), true, 0);
+        this.iconBitmapData_ = TextureRedrawer.redraw(this.origIconBitmapData_, 320 / this.origIconBitmapData_.width, true, 0);
         this.icon_ = new Bitmap(this.iconBitmapData_);
         this.icon_.x = -12;
         this.icon_.y = -12;
@@ -45,7 +45,7 @@ public class IconButton extends Sprite implements TooltipAble {
         if (_arg_2 != "") {
             this.label_ = new TextFieldDisplayConcrete().setColor(0xFFFFFF).setSize(14);
             this.label_.setStringBuilder(new LineBuilder().setParams(_arg_2));
-            this.label_.x = ((this.icon_.x + this.icon_.width) - 8);
+            this.label_.x = (this.icon_.x + this.icon_.width) - 8;
             this.label_.y = 0;
             addChild(this.label_);
         }
@@ -134,7 +134,7 @@ public class IconButton extends Sprite implements TooltipAble {
     }
 
     public function getShowToolTip():ShowTooltipSignal {
-        return (this.hoverTooltipDelegate.getShowToolTip());
+        return this.hoverTooltipDelegate.getShowToolTip();
     }
 
     public function setHideToolTipsSignal(_arg_1:HideTooltipsSignal):void {
@@ -142,7 +142,7 @@ public class IconButton extends Sprite implements TooltipAble {
     }
 
     public function getHideToolTips():HideTooltipsSignal {
-        return (this.hoverTooltipDelegate.getHideToolTips());
+        return this.hoverTooltipDelegate.getHideToolTips();
     }
 
 

@@ -18,37 +18,37 @@ public class HitEffect extends ParticleEffect {
         var _local_6:uint;
         var _local_7:Particle;
         if (this.colors_.length == 0) {
-            return (false);
+            return false;
         }
-        var _local_3:Number = ((this.speed_ / 600) * Math.cos((this.angle_ + Math.PI)));
-        var _local_4:Number = ((this.speed_ / 600) * Math.sin((this.angle_ + Math.PI)));
+        var _local_3:Number = (this.speed_ / 600) * Math.cos(this.angle_ + Math.PI);
+        var _local_4:Number = (this.speed_ / 600) * Math.sin(this.angle_ + Math.PI);
         var _local_5:int;
         while (_local_5 < this.numParts_) {
-            _local_6 = this.colors_[int((this.colors_.length * Math.random()))];
-            _local_7 = new HitParticle(_local_6, 0.5, size_, (200 + (Math.random() * 100)), (_local_3 + ((Math.random() - 0.5) * 0.4)), (_local_4 + ((Math.random() - 0.5) * 0.4)), 0);
+            _local_6 = this.colors_[int(this.colors_.length * Math.random())];
+            _local_7 = new HitParticle(_local_6, 0.5, size_, 200 + Math.random() * 100, _local_3 + (Math.random() - 0.5) * 0.4, _local_4 + (Math.random() - 0.5) * 0.4, 0);
             map_.addObj(_local_7, x_, y_);
             _local_5++;
         }
-        return (false);
+        return false;
     }
 
     override public function runEasyRendering(_arg_1:int, _arg_2:int):Boolean {
         var _local_6:uint;
         var _local_7:Particle;
         if (this.colors_.length == 0) {
-            return (false);
+            return false;
         }
-        var _local_3:Number = ((this.speed_ / 600) * Math.cos((this.angle_ + Math.PI)));
-        var _local_4:Number = ((this.speed_ / 600) * Math.sin((this.angle_ + Math.PI)));
-        this.numParts_ = (this.numParts_ * 0.2);
+        var _local_3:Number = (this.speed_ / 600) * Math.cos(this.angle_ + Math.PI);
+        var _local_4:Number = (this.speed_ / 600) * Math.sin(this.angle_ + Math.PI);
+        this.numParts_ = this.numParts_ * 0.2;
         var _local_5:int;
         while (_local_5 < this.numParts_) {
-            _local_6 = this.colors_[int((this.colors_.length * Math.random()))];
-            _local_7 = new HitParticle(_local_6, 0.5, 10, (5 + (Math.random() * 100)), (_local_3 + ((Math.random() - 0.5) * 0.4)), (_local_4 + ((Math.random() - 0.5) * 0.4)), 0);
+            _local_6 = this.colors_[int(this.colors_.length * Math.random())];
+            _local_7 = new HitParticle(_local_6, 0.5, 10, 5 + Math.random() * 100, _local_3 + (Math.random() - 0.5) * 0.4, _local_4 + (Math.random() - 0.5) * 0.4, 0);
             map_.addObj(_local_7, x_, y_);
             _local_5++;
         }
-        return (false);
+        return false;
     }
 
 
@@ -75,14 +75,14 @@ class HitParticle extends Particle {
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
-        this.timeLeft_ = (this.timeLeft_ - _arg_2);
+        this.timeLeft_ = this.timeLeft_ - _arg_2;
         if (this.timeLeft_ <= 0) {
-            return (false);
+            return false;
         }
-        x_ = (x_ + ((this.moveVec_.x * _arg_2) * 0.008));
-        y_ = (y_ + ((this.moveVec_.y * _arg_2) * 0.008));
-        z_ = (z_ + ((this.moveVec_.z * _arg_2) * 0.008));
-        return (true);
+        x_ = x_ + this.moveVec_.x * _arg_2 * 0.008;
+        y_ = y_ + this.moveVec_.y * _arg_2 * 0.008;
+        z_ = z_ + this.moveVec_.z * _arg_2 * 0.008;
+        return true;
     }
 
 
