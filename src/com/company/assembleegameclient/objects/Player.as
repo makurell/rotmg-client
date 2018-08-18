@@ -178,7 +178,7 @@ public class Player extends Character {
         _local_5.wisdom_ = int(_arg_2.MpRegen);
         _local_5.tex1Id_ = int(_arg_2.Tex1);
         _local_5.tex2Id_ = int(_arg_2.Tex2);
-        return (_local_5);
+        return _local_5;
     }
 
 
@@ -192,9 +192,9 @@ public class Player extends Character {
         this.relMoveVec_.y = _arg_3;
         if (isConfused()) {
             _local_4 = this.relMoveVec_.x;
-            this.relMoveVec_.x = -(this.relMoveVec_.y);
-            this.relMoveVec_.y = -(_local_4);
-            this.rotate_ = -(this.rotate_);
+            this.relMoveVec_.x = -this.relMoveVec_.y;
+            this.relMoveVec_.y = -_local_4;
+            this.rotate_ = -this.rotate_;
         }
     }
 
@@ -215,13 +215,13 @@ public class Player extends Character {
         if (_local_2 == this) {
             for each (_local_3 in map_.goDict_) {
                 _local_4 = (_local_3 as Player);
-                if (((!((_local_4 == null))) && (!((_local_4 == this))))) {
+                if (!(_local_4 == null) && !(_local_4 == this)) {
                     _local_4.setGuildName(_local_4.guildName_);
                 }
             }
         }
         else {
-            _local_5 = ((((((!((_local_2 == null))) && (!((_local_2.guildName_ == null))))) && (!((_local_2.guildName_ == ""))))) && ((_local_2.guildName_ == this.guildName_)));
+            _local_5 = !(_local_2 == null) && !(_local_2.guildName_ == null) && !(_local_2.guildName_ == "") && _local_2.guildName_ == this.guildName_;
             if (_local_5 != this.isFellowGuild_) {
                 this.isFellowGuild_ = _local_5;
                 nameBitmapData_ = null;
@@ -230,23 +230,23 @@ public class Player extends Character {
     }
 
     public function isTeleportEligible(_arg_1:Player):Boolean {
-        return (!(((_arg_1.isPaused()) || (_arg_1.isInvisible()))));
+        return !(_arg_1.isPaused() || _arg_1.isInvisible());
     }
 
     public function msUtilTeleport():int {
         var _local_1:int = getTimer();
-        return (Math.max(0, (this.nextTeleportAt_ - _local_1)));
+        return Math.max(0, this.nextTeleportAt_ - _local_1);
     }
 
     public function teleportTo(_arg_1:Player):Boolean {
         if (isPaused()) {
             this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_NOTELEPORTWHILEPAUSED));
-            return (false);
+            return false;
         }
         var _local_2:int = this.msUtilTeleport();
         if (_local_2 > 0) {
-            this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_COOLDOWN, {"seconds": int(((_local_2 / 1000) + 1))}));
-            return (false);
+            this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_COOLDOWN, {"seconds": int(_local_2 / 1000 + 1)}));
+            return false;
         }
         if (!this.isTeleportEligible(_arg_1)) {
             if (_arg_1.isInvisible()) {
@@ -255,15 +255,15 @@ public class Player extends Character {
             else {
                 this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_TO_PLAYER, {"player": _arg_1.name_}));
             }
-            return (false);
+            return false;
         }
         map_.gs_.gsc_.teleport(_arg_1.objectId_);
-        this.nextTeleportAt_ = (getTimer() + MS_BETWEEN_TELEPORT);
-        return (true);
+        this.nextTeleportAt_ = getTimer() + MS_BETWEEN_TELEPORT;
+        return true;
     }
 
     private function makeErrorMessage(_arg_1:String, _arg_2:Object = null):ChatMessage {
-        return (ChatMessage.make(Parameters.ERROR_CHAT_NAME, _arg_1, -1, -1, "", false, _arg_2));
+        return ChatMessage.make(Parameters.ERROR_CHAT_NAME, _arg_1, -1, -1, "", false, _arg_2);
     }
 
     public function levelUpEffect(_arg_1:String, _arg_2:Boolean = true):void {
@@ -301,22 +301,22 @@ public class Player extends Character {
     private function getNearbyMerchant():Merchant {
         var _local_3:Point;
         var _local_4:Merchant;
-        var _local_1:int = ((((x_ - int(x_))) > 0.5) ? 1 : -1);
-        var _local_2:int = ((((y_ - int(y_))) > 0.5) ? 1 : -1);
+        var _local_1:int = x_ - int(x_) > 0.5 ? 1 : -1;
+        var _local_2:int = y_ - int(y_) > 0.5 ? 1 : -1;
         for each (_local_3 in NEARBY) {
-            this.ip_.x_ = (x_ + (_local_1 * _local_3.x));
-            this.ip_.y_ = (y_ + (_local_2 * _local_3.y));
+            this.ip_.x_ = x_ + _local_1 * _local_3.x;
+            this.ip_.y_ = y_ + _local_2 * _local_3.y;
             _local_4 = map_.merchLookup_[this.ip_];
             if (_local_4 != null) {
-                return ((((PointUtil.distanceSquaredXY(_local_4.x_, _local_4.y_, x_, y_) < 1)) ? _local_4 : null));
+                return PointUtil.distanceSquaredXY(_local_4.x_, _local_4.y_, x_, y_) < 1 ? _local_4 : null;
             }
         }
-        return (null);
+        return null;
     }
 
     public function walkTo(_arg_1:Number, _arg_2:Number):Boolean {
         this.modifyMove(_arg_1, _arg_2, newP);
-        return (this.moveTo(newP.x, newP.y));
+        return this.moveTo(newP.x, newP.y);
     }
 
     override public function moveTo(_arg_1:Number, _arg_2:Number):Boolean {
@@ -324,62 +324,62 @@ public class Player extends Character {
         if (map_.gs_.evalIsNotInCombatMapArea()) {
             this.nearestMerchant_ = this.getNearbyMerchant();
         }
-        return (_local_3);
+        return _local_3;
     }
 
     public function modifyMove(_arg_1:Number, _arg_2:Number, _arg_3:Point):void {
-        if (((isParalyzed()) || (isPetrified()))) {
+        if (isParalyzed() || isPetrified()) {
             _arg_3.x = x_;
             _arg_3.y = y_;
             return;
         }
-        var _local_4:Number = (_arg_1 - x_);
-        var _local_5:Number = (_arg_2 - y_);
-        if ((((((((_local_4 < MOVE_THRESHOLD)) && ((_local_4 > -(MOVE_THRESHOLD))))) && ((_local_5 < MOVE_THRESHOLD)))) && ((_local_5 > -(MOVE_THRESHOLD))))) {
+        var _local_4:Number = _arg_1 - x_;
+        var _local_5:Number = _arg_2 - y_;
+        if (_local_4 < MOVE_THRESHOLD && _local_4 > -MOVE_THRESHOLD && _local_5 < MOVE_THRESHOLD && _local_5 > -MOVE_THRESHOLD) {
             this.modifyStep(_arg_1, _arg_2, _arg_3);
             return;
         }
-        var _local_6:Number = (MOVE_THRESHOLD / Math.max(Math.abs(_local_4), Math.abs(_local_5)));
+        var _local_6:Number = MOVE_THRESHOLD / Math.max(Math.abs(_local_4), Math.abs(_local_5));
         var _local_7:Number = 0;
         _arg_3.x = x_;
         _arg_3.y = y_;
         var _local_8:Boolean;
-        while (!(_local_8)) {
-            if ((_local_7 + _local_6) >= 1) {
-                _local_6 = (1 - _local_7);
+        while (!_local_8) {
+            if (_local_7 + _local_6 >= 1) {
+                _local_6 = 1 - _local_7;
                 _local_8 = true;
             }
-            this.modifyStep((_arg_3.x + (_local_4 * _local_6)), (_arg_3.y + (_local_5 * _local_6)), _arg_3);
-            _local_7 = (_local_7 + _local_6);
+            this.modifyStep(_arg_3.x + _local_4 * _local_6, _arg_3.y + _local_5 * _local_6, _arg_3);
+            _local_7 = _local_7 + _local_6;
         }
     }
 
     public function modifyStep(_arg_1:Number, _arg_2:Number, _arg_3:Point):void {
         var _local_6:Number;
         var _local_7:Number;
-        var _local_4:Boolean = ((((((x_ % 0.5) == 0)) && (!((_arg_1 == x_))))) || (!((int((x_ / 0.5)) == int((_arg_1 / 0.5))))));
-        var _local_5:Boolean = ((((((y_ % 0.5) == 0)) && (!((_arg_2 == y_))))) || (!((int((y_ / 0.5)) == int((_arg_2 / 0.5))))));
-        if (((((!(_local_4)) && (!(_local_5)))) || (this.isValidPosition(_arg_1, _arg_2)))) {
+        var _local_4:Boolean = x_ % 0.5 == 0 && !(_arg_1 == x_) || !(int(x_ / 0.5) == int(_arg_1 / 0.5));
+        var _local_5:Boolean = y_ % 0.5 == 0 && !(_arg_2 == y_) || !(int(y_ / 0.5) == int(_arg_2 / 0.5));
+        if (!_local_4 && !_local_5 || this.isValidPosition(_arg_1, _arg_2)) {
             _arg_3.x = _arg_1;
             _arg_3.y = _arg_2;
             return;
         }
         if (_local_4) {
-            _local_6 = (((_arg_1) > x_) ? (int((_arg_1 * 2)) / 2) : (int((x_ * 2)) / 2));
+            _local_6 = _arg_1 > x_ ? int(_arg_1 * 2) / 2 : int(x_ * 2) / 2;
             if (int(_local_6) > int(x_)) {
-                _local_6 = (_local_6 - 0.01);
+                _local_6 = _local_6 - 0.01;
             }
         }
         if (_local_5) {
-            _local_7 = (((_arg_2) > y_) ? (int((_arg_2 * 2)) / 2) : (int((y_ * 2)) / 2));
+            _local_7 = _arg_2 > y_ ? int(_arg_2 * 2) / 2 : int(y_ * 2) / 2;
             if (int(_local_7) > int(y_)) {
-                _local_7 = (_local_7 - 0.01);
+                _local_7 = _local_7 - 0.01;
             }
         }
         if (!_local_4) {
             _arg_3.x = _arg_1;
             _arg_3.y = _local_7;
-            if (((!((square_ == null))) && (!((square_.props_.slideAmount_ == 0))))) {
+            if (!(square_ == null) && !(square_.props_.slideAmount_ == 0)) {
                 this.resetMoveVector(false);
             }
             return;
@@ -387,13 +387,13 @@ public class Player extends Character {
         if (!_local_5) {
             _arg_3.x = _local_6;
             _arg_3.y = _arg_2;
-            if (((!((square_ == null))) && (!((square_.props_.slideAmount_ == 0))))) {
+            if (!(square_ == null) && !(square_.props_.slideAmount_ == 0)) {
                 this.resetMoveVector(true);
             }
             return;
         }
-        var _local_8:Number = (((_arg_1) > x_) ? (_arg_1 - _local_6) : (_local_6 - _arg_1));
-        var _local_9:Number = (((_arg_2) > y_) ? (_arg_2 - _local_7) : (_local_7 - _arg_2));
+        var _local_8:Number = _arg_1 > x_ ? _arg_1 - _local_6 : _local_6 - _arg_1;
+        var _local_9:Number = _arg_2 > y_ ? _arg_2 - _local_7 : _local_7 - _arg_2;
         if (_local_8 > _local_9) {
             if (this.isValidPosition(_arg_1, _local_7)) {
                 _arg_3.x = _arg_1;
@@ -425,76 +425,76 @@ public class Player extends Character {
     private function resetMoveVector(_arg_1:Boolean):void {
         moveVec_.scaleBy(-0.5);
         if (_arg_1) {
-            moveVec_.y = (moveVec_.y * -1);
+            moveVec_.y = moveVec_.y * -1;
         }
         else {
-            moveVec_.x = (moveVec_.x * -1);
+            moveVec_.x = moveVec_.x * -1;
         }
     }
 
     public function isValidPosition(_arg_1:Number, _arg_2:Number):Boolean {
         var _local_3:Square = map_.getSquare(_arg_1, _arg_2);
-        if (((!((square_ == _local_3))) && ((((_local_3 == null)) || (!(_local_3.isWalkable())))))) {
-            return (false);
+        if (!(square_ == _local_3) && (_local_3 == null || !_local_3.isWalkable())) {
+            return false;
         }
-        var _local_4:Number = (_arg_1 - int(_arg_1));
-        var _local_5:Number = (_arg_2 - int(_arg_2));
+        var _local_4:Number = _arg_1 - int(_arg_1);
+        var _local_5:Number = _arg_2 - int(_arg_2);
         if (_local_4 < 0.5) {
-            if (this.isFullOccupy((_arg_1 - 1), _arg_2)) {
-                return (false);
+            if (this.isFullOccupy(_arg_1 - 1, _arg_2)) {
+                return false;
             }
             if (_local_5 < 0.5) {
-                if (((this.isFullOccupy(_arg_1, (_arg_2 - 1))) || (this.isFullOccupy((_arg_1 - 1), (_arg_2 - 1))))) {
-                    return (false);
+                if (this.isFullOccupy(_arg_1, (_arg_2 - 1)) || this.isFullOccupy(_arg_1 - 1, _arg_2 - 1)) {
+                    return false;
                 }
             }
             else {
                 if (_local_5 > 0.5) {
-                    if (((this.isFullOccupy(_arg_1, (_arg_2 + 1))) || (this.isFullOccupy((_arg_1 - 1), (_arg_2 + 1))))) {
-                        return (false);
+                    if (this.isFullOccupy(_arg_1, (_arg_2 + 1)) || this.isFullOccupy(_arg_1 - 1, _arg_2 + 1)) {
+                        return false;
                     }
                 }
             }
         }
         else {
             if (_local_4 > 0.5) {
-                if (this.isFullOccupy((_arg_1 + 1), _arg_2)) {
-                    return (false);
+                if (this.isFullOccupy(_arg_1 + 1, _arg_2)) {
+                    return false;
                 }
                 if (_local_5 < 0.5) {
-                    if (((this.isFullOccupy(_arg_1, (_arg_2 - 1))) || (this.isFullOccupy((_arg_1 + 1), (_arg_2 - 1))))) {
-                        return (false);
+                    if (this.isFullOccupy(_arg_1, (_arg_2 - 1)) || this.isFullOccupy(_arg_1 + 1, _arg_2 - 1)) {
+                        return false;
                     }
                 }
                 else {
                     if (_local_5 > 0.5) {
-                        if (((this.isFullOccupy(_arg_1, (_arg_2 + 1))) || (this.isFullOccupy((_arg_1 + 1), (_arg_2 + 1))))) {
-                            return (false);
+                        if (this.isFullOccupy(_arg_1, (_arg_2 + 1)) || this.isFullOccupy(_arg_1 + 1, _arg_2 + 1)) {
+                            return false;
                         }
                     }
                 }
             }
             else {
                 if (_local_5 < 0.5) {
-                    if (this.isFullOccupy(_arg_1, (_arg_2 - 1))) {
-                        return (false);
+                    if (this.isFullOccupy(_arg_1, _arg_2 - 1)) {
+                        return false;
                     }
                 }
                 else {
                     if (_local_5 > 0.5) {
-                        if (this.isFullOccupy(_arg_1, (_arg_2 + 1))) {
-                            return (false);
+                        if (this.isFullOccupy(_arg_1, _arg_2 + 1)) {
+                            return false;
                         }
                     }
                 }
             }
         }
-        return (true);
+        return true;
     }
 
     public function isFullOccupy(_arg_1:Number, _arg_2:Number):Boolean {
         var _local_3:Square = map_.lookupSquare(_arg_1, _arg_2);
-        return ((((((_local_3 == null)) || ((_local_3.tileType_ == 0xFF)))) || (((!((_local_3.obj_ == null))) && (_local_3.obj_.props_.fullOccupy_)))));
+        return _local_3 == null || _local_3.tileType_ == 0xFF || !(_local_3.obj_ == null) && _local_3.obj_.props_.fullOccupy_;
     }
 
     override public function update(_arg_1:int, _arg_2:int):Boolean {
@@ -505,25 +505,25 @@ public class Player extends Character {
         var _local_7:Number;
         var _local_8:int;
         var _local_9:Vector.<uint>;
-        if (((this.tierBoost) && (!(isPaused())))) {
-            this.tierBoost = (this.tierBoost - _arg_2);
+        if (this.tierBoost && !isPaused()) {
+            this.tierBoost = this.tierBoost - _arg_2;
             if (this.tierBoost < 0) {
                 this.tierBoost = 0;
             }
         }
-        if (((this.dropBoost) && (!(isPaused())))) {
-            this.dropBoost = (this.dropBoost - _arg_2);
+        if (this.dropBoost && !isPaused()) {
+            this.dropBoost = this.dropBoost - _arg_2;
             if (this.dropBoost < 0) {
                 this.dropBoost = 0;
             }
         }
-        if (((this.xpTimer) && (!(isPaused())))) {
-            this.xpTimer = (this.xpTimer - _arg_2);
+        if (this.xpTimer && !isPaused()) {
+            this.xpTimer = this.xpTimer - _arg_2;
             if (this.xpTimer < 0) {
                 this.xpTimer = 0;
             }
         }
-        if (((isHealing()) && (!(isPaused())))) {
+        if (isHealing() && !isPaused()) {
             if (this.healingEffect_ == null) {
                 this.healingEffect_ = new HealingEffect(this);
                 map_.addObj(this.healingEffect_, x_, y_);
@@ -535,37 +535,37 @@ public class Player extends Character {
                 this.healingEffect_ = null;
             }
         }
-        if ((((map_.player_ == this)) && (isPaused()))) {
-            return (true);
+        if (map_.player_ == this && isPaused()) {
+            return true;
         }
         if (this.relMoveVec_ != null) {
             _local_3 = Parameters.data_.cameraAngle;
             if (this.rotate_ != 0) {
-                _local_3 = (_local_3 + ((_arg_2 * Parameters.PLAYER_ROTATE_SPEED) * this.rotate_));
+                _local_3 = _local_3 + _arg_2 * Parameters.PLAYER_ROTATE_SPEED * this.rotate_;
                 Parameters.data_.cameraAngle = _local_3;
             }
-            if (((!((this.relMoveVec_.x == 0))) || (!((this.relMoveVec_.y == 0))))) {
+            if (!(this.relMoveVec_.x == 0) || !(this.relMoveVec_.y == 0)) {
                 _local_4 = this.getMoveSpeed();
                 _local_5 = Math.atan2(this.relMoveVec_.y, this.relMoveVec_.x);
                 if (square_.props_.slideAmount_ > 0) {
                     _local_6 = new Vector3D();
-                    _local_6.x = (_local_4 * Math.cos((_local_3 + _local_5)));
-                    _local_6.y = (_local_4 * Math.sin((_local_3 + _local_5)));
+                    _local_6.x = _local_4 * Math.cos(_local_3 + _local_5);
+                    _local_6.y = _local_4 * Math.sin(_local_3 + _local_5);
                     _local_6.z = 0;
                     _local_7 = _local_6.length;
-                    _local_6.scaleBy((-1 * (square_.props_.slideAmount_ - 1)));
+                    _local_6.scaleBy(-1 * (square_.props_.slideAmount_ - 1));
                     moveVec_.scaleBy(square_.props_.slideAmount_);
                     if (moveVec_.length < _local_7) {
                         moveVec_ = moveVec_.add(_local_6);
                     }
                 }
                 else {
-                    moveVec_.x = (_local_4 * Math.cos((_local_3 + _local_5)));
-                    moveVec_.y = (_local_4 * Math.sin((_local_3 + _local_5)));
+                    moveVec_.x = _local_4 * Math.cos(_local_3 + _local_5);
+                    moveVec_.y = _local_4 * Math.sin(_local_3 + _local_5);
                 }
             }
             else {
-                if ((((moveVec_.length > 0.00012)) && ((square_.props_.slideAmount_ > 0)))) {
+                if (moveVec_.length > 0.00012 && square_.props_.slideAmount_ > 0) {
                     moveVec_.scaleBy(square_.props_.slideAmount_);
                 }
                 else {
@@ -573,26 +573,26 @@ public class Player extends Character {
                     moveVec_.y = 0;
                 }
             }
-            if (((!((square_ == null))) && (square_.props_.push_))) {
-                moveVec_.x = (moveVec_.x - (square_.props_.animate_.dx_ / 1000));
-                moveVec_.y = (moveVec_.y - (square_.props_.animate_.dy_ / 1000));
+            if (!(square_ == null) && square_.props_.push_) {
+                moveVec_.x = moveVec_.x - square_.props_.animate_.dx_ / 1000;
+                moveVec_.y = moveVec_.y - square_.props_.animate_.dy_ / 1000;
             }
-            this.walkTo((x_ + (_arg_2 * moveVec_.x)), (y_ + (_arg_2 * moveVec_.y)));
+            this.walkTo(x_ + _arg_2 * moveVec_.x, y_ + _arg_2 * moveVec_.y);
         }
         else {
             if (!super.update(_arg_1, _arg_2)) {
-                return (false);
+                return false;
             }
         }
-        if ((((((((((map_.player_ == this)) && ((square_.props_.maxDamage_ > 0)))) && (((square_.lastDamage_ + 500) < _arg_1)))) && (!(isInvincible())))) && ((((square_.obj_ == null)) || (!(square_.obj_.props_.protectFromGroundDamage_)))))) {
+        if (map_.player_ == this && square_.props_.maxDamage_ > 0 && square_.lastDamage_ + 500 < _arg_1 && !isInvincible() && (square_.obj_ == null || !square_.obj_.props_.protectFromGroundDamage_)) {
             _local_8 = map_.gs_.gsc_.getNextDamage(square_.props_.minDamage_, square_.props_.maxDamage_);
             _local_9 = new Vector.<uint>();
             _local_9.push(ConditionEffect.GROUND_DAMAGE);
-            damage(-1, _local_8, _local_9, (hp_ <= _local_8), null);
+            damage(-1, _local_8, _local_9, hp_ <= _local_8, null);
             map_.gs_.gsc_.groundDamage(_arg_1, x_, y_);
             square_.lastDamage_ = _arg_1;
         }
-        return (true);
+        return true;
     }
 
     public function onMove():void {
@@ -601,8 +601,8 @@ public class Player extends Character {
         }
         var _local_1:Square = map_.getSquare(x_, y_);
         if (_local_1.props_.sinking_) {
-            sinkLevel_ = Math.min((sinkLevel_ + 1), Parameters.MAX_SINK_LEVEL);
-            this.moveMultiplier_ = (0.1 + ((1 - (sinkLevel_ / Parameters.MAX_SINK_LEVEL)) * (_local_1.props_.speed_ - 0.1)));
+            sinkLevel_ = Math.min(sinkLevel_ + 1, Parameters.MAX_SINK_LEVEL);
+            this.moveMultiplier_ = 0.1 + (1 - sinkLevel_ / Parameters.MAX_SINK_LEVEL) * (_local_1.props_.speed_ - 0.1);
         }
         else {
             sinkLevel_ = 0;
@@ -615,17 +615,17 @@ public class Player extends Character {
         var _local_2:BitmapTextFactory = StaticInjectorContext.getInjector().getInstance(BitmapTextFactory);
         var _local_3:BitmapData = _local_2.make(_local_1, 16, this.getNameColor(), true, NAME_OFFSET_MATRIX, true);
         _local_3.draw(FameUtil.numStarsToIcon(this.numStars_), RANK_OFFSET_MATRIX);
-        return (_local_3);
+        return _local_3;
     }
 
     private function getNameColor():uint {
         if (this.isFellowGuild_) {
-            return (Parameters.FELLOW_GUILD_COLOR);
+            return Parameters.FELLOW_GUILD_COLOR;
         }
         if (this.nameChosen_) {
-            return (Parameters.NAME_CHOSEN_COLOR);
+            return Parameters.NAME_CHOSEN_COLOR;
         }
-        return (0xFFFFFF);
+        return 0xFFFFFF;
     }
 
     protected function drawBreathBar(_arg_1:Vector.<IGraphicsData>, _arg_2:int):void {
@@ -638,8 +638,8 @@ public class Player extends Character {
             this.breathPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
         }
         if (this.breath_ <= Parameters.BREATH_THRESH) {
-            _local_7 = ((Parameters.BREATH_THRESH - this.breath_) / Parameters.BREATH_THRESH);
-            this.breathBackFill_.color = MoreColorUtil.lerpColor(0x545454, 0xFF0000, (Math.abs(Math.sin((_arg_2 / 300))) * _local_7));
+            _local_7 = (Parameters.BREATH_THRESH - this.breath_) / Parameters.BREATH_THRESH;
+            this.breathBackFill_.color = MoreColorUtil.lerpColor(0x545454, 0xFF0000, Math.abs(Math.sin(_arg_2 / 300)) * _local_7);
         }
         else {
             this.breathBackFill_.color = 0x545454;
@@ -647,18 +647,18 @@ public class Player extends Character {
         var _local_3:int = 20;
         var _local_4:int = 8;
         var _local_5:int = 6;
-        var _local_6:Vector.<Number> = (this.breathBackPath_.data as Vector.<Number>);
+        var _local_6:Vector.<Number> = this.breathBackPath_.data as Vector.<Number>;
         _local_6.length = 0;
-        _local_6.push((posS_[0] - _local_3), (posS_[1] + _local_4), (posS_[0] + _local_3), (posS_[1] + _local_4), (posS_[0] + _local_3), ((posS_[1] + _local_4) + _local_5), (posS_[0] - _local_3), ((posS_[1] + _local_4) + _local_5));
+        _local_6.push(posS_[0] - _local_3, posS_[1] + _local_4, posS_[0] + _local_3, posS_[1] + _local_4, posS_[0] + _local_3, posS_[1] + _local_4 + _local_5, posS_[0] - _local_3, posS_[1] + _local_4 + _local_5);
         _arg_1.push(this.breathBackFill_);
         _arg_1.push(this.breathBackPath_);
         _arg_1.push(GraphicsUtil.END_FILL);
         if (this.breath_ > 0) {
-            _local_8 = (((this.breath_ / 100) * 2) * _local_3);
+            _local_8 = (this.breath_ / 100) * 2 * _local_3;
             this.breathPath_.data.length = 0;
             _local_6 = (this.breathPath_.data as Vector.<Number>);
             _local_6.length = 0;
-            _local_6.push((posS_[0] - _local_3), (posS_[1] + _local_4), ((posS_[0] - _local_3) + _local_8), (posS_[1] + _local_4), ((posS_[0] - _local_3) + _local_8), ((posS_[1] + _local_4) + _local_5), (posS_[0] - _local_3), ((posS_[1] + _local_4) + _local_5));
+            _local_6.push(posS_[0] - _local_3, posS_[1] + _local_4, (posS_[0] - _local_3) + _local_8, posS_[1] + _local_4, (posS_[0] - _local_3) + _local_8, posS_[1] + _local_4 + _local_5, posS_[0] - _local_3, posS_[1] + _local_4 + _local_5);
             _arg_1.push(this.breathFill_);
             _arg_1.push(this.breathPath_);
             _arg_1.push(GraphicsUtil.END_FILL);
@@ -683,35 +683,35 @@ public class Player extends Character {
 
     private function getMoveSpeed():Number {
         if (isSlowed()) {
-            return ((MIN_MOVE_SPEED * this.moveMultiplier_));
+            return MIN_MOVE_SPEED * this.moveMultiplier_;
         }
-        var _local_1:Number = (MIN_MOVE_SPEED + ((this.speed_ / 75) * (MAX_MOVE_SPEED - MIN_MOVE_SPEED)));
-        if (((isSpeedy()) || (isNinjaSpeedy()))) {
-            _local_1 = (_local_1 * 1.5);
+        var _local_1:Number = MIN_MOVE_SPEED + (this.speed_ / 75) * (MAX_MOVE_SPEED - MIN_MOVE_SPEED);
+        if (isSpeedy() || isNinjaSpeedy()) {
+            _local_1 = _local_1 * 1.5;
         }
-        return ((_local_1 * this.moveMultiplier_));
+        return _local_1 * this.moveMultiplier_;
     }
 
     public function attackFrequency():Number {
         if (isDazed()) {
-            return (MIN_ATTACK_FREQ);
+            return MIN_ATTACK_FREQ;
         }
-        var _local_1:Number = (MIN_ATTACK_FREQ + ((this.dexterity_ / 75) * (MAX_ATTACK_FREQ - MIN_ATTACK_FREQ)));
+        var _local_1:Number = MIN_ATTACK_FREQ + (this.dexterity_ / 75) * (MAX_ATTACK_FREQ - MIN_ATTACK_FREQ);
         if (isBerserk()) {
-            _local_1 = (_local_1 * 1.5);
+            _local_1 = _local_1 * 1.5;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function attackMultiplier():Number {
         if (isWeak()) {
-            return (MIN_ATTACK_MULT);
+            return MIN_ATTACK_MULT;
         }
-        var _local_1:Number = (MIN_ATTACK_MULT + ((this.attack_ / 75) * (MAX_ATTACK_MULT - MIN_ATTACK_MULT)));
+        var _local_1:Number = MIN_ATTACK_MULT + (this.attack_ / 75) * (MAX_ATTACK_MULT - MIN_ATTACK_MULT);
         if (isDamaging()) {
-            _local_1 = (_local_1 * 1.5);
+            _local_1 = _local_1 * 1.5;
         }
-        return (_local_1);
+        return _local_1;
     }
 
     private function makeSkinTexture():void {
@@ -724,7 +724,7 @@ public class Player extends Character {
 
     private function setToRandomAnimatedCharacter():void {
         var _local_1:Vector.<XML> = ObjectLibrary.hexTransforms_;
-        var _local_2:uint = Math.floor((Math.random() * _local_1.length));
+        var _local_2:uint = Math.floor(Math.random() * _local_1.length);
         var _local_3:int = int(_local_1[_local_2].@type);
         var _local_4:TextureData = ObjectLibrary.typeToTextureData_[_local_3];
         texture_ = _local_4.texture_;
@@ -742,23 +742,23 @@ public class Player extends Character {
         var _local_14:ColorTransform;
         var _local_3:Number = 0;
         var _local_4:int = AnimatedChar.STAND;
-        if (((this.isShooting) || ((_arg_2 < (attackStart_ + this.attackPeriod_))))) {
+        if (this.isShooting || _arg_2 < attackStart_ + this.attackPeriod_) {
             facing_ = attackAngle_;
-            _local_3 = (((_arg_2 - attackStart_) % this.attackPeriod_) / this.attackPeriod_);
+            _local_3 = ((_arg_2 - attackStart_) % this.attackPeriod_) / this.attackPeriod_;
             _local_4 = AnimatedChar.ATTACK;
         }
         else {
-            if (((!((moveVec_.x == 0))) || (!((moveVec_.y == 0))))) {
-                _local_10 = (3.5 / this.getMoveSpeed());
-                if (((!((moveVec_.y == 0))) || (!((moveVec_.x == 0))))) {
+            if (!(moveVec_.x == 0) || !(moveVec_.y == 0)) {
+                _local_10 = 3.5 / this.getMoveSpeed();
+                if (!(moveVec_.y == 0) || !(moveVec_.x == 0)) {
                     facing_ = Math.atan2(moveVec_.y, moveVec_.x);
                 }
-                _local_3 = ((_arg_2 % _local_10) / _local_10);
+                _local_3 = (_arg_2 % _local_10) / _local_10;
                 _local_4 = AnimatedChar.WALK;
             }
         }
         if (this.isHexed()) {
-            ((this.isDefaultAnimatedChar) && (this.setToRandomAnimatedCharacter()));
+            this.isDefaultAnimatedChar && this.setToRandomAnimatedCharacter();
         }
         else {
             if (!this.isDefaultAnimatedChar) {
@@ -797,18 +797,18 @@ public class Player extends Character {
                 texturingCache_[_local_5] = _local_8;
             }
         }
-        if (hp_ < (maxHP_ * 0.2)) {
-            _local_12 = (int((Math.abs(Math.sin((_arg_2 / 200))) * 10)) / 10);
+        if (hp_ < maxHP_ * 0.2) {
+            _local_12 = int(Math.abs(Math.sin(_arg_2 / 200)) * 10) / 10;
             _local_13 = 128;
-            _local_14 = new ColorTransform(1, 1, 1, 1, (_local_12 * _local_13), (-(_local_12) * _local_13), (-(_local_12) * _local_13));
+            _local_14 = new ColorTransform(1, 1, 1, 1, _local_12 * _local_13, -_local_12 * _local_13, -_local_12 * _local_13);
             _local_8 = CachingColorTransformer.transformBitmapData(_local_8, _local_14);
         }
         var _local_9:BitmapData = texturingCache_[_local_8];
         if (_local_9 == null) {
-            _local_9 = GlowRedrawer.outlineGlow(_local_8, (((this.legendaryRank_ == -1)) ? 0 : 0xFF0000));
+            _local_9 = GlowRedrawer.outlineGlow(_local_8, this.legendaryRank_ == -1 ? 0 : 0xFF0000);
             texturingCache_[_local_8] = _local_9;
         }
-        if (((((isPaused()) || (isStasis()))) || (isPetrified()))) {
+        if (isPaused() || isStasis() || isPetrified()) {
             _local_9 = CachingColorTransformer.filterBitmapData(_local_9, PAUSED_FILTER);
         }
         else {
@@ -816,7 +816,7 @@ public class Player extends Character {
                 _local_9 = CachingColorTransformer.alphaBitmapData(_local_9, 0.4);
             }
         }
-        return (_local_9);
+        return _local_9;
     }
 
     override public function getPortrait():BitmapData {
@@ -824,11 +824,11 @@ public class Player extends Character {
         var _local_2:int;
         if (portrait_ == null) {
             _local_1 = animatedChar_.imageFromDir(AnimatedChar.RIGHT, AnimatedChar.STAND, 0);
-            _local_2 = ((4 / _local_1.image_.width) * 100);
+            _local_2 = (4 / _local_1.image_.width) * 100;
             portrait_ = TextureRedrawer.resize(_local_1.image_, _local_1.mask_, _local_2, true, tex1Id_, tex2Id_);
             portrait_ = GlowRedrawer.outlineGlow(portrait_, 0);
         }
-        return (portrait_);
+        return portrait_;
     }
 
     public function useAltWeapon(_arg_1:Number, _arg_2:Number, _arg_3:int):Boolean {
@@ -837,27 +837,27 @@ public class Player extends Character {
         var _local_9:Number;
         var _local_10:int;
         var _local_11:int;
-        if ((((map_ == null)) || (isPaused()))) {
-            return (false);
+        if (map_ == null || isPaused()) {
+            return false;
         }
         var _local_4:int = equipment_[1];
         if (_local_4 == -1) {
-            return (false);
+            return false;
         }
         var _local_5:XML = ObjectLibrary.xmlLibrary_[_local_4];
-        if ((((_local_5 == null)) || (!(_local_5.hasOwnProperty("Usable"))))) {
-            return (false);
+        if (_local_5 == null || !_local_5.hasOwnProperty("Usable")) {
+            return false;
         }
         var _local_6:Point = map_.pSTopW(_arg_1, _arg_2);
         if (_local_6 == null) {
             SoundEffectLibrary.play("error");
-            return (false);
+            return false;
         }
         for each (_local_7 in _local_5.Activate) {
             if (_local_7.toString() == ActivationType.TELEPORT) {
                 if (!this.isValidPosition(_local_6.x, _local_6.y)) {
                     SoundEffectLibrary.play("error");
-                    return (false);
+                    return false;
                 }
             }
         }
@@ -865,22 +865,22 @@ public class Player extends Character {
         if (_arg_3 == UseType.START_USE) {
             if (_local_8 < this.nextAltAttack_) {
                 SoundEffectLibrary.play("error");
-                return (false);
+                return false;
             }
             _local_10 = int(_local_5.MpCost);
             if (_local_10 > this.mp_) {
                 SoundEffectLibrary.play("no_mana");
-                return (false);
+                return false;
             }
             _local_11 = 500;
             if (_local_5.hasOwnProperty("Cooldown")) {
-                _local_11 = (Number(_local_5.Cooldown) * 1000);
+                _local_11 = Number(_local_5.Cooldown) * 1000;
             }
-            this.nextAltAttack_ = (_local_8 + _local_11);
+            this.nextAltAttack_ = _local_8 + _local_11;
             map_.gs_.gsc_.useItem(_local_8, objectId_, 1, _local_4, _local_6.x, _local_6.y, _arg_3);
             if (_local_5.Activate == ActivationType.SHOOT) {
                 _local_9 = Math.atan2(_arg_2, _arg_1);
-                this.doShoot(_local_8, _local_4, _local_5, (Parameters.data_.cameraAngle + _local_9), false);
+                this.doShoot(_local_8, _local_4, _local_5, Parameters.data_.cameraAngle + _local_9, false);
             }
         }
         else {
@@ -889,29 +889,29 @@ public class Player extends Character {
                 _local_10 = int(_local_5.MpEndCost);
                 if (_local_10 <= this.mp_) {
                     _local_9 = Math.atan2(_arg_2, _arg_1);
-                    this.doShoot(_local_8, _local_4, _local_5, (Parameters.data_.cameraAngle + _local_9), false);
+                    this.doShoot(_local_8, _local_4, _local_5, Parameters.data_.cameraAngle + _local_9, false);
                 }
             }
         }
-        return (true);
+        return true;
     }
 
     public function attemptAttackAngle(_arg_1:Number):void {
-        this.shoot((Parameters.data_.cameraAngle + _arg_1));
+        this.shoot(Parameters.data_.cameraAngle + _arg_1);
     }
 
     override public function setAttack(_arg_1:int, _arg_2:Number):void {
         var _local_3:XML = ObjectLibrary.xmlLibrary_[_arg_1];
-        if ((((_local_3 == null)) || (!(_local_3.hasOwnProperty("RateOfFire"))))) {
+        if (_local_3 == null || !_local_3.hasOwnProperty("RateOfFire")) {
             return;
         }
         var _local_4:Number = Number(_local_3.RateOfFire);
-        this.attackPeriod_ = ((1 / this.attackFrequency()) * (1 / _local_4));
+        this.attackPeriod_ = (1 / this.attackFrequency()) * (1 / _local_4);
         super.setAttack(_arg_1, _arg_2);
     }
 
     private function shoot(_arg_1:Number):void {
-        if ((((((((map_ == null)) || (isStunned()))) || (isPaused()))) || (isPetrified()))) {
+        if (map_ == null || isStunned() || isPaused() || isPetrified()) {
             return;
         }
         var _local_2:int = equipment_[0];
@@ -922,8 +922,8 @@ public class Player extends Character {
         var _local_3:XML = ObjectLibrary.xmlLibrary_[_local_2];
         var _local_4:int = getTimer();
         var _local_5:Number = Number(_local_3.RateOfFire);
-        this.attackPeriod_ = ((1 / this.attackFrequency()) * (1 / _local_5));
-        if (_local_4 < (attackStart_ + this.attackPeriod_)) {
+        this.attackPeriod_ = (1 / this.attackFrequency()) * (1 / _local_5);
+        if (_local_4 < attackStart_ + this.attackPeriod_) {
             return;
         }
         doneAction(map_.gs_, Tutorial.ATTACK_ACTION);
@@ -932,80 +932,79 @@ public class Player extends Character {
         this.doShoot(attackStart_, _local_2, _local_3, attackAngle_, true);
     }
 
-    private function doShoot(_arg_1:int, _arg_2:int, _arg_3:XML, _arg_4:Number, _arg_5:Boolean):void {
-        var _local_11:uint;
-        var _local_12:Projectile;
-        var _local_13:int;
-        var _local_14:int;
-        var _local_15:Number;
-        var _local_16:int;
-        var _local_6:int = ((_arg_3.hasOwnProperty("NumProjectiles")) ? int(_arg_3.NumProjectiles) : 1);
-        var _local_7:Number = (((_arg_3.hasOwnProperty("ArcGap")) ? Number(_arg_3.ArcGap) : 11.25) * Trig.toRadians);
-        var _local_8:Number = (_local_7 * (_local_6 - 1));
-        var _local_9:Number = (_arg_4 - (_local_8 / 2));
-        this.isShooting = _arg_5;
-        var _local_10:int;
-        while (_local_10 < _local_6) {
-            _local_11 = getBulletId();
-            _local_12 = (FreeList.newObject(Projectile) as Projectile);
-            if (((_arg_5) && (!((this.projectileIdSetOverrideNew == ""))))) {
-                _local_12.reset(_arg_2, 0, objectId_, _local_11, _local_9, _arg_1, this.projectileIdSetOverrideNew, this.projectileIdSetOverrideOld);
+    private function doShoot(time:int, containerType:int, data:XML, attackAngle:Number, isShooting:Boolean):void {
+        var bulletId:uint;
+        var projectile:Projectile;
+        var minDamage:int;
+        var maxDamage:int;
+        var mult:Number;
+        var damage:int;
+        var numProjectiles:int = data.hasOwnProperty("NumProjectiles") ? int(data.NumProjectiles) : 1;
+        var arcGap:Number = (data.hasOwnProperty("ArcGap") ? Number(data.ArcGap) : 11.25) * Trig.toRadians;
+        var arcSpread:Number = arcGap * (numProjectiles - 1);
+        var curAngle:Number = attackAngle - arcSpread / 2;
+        this.isShooting = isShooting;
+        var i:int = 0;
+        while (i < numProjectiles) {
+            bulletId = getBulletId();
+            projectile = (FreeList.newObject(Projectile) as Projectile);
+            if (isShooting && !(this.projectileIdSetOverrideNew == "")) {
+                projectile.reset(containerType, 0, objectId_, bulletId, curAngle, time, this.projectileIdSetOverrideNew, this.projectileIdSetOverrideOld);
             }
             else {
-                _local_12.reset(_arg_2, 0, objectId_, _local_11, _local_9, _arg_1);
+                projectile.reset(containerType, 0, objectId_, bulletId, curAngle, time);
             }
-            _local_13 = int(_local_12.projProps_.minDamage_);
-            _local_14 = int(_local_12.projProps_.maxDamage_);
-            _local_15 = ((_arg_5) ? this.attackMultiplier() : 1);
-            _local_16 = (map_.gs_.gsc_.getNextDamage(_local_13, _local_14) * _local_15);
-            if (_arg_1 > (map_.gs_.moveRecords_.lastClearTime_ + 600)) {
-                _local_16 = 0;
+            minDamage = int(projectile.projProps_.minDamage_);
+            maxDamage = int(projectile.projProps_.maxDamage_);
+            mult = isShooting ? this.attackMultiplier() : 1;
+            damage = map_.gs_.gsc_.getNextDamage(minDamage, maxDamage) * mult;
+            if (time > map_.gs_.moveRecords_.lastClearTime_ + 600) {
+                damage = 0;
             }
-            _local_12.setDamage(_local_16);
-            if ((((_local_10 == 0)) && (!((_local_12.sound_ == null))))) {
-                SoundEffectLibrary.play(_local_12.sound_, 0.75, false);
+            projectile.setDamage(damage);
+            if (i == 0 && !(projectile.sound_ == null)) {
+                SoundEffectLibrary.play(projectile.sound_, 0.75, false);
             }
-            map_.addObj(_local_12, (x_ + (Math.cos(_arg_4) * 0.3)), (y_ + (Math.sin(_arg_4) * 0.3)));
-            map_.gs_.gsc_.playerShoot(_arg_1, _local_12);
-            _local_9 = (_local_9 + _local_7);
-            _local_10++;
+            map_.addObj(projectile, x_ + Math.cos(attackAngle) * 0.3, y_ + Math.sin(attackAngle) * 0.3);
+            map_.gs_.gsc_.playerShoot(time, projectile);
+            curAngle = curAngle + arcGap;
+            i++;
         }
     }
 
     public function isHexed():Boolean {
-        return (!(((condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.HEXED_BIT) == 0)));
+        return !((condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.HEXED_BIT) == 0);
     }
 
     public function isInventoryFull():Boolean {
-        if(equipment_ == null)
-        {
+        if (equipment_ == null) {
             return false;
         }
         var _local_1:int = equipment_.length;
         var _local_2:uint = 4;
         while (_local_2 < _local_1) {
             if (equipment_[_local_2] <= 0) {
-                return (false);
+                return false;
             }
             _local_2++;
         }
-        return (true);
+        return true;
     }
 
     public function nextAvailableInventorySlot():int {
-        var _local_1:int = ((this.hasBackpack_) ? equipment_.length : (equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS));
+        var _local_1:int = this.hasBackpack_ ? equipment_.length : equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS;
         var _local_2:uint = 4;
         while (_local_2 < _local_1) {
             if (equipment_[_local_2] <= 0) {
-                return (_local_2);
+                return _local_2;
             }
             _local_2++;
         }
-        return (-1);
+        return -1;
     }
 
     public function numberOfAvailableSlots():int {
-        var _local_1:int = ((this.hasBackpack_) ? equipment_.length : (equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS));
+        var _local_1:int = this.hasBackpack_ ? equipment_.length : equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS;
         var _local_2:int;
         var _local_3:uint = 4;
         while (_local_3 < _local_1) {
@@ -1014,49 +1013,49 @@ public class Player extends Character {
             }
             _local_3++;
         }
-        return (_local_2);
+        return _local_2;
     }
 
     public function swapInventoryIndex(_arg_1:String):int {
         var _local_2:int;
         var _local_3:int;
         if (!this.hasBackpack_) {
-            return (-1);
+            return -1;
         }
         if (_arg_1 == TabStripModel.BACKPACK) {
             _local_2 = GeneralConstants.NUM_EQUIPMENT_SLOTS;
-            _local_3 = (GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS);
+            _local_3 = GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS;
         }
         else {
-            _local_2 = (GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS);
+            _local_2 = GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS;
             _local_3 = equipment_.length;
         }
         var _local_4:uint = _local_2;
         while (_local_4 < _local_3) {
             if (equipment_[_local_4] <= 0) {
-                return (_local_4);
+                return _local_4;
             }
             _local_4++;
         }
-        return (-1);
+        return -1;
     }
 
     public function getPotionCount(_arg_1:int):int {
         switch (_arg_1) {
             case PotionInventoryModel.HEALTH_POTION_ID:
-                return (this.healthPotionCount_);
+                return this.healthPotionCount_;
             case PotionInventoryModel.MAGIC_POTION_ID:
-                return (this.magicPotionCount_);
+                return this.magicPotionCount_;
         }
-        return (0);
+        return 0;
     }
 
     public function getTex1():int {
-        return (tex1Id_);
+        return tex1Id_;
     }
 
     public function getTex2():int {
-        return (tex2Id_);
+        return tex2Id_;
     }
 
 

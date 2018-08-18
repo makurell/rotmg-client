@@ -80,35 +80,35 @@ public class Projectile extends BasicObject {
     }
 
 
-    public function reset(_arg_1:int, _arg_2:int, _arg_3:int, _arg_4:int, _arg_5:Number, _arg_6:int, _arg_7:String = "", _arg_8:String = ""):void {
-        var _local_11:Number;
+    public function reset(containerType:int, bulletType:int, ownerId:int, bulletId:int, angle:Number, startTime:int, _arg_7:String = "", _arg_8:String = ""):void {
+        var size:Number;
         clear();
-        this.containerType_ = _arg_1;
-        this.bulletType_ = _arg_2;
-        this.ownerId_ = _arg_3;
-        this.bulletId_ = _arg_4;
-        this.angle_ = Trig.boundToPI(_arg_5);
-        this.startTime_ = _arg_6;
+        this.containerType_ = containerType;
+        this.bulletType_ = bulletType;
+        this.ownerId_ = ownerId;
+        this.bulletId_ = bulletId;
+        this.angle_ = Trig.boundToPI(angle);
+        this.startTime_ = startTime;
         objectId_ = getNewObjId(this.ownerId_, this.bulletId_);
         z_ = 0.5;
         this.containerProps_ = ObjectLibrary.propsLibrary_[this.containerType_];
-        this.projProps_ = this.containerProps_.projectiles_[_arg_2];
-        var _local_9:String = ((((!((_arg_7 == ""))) && ((this.projProps_.objectId_ == _arg_8)))) ? _arg_7 : this.projProps_.objectId_);
-        this.props_ = ObjectLibrary.getPropsFromId(_local_9);
+        this.projProps_ = this.containerProps_.projectiles_[bulletType];
+        var id:String = !(_arg_7 == "") && this.projProps_.objectId_ == _arg_8 ? _arg_7 : this.projProps_.objectId_;
+        this.props_ = ObjectLibrary.getPropsFromId(id);
         hasShadow_ = (this.props_.shadowSize_ > 0);
-        var _local_10:TextureData = ObjectLibrary.typeToTextureData_[this.props_.type_];
-        this.texture_ = _local_10.getTexture(objectId_);
+        var textureData:TextureData = ObjectLibrary.typeToTextureData_[this.props_.type_];
+        this.texture_ = textureData.getTexture(objectId_);
         this.damagesPlayers_ = this.containerProps_.isEnemy_;
         this.damagesEnemies_ = !(this.damagesPlayers_);
         this.sound_ = this.containerProps_.oldSound_;
         this.multiHitDict_ = ((this.projProps_.multiHit_) ? new Dictionary() : null);
         if (this.projProps_.size_ >= 0) {
-            _local_11 = this.projProps_.size_;
+            size = this.projProps_.size_;
         }
         else {
-            _local_11 = ObjectLibrary.getSizeFromType(this.containerType_);
+            size = ObjectLibrary.getSizeFromType(this.containerType_);
         }
-        this.p_.setSize((8 * (_local_11 / 100)));
+        this.p_.setSize((8 * (size / 100)));
         this.damage_ = 0;
     }
 

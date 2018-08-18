@@ -340,107 +340,107 @@ public class GameServerConnectionConcrete extends GameServerConnection {
     }
 
     public function mapMessages():void {
-        var _local_1:MessageMap = this.injector.getInstance(MessageMap);
+        var messageMap:MessageMap = this.injector.getInstance(MessageMap);
         //sending
-        _local_1.map(CREATE).toMessage(Create);
-        _local_1.map(PLAYERSHOOT).toMessage(PlayerShoot);
-        _local_1.map(MOVE).toMessage(Move);
-        _local_1.map(PLAYERTEXT).toMessage(PlayerText);
-        _local_1.map(UPDATEACK).toMessage(Message);
-        _local_1.map(INVSWAP).toMessage(InvSwap);
-        _local_1.map(USEITEM).toMessage(UseItem);
-        _local_1.map(HELLO).toMessage(Hello);
-        _local_1.map(INVDROP).toMessage(InvDrop);
-        _local_1.map(PONG).toMessage(Pong);
-        _local_1.map(LOAD).toMessage(Load);
-        _local_1.map(SETCONDITION).toMessage(SetCondition);
-        _local_1.map(TELEPORT).toMessage(Teleport);
-        _local_1.map(USEPORTAL).toMessage(UsePortal);
-        _local_1.map(BUY).toMessage(Buy);
-        _local_1.map(PLAYERHIT).toMessage(PlayerHit);
-        _local_1.map(ENEMYHIT).toMessage(EnemyHit);
-        _local_1.map(AOEACK).toMessage(AoeAck);
-        _local_1.map(SHOOTACK).toMessage(ShootAck);
-        _local_1.map(OTHERHIT).toMessage(OtherHit);
-        _local_1.map(SQUAREHIT).toMessage(SquareHit);
-        _local_1.map(GOTOACK).toMessage(GotoAck);
-        _local_1.map(GROUNDDAMAGE).toMessage(GroundDamage);
-        _local_1.map(CHOOSENAME).toMessage(ChooseName);
-        _local_1.map(CREATEGUILD).toMessage(CreateGuild);
-        _local_1.map(GUILDREMOVE).toMessage(GuildRemove);
-        _local_1.map(GUILDINVITE).toMessage(GuildInvite);
-        _local_1.map(REQUESTTRADE).toMessage(RequestTrade);
-        _local_1.map(CHANGETRADE).toMessage(ChangeTrade);
-        _local_1.map(ACCEPTTRADE).toMessage(AcceptTrade);
-        _local_1.map(CANCELTRADE).toMessage(CancelTrade);
-        _local_1.map(CHECKCREDITS).toMessage(CheckCredits);
-        _local_1.map(ESCAPE).toMessage(Escape);
-        _local_1.map(JOINGUILD).toMessage(JoinGuild);
-        _local_1.map(CHANGEGUILDRANK).toMessage(ChangeGuildRank);
-        _local_1.map(EDITACCOUNTLIST).toMessage(EditAccountList);
-        _local_1.map(ACTIVE_PET_UPDATE_REQUEST).toMessage(ActivePetUpdateRequest);
-        _local_1.map(PETUPGRADEREQUEST).toMessage(PetUpgradeRequest);
-        _local_1.map(ENTER_ARENA).toMessage(EnterArena);
-        _local_1.map(ACCEPT_ARENA_DEATH).toMessage(OutgoingMessage);
-        _local_1.map(QUEST_FETCH_ASK).toMessage(OutgoingMessage);
-        _local_1.map(QUEST_REDEEM).toMessage(QuestRedeem);
-        _local_1.map(KEY_INFO_REQUEST).toMessage(KeyInfoRequest);
-        _local_1.map(PET_CHANGE_FORM_MSG).toMessage(ReskinPet);
+        messageMap.map(CREATE).toMessage(Create);
+        messageMap.map(PLAYERSHOOT).toMessage(PlayerShoot);
+        messageMap.map(MOVE).toMessage(Move);
+        messageMap.map(PLAYERTEXT).toMessage(PlayerText);
+        messageMap.map(UPDATEACK).toMessage(Message);
+        messageMap.map(INVSWAP).toMessage(InvSwap);
+        messageMap.map(USEITEM).toMessage(UseItem);
+        messageMap.map(HELLO).toMessage(Hello);
+        messageMap.map(INVDROP).toMessage(InvDrop);
+        messageMap.map(PONG).toMessage(Pong);
+        messageMap.map(LOAD).toMessage(Load);
+        messageMap.map(SETCONDITION).toMessage(SetCondition);
+        messageMap.map(TELEPORT).toMessage(Teleport);
+        messageMap.map(USEPORTAL).toMessage(UsePortal);
+        messageMap.map(BUY).toMessage(Buy);
+        messageMap.map(PLAYERHIT).toMessage(PlayerHit);
+        messageMap.map(ENEMYHIT).toMessage(EnemyHit);
+        messageMap.map(AOEACK).toMessage(AoeAck);
+        messageMap.map(SHOOTACK).toMessage(ShootAck);
+        messageMap.map(OTHERHIT).toMessage(OtherHit);
+        messageMap.map(SQUAREHIT).toMessage(SquareHit);
+        messageMap.map(GOTOACK).toMessage(GotoAck);
+        messageMap.map(GROUNDDAMAGE).toMessage(GroundDamage);
+        messageMap.map(CHOOSENAME).toMessage(ChooseName);
+        messageMap.map(CREATEGUILD).toMessage(CreateGuild);
+        messageMap.map(GUILDREMOVE).toMessage(GuildRemove);
+        messageMap.map(GUILDINVITE).toMessage(GuildInvite);
+        messageMap.map(REQUESTTRADE).toMessage(RequestTrade);
+        messageMap.map(CHANGETRADE).toMessage(ChangeTrade);
+        messageMap.map(ACCEPTTRADE).toMessage(AcceptTrade);
+        messageMap.map(CANCELTRADE).toMessage(CancelTrade);
+        messageMap.map(CHECKCREDITS).toMessage(CheckCredits);
+        messageMap.map(ESCAPE).toMessage(Escape);
+        messageMap.map(JOINGUILD).toMessage(JoinGuild);
+        messageMap.map(CHANGEGUILDRANK).toMessage(ChangeGuildRank);
+        messageMap.map(EDITACCOUNTLIST).toMessage(EditAccountList);
+        messageMap.map(ACTIVE_PET_UPDATE_REQUEST).toMessage(ActivePetUpdateRequest);
+        messageMap.map(PETUPGRADEREQUEST).toMessage(PetUpgradeRequest);
+        messageMap.map(ENTER_ARENA).toMessage(EnterArena);
+        messageMap.map(ACCEPT_ARENA_DEATH).toMessage(OutgoingMessage);
+        messageMap.map(QUEST_FETCH_ASK).toMessage(OutgoingMessage);
+        messageMap.map(QUEST_REDEEM).toMessage(QuestRedeem);
+        messageMap.map(KEY_INFO_REQUEST).toMessage(KeyInfoRequest);
+        messageMap.map(PET_CHANGE_FORM_MSG).toMessage(ReskinPet);
 
         //receiving
-        _local_1.map(FAILURE).toMessage(Failure).toMethod(this.onFailure);
-        _local_1.map(CREATE_SUCCESS).toMessage(CreateSuccess).toMethod(this.onCreateSuccess);
-        _local_1.map(SERVERPLAYERSHOOT).toMessage(ServerPlayerShoot).toMethod(this.onServerPlayerShoot);
-        _local_1.map(DAMAGE).toMessage(Damage).toMethod(this.onDamage);
-        _local_1.map(UPDATE).toMessage(Update).toMethod(this.onUpdate);
-        _local_1.map(NOTIFICATION).toMessage(Notification).toMethod(this.onNotification);
-        _local_1.map(GLOBAL_NOTIFICATION).toMessage(GlobalNotification).toMethod(this.onGlobalNotification);
-        _local_1.map(NEWTICK).toMessage(NewTick).toMethod(this.onNewTick);
-        _local_1.map(SHOWEFFECT).toMessage(ShowEffect).toMethod(this.onShowEffect);
-        _local_1.map(GOTO).toMessage(Goto).toMethod(this.onGoto);
-        _local_1.map(INVRESULT).toMessage(InvResult).toMethod(this.onInvResult);
-        _local_1.map(RECONNECT).toMessage(Reconnect).toMethod(this.onReconnect);
-        _local_1.map(PING).toMessage(Ping).toMethod(this.onPing);
-        _local_1.map(MAPINFO).toMessage(MapInfo).toMethod(this.onMapInfo);
-        _local_1.map(PIC).toMessage(Pic).toMethod(this.onPic);
-        _local_1.map(DEATH).toMessage(Death).toMethod(this.onDeath);
-        _local_1.map(BUYRESULT).toMessage(BuyResult).toMethod(this.onBuyResult);
-        _local_1.map(AOE).toMessage(Aoe).toMethod(this.onAoe);
-        _local_1.map(ACCOUNTLIST).toMessage(AccountList).toMethod(this.onAccountList);
-        _local_1.map(QUESTOBJID).toMessage(QuestObjId).toMethod(this.onQuestObjId);
-        _local_1.map(NAMERESULT).toMessage(NameResult).toMethod(this.onNameResult);
-        _local_1.map(GUILDRESULT).toMessage(GuildResult).toMethod(this.onGuildResult);
-        _local_1.map(ALLYSHOOT).toMessage(AllyShoot).toMethod(this.onAllyShoot);
-        _local_1.map(ENEMYSHOOT).toMessage(EnemyShoot).toMethod(this.onEnemyShoot);
-        _local_1.map(TRADEREQUESTED).toMessage(TradeRequested).toMethod(this.onTradeRequested);
-        _local_1.map(TRADESTART).toMessage(TradeStart).toMethod(this.onTradeStart);
-        _local_1.map(TRADECHANGED).toMessage(TradeChanged).toMethod(this.onTradeChanged);
-        _local_1.map(TRADEDONE).toMessage(TradeDone).toMethod(this.onTradeDone);
-        _local_1.map(TRADEACCEPTED).toMessage(TradeAccepted).toMethod(this.onTradeAccepted);
-        _local_1.map(CLIENTSTAT).toMessage(ClientStat).toMethod(this.onClientStat);
-        _local_1.map(FILE).toMessage(File).toMethod(this.onFile);
-        _local_1.map(INVITEDTOGUILD).toMessage(InvitedToGuild).toMethod(this.onInvitedToGuild);
-        _local_1.map(PLAYSOUND).toMessage(PlaySound).toMethod(this.onPlaySound);
-        _local_1.map(ACTIVEPETUPDATE).toMessage(ActivePet).toMethod(this.onActivePetUpdate);
-        _local_1.map(NEW_ABILITY).toMessage(NewAbilityMessage).toMethod(this.onNewAbility);
-        _local_1.map(PETYARDUPDATE).toMessage(PetYard).toMethod(this.onPetYardUpdate);
-        _local_1.map(EVOLVE_PET).toMessage(EvolvedPetMessage).toMethod(this.onEvolvedPet);
-        _local_1.map(DELETE_PET).toMessage(DeletePetMessage).toMethod(this.onDeletePet);
-        _local_1.map(HATCH_PET).toMessage(HatchPetMessage).toMethod(this.onHatchPet);
-        _local_1.map(IMMINENT_ARENA_WAVE).toMessage(ImminentArenaWave).toMethod(this.onImminentArenaWave);
-        _local_1.map(ARENA_DEATH).toMessage(ArenaDeath).toMethod(this.onArenaDeath);
-        _local_1.map(VERIFY_EMAIL).toMessage(VerifyEmail).toMethod(this.onVerifyEmail);
-        _local_1.map(RESKIN_UNLOCK).toMessage(ReskinUnlock).toMethod(this.onReskinUnlock);
-        _local_1.map(PASSWORD_PROMPT).toMessage(PasswordPrompt).toMethod(this.onPasswordPrompt);
-        _local_1.map(QUEST_FETCH_RESPONSE).toMessage(QuestFetchResponse).toMethod(this.onQuestFetchResponse);
-        _local_1.map(QUEST_REDEEM_RESPONSE).toMessage(QuestRedeemResponse).toMethod(this.onQuestRedeemResponse);
-        _local_1.map(KEY_INFO_RESPONSE).toMessage(KeyInfoResponse).toMethod(this.onKeyInfoResponse);
+        messageMap.map(FAILURE).toMessage(Failure).toMethod(this.onFailure);
+        messageMap.map(CREATE_SUCCESS).toMessage(CreateSuccess).toMethod(this.onCreateSuccess);
+        messageMap.map(SERVERPLAYERSHOOT).toMessage(ServerPlayerShoot).toMethod(this.onServerPlayerShoot);
+        messageMap.map(DAMAGE).toMessage(Damage).toMethod(this.onDamage);
+        messageMap.map(UPDATE).toMessage(Update).toMethod(this.onUpdate);
+        messageMap.map(NOTIFICATION).toMessage(Notification).toMethod(this.onNotification);
+        messageMap.map(GLOBAL_NOTIFICATION).toMessage(GlobalNotification).toMethod(this.onGlobalNotification);
+        messageMap.map(NEWTICK).toMessage(NewTick).toMethod(this.onNewTick);
+        messageMap.map(SHOWEFFECT).toMessage(ShowEffect).toMethod(this.onShowEffect);
+        messageMap.map(GOTO).toMessage(Goto).toMethod(this.onGoto);
+        messageMap.map(INVRESULT).toMessage(InvResult).toMethod(this.onInvResult);
+        messageMap.map(RECONNECT).toMessage(Reconnect).toMethod(this.onReconnect);
+        messageMap.map(PING).toMessage(Ping).toMethod(this.onPing);
+        messageMap.map(MAPINFO).toMessage(MapInfo).toMethod(this.onMapInfo);
+        messageMap.map(PIC).toMessage(Pic).toMethod(this.onPic);
+        messageMap.map(DEATH).toMessage(Death).toMethod(this.onDeath);
+        messageMap.map(BUYRESULT).toMessage(BuyResult).toMethod(this.onBuyResult);
+        messageMap.map(AOE).toMessage(Aoe).toMethod(this.onAoe);
+        messageMap.map(ACCOUNTLIST).toMessage(AccountList).toMethod(this.onAccountList);
+        messageMap.map(QUESTOBJID).toMessage(QuestObjId).toMethod(this.onQuestObjId);
+        messageMap.map(NAMERESULT).toMessage(NameResult).toMethod(this.onNameResult);
+        messageMap.map(GUILDRESULT).toMessage(GuildResult).toMethod(this.onGuildResult);
+        messageMap.map(ALLYSHOOT).toMessage(AllyShoot).toMethod(this.onAllyShoot);
+        messageMap.map(ENEMYSHOOT).toMessage(EnemyShoot).toMethod(this.onEnemyShoot);
+        messageMap.map(TRADEREQUESTED).toMessage(TradeRequested).toMethod(this.onTradeRequested);
+        messageMap.map(TRADESTART).toMessage(TradeStart).toMethod(this.onTradeStart);
+        messageMap.map(TRADECHANGED).toMessage(TradeChanged).toMethod(this.onTradeChanged);
+        messageMap.map(TRADEDONE).toMessage(TradeDone).toMethod(this.onTradeDone);
+        messageMap.map(TRADEACCEPTED).toMessage(TradeAccepted).toMethod(this.onTradeAccepted);
+        messageMap.map(CLIENTSTAT).toMessage(ClientStat).toMethod(this.onClientStat);
+        messageMap.map(FILE).toMessage(File).toMethod(this.onFile);
+        messageMap.map(INVITEDTOGUILD).toMessage(InvitedToGuild).toMethod(this.onInvitedToGuild);
+        messageMap.map(PLAYSOUND).toMessage(PlaySound).toMethod(this.onPlaySound);
+        messageMap.map(ACTIVEPETUPDATE).toMessage(ActivePet).toMethod(this.onActivePetUpdate);
+        messageMap.map(NEW_ABILITY).toMessage(NewAbilityMessage).toMethod(this.onNewAbility);
+        messageMap.map(PETYARDUPDATE).toMessage(PetYard).toMethod(this.onPetYardUpdate);
+        messageMap.map(EVOLVE_PET).toMessage(EvolvedPetMessage).toMethod(this.onEvolvedPet);
+        messageMap.map(DELETE_PET).toMessage(DeletePetMessage).toMethod(this.onDeletePet);
+        messageMap.map(HATCH_PET).toMessage(HatchPetMessage).toMethod(this.onHatchPet);
+        messageMap.map(IMMINENT_ARENA_WAVE).toMessage(ImminentArenaWave).toMethod(this.onImminentArenaWave);
+        messageMap.map(ARENA_DEATH).toMessage(ArenaDeath).toMethod(this.onArenaDeath);
+        messageMap.map(VERIFY_EMAIL).toMessage(VerifyEmail).toMethod(this.onVerifyEmail);
+        messageMap.map(RESKIN_UNLOCK).toMessage(ReskinUnlock).toMethod(this.onReskinUnlock);
+        messageMap.map(PASSWORD_PROMPT).toMessage(PasswordPrompt).toMethod(this.onPasswordPrompt);
+        messageMap.map(QUEST_FETCH_RESPONSE).toMessage(QuestFetchResponse).toMethod(this.onQuestFetchResponse);
+        messageMap.map(QUEST_REDEEM_RESPONSE).toMessage(QuestRedeemResponse).toMethod(this.onQuestRedeemResponse);
+        messageMap.map(KEY_INFO_RESPONSE).toMessage(KeyInfoResponse).toMethod(this.onKeyInfoResponse);
 
     }
 
-    private function onHatchPet(_arg_1:HatchPetMessage):void {
-        var _local_2:HatchPetSignal = this.injector.getInstance(HatchPetSignal);
-        _local_2.dispatch(_arg_1.petName, _arg_1.petSkin);
+    private function onHatchPet(hatchPetMessage:HatchPetMessage):void {
+        var hatchPetSignal:HatchPetSignal = this.injector.getInstance(HatchPetSignal);
+        hatchPetSignal.dispatch(hatchPetMessage.petName, hatchPetMessage.petSkin);
     }
 
     private function onDeletePet(_arg_1:DeletePetMessage):void {
@@ -554,8 +554,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         }
     }
 
-    override public function getNextDamage(_arg_1:uint, _arg_2:uint):uint {
-        return (this.rand_.nextIntRange(_arg_1, _arg_2));
+    //random number between bounds
+    override public function getNextDamage(minDamage:uint, maxDamage:uint):uint {
+        return (this.rand_.nextIntRange(minDamage, maxDamage));
     }
 
     override public function enableJitterWatcher():void {
@@ -588,15 +589,15 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         }
     }
 
-    override public function playerShoot(_arg_1:int, _arg_2:Projectile):void {
-        var _local_3:PlayerShoot = (this.messages.require(PLAYERSHOOT) as PlayerShoot);
-        _local_3.time_ = _arg_1;
-        _local_3.bulletId_ = _arg_2.bulletId_;
-        _local_3.containerType_ = _arg_2.containerType_;
-        _local_3.startingPos_.x_ = _arg_2.x_;
-        _local_3.startingPos_.y_ = _arg_2.y_;
-        _local_3.angle_ = _arg_2.angle_;
-        serverConnection.sendMessage(_local_3);
+    override public function playerShoot(time:int, projectile:Projectile):void {
+        var playerShootMessage:PlayerShoot = (this.messages.require(PLAYERSHOOT) as PlayerShoot);
+        playerShootMessage.time_ = time;
+        playerShootMessage.bulletId_ = projectile.bulletId_;
+        playerShootMessage.containerType_ = projectile.containerType_;
+        playerShootMessage.startingPos_.x_ = projectile.x_;
+        playerShootMessage.startingPos_.y_ = projectile.y_;
+        playerShootMessage.angle_ = projectile.angle_;
+        serverConnection.sendMessage(playerShootMessage);
     }
 
     override public function playerHit(_arg_1:int, _arg_2:int):void {
