@@ -51,14 +51,14 @@ public class SavedCharactersList extends Event {
     public var isAgeVerified:Boolean;
     private var account:Account;
 
-    public function SavedCharactersList(_arg_1:String) {
+    public function SavedCharactersList(rawXml:String) {
         var _local_4:*;
         var _local_5:Account;
         this.savedChars_ = new Vector.<SavedCharacter>();
         this.charStats_ = {};
         this.news_ = new Vector.<SavedNewsItem>();
         super(SAVED_CHARS_LIST);
-        this.origData_ = _arg_1;
+        this.origData_ = rawXml;
         this.charsXML_ = new XML(this.origData_);
         var _local_2:XML = XML(this.charsXML_.Account);
         this.parseUserData(_local_2);

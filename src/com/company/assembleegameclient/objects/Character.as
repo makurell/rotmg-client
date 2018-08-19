@@ -6,11 +6,11 @@ public class Character extends GameObject {
     public var hurtSound_:String;
     public var deathSound_:String;
 
-    public function Character(_arg_1:XML) {
-        super(_arg_1);
-        this.hurtSound_ = _arg_1.hasOwnProperty("HitSound") ? String(_arg_1.HitSound) : "monster/default_hit";
+    public function Character(xml:XML) {
+        super(xml);
+        this.hurtSound_ = xml.hasOwnProperty("HitSound") ? String(xml.HitSound) : "monster/default_hit";
         SoundEffectLibrary.load(this.hurtSound_);
-        this.deathSound_ = _arg_1.hasOwnProperty("DeathSound") ? String(_arg_1.DeathSound) : "monster/default_death";
+        this.deathSound_ = xml.hasOwnProperty("DeathSound") ? String(xml.DeathSound) : "monster/default_death";
         SoundEffectLibrary.load(this.deathSound_);
     }
 

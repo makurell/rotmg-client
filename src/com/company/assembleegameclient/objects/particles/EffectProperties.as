@@ -26,30 +26,30 @@ public class EffectProperties {
     public var bitmapFile:String;
     public var bitmapIndex:uint;
 
-    public function EffectProperties(_arg_1:XML) {
-        this.id = _arg_1.toString();
-        this.particle = _arg_1.@particle;
-        this.cooldown = _arg_1.@cooldown;
-        this.color = _arg_1.@color;
-        this.color2 = _arg_1.@color2;
-        this.rate = Number(_arg_1.@rate) || 5;
-        this.speed = Number(_arg_1.@speed) || 0;
-        this.speedVariance = Number(_arg_1.@speedVariance) || 0.5;
-        this.spread = Number(_arg_1.@spread) || 0;
-        this.life = Number(_arg_1.@life) || 1;
-        this.lifeVariance = Number(_arg_1.@lifeVariance) || 0;
-        this.size = int(_arg_1.@size) || 3;
-        this.rise = Number(_arg_1.@rise) || 3;
-        this.riseVariance = Number(_arg_1.@riseVariance) || 0;
-        this.riseAcc = Number(_arg_1.@riseAcc) || 0;
-        this.rangeX = int(_arg_1.@rangeX) || 0;
-        this.rangeY = int(_arg_1.@rangeY) || 0;
-        this.zOffset = Number(_arg_1.@zOffset) || 0;
-        this.minRadius = Number(_arg_1.@minRadius) || Number(0);
-        this.maxRadius = Number(_arg_1.@maxRadius) || Number(1);
-        this.amount = int(_arg_1.@amount) || 1;
-        this.bitmapFile = _arg_1.@bitmapFile;
-        this.bitmapIndex = _arg_1.@bitmapIndex;
+    public function EffectProperties(xml:XML) {
+        this.id = xml.toString();
+        this.particle = xml.@particle;
+        this.cooldown = xml.@cooldown;
+        this.color = xml.@color;
+        this.color2 = xml.@color2;
+        this.rate = Number(xml.@rate) || 5;
+        this.speed = Number(xml.@speed) || 0;
+        this.speedVariance = Number(xml.@speedVariance) || 0.5;
+        this.spread = Number(xml.@spread) || 0;
+        this.life = Number(xml.@life) || 1;
+        this.lifeVariance = Number(xml.@lifeVariance) || 0;
+        this.size = int(xml.@size) || 3;
+        this.rise = Number(xml.@rise) || 3;
+        this.riseVariance = Number(xml.@riseVariance) || 0;
+        this.riseAcc = Number(xml.@riseAcc) || 0;
+        this.rangeX = int(xml.@rangeX) || 0;
+        this.rangeY = int(xml.@rangeY) || 0;
+        this.zOffset = Number(xml.@zOffset) || 0;
+        this.minRadius = Number(xml.@minRadius) || Number(0);
+        this.maxRadius = Number(xml.@maxRadius) || Number(1);
+        this.amount = int(xml.@amount) || 1;
+        this.bitmapFile = xml.@bitmapFile;
+        this.bitmapIndex = xml.@bitmapIndex;
     }
 
 }

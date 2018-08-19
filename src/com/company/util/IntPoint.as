@@ -7,17 +7,17 @@ public class IntPoint {
     public var x_:int;
     public var y_:int;
 
-    public function IntPoint(_arg_1:int = 0, _arg_2:int = 0) {
-        this.x_ = _arg_1;
-        this.y_ = _arg_2;
+    public function IntPoint(x:int = 0, y:int = 0) {
+        this.x_ = x;
+        this.y_ = y;
     }
 
     public static function unitTest():void {
-        var _local_1:UnitTest = new UnitTest();
+        var unitTest:UnitTest = new UnitTest();
     }
 
-    public static function fromPoint(_arg_1:Point):IntPoint {
-        return new IntPoint(Math.round(_arg_1.x), Math.round(_arg_1.y));
+    public static function fromPoint(point:Point):IntPoint {
+        return new IntPoint(Math.round(point.x), Math.round(point.y));
     }
 
 
@@ -41,26 +41,26 @@ public class IntPoint {
         return new IntPoint(this.x_, this.y_);
     }
 
-    public function same(_arg_1:IntPoint):Boolean {
-        return this.x_ == _arg_1.x_ && this.y_ == _arg_1.y_;
+    public function same(other:IntPoint):Boolean {
+        return this.x_ == other.x_ && this.y_ == other.y_;
     }
 
-    public function distanceAsInt(_arg_1:IntPoint):int {
-        var _local_2:int = _arg_1.x_ - this.x_;
-        var _local_3:int = _arg_1.y_ - this.y_;
-        return Math.round(Math.sqrt(_local_2 * _local_2 + _local_3 * _local_3));
+    public function distanceAsInt(point:IntPoint):int {
+        var dx:int = point.x_ - this.x_;
+        var dy:int = point.y_ - this.y_;
+        return Math.round(Math.sqrt(dx * dx + dy * dy));
     }
 
-    public function distanceAsNumber(_arg_1:IntPoint):Number {
-        var _local_2:int = _arg_1.x_ - this.x_;
-        var _local_3:int = _arg_1.y_ - this.y_;
-        return Math.sqrt(_local_2 * _local_2 + _local_3 * _local_3);
+    public function distanceAsNumber(point:IntPoint):Number {
+        var dx:int = point.x_ - this.x_;
+        var dy:int = point.y_ - this.y_;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
-    public function distanceToPoint(_arg_1:Point):Number {
-        var _local_2:int = _arg_1.x - this.x_;
-        var _local_3:int = _arg_1.y - this.y_;
-        return Math.sqrt(_local_2 * _local_2 + _local_3 * _local_3);
+    public function distanceToPoint(point:Point):Number {
+        var dx:int = point.x - this.x_;
+        var dy:int = point.y - this.y_;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     public function trunc1000():IntPoint {
@@ -71,19 +71,19 @@ public class IntPoint {
         return new IntPoint(Math.round(this.x_ / 1000) * 1000, Math.round(this.y_ / 1000) * 1000);
     }
 
-    public function distanceSquared(_arg_1:IntPoint):int {
-        var _local_2:int = _arg_1.x() - this.x_;
-        var _local_3:int = _arg_1.y() - this.y_;
-        return _local_2 * _local_2 + _local_3 * _local_3;
+    public function distanceSquared(point:IntPoint):int {
+        var dx:int = point.x() - this.x_;
+        var dy:int = point.y() - this.y_;
+        return dx * dx + dy * dy;
     }
 
     public function toPoint():Point {
         return new Point(this.x_, this.y_);
     }
 
-    public function transform(_arg_1:Matrix):IntPoint {
-        var _local_2:Point = _arg_1.transformPoint(this.toPoint());
-        return new IntPoint(Math.round(_local_2.x), Math.round(_local_2.y));
+    public function transform(matrix:Matrix):IntPoint {
+        var point:Point = matrix.transformPoint(this.toPoint());
+        return new IntPoint(Math.round(point.x), Math.round(point.y));
     }
 
     public function toString():String {

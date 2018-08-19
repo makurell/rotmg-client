@@ -33,56 +33,56 @@ public class GroundProperties {
     public var topTD_:TextureData = null;
     public var topAnimate_:AnimateProperties = null;
 
-    public function GroundProperties(_arg_1:XML) {
+    public function GroundProperties(xml:XML) {
         this.animate_ = new AnimateProperties();
         super();
-        this.type_ = int(_arg_1.@type);
-        this.id_ = String(_arg_1.@id);
-        this.noWalk_ = _arg_1.hasOwnProperty("NoWalk");
-        if (_arg_1.hasOwnProperty("MinDamage")) {
-            this.minDamage_ = int(_arg_1.MinDamage);
+        this.type_ = int(xml.@type);
+        this.id_ = String(xml.@id);
+        this.noWalk_ = xml.hasOwnProperty("NoWalk");
+        if (xml.hasOwnProperty("MinDamage")) {
+            this.minDamage_ = int(xml.MinDamage);
         }
-        if (_arg_1.hasOwnProperty("MaxDamage")) {
-            this.maxDamage_ = int(_arg_1.MaxDamage);
+        if (xml.hasOwnProperty("MaxDamage")) {
+            this.maxDamage_ = int(xml.MaxDamage);
         }
-        this.push_ = _arg_1.hasOwnProperty("Push");
-        if (_arg_1.hasOwnProperty("Animate")) {
-            this.animate_.parseXML(XML(_arg_1.Animate));
+        this.push_ = xml.hasOwnProperty("Push");
+        if (xml.hasOwnProperty("Animate")) {
+            this.animate_.parseXML(XML(xml.Animate));
         }
-        if (_arg_1.hasOwnProperty("BlendPriority")) {
-            this.blendPriority_ = int(_arg_1.BlendPriority);
+        if (xml.hasOwnProperty("BlendPriority")) {
+            this.blendPriority_ = int(xml.BlendPriority);
         }
-        if (_arg_1.hasOwnProperty("CompositePriority")) {
-            this.compositePriority_ = int(_arg_1.CompositePriority);
+        if (xml.hasOwnProperty("CompositePriority")) {
+            this.compositePriority_ = int(xml.CompositePriority);
         }
-        if (_arg_1.hasOwnProperty("Speed")) {
-            this.speed_ = Number(_arg_1.Speed);
+        if (xml.hasOwnProperty("Speed")) {
+            this.speed_ = Number(xml.Speed);
         }
-        if (_arg_1.hasOwnProperty("SlideAmount")) {
-            this.slideAmount_ = Number(_arg_1.SlideAmount);
+        if (xml.hasOwnProperty("SlideAmount")) {
+            this.slideAmount_ = Number(xml.SlideAmount);
         }
-        this.xOffset_ = _arg_1.hasOwnProperty("XOffset") ? Number(_arg_1.XOffset) : 0;
-        this.yOffset_ = _arg_1.hasOwnProperty("YOffset") ? Number(_arg_1.YOffset) : 0;
-        this.push_ = _arg_1.hasOwnProperty("Push");
-        this.sink_ = _arg_1.hasOwnProperty("Sink");
-        this.sinking_ = _arg_1.hasOwnProperty("Sinking");
-        this.randomOffset_ = _arg_1.hasOwnProperty("RandomOffset");
-        if (_arg_1.hasOwnProperty("Edge")) {
+        this.xOffset_ = xml.hasOwnProperty("XOffset") ? Number(xml.XOffset) : 0;
+        this.yOffset_ = xml.hasOwnProperty("YOffset") ? Number(xml.YOffset) : 0;
+        this.push_ = xml.hasOwnProperty("Push");
+        this.sink_ = xml.hasOwnProperty("Sink");
+        this.sinking_ = xml.hasOwnProperty("Sinking");
+        this.randomOffset_ = xml.hasOwnProperty("RandomOffset");
+        if (xml.hasOwnProperty("Edge")) {
             this.hasEdge_ = true;
-            this.edgeTD_ = new TextureDataConcrete(XML(_arg_1.Edge));
-            if (_arg_1.hasOwnProperty("Corner")) {
-                this.cornerTD_ = new TextureDataConcrete(XML(_arg_1.Corner));
+            this.edgeTD_ = new TextureDataConcrete(XML(xml.Edge));
+            if (xml.hasOwnProperty("Corner")) {
+                this.cornerTD_ = new TextureDataConcrete(XML(xml.Corner));
             }
-            if (_arg_1.hasOwnProperty("InnerCorner")) {
-                this.innerCornerTD_ = new TextureDataConcrete(XML(_arg_1.InnerCorner));
+            if (xml.hasOwnProperty("InnerCorner")) {
+                this.innerCornerTD_ = new TextureDataConcrete(XML(xml.InnerCorner));
             }
         }
-        this.sameTypeEdgeMode_ = _arg_1.hasOwnProperty("SameTypeEdgeMode");
-        if (_arg_1.hasOwnProperty("Top")) {
-            this.topTD_ = new TextureDataConcrete(XML(_arg_1.Top));
+        this.sameTypeEdgeMode_ = xml.hasOwnProperty("SameTypeEdgeMode");
+        if (xml.hasOwnProperty("Top")) {
+            this.topTD_ = new TextureDataConcrete(XML(xml.Top));
             this.topAnimate_ = new AnimateProperties();
-            if (_arg_1.hasOwnProperty("TopAnimate")) {
-                this.topAnimate_.parseXML(XML(_arg_1.TopAnimate));
+            if (xml.hasOwnProperty("TopAnimate")) {
+                this.topAnimate_.parseXML(XML(xml.TopAnimate));
             }
         }
     }

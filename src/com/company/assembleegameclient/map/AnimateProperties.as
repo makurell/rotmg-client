@@ -10,8 +10,8 @@ public class AnimateProperties {
     public var dy_:Number = 0;
 
 
-    public function parseXML(_arg_1:XML):void {
-        switch (String(_arg_1)) {
+    public function parseXML(xml:XML):void {
+        switch (String(xml)) {
             case "Wave":
                 this.type_ = WAVE_ANIMATE;
                 break;
@@ -19,8 +19,8 @@ public class AnimateProperties {
                 this.type_ = FLOW_ANIMATE;
                 break;
         }
-        this.dx_ = _arg_1.@dx;
-        this.dy_ = _arg_1.@dy;
+        this.dx_ = xml.@dx;
+        this.dy_ = xml.@dy;
     }
 
 

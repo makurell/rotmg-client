@@ -1744,11 +1744,11 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         serverConnection.sendMessage(_local_2);
     }
 
-    private function parseXML(_arg_1:String):void {
-        var _local_2:XML = XML(_arg_1);
-        GroundLibrary.parseFromXML(_local_2);
-        ObjectLibrary.parseFromXML(_local_2);
-        ObjectLibrary.parseFromXML(_local_2);
+    private function parseXML(rawXml:String):void {
+        var xmlDoc:XML = XML(rawXml);
+        GroundLibrary.parseFromXML(xmlDoc);
+        ObjectLibrary.parseFromXML(xmlDoc);
+        ObjectLibrary.parseFromXML(xmlDoc);
     }
 
     private function onMapInfo(_arg_1:MapInfo):void {

@@ -7,16 +7,16 @@ public class MoveRecord {
     public var x_:Number;
     public var y_:Number;
 
-    public function MoveRecord(_arg_1:int, _arg_2:Number, _arg_3:Number) {
-        this.time_ = _arg_1;
-        this.x_ = _arg_2;
-        this.y_ = _arg_3;
+    public function MoveRecord(time:int, x:Number, y:Number) {
+        this.time_ = time;
+        this.x_ = x;
+        this.y_ = y;
     }
 
-    public function writeToOutput(_arg_1:IDataOutput):void {
-        _arg_1.writeInt(this.time_);
-        _arg_1.writeFloat(this.x_);
-        _arg_1.writeFloat(this.y_);
+    public function writeToOutput(dataOutput:IDataOutput):void {
+        dataOutput.writeInt(this.time_);
+        dataOutput.writeFloat(this.x_);
+        dataOutput.writeFloat(this.y_);
     }
 
     public function toString():String {

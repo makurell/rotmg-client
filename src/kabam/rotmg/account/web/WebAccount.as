@@ -61,18 +61,18 @@ public class WebAccount implements Account {
         return this.getPassword() != "" || this.getToken() != "";
     }
 
-    public function updateUser(_arg_1:String, _arg_2:String, _arg_3:String):void {
-        var _local_4:SharedObject;
-        this.userId = _arg_1;
-        this.password = _arg_2;
-        this.token = _arg_3;
+    public function updateUser(userId:String, password:String, token:String):void {
+        var sharedObject:SharedObject;
+        this.userId = userId;
+        this.password = password;
+        this.token = token;
         try {
             if (this._rememberMe) {
-                _local_4 = SharedObject.getLocal("RotMG", "/");
-                _local_4.data["GUID"] = _arg_1;
-                _local_4.data["Token"] = _arg_3;
-                _local_4.data["Password"] = _arg_2;
-                _local_4.flush();
+                sharedObject = SharedObject.getLocal("RotMG", "/");
+                sharedObject.data["GUID"] = userId;
+                sharedObject.data["Token"] = token;
+                sharedObject.data["Password"] = password;
+                sharedObject.flush();
             }
         }
         catch (error:Error) {
@@ -114,8 +114,8 @@ public class WebAccount implements Account {
         return "";
     }
 
-    public function verify(_arg_1:Boolean):void {
-        this.isVerifiedEmail = _arg_1;
+    public function verify(b:Boolean):void {
+        this.isVerifiedEmail = b;
     }
 
     public function isVerified():Boolean {
@@ -126,8 +126,8 @@ public class WebAccount implements Account {
         return this.platformToken || "";
     }
 
-    public function setPlatformToken(_arg_1:String):void {
-        this.platformToken = _arg_1;
+    public function setPlatformToken(token:String):void {
+        this.platformToken = token;
     }
 
     public function getMoneyAccessToken():String {
@@ -142,28 +142,28 @@ public class WebAccount implements Account {
         return this._userDisplayName;
     }
 
-    public function set userDisplayName(_arg_1:String):void {
-        this._userDisplayName = _arg_1;
+    public function set userDisplayName(name:String):void {
+        this._userDisplayName = name;
     }
 
-    public function set rememberMe(_arg_1:Boolean):void {
-        this._rememberMe = _arg_1;
+    public function set rememberMe(b:Boolean):void {
+        this._rememberMe = b;
     }
 
     public function get rememberMe():Boolean {
         return this._rememberMe;
     }
 
-    public function set paymentProvider(_arg_1:String):void {
-        this._paymentProvider = _arg_1;
+    public function set paymentProvider(s:String):void {
+        this._paymentProvider = s;
     }
 
     public function get paymentProvider():String {
         return this._paymentProvider;
     }
 
-    public function set paymentData(param1:String):void {
-        this._paymentData = param1;
+    public function set paymentData(s:String):void {
+        this._paymentData = s;
     }
 
     public function get paymentData():String {

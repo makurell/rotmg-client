@@ -7,117 +7,117 @@ public class GUID {
 
 
     public static function create():String {
-        var _local_1:Date = new Date();
-        var _local_2:Number = _local_1.getTime();
-        var _local_3:Number = Math.random() * Number.MAX_VALUE;
-        var _local_4:String = Capabilities.serverString;
-        return calculate(_local_2 + _local_4 + _local_3 + counter++).toUpperCase();
+        var date:Date = new Date();
+        var time:Number = date.getTime();
+        var rand:Number = Math.random() * Number.MAX_VALUE;
+        var serverString:String = Capabilities.serverString;
+        return calculate(time + serverString + rand + counter++).toUpperCase();
     }
 
-    private static function calculate(_arg_1:String):String {
-        return hex_sha1(_arg_1);
+    private static function calculate(s:String):String {
+        return hex_sha1(s);
     }
 
-    private static function hex_sha1(_arg_1:String):String {
-        return binb2hex(core_sha1(str2binb(_arg_1), _arg_1.length * 8));
+    private static function hex_sha1(s:String):String {
+        return binb2hex(core_sha1(str2binb(s), s.length * 8));
     }
 
-    private static function core_sha1(_arg_1:Array, _arg_2:Number):Array {
-        var _local_10:Number;
-        var _local_11:Number;
-        var _local_12:Number;
-        var _local_13:Number;
-        var _local_14:Number;
-        var _local_15:Number;
-        var _local_16:Number;
-        _arg_1[(_arg_2 >> 5)] = _arg_1[(_arg_2 >> 5)] | 128 << 24 - _arg_2 % 32;
-        _arg_1[((((_arg_2 + 64) >> 9) << 4) + 15)] = _arg_2;
-        var _local_3:Array = new Array(80);
-        var _local_4:Number = 1732584193;
-        var _local_5:Number = -271733879;
-        var _local_6:Number = -1732584194;
-        var _local_7:Number = 271733878;
-        var _local_8:Number = -1009589776;
-        var _local_9:Number = 0;
-        while (_local_9 < _arg_1.length) {
-            _local_10 = _local_4;
-            _local_11 = _local_5;
-            _local_12 = _local_6;
-            _local_13 = _local_7;
-            _local_14 = _local_8;
-            _local_15 = 0;
-            while (_local_15 < 80) {
-                if (_local_15 < 16) {
-                    _local_3[_local_15] = _arg_1[(_local_9 + _local_15)];
+    private static function core_sha1(binb:Array, l:Number):Array {
+        var a1:Number;
+        var a2:Number;
+        var a3:Number;
+        var a4:Number;
+        var a5:Number;
+        var j:Number;
+        var s:Number;
+        binb[(l >> 5)] = binb[(l >> 5)] | 128 << 24 - l % 32;
+        binb[((((l + 64) >> 9) << 4) + 15)] = l;
+        var arr:Array = new Array(80);
+        var n1:Number = 1732584193;
+        var n2:Number = -271733879;
+        var n3:Number = -1732584194;
+        var n4:Number = 271733878;
+        var n5:Number = -1009589776;
+        var i:Number = 0;
+        while (i < binb.length) {
+            a1 = n1;
+            a2 = n2;
+            a3 = n3;
+            a4 = n4;
+            a5 = n5;
+            j = 0;
+            while (j < 80) {
+                if (j < 16) {
+                    arr[j] = binb[(i + j)];
                 }
                 else {
-                    _local_3[_local_15] = rol(_local_3[(_local_15 - 3)] ^ _local_3[(_local_15 - 8)] ^ _local_3[(_local_15 - 14)] ^ _local_3[(_local_15 - 16)], 1);
+                    arr[j] = rol(arr[(j - 3)] ^ arr[(j - 8)] ^ arr[(j - 14)] ^ arr[(j - 16)], 1);
                 }
-                _local_16 = safe_add(safe_add(rol(_local_4, 5), sha1_ft(_local_15, _local_5, _local_6, _local_7)), safe_add(safe_add(_local_8, _local_3[_local_15]), sha1_kt(_local_15)));
-                _local_8 = _local_7;
-                _local_7 = _local_6;
-                _local_6 = rol(_local_5, 30);
-                _local_5 = _local_4;
-                _local_4 = _local_16;
-                _local_15++;
+                s = safe_add(safe_add(rol(n1, 5), sha1_ft(j, n2, n3, n4)), safe_add(safe_add(n5, arr[j]), sha1_kt(j)));
+                n5 = n4;
+                n4 = n3;
+                n3 = rol(n2, 30);
+                n2 = n1;
+                n1 = s;
+                j++;
             }
-            _local_4 = safe_add(_local_4, _local_10);
-            _local_5 = safe_add(_local_5, _local_11);
-            _local_6 = safe_add(_local_6, _local_12);
-            _local_7 = safe_add(_local_7, _local_13);
-            _local_8 = safe_add(_local_8, _local_14);
-            _local_9 = _local_9 + 16;
+            n1 = safe_add(n1, a1);
+            n2 = safe_add(n2, a2);
+            n3 = safe_add(n3, a3);
+            n4 = safe_add(n4, a4);
+            n5 = safe_add(n5, a5);
+            i = i + 16;
         }
-        return [_local_4, _local_5, _local_6, _local_7, _local_8];
+        return [n1, n2, n3, n4, n5];
     }
 
-    private static function sha1_ft(_arg_1:Number, _arg_2:Number, _arg_3:Number, _arg_4:Number):Number {
-        if (_arg_1 < 20) {
-            return _arg_2 & _arg_3 | ~_arg_2 & _arg_4;
+    private static function sha1_ft(a:Number, b:Number, c:Number, d:Number):Number {
+        if (a < 20) {
+            return b & c | ~b & d;
         }
-        if (_arg_1 < 40) {
-            return _arg_2 ^ _arg_3 ^ _arg_4;
+        if (a < 40) {
+            return b ^ c ^ d;
         }
-        if (_arg_1 < 60) {
-            return _arg_2 & _arg_3 | _arg_2 & _arg_4 | _arg_3 & _arg_4;
+        if (a < 60) {
+            return b & c | b & d | c & d;
         }
-        return _arg_2 ^ _arg_3 ^ _arg_4;
+        return b ^ c ^ d;
     }
 
-    private static function sha1_kt(_arg_1:Number):Number {
-        return _arg_1 < 20 ? 1518500249 : _arg_1 < 40 ? 1859775393 : _arg_1 < 60 ? -1894007588 : -899497514;
+    private static function sha1_kt(a:Number):Number {
+        return a < 20 ? 1518500249 : a < 40 ? 1859775393 : a < 60 ? -1894007588 : -899497514;
     }
 
-    private static function safe_add(_arg_1:Number, _arg_2:Number):Number {
-        var _local_3:Number = (_arg_1 & 0xFFFF) + (_arg_2 & 0xFFFF);
-        var _local_4:Number = (_arg_1 >> 16) + (_arg_2 >> 16) + (_local_3 >> 16);
-        return _local_4 << 16 | _local_3 & 0xFFFF;
+    private static function safe_add(a:Number, b:Number):Number {
+        var c:Number = (a & 0xFFFF) + (b & 0xFFFF);
+        var d:Number = (a >> 16) + (b >> 16) + (c >> 16);
+        return d << 16 | c & 0xFFFF;
     }
 
-    private static function rol(_arg_1:Number, _arg_2:Number):Number {
-        return _arg_1 << _arg_2 | _arg_1 >>> 32 - _arg_2;
+    private static function rol(a:Number, b:Number):Number {
+        return a << b | a >>> 32 - b;
     }
 
-    private static function str2binb(_arg_1:String):Array {
-        var _local_2:Array = [];
-        var _local_3:Number = (1 << 8) - 1;
-        var _local_4:Number = 0;
-        while (_local_4 < _arg_1.length * 8) {
-            _local_2[(_local_4 >> 5)] = _local_2[(_local_4 >> 5)] | (_arg_1.charCodeAt(_local_4 / 8) & _local_3) << 24 - _local_4 % 32;
-            _local_4 = _local_4 + 8;
+    private static function str2binb(s:String):Array {
+        var ret:Array = [];
+        var a:Number = (1 << 8) - 1;
+        var i:Number = 0;
+        while (i < s.length * 8) {
+            ret[(i >> 5)] = ret[(i >> 5)] | (s.charCodeAt(i / 8) & a) << 24 - i % 32;
+            i = i + 8;
         }
-        return _local_2;
+        return ret;
     }
 
-    private static function binb2hex(_arg_1:Array):String {
-        var _local_2:String = String("");
-        var _local_3:String = String("0123456789abcdef");
-        var _local_4:Number = 0;
-        while (_local_4 < _arg_1.length * 4) {
-            _local_2 = _local_2 + (_local_3.charAt(_arg_1[(_local_4 >> 2)] >> (3 - _local_4 % 4) * 8 + 4 & 15) + _local_3.charAt(_arg_1[(_local_4 >> 2)] >> (3 - _local_4 % 4) * 8 & 15));
-            _local_4++;
+    private static function binb2hex(arr:Array):String {
+        var ret:String = String("");
+        var alpha:String = String("0123456789abcdef");
+        var i:Number = 0;
+        while (i < arr.length * 4) {
+            ret = ret + (alpha.charAt(arr[(i >> 2)] >> (3 - i % 4) * 8 + 4 & 15) + alpha.charAt(arr[(i >> 2)] >> (3 - i % 4) * 8 & 15));
+            i++;
         }
-        return _local_2;
+        return ret;
     }
 
 

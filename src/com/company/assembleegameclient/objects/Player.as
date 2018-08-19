@@ -140,60 +140,60 @@ public class Player extends Character {
     private var breathFill_:GraphicsSolidFill = null;
     private var breathPath_:GraphicsPath = null;
 
-    public function Player(_arg_1:XML) {
+    public function Player(xml:XML) {
         this.ip_ = new IntPoint();
         var _local_2:Injector = StaticInjectorContext.getInjector();
         this.addTextLine = _local_2.getInstance(AddTextLineSignal);
         this.factory = _local_2.getInstance(CharacterFactory);
-        super(_arg_1);
-        this.attackMax_ = int(_arg_1.Attack.@max);
-        this.defenseMax_ = int(_arg_1.Defense.@max);
-        this.speedMax_ = int(_arg_1.Speed.@max);
-        this.dexterityMax_ = int(_arg_1.Dexterity.@max);
-        this.vitalityMax_ = int(_arg_1.HpRegen.@max);
-        this.wisdomMax_ = int(_arg_1.MpRegen.@max);
-        this.maxHPMax_ = int(_arg_1.MaxHitPoints.@max);
-        this.maxMPMax_ = int(_arg_1.MaxMagicPoints.@max);
+        super(xml);
+        this.attackMax_ = int(xml.Attack.@max);
+        this.defenseMax_ = int(xml.Defense.@max);
+        this.speedMax_ = int(xml.Speed.@max);
+        this.dexterityMax_ = int(xml.Dexterity.@max);
+        this.vitalityMax_ = int(xml.HpRegen.@max);
+        this.wisdomMax_ = int(xml.MpRegen.@max);
+        this.maxHPMax_ = int(xml.MaxHitPoints.@max);
+        this.maxMPMax_ = int(xml.MaxMagicPoints.@max);
         texturingCache_ = new Dictionary();
     }
 
-    public static function fromPlayerXML(_arg_1:String, _arg_2:XML):Player {
-        var _local_3:int = int(_arg_2.ObjectType);
-        var _local_4:XML = ObjectLibrary.xmlLibrary_[_local_3];
-        var _local_5:Player = new Player(_local_4);
-        _local_5.name_ = _arg_1;
-        _local_5.level_ = int(_arg_2.Level);
-        _local_5.exp_ = int(_arg_2.Exp);
-        _local_5.equipment_ = ConversionUtil.toIntVector(_arg_2.Equipment);
-        _local_5.lockedSlot = new Vector.<int>(_local_5.equipment_.length);
-        _local_5.maxHP_ = int(_arg_2.MaxHitPoints);
-        _local_5.hp_ = int(_arg_2.HitPoints);
-        _local_5.maxMP_ = int(_arg_2.MaxMagicPoints);
-        _local_5.mp_ = int(_arg_2.MagicPoints);
-        _local_5.attack_ = int(_arg_2.Attack);
-        _local_5.defense_ = int(_arg_2.Defense);
-        _local_5.speed_ = int(_arg_2.Speed);
-        _local_5.dexterity_ = int(_arg_2.Dexterity);
-        _local_5.vitality_ = int(_arg_2.HpRegen);
-        _local_5.wisdom_ = int(_arg_2.MpRegen);
-        _local_5.tex1Id_ = int(_arg_2.Tex1);
-        _local_5.tex2Id_ = int(_arg_2.Tex2);
-        return _local_5;
+    public static function fromPlayerXML(name:String, xml:XML):Player {
+        var objectType:int = int(xml.ObjectType);
+        var objectXml:XML = ObjectLibrary.xmlLibrary_[objectType];
+        var player:Player = new Player(objectXml);
+        player.name_ = name;
+        player.level_ = int(xml.Level);
+        player.exp_ = int(xml.Exp);
+        player.equipment_ = ConversionUtil.toIntVector(xml.Equipment);
+        player.lockedSlot = new Vector.<int>(player.equipment_.length);
+        player.maxHP_ = int(xml.MaxHitPoints);
+        player.hp_ = int(xml.HitPoints);
+        player.maxMP_ = int(xml.MaxMagicPoints);
+        player.mp_ = int(xml.MagicPoints);
+        player.attack_ = int(xml.Attack);
+        player.defense_ = int(xml.Defense);
+        player.speed_ = int(xml.Speed);
+        player.dexterity_ = int(xml.Dexterity);
+        player.vitality_ = int(xml.HpRegen);
+        player.wisdom_ = int(xml.MpRegen);
+        player.tex1Id_ = int(xml.Tex1);
+        player.tex2Id_ = int(xml.Tex2);
+        return player;
     }
 
 
-    public function setRelativeMovement(_arg_1:Number, _arg_2:Number, _arg_3:Number):void {
-        var _local_4:Number;
+    public function setRelativeMovement(rotate:Number, rvx:Number, rvy:Number):void {
+        var temp:Number;
         if (this.relMoveVec_ == null) {
             this.relMoveVec_ = new Point();
         }
-        this.rotate_ = _arg_1;
-        this.relMoveVec_.x = _arg_2;
-        this.relMoveVec_.y = _arg_3;
+        this.rotate_ = rotate;
+        this.relMoveVec_.x = rvx;
+        this.relMoveVec_.y = rvy;
         if (isConfused()) {
-            _local_4 = this.relMoveVec_.x;
+            temp = this.relMoveVec_.x;
             this.relMoveVec_.x = -this.relMoveVec_.y;
-            this.relMoveVec_.y = -_local_4;
+            this.relMoveVec_.y = -temp;
             this.rotate_ = -this.rotate_;
         }
     }
